@@ -19,6 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/film.css" />
 </head>
 <body>
   <div class="grid-bg" aria-hidden="true"></div>
@@ -42,6 +43,13 @@
         complete them with a tap, a counter, or a timer, and watch streaks, XP, and your
         heatmap fill in. Then compete privately with friends in the Arena.
       </p>
+
+      <div class="film-cta-row">
+        <button type="button" class="film-launch" id="filmLaunch" aria-haspopup="dialog">
+          <span class="film-launch-ico">▶</span>
+          <span>Watch the film <span class="film-launch-time">· 90 sec</span></span>
+        </button>
+      </div>
 
       <form id="waitlist" class="waitlist" novalidate>
         <input
@@ -94,6 +102,8 @@
       <a class="button" href="#waitlist">Join the waitlist</a>
     </section>
   </main>
+
+  <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop explainer film" hidden></div>
 
   <footer class="footer">
     <div class="footer-brand">
@@ -518,5 +528,7 @@
       window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(builder, 200); });
     })();
   </script>
+
+  <script src="/film.js" defer></script>
 </body>
 </html>
