@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tadapop — Daily Habit Checklist with a mission-control soul</title>
+  <meta name="description" content="Tadapop is a gamified daily habit tracker: define missions, complete them with a tap, a counter, or a timer, and build streaks, XP, and a heatmap. Private friends-only competition in the Arena. iOS." />
+  <meta name="theme-color" content="#0B0E17" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tadapop — Daily Habit Checklist" />
+  <meta property="og:description" content="A gamified daily habit tracker with a mission-control console aesthetic. Build streaks, earn XP, and compete privately with friends." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tadapop.app/" />
+  <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+
+  <link rel="icon" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="brand" href="/">
+      <span class="brand-mark">◎</span>
+      <span class="brand-name">TADAPOP</span>
+    </a>
+    <a class="nav-cta" href="#waitlist">Get early access</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="readout">SYSTEM ONLINE · iOS · v1.0</div>
+      <h1>Your daily missions,<br />on a console you actually<br /><span class="amber">want to open.</span></h1>
+      <p class="lede">
+        Tadapop is a gamified habit tracker with a mission-control soul. Define missions,
+        complete them with a tap, a counter, or a timer, and watch streaks, XP, and your
+        heatmap fill in. Then compete privately with friends in the Arena.
+      </p>
+
+      <form id="waitlist" class="waitlist" novalidate>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          inputmode="email"
+          autocomplete="email"
+          placeholder="you@example.com"
+          aria-label="Email address"
+          required
+        />
+        <button type="submit" id="submit">NOTIFY ME</button>
+      </form>
+      <p class="form-note" id="formNote">Coming soon to iOS. Join the list — no spam, just a launch ping.</p>
+    </section>
+
+    <section class="features">
+      <article class="card">
+        <div class="card-icon">⌁</div>
+        <h3>Three ways to log</h3>
+        <p>Binary check, count-to-target, or a countdown timer with a chime. One tap from the home screen — logging works fully offline.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">▲</div>
+        <h3>Streaks &amp; XP, honestly</h3>
+        <p>Earn XP by difficulty, build streaks, and protect them with rest days. Progression that motivates without manipulating — caps stop the grind.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">◳</div>
+        <h3>A 12-week heatmap</h3>
+        <p>Telemetry-grade stats: a console-grid heatmap and per-mission completion rates so you can actually see the trend.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">⚔</div>
+        <h3>The Arena</h3>
+        <p>Private, invite-only challenges with friends. No public discovery, no real money — just bragging rights and a live leaderboard.</p>
+      </article>
+    </section>
+
+    <section class="strip">
+      <div class="strip-item"><span class="metric">10 / 20 / 30</span><span class="metric-label">XP per mission tier</span></div>
+      <div class="strip-item"><span class="metric">100%</span><span class="metric-label">offline-first logging</span></div>
+      <div class="strip-item"><span class="metric">0</span><span class="metric-label">ads &amp; trackers</span></div>
+    </section>
+
+    <section class="cta-final" id="get">
+      <h2>Be first on the launch list.</h2>
+      <p>We'll email you once when Tadapop hits the App Store. That's it.</p>
+      <a class="button" href="#waitlist">Join the waitlist</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <span class="brand-mark">◎</span> TADAPOP
+    </div>
+    <nav class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/support">Support</a>
+    </nav>
+    <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
+  </footer>
+
+  <script>
+    // Waitlist → Supabase (write-only `waitlist` table; RLS allows insert, not read).
+    const SUPABASE_URL = 'https://otwkbulyjmpzirvyxjtp.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_FFgmUW1BTmbJWPQvMA22Bg_f9uAMuBh';
+
+    const form = document.getElementById('waitlist');
+    const emailEl = document.getElementById('email');
+    const btn = document.getElementById('submit');
+    const note = document.getElementById('formNote');
+
+    function setNote(msg, kind) {
+      note.textContent = msg;
+      note.className = 'form-note' + (kind ? ' ' + kind : '');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailEl.value.trim().toLowerCase();
+      if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        setNote('Please enter a valid email address.', 'err');
+        return;
+      }
+      btn.disabled = true;
+      const original = btn.textContent;
+      btn.textContent = 'SENDING…';
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+          method: 'POST',
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal',
+          },
+          body: JSON.stringify({ email, source: 'landing' }),
+        });
+        if (res.ok || res.status === 409) {
+          // 409 = already on the list (unique email) — treat as success.
+          form.reset();
+          setNote("You're on the list. We'll ping you at launch. 🎈", 'ok');
+        } else {
+          setNote('Something went wrong — please try again.', 'err');
+        }
+      } catch {
+        setNote('Network error — please try again.', 'err');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    });
+  </script>
+</body>
+</html>
