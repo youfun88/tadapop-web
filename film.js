@@ -64,9 +64,58 @@
     const u = new SpeechSynthesisUtterance(text);
     if (voice) u.voice = voice;
     u.rate = 1.03; u.pitch = 1.07; u.volume = 1;
-    u.onstart = () => host.classList.add('speaking');
-    u.onend = () => host.classList.remove('speaking');
+    u.onstart = () => { host.classList.add('speaking'); startMouth(null); };
+    u.onend = () => { host.classList.remove('speaking'); stopMouth(); };
     try { speechSynthesis.speak(u); } catch (e) {}
+  }
+
+  /* --------------------- lip-sync (audio-driven mouth) ------------------ */
+  // Tap the playing voiceover with a Web Audio analyser and open/close the
+  // alien's mouth from the voice loudness. Falls back to a synthesized
+  // "chatter" when there's no analyser (browser TTS path / no Web Audio).
+  const voSrc = {};            // sc.id -> { source, analyser } (created once)
+  let mouthRAF = null, chatterT = 0;
+  function analyserFor(id, audioEl) {
+    const ctx = ac(); if (!ctx) return null;
+    if (voSrc[id]) return voSrc[id].analyser;
+    try {
+      const source = ctx.createMediaElementSource(audioEl);
+      const analyser = ctx.createAnalyser();
+      analyser.fftSize = 256; analyser.smoothingTimeConstant = 0.55;
+      source.connect(analyser); analyser.connect(ctx.destination);
+      voSrc[id] = { source, analyser };
+      return analyser;
+    } catch (e) { return null; }
+  }
+  function setMouth(open) {
+    const m = host && host.querySelector('#alienMouth'); if (!m) return;
+    const o = Math.max(0, Math.min(1, open));
+    m.style.transform = 'scaleY(' + (0.16 + o).toFixed(3) + ') scaleX(' + (1 - o * 0.16).toFixed(3) + ')';
+  }
+  function startMouth(analyser) {
+    stopMouth();
+    if (analyser) {
+      const buf = new Uint8Array(analyser.fftSize);
+      const tick = () => {
+        analyser.getByteTimeDomainData(buf);
+        let s = 0; for (let i = 0; i < buf.length; i++) { const v = (buf[i] - 128) / 128; s += v * v; }
+        setMouth(Math.sqrt(s / buf.length) * 3.4);
+        mouthRAF = requestAnimationFrame(tick);
+      };
+      tick();
+    } else {
+      const tick = () => {
+        chatterT += 0.16;
+        const env = 0.55 + 0.45 * Math.sin(chatterT * 0.7);
+        setMouth(Math.max(0, (0.5 + 0.5 * Math.sin(chatterT * 5.2)) * env));
+        mouthRAF = requestAnimationFrame(tick);
+      };
+      tick();
+    }
+  }
+  function stopMouth() {
+    if (mouthRAF) cancelAnimationFrame(mouthRAF);
+    mouthRAF = null; setMouth(0);
   }
 
   /* --------------------------- player shell ----------------------------- */
@@ -84,7 +133,7 @@
   host.innerHTML =
     '<div class="film-host-ring"><div class="film-host-inner">' + hostSVG() + '</div></div>' +
     '<div class="film-wave"><i></i><i></i><i></i><i></i><i></i></div>' +
-    '<div class="film-host-name">HOST · <b>ARIA</b></div>';
+    '<div class="film-host-name">HOST · <b>TADA</b></div>';
 
   const caption = el('div', 'film-caption');
 
@@ -145,6 +194,7 @@
     if (curAudio) { try { curAudio.pause(); } catch (e) {} curAudio.onended = null; curAudio = null; }
     try { speechSynthesis.cancel(); } catch (e) {}
     host.classList.remove('speaking');
+    stopMouth();
   }
   function playVO(sc) {
     stopVO();
@@ -155,9 +205,11 @@
       try { a.currentTime = 0; } catch (e) {}
       a.volume = 1;
       host.classList.add('speaking');
-      a.onended = () => { if (curAudio === a) host.classList.remove('speaking'); };
+      const an = analyserFor(sc.id, a);
+      a.onended = () => { if (curAudio === a) { host.classList.remove('speaking'); stopMouth(); } };
       const p = a.play();
-      if (p && p.catch) p.catch(() => { if (curAudio === a) { host.classList.remove('speaking'); sayTTS(sc.vo); } });
+      startMouth(an);
+      if (p && p.catch) p.catch(() => { if (curAudio === a) { host.classList.remove('speaking'); stopMouth(); sayTTS(sc.vo); } });
     } else {
       sayTTS(sc.vo);
     }
@@ -289,26 +341,34 @@
   function fmtClock(ms) { const s = Math.round(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
 
   function hostSVG() {
+    // Cute one-eyed space alien (host: TADA). The #alienMouth group is
+    // scaled vertically at runtime for audio-driven lip-sync (see startMouth).
     return '' +
       '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
       '<defs>' +
-      '<linearGradient id="fgHair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#864F70"/><stop offset="1" stop-color="#46293F"/></linearGradient>' +
-      '<linearGradient id="fgSh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB454"/><stop offset="1" stop-color="#E8922E"/></linearGradient>' +
+      '<linearGradient id="agBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FD8F2"/><stop offset=".55" stop-color="#79B6F0"/><stop offset="1" stop-color="#9285EC"/></linearGradient>' +
+      '<radialGradient id="agIris" cx="50%" cy="42%" r="62%"><stop offset="0" stop-color="#8BF0B8"/><stop offset=".6" stop-color="#3FBE82"/><stop offset="1" stop-color="#1E7E57"/></radialGradient>' +
+      '<radialGradient id="agBelly" cx="50%" cy="60%" r="55%"><stop offset="0" stop-color="#CFF3FF" stop-opacity=".9"/><stop offset="1" stop-color="#CFF3FF" stop-opacity="0"/></radialGradient>' +
+      '<filter id="agGlow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
       '</defs>' +
-      '<path d="M12 100 V95 a38 31 0 0 1 76 0 V100 Z" fill="url(#fgSh)"/>' +
-      '<rect x="41" y="76" width="18" height="14" rx="8" fill="#EDBF9C"/>' +
-      '<path d="M21 60 q-3 -40 29 -40 q32 0 29 40 q0 15 -5 26 q-6 -28 -10 -33 q-14 8 -28 0 q-4 5 -10 33 q-5 -11 -5 -26 Z" fill="url(#fgHair)"/>' +
-      '<ellipse cx="50" cy="51" rx="20" ry="23" fill="#F1C7A8"/>' +
-      '<path d="M30 45 q3 -23 20 -23 q17 0 20 23 q-10 -10 -20 -8 q-10 -2 -20 8 Z" fill="url(#fgHair)"/>' +
-      '<g fill="#2A2230"><ellipse cx="42.5" cy="51" rx="2.1" ry="2.7"/><ellipse cx="57.5" cy="51" rx="2.1" ry="2.7"/></g>' +
-      '<g stroke="#5A3A4E" stroke-width="1.3" stroke-linecap="round" fill="none"><path d="M38.5 46 q4 -2 8 -0.5"/><path d="M53.5 45.5 q4 -1.5 8 0.5"/></g>' +
-      '<g fill="#F0998A" opacity=".45"><circle cx="38" cy="58" r="3"/><circle cx="62" cy="58" r="3"/></g>' +
-      '<path d="M44.5 60.5 q5.5 5.5 11 0" stroke="#B85C5C" stroke-width="1.8" fill="none" stroke-linecap="round"/>' +
-      '<path d="M27 47 a23 25 0 0 1 46 0" stroke="#0E1422" stroke-width="3.6" fill="none"/>' +
-      '<path d="M27 47 a23 25 0 0 1 46 0" stroke="#FFB454" stroke-width="1.6" fill="none"/>' +
-      '<circle cx="26" cy="53" r="5.2" fill="#1A2233" stroke="#FFB454" stroke-width="1.4"/>' +
-      '<path d="M26 58 q-2 11 17 13" stroke="#0E1422" stroke-width="2.6" fill="none" stroke-linecap="round"/>' +
-      '<circle cx="43" cy="71" r="2.5" fill="#FFB454"/>' +
+      // antennae
+      '<g stroke="#5FC8E8" stroke-width="3" fill="none" stroke-linecap="round"><path d="M40 30 Q33 16 31 11"/><path d="M60 30 Q67 16 69 11"/></g>' +
+      '<g filter="url(#agGlow)"><circle cx="30" cy="10" r="4.4" fill="#FF77D8"/><circle cx="70" cy="10" r="4.4" fill="#FF77D8"/><circle cx="28.6" cy="8.6" r="1.5" fill="#FFD9F3"/><circle cx="68.6" cy="8.6" r="1.5" fill="#FFD9F3"/></g>' +
+      // body
+      '<rect x="21" y="28" width="58" height="64" rx="29" fill="url(#agBody)" stroke="#3E84C4" stroke-width="2"/>' +
+      '<ellipse cx="50" cy="64" rx="24" ry="26" fill="url(#agBelly)"/>' +
+      // cheeks
+      '<g fill="#FF8FC4" opacity=".42"><ellipse cx="30" cy="60" rx="5" ry="3.6"/><ellipse cx="70" cy="60" rx="5" ry="3.6"/></g>' +
+      // big eye
+      '<ellipse cx="50" cy="46" rx="17" ry="18" fill="#EEF9FF" stroke="#5FA9D8" stroke-width="1.6"/>' +
+      '<circle cx="50" cy="47" r="11.5" fill="url(#agIris)"/>' +
+      '<circle cx="50" cy="48" r="5.6" fill="#0E2228"/>' +
+      '<circle cx="46" cy="43" r="3.1" fill="#FFFFFF"/>' +
+      '<circle cx="53.5" cy="51.5" r="1.7" fill="#FFFFFF" opacity=".9"/>' +
+      '<path d="M35 39.5 q15 -10 30 0" stroke="#BFE9FF" stroke-width="1.3" fill="none" opacity=".6"/>' +
+      // mouth (lip-synced: this group is scaled vertically at runtime)
+      '<g id="alienMouth" style="transform-box:fill-box;transform-origin:center center"><path d="M42 65 Q50 73 58 65 Q50 69 42 65 Z" fill="#3A1730"/></g>' +
+      '<path d="M41 64 Q50 71 59 64" stroke="#46708F" stroke-width="2" fill="none" stroke-linecap="round"/>' +
       '</svg>';
   }
 })();
