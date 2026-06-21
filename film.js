@@ -57,7 +57,7 @@
     voice = vs.find((x) => /female/i.test(x.name) && /en/i.test(x.lang)) || vs.find((x) => /^en/i.test(x.lang)) || vs[0];
   }
   if (window.speechSynthesis) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
-  function say(text) {
+  function sayTTS(text) {
     if (!window.speechSynthesis) return;
     try { speechSynthesis.cancel(); } catch (e) {}
     if (muted || !text) { host.classList.remove('speaking'); return; }
@@ -110,7 +110,7 @@
   overlay.append(stageWrap, host, caption, top, controls, unmute, end);
 
   /* --------------------------- engine state ----------------------------- */
-  let sceneAnims = [], sceneTimers = [], rootAnims = [], idx = -1, playing = false, timeTimer = null;
+  let sceneAnims = [], sceneTimers = [], rootAnims = [], idx = -1, playing = false, timeTimer = null, curAudio = null;
   function anim(node, frames, opts) {
     const a = node.animate(frames, Object.assign({ duration: 600, fill: 'both', easing: 'ease' }, opts || {}));
     sceneAnims.push(a); return a;
@@ -135,6 +135,34 @@
   const TOTAL = scenes.reduce((s, x) => s + x.dur, 0);
   time.textContent = '0:00 / ' + fmtClock(TOTAL);
 
+  /* ---- pre-recorded voiceover (ElevenLabs, voice: Jessica) ----
+     One MP3 per scene in /assets/vo/. Bump VOV to bust the CDN cache when
+     regenerating. Falls back to the browser voice if a clip won't load/play. */
+  const VOV = 1;
+  const voCache = {};
+  scenes.forEach((sc) => { if (sc.id) { const a = new Audio('/assets/vo/' + sc.id + '.mp3?v=' + VOV); a.preload = 'auto'; voCache[sc.id] = a; } });
+  function stopVO() {
+    if (curAudio) { try { curAudio.pause(); } catch (e) {} curAudio.onended = null; curAudio = null; }
+    try { speechSynthesis.cancel(); } catch (e) {}
+    host.classList.remove('speaking');
+  }
+  function playVO(sc) {
+    stopVO();
+    if (muted || !sc) return;
+    const a = sc.id && voCache[sc.id];
+    if (a) {
+      curAudio = a;
+      try { a.currentTime = 0; } catch (e) {}
+      a.volume = 1;
+      host.classList.add('speaking');
+      a.onended = () => { if (curAudio === a) host.classList.remove('speaking'); };
+      const p = a.play();
+      if (p && p.catch) p.catch(() => { if (curAudio === a) { host.classList.remove('speaking'); sayTTS(sc.vo); } });
+    } else {
+      sayTTS(sc.vo);
+    }
+  }
+
   function showCaption(html) {
     caption.innerHTML = html;
     anim(caption, [{ opacity: 0, transform: 'translateX(-50%) translateY(8px)' }, { opacity: 1, transform: 'translateX(-50%) translateY(0)' }], { duration: 400, fill: 'both' });
@@ -150,7 +178,7 @@
     sfx.whoosh();
     anim(node, [{ opacity: 0 }, { opacity: 1 }], { duration: 450, fill: 'both' });
     try { sc.render(node, ctx); } catch (e) { /* keep film resilient */ }
-    say(sc.vo);
+    playVO(sc);
     (sc.caps || []).forEach((c) => { if (c.at <= 0) showCaption(c.html); else after(c.at * 1000, () => showCaption(c.html)); });
     if (i < scenes.length - 1) after(sc.dur, () => gotoScene(i + 1));
     else after(sc.dur, finish);
@@ -191,8 +219,7 @@
 
   function finish() {
     playing = false;
-    try { speechSynthesis.cancel(); } catch (e) {}
-    host.classList.remove('speaking');
+    stopVO();
     end.classList.add('show');
   }
 
@@ -201,8 +228,7 @@
     clearScene();
     rootAnims.forEach((a) => { try { a.cancel(); } catch (e) {} });
     clearInterval(timeTimer);
-    try { speechSynthesis.cancel(); } catch (e) {}
-    host.classList.remove('speaking');
+    stopVO();
     unmute.style.display = 'none';
     overlay.classList.remove('show');
     document.body.style.overflow = '';
@@ -223,7 +249,7 @@
     muteBtn.textContent = '♪ SOUND ON';
     unmute.style.display = 'none';
     ac();
-    if (playing && idx >= 0 && scenes[idx]) say(scenes[idx].vo);
+    if (playing && idx >= 0 && scenes[idx]) playVO(scenes[idx]);
   }
   launch.addEventListener('click', () => play(false));
   closeBtn.addEventListener('click', closeFilm);
@@ -233,8 +259,7 @@
     if (muted) { enableSound(); return; }
     muted = true;
     muteBtn.textContent = '♪ SOUND OFF';
-    try { speechSynthesis.cancel(); } catch (e) {}
-    host.classList.remove('speaking');
+    stopVO();
   });
   end.addEventListener('click', (e) => {
     const act = e.target && e.target.getAttribute('data-act');
@@ -365,7 +390,7 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 1 ----------------------------- */
   const s1 = {
-    dur: 8000,
+    id: 's1', dur: 5600,
     vo: 'Most habit apps feel like homework. Tadapop feels like mission control.',
     caps: [{ at: 0, html: 'Most habit apps feel like <span class="hi">homework</span>.' }, { at: 3.6, html: 'Tadapop feels like <span class="hi">mission control</span>.' }],
     render(node) {
@@ -387,7 +412,7 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 2 ----------------------------- */
   const s2 = {
-    dur: 15000,
+    id: 's2', dur: 12000,
     vo: 'Every morning, your missions are waiting. Tap to check one off. Count your water, your steps, your pages. Or start a timer for deep work, and lock in.',
     caps: [{ at: 0, html: 'Your missions, every morning.' }, { at: 5, html: 'Tap. Count. Time it. <span class="go">Done.</span>' }],
     render(node) {
@@ -421,7 +446,7 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 3 ----------------------------- */
   const s3 = {
-    dur: 10000,
+    id: 's3', dur: 7500,
     vo: 'Every win earns XP. Watch your level climb, and feel that little rush, every single day.',
     caps: [{ at: 0, html: 'Every win earns <span class="hi">XP</span>.' }, { at: 4.5, html: '<span class="hi">Level up.</span>' }],
     render(node) {
@@ -451,7 +476,7 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 4 ----------------------------- */
   const s4 = {
-    dur: 10000,
+    id: 's4', dur: 10600,
     vo: 'Clear them all, and your day is secured. Your streak grows. Life gets busy? Spend a rest day, and keep the fire alive.',
     caps: [{ at: 0, html: 'Clear the day. <span class="go">Day secured.</span>' }, { at: 5, html: 'Protect your streak with a <span class="hi">rest day</span>.' }],
     render(node) {
@@ -499,7 +524,7 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 5 ----------------------------- */
   const s5 = {
-    dur: 13000,
+    id: 's5', dur: 9000,
     vo: 'Then see the proof. A twelve-week heatmap that fills in green as you show up. Plus the numbers that actually keep you honest.',
     caps: [{ at: 0, html: 'See the <span class="go">proof</span>.' }, { at: 5, html: '12 weeks of showing up.' }],
     render(node) {
@@ -553,7 +578,7 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 6 ----------------------------- */
   const s6 = {
-    dur: 9000,
+    id: 's6', dur: 6200,
     vo: "But the real magic? You don't have to do it alone. Step into the Arena.",
     caps: [{ at: 0, html: "You don't have to do it alone." }, { at: 4, html: 'Step into the <span class="hi">Arena</span>.' }],
     render(node) {
@@ -584,7 +609,7 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 7 ----------------------------- */
   const s7 = {
-    dur: 15000,
+    id: 's7', dur: 11000,
     vo: 'Invite your friends, pick a challenge, set the days, and compete, live. Climb the leaderboard, drop proof photos, and talk a little trash.',
     caps: [{ at: 0, html: 'Invite friends. Compete <span class="go">live</span>.' }, { at: 6, html: 'Climb the <span class="hi">leaderboard</span>.' }],
     render(node) {
@@ -647,7 +672,7 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 8 ----------------------------- */
   const s8 = {
-    dur: 9000,
+    id: 's8', dur: 7200,
     vo: 'Win together. Lose together. Get better — together.',
     caps: [{ at: 0, html: 'Get better — <span class="hi">together</span>.' }],
     render(node) {
@@ -676,10 +701,10 @@ function buildScenes(ctx) {
 
   function confetti(host) {
     const cols = [COL.amber, COL.blue, COL.go, COL.red, COL.violet];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 30; i++) {
       const p = el('div', 'fm-conf', { left: '50%', top: '40%', background: cols[i % cols.length], borderRadius: i % 3 ? '50%' : '2px' });
       host.appendChild(p);
-      const ang = (i / 40) * Math.PI * 2 + (i % 5);
+      const ang = (i / 30) * Math.PI * 2 + (i % 5);
       const dist = 120 + (i % 6) * 28;
       const dx = Math.cos(ang) * dist, dy = Math.sin(ang) * dist + 60;
       anim(p, [
@@ -692,9 +717,9 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 9 ----------------------------- */
   const s9 = {
-    dur: 8000,
+    id: 's9', dur: 10600,
     vo: "Tadapop. Track your progress, challenge your friends, and actually become who you said you'd be. Join the waitlist — your first mission starts now.",
-    caps: [{ at: 0, html: '<span class="hi">Tadapop.</span>' }, { at: 3.5, html: 'Your first mission starts now.' }],
+    caps: [{ at: 0, html: '<span class="hi">Tadapop.</span>' }, { at: 6.5, html: 'Your first mission starts now.' }],
     render(node) {
       const wrap = el('div', null, { position: 'absolute', inset: '0', display: 'grid', placeItems: 'center' });
       const box = el('div', null, { textAlign: 'center' });
