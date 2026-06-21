@@ -149,7 +149,7 @@ a { color: inherit; text-decoration: none; }
 .ma-core { display: grid; place-items: center; transform-origin: center; }
 .ma-core svg { width: 60%; height: 60%; overflow: visible; }
 .ma-coreck { transform-box: fill-box; transform-origin: center; }
-.ma-tada { display: grid; place-items: center; transform-origin: center; }
+.ma-tada { display: grid; place-items: center; transform-origin: center; opacity: 0; }
 .ma-tada::before {
   content: "";
   width: 46%;

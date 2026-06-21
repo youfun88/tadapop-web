@@ -249,19 +249,6 @@
       const coreck = core.querySelector('.ma-coreck');
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // ---- static pose for reduced-motion / fallback ----
-      function staticPose() {
-        const size = root.clientWidth || 340;
-        const r = size * 0.37;
-        chips.forEach((c) => {
-          c.place.style.transform = `rotate(${c.angle}deg) translateY(${-r}px)`;
-          c.check.style.opacity = 1;
-        });
-        coreck.style.opacity = 1;
-      }
-
-      if (reduce) { staticPose(); return; }
-
       // ---- timeline ----
       let anims = [];
       const A = (el, frames, opts) => {
@@ -398,9 +385,69 @@
         });
       }
 
-      build();
+      // Calm variant for prefers-reduced-motion: soft fades + sequential
+      // check-ins, no spinning, flying-out, or confetti burst — a quiet loop.
+      function buildGentle() {
+        anims.forEach((a) => a.cancel());
+        anims = [];
+        const size = root.clientWidth || 340;
+        const r = size * 0.37;
+        tada.style.opacity = '0';
+
+        chips.forEach((c, i) => {
+          // tokens rest still on the orbit — no rotation, no flying out
+          c.place.style.transform = `rotate(${c.angle}deg) translateY(${-r}px)`;
+          c.spin.style.transform = 'none';
+          const in0 = 0.06 + i * 0.05;   // staggered soft fade-in
+          const ck = 0.40 + i * 0.05;     // staggered soft check-in
+
+          A(c.pop, [
+            { offset: 0, opacity: 0, transform: 'scale(.92)' },
+            { offset: in0, opacity: 0, transform: 'scale(.92)' },
+            { offset: in0 + 0.05, opacity: 1, transform: 'scale(1)', easing: 'ease-out' },
+            { offset: 0.86, opacity: 1, transform: 'scale(1)' },
+            { offset: 0.97, opacity: 0, transform: 'scale(.92)' },
+            { offset: 1, opacity: 0, transform: 'scale(.92)' },
+          ]);
+          A(c.check, [
+            { offset: 0, opacity: 0, transform: 'scale(.9)' },
+            { offset: ck, opacity: 0, transform: 'scale(.9)' },
+            { offset: ck + 0.04, opacity: 1, transform: 'scale(1)', easing: 'ease-out' },
+            { offset: 0.86, opacity: 1, transform: 'scale(1)' },
+            { offset: 0.97, opacity: 0, transform: 'scale(.9)' },
+            { offset: 1, opacity: 0, transform: 'scale(.9)' },
+          ]);
+          A(c.disc, [
+            { offset: 0, boxShadow: `0 0 0 0 ${rgba(c.color, 0)}` },
+            { offset: ck, boxShadow: `0 0 0 0 ${rgba(c.color, 0)}` },
+            { offset: ck + 0.05, boxShadow: `0 0 14px 1px ${rgba(c.color, 0.45)}`, easing: 'ease-out' },
+            { offset: 0.86, boxShadow: `0 0 14px 1px ${rgba(c.color, 0.45)}` },
+            { offset: 0.97, boxShadow: `0 0 0 0 ${rgba(c.color, 0)}` },
+            { offset: 1, boxShadow: `0 0 0 0 ${rgba(c.color, 0)}` },
+          ]);
+        });
+
+        // central goal: quiet fade with a barely-there breath; check brightens
+        A(core, [
+          { offset: 0, opacity: 0, transform: 'scale(.98)' },
+          { offset: 0.06, opacity: 1, transform: 'scale(1)', easing: 'ease-out' },
+          { offset: 0.5, transform: 'scale(1.015)' },
+          { offset: 0.86, opacity: 1, transform: 'scale(1)' },
+          { offset: 1, opacity: 0, transform: 'scale(.98)' },
+        ]);
+        A(coreck, [
+          { offset: 0, opacity: 0.3 },
+          { offset: 0.68, opacity: 0.3 },
+          { offset: 0.76, opacity: 1, easing: 'ease-out' },
+          { offset: 0.92, opacity: 1 },
+          { offset: 1, opacity: 0.3 },
+        ]);
+      }
+
+      const builder = reduce ? buildGentle : build;
+      builder();
       let rt;
-      window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 200); });
+      window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(builder, 200); });
     })();
   </script>
 </body>
