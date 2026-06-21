@@ -87,6 +87,94 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto 22px;
   box-shadow: 0 0 52px rgba(255, 180, 84, 0.2);
 }
+/* ---- hero mission animation ---- */
+.mission-anim {
+  position: relative;
+  width: min(380px, 86vw);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 22px;
+  user-select: none;
+}
+.ma-flash,
+.ma-tada,
+.ma-orbit,
+.ma-core,
+.ma-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ma-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 74%;
+  height: 74%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 180, 84, 0.26);
+}
+.ma-place { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+.ma-spin,
+.ma-pop { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.ma-disc {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  line-height: 1;
+  background: radial-gradient(circle at 38% 30%, #1d2842, #111a2b);
+  border: 2px solid var(--c);
+}
+.ma-check {
+  position: absolute;
+  left: 13px;
+  top: -33px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+  transform-origin: center;
+}
+.ma-check svg { width: 15px; height: 15px; display: block; }
+.ma-core { display: grid; place-items: center; transform-origin: center; }
+.ma-core svg { width: 60%; height: 60%; overflow: visible; }
+.ma-coreck { transform-box: fill-box; transform-origin: center; }
+.ma-tada { display: grid; place-items: center; transform-origin: center; }
+.ma-tada::before {
+  content: "";
+  width: 46%;
+  height: 46%;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 180, 84, 0.85);
+}
+.ma-flash {
+  background: radial-gradient(circle at 50% 46%, rgba(255, 201, 124, 0.6), rgba(255, 180, 84, 0) 62%);
+  opacity: 0;
+}
+.ma-conf {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 11px;
+  height: 11px;
+  margin: -5px 0 0 -5px;
+  opacity: 0;
+}
+@media (max-width: 640px) {
+  .ma-disc { width: 46px; height: 46px; margin: -23px 0 0 -23px; font-size: 22px; }
+  .ma-check { left: 11px; top: -29px; width: 22px; height: 22px; }
+}
+
 .readout {
   display: inline-block;
   font-family: var(--mono);
