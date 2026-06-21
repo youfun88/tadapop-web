@@ -106,7 +106,8 @@
     '<button class="film-btn" data-act="close">Close</button>' +
     '</div>';
 
-  overlay.append(stageWrap, host, caption, top, controls, end);
+  const unmute = el('button', 'film-unmute', null, '🔊 Tap for sound');
+  overlay.append(stageWrap, host, caption, top, controls, unmute, end);
 
   /* --------------------------- engine state ----------------------------- */
   let sceneAnims = [], sceneTimers = [], rootAnims = [], idx = -1, playing = false, timeTimer = null;
@@ -165,14 +166,18 @@
     }, 250);
   }
 
-  function play() {
+  function play(startMuted) {
     playing = true;
+    muted = !!startMuted;
+    muteBtn.textContent = muted ? '♪ SOUND OFF' : '♪ SOUND ON';
+    unmute.style.display = muted ? 'block' : 'none';
     end.classList.remove('show');
     overlay.hidden = false;
     document.body.style.overflow = 'hidden';
     requestAnimationFrame(() => overlay.classList.add('show'));
     fit();
-    ac(); pickVoice();
+    if (!muted) ac();
+    pickVoice();
     rootAnims.forEach((a) => { try { a.cancel(); } catch (e) {} });
     rootAnims = [];
     progFill.style.width = '0%';
@@ -198,6 +203,7 @@
     clearInterval(timeTimer);
     try { speechSynthesis.cancel(); } catch (e) {}
     host.classList.remove('speaking');
+    unmute.style.display = 'none';
     overlay.classList.remove('show');
     document.body.style.overflow = '';
     setTimeout(() => { overlay.hidden = true; }, 380);
@@ -212,14 +218,23 @@
   }
   window.addEventListener('resize', () => { if (!overlay.hidden) fit(); });
 
-  launch.addEventListener('click', play);
+  function enableSound() {
+    muted = false;
+    muteBtn.textContent = '♪ SOUND ON';
+    unmute.style.display = 'none';
+    ac();
+    if (playing && idx >= 0 && scenes[idx]) say(scenes[idx].vo);
+  }
+  launch.addEventListener('click', () => play(false));
   closeBtn.addEventListener('click', closeFilm);
-  replayBtn.addEventListener('click', play);
+  replayBtn.addEventListener('click', () => play(false));
+  unmute.addEventListener('click', enableSound);
   muteBtn.addEventListener('click', () => {
-    muted = !muted;
-    muteBtn.textContent = muted ? '♪ SOUND OFF' : '♪ SOUND ON';
-    if (muted) { try { speechSynthesis.cancel(); } catch (e) {} host.classList.remove('speaking'); }
-    else if (playing && idx >= 0 && scenes[idx]) say(scenes[idx].vo);
+    if (muted) { enableSound(); return; }
+    muted = true;
+    muteBtn.textContent = '♪ SOUND OFF';
+    try { speechSynthesis.cancel(); } catch (e) {}
+    host.classList.remove('speaking');
   });
   end.addEventListener('click', (e) => {
     const act = e.target && e.target.getAttribute('data-act');
@@ -228,6 +243,22 @@
     else if (act === 'waitlist') { closeFilm(); location.hash = '#waitlist'; const inp = document.getElementById('email'); if (inp) setTimeout(() => inp.focus(), 450); }
   });
   document.addEventListener('keydown', (e) => { if (!overlay.hidden && e.key === 'Escape') closeFilm(); });
+
+  /* ---- auto-play on load (muted, captioned) so the film isn't missed ----
+     Forced with #film / ?film=1. Otherwise once per browser, and never for
+     reduced-motion. Audio stays off until the visitor taps "Tap for sound". */
+  function maybeAutoplay() {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const forced = /(^|[#&?])film(=1)?($|[#&?])/.test(location.hash + location.search);
+    let seen = false;
+    try { seen = localStorage.getItem('tdp_film_seen') === '1'; } catch (e) {}
+    if (forced) { setTimeout(() => play(true), 600); return; }
+    if (reduce || seen) return;
+    try { localStorage.setItem('tdp_film_seen', '1'); } catch (e) {}
+    setTimeout(() => { if (overlay.hidden) play(true); }, 1400);
+  }
+  if (document.readyState === 'complete') maybeAutoplay();
+  else window.addEventListener('load', maybeAutoplay);
 
   /* ===================================================================== */
   function fmtClock(ms) { const s = Math.round(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
