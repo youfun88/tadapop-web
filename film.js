@@ -341,40 +341,48 @@
   function fmtClock(ms) { const s = Math.round(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
 
   function hostSVG() {
-    // Cute one-eyed space alien (host: TADA). The #alienMouth group is
-    // scaled vertically at runtime for audio-driven lip-sync (see startMouth).
+    // Strong energetic alien (host: TADA). Muscular build with big eye and glowing antennae.
+    // The #alienMouth group is scaled vertically at runtime for audio-driven lip-sync.
     return '' +
       '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
       '<defs>' +
-      '<linearGradient id="agBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FD8F2"/><stop offset=".55" stop-color="#79B6F0"/><stop offset="1" stop-color="#9285EC"/></linearGradient>' +
-      '<radialGradient id="agIris" cx="50%" cy="42%" r="62%"><stop offset="0" stop-color="#8BF0B8"/><stop offset=".6" stop-color="#3FBE82"/><stop offset="1" stop-color="#1E7E57"/></radialGradient>' +
-      '<radialGradient id="agBelly" cx="50%" cy="60%" r="55%"><stop offset="0" stop-color="#CFF3FF" stop-opacity=".9"/><stop offset="1" stop-color="#CFF3FF" stop-opacity="0"/></radialGradient>' +
-      '<filter id="agGlow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+      '<linearGradient id="agBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7ECBFF"/><stop offset=".4" stop-color="#6BA9F5"/><stop offset="1" stop-color="#8B5FD9"/></linearGradient>' +
+      '<linearGradient id="agArm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6BA9F5"/><stop offset="1" stop-color="#7A52CC"/></linearGradient>' +
+      '<radialGradient id="agIris" cx="50%" cy="35%" r="65%"><stop offset="0" stop-color="#9FFFD4"/><stop offset=".5" stop-color="#2DD48F"/><stop offset="1" stop-color="#0D8B5F"/></radialGradient>' +
+      '<radialGradient id="agShine" cx="40%" cy="30%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".8"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>' +
+      '<filter id="agGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
       '</defs>' +
-      // whole creature bobs gently while talking (.ag-bob)
+      // whole creature bobs while talking (.ag-bob)
       '<g class="ag-bob" style="transform-box:fill-box;transform-origin:50% 100%">' +
+      // strong muscular body
+      '<ellipse cx="50" cy="52" rx="28" ry="32" fill="url(#agBody)" stroke="#4A7FBF" stroke-width="2.2"/>' +
+      // shoulders/upper body definition
+      '<ellipse cx="50" cy="32" rx="32" ry="18" fill="url(#agBody)" stroke="#4A7FBF" stroke-width="2.2"/>' +
+      // big muscular arms
+      '<rect x="12" y="40" width="14" height="24" rx="7" fill="url(#agArm)" stroke="#3A5FA8" stroke-width="1.8"/>' +
+      '<rect x="74" y="40" width="14" height="24" rx="7" fill="url(#agArm)" stroke="#3A5FA8" stroke-width="1.8"/>' +
+      // hands/fists
+      '<circle cx="18" cy="66" r="6" fill="#6BA9F5" stroke="#3A5FA8" stroke-width="1.6"/>' +
+      '<circle cx="82" cy="66" r="6" fill="#6BA9F5" stroke="#3A5FA8" stroke-width="1.6"/>' +
+      // chest/belly highlight
+      '<ellipse cx="50" cy="58" rx="14" ry="18" fill="#A8D8FF" opacity=".35"/>' +
       // antennae (sway while talking via .ag-ant)
       '<g class="ag-ant" style="transform-box:fill-box;transform-origin:50% 100%">' +
-      '<g stroke="#5FC8E8" stroke-width="3" fill="none" stroke-linecap="round"><path d="M40 30 Q33 16 31 11"/><path d="M60 30 Q67 16 69 11"/></g>' +
-      '<g filter="url(#agGlow)"><circle cx="30" cy="10" r="4.4" fill="#FF77D8"/><circle cx="70" cy="10" r="4.4" fill="#FF77D8"/><circle cx="28.6" cy="8.6" r="1.5" fill="#FFD9F3"/><circle cx="68.6" cy="8.6" r="1.5" fill="#FFD9F3"/></g>' +
+      '<g stroke="#5DCEEA" stroke-width="4.2" fill="none" stroke-linecap="round"><path d="M36 22 Q28 8 25 2"/><path d="M64 22 Q72 8 75 2"/></g>' +
+      '<g filter="url(#agGlow)"><circle cx="24" cy="0" r="5.5" fill="#E74CF3"/><circle cx="76" cy="0" r="5.5" fill="#E74CF3"/><circle cx="22" cy="-2" r="2" fill="#FFB8FF"/><circle cx="78" cy="-2" r="2" fill="#FFB8FF"/></g>' +
       '</g>' +
-      // body
-      '<rect x="21" y="28" width="58" height="64" rx="29" fill="url(#agBody)" stroke="#3E84C4" stroke-width="2"/>' +
-      '<ellipse cx="50" cy="64" rx="24" ry="26" fill="url(#agBelly)"/>' +
-      // cheeks
-      '<g fill="#FF8FC4" opacity=".42"><ellipse cx="30" cy="60" rx="5" ry="3.6"/><ellipse cx="70" cy="60" rx="5" ry="3.6"/></g>' +
       // big eye (blinks periodically via .ag-eye)
       '<g class="ag-eye" style="transform-box:fill-box;transform-origin:center center">' +
-      '<ellipse cx="50" cy="46" rx="17" ry="18" fill="#EEF9FF" stroke="#5FA9D8" stroke-width="1.6"/>' +
-      '<circle cx="50" cy="47" r="11.5" fill="url(#agIris)"/>' +
-      '<circle cx="50" cy="48" r="5.6" fill="#0E2228"/>' +
-      '<circle cx="46" cy="43" r="3.1" fill="#FFFFFF"/>' +
-      '<circle cx="53.5" cy="51.5" r="1.7" fill="#FFFFFF" opacity=".9"/>' +
-      '<path d="M35 39.5 q15 -10 30 0" stroke="#BFE9FF" stroke-width="1.3" fill="none" opacity=".6"/>' +
+      '<ellipse cx="50" cy="38" rx="20" ry="22" fill="#E8FBFF" stroke="#4DAADD" stroke-width="2.2"/>' +
+      '<circle cx="50" cy="39" r="13.5" fill="url(#agIris)"/>' +
+      '<circle cx="50" cy="40" r="6.8" fill="#0A1F28"/>' +
+      '<circle cx="45" cy="34" r="3.8" fill="#FFFFFF"/>' +
+      '<circle cx="55" cy="46" r="2.2" fill="#FFFFFF" opacity=".85"/>' +
+      '<ellipse cx="50" cy="38" rx="19" ry="21" fill="url(#agShine)"/>' +
       '</g>' +
       // mouth (lip-synced: this group is scaled vertically at runtime)
-      '<g id="alienMouth" style="transform-box:fill-box;transform-origin:center center"><path d="M39 63 Q50 75 61 63 Q50 69 39 63 Z" fill="#37142B"/><ellipse cx="50" cy="67.5" rx="6" ry="2.6" fill="#FF7FA8"/></g>' +
-      '<path d="M40 63 Q50 70 60 63" stroke="#46708F" stroke-width="2" fill="none" stroke-linecap="round"/>' +
+      '<g id="alienMouth" style="transform-box:fill-box;transform-origin:center center"><path d="M42 60 Q50 70 58 60 Q50 67 42 60 Z" fill="#44203A"/><ellipse cx="50" cy="65" rx="7" ry="3" fill="#FF6BA6"/></g>' +
+      '<path d="M41 59 Q50 68 59 59" stroke="#3E6FA8" stroke-width="2.4" fill="none" stroke-linecap="round"/>' +
       '</g>' +
       '</svg>';
   }
