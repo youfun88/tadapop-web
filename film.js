@@ -87,13 +87,11 @@
       return analyser;
     } catch (e) { return null; }
   }
-  // Bobo is a photo, so we can't move his mouth — instead the whole character
-  // bounces from the voice loudness, which reads as lively talking.
   const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   function setMouth(open) {
-    const m = host && host.querySelector('.film-host-img'); if (!m) return;
+    const m = host && host.querySelector('#alienMouth'); if (!m) return;
     const o = Math.max(0, Math.min(1, open));
-    m.style.transform = 'translateY(' + (-o * 4).toFixed(2) + 'px) scale(' + (1 + o * 0.05).toFixed(3) + ')';
+    m.style.transform = 'scaleY(' + (0.18 + o).toFixed(3) + ') scaleX(' + (1 - o * 0.14).toFixed(3) + ')';
   }
   function startMouth(analyser) {
     stopMouth();
@@ -149,7 +147,7 @@
   const host = el('div', 'film-host');
   host.innerHTML =
     '<div class="film-host-tada">Tada! 🎉</div>' +
-    '<div class="film-host-ring"><div class="film-host-inner"><img class="film-host-img" src="/assets/host/bobo.png" alt="Bobo"/></div></div>' +
+    '<div class="film-host-ring"><div class="film-host-inner">' + hostSVG() + '</div></div>' +
     '<div class="film-wave"><i></i><i></i><i></i><i></i><i></i></div>' +
     '<div class="film-host-name">HOST · <b>BOBO</b></div>';
 
@@ -357,6 +355,69 @@
 
   /* ===================================================================== */
   function fmtClock(ms) { const s = Math.round(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+
+  // Bobo — muscular one-eyed alien, hand-built vector so every part is riggable:
+  // .ag-bob (body nod), .ag-ant (antennae sway), .ag-eye (blink), #alienMouth
+  // (audio lip-sync), .ag-arm-l/.ag-arm-r (flexing-arm gestures while talking).
+  function hostSVG() {
+    return '' +
+      '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+      '<defs>' +
+      '<radialGradient id="bgBody" cx="40%" cy="28%" r="78%"><stop offset="0" stop-color="#AEE6FC"/><stop offset=".5" stop-color="#73AEEE"/><stop offset="1" stop-color="#8B73DC"/></radialGradient>' +
+      '<radialGradient id="bgArm" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#9AD8F6"/><stop offset=".55" stop-color="#6AA2E6"/><stop offset="1" stop-color="#7D64CE"/></radialGradient>' +
+      '<radialGradient id="bgIris" cx="42%" cy="32%" r="70%"><stop offset="0" stop-color="#D6FFEC"/><stop offset=".5" stop-color="#3ECF92"/><stop offset="1" stop-color="#0E7E54"/></radialGradient>' +
+      '<linearGradient id="bgShort" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F8FF"/><stop offset="1" stop-color="#C6D2EC"/></linearGradient>' +
+      '<radialGradient id="bgShine" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>' +
+      '<filter id="agGlow" x="-90%" y="-90%" width="280%" height="280%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+      '</defs>' +
+      '<g class="ag-bob" style="transform-box:fill-box;transform-origin:50% 100%">' +
+      // antennae
+      '<g class="ag-ant" style="transform-box:fill-box;transform-origin:50% 100%">' +
+      '<g stroke="#7FD6EE" stroke-width="2.6" fill="none" stroke-linecap="round"><path d="M43 20 Q39 10 36 5"/><path d="M57 20 Q61 10 64 5"/></g>' +
+      '<g filter="url(#agGlow)"><circle cx="35" cy="4" r="4.2" fill="#F35FE0"/><circle cx="65" cy="4" r="4.2" fill="#F35FE0"/><circle cx="33.6" cy="2.6" r="1.4" fill="#FFD4F6"/><circle cx="63.6" cy="2.6" r="1.4" fill="#FFD4F6"/></g>' +
+      '</g>' +
+      // torso (muscular) + shorts
+      '<path d="M29 55 Q24 71 34 82 Q41 89 50 89 Q59 89 66 82 Q76 71 71 55 Q61 49 50 49 Q39 49 29 55 Z" fill="url(#bgBody)" stroke="#5384C2" stroke-width="2"/>' +
+      '<path d="M35 80 Q42 88 50 88 Q58 88 65 80 L66 87 Q58 92 50 92 Q42 92 34 87 Z" fill="url(#bgShort)" stroke="#A6B4D4" stroke-width="1"/>' +
+      // muscle definition
+      '<g stroke="#4E7CBE" stroke-width="1.2" fill="none" opacity=".45" stroke-linecap="round"><path d="M50 57 V77"/><path d="M43 64 H57"/><path d="M43 70 H57"/><path d="M44 75 H56"/><path d="M40 57 Q50 62 60 57"/></g>' +
+      '<ellipse cx="44" cy="59" rx="9" ry="7" fill="url(#bgShine)" opacity=".55"/>' +
+      // left arm (viewer-left), flexing — outlined capsules + bicep + fist + smartwatch
+      '<g class="ag-arm ag-arm-l" style="transform-box:fill-box;transform-origin:88% 38%">' +
+      '<path d="M32 57 Q25 63 22 69 M22 69 Q23 58 26 49" stroke="#5384C2" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M32 57 Q25 63 22 69 M22 69 Q23 58 26 49" stroke="url(#bgArm)" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<ellipse cx="25" cy="60" rx="3" ry="4" fill="url(#bgShine)" opacity=".5"/>' +
+      '<circle cx="26" cy="48" r="5.2" fill="url(#bgArm)" stroke="#5384C2" stroke-width="1.6"/>' +
+      '<rect x="20.5" y="51" width="11" height="3.4" rx="1.7" transform="rotate(-12 26 53)" fill="#EFF4FF" stroke="#A6B4D4" stroke-width=".6"/>' +
+      '<rect x="21.5" y="54" width="5.4" height="3.8" rx="1" transform="rotate(-12 24 56)" fill="#2FB979" stroke="#1C8A59" stroke-width=".5"/>' +
+      '</g>' +
+      // right arm (viewer-right), flexing
+      '<g class="ag-arm ag-arm-r" style="transform-box:fill-box;transform-origin:12% 38%">' +
+      '<path d="M68 57 Q75 63 78 69 M78 69 Q77 58 74 49" stroke="#5384C2" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M68 57 Q75 63 78 69 M78 69 Q77 58 74 49" stroke="url(#bgArm)" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<ellipse cx="75" cy="60" rx="3" ry="4" fill="url(#bgShine)" opacity=".5"/>' +
+      '<circle cx="74" cy="48" r="5.2" fill="url(#bgArm)" stroke="#5384C2" stroke-width="1.6"/>' +
+      '<rect x="68.5" y="51" width="11" height="3.4" rx="1.7" transform="rotate(12 74 53)" fill="#EFF4FF" stroke="#A6B4D4" stroke-width=".6"/>' +
+      '</g>' +
+      // head
+      '<ellipse cx="50" cy="35" rx="21" ry="19" fill="url(#bgBody)" stroke="#5384C2" stroke-width="2"/>' +
+      '<ellipse cx="43" cy="28" rx="9" ry="7" fill="url(#bgShine)" opacity=".6"/>' +
+      // big eye (blinks via .ag-eye)
+      '<g class="ag-eye" style="transform-box:fill-box;transform-origin:center center">' +
+      '<ellipse cx="47" cy="35" rx="12.5" ry="13.5" fill="#EAFBFF" stroke="#56A6D6" stroke-width="1.8"/>' +
+      '<circle cx="47" cy="36" r="9" fill="url(#bgIris)"/>' +
+      '<circle cx="47" cy="37" r="4.6" fill="#0B2026"/>' +
+      '<circle cx="43.4" cy="32" r="2.8" fill="#FFFFFF"/>' +
+      '<circle cx="50" cy="40.5" r="1.4" fill="#FFFFFF" opacity=".9"/>' +
+      '<ellipse cx="47" cy="35" rx="11" ry="12" fill="url(#bgShine)" opacity=".4"/>' +
+      '</g>' +
+      // cheek + mouth (lip-synced)
+      '<ellipse cx="62" cy="44" rx="3.6" ry="2.6" fill="#FF93C6" opacity=".4"/>' +
+      '<g id="alienMouth" style="transform-box:fill-box;transform-origin:center center"><path d="M48 46 Q55 54 62 46 Q55 51 48 46 Z" fill="#3E1A33"/><ellipse cx="55" cy="49.5" rx="4.5" ry="2" fill="#FF7AA8"/></g>' +
+      '<path d="M47 45 Q55 52 63 45" stroke="#3E6FA8" stroke-width="1.8" fill="none" stroke-linecap="round"/>' +
+      '</g>' +
+      '</svg>';
+  }
 })();
 
 /* ========================================================================

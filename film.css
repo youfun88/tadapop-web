@@ -245,14 +245,18 @@
   box-shadow: 0 0 6px rgba(91, 227, 155, 0.6);
 }
 .film-host.speaking .film-wave i { animation: film-eq 0.7s ease-in-out infinite; }
-/* Bobo (photo host): the image fills the frame; the inner gently floats when
-   idle and sways livelier while talking. (Voice-loudness bounce is applied to
-   .film-host-img from JS, composing on top of this.) */
-.film-host .film-host-img { width: 100%; height: 100%; object-fit: contain; display: block; transform-origin: center bottom; }
-.film-host .film-host-inner { animation: ag-float 3.6s ease-in-out infinite; }
-@keyframes ag-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
-.film-host.speaking .film-host-inner { animation: ag-talk 1.05s ease-in-out infinite; }
-@keyframes ag-talk { 0%, 100% { transform: translateY(0) rotate(0deg); } 28% { transform: translateY(-2px) rotate(-1.6deg); } 62% { transform: translateY(-1px) rotate(1.8deg); } }
+/* Bobo (vector host): rigged parts. Eye blinks always; body/antennae/arms come
+   alive while talking. Mouth lip-sync is driven from JS (#alienMouth). */
+.film-host .ag-eye { animation: ag-blink 5s ease-in-out infinite; }
+@keyframes ag-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
+.film-host.speaking .ag-bob { animation: ag-bob 1.1s ease-in-out infinite; }
+@keyframes ag-bob { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-1.5px) rotate(-1deg); } }
+.film-host.speaking .ag-ant { animation: ag-ant 0.95s ease-in-out infinite; }
+@keyframes ag-ant { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+.film-host.speaking .ag-arm-l { animation: ag-arm-l 1.25s ease-in-out infinite; }
+@keyframes ag-arm-l { 0%, 100% { transform: rotate(0deg); } 40% { transform: rotate(-8deg); } 70% { transform: rotate(4deg); } }
+.film-host.speaking .ag-arm-r { animation: ag-arm-r 1.45s ease-in-out infinite; }
+@keyframes ag-arm-r { 0%, 100% { transform: rotate(0deg); } 40% { transform: rotate(8deg); } 70% { transform: rotate(-4deg); } }
 .film-wave i:nth-child(2) { animation-delay: .12s; }
 .film-wave i:nth-child(3) { animation-delay: .24s; }
 .film-wave i:nth-child(4) { animation-delay: .36s; }
@@ -361,5 +365,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .film-overlay, .film-overlay * { transition: none !important; }
-  .film-host .film-host-inner, .film-host.speaking .film-host-inner { animation: none !important; }
+  .film-host .ag-eye, .film-host.speaking .ag-bob, .film-host.speaking .ag-ant,
+  .film-host.speaking .ag-arm-l, .film-host.speaking .ag-arm-r { animation: none !important; }
 }
