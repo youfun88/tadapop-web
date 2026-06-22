@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Tadapop on Android</title>
+  <meta name="description" content="Install the Tadapop Android test build." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .install-cta { text-align: center; margin: 28px 0 8px; }
+    .install-cta .button { font-size: 17px; padding: 16px 34px; }
+    .qr-card {
+      margin: 28px auto;
+      max-width: 320px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+    }
+    .qr-card img { width: 220px; height: 220px; border-radius: 10px; background: #fff; padding: 10px; }
+    .qr-card .qr-label { color: var(--dim); font-family: var(--mono, monospace); font-size: 13px; letter-spacing: 1px; margin-top: 14px; text-transform: uppercase; }
+    .steps { counter-reset: step; list-style: none; padding: 0; }
+    .steps li { position: relative; padding-left: 38px; margin: 14px 0; }
+    .steps li::before {
+      counter-increment: step; content: counter(step);
+      position: absolute; left: 0; top: -2px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(255,180,84,0.14); color: var(--amber);
+      font-family: var(--mono, monospace); font-weight: 600;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .note { color: var(--faint); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <article class="doc">
+    <a class="back" href="/">← Back to tadapop.app</a>
+    <h1>Test Tadapop on Android</h1>
+    <div class="updated">Android test build · v1.2.0</div>
+
+    <p>Tadapop is in testing. Install the Android build below to try it out — your feedback helps shape the app.</p>
+
+    <div class="install-cta">
+      <a class="button" href="/tadapop.apk" download>Download for Android</a>
+    </div>
+
+    <div class="qr-card">
+      <img src="/android/qr.png" alt="QR code to open this page" />
+      <div class="qr-label">On a computer? Scan with your Android phone</div>
+    </div>
+
+    <h2>How to install</h2>
+    <ol class="steps">
+      <li>Tap <strong>Download for Android</strong> above and open the downloaded <code>.apk</code> file.</li>
+      <li>If Android warns about an unknown source, tap <strong>Settings</strong> → enable <strong>Allow from this source</strong>, then go back.</li>
+      <li>Tap <strong>Install</strong>, then open <strong>Tadapop</strong> from your app drawer.</li>
+    </ol>
+
+    <h2>Good to know</h2>
+    <ul>
+      <li><strong>Android only.</strong> This is an <code>.apk</code> — it can't be installed on an iPhone.</li>
+      <li><strong>Solo tracking needs no account.</strong> An account (a quick email code) is only needed for the Arena.</li>
+      <li>This is a pre-release test build, so expect rough edges — that's what we're testing.</li>
+    </ul>
+
+    <p class="note">Questions or bugs? <a href="/support">Contact support</a>. By installing you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
+  </article>
+</body>
+</html>

@@ -436,3 +436,17 @@ a { color: inherit; text-decoration: none; }
   .features { grid-template-columns: 1fr; }
   .waitlist { flex-direction: column; }
 }
+
+/* ---- beta / QR install ---- */
+.hero-cta { margin-top: 6px; }
+.beta-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 26px; }
+.beta-card {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 16px; padding: 22px 26px; text-decoration: none;
+  transition: border-color .15s ease;
+}
+.beta-card:hover { border-color: var(--faint); }
+.beta-plat { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--dim); }
+.beta-card img { width: 200px; height: 200px; border-radius: 10px; background: #fff; padding: 10px; display: block; }
+.beta-action { font-family: var(--display); font-weight: 700; letter-spacing: .5px; color: var(--amber); font-size: 15px; }

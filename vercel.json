@@ -11,5 +11,12 @@
       "source": "/assets/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/tadapop.apk",
+      "destination": "https://github.com/youfun88/tadapop-web/releases/latest/download/tadapop.apk",
+      "permanent": false
+    }
   ]
 }

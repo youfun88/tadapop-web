@@ -1,3 +1,7 @@
 
 # secrets
 .eleven_key
+.heygen_key
+
+# Android APK is hosted as a GitHub Release asset, not committed (too big for git)
+tadapop.apk
