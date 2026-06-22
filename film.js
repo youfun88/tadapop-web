@@ -118,6 +118,19 @@
     mouthRAF = null; setMouth(0);
   }
 
+  /* ----- Bobo's celebratory "Tada!" when a task completes ----- */
+  let tadaTimer = null;
+  function boboTada() {
+    const b = host.querySelector('.film-host-tada');
+    if (b) {
+      b.classList.remove('show'); void b.offsetWidth; b.classList.add('show');
+      clearTimeout(tadaTimer);
+      tadaTimer = setTimeout(() => b.classList.remove('show'), 1400);
+    }
+    const inner = host.querySelector('.film-host-inner');
+    if (inner) { try { inner.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.13)' }, { transform: 'scale(1)' }], { duration: 480, easing: 'cubic-bezier(.2,1.4,.4,1)' }); } catch (e) {} }
+  }
+
   /* --------------------------- player shell ----------------------------- */
   overlay.innerHTML = '';
   const top = el('div', 'film-top');
@@ -131,9 +144,10 @@
 
   const host = el('div', 'film-host');
   host.innerHTML =
+    '<div class="film-host-tada">Tada! 🎉</div>' +
     '<div class="film-host-ring"><div class="film-host-inner">' + hostSVG() + '</div></div>' +
     '<div class="film-wave"><i></i><i></i><i></i><i></i><i></i></div>' +
-    '<div class="film-host-name">HOST · <b>TADA</b></div>';
+    '<div class="film-host-name">HOST · <b>BOBO</b></div>';
 
   const caption = el('div', 'film-caption');
 
@@ -177,7 +191,7 @@
     const step = () => { i++; const v = Math.round(from + (to - from) * (i / steps)); node.textContent = fmt ? fmt(v) : v; if (i < steps) after(ms / steps, step); };
     after(ms / steps, step);
   }
-  const ctx = { COL, el, anim, after, sfx, countUp };
+  const ctx = { COL, el, anim, after, sfx, countUp, boboTada };
 
   /* ------------------------------ scenes -------------------------------- */
   const scenes = buildScenes(ctx);
@@ -341,48 +355,49 @@
   function fmtClock(ms) { const s = Math.round(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
 
   function hostSVG() {
-    // Strong energetic alien (host: TADA). Muscular build with big eye and glowing antennae.
-    // The #alienMouth group is scaled vertically at runtime for audio-driven lip-sync.
+    // Cute one-eyed alien (host: TADA) modeled on the brand mascot. Rigged into
+    // parts so it gestures while talking: .ag-bob (whole-body nod), .ag-ant
+    // (antennae sway), .ag-eye (blink), .ag-arm-l/.ag-arm-r (hand gestures),
+    // and #alienMouth (scaled vertically at runtime for audio-driven lip-sync).
     return '' +
       '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
       '<defs>' +
-      '<linearGradient id="agBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7ECBFF"/><stop offset=".4" stop-color="#6BA9F5"/><stop offset="1" stop-color="#8B5FD9"/></linearGradient>' +
-      '<linearGradient id="agArm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6BA9F5"/><stop offset="1" stop-color="#7A52CC"/></linearGradient>' +
-      '<radialGradient id="agIris" cx="50%" cy="35%" r="65%"><stop offset="0" stop-color="#9FFFD4"/><stop offset=".5" stop-color="#2DD48F"/><stop offset="1" stop-color="#0D8B5F"/></radialGradient>' +
-      '<radialGradient id="agShine" cx="40%" cy="30%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".8"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>' +
-      '<filter id="agGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+      '<linearGradient id="agBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93D7F5"/><stop offset=".5" stop-color="#7FB0F2"/><stop offset="1" stop-color="#9A86E6"/></linearGradient>' +
+      '<radialGradient id="agIris" cx="50%" cy="32%" r="68%"><stop offset="0" stop-color="#BDFFE0"/><stop offset=".55" stop-color="#36CC8E"/><stop offset="1" stop-color="#117E55"/></radialGradient>' +
+      '<radialGradient id="agShine" cx="38%" cy="28%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".75"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>' +
+      '<filter id="agGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
       '</defs>' +
-      // whole creature bobs while talking (.ag-bob)
+      // whole creature nods gently while talking (.ag-bob)
       '<g class="ag-bob" style="transform-box:fill-box;transform-origin:50% 100%">' +
-      // strong muscular body
-      '<ellipse cx="50" cy="52" rx="28" ry="32" fill="url(#agBody)" stroke="#4A7FBF" stroke-width="2.2"/>' +
-      // shoulders/upper body definition
-      '<ellipse cx="50" cy="32" rx="32" ry="18" fill="url(#agBody)" stroke="#4A7FBF" stroke-width="2.2"/>' +
-      // big muscular arms
-      '<rect x="12" y="40" width="14" height="24" rx="7" fill="url(#agArm)" stroke="#3A5FA8" stroke-width="1.8"/>' +
-      '<rect x="74" y="40" width="14" height="24" rx="7" fill="url(#agArm)" stroke="#3A5FA8" stroke-width="1.8"/>' +
-      // hands/fists
-      '<circle cx="18" cy="66" r="6" fill="#6BA9F5" stroke="#3A5FA8" stroke-width="1.6"/>' +
-      '<circle cx="82" cy="66" r="6" fill="#6BA9F5" stroke="#3A5FA8" stroke-width="1.6"/>' +
-      // chest/belly highlight
-      '<ellipse cx="50" cy="58" rx="14" ry="18" fill="#A8D8FF" opacity=".35"/>' +
+      // arms (behind body) — each rotates from the shoulder to gesture while talking
+      '<g class="ag-arm ag-arm-l" style="transform-box:fill-box;transform-origin:88% 10%">' +
+      '<path d="M31 50 Q21 53 18 61" fill="none" stroke="#6AA6E8" stroke-width="7.5" stroke-linecap="round"/>' +
+      '<circle cx="17" cy="63" r="6.2" fill="#7FB0F2" stroke="#4F86C6" stroke-width="1.8"/></g>' +
+      '<g class="ag-arm ag-arm-r" style="transform-box:fill-box;transform-origin:12% 10%">' +
+      '<path d="M69 50 Q79 53 82 61" fill="none" stroke="#6AA6E8" stroke-width="7.5" stroke-linecap="round"/>' +
+      '<circle cx="83" cy="63" r="6.2" fill="#7FB0F2" stroke="#4F86C6" stroke-width="1.8"/></g>' +
+      // soft rounded body
+      '<ellipse cx="50" cy="56" rx="24" ry="27" fill="url(#agBody)" stroke="#4F86C6" stroke-width="2.2"/>' +
+      '<ellipse cx="50" cy="63" rx="13" ry="15" fill="#CFF3FF" opacity=".3"/>' +
       // antennae (sway while talking via .ag-ant)
       '<g class="ag-ant" style="transform-box:fill-box;transform-origin:50% 100%">' +
-      '<g stroke="#5DCEEA" stroke-width="4.2" fill="none" stroke-linecap="round"><path d="M36 22 Q28 8 25 2"/><path d="M64 22 Q72 8 75 2"/></g>' +
-      '<g filter="url(#agGlow)"><circle cx="24" cy="0" r="5.5" fill="#E74CF3"/><circle cx="76" cy="0" r="5.5" fill="#E74CF3"/><circle cx="22" cy="-2" r="2" fill="#FFB8FF"/><circle cx="78" cy="-2" r="2" fill="#FFB8FF"/></g>' +
+      '<g stroke="#6FD2EC" stroke-width="3.2" fill="none" stroke-linecap="round"><path d="M40 33 Q34 20 31 14"/><path d="M60 33 Q66 20 69 14"/></g>' +
+      '<g filter="url(#agGlow)"><circle cx="30" cy="13" r="4.6" fill="#F25FE0"/><circle cx="70" cy="13" r="4.6" fill="#F25FE0"/><circle cx="28.5" cy="11.5" r="1.6" fill="#FFCBF5"/><circle cx="68.5" cy="11.5" r="1.6" fill="#FFCBF5"/></g>' +
       '</g>' +
+      // cheeks
+      '<g fill="#FF8FC4" opacity=".4"><ellipse cx="32" cy="56" rx="4.5" ry="3.2"/><ellipse cx="68" cy="56" rx="4.5" ry="3.2"/></g>' +
       // big eye (blinks periodically via .ag-eye)
       '<g class="ag-eye" style="transform-box:fill-box;transform-origin:center center">' +
-      '<ellipse cx="50" cy="38" rx="20" ry="22" fill="#E8FBFF" stroke="#4DAADD" stroke-width="2.2"/>' +
-      '<circle cx="50" cy="39" r="13.5" fill="url(#agIris)"/>' +
-      '<circle cx="50" cy="40" r="6.8" fill="#0A1F28"/>' +
-      '<circle cx="45" cy="34" r="3.8" fill="#FFFFFF"/>' +
-      '<circle cx="55" cy="46" r="2.2" fill="#FFFFFF" opacity=".85"/>' +
-      '<ellipse cx="50" cy="38" rx="19" ry="21" fill="url(#agShine)"/>' +
+      '<ellipse cx="50" cy="45" rx="16.5" ry="17.5" fill="#EAFBFF" stroke="#56A6D6" stroke-width="2"/>' +
+      '<circle cx="50" cy="46" r="11" fill="url(#agIris)"/>' +
+      '<circle cx="50" cy="47" r="5.4" fill="#0B2026"/>' +
+      '<circle cx="45.5" cy="42" r="3.2" fill="#FFFFFF"/>' +
+      '<circle cx="54" cy="50" r="1.7" fill="#FFFFFF" opacity=".85"/>' +
+      '<ellipse cx="50" cy="45" rx="15.5" ry="16.5" fill="url(#agShine)"/>' +
       '</g>' +
       // mouth (lip-synced: this group is scaled vertically at runtime)
-      '<g id="alienMouth" style="transform-box:fill-box;transform-origin:center center"><path d="M42 60 Q50 70 58 60 Q50 67 42 60 Z" fill="#44203A"/><ellipse cx="50" cy="65" rx="7" ry="3" fill="#FF6BA6"/></g>' +
-      '<path d="M41 59 Q50 68 59 59" stroke="#3E6FA8" stroke-width="2.4" fill="none" stroke-linecap="round"/>' +
+      '<g id="alienMouth" style="transform-box:fill-box;transform-origin:center center"><path d="M43 61 Q50 70 57 61 Q50 66 43 61 Z" fill="#3E1A33"/><ellipse cx="50" cy="64.5" rx="5.5" ry="2.4" fill="#FF7AA8"/></g>' +
+      '<path d="M42 60 Q50 67 58 60" stroke="#4674A8" stroke-width="2.2" fill="none" stroke-linecap="round"/>' +
       '</g>' +
       '</svg>';
   }
@@ -392,7 +407,7 @@
    Scene definitions. Each: { dur, vo, caps:[{at,html}], render(node, ctx) }
    ======================================================================== */
 function buildScenes(ctx) {
-  const { COL, el, anim, after, sfx, countUp } = ctx;
+  const { COL, el, anim, after, sfx, countUp, boboTada } = ctx;
   const POP = 'cubic-bezier(.2,1.4,.4,1)';
 
   // shared: a framed app column centered in the stage
@@ -457,6 +472,7 @@ function buildScenes(ctx) {
     if (metricText != null) row._metric.textContent = metricText;
     anim(row._tg, [{ transform: 'scale(.8)' }, { transform: 'scale(1.12)' }, { transform: 'scale(1)' }], { duration: 380, easing: POP });
     sfx.tick();
+    boboTada();
   }
   function floatXp(row) {
     row._float.textContent = '+20';

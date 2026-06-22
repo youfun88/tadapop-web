@@ -219,6 +219,24 @@
   font-family: var(--f-mono); font-size: 10px; letter-spacing: .14em; color: var(--f-dim);
 }
 .film-host .film-host-name b { color: var(--f-amber); font-weight: 700; }
+/* Bobo's "Tada!" celebration bubble (pops on task completion) */
+.film-host-tada {
+  position: absolute; top: -14px; left: 70px; z-index: 5;
+  padding: 5px 11px; border-radius: 14px 14px 14px 3px;
+  background: linear-gradient(135deg, #FFD978, #FF9F45);
+  color: #2A1700; font-family: var(--f-disp); font-weight: 800; font-size: 13px;
+  white-space: nowrap; pointer-events: none;
+  box-shadow: 0 6px 18px -4px rgba(255, 160, 70, .7);
+  opacity: 0; transform: scale(.3);
+}
+.film-host-tada.show { animation: film-tada 1.4s ease forwards; }
+@keyframes film-tada {
+  0%   { opacity: 0; transform: scale(.3) translateY(8px) rotate(-8deg); }
+  14%  { opacity: 1; transform: scale(1.18) translateY(0) rotate(-5deg); }
+  28%  { transform: scale(1) rotate(-5deg); }
+  78%  { opacity: 1; transform: scale(1) rotate(-5deg); }
+  100% { opacity: 0; transform: scale(.95) translateY(-8px) rotate(-5deg); }
+}
 .film-wave {
   display: flex; align-items: flex-end; justify-content: center; gap: 3px; height: 14px; margin-top: 6px;
 }
@@ -234,6 +252,11 @@
 @keyframes ag-bob { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-2px) rotate(-1.4deg); } }
 .film-host.speaking .ag-ant { animation: ag-ant 0.9s ease-in-out infinite; }
 @keyframes ag-ant { 0%, 100% { transform: rotate(-2.4deg); } 50% { transform: rotate(2.6deg); } }
+/* hands gesture while talking (desynced durations = natural gesticulation) */
+.film-host.speaking .ag-arm-l { animation: ag-arm-l 1.3s ease-in-out infinite; }
+@keyframes ag-arm-l { 0%, 100% { transform: rotate(0deg); } 30% { transform: rotate(-22deg); } 55% { transform: rotate(6deg); } 80% { transform: rotate(-9deg); } }
+.film-host.speaking .ag-arm-r { animation: ag-arm-r 1.5s ease-in-out infinite; }
+@keyframes ag-arm-r { 0%, 100% { transform: rotate(0deg); } 35% { transform: rotate(20deg); } 60% { transform: rotate(-6deg); } 85% { transform: rotate(11deg); } }
 .film-wave i:nth-child(2) { animation-delay: .12s; }
 .film-wave i:nth-child(3) { animation-delay: .24s; }
 .film-wave i:nth-child(4) { animation-delay: .36s; }
@@ -342,5 +365,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .film-overlay, .film-overlay * { transition: none !important; }
-  .film-host .ag-eye, .film-host.speaking .ag-bob, .film-host.speaking .ag-ant { animation: none !important; }
+  .film-host .ag-eye, .film-host.speaking .ag-bob, .film-host.speaking .ag-ant,
+  .film-host.speaking .ag-arm-l, .film-host.speaking .ag-arm-r { animation: none !important; }
 }
