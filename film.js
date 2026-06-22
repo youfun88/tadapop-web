@@ -87,13 +87,17 @@
       return analyser;
     } catch (e) { return null; }
   }
+  // Bobo is a photo, so we can't move his mouth — instead the whole character
+  // bounces from the voice loudness, which reads as lively talking.
+  const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   function setMouth(open) {
-    const m = host && host.querySelector('#alienMouth'); if (!m) return;
+    const m = host && host.querySelector('.film-host-img'); if (!m) return;
     const o = Math.max(0, Math.min(1, open));
-    m.style.transform = 'scaleY(' + (0.16 + o).toFixed(3) + ') scaleX(' + (1 - o * 0.16).toFixed(3) + ')';
+    m.style.transform = 'translateY(' + (-o * 4).toFixed(2) + 'px) scale(' + (1 + o * 0.05).toFixed(3) + ')';
   }
   function startMouth(analyser) {
     stopMouth();
+    if (reduceMotion) return;
     if (analyser) {
       const buf = new Uint8Array(analyser.fftSize);
       const tick = () => {
@@ -145,7 +149,7 @@
   const host = el('div', 'film-host');
   host.innerHTML =
     '<div class="film-host-tada">Tada! 🎉</div>' +
-    '<div class="film-host-ring"><div class="film-host-inner">' + hostSVG() + '</div></div>' +
+    '<div class="film-host-ring"><div class="film-host-inner"><img class="film-host-img" src="/assets/host/bobo.png" alt="Bobo"/></div></div>' +
     '<div class="film-wave"><i></i><i></i><i></i><i></i><i></i></div>' +
     '<div class="film-host-name">HOST · <b>BOBO</b></div>';
 
@@ -353,54 +357,6 @@
 
   /* ===================================================================== */
   function fmtClock(ms) { const s = Math.round(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
-
-  function hostSVG() {
-    // Cute one-eyed alien (host: TADA) modeled on the brand mascot. Rigged into
-    // parts so it gestures while talking: .ag-bob (whole-body nod), .ag-ant
-    // (antennae sway), .ag-eye (blink), .ag-arm-l/.ag-arm-r (hand gestures),
-    // and #alienMouth (scaled vertically at runtime for audio-driven lip-sync).
-    return '' +
-      '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-      '<defs>' +
-      '<linearGradient id="agBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93D7F5"/><stop offset=".5" stop-color="#7FB0F2"/><stop offset="1" stop-color="#9A86E6"/></linearGradient>' +
-      '<radialGradient id="agIris" cx="50%" cy="32%" r="68%"><stop offset="0" stop-color="#BDFFE0"/><stop offset=".55" stop-color="#36CC8E"/><stop offset="1" stop-color="#117E55"/></radialGradient>' +
-      '<radialGradient id="agShine" cx="38%" cy="28%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".75"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>' +
-      '<filter id="agGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
-      '</defs>' +
-      // whole creature nods gently while talking (.ag-bob)
-      '<g class="ag-bob" style="transform-box:fill-box;transform-origin:50% 100%">' +
-      // arms (behind body) — each rotates from the shoulder to gesture while talking
-      '<g class="ag-arm ag-arm-l" style="transform-box:fill-box;transform-origin:88% 10%">' +
-      '<path d="M31 50 Q21 53 18 61" fill="none" stroke="#6AA6E8" stroke-width="7.5" stroke-linecap="round"/>' +
-      '<circle cx="17" cy="63" r="6.2" fill="#7FB0F2" stroke="#4F86C6" stroke-width="1.8"/></g>' +
-      '<g class="ag-arm ag-arm-r" style="transform-box:fill-box;transform-origin:12% 10%">' +
-      '<path d="M69 50 Q79 53 82 61" fill="none" stroke="#6AA6E8" stroke-width="7.5" stroke-linecap="round"/>' +
-      '<circle cx="83" cy="63" r="6.2" fill="#7FB0F2" stroke="#4F86C6" stroke-width="1.8"/></g>' +
-      // soft rounded body
-      '<ellipse cx="50" cy="56" rx="24" ry="27" fill="url(#agBody)" stroke="#4F86C6" stroke-width="2.2"/>' +
-      '<ellipse cx="50" cy="63" rx="13" ry="15" fill="#CFF3FF" opacity=".3"/>' +
-      // antennae (sway while talking via .ag-ant)
-      '<g class="ag-ant" style="transform-box:fill-box;transform-origin:50% 100%">' +
-      '<g stroke="#6FD2EC" stroke-width="3.2" fill="none" stroke-linecap="round"><path d="M40 33 Q34 20 31 14"/><path d="M60 33 Q66 20 69 14"/></g>' +
-      '<g filter="url(#agGlow)"><circle cx="30" cy="13" r="4.6" fill="#F25FE0"/><circle cx="70" cy="13" r="4.6" fill="#F25FE0"/><circle cx="28.5" cy="11.5" r="1.6" fill="#FFCBF5"/><circle cx="68.5" cy="11.5" r="1.6" fill="#FFCBF5"/></g>' +
-      '</g>' +
-      // cheeks
-      '<g fill="#FF8FC4" opacity=".4"><ellipse cx="32" cy="56" rx="4.5" ry="3.2"/><ellipse cx="68" cy="56" rx="4.5" ry="3.2"/></g>' +
-      // big eye (blinks periodically via .ag-eye)
-      '<g class="ag-eye" style="transform-box:fill-box;transform-origin:center center">' +
-      '<ellipse cx="50" cy="45" rx="16.5" ry="17.5" fill="#EAFBFF" stroke="#56A6D6" stroke-width="2"/>' +
-      '<circle cx="50" cy="46" r="11" fill="url(#agIris)"/>' +
-      '<circle cx="50" cy="47" r="5.4" fill="#0B2026"/>' +
-      '<circle cx="45.5" cy="42" r="3.2" fill="#FFFFFF"/>' +
-      '<circle cx="54" cy="50" r="1.7" fill="#FFFFFF" opacity=".85"/>' +
-      '<ellipse cx="50" cy="45" rx="15.5" ry="16.5" fill="url(#agShine)"/>' +
-      '</g>' +
-      // mouth (lip-synced: this group is scaled vertically at runtime)
-      '<g id="alienMouth" style="transform-box:fill-box;transform-origin:center center"><path d="M43 61 Q50 70 57 61 Q50 66 43 61 Z" fill="#3E1A33"/><ellipse cx="50" cy="64.5" rx="5.5" ry="2.4" fill="#FF7AA8"/></g>' +
-      '<path d="M42 60 Q50 67 58 60" stroke="#4674A8" stroke-width="2.2" fill="none" stroke-linecap="round"/>' +
-      '</g>' +
-      '</svg>';
-  }
 })();
 
 /* ========================================================================
