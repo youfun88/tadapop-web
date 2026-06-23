@@ -18,7 +18,29 @@
     <h1>Support</h1>
     <div class="updated">We're happy to help.</div>
 
-    <p>Have a question, found a bug, or want to suggest a feature? Reach us at <a href="mailto:support@tadapop.app">support@tadapop.app</a> and we'll get back to you.</p>
+    <p>Have a question, found a bug, or want to suggest a feature? Send us a message below and we'll get back to you — or email <a href="mailto:support@tadapop.app">support@tadapop.app</a> directly.</p>
+
+    <form class="support-form" id="supportForm" autocomplete="on">
+      <div class="field">
+        <label for="email">Your email <span class="hint">(so we can reply)</span></label>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" />
+      </div>
+      <!-- honeypot: bots fill this in, humans never see it -->
+      <div class="honey" aria-hidden="true">
+        <label for="company">Company</label>
+        <input id="company" name="_honey" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="message">How can we help?</label>
+        <textarea id="message" name="message" placeholder="Describe your question or the issue you're running into…"></textarea>
+      </div>
+      <div class="send-row">
+        <button id="send" type="button" disabled>Send message</button>
+        <p class="form-note" id="formStatus" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <p class="form-note">Tap “Send message” and your note goes straight to our team. We typically reply within 1–2 business days.</p>
 
     <h2>Frequently asked</h2>
 
@@ -37,5 +59,69 @@
     <h2>Contact</h2>
     <p>Email: <a href="mailto:support@tadapop.app">support@tadapop.app</a></p>
   </article>
+
+  <script>
+    (function () {
+      // Formsubmit relays the message straight to our inbox — no backend to run.
+      var ENDPOINT = 'https://formsubmit.co/ajax/yufansapp@gmail.com';
+      var SUPPORT_EMAIL = 'support@tadapop.app';
+
+      var email = document.getElementById('email');
+      var message = document.getElementById('message');
+      var honey = document.getElementById('company');
+      var send = document.getElementById('send');
+      var status = document.getElementById('formStatus');
+      if (!send) return;
+
+      function setStatus(text, kind) {
+        status.textContent = text || '';
+        status.className = 'form-note' + (kind ? ' ' + kind : '');
+      }
+      function refresh() { send.disabled = message.value.trim().length === 0; }
+      message.addEventListener('input', refresh);
+      refresh();
+
+      // Fail-safe: if the relay is ever unreachable, open the user's email app
+      // so the message still gets out — the form never dead-ends.
+      function mailtoFallback(msg, from) {
+        var body = msg + (from ? '\n\nReply to: ' + from : '');
+        window.location.href = 'mailto:' + SUPPORT_EMAIL +
+          '?subject=' + encodeURIComponent('Tadapop support') +
+          '&body=' + encodeURIComponent(body);
+      }
+
+      send.addEventListener('click', function () {
+        var msg = message.value.trim();
+        if (!msg) return;
+        if (honey && honey.value) return; // bot caught by honeypot
+        var from = email.value.trim();
+
+        send.disabled = true;
+        setStatus('Sending…');
+
+        fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            email: from || 'no-reply@tadapop.app',
+            message: msg,
+            _subject: 'Tadapop support — new message',
+            _template: 'table',
+            _captcha: 'false'
+          })
+        })
+        .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
+        .then(function () {
+          setStatus('Thanks! Your message is on its way. We typically reply within 1–2 business days.', 'ok');
+          message.value = ''; email.value = ''; refresh();
+        })
+        .catch(function () {
+          setStatus('Opening your email app so you can send your message…');
+          send.disabled = false;
+          mailtoFallback(msg, from);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
