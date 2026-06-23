@@ -1,20 +1,22 @@
 # tadapop-web
 
-Marketing landing page + waitlist for **Tadapop** — the gamified daily habit tracker.
+Marketing landing page for **Tadapop** — the gamified daily habit tracker.
 
 - **Live:** https://tadapop.app
 - **Stack:** static HTML/CSS (no build step). Brand: midnight navy + amber console aesthetic.
-- **Waitlist:** emails POST to a write-only `waitlist` table in the Tadapop Supabase project (RLS allows insert, not read).
+- **Install:** the home page offers open-beta installs (Android + iOS TestFlight) via QR codes — see the Beta install section below.
+- **Support form:** messages on `/support` are relayed to the support inbox via [Formsubmit](https://formsubmit.co) (no backend).
 - **Deploy:** auto-deployed to Vercel on every push to `main`.
 
 ## Structure
 ```
-index.html        landing page (hero, features, waitlist)
+index.html        landing page (hero, features, beta install)
 styles.css        theme + layout
+android/          Android beta install page
 privacy/          Privacy Policy
 terms/            Terms of Service
-support/          Support + FAQ
-assets/           favicon, og image
+support/          Support + FAQ + contact form
+assets/           favicon, og image, install QR codes
 vercel.json       clean URLs + cache headers
 ```
 
