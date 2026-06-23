@@ -5,3 +5,6 @@
 
 # Android APK is hosted as a GitHub Release asset, not committed (too big for git)
 tadapop.apk
+
+# macOS
+.DS_Store
