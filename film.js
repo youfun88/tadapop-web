@@ -69,24 +69,14 @@
     try { speechSynthesis.speak(u); } catch (e) {}
   }
 
-  /* --------------------- lip-sync (audio-driven mouth) ------------------ */
-  // Tap the playing voiceover with a Web Audio analyser and open/close the
-  // alien's mouth from the voice loudness. Falls back to a synthesized
-  // "chatter" when there's no analyser (browser TTS path / no Web Audio).
-  const voSrc = {};            // sc.id -> { source, analyser } (created once)
+  /* --------------------- lip-sync (synthesized mouth) ------------------- */
+  // BOBO's mouth is driven by a synthesized "chatter" while a clip plays.
+  // We deliberately do NOT tap the voiceover with a Web Audio analyser:
+  // routing a media element through createMediaElementSource() silences
+  // playback in iOS WebKit / in-app webviews (the bug where the voice
+  // vanished but the SFX clicks kept playing). The element plays on its own
+  // reliable output instead.
   let mouthRAF = null, chatterT = 0;
-  function analyserFor(id, audioEl) {
-    const ctx = ac(); if (!ctx) return null;
-    if (voSrc[id]) return voSrc[id].analyser;
-    try {
-      const source = ctx.createMediaElementSource(audioEl);
-      const analyser = ctx.createAnalyser();
-      analyser.fftSize = 256; analyser.smoothingTimeConstant = 0.55;
-      source.connect(analyser); analyser.connect(ctx.destination);
-      voSrc[id] = { source, analyser };
-      return analyser;
-    } catch (e) { return null; }
-  }
   const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   function setMouth(open) {
     const m = host && host.querySelector('#alienMouth'); if (!m) return;
@@ -221,10 +211,13 @@
       try { a.currentTime = 0; } catch (e) {}
       a.volume = 1;
       host.classList.add('speaking');
-      const an = analyserFor(sc.id, a);
       a.onended = () => { if (curAudio === a) { host.classList.remove('speaking'); stopMouth(); } };
       const p = a.play();
-      startMouth(an);
+      // Drive the mouth with the synthesized "chatter" — do NOT route the VO
+      // element through Web Audio. createMediaElementSource() silences media
+      // playback in iOS WebKit / in-app webviews (SFX oscillators are fine),
+      // which dropped the voiceover while clicks kept playing.
+      startMouth(null);
       if (p && p.catch) p.catch(() => { if (curAudio === a) { host.classList.remove('speaking'); stopMouth(); sayTTS(sc.vo); } });
     } else {
       sayTTS(sc.vo);
