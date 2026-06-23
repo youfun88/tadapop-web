@@ -200,35 +200,29 @@
   text-align: center;
   opacity: 0;
 }
+/* No ring/clip: BOBO stands free in the corner (full body). */
 .film-host .film-host-ring {
   position: relative;
-  width: 112px; height: 112px;
+  width: 100%; aspect-ratio: 1844 / 2128;
   margin: 0 auto;
-  border-radius: 50%;
-  padding: 4px;
-  background: conic-gradient(from 0deg, var(--f-amber), var(--f-blue), var(--f-go), var(--f-amber));
-  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.8);
+  background: none; box-shadow: none; padding: 0; border-radius: 0;
 }
 .film-host .film-host-inner {
   position: relative;
-  width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
-  background: radial-gradient(circle at 50% 28%, #243049, #0E1422 78%);
+  width: 100%; height: 100%;
+  border-radius: 0; overflow: visible; background: none;
 }
 .film-host svg { width: 100%; height: 100%; display: block; }
-/* Painted-hero host: stacked PNG layers (base + eye + mouth), framed so the
-   head fills the circular ring; arms/torso extend past the round clip. */
-.film-host .bobo-fit {
-  position: absolute; left: 50%; top: 50%;
-  width: 172%; aspect-ratio: 1844 / 1533;
-  transform: translate(-50%, -45%);
-}
+/* Painted-hero host: full-body BOBO as stacked PNG layers (base + eye + mouth).
+   Box aspect matches the art, so the % transform-origins map to image space. */
+.film-host .bobo-fit { position: absolute; inset: 0; }
 .film-host .bobo { position: absolute; inset: 0; }
 .film-host .bobo-layer {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: contain; pointer-events: none; user-select: none;
 }
-.film-host .bobo-eye { transform-origin: 41.81% 39.33%; }
-.film-host #alienMouth { transform-origin: 43.06% 55.12%; transform: scaleY(.18); }
+.film-host .bobo-eye { transform-origin: 41.81% 28.34%; }
+.film-host #alienMouth { transform-origin: 43.06% 39.71%; transform: scaleY(.18); }
 .film-host .film-host-name {
   margin-top: 8px;
   font-family: var(--f-mono); font-size: 10px; letter-spacing: .14em; color: var(--f-dim);

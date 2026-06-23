@@ -203,7 +203,7 @@
   /* ---- pre-recorded voiceover (ElevenLabs, voice: Jessica) ----
      One MP3 per scene in /assets/vo/. Bump VOV to bust the CDN cache when
      regenerating. Falls back to the browser voice if a clip won't load/play. */
-  const VOV = 2;
+  const VOV = 3;
   const voCache = {};
   scenes.forEach((sc) => { if (sc.id) { const a = new Audio('/assets/vo/' + sc.id + '.mp3?v=' + VOV); a.preload = 'auto'; voCache[sc.id] = a; } });
   function stopVO() {
@@ -443,9 +443,9 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 1 ----------------------------- */
   const s1 = {
-    id: 's1', dur: 5600,
-    vo: 'Most habit apps feel like homework. Tadapop feels like mission control.',
-    caps: [{ at: 0, html: 'Most habit apps feel like <span class="hi">homework</span>.' }, { at: 3.6, html: 'Tadapop feels like <span class="hi">mission control</span>.' }],
+    id: 's1', dur: 5000,
+    vo: 'Yeah, you — the one who keeps saying tomorrow. Tomorrow just clocked in.',
+    caps: [{ at: 0, html: 'Still saying <span class="hi">tomorrow</span>?' }, { at: 2, html: '<span class="go">Tomorrow just clocked in.</span>' }],
     render(node) {
       const wrap = el('div', null, { position: 'absolute', inset: '0', display: 'grid', placeItems: 'center' });
       const box = el('div', null, { textAlign: 'center' });
@@ -466,8 +466,8 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 2 ----------------------------- */
   const s2 = {
     id: 's2', dur: 12000,
-    vo: 'Every morning, your missions are waiting. Tap to check one off. Count your water, your steps, your pages. Or start a timer for deep work, and lock in.',
-    caps: [{ at: 0, html: 'Your missions, every morning.' }, { at: 5, html: 'Tap. Count. Time it. <span class="go">Done.</span>' }],
+    vo: 'See those missions glowing? That\'s today, asking for you. Tap one done. Count the water, the steps, the pages. Or punch a timer and vanish into deep work.',
+    caps: [{ at: 0, html: 'Today is asking for <span class="hi">you</span>.' }, { at: 5.2, html: 'Tap. Count. <span class="go">Lock in.</span>' }],
     render(node) {
       const c = appCol(node, 600);
       c.appendChild(header(11, 47));
@@ -499,9 +499,9 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 3 ----------------------------- */
   const s3 = {
-    id: 's3', dur: 7500,
-    vo: 'Clear every mission, and the day pays out — one Tpoint. It\'s all or nothing, so you show up fully, every single day.',
-    caps: [{ at: 0, html: 'Clear them all.' }, { at: 4, html: '<span class="go">+1 Tpoint.</span>' }],
+    id: 's3', dur: 9200,
+    vo: 'Clear every single one and the day pays out: one Tpoint. Miss one? Nothing. All or nothing, no nibbling.',
+    caps: [{ at: 0, html: 'Clear them all → <span class="go">+1 Tpoint</span>' }, { at: 4.4, html: 'Miss one → nothing' }],
     render(node) {
       const c = appCol(node, 560);
       const head = header(12, 47);
@@ -531,9 +531,9 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 4 ----------------------------- */
   const s4 = {
-    id: 's4', dur: 10600,
-    vo: 'Clear them all, and your day is secured. Your streak grows. Life gets busy? Spend a rest day, and keep the fire alive.',
-    caps: [{ at: 0, html: 'Clear the day. <span class="go">Day secured.</span>' }, { at: 5, html: 'Protect your streak with a <span class="hi">rest day</span>.' }],
+    id: 's4', dur: 8400,
+    vo: 'Day locked. Your streak climbs one taller. No freebies out here, friend, just yesterday-you losing to today-you, again.',
+    caps: [{ at: 0, html: '<span class="go">Day locked.</span> Streak climbs.' }, { at: 4.2, html: 'Yesterday-you never stood a chance.' }],
     render(node) {
       const c = appCol(node, 560);
       const panel = el('div', 'fm-panel', { padding: '18px' });
@@ -547,16 +547,11 @@ function buildScenes(ctx) {
       panel.appendChild(cleared);
       // streak + rest day row
       const bottom = el('div', null, { display: 'flex', gap: '12px', marginTop: '4px' });
-      const stat = el('div', 'fm-panel fm-stat', { textAlign: 'center' });
+      const stat = el('div', 'fm-panel fm-stat', { flex: '1', textAlign: 'center' });
       stat.innerHTML = '<div class="k">DAY STREAK</div><div class="v js-streak">11d</div>';
-      const rest = el('div', 'fm-panel', { flex: '1', padding: '16px 18px' });
-      rest.innerHTML = '<div class="fm-mono" style="font-size:10px;letter-spacing:.16em;color:' + COL.faint + '">STREAK FREEZES</div>' +
-        '<div style="display:flex;gap:6px;align-items:center;margin-top:10px">' +
-        '<span class="js-f0" style="width:14px;height:18px;border-radius:3px;background:' + COL.blue + ';box-shadow:0 0 6px rgba(127,169,255,.6)"></span>' +
-        '<span style="width:14px;height:18px;border-radius:3px;background:' + COL.blue + ';box-shadow:0 0 6px rgba(127,169,255,.6)"></span>' +
-        '<span style="width:14px;height:18px;border-radius:3px;background:rgba(79,91,118,.3)"></span>' +
-        '<span class="fm-mono js-rest" style="margin-left:auto;font-size:10px;color:' + COL.amber + '">USE A REST DAY →</span></div>';
-      bottom.append(stat, rest); panel.appendChild(bottom);
+      const longest = el('div', 'fm-panel fm-stat', { flex: '1', textAlign: 'center' });
+      longest.innerHTML = '<div class="k">LONGEST</div><div class="v">23d</div>';
+      bottom.append(stat, longest); panel.appendChild(bottom);
       c.appendChild(panel);
       const segs = segWrap.querySelectorAll('i');
       segs[0].classList.add('on'); segs[1].classList.add('on');
@@ -579,9 +574,9 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 5 ----------------------------- */
   const s5 = {
-    id: 's5', dur: 9000,
-    vo: 'Then see the proof. A full year of green that fills in as you show up. Plus the numbers that actually keep you honest.',
-    caps: [{ at: 0, html: 'See the <span class="go">proof</span>.' }, { at: 5, html: 'A full year of showing up.' }],
+    id: 's5', dur: 6800,
+    vo: 'Now look back. A whole year going green, and numbers too honest to argue with. That\'s your receipts.',
+    caps: [{ at: 0, html: 'A whole year of <span class="go">green</span>.' }, { at: 3, html: 'Numbers that don\'t lie.' }],
     render(node) {
       const c = appCol(node, 560, true);
       // stat cards
@@ -634,9 +629,9 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 6 ----------------------------- */
   const s6 = {
-    id: 's6', dur: 6200,
-    vo: "But the real magic? You don't have to do it alone. Step into the Arena.",
-    caps: [{ at: 0, html: "You don't have to do it alone." }, { at: 4, html: 'Step into the <span class="hi">Arena</span>.' }],
+    id: 's6', dur: 5900,
+    vo: 'Doing it solo? Cute. Drag your friends in — the Arena\'s open.',
+    caps: [{ at: 0, html: 'Doing it solo? <span class="hi">Cute.</span>' }, { at: 2.8, html: 'Enter the <span class="hi">Arena</span>.' }],
     render(node) {
       const c = appCol(node, 560);
       // tabs
@@ -665,11 +660,12 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 7 ----------------------------- */
   const s7 = {
-    id: 's7', dur: 11000,
-    vo: 'Invite your friends, pick a challenge, set the days, and compete, live. Climb the leaderboard, drop proof photos, and talk a little trash.',
-    caps: [{ at: 0, html: 'Invite friends. Compete <span class="go">live</span>.' }, { at: 6, html: 'Climb the <span class="hi">leaderboard</span>.' }],
+    id: 's7', dur: 10500,
+    vo: 'Invite your crew, set days and a target, go live. Most days completed tops the board. Miss one, minus one. Post proof, talk trash.',
+    caps: [{ at: 0, html: 'Go live. Climb the board.' }, { at: 5.4, html: 'Miss a day → <span class="hi">−1</span>.' }],
     render(node) {
       const c = appCol(node, 580);
+      const RED = '#FF6B6B';
       const hdr = el('div', 'fm-panel', { padding: '16px 18px', marginBottom: '12px' });
       hdr.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between">' +
         '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">💧</span>' +
@@ -677,46 +673,49 @@ function buildScenes(ctx) {
         '<span class="fm-tag" style="color:' + COL.go + ';border-color:' + COL.go + '">LIVE · DAY 3/7</span></div>';
       c.appendChild(hdr);
       const board = el('div', 'fm-panel', { padding: '14px 16px' });
-      board.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.18em;color:' + COL.dim + ';margin-bottom:8px">LEADERBOARD · MOST DAYS COMPLETED</div>';
-      // initial order: Aria 1, You 2, Kenji 3, Noor 4
+      board.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">' +
+        '<span class="fm-mono" style="font-size:11px;letter-spacing:.16em;color:' + COL.dim + '">LEADERBOARD · MOST DAYS</span>' +
+        '<span class="fm-mono" style="font-size:10px;letter-spacing:.18em;color:' + RED + '">MISSED</span></div>';
+      // DAY 3/7: ranked by days completed; the MISSED column is the star stat.
       const data = [
-        { name: 'Aria K.', me: false, score: 3, today: 'done' },
-        { name: 'You', me: true, score: 2, today: '5/8 TODAY' },
-        { name: 'Kenji T.', me: false, score: 2, today: '3/8 TODAY' },
-        { name: 'Noor A.', me: false, score: 1, today: 'PENDING' },
+        { name: 'Aria K.',  me: false, today: '5/8 TODAY',    missed: 0 },
+        { name: 'You',      me: true,  today: '6/8 TODAY',    missed: 0 },
+        { name: 'Kenji T.', me: false, today: '✓ DONE TODAY', missed: 1 },
+        { name: 'Noor A.',  me: false, today: '3/8 TODAY',    missed: 1 },
       ];
       const rows = data.map((p, i) => {
         const row = el('div', 'fm-lb-row' + (p.me ? ' me' : ''));
         row.style.position = 'relative';
+        const done = p.today.indexOf('✓') === 0;
         row.innerHTML =
           '<span class="fm-rank' + (i === 0 ? ' lead' : '') + '">' + (i + 1) + '</span>' +
           '<span class="fm-ava' + (p.me ? ' me' : '') + '">' + p.name[0] + '</span>' +
-          '<div style="flex:1;min-width:0"><div class="fm-lb-name">' + p.name + '</div>' +
-          '<div class="fm-lb-sub' + (p.today === 'done' ? ' done' : '') + '">' + (p.today === 'done' ? '✓ DONE TODAY · 📷 PROOF' : p.today) + '</div></div>' +
-          '<span class="fm-lb-score' + (i === 0 ? ' lead' : '') + '">' + p.score + '</span>' +
-          '<span class="fm-mono" style="font-size:9px;color:' + COL.faint + ';width:34px">DAYS</span>';
+          '<div style="flex:1;min-width:0"><div class="fm-lb-name">' + p.name + (p.me ? ' <span style="color:' + COL.amber + ';font-size:11px">(you)</span>' : '') + '</div>' +
+          '<div class="fm-lb-sub' + (done ? ' done' : '') + '">' + (done ? '✓ DONE TODAY · 📷 PROOF' : p.today) + '</div></div>' +
+          '<span class="js-miss fm-mono" style="font-weight:700;font-size:16px;width:44px;text-align:right;color:' + (p.missed > 0 ? RED : COL.faint) + '">' + (p.missed > 0 ? '−' + p.missed : '0') + '</span>';
         board.appendChild(row);
-        row._rank = row.querySelector('.fm-rank'); row._sub = row.querySelector('.fm-lb-sub'); row._score = row.querySelector('.fm-lb-score');
+        row._rank = row.querySelector('.fm-rank'); row._sub = row.querySelector('.fm-lb-sub'); row._miss = row.querySelector('.js-miss');
         return row;
       });
       c.appendChild(board);
 
-      // friends log in
-      after(1400, () => { rows[2]._sub.textContent = '✓ DONE TODAY'; rows[2]._sub.classList.add('done'); anim(rows[2], [{ background: 'rgba(91,227,155,.16)' }, { background: 'transparent' }], { duration: 900 }); sfx.tick(); });
-      after(2600, () => { rows[3]._sub.textContent = '6/8 TODAY'; sfx.tick(); });
-      // you log + finish today, score 2->3, rise to #1
-      after(4200, () => { rows[1]._sub.textContent = '✓ DONE TODAY · 📷 PROOF'; rows[1]._sub.classList.add('done'); rows[1]._score.textContent = '3'; anim(rows[1]._score, [{ transform: 'scale(1.5)', color: COL.go }, { transform: 'scale(1)' }], { duration: 500, easing: POP }); sfx.pop(); });
-      after(5400, () => {
-        // FLIP swap: You (row index 1) moves up past Aria (row index 0).
-        // Use offsetTop (unscaled layout px) — the stage is CSS-scaled, so
-        // getBoundingClientRect would return scaled distances and break the swap.
-        const H = rows[1].offsetTop - rows[0].offsetTop; // positive
+      // a friend finishes; the leader MISSES a day (-1, red) and drops; you finish clean and climb to #1.
+      after(1300, () => { rows[3]._sub.textContent = '7/8 TODAY'; sfx.tick(); });
+      after(2500, () => {
+        rows[0]._sub.textContent = 'MISSED A DAY'; rows[0]._sub.style.color = RED;
+        rows[0]._miss.textContent = '−1'; rows[0]._miss.style.color = RED;
+        anim(rows[0]._miss, [{ transform: 'scale(1.7)' }, { transform: 'scale(1)' }], { duration: 460, easing: POP });
+        sfx.whoosh();
+      });
+      after(4100, () => { rows[1]._sub.textContent = '✓ DONE TODAY · 📷 PROOF'; rows[1]._sub.classList.add('done'); anim(rows[1]._sub, [{ opacity: .3 }, { opacity: 1 }], { duration: 420 }); sfx.pop(); });
+      after(5300, () => {
+        const H = rows[1].offsetTop - rows[0].offsetTop;
         anim(rows[1], [{ transform: 'translateY(0)' }, { transform: 'translateY(' + (-H) + 'px)' }], { duration: 650, fill: 'both', easing: 'cubic-bezier(.3,1.1,.3,1)' });
         anim(rows[0], [{ transform: 'translateY(0)' }, { transform: 'translateY(' + (H) + 'px)' }], { duration: 650, fill: 'both', easing: 'cubic-bezier(.3,1.1,.3,1)' });
         sfx.chime();
         after(720, () => {
-          rows[1]._rank.textContent = '1'; rows[1]._rank.classList.add('lead'); rows[1]._score.classList.add('lead');
-          rows[0]._rank.textContent = '2'; rows[0]._rank.classList.remove('lead'); rows[0]._score.classList.remove('lead');
+          rows[1]._rank.textContent = '1'; rows[1]._rank.classList.add('lead');
+          rows[0]._rank.textContent = '2'; rows[0]._rank.classList.remove('lead');
           anim(rows[1], [{ boxShadow: '0 0 0 0 rgba(255,180,84,0)' }, { boxShadow: '0 0 26px -2px rgba(255,180,84,.55)' }, { boxShadow: '0 0 0 0 rgba(255,180,84,0)' }], { duration: 1100 });
           const crown = el('span', null, { position: 'absolute', left: '8px', top: '-14px', fontSize: '20px' });
           crown.textContent = '👑'; rows[1].appendChild(crown);
@@ -728,9 +727,9 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 8 ----------------------------- */
   const s8 = {
-    id: 's8', dur: 7200,
-    vo: 'Win together. Lose together. Get better — together.',
-    caps: [{ at: 0, html: 'Get better — <span class="hi">together</span>.' }],
+    id: 's8', dur: 5600,
+    vo: 'Win together. Lose together. Get scary good — together.',
+    caps: [{ at: 0, html: 'Win. Lose.' }, { at: 2.5, html: 'Get scary good — <span class="hi">together</span>.' }],
     render(node) {
       const c = appCol(node, 560);
       const win = el('div', 'fm-panel', { padding: '24px', textAlign: 'center', marginBottom: '14px', position: 'relative', overflow: 'hidden' });
@@ -773,9 +772,9 @@ function buildScenes(ctx) {
 
   /* ----------------------------- Scene 9 ----------------------------- */
   const s9 = {
-    id: 's9', dur: 10600,
-    vo: "Tadapop. Track your progress, challenge your friends, and actually become who you said you'd be. Install free on iPhone or Android — your first mission starts now.",
-    caps: [{ at: 0, html: '<span class="hi">Tadapop.</span>' }, { at: 6.5, html: 'Your first mission starts now.' }],
+    id: 's9', dur: 11400,
+    vo: 'Tadapop. Track it, race your friends, become the you you keep describing. Free on iPhone and Android. Now up, soldier. Your first mission starts now. Tada!',
+    caps: [{ at: 0, html: 'Become who you said you\'d be.' }, { at: 6, html: 'Your first mission starts <span class="go">now</span>.' }],
     render(node) {
       const wrap = el('div', null, { position: 'absolute', inset: '0', display: 'grid', placeItems: 'center' });
       const box = el('div', null, { textAlign: 'center' });
