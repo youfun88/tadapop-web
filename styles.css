@@ -486,10 +486,13 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 640px) {
   .features { grid-template-columns: 1fr; }
   .waitlist { flex-direction: column; }
+  /* stack the install buttons full-width with breathing room on phones */
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .hero-cta .button { width: 100%; text-align: center; }
 }
 
 /* ---- beta / QR install ---- */
-.hero-cta { margin-top: 6px; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
 .beta-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 26px; }
 .beta-card {
   display: flex; flex-direction: column; align-items: center; gap: 12px;
