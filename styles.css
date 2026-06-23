@@ -492,7 +492,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---- beta / QR install ---- */
-.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+.hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 14px; }
 .beta-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 26px; }
 .beta-card {
   display: flex; flex-direction: column; align-items: center; gap: 12px;
