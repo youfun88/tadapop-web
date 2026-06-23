@@ -210,10 +210,25 @@
   box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.8);
 }
 .film-host .film-host-inner {
+  position: relative;
   width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
   background: radial-gradient(circle at 50% 28%, #243049, #0E1422 78%);
 }
 .film-host svg { width: 100%; height: 100%; display: block; }
+/* Painted-hero host: stacked PNG layers (base + eye + mouth), framed so the
+   head fills the circular ring; arms/torso extend past the round clip. */
+.film-host .bobo-fit {
+  position: absolute; left: 50%; top: 50%;
+  width: 172%; aspect-ratio: 1844 / 1533;
+  transform: translate(-50%, -45%);
+}
+.film-host .bobo { position: absolute; inset: 0; }
+.film-host .bobo-layer {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; pointer-events: none; user-select: none;
+}
+.film-host .bobo-eye { transform-origin: 41.81% 39.33%; }
+.film-host #alienMouth { transform-origin: 43.06% 55.12%; transform: scaleY(.18); }
 .film-host .film-host-name {
   margin-top: 8px;
   font-family: var(--f-mono); font-size: 10px; letter-spacing: .14em; color: var(--f-dim);

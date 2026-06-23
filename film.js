@@ -166,7 +166,7 @@
     '<img src="/assets/logo.png" alt="Tadapop"/>' +
     '<h3>Your first mission starts now.</h3>' +
     '<div class="film-end-row">' +
-    '<button class="film-cta" data-act="waitlist">Join the waitlist →</button>' +
+    '<button class="film-cta" data-act="install">Get the beta — iOS &amp; Android →</button>' +
     '<button class="film-btn" data-act="replay">⟳ Watch again</button>' +
     '<button class="film-btn" data-act="close">Close</button>' +
     '</div>';
@@ -203,7 +203,7 @@
   /* ---- pre-recorded voiceover (ElevenLabs, voice: Jessica) ----
      One MP3 per scene in /assets/vo/. Bump VOV to bust the CDN cache when
      regenerating. Falls back to the browser voice if a clip won't load/play. */
-  const VOV = 1;
+  const VOV = 2;
   const voCache = {};
   scenes.forEach((sc) => { if (sc.id) { const a = new Audio('/assets/vo/' + sc.id + '.mp3?v=' + VOV); a.preload = 'auto'; voCache[sc.id] = a; } });
   function stopVO() {
@@ -333,7 +333,7 @@
     const act = e.target && e.target.getAttribute('data-act');
     if (act === 'replay') play();
     else if (act === 'close') closeFilm();
-    else if (act === 'waitlist') { closeFilm(); location.hash = '#waitlist'; const inp = document.getElementById('email'); if (inp) setTimeout(() => inp.focus(), 450); }
+    else if (act === 'install') { closeFilm(); const sec = document.getElementById('get'); if (sec) setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450); else location.hash = '#get'; }
   });
   document.addEventListener('keydown', (e) => { if (!overlay.hidden && e.key === 'Escape') closeFilm(); });
 
@@ -356,67 +356,18 @@
   /* ===================================================================== */
   function fmtClock(ms) { const s = Math.round(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
 
-  // Bobo — muscular one-eyed alien, hand-built vector so every part is riggable:
-  // .ag-bob (body nod), .ag-ant (antennae sway), .ag-eye (blink), #alienMouth
-  // (audio lip-sync), .ag-arm-l/.ag-arm-r (flexing-arm gestures while talking).
+  // Bobo — painted hero (raster), riggable via layered overlays:
+  // .ag-bob (whole-body bob while speaking), .ag-eye (eye layer scales to
+  // blink), #alienMouth (audio lip-sync mouth overlay). Antennae + arms live
+  // in the base art; liveliness comes from the body bob + blink + lip-sync.
   function hostSVG() {
+    var b = '/assets/host/';
     return '' +
-      '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-      '<defs>' +
-      '<radialGradient id="bgBody" cx="40%" cy="28%" r="78%"><stop offset="0" stop-color="#AEE6FC"/><stop offset=".5" stop-color="#73AEEE"/><stop offset="1" stop-color="#8B73DC"/></radialGradient>' +
-      '<radialGradient id="bgArm" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#9AD8F6"/><stop offset=".55" stop-color="#6AA2E6"/><stop offset="1" stop-color="#7D64CE"/></radialGradient>' +
-      '<radialGradient id="bgIris" cx="42%" cy="32%" r="70%"><stop offset="0" stop-color="#D6FFEC"/><stop offset=".5" stop-color="#3ECF92"/><stop offset="1" stop-color="#0E7E54"/></radialGradient>' +
-      '<linearGradient id="bgShort" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F8FF"/><stop offset="1" stop-color="#C6D2EC"/></linearGradient>' +
-      '<radialGradient id="bgShine" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>' +
-      '<filter id="agGlow" x="-90%" y="-90%" width="280%" height="280%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
-      '</defs>' +
-      '<g class="ag-bob" style="transform-box:fill-box;transform-origin:50% 100%">' +
-      // antennae
-      '<g class="ag-ant" style="transform-box:fill-box;transform-origin:50% 100%">' +
-      '<g stroke="#7FD6EE" stroke-width="2.6" fill="none" stroke-linecap="round"><path d="M43 20 Q39 10 36 5"/><path d="M57 20 Q61 10 64 5"/></g>' +
-      '<g filter="url(#agGlow)"><circle cx="35" cy="4" r="4.2" fill="#F35FE0"/><circle cx="65" cy="4" r="4.2" fill="#F35FE0"/><circle cx="33.6" cy="2.6" r="1.4" fill="#FFD4F6"/><circle cx="63.6" cy="2.6" r="1.4" fill="#FFD4F6"/></g>' +
-      '</g>' +
-      // torso (muscular) + shorts
-      '<path d="M29 55 Q24 71 34 82 Q41 89 50 89 Q59 89 66 82 Q76 71 71 55 Q61 49 50 49 Q39 49 29 55 Z" fill="url(#bgBody)" stroke="#5384C2" stroke-width="2"/>' +
-      '<path d="M35 80 Q42 88 50 88 Q58 88 65 80 L66 87 Q58 92 50 92 Q42 92 34 87 Z" fill="url(#bgShort)" stroke="#A6B4D4" stroke-width="1"/>' +
-      // muscle definition
-      '<g stroke="#4E7CBE" stroke-width="1.2" fill="none" opacity=".45" stroke-linecap="round"><path d="M50 57 V77"/><path d="M43 64 H57"/><path d="M43 70 H57"/><path d="M44 75 H56"/><path d="M40 57 Q50 62 60 57"/></g>' +
-      '<ellipse cx="44" cy="59" rx="9" ry="7" fill="url(#bgShine)" opacity=".55"/>' +
-      // left arm (viewer-left), flexing — outlined capsules + bicep + fist + smartwatch
-      '<g class="ag-arm ag-arm-l" style="transform-box:fill-box;transform-origin:88% 38%">' +
-      '<path d="M32 57 Q25 63 22 69 M22 69 Q23 58 26 49" stroke="#5384C2" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<path d="M32 57 Q25 63 22 69 M22 69 Q23 58 26 49" stroke="url(#bgArm)" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<ellipse cx="25" cy="60" rx="3" ry="4" fill="url(#bgShine)" opacity=".5"/>' +
-      '<circle cx="26" cy="48" r="5.2" fill="url(#bgArm)" stroke="#5384C2" stroke-width="1.6"/>' +
-      '<rect x="20.5" y="51" width="11" height="3.4" rx="1.7" transform="rotate(-12 26 53)" fill="#EFF4FF" stroke="#A6B4D4" stroke-width=".6"/>' +
-      '<rect x="21.5" y="54" width="5.4" height="3.8" rx="1" transform="rotate(-12 24 56)" fill="#2FB979" stroke="#1C8A59" stroke-width=".5"/>' +
-      '</g>' +
-      // right arm (viewer-right), flexing
-      '<g class="ag-arm ag-arm-r" style="transform-box:fill-box;transform-origin:12% 38%">' +
-      '<path d="M68 57 Q75 63 78 69 M78 69 Q77 58 74 49" stroke="#5384C2" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<path d="M68 57 Q75 63 78 69 M78 69 Q77 58 74 49" stroke="url(#bgArm)" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<ellipse cx="75" cy="60" rx="3" ry="4" fill="url(#bgShine)" opacity=".5"/>' +
-      '<circle cx="74" cy="48" r="5.2" fill="url(#bgArm)" stroke="#5384C2" stroke-width="1.6"/>' +
-      '<rect x="68.5" y="51" width="11" height="3.4" rx="1.7" transform="rotate(12 74 53)" fill="#EFF4FF" stroke="#A6B4D4" stroke-width=".6"/>' +
-      '</g>' +
-      // head
-      '<ellipse cx="50" cy="35" rx="21" ry="19" fill="url(#bgBody)" stroke="#5384C2" stroke-width="2"/>' +
-      '<ellipse cx="43" cy="28" rx="9" ry="7" fill="url(#bgShine)" opacity=".6"/>' +
-      // big eye (blinks via .ag-eye)
-      '<g class="ag-eye" style="transform-box:fill-box;transform-origin:center center">' +
-      '<ellipse cx="47" cy="35" rx="12.5" ry="13.5" fill="#EAFBFF" stroke="#56A6D6" stroke-width="1.8"/>' +
-      '<circle cx="47" cy="36" r="9" fill="url(#bgIris)"/>' +
-      '<circle cx="47" cy="37" r="4.6" fill="#0B2026"/>' +
-      '<circle cx="43.4" cy="32" r="2.8" fill="#FFFFFF"/>' +
-      '<circle cx="50" cy="40.5" r="1.4" fill="#FFFFFF" opacity=".9"/>' +
-      '<ellipse cx="47" cy="35" rx="11" ry="12" fill="url(#bgShine)" opacity=".4"/>' +
-      '</g>' +
-      // cheek + mouth (lip-synced)
-      '<ellipse cx="62" cy="44" rx="3.6" ry="2.6" fill="#FF93C6" opacity=".4"/>' +
-      '<g id="alienMouth" style="transform-box:fill-box;transform-origin:center center"><path d="M48 46 Q55 54 62 46 Q55 51 48 46 Z" fill="#3E1A33"/><ellipse cx="55" cy="49.5" rx="4.5" ry="2" fill="#FF7AA8"/></g>' +
-      '<path d="M47 45 Q55 52 63 45" stroke="#3E6FA8" stroke-width="1.8" fill="none" stroke-linecap="round"/>' +
-      '</g>' +
-      '</svg>';
+      '<div class="bobo-fit"><div class="bobo ag-bob">' +
+      '<img class="bobo-layer bobo-base" src="' + b + 'bobo-base.png" alt="" draggable="false">' +
+      '<img class="bobo-layer ag-eye bobo-eye" src="' + b + 'bobo-eye.png" alt="" draggable="false">' +
+      '<img class="bobo-layer bobo-mouth" id="alienMouth" src="' + b + 'bobo-mouth.png" alt="" draggable="false">' +
+      '</div></div>';
   }
 })();
 
@@ -435,7 +386,7 @@ function buildScenes(ctx) {
     node.appendChild(c);
     return c;
   }
-  function header(streakVal, level, into) {
+  function header(streakVal, tpoints) {
     const h = el('div', 'fm-panel', { padding: '14px 18px', marginBottom: '12px' });
     h.innerHTML =
       '<div style="display:flex;align-items:center;justify-content:space-between;gap:16px">' +
@@ -444,22 +395,17 @@ function buildScenes(ctx) {
           '<div><div class="fm-disp" style="font-weight:900;letter-spacing:.22em;font-size:16px">MISSION CONTROL</div>' +
           '<div class="fm-mono" style="color:' + COL.dim + ';font-size:10px;letter-spacing:.15em;margin-top:5px">TODAY · ON TRACK</div></div>' +
         '</div>' +
-        '<div style="display:flex;align-items:center;gap:20px">' +
+        '<div style="display:flex;align-items:center;gap:24px">' +
           '<div style="text-align:right"><div class="fm-mono" style="color:' + COL.faint + ';font-size:9px;letter-spacing:.18em">STREAK</div>' +
           '<div class="fm-disp js-streak" style="font-weight:700;font-size:22px;color:' + COL.amber + '">' + streakVal + '<span style="font-size:11px;color:' + COL.dim + ';margin-left:3px">d</span></div></div>' +
-          '<div style="min-width:140px">' +
-            '<div style="display:flex;justify-content:space-between;margin-bottom:5px">' +
-              '<span class="fm-mono js-lv" style="font-size:12px;font-weight:700;color:' + COL.amber + ';letter-spacing:.1em">LV.' + level + '</span>' +
-              '<span class="fm-mono js-into" style="font-size:10px;color:' + COL.dim + '">' + into + '/100</span></div>' +
-            '<div style="height:7px;border-radius:4px;background:rgba(79,91,118,.28);overflow:hidden">' +
-              '<div class="js-lvbar" style="height:100%;width:' + into + '%;background:linear-gradient(90deg,' + COL.amberDeep + ',' + COL.amber + ');box-shadow:0 0 10px rgba(255,180,84,.6)"></div></div>' +
-          '</div>' +
+          '<div style="text-align:right"><div class="fm-mono" style="color:' + COL.faint + ';font-size:9px;letter-spacing:.18em">TPOINTS</div>' +
+          '<div class="fm-disp js-tp" style="font-weight:700;font-size:22px;color:' + COL.amber + '">' + tpoints + '</div></div>' +
         '</div>' +
       '</div>';
     return h;
   }
   function missionRow(opts) {
-    // opts: { title, meta, xp, kind:'binary'|'count'|'timer', cat }
+    // opts: { title, meta, kind:'binary'|'count'|'timer', cat }
     const row = el('div', 'fm-row');
     const dotColor = opts.cat || COL.amber;
     const tg = el('button', 'fm-toggle');
@@ -470,10 +416,9 @@ function buildScenes(ctx) {
       '<div class="fm-meta"><span style="color:' + dotColor + '">●</span>' +
         '<span class="js-metric" style="color:' + COL.amber + '">' + (opts.meta || '') + '</span></div>' +
       (opts.kind === 'timer' ? '<div class="fm-timerbar"><div class="js-bar"></div></div>' : '');
-    const flo = el('span', 'fm-float', { right: '64px', top: '6px' });
+    const flo = el('span', 'fm-float', { right: '18px', top: '6px' });
     mid.appendChild(flo);
-    const tag = el('span', 'fm-tag', null, '+' + opts.xp);
-    row.append(tg, mid, tag);
+    row.append(tg, mid);
     row._tg = tg; row._title = mid.querySelector('.js-title'); row._metric = mid.querySelector('.js-metric');
     row._bar = mid.querySelector('.js-bar'); row._float = flo;
     return row;
@@ -491,8 +436,8 @@ function buildScenes(ctx) {
     sfx.tick();
     boboTada();
   }
-  function floatXp(row) {
-    row._float.textContent = '+20';
+  function floatTpoint(row) {
+    row._float.textContent = '+1';
     anim(row._float, [{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(-4px)' }, { opacity: 0, transform: 'translateY(-22px)' }], { duration: 1000, easing: 'ease-out' });
   }
 
@@ -525,15 +470,15 @@ function buildScenes(ctx) {
     caps: [{ at: 0, html: 'Your missions, every morning.' }, { at: 5, html: 'Tap. Count. Time it. <span class="go">Done.</span>' }],
     render(node) {
       const c = appCol(node, 600);
-      c.appendChild(header(11, 7, 40));
+      c.appendChild(header(11, 47));
       const panel = el('div', 'fm-panel', { padding: '14px 16px 16px' });
       panel.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">' +
-        '<span class="fm-mono" style="font-size:12px;letter-spacing:.2em;color:' + COL.dim + '">TODAY\'S OBJECTIVES</span>' +
+        '<span class="fm-mono" style="font-size:12px;letter-spacing:.2em;color:' + COL.dim + '">MISSIONS · TODAY</span>' +
         '<span class="fm-mono js-count" style="font-size:13px;font-weight:700;color:' + COL.ink + '">1/4</span></div>';
-      const r1 = missionRow({ title: 'Inbox to zero', meta: 'DAILY', xp: 20, kind: 'binary', cat: COL.amber });
-      const r2 = missionRow({ title: 'Drink 8 glasses of water', meta: '5/8 glasses', xp: 20, kind: 'count', cat: COL.teal });
-      const r3 = missionRow({ title: 'Read 20 pages', meta: '20/20 pages', xp: 10, kind: 'count', cat: COL.blue });
-      const r4 = missionRow({ title: 'Deep work block — 90 min', meta: '90 MIN', xp: 30, kind: 'timer', cat: COL.amber });
+      const r1 = missionRow({ title: 'Inbox to zero', meta: 'DAILY', kind: 'binary', cat: COL.amber });
+      const r2 = missionRow({ title: 'Drink 8 glasses of water', meta: '5/8 glasses', kind: 'count', cat: COL.teal });
+      const r3 = missionRow({ title: 'Read 20 pages', meta: '20/20 pages', kind: 'count', cat: COL.blue });
+      const r4 = missionRow({ title: 'Deep work block — 90 min', meta: '90 MIN', kind: 'timer', cat: COL.amber });
       // pre-set r3 done
       complete(r3, '20/20 pages');
       panel.append(r1, r2, r4); panel.insertBefore(r3, r4);
@@ -555,29 +500,31 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 3 ----------------------------- */
   const s3 = {
     id: 's3', dur: 7500,
-    vo: 'Every win earns XP. Watch your level climb, and feel that little rush, every single day.',
-    caps: [{ at: 0, html: 'Every win earns <span class="hi">XP</span>.' }, { at: 4.5, html: '<span class="hi">Level up.</span>' }],
+    vo: 'Clear every mission, and the day pays out — one Tpoint. It\'s all or nothing, so you show up fully, every single day.',
+    caps: [{ at: 0, html: 'Clear them all.' }, { at: 4, html: '<span class="go">+1 Tpoint.</span>' }],
     render(node) {
       const c = appCol(node, 560);
-      const head = header(12, 7, 80);
+      const head = header(12, 47);
       c.appendChild(head);
-      const lvbar = head.querySelector('.js-lvbar'), lvLabel = head.querySelector('.js-lv'), intoLabel = head.querySelector('.js-into');
+      const tpLabel = head.querySelector('.js-tp');
       const panel = el('div', 'fm-panel', { padding: '16px' });
-      const r = missionRow({ title: 'Morning workout — 20 min', meta: '20 MIN DONE', xp: 20, kind: 'binary', cat: COL.teal });
-      panel.appendChild(r); c.appendChild(panel);
+      const r = missionRow({ title: 'Morning workout — 20 min', meta: '20 MIN', kind: 'binary', cat: COL.teal });
+      panel.appendChild(r);
+      // the day's all-or-nothing payout, revealed once the last mission clears
+      const cleared = el('div', 'fm-cleared', { opacity: '0', marginTop: '14px' });
+      cleared.innerHTML = '<span style="width:9px;height:9px;border-radius:99px;background:' + COL.go + ';box-shadow:0 0 12px 2px rgba(91,227,155,.8)"></span> ALL MISSIONS CLEARED · +1 TPOINT';
+      panel.appendChild(cleared);
+      c.appendChild(panel);
 
-      after(700, () => { complete(r, '20 MIN DONE'); floatXp(r); intoLabel.textContent = '80/100'; });
-      after(1400, () => { anim(lvbar, [{ width: '80%' }, { width: '100%' }], { duration: 1100, fill: 'both', easing: 'cubic-bezier(.2,1,.3,1)' }); });
-      after(2700, () => {
-        // level up
+      after(700, () => { complete(r, '20 MIN DONE'); floatTpoint(r); });
+      after(1500, () => {
+        anim(cleared, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 450, fill: 'both' });
         sfx.chime();
-        lvLabel.textContent = 'LV.8'; lvLabel.style.color = COL.go; intoLabel.textContent = '0/100';
-        anim(lvbar, [{ width: '100%' }, { width: '0%' }], { duration: 350, fill: 'both' });
-        const badge = el('div', 'fm-disp', { position: 'absolute', left: '50%', top: '-6px', transform: 'translate(-50%,-50%)', fontWeight: '900', fontSize: '40px', color: COL.go, textShadow: '0 0 30px rgba(91,227,155,.7)', whiteSpace: 'nowrap' });
-        badge.textContent = 'LEVEL UP!';
-        c.style.position = 'relative'; c.appendChild(badge);
-        anim(badge, [{ opacity: 0, transform: 'translate(-50%,-50%) scale(.6)' }, { opacity: 1, transform: 'translate(-50%,-50%) scale(1.1)' }, { opacity: 1, transform: 'translate(-50%,-50%) scale(1)' }], { duration: 600, easing: POP, fill: 'both' });
-        after(2200, () => anim(badge, [{ opacity: 1 }, { opacity: 0 }], { duration: 500, fill: 'both' }));
+      });
+      after(2300, () => {
+        // Tpoints tick up — one more cleared day
+        countUp(tpLabel, 47, 48, 500);
+        anim(tpLabel, [{ transform: 'scale(1)', color: COL.go }, { transform: 'scale(1.3)' }, { transform: 'scale(1)', color: COL.amber }], { duration: 650, easing: POP, fill: 'both' });
       });
     },
   };
@@ -601,7 +548,7 @@ function buildScenes(ctx) {
       // streak + rest day row
       const bottom = el('div', null, { display: 'flex', gap: '12px', marginTop: '4px' });
       const stat = el('div', 'fm-panel fm-stat', { textAlign: 'center' });
-      stat.innerHTML = '<div class="k">CURRENT STREAK</div><div class="v js-streak">11d</div>';
+      stat.innerHTML = '<div class="k">DAY STREAK</div><div class="v js-streak">11d</div>';
       const rest = el('div', 'fm-panel', { flex: '1', padding: '16px 18px' });
       rest.innerHTML = '<div class="fm-mono" style="font-size:10px;letter-spacing:.16em;color:' + COL.faint + '">STREAK FREEZES</div>' +
         '<div style="display:flex;gap:6px;align-items:center;margin-top:10px">' +
@@ -633,30 +580,31 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 5 ----------------------------- */
   const s5 = {
     id: 's5', dur: 9000,
-    vo: 'Then see the proof. A twelve-week heatmap that fills in green as you show up. Plus the numbers that actually keep you honest.',
-    caps: [{ at: 0, html: 'See the <span class="go">proof</span>.' }, { at: 5, html: '12 weeks of showing up.' }],
+    vo: 'Then see the proof. A full year of green that fills in as you show up. Plus the numbers that actually keep you honest.',
+    caps: [{ at: 0, html: 'See the <span class="go">proof</span>.' }, { at: 5, html: 'A full year of showing up.' }],
     render(node) {
       const c = appCol(node, 560, true);
       // stat cards
       const stats = el('div', null, { display: 'flex', gap: '10px', marginBottom: '12px' });
-      [['CURRENT STREAK', '12d'], ['LONGEST', '23d'], ['DAYS CLEARED', '48'], ['TOTAL XP', '1480']].forEach(([k, v]) => {
+      [['DAY STREAK', '12d'], ['LONGEST', '23d'], ['TPOINTS', '142'], ['COMPLETION', '86%']].forEach(([k, v]) => {
         const s = el('div', 'fm-panel fm-stat'); s.innerHTML = '<div class="k">' + k + '</div><div class="v">' + v + '</div>'; stats.appendChild(s);
       });
       c.appendChild(stats);
-      // heatmap
+      // heatmap — a full year, GitHub-style (52 weeks × 7 days)
+      const WEEKS = 52;
       const hm = el('div', 'fm-panel', { padding: '16px' });
-      hm.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.2em;color:' + COL.dim + ';margin-bottom:12px">CLEAR HEATMAP · 12 WEEKS</div>';
-      const grid = el('div', null, { display: 'flex', gap: '4px', maxWidth: '430px', margin: '0 auto' });
+      hm.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.2em;color:' + COL.dim + ';margin-bottom:12px">ACTIVITY · 1 YEAR</div>';
+      const grid = el('div', null, { display: 'flex', gap: '3px', maxWidth: '520px', margin: '0 auto' });
       const cells = [];
-      for (let w = 0; w < 12; w++) {
-        const col = el('div', null, { display: 'grid', gridTemplateRows: 'repeat(7,1fr)', gap: '4px', flex: '1' });
+      for (let w = 0; w < WEEKS; w++) {
+        const col = el('div', null, { display: 'grid', gridTemplateRows: 'repeat(7,1fr)', gap: '3px', flex: '1' });
         for (let d = 0; d < 7; d++) { const cell = el('div', 'fm-cell'); col.appendChild(cell); cells.push({ cell, w, d }); }
         grid.appendChild(col);
       }
       hm.appendChild(grid); c.appendChild(hm);
       // completion bars
       const cr = el('div', 'fm-panel', { padding: '16px', marginTop: '12px' });
-      cr.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.2em;color:' + COL.dim + ';margin-bottom:12px">COMPLETION RATE · LAST 30 DAYS</div>';
+      cr.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.2em;color:' + COL.dim + ';margin-bottom:12px">BY MISSION · LAST 30 DAYS</div>';
       [['Drink 8 glasses of water', 92, COL.teal], ['Deep work block', 78, COL.amber], ['Meditate 10 minutes', 84, COL.blue]].forEach(([t, pct, col]) => {
         const row = el('div', null, { marginBottom: '9px' });
         row.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:5px">' +
@@ -670,11 +618,11 @@ function buildScenes(ctx) {
       const greens = ['rgba(91,227,155,.28)', 'rgba(91,227,155,.55)', COL.go];
       cells.forEach((o, i) => {
         const seed = (o.w * 7 + o.d);
-        const density = 0.35 + (o.w / 12) * 0.6;             // ramps up over weeks
+        const density = 0.35 + (o.w / WEEKS) * 0.6;          // ramps up over the year
         const on = ((seed * 53) % 100) / 100 < density;
         if (!on) return;
         const lvl = (seed % 7 === 0) ? 2 : (seed % 3 === 0) ? 1 : 0;
-        after(300 + o.w * 90 + ((o.d * 37) % 80), () => {
+        after(300 + o.w * 55 + ((o.d * 37) % 80), () => {
           o.cell.style.background = greens[lvl];
           if (lvl === 2) o.cell.style.boxShadow = '0 0 8px -1px rgba(91,227,155,.6)';
           anim(o.cell, [{ transform: 'scale(.4)', opacity: .3 }, { transform: 'scale(1)', opacity: 1 }], { duration: 260, easing: POP });
@@ -693,7 +641,7 @@ function buildScenes(ctx) {
       const c = appCol(node, 560);
       // tabs
       const tabs = el('div', 'fm-panel', { padding: '6px', marginBottom: '14px', display: 'flex', gap: '6px' });
-      ['TODAY', 'STATS', 'ARENA', 'SETTINGS'].forEach((t) => {
+      ['TODAY', 'STATS', 'ARENA', 'PROFILE'].forEach((t) => {
         const b = el('div', 'fm-mono', { flex: '1', textAlign: 'center', padding: '10px 4px', fontSize: '12px', letterSpacing: '.12em', color: t === 'ARENA' ? COL.ink : COL.faint, borderBottom: '2px solid ' + (t === 'ARENA' ? COL.amber : 'transparent') });
         b.textContent = t; tabs.appendChild(b);
       });
@@ -826,7 +774,7 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 9 ----------------------------- */
   const s9 = {
     id: 's9', dur: 10600,
-    vo: "Tadapop. Track your progress, challenge your friends, and actually become who you said you'd be. Join the waitlist — your first mission starts now.",
+    vo: "Tadapop. Track your progress, challenge your friends, and actually become who you said you'd be. Install free on iPhone or Android — your first mission starts now.",
     caps: [{ at: 0, html: '<span class="hi">Tadapop.</span>' }, { at: 6.5, html: 'Your first mission starts now.' }],
     render(node) {
       const wrap = el('div', null, { position: 'absolute', inset: '0', display: 'grid', placeItems: 'center' });
@@ -836,7 +784,7 @@ function buildScenes(ctx) {
       const title = el('div', 'fm-disp', { fontWeight: '900', fontSize: '40px', letterSpacing: '2px', marginTop: '20px' });
       title.innerHTML = 'Track. Compete. <span style="color:' + COL.amber + '">Become.</span>';
       const cta = el('div', 'fm-disp', { display: 'inline-block', marginTop: '24px', padding: '14px 28px', borderRadius: '10px', background: COL.amber, color: '#1a1205', fontWeight: '700', letterSpacing: '1px', fontSize: '15px' });
-      cta.textContent = 'Join the waitlist →';
+      cta.textContent = 'Get the beta — iOS & Android →';
       box.append(logo, title, cta); wrap.appendChild(box); node.appendChild(wrap);
       anim(logo, [{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 600, easing: POP, fill: 'both' });
       anim(title, [{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 600, delay: 250, fill: 'both' });
