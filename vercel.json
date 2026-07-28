@@ -29,7 +29,7 @@
   "rewrites": [
     {
       "source": "/join/(.*)",
-      "destination": "/join/index.html"
+      "destination": "/join"
     }
   ],
   "redirects": [
