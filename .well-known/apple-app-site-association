@@ -1,0 +1,20 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["WT6P5XQB6Y.com.qyllc.tadapop"],
+        "components": [
+          {
+            "/": "/join/*",
+            "comment": "Arena challenge invites open straight in the app"
+          }
+        ]
+      },
+      {
+        "appID": "WT6P5XQB6Y.com.qyllc.tadapop",
+        "paths": ["/join/*"]
+      }
+    ]
+  }
+}

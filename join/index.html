@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Join a challenge · Tadapop</title>
+<meta name="description" content="You've been invited to a Tadapop Arena challenge." />
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="/styles.css" />
+<style>
+  /* This page is reached in one of two ways:
+     - iOS with the app installed: it never renders — the universal link opens
+       the app directly (see /.well-known/apple-app-site-association).
+     - Everyone else: this is the landing page, so it has to carry the code
+       somewhere a person can read and retype it. */
+  .invite { max-width: 34rem; margin: 0 auto; padding: 4rem 1.5rem; text-align: center; }
+  .invite h1 { font-size: 1.6rem; margin: 0 0 .75rem; }
+  .invite p { opacity: .8; line-height: 1.6; margin: 0 0 1.5rem; }
+  .code {
+    display: inline-block; font-family: ui-monospace, "JetBrains Mono", monospace;
+    font-size: 2rem; letter-spacing: .35em; font-weight: 700;
+    padding: .75rem 1.25rem .75rem 1.6rem; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.04);
+    margin-bottom: 1.75rem;
+  }
+  .actions { display: flex; flex-direction: column; gap: .75rem; align-items: center; }
+  .actions a { display: inline-block; padding: .85rem 1.6rem; border-radius: 999px; text-decoration: none; font-weight: 600; }
+  .primary { background: #FFB454; color: #1B2438; }
+  .secondary { border: 1px solid rgba(255,255,255,.2); }
+  .hint { font-size: .85rem; opacity: .6; margin-top: 1.5rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+  <main class="invite">
+    <h1>You've been invited to a challenge</h1>
+    <p>Open Tadapop and enter this code to join.</p>
+
+    <div class="code" id="code">——————</div>
+
+    <div class="actions">
+      <a class="primary" id="open" href="#">Open in Tadapop</a>
+      <a class="secondary" href="/">Get the app</a>
+    </div>
+
+    <p class="hint">
+      Already have Tadapop? Tapping this link on your phone should open it straight to the invite.
+      If it doesn't, open the app, tap <strong>Arena → Join code</strong> and type the code above.
+    </p>
+  </main>
+
+<script>
+  // The code is the last path segment: /join/ABC123
+  var raw = decodeURIComponent(location.pathname.split('/').filter(Boolean).pop() || '');
+  var code = raw.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  var valid = /^[A-Z0-9]{4,10}$/.test(code);
+
+  if (valid) {
+    document.getElementById('code').textContent = code;
+    document.title = 'Join with code ' + code + ' · Tadapop';
+    var deepLink = 'tadapop://join/' + code;
+    document.getElementById('open').setAttribute('href', deepLink);
+
+    // If the app is installed but the universal link didn't take (a link opened
+    // from inside an in-app browser, say), the custom scheme still gets there.
+    // Only auto-attempt on a first visit, so it can't trap someone who came
+    // back here deliberately.
+    if (!sessionStorage.getItem('tadapop.join.tried')) {
+      sessionStorage.setItem('tadapop.join.tried', '1');
+      location.href = deepLink;
+    }
+  } else {
+    document.getElementById('code').textContent = '?';
+    document.querySelector('.invite p').textContent =
+      "That invite link doesn't look complete. Ask whoever invited you to send it again.";
+    document.getElementById('open').style.display = 'none';
+  }
+</script>
+</body>
+</html>

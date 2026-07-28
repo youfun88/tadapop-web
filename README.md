@@ -42,3 +42,41 @@ Open `index.html` in a browser, or serve the folder:
 ```sh
 npx serve .
 ```
+
+## Universal links (`/join/<code>`)
+
+Arena invites are `https://www.tadapop.app/join/ABC123`. On iOS with the app
+installed, tapping one opens Tadapop straight on the invite; everyone else gets
+`join/index.html`, which shows the code and a download link.
+
+**Use `www`, not the apex.** `tadapop.app` 308-redirects to `www.tadapop.app`,
+and Apple does NOT follow redirects when fetching the association file — an
+invite pointed at the apex would never open the app, and nothing anywhere would
+say why. The app declares `applinks:www.tadapop.app` for the same reason. If the
+canonical host ever changes, `associatedDomains` in the app's `app.json` and
+`SITE_URL` in `src/features/inviteLink.ts` must change with it.
+
+Three things have to stay true or it silently stops working — silently is the
+whole problem here, since a broken universal link just opens Safari and never
+says why:
+
+1. `/.well-known/apple-app-site-association` is served over HTTPS as
+   **`application/json`**, with **no redirect**. The file has no extension, so
+   the `Content-Type` header in `vercel.json` is what makes it valid. A copy
+   sits at the site root too, which older iOS checks as a fallback.
+2. The `appIDs` entry is `<TEAM_ID>.<BUNDLE_ID>` — `WT6P5XQB6Y.com.qyllc.tadapop`.
+   If either ever changes, this file must change with it.
+3. The app declares `associatedDomains: ["applinks:tadapop.app"]`. That's an
+   **entitlement**, so it only takes effect in a new native build — never via an
+   OTA update.
+
+Check the file is being served correctly with:
+
+```sh
+curl -sI https://www.tadapop.app/.well-known/apple-app-site-association \
+  | grep -i 'content-type\|HTTP/'
+# want: HTTP/2 200 and content-type: application/json — a 308 here means it's broken
+```
+
+Apple caches this on their CDN, so a fresh install (or a reinstall) is the
+reliable way to test a change.
