@@ -36,6 +36,11 @@
       display: flex; align-items: center; justify-content: center; font-size: 14px;
     }
     .note { color: var(--faint); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; margin-top: 28px; }
+    .doc h3 {
+      font-family: var(--display, inherit); color: var(--ink); font-size: 15px;
+      letter-spacing: 0.5px; text-transform: uppercase; margin: 22px 0 8px;
+    }
+    .doc h3:first-of-type { margin-top: 12px; }
   </style>
 </head>
 <body>
@@ -43,7 +48,7 @@
   <article class="doc">
     <a class="back" href="/">← Back to tadapop.app</a>
     <h1>Test Tadapop on Android</h1>
-    <div class="updated">Android test build · v1.2.0</div>
+    <div class="updated">Android test build · v1.2.0 · 28 July 2026</div>
 
     <p>Tadapop is in testing. Install the Android build below to try it out — your feedback helps shape the app.</p>
 
@@ -56,17 +61,40 @@
       <div class="qr-label">On a computer? Scan with your Android phone</div>
     </div>
 
+    <h2>What's new in this build</h2>
+    <p>A big update over the June build — the whole app has been restyled, and the Arena has grown up.</p>
+
+    <h3>Arena</h3>
+    <ul>
+      <li><strong>Group chat</strong> in every challenge — text, photos, video and voice messages.</li>
+      <li><strong>A proof feed</strong> showing what everyone logged, with stills for video proof.</li>
+      <li><strong>Arena Score and a podium</strong>, so standings read at a glance.</li>
+      <li><strong>Real cadence</strong> — a daily reset hour, a grace period, a day grid, at-risk warnings, and backfilling a missed day.</li>
+      <li><strong>Custom challenge lengths</strong> and a much simpler convene flow.</li>
+      <li><strong>Invite links</strong> that open the app with the code already filled in.</li>
+    </ul>
+
+    <h3>Solo tracking</h3>
+    <ul>
+      <li><strong>Drag to reorder</strong> today's missions — long-press to start.</li>
+      <li><strong>One-tap undo</strong> on a mission you completed by mistake.</li>
+      <li><strong>Rewards and progression</strong> — cosmetics and trophies as you level up.</li>
+      <li><strong>Your data follows your account</strong> — sign in and everything you tracked locally comes with you.</li>
+    </ul>
+
     <h2>How to install</h2>
     <ol class="steps">
       <li>Tap <strong>Download for Android</strong> above and open the downloaded <code>.apk</code> file.</li>
       <li>If Android warns about an unknown source, tap <strong>Settings</strong> → enable <strong>Allow from this source</strong>, then go back.</li>
       <li>Tap <strong>Install</strong>, then open <strong>Tadapop</strong> from your app drawer.</li>
     </ol>
+    <p>Already have the June build? This installs straight over it — no need to uninstall first, and your missions stay put.</p>
 
     <h2>Good to know</h2>
     <ul>
       <li><strong>Android only.</strong> This is an <code>.apk</code> — it can't be installed on an iPhone.</li>
       <li><strong>Solo tracking needs no account.</strong> An account (a quick email code) is only needed for the Arena.</li>
+      <li><strong>Opening an invite link?</strong> On Android it lands on a web page first — tap <strong>Open in Tadapop</strong> there to jump into the app.</li>
       <li>This is a pre-release test build, so expect rough edges — that's what we're testing.</li>
     </ul>
 
