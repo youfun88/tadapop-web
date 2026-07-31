@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What you earn · Tadapop</title>
+<meta name="description" content="One point for every day you clear every mission. Here's what those days turn into — ranks, badges and cosmetics you reach, never buy." />
+<link rel="icon" href="/assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css" />
+<style>
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 24px 96px; }
+  .back { display:inline-block; color: var(--dim); font-family: var(--mono);
+    font-size: 13px; letter-spacing: 1px; margin: 8px 0 28px; }
+  .back:hover { color: var(--amber); }
+
+  .lead-h { font-family: var(--display); font-weight: 900; font-size: clamp(32px, 6vw, 52px);
+    line-height: 1.05; letter-spacing: -0.5px; margin-bottom: 16px; }
+  .lead-h em { color: var(--amber); font-style: normal; }
+  .lead-p { color: var(--dim); font-size: 18px; max-width: 62ch; }
+
+  .rule-strip { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 14px; margin: 40px 0 8px; }
+  .rule { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .rule h3 { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 10px; font-weight: 600; }
+  .rule p { color: var(--dim); font-size: 14px; }
+
+  h2.sec { font-family: var(--mono); font-size: 12px; letter-spacing: 2.4px;
+    text-transform: uppercase; color: var(--dim); margin: 64px 0 6px; font-weight: 600; }
+  .sec-p { color: var(--faint); font-size: 15px; max-width: 62ch; margin-bottom: 24px; }
+
+  /* counts */
+  .counts { display:flex; flex-wrap:wrap; gap: 28px; margin: 32px 0 0; }
+  .count b { display:block; font-family: var(--mono); font-weight: 600;
+    font-size: 30px; color: var(--amber); line-height: 1.1; }
+  .count span { font-size: 12px; color: var(--faint); letter-spacing: 1.2px;
+    text-transform: uppercase; font-family: var(--mono); }
+
+  /* road */
+  .road { list-style: none; position: relative; padding-left: 0; }
+  .road::before { content:''; position:absolute; left: 71px; top: 12px; bottom: 12px;
+    width: 1px; background: linear-gradient(var(--amber), var(--line) 70%); opacity:.5; }
+  .step { display: grid; grid-template-columns: 64px 1fr; gap: 28px;
+    align-items: start; padding: 14px 0; position: relative; }
+  .dot { position:absolute; left: 66px; top: 24px; width: 11px; height: 11px;
+    border-radius: 50%; background: var(--void); border: 2px solid var(--amber); }
+  .day { text-align: right; padding-top: 8px; }
+  .daynum { font-family: var(--mono); font-weight: 600; font-size: 22px; color: var(--ink); }
+  .dayword { display:block; font-family: var(--mono); font-size: 10px;
+    letter-spacing: 1.4px; color: var(--faint); text-transform: uppercase; }
+  .dayhint { display:block; font-size: 11px; color: var(--faint); margin-top: 4px; }
+  .gains { display:flex; flex-direction: column; gap: 8px; padding-left: 20px; }
+  .gain { display:flex; gap: 12px; align-items: flex-start;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .gicon { font-size: 13px; line-height: 1.5; }
+  .g-rank .gicon { color: var(--amber); }
+  .g-cosmetic .gicon { color: var(--go); }
+  .g-trophy .gicon { color: #FFD24A; }
+  .gname { font-size: 15px; font-weight: 500; }
+  .gdetail { font-size: 12px; color: var(--faint); margin-top: 2px; }
+  .gkind { font-family: var(--mono); letter-spacing: .8px; text-transform: uppercase; }
+
+  /* tiles */
+  .tiles { display:grid; grid-template-columns: repeat(auto-fill, minmax(168px,1fr)); gap: 12px; }
+  .tile { background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 18px; }
+  .tile.gold { border-color: rgba(255,210,74,.35); }
+  .tile.arena { border-color: rgba(255,180,84,.28); }
+  .tflag, .inline-flag { font-family: var(--mono); font-size: 9px; letter-spacing: 1.4px;
+    text-transform: uppercase; color: var(--amber); background: rgba(255,180,84,.12);
+    border-radius: 4px; padding: 2px 6px; display: inline-block; }
+  .tflag { margin-top: 10px; }
+  .sws { display:flex; gap:5px; margin-bottom: 12px; }
+  .sw { width: 22px; height: 22px; border-radius: 6px; display:inline-block; }
+  .glyph { font-size: 24px; margin-bottom: 8px; }
+  .tname { font-size: 15px; font-weight: 500; }
+  .tkind { font-family: var(--mono); font-size: 10px; letter-spacing: 1.2px;
+    color: var(--dim); text-transform: uppercase; margin-top: 3px; }
+  .tgate { font-family: var(--mono); font-size: 11px; color: var(--faint); margin-top: 8px; }
+
+  /* ranks */
+  .ranks { background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 8px 20px; }
+  .rank { display:flex; align-items: baseline; gap: 12px; padding: 12px 0;
+    border-bottom: 1px solid var(--line); }
+  .rank:last-child { border-bottom: none; }
+  .rname { font-size: 15px; }
+  .rdots { flex: 1; border-bottom: 1px dotted var(--line); }
+  .rat { font-family: var(--mono); color: var(--amber); font-size: 14px; }
+  .rat::after { content: ' days'; color: var(--faint); font-size: 11px; }
+
+  .note { color: var(--faint); font-size: 14px; border-top: 1px solid var(--line);
+    padding-top: 18px; margin-top: 56px; }
+  .cta { text-align:center; margin: 64px 0 0; }
+  .cta .button { font-size: 17px; padding: 16px 34px; }
+
+  @media (max-width: 620px) {
+    .road::before { left: 47px; }
+    .dot { left: 42px; }
+    .step { grid-template-columns: 40px 1fr; gap: 18px; }
+    .daynum { font-size: 18px; }
+    .dayhint { display: none; }
+    .gains { padding-left: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="wrap">
+  <a class="back" href="/">← tadapop.app</a>
+
+  <h1 class="lead-h">Show up.<br />Watch it <em>add up</em>.</h1>
+  <p class="lead-p">One point for every day you clear every mission on your list. That's the
+  whole rule — there's no way to rush it, and nothing to buy. What follows is simply what
+  those days turn into.</p>
+
+  <div class="counts">
+    <div class="count"><b>5</b><span>Ranks</span></div>
+    <div class="count"><b>9</b><span>Badges</span></div>
+    <div class="count"><b>8</b><span>Cosmetics</span></div>
+    <div class="count"><b>3</b><span>Arena exclusives</span></div>
+  </div>
+
+  <div class="rule-strip">
+    <div class="rule">
+      <h3>One point a day, at most</h3>
+      <p>A day counts once every mission due that day is done. Half a day counts for nothing,
+      and a heroic day counts for one — the only input is turning up again tomorrow.</p>
+    </div>
+    <div class="rule">
+      <h3>Reached, never bought</h3>
+      <p>Nothing here is for sale and nothing is deducted. Your point total simply passes a
+      mark and the thing opens.</p>
+    </div>
+    <div class="rule">
+      <h3>Nothing is taken back</h3>
+      <p>Your record only goes up. A badge stays on the shelf for good, a cosmetic you've
+      opened never closes, and a missed day doesn't undo any of it.</p>
+    </div>
+  </div>
+
+  <h2 class="sec">The road</h2>
+  <p class="sec-p">Every point where something changes, from your first clean day to a full
+  year. Nothing in between is a dead stretch — the next thing is always in sight. This is the
+  solo road; <strong>Champion</strong> and <strong>Contender</strong> aren't on it, because
+  they're won in the Arena and no number of clean days will open them.</p>
+  <ol class="road">
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">1</span><span class="dayword">day</span>
+      <span class="dayhint">your first</span></div>
+    <div class="gains">
+      
+        <div class="gain g-trophy">
+          <span class="gicon" aria-hidden="true">★</span>
+          <div>
+            <div class="gname">First Light</div>
+            <div class="gdetail"><span class="gkind">Badge</span> · Clear every mission for one day</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">7</span><span class="dayword">days</span>
+      <span class="dayhint">one week</span></div>
+    <div class="gains">
+      
+        <div class="gain g-rank">
+          <span class="gicon" aria-hidden="true">▲</span>
+          <div>
+            <div class="gname">Cadet</div>
+            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+          </div>
+        </div>
+        <div class="gain g-trophy">
+          <span class="gicon" aria-hidden="true">★</span>
+          <div>
+            <div class="gname">Perfect Week</div>
+            <div class="gdetail"><span class="gkind">Badge</span> · Clear every mission 7 days running</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">14</span><span class="dayword">days</span>
+      <span class="dayhint">2 weeks</span></div>
+    <div class="gains">
+      
+        <div class="gain g-trophy">
+          <span class="gicon" aria-hidden="true">★</span>
+          <div>
+            <div class="gname">Fortnight</div>
+            <div class="gdetail"><span class="gkind">Badge</span> · Clear every mission 14 days running</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">30</span><span class="dayword">days</span>
+      <span class="dayhint">4 weeks</span></div>
+    <div class="gains">
+      
+        <div class="gain g-rank">
+          <span class="gicon" aria-hidden="true">▲</span>
+          <div>
+            <div class="gname">Operator</div>
+            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+          </div>
+        </div>
+        <div class="gain g-trophy">
+          <span class="gicon" aria-hidden="true">★</span>
+          <div>
+            <div class="gname">Perfect Month</div>
+            <div class="gdetail"><span class="gkind">Badge</span> · Clear every mission 30 days running</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">45</span><span class="dayword">days</span>
+      <span class="dayhint">6 weeks</span></div>
+    <div class="gains">
+      
+        <div class="gain g-cosmetic">
+          <span class="gicon" aria-hidden="true">◆</span>
+          <div>
+            <div class="gname">Teal Channel</div>
+            <div class="gdetail"><span class="gkind">Cosmetic</span> · ACCENT CHANNEL</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">90</span><span class="dayword">days</span>
+      <span class="dayhint">3 months</span></div>
+    <div class="gains">
+      
+        <div class="gain g-cosmetic">
+          <span class="gicon" aria-hidden="true">◆</span>
+          <div>
+            <div class="gname">Graphite Panels</div>
+            <div class="gdetail"><span class="gkind">Cosmetic</span> · PANEL THEME</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">100</span><span class="dayword">days</span>
+      <span class="dayhint">3 months</span></div>
+    <div class="gains">
+      
+        <div class="gain g-rank">
+          <span class="gicon" aria-hidden="true">▲</span>
+          <div>
+            <div class="gname">Controller</div>
+            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+          </div>
+        </div>
+        <div class="gain g-trophy">
+          <span class="gicon" aria-hidden="true">★</span>
+          <div>
+            <div class="gname">100 Club</div>
+            <div class="gdetail"><span class="gkind">Badge</span> · 100 clean days</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">135</span><span class="dayword">days</span>
+      <span class="dayhint">5 months</span></div>
+    <div class="gains">
+      
+        <div class="gain g-cosmetic">
+          <span class="gicon" aria-hidden="true">◆</span>
+          <div>
+            <div class="gname">Monochrome Mark</div>
+            <div class="gdetail"><span class="gkind">Cosmetic</span> · APP ICON</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">180</span><span class="dayword">days</span>
+      <span class="dayhint">6 months</span></div>
+    <div class="gains">
+      
+        <div class="gain g-cosmetic">
+          <span class="gicon" aria-hidden="true">◆</span>
+          <div>
+            <div class="gname">Magenta Channel</div>
+            <div class="gdetail"><span class="gkind">Cosmetic</span> · ACCENT CHANNEL</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">225</span><span class="dayword">days</span>
+      <span class="dayhint">8 months</span></div>
+    <div class="gains">
+      
+        <div class="gain g-cosmetic">
+          <span class="gicon" aria-hidden="true">◆</span>
+          <div>
+            <div class="gname">Countdown Boot</div>
+            <div class="gdetail"><span class="gkind">Cosmetic</span> · BOOT SCREEN</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">250</span><span class="dayword">days</span>
+      <span class="dayhint">8 months</span></div>
+    <div class="gains">
+      
+        <div class="gain g-rank">
+          <span class="gicon" aria-hidden="true">▲</span>
+          <div>
+            <div class="gname">Commander</div>
+            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+          </div>
+        </div>
+        <div class="gain g-trophy">
+          <span class="gicon" aria-hidden="true">★</span>
+          <div>
+            <div class="gname">Quarter Deck</div>
+            <div class="gdetail"><span class="gkind">Badge</span> · 250 clean days</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">270</span><span class="dayword">days</span>
+      <span class="dayhint">9 months</span></div>
+    <div class="gains">
+      
+        <div class="gain g-cosmetic">
+          <span class="gicon" aria-hidden="true">◆</span>
+          <div>
+            <div class="gname">Slate Panels</div>
+            <div class="gdetail"><span class="gkind">Cosmetic</span> · PANEL THEME</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">315</span><span class="dayword">days</span>
+      <span class="dayhint">11 months</span></div>
+    <div class="gains">
+      
+        <div class="gain g-cosmetic">
+          <span class="gicon" aria-hidden="true">◆</span>
+          <div>
+            <div class="gname">Violet Channel</div>
+            <div class="gdetail"><span class="gkind">Cosmetic</span> · ACCENT CHANNEL</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">360</span><span class="dayword">days</span>
+      <span class="dayhint">12 months</span></div>
+    <div class="gains">
+      
+        <div class="gain g-cosmetic">
+          <span class="gicon" aria-hidden="true">◆</span>
+          <div>
+            <div class="gname">Amber Mark</div>
+            <div class="gdetail"><span class="gkind">Cosmetic</span> · APP ICON</div>
+          </div>
+        </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="day"><span class="daynum">365</span><span class="dayword">days</span>
+      <span class="dayhint">one year</span></div>
+    <div class="gains">
+      
+        <div class="gain g-rank">
+          <span class="gicon" aria-hidden="true">▲</span>
+          <div>
+            <div class="gname">Flight Director</div>
+            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+          </div>
+        </div>
+        <div class="gain g-trophy">
+          <span class="gicon" aria-hidden="true">★</span>
+          <div>
+            <div class="gname">Veteran</div>
+            <div class="gdetail"><span class="gkind">Badge</span> · 365 clean days</div>
+          </div>
+        </div>
+    </div>
+  </li></ol>
+
+  <h2 class="sec">Ranks</h2>
+  <p class="sec-p">Your standing, measured in clean days. It only ever climbs.</p>
+  <div class="ranks">
+  <div class="rank">
+    <span class="rname">Cadet</span>
+    <span class="rdots" aria-hidden="true"></span>
+    <span class="rat">7</span>
+  </div>
+  <div class="rank">
+    <span class="rname">Operator</span>
+    <span class="rdots" aria-hidden="true"></span>
+    <span class="rat">30</span>
+  </div>
+  <div class="rank">
+    <span class="rname">Controller</span>
+    <span class="rdots" aria-hidden="true"></span>
+    <span class="rat">100</span>
+  </div>
+  <div class="rank">
+    <span class="rname">Commander</span>
+    <span class="rdots" aria-hidden="true"></span>
+    <span class="rat">250</span>
+  </div>
+  <div class="rank">
+    <span class="rname">Flight Director</span>
+    <span class="rdots" aria-hidden="true"></span>
+    <span class="rat">365</span>
+  </div></div>
+
+  <h2 class="sec">Badges</h2>
+  <p class="sec-p">The shelf. Locked ones stay visible on purpose, so you can always see
+  what's still on the table — and each one tells you how close you are. Seven come from clean
+  days; the two marked <span class="inline-flag">Arena</span> are won against friends.</p>
+  <div class="tiles">
+  <div class="tile arena">
+    <div class="glyph">🏆</div>
+    <div class="tname">Champion</div>
+    <div class="tgate">Win an Arena challenge</div>
+    <div class="tflag">Arena</div>
+  </div>
+  <div class="tile">
+    <div class="glyph">◦</div>
+    <div class="tname">First Light</div>
+    <div class="tgate">Clear every mission for one day</div>
+    
+  </div>
+  <div class="tile">
+    <div class="glyph">◆</div>
+    <div class="tname">Perfect Week</div>
+    <div class="tgate">Clear every mission 7 days running</div>
+    
+  </div>
+  <div class="tile">
+    <div class="glyph">◇</div>
+    <div class="tname">Fortnight</div>
+    <div class="tgate">Clear every mission 14 days running</div>
+    
+  </div>
+  <div class="tile">
+    <div class="glyph">◈</div>
+    <div class="tname">Perfect Month</div>
+    <div class="tgate">Clear every mission 30 days running</div>
+    
+  </div>
+  <div class="tile arena">
+    <div class="glyph">▣</div>
+    <div class="tname">Contender</div>
+    <div class="tgate">Finish an Arena challenge</div>
+    <div class="tflag">Arena</div>
+  </div>
+  <div class="tile">
+    <div class="glyph">⬢</div>
+    <div class="tname">100 Club</div>
+    <div class="tgate">100 clean days</div>
+    
+  </div>
+  <div class="tile">
+    <div class="glyph">⬡</div>
+    <div class="tname">Quarter Deck</div>
+    <div class="tgate">250 clean days</div>
+    
+  </div>
+  <div class="tile">
+    <div class="glyph">⬣</div>
+    <div class="tname">Veteran</div>
+    <div class="tgate">365 clean days</div>
+    
+  </div></div>
+
+  <h2 class="sec">Cosmetics</h2>
+  <p class="sec-p">One opens every 45 clean days. Accent colours and panel
+  themes you can wear; the app changes with you. Earned app icons are iPhone-only.</p>
+  <div class="tiles">
+  <div class="tile">
+    <div class="sws"><span class="sw" style="background:#4FD6C8"></span></div>
+    <div class="tname">Teal Channel</div>
+    <div class="tkind">ACCENT CHANNEL</div>
+    <div class="tgate">45 clean days</div>
+  </div>
+  <div class="tile">
+    <div class="sws"><span class="sw" style="background:#2A2F3D"></span><span class="sw" style="background:#3A4152"></span></div>
+    <div class="tname">Graphite Panels</div>
+    <div class="tkind">PANEL THEME</div>
+    <div class="tgate">90 clean days</div>
+  </div>
+  <div class="tile">
+    <div class="sws"><span class="sw" style="background:#E8ECF5"></span></div>
+    <div class="tname">Monochrome Mark</div>
+    <div class="tkind">APP ICON</div>
+    <div class="tgate">135 clean days</div>
+  </div>
+  <div class="tile">
+    <div class="sws"><span class="sw" style="background:#EE7EBB"></span></div>
+    <div class="tname">Magenta Channel</div>
+    <div class="tkind">ACCENT CHANNEL</div>
+    <div class="tgate">180 clean days</div>
+  </div>
+  <div class="tile">
+    <div class="sws"><span class="sw" style="background:#FFB454"></span><span class="sw" style="background:#0B0E17"></span></div>
+    <div class="tname">Countdown Boot</div>
+    <div class="tkind">BOOT SCREEN</div>
+    <div class="tgate">225 clean days</div>
+  </div>
+  <div class="tile">
+    <div class="sws"><span class="sw" style="background:#28324A"></span><span class="sw" style="background:#39456A"></span></div>
+    <div class="tname">Slate Panels</div>
+    <div class="tkind">PANEL THEME</div>
+    <div class="tgate">270 clean days</div>
+  </div>
+  <div class="tile">
+    <div class="sws"><span class="sw" style="background:#9B8CFF"></span></div>
+    <div class="tname">Violet Channel</div>
+    <div class="tkind">ACCENT CHANNEL</div>
+    <div class="tgate">315 clean days</div>
+  </div>
+  <div class="tile">
+    <div class="sws"><span class="sw" style="background:#FFB454"></span></div>
+    <div class="tname">Amber Mark</div>
+    <div class="tkind">APP ICON</div>
+    <div class="tgate">360 clean days</div>
+  </div></div>
+
+  <h2 class="sec">Won, not earned</h2>
+  <p class="sec-p">A small track you can only take in the Arena, against friends. Clean days
+  will never open one, however many you stack up — that's the entire point of them.</p>
+  <div class="tiles">
+  <div class="tile gold">
+    <div class="sws"><span class="sw" style="background:#FFD24A"></span></div>
+    <div class="tname">Champion Gold</div>
+    <div class="tkind">ACCENT CHANNEL</div>
+    <div class="tgate">Win a challenge</div>
+  </div>
+  <div class="tile gold">
+    <div class="sws"><span class="sw" style="background:#FFD24A"></span><span class="sw" style="background:#5BE39B"></span></div>
+    <div class="tname">Victory Splash</div>
+    <div class="tkind">BOOT SCREEN</div>
+    <div class="tgate">Reach Contender rank</div>
+  </div>
+  <div class="tile gold">
+    <div class="sws"><span class="sw" style="background:#FFD24A"></span></div>
+    <div class="tname">Ace Mark</div>
+    <div class="tkind">APP ICON</div>
+    <div class="tgate">Reach Rival rank</div>
+  </div></div>
+
+  <h2 class="sec">The one thing points are spent on</h2>
+  <p class="sec-p">A streak freeze quietly protects a day you missed, so a bad week doesn't
+  erase a good month. 10 points each, up to 3 held at once — and
+  spending draws on a separate wallet, so buying one can never cost you a rank or close a
+  cosmetic you've already opened.</p>
+
+  <div class="cta"><a class="button" href="/android">Get the Android beta</a></div>
+
+  <p class="note">Every number on this page is read from the app itself, so it can't drift
+  from what you'll actually see. Questions? <a href="/support">Contact support</a>.</p>
+</div>
+</body>
+</html>
