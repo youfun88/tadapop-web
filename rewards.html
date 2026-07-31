@@ -21,6 +21,31 @@
   .lead-h em { color: var(--amber); font-style: normal; }
   .lead-p { color: var(--dim); font-size: 18px; max-width: 62ch; }
 
+  /* hero ladder */
+  .ladderstrip { display:flex; gap: 6px; flex-wrap: wrap; margin: 34px 0 10px;
+    align-items: flex-end; }
+  .hero-rank { background: none; border: 1px solid transparent; border-radius: 14px;
+    padding: 10px 8px 8px; cursor: pointer; color: inherit; font: inherit;
+    display:flex; flex-direction: column; align-items: center; gap: 2px;
+    transition: background .18s, border-color .18s, transform .18s;
+    animation: rankIn .55s cubic-bezier(.2,.9,.25,1.05) both; animation-delay: var(--d); }
+  .hero-rank:hover { background: var(--panel); border-color: var(--line); transform: translateY(-3px); }
+  .hero-rank:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .hr-art { display:block; line-height: 0; }
+  .hr-name { font-size: 11px; color: var(--dim); white-space: nowrap; }
+  .hr-at { font-family: var(--mono); font-size: 10px; color: var(--faint); }
+  .hr-at::after { content: 'd'; }
+  .strip-hint { font-family: var(--mono); font-size: 11px; letter-spacing: 1px;
+    color: var(--faint); }
+  @keyframes rankIn { from { opacity:0; transform: translateY(14px) scale(.9); }
+                      to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce) { .hero-rank { animation: none; } }
+  @media (max-width: 720px) {
+    .ladderstrip { gap: 2px; }
+    .hero-rank { padding: 6px 2px; }
+    .hr-name { display: none; }
+  }
+
   .rule-strip { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
     gap: 14px; margin: 40px 0 8px; }
   .rule { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
@@ -169,6 +194,193 @@
   <p class="lead-p">One point for every day you clear every mission on your list. That's the
   whole rule — there's no way to rush it, and nothing to buy. What follows is simply what
   those days turn into.</p>
+
+  <div class="ladderstrip" role="group" aria-label="The seven ranks">
+  <button class="hero-rank rankcard" data-level="0" type="button"
+    style="--d:0ms" aria-label="Preview the promotion to Cadet">
+    <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cadet insignia">
+  <defs></defs>
+  <g>
+    <path d="M31 77 A38 38 0 1 1 89 77" fill="none" stroke="#8592AE" stroke-linecap="round" stroke-width="2" opacity="0.5"/>
+    <circle cx="60" cy="50" r="5" fill="#A6B3CD"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#8592AE" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+    
+  </g>
+</svg></span>
+    <span class="hr-name">Cadet</span>
+    <span class="hr-at">7</span>
+  </button>
+  <button class="hero-rank rankcard" data-level="1" type="button"
+    style="--d:90ms" aria-label="Preview the promotion to Operator">
+    <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Operator insignia">
+  <defs></defs>
+  <g>
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#7FA9FF" stroke-linecap="round" stroke-width="2" opacity="0.55"/>
+    <circle cx="60" cy="50" r="9" fill="none" stroke="#A9C4FF" stroke-width="2.4"/>
+            <circle cx="60" cy="50" r="3" fill="#A9C4FF"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#7FA9FF" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#7FA9FF" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+    
+  </g>
+</svg></span>
+    <span class="hr-name">Operator</span>
+    <span class="hr-at">30</span>
+  </button>
+  <button class="hero-rank rankcard" data-level="2" type="button"
+    style="--d:180ms" aria-label="Preview the promotion to Controller">
+    <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Controller insignia">
+  <defs></defs>
+  <g>
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.6"/>
+            <circle cx="60" cy="50" r="45" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="1.6" stroke-dasharray="2 9" opacity="0.5"/>
+    <circle cx="60" cy="50" r="11" fill="none" stroke="#FFCB7A" stroke-width="2.4"/>
+            <circle cx="60" cy="50" r="4.5" fill="#FFCB7A"/>
+            <circle cx="71" cy="39" r="3.2" fill="#FFB454"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.73"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+    
+  </g>
+</svg></span>
+    <span class="hr-name">Controller</span>
+    <span class="hr-at">100</span>
+  </button>
+  <button class="hero-rank rankcard" data-level="3" type="button"
+    style="--d:270ms" aria-label="Preview the promotion to Commander">
+    <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Commander insignia">
+  <defs></defs>
+  <g>
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.7"/>
+            <circle cx="60" cy="50" r="45" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="1.6" stroke-dasharray="3 8" opacity="0.6"/>
+            <circle cx="60" cy="50" r="31" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="1.4" opacity="0.4"/>
+    <circle cx="60" cy="50" r="13" fill="none" stroke="#FFD24A" stroke-width="2.2"/>
+            <rect x="53" y="43" width="14" height="14" rx="2.5" fill="#FFD24A"
+              transform="rotate(45 60 50)"/>
+            <circle cx="73" cy="37" r="3" fill="#FFB454"/>
+            <circle cx="47" cy="37" r="3" fill="#FFB454"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.63"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.82"/><path d="M45 81 L60 73.5 L75 81" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+    
+  </g>
+</svg></span>
+    <span class="hr-name">Commander</span>
+    <span class="hr-at">250</span>
+  </button>
+  <button class="hero-rank rankcard" data-level="4" type="button"
+    style="--d:360ms" aria-label="Preview the promotion to Flight Director">
+    <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flight Director insignia">
+  <defs><filter id="gh4" x="-60%" y="-60%" width="220%" height="220%">
+         <feGaussianBlur stdDeviation="4" result="b"/>
+         <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+       </filter></defs>
+  <g filter="url(#gh4)">
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="2.2" opacity="0.85"/>
+            <circle cx="60" cy="50" r="46" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="1.8" stroke-dasharray="3 7" opacity="0.75"/>
+            <circle cx="60" cy="50" r="31" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="1.4" opacity="0.5"/>
+    <circle cx="60" cy="50" r="13.5" fill="none" stroke="#FFF0B8" stroke-width="2"/>
+          <path d="M60 36 L65 47 L76 50 L65 53 L60 64 L55 53 L44 50 L55 47 Z" fill="#FFF0B8"/>
+          <circle cx="76" cy="34" r="3" fill="#FFD24A"/>
+          <circle cx="44" cy="34" r="3" fill="#FFD24A"/>
+          <circle cx="60" cy="28" r="2.4" fill="#FFD24A"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.59"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.73"/><path d="M45 81 L60 73.5 L75 81" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.86"/><path d="M45 74 L60 66.5 L75 74" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+    
+  </g>
+</svg></span>
+    <span class="hr-name">Flight Director</span>
+    <span class="hr-at">365</span>
+  </button>
+  <button class="hero-rank rankcard" data-level="5" type="button"
+    style="--d:450ms" aria-label="Preview the promotion to Mission Director">
+    <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mission Director insignia">
+  <defs><filter id="gh5" x="-60%" y="-60%" width="220%" height="220%">
+         <feGaussianBlur stdDeviation="4" result="b"/>
+         <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+       </filter></defs>
+  <g filter="url(#gh5)">
+    <path d="M60 4 L109 30 L109 76 L60 102 L11 76 L11 30 Z" fill="none"
+    stroke="#FFD24A" stroke-width="1.6" opacity="0.55" stroke-linejoin="round"/>
+    <path d="M60 11 L103 34 L103 72 L60 95 L17 72 L17 34 Z" fill="none"
+    stroke="#FFD24A" stroke-width="1" opacity="0.3" stroke-linejoin="round"/>
+            <circle cx="60" cy="50" r="38" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="2.2" opacity="0.9"/>
+            <circle cx="60" cy="50" r="31" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="1.4" opacity="0.55"/>
+    <circle cx="60" cy="50" r="15" fill="none" stroke="#FFF3C4" stroke-width="2"/>
+            <path d="M60 33 L64 46 L77 42 L69 50 L77 58 L64 54 L60 67 L56 54 L43 58 L51 50
+              L43 42 L56 46 Z" fill="#FFF3C4"/>
+            <circle cx="60" cy="50" r="4" fill="#FFD24A"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.59"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.73"/><path d="M45 81 L60 73.5 L75 81" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.86"/><path d="M45 74 L60 66.5 L75 74" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+    <rect x="43" y="105" width="34" height="2.6" rx="1.3" fill="#FFF3C4" opacity="0.9"/>
+  </g>
+</svg></span>
+    <span class="hr-name">Mission Director</span>
+    <span class="hr-at">730</span>
+  </button>
+  <button class="hero-rank rankcard" data-level="6" type="button"
+    style="--d:540ms" aria-label="Preview the promotion to Polaris">
+    <span class="hr-art"><svg viewBox="0 0 120 116" width="74" height="72"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Polaris insignia">
+  <defs><filter id="gh6" x="-60%" y="-60%" width="220%" height="220%">
+         <feGaussianBlur stdDeviation="4" result="b"/>
+         <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+       </filter></defs>
+  <g filter="url(#gh6)">
+    <circle cx="60" cy="50" r="46" fill="none" stroke="#FFE9A8" stroke-linecap="round" stroke-width="1.6" stroke-dasharray="2 10" opacity="0.6"/>
+          <circle cx="60" cy="50" r="26" fill="none" stroke="#FFE9A8" stroke-linecap="round" stroke-width="1.2" opacity="0.35"/>
+    <line x1="80.0" y1="50.0" x2="105.0"
+      y2="50.0" stroke="#FFFFFF" stroke-width="2"
+      stroke-linecap="round" opacity="0.95"/><line x1="72.0" y1="62.0" x2="81.9"
+      y2="71.9" stroke="#FFE9A8" stroke-width="1.3"
+      stroke-linecap="round" opacity="0.6"/><line x1="60.0" y1="70.0" x2="60.0"
+      y2="95.0" stroke="#FFFFFF" stroke-width="2"
+      stroke-linecap="round" opacity="0.95"/><line x1="48.0" y1="62.0" x2="38.1"
+      y2="71.9" stroke="#FFE9A8" stroke-width="1.3"
+      stroke-linecap="round" opacity="0.6"/><line x1="40.0" y1="50.0" x2="15.0"
+      y2="50.0" stroke="#FFFFFF" stroke-width="2"
+      stroke-linecap="round" opacity="0.95"/><line x1="48.0" y1="38.0" x2="38.1"
+      y2="28.1" stroke="#FFE9A8" stroke-width="1.3"
+      stroke-linecap="round" opacity="0.6"/><line x1="60.0" y1="30.0" x2="60.0"
+      y2="5.0" stroke="#FFFFFF" stroke-width="2"
+      stroke-linecap="round" opacity="0.95"/><line x1="72.0" y1="38.0" x2="81.9"
+      y2="28.1" stroke="#FFE9A8" stroke-width="1.3"
+      stroke-linecap="round" opacity="0.6"/>
+            <circle cx="60" cy="50" r="15" fill="none" stroke="#FFE9A8" stroke-width="1.6" opacity="0.7"/>
+            <path d="M60 31 L65.5 44.5 L79 50 L65.5 55.5 L60 69 L54.5 55.5 L41 50 L54.5 44.5 Z"
+              fill="#FFFFFF"/>
+            <circle cx="60" cy="50" r="4.5" fill="#FFE9A8"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFE9A8" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFE9A8" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.59"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFE9A8" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.73"/><path d="M45 81 L60 73.5 L75 81" fill="none" stroke="#FFE9A8" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.86"/><path d="M45 74 L60 66.5 L75 74" fill="none" stroke="#FFE9A8" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+    <rect x="43" y="105" width="34" height="2.6" rx="1.3" fill="#FFFFFF" opacity="0.9"/><rect x="49" y="110" width="22" height="2.2" rx="1.1" fill="#FFE9A8" opacity="0.75"/>
+  </g>
+</svg></span>
+    <span class="hr-name">Polaris</span>
+    <span class="hr-at">1825</span>
+  </button></div>
+  <p class="strip-hint">Seven ranks, seven insignia — tap any one to watch the promotion.</p>
 
   <div class="counts">
     <div class="count"><b>7</b><span>Ranks</span></div>
