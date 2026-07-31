@@ -81,6 +81,59 @@
     color: var(--dim); text-transform: uppercase; margin-top: 3px; }
   .tgate { font-family: var(--mono); font-size: 11px; color: var(--faint); margin-top: 8px; }
 
+  /* rank cards */
+  .rankgrid { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; }
+  .rankcard { background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 18px 12px 14px; text-align:center; cursor: pointer; color: inherit;
+    font: inherit; transition: border-color .18s, transform .18s; }
+  .rankcard:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .rankcard:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .rcart { display:flex; justify-content:center; margin-bottom: 10px; }
+  .rcname { font-size: 15px; font-weight: 500; }
+  .rcat { font-family: var(--mono); font-size: 11px; color: var(--faint); margin-top: 3px; }
+  .rcplay { font-family: var(--mono); font-size: 10px; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--amber); margin-top: 10px; opacity: 0; transition: opacity .18s; }
+  .rankcard:hover .rcplay, .rankcard:focus-visible .rcplay { opacity: 1; }
+
+  /* the promotion moment */
+  .promo { position: fixed; inset: 0; z-index: 50; display: none;
+    align-items: center; justify-content: center; background: rgba(11,14,23,.92);
+    backdrop-filter: blur(6px); }
+  .promo.on { display: flex; }
+  .promo-inner { text-align: center; position: relative; }
+  .promo-art { position: relative; z-index: 2; }
+  .promo.on .promo-art:not([hidden]) { animation: badgeIn .7s cubic-bezier(.2,.9,.25,1.05) both; }
+  .promo-ring { position:absolute; left:50%; top: 105px; width: 210px; height: 210px;
+    margin-left:-105px; margin-top:-105px; border-radius:50%;
+    border: 1px solid var(--amber); z-index: 1; }
+  .promo.on .promo-ring { animation: ringOut 1.1s ease-out both; }
+  .promo.on .promo-ring.two { animation-delay: .16s; }
+  .promo-kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--amber); margin-top: 26px; }
+  .promo-name { font-family: var(--display); font-weight: 900; font-size: clamp(30px,7vw,46px);
+    margin-top: 8px; letter-spacing: -0.5px; }
+  .promo-sub { color: var(--dim); font-size: 14px; margin-top: 6px; }
+  .promo.on .promo-kicker { animation: riseIn .5s .34s ease-out both; }
+  .promo.on .promo-name { animation: riseIn .5s .42s ease-out both; }
+  .promo.on .promo-sub { animation: riseIn .5s .5s ease-out both; }
+  .promo-dismiss { font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px;
+    text-transform: uppercase; color: var(--faint); margin-top: 30px; }
+  @keyframes badgeIn {
+    0%   { opacity: 0; transform: scale(.55) translateY(14px); }
+    60%  { opacity: 1; transform: scale(1.07) translateY(0); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes ringOut {
+    0%   { opacity: .9; transform: scale(.35); }
+    100% { opacity: 0;  transform: scale(1.9); }
+  }
+  @keyframes riseIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .promo.on .promo-art:not([hidden]), .promo.on .promo-ring,
+    .promo.on .promo-kicker, .promo.on .promo-name, .promo.on .promo-sub { animation: none; }
+    .promo-ring { display: none; }
+  }
+
   /* ranks */
   .ranks { background: var(--panel); border: 1px solid var(--line);
     border-radius: 14px; padding: 8px 20px; }
@@ -410,33 +463,119 @@
   </li></ol>
 
   <h2 class="sec">Ranks</h2>
-  <p class="sec-p">Your standing, measured in clean days. It only ever climbs.</p>
-  <div class="ranks">
-  <div class="rank">
-    <span class="rname">Cadet</span>
-    <span class="rdots" aria-hidden="true"></span>
-    <span class="rat">7</span>
-  </div>
-  <div class="rank">
-    <span class="rname">Operator</span>
-    <span class="rdots" aria-hidden="true"></span>
-    <span class="rat">30</span>
-  </div>
-  <div class="rank">
-    <span class="rname">Controller</span>
-    <span class="rdots" aria-hidden="true"></span>
-    <span class="rat">100</span>
-  </div>
-  <div class="rank">
-    <span class="rname">Commander</span>
-    <span class="rdots" aria-hidden="true"></span>
-    <span class="rat">250</span>
-  </div>
-  <div class="rank">
-    <span class="rname">Flight Director</span>
-    <span class="rdots" aria-hidden="true"></span>
-    <span class="rat">365</span>
-  </div></div>
+  <p class="sec-p">Your standing, measured in clean days. It only ever climbs — and every
+  rung has its own insignia, so a promotion is something you can see rather than a word that
+  quietly changed. Tap one to watch the moment.</p>
+  <div class="rankgrid">
+  <button class="rankcard" data-level="0" type="button"
+    aria-label="Preview the promotion to Cadet">
+    <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cadet insignia">
+  <defs></defs>
+  <g>
+    <path d="M31 77 A38 38 0 1 1 89 77" fill="none" stroke="#8592AE" stroke-linecap="round" stroke-width="2" opacity="0.5"/>
+    <circle cx="60" cy="50" r="5" fill="#A6B3CD"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#8592AE" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+  </g>
+</svg></div>
+    <div class="rcname">Cadet</div>
+    <div class="rcat">7 clean days</div>
+    <div class="rcplay">Play promotion ▸</div>
+  </button>
+  <button class="rankcard" data-level="1" type="button"
+    aria-label="Preview the promotion to Operator">
+    <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Operator insignia">
+  <defs></defs>
+  <g>
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#7FA9FF" stroke-linecap="round" stroke-width="2" opacity="0.55"/>
+    <circle cx="60" cy="50" r="9" fill="none" stroke="#A9C4FF" stroke-width="2.4"/>
+            <circle cx="60" cy="50" r="3" fill="#A9C4FF"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#7FA9FF" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#7FA9FF" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+  </g>
+</svg></div>
+    <div class="rcname">Operator</div>
+    <div class="rcat">30 clean days</div>
+    <div class="rcplay">Play promotion ▸</div>
+  </button>
+  <button class="rankcard" data-level="2" type="button"
+    aria-label="Preview the promotion to Controller">
+    <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Controller insignia">
+  <defs></defs>
+  <g>
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.6"/>
+            <circle cx="60" cy="50" r="45" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="1.6" stroke-dasharray="2 9" opacity="0.5"/>
+    <circle cx="60" cy="50" r="11" fill="none" stroke="#FFCB7A" stroke-width="2.4"/>
+            <circle cx="60" cy="50" r="4.5" fill="#FFCB7A"/>
+            <circle cx="71" cy="39" r="3.2" fill="#FFB454"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.73"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+  </g>
+</svg></div>
+    <div class="rcname">Controller</div>
+    <div class="rcat">100 clean days</div>
+    <div class="rcplay">Play promotion ▸</div>
+  </button>
+  <button class="rankcard" data-level="3" type="button"
+    aria-label="Preview the promotion to Commander">
+    <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Commander insignia">
+  <defs></defs>
+  <g>
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.7"/>
+            <circle cx="60" cy="50" r="45" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="1.6" stroke-dasharray="3 8" opacity="0.6"/>
+            <circle cx="60" cy="50" r="31" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="1.4" opacity="0.4"/>
+    <circle cx="60" cy="50" r="13" fill="none" stroke="#FFD24A" stroke-width="2.2"/>
+            <rect x="53" y="43" width="14" height="14" rx="2.5" fill="#FFD24A"
+              transform="rotate(45 60 50)"/>
+            <circle cx="73" cy="37" r="3" fill="#FFB454"/>
+            <circle cx="47" cy="37" r="3" fill="#FFB454"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.63"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.82"/><path d="M45 81 L60 73.5 L75 81" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+  </g>
+</svg></div>
+    <div class="rcname">Commander</div>
+    <div class="rcat">250 clean days</div>
+    <div class="rcplay">Play promotion ▸</div>
+  </button>
+  <button class="rankcard" data-level="4" type="button"
+    aria-label="Preview the promotion to Flight Director">
+    <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flight Director insignia">
+  <defs><filter id="gr4" x="-60%" y="-60%" width="220%" height="220%">
+         <feGaussianBlur stdDeviation="4" result="b"/>
+         <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+       </filter></defs>
+  <g filter="url(#gr4)">
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="2.2" opacity="0.85"/>
+          <circle cx="60" cy="50" r="46" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="1.8" stroke-dasharray="3 7" opacity="0.75"/>
+          <circle cx="60" cy="50" r="31" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="1.4" opacity="0.5"/>
+    <circle cx="60" cy="50" r="13.5" fill="none" stroke="#FFF0B8" stroke-width="2"/>
+          <path d="M60 36 L65 47 L76 50 L65 53 L60 64 L55 53 L44 50 L55 47 Z" fill="#FFF0B8"/>
+          <circle cx="76" cy="34" r="3" fill="#FFD24A"/>
+          <circle cx="44" cy="34" r="3" fill="#FFD24A"/>
+          <circle cx="60" cy="28" r="2.4" fill="#FFD24A"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.59"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.73"/><path d="M45 81 L60 73.5 L75 81" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.86"/><path d="M45 74 L60 66.5 L75 74" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+  </g>
+</svg></div>
+    <div class="rcname">Flight Director</div>
+    <div class="rcat">365 clean days</div>
+    <div class="rcplay">Play promotion ▸</div>
+  </button></div>
 
   <h2 class="sec">Badges</h2>
   <p class="sec-p">The shelf. Locked ones stay visible on purpose, so you can always see
@@ -585,5 +724,121 @@
   <p class="note">Every number on this page is read from the app itself, so it can't drift
   from what you'll actually see. Questions? <a href="/support">Contact support</a>.</p>
 </div>
+
+<div class="promo" id="promo" role="dialog" aria-modal="true" aria-label="Rank promotion">
+  <div class="promo-inner">
+    <div class="promo-ring" aria-hidden="true"></div>
+    <div class="promo-ring two" aria-hidden="true"></div>
+    <div class="promo-art" data-level="0" hidden><svg viewBox="0 0 120 112" width="210" height="196"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cadet insignia">
+  <defs></defs>
+  <g>
+    <path d="M31 77 A38 38 0 1 1 89 77" fill="none" stroke="#8592AE" stroke-linecap="round" stroke-width="2" opacity="0.5"/>
+    <circle cx="60" cy="50" r="5" fill="#A6B3CD"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#8592AE" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+  </g>
+</svg></div><div class="promo-art" data-level="1" hidden><svg viewBox="0 0 120 112" width="210" height="196"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Operator insignia">
+  <defs></defs>
+  <g>
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#7FA9FF" stroke-linecap="round" stroke-width="2" opacity="0.55"/>
+    <circle cx="60" cy="50" r="9" fill="none" stroke="#A9C4FF" stroke-width="2.4"/>
+            <circle cx="60" cy="50" r="3" fill="#A9C4FF"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#7FA9FF" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#7FA9FF" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+  </g>
+</svg></div><div class="promo-art" data-level="2" hidden><svg viewBox="0 0 120 112" width="210" height="196"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Controller insignia">
+  <defs></defs>
+  <g>
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.6"/>
+            <circle cx="60" cy="50" r="45" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="1.6" stroke-dasharray="2 9" opacity="0.5"/>
+    <circle cx="60" cy="50" r="11" fill="none" stroke="#FFCB7A" stroke-width="2.4"/>
+            <circle cx="60" cy="50" r="4.5" fill="#FFCB7A"/>
+            <circle cx="71" cy="39" r="3.2" fill="#FFB454"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.73"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+  </g>
+</svg></div><div class="promo-art" data-level="3" hidden><svg viewBox="0 0 120 112" width="210" height="196"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Commander insignia">
+  <defs></defs>
+  <g>
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.7"/>
+            <circle cx="60" cy="50" r="45" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="1.6" stroke-dasharray="3 8" opacity="0.6"/>
+            <circle cx="60" cy="50" r="31" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="1.4" opacity="0.4"/>
+    <circle cx="60" cy="50" r="13" fill="none" stroke="#FFD24A" stroke-width="2.2"/>
+            <rect x="53" y="43" width="14" height="14" rx="2.5" fill="#FFD24A"
+              transform="rotate(45 60 50)"/>
+            <circle cx="73" cy="37" r="3" fill="#FFB454"/>
+            <circle cx="47" cy="37" r="3" fill="#FFB454"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.63"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.82"/><path d="M45 81 L60 73.5 L75 81" fill="none" stroke="#FFB454" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+  </g>
+</svg></div><div class="promo-art" data-level="4" hidden><svg viewBox="0 0 120 112" width="210" height="196"
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flight Director insignia">
+  <defs><filter id="gp4" x="-60%" y="-60%" width="220%" height="220%">
+         <feGaussianBlur stdDeviation="4" result="b"/>
+         <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+       </filter></defs>
+  <g filter="url(#gp4)">
+    <circle cx="60" cy="50" r="38" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="2.2" opacity="0.85"/>
+          <circle cx="60" cy="50" r="46" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="1.8" stroke-dasharray="3 7" opacity="0.75"/>
+          <circle cx="60" cy="50" r="31" fill="none" stroke="#FFD24A" stroke-linecap="round" stroke-width="1.4" opacity="0.5"/>
+    <circle cx="60" cy="50" r="13.5" fill="none" stroke="#FFF0B8" stroke-width="2"/>
+          <path d="M60 36 L65 47 L76 50 L65 53 L60 64 L55 53 L44 50 L55 47 Z" fill="#FFF0B8"/>
+          <circle cx="76" cy="34" r="3" fill="#FFD24A"/>
+          <circle cx="44" cy="34" r="3" fill="#FFD24A"/>
+          <circle cx="60" cy="28" r="2.4" fill="#FFD24A"/>
+    <path d="M45 102 L60 94.5 L75 102" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><path d="M45 95 L60 87.5 L75 95" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.59"/><path d="M45 88 L60 80.5 L75 88" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.73"/><path d="M45 81 L60 73.5 L75 81" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.86"/><path d="M45 74 L60 66.5 L75 74" fill="none" stroke="#FFD24A" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round" opacity="1.00"/>
+  </g>
+</svg></div>
+    <div class="promo-kicker">Promoted</div>
+    <div class="promo-name" id="promoName"></div>
+    <div class="promo-sub" id="promoSub"></div>
+    <div class="promo-dismiss">Tap anywhere to close</div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var RANKS = [{"name":"Cadet","at":7},{"name":"Operator","at":30},{"name":"Controller","at":100},{"name":"Commander","at":250},{"name":"Flight Director","at":365}];
+  var promo = document.getElementById('promo');
+  var nameEl = document.getElementById('promoName');
+  var subEl = document.getElementById('promoSub');
+  var arts = [].slice.call(document.querySelectorAll('.promo-art'));
+
+  function play(level) {
+    var r = RANKS[level];
+    if (!r) return;
+    arts.forEach(function (a) { a.hidden = String(a.dataset.level) !== String(level); });
+    nameEl.textContent = r.name;
+    subEl.textContent = r.at + ' clean days · rank ' + (level + 1) + ' of ' + RANKS.length;
+    // Restart the CSS animations by taking the class off and forcing a reflow.
+    promo.classList.remove('on');
+    void promo.offsetWidth;
+    promo.classList.add('on');
+  }
+
+  [].forEach.call(document.querySelectorAll('.rankcard'), function (b) {
+    b.addEventListener('click', function () { play(Number(b.dataset.level)); });
+  });
+  promo.addEventListener('click', function () { promo.classList.remove('on'); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') promo.classList.remove('on');
+  });
+})();
+</script>
 </body>
 </html>
