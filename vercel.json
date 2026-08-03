@@ -4,7 +4,7 @@
   "trailingSlash": false,
   "headers": [
     {
-      "source": "/(index.html|rewards.html|styles.css|film.css|film.js|robots.txt|sitemap.xml)",
+      "source": "/(index.html|rewards.html|styles.css|film.css|film.js|robots.txt|sitemap.xml|android|android/index.html)",
       "headers": [
         {
           "key": "Cache-Control",
