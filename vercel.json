@@ -4,7 +4,16 @@
   "trailingSlash": false,
   "headers": [
     {
-      "source": "/(index.html|rewards.html|styles.css|film.css|film.js|robots.txt|sitemap.xml|android|android/index.html)",
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
+      "source": "/(index.html|rewards.html|styles.css|film.css|film.js|robots.txt|sitemap.xml|android|join|privacy|support|terms|android/index.html|join/index.html|privacy/index.html|support/index.html|terms/index.html)",
       "headers": [
         {
           "key": "Cache-Control",
