@@ -13,6 +13,7 @@ Marketing landing page for **Tadapop** — the gamified daily habit tracker.
 index.html        landing page (hero, features, beta install)
 styles.css        theme + layout
 android/          Android beta install page
+rules/            Arena scoring rules (mirrors src/domain/progression.ts + src/features/arenaWins.ts in the app repo)
 privacy/          Privacy Policy
 terms/            Terms of Service
 support/          Support + FAQ + contact form
