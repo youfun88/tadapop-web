@@ -58,8 +58,19 @@
   </main>
 
 <script>
-  // The code is the last path segment: /join/ABC123
-  var raw = decodeURIComponent(location.pathname.split('/').filter(Boolean).pop() || '');
+  // The code is whatever follows "join": /join/ABC123, /zh/join/ABC123.
+  //
+  // Taking the *last* segment instead is the trap: on a bare /join it hands
+  // back "join", which looks exactly like a valid code and gets shown to the
+  // visitor as one. Links lose their tail all the time when they are pasted
+  // into a chat app, so this is the routine case, not the exotic one — and a
+  // confidently wrong code is worse than no code, because the person retypes
+  // it and blames themselves. Nothing after "join" means no code.
+  var segs = location.pathname.split('/').filter(Boolean);
+  var at = segs.indexOf('join');
+  var raw = '';
+  try { raw = at >= 0 && segs[at + 1] ? decodeURIComponent(segs[at + 1]) : ''; }
+  catch (e) { /* a mangled %-escape is a broken link, not a code */ }
   var code = raw.toUpperCase().replace(/[^A-Z0-9]/g, '');
   var valid = /^[A-Z0-9]{4,10}$/.test(code);
 

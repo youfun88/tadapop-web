@@ -4,16 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tadapop — Daily Habit Checklist with a mission-control soul</title>
-  <meta name="description" content="Tadapop is a gamified daily habit tracker: define missions, complete them with a tap, a counter, or a timer, and build streaks, Tpoints, and a year-long heatmap. Private friends-only competition in the Arena. Open beta on iOS and Android." />
+  <!-- Front-loads what someone is actually searching for (free / habit tracker /
+       iOS + Android) and states the one rule that defines the app, in ~166 chars
+       so it survives truncation in the SERP. -->
+  <meta name="description" content="Free habit tracker for iOS and Android: log missions by tap, count or timer, earn 1 Tpoint for every day you clear them all, and challenge friends in the private Arena." />
   <meta name="theme-color" content="#0B0E17" />
 
   <!-- Open Graph -->
+  <meta property="og:site_name" content="Tadapop" />
   <meta property="og:title" content="Tadapop — Daily Habit Checklist" />
   <meta property="og:description" content="A gamified daily habit tracker with a mission-control console aesthetic. Build streaks, earn Tpoints, and compete privately with friends in the Arena." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tadapop.app/" />
   <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+  <!-- og.png is 1024x1024. Declared so scrapers can lay out the card without
+       fetching the file first; keep in step if the asset is ever replaced. -->
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:image:alt" content="The Tadapop mark: an amber check mark on a midnight-navy field." />
   <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_Hant_TW" />
+
+  <!-- Twitter/X reads og:* as a fallback but not og:image:alt, so the card is
+       stated explicitly. The mark sits dead centre of the square, so the 1.91:1
+       crop this card type applies keeps all of it. -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tadapop — Daily Habit Checklist" />
+  <meta name="twitter:description" content="A gamified daily habit tracker with a mission-control console aesthetic. Build streaks, earn Tpoints, and compete privately with friends in the Arena." />
+  <meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
+  <meta name="twitter:image:alt" content="The Tadapop mark: an amber check mark on a midnight-navy field." />
 
   <link rel="canonical" href="https://tadapop.app/" />
   <link rel="alternate" hreflang="en" href="https://tadapop.app/" />
@@ -26,8 +45,101 @@
   <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/film.css" />
+
+  <!--
+    Structured data. Every claim below is checkable against the app's own source
+    of truth (src/domain/progression.ts, src/domain/tpoint.ts) or against the
+    visible copy on this page. There is deliberately NO aggregateRating and no
+    review count: the app has no ratings to report, and inventing them is both
+    dishonest and a manual-action risk.
+
+    Node ids are locale-scoped (#app here, /zh#app on the Chinese home page) so
+    the two documents can each carry the right inLanguage without contradicting
+    each other. The Organization is genuinely one legal entity, so both locales
+    point at the SAME #organization node.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://tadapop.app/#organization",
+        "name": "QY LLC",
+        "url": "https://tadapop.app/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://tadapop.app/assets/logo.png",
+          "width": 256,
+          "height": 256
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "url": "https://tadapop.app/support",
+          "availableLanguage": ["en", "zh-Hant"]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://tadapop.app/#website",
+        "url": "https://tadapop.app/",
+        "name": "Tadapop",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://tadapop.app/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://tadapop.app/#webpage",
+        "url": "https://tadapop.app/",
+        "name": "Tadapop — Daily Habit Checklist with a mission-control soul",
+        "description": "Free habit tracker for iOS and Android: log missions by tap, count or timer, earn 1 Tpoint for every day you clear them all, and challenge friends in the private Arena.",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://tadapop.app/#website" },
+        "about": { "@id": "https://tadapop.app/#app" },
+        "primaryImageOfPage": { "@type": "ImageObject", "url": "https://tadapop.app/assets/og.png" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://tadapop.app/#app",
+        "name": "Tadapop",
+        "alternateName": "Tadapop: Daily Habit Checklist",
+        "url": "https://tadapop.app/",
+        "inLanguage": "en",
+        "description": "Tadapop is a gamified daily habit tracker with a mission-control console aesthetic. Missions are logged with a tap, a counter or a countdown timer, and logging works fully offline with no account. Clearing every mission due on a day earns exactly 1 Tpoint, which drives consistency ranks and cosmetic unlocks. The Arena is a private, invite-only competition layer with no public discovery and no real money.",
+        "applicationCategory": "LifestyleApplication",
+        "applicationSubCategory": "Habit Tracker",
+        "operatingSystem": "iOS, Android",
+        "image": "https://tadapop.app/assets/og.png",
+        "publisher": { "@id": "https://tadapop.app/#organization" },
+        "author": { "@id": "https://tadapop.app/#organization" },
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "category": "Free"
+        },
+        "featureList": [
+          "Three ways to log a mission: binary check, count-to-target, or a countdown timer with a chime",
+          "Logging works fully offline; solo tracking needs no account",
+          "1 Tpoint per day, earned only by clearing every mission due that day",
+          "Streaks, with a configurable day-start hour so a late night still counts as yesterday",
+          "A full-year heatmap and per-mission completion rates",
+          "Ranks, badges and cosmetics that are reached by showing up, never purchased",
+          "The Arena: private, invite-only challenges with friends and a live leaderboard"
+        ],
+        "softwareHelp": { "@type": "CreativeWork", "url": "https://tadapop.app/support" },
+        "termsOfService": "https://tadapop.app/terms",
+        "privacyPolicy": "https://tadapop.app/privacy"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="grid-bg" aria-hidden="true"></div>
 
   <header class="nav">
@@ -41,7 +153,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main" tabindex="-1">
     <section class="hero">
       <div class="mission-anim" id="missionAnim" role="img"
            aria-label="Tadapop: small daily missions orbit the central goal, get checked off one by one, then burst into confetti as the goal is achieved."></div>
@@ -56,7 +168,7 @@
       <div class="film-cta-row">
         <button type="button" class="film-launch" id="filmLaunch" aria-haspopup="dialog">
           <span class="film-launch-ico">▶</span>
-          <span>Watch the film <span class="film-launch-time">· 90 sec</span></span>
+          <span>Watch the film <span class="film-launch-time">· 75 sec</span></span>
         </button>
       </div>
 
@@ -67,25 +179,30 @@
       <p class="form-note">Now in open beta — install on Android or iOS (TestFlight) today.</p>
     </section>
 
+    <!-- These are h2, not h3: they sit directly under the page h1 and skipping a
+         level breaks the outline a screen reader announces and an extractor
+         reads. They were briefly h3-with-aria-level, because the styling was
+         keyed to the tag name; the selectors are now :is(h2, h3) so the level
+         is a semantic decision rather than a styling constraint. -->
     <section class="features">
       <article class="card">
         <div class="card-icon">⌁</div>
-        <h3>Three ways to log</h3>
+        <h2>Three ways to log</h2>
         <p>Binary check, count-to-target, or a countdown timer with a chime. One tap from the home screen — logging works fully offline.</p>
       </article>
       <article class="card">
         <div class="card-icon">▲</div>
-        <h3>Streaks &amp; Tpoints, honestly</h3>
+        <h2>Streaks &amp; Tpoints, honestly</h2>
         <p>Clear every mission to earn the day's Tpoint — all or nothing. Show up day after day and your streak climbs. Progress that motivates without manipulating.</p>
       </article>
       <article class="card">
         <div class="card-icon">◳</div>
-        <h3>A full-year heatmap</h3>
+        <h2>A full-year heatmap</h2>
         <p>Telemetry-grade stats: a console-grid heatmap of your whole year and per-mission completion rates so you can actually see the trend.</p>
       </article>
       <article class="card">
         <div class="card-icon">⚔</div>
-        <h3>The Arena</h3>
+        <h2>The Arena</h2>
         <p>Private, invite-only challenges with friends. No public discovery, no real money — just bragging rights and a live leaderboard.</p>
       </article>
     </section>
@@ -102,12 +219,12 @@
       <div class="beta-grid">
         <a class="beta-card" href="/android">
           <div class="beta-plat">ANDROID</div>
-          <img src="/assets/qr-android.png" alt="Scan to install Tadapop on Android" width="200" height="200" />
+          <img src="/assets/qr-android.png" alt="QR code: scan to install Tadapop on Android — https://tadapop.app/android" width="200" height="200" />
           <span class="beta-action">Download the APK →</span>
         </a>
         <a class="beta-card" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">
           <div class="beta-plat">iOS · TESTFLIGHT</div>
-          <img src="/assets/qr-ios.png" alt="Scan to install Tadapop on iOS via TestFlight" width="200" height="200" />
+          <img src="/assets/qr-ios.png" alt="QR code: scan to install Tadapop on iOS via TestFlight — https://testflight.apple.com/join/TtXzD68k" width="200" height="200" />
           <span class="beta-action">Join the TestFlight →</span>
         </a>
       </div>

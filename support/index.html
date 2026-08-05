@@ -3,8 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support — Tadapop</title>
-  <meta name="description" content="Get help with Tadapop." />
+  <title>Support &amp; FAQ — Tadapop</title>
+  <!-- Was "Get help with Tadapop." — 22 characters that told a searcher nothing
+       and gave an answer engine nothing to lift. This lists what is actually
+       answered on the page. -->
+  <meta name="description" content="Answers about accounts, deleting your account, how the Arena is scored, privacy, and supported platforms — plus a contact form. We reply within 1–2 business days." />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Tadapop" />
+  <meta property="og:title" content="Support &amp; FAQ — Tadapop" />
+  <meta property="og:description" content="Answers about accounts, deleting your account, how the Arena is scored, privacy, and supported platforms — plus a contact form." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tadapop.app/support" />
+  <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_Hant_TW" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Support &amp; FAQ — Tadapop" />
+  <meta name="twitter:description" content="Answers about accounts, deleting your account, how the Arena is scored, privacy, and supported platforms — plus a contact form." />
+  <meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
 
   <link rel="canonical" href="https://tadapop.app/support" />
   <link rel="alternate" hreflang="en" href="https://tadapop.app/support" />
@@ -16,10 +36,88 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+
+  <!--
+    FAQPage. This is a genuine match, not schema spam: every question and answer
+    below is the SAME text that renders in the "Frequently asked" section of this
+    page. If an answer is edited in the body, edit it here too — markup that
+    disagrees with the visible page is worse than no markup at all.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "@id": "https://tadapop.app/support#faq",
+        "url": "https://tadapop.app/support",
+        "name": "Tadapop — frequently asked questions",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://tadapop.app/#website" },
+        "publisher": { "@id": "https://tadapop.app/#organization" },
+        "about": { "@id": "https://tadapop.app/#app" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do I need an account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Solo habit tracking works fully offline with no account. You only need an account to use the Arena — the private competition feature."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I delete my account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open the app, go to your profile/settings, and choose delete account. This removes your cloud profile and associated Arena data. Uninstalling the app removes the data stored on your device."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is the Arena scored?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Your position on a challenge leaderboard is how many days you hit the daily target, and finishing near the top can earn Arena Score. The full payout, the tie rules, and the rank ladder are on the Arena Rules page.",
+              "url": "https://tadapop.app/rules"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my data private?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Solo data stays on your device. Account data is protected so only you (and the challenges you're part of) can access it. We don't sell data or run ad trackers. See our Privacy Policy.",
+              "url": "https://tadapop.app/privacy"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which platforms are supported?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tadapop is in open beta on both iPhone and Android. Install via TestFlight (iOS) or Android — or grab the QR codes on our home page.",
+              "url": "https://tadapop.app/"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://tadapop.app/support#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://tadapop.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Support", "item": "https://tadapop.app/support" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="grid-bg" aria-hidden="true"></div>
-  <article class="doc">
+  <main class="doc" id="main" tabindex="-1">
     <div class="doc-top">
       <a class="back" href="/">← Back to tadapop.app</a>
       <div data-lang-switch></div>
@@ -44,7 +142,7 @@
         <textarea id="message" name="message" placeholder="Describe your question or the issue you're running into…"></textarea>
       </div>
       <div class="send-row">
-        <button id="send" type="button" disabled>Send message</button>
+        <button id="send" type="button" class="is-idle">Send message</button>
         <p class="form-note" id="formStatus" role="status" aria-live="polite"></p>
       </div>
     </form>
@@ -53,21 +151,21 @@
 
     <h2>Frequently asked</h2>
 
-    <h2 style="font-size:17px">Do I need an account?</h2>
+    <h3 class="faq-q">Do I need an account?</h3>
     <p>No. Solo habit tracking works fully offline with no account. You only need an account to use the Arena — the private competition feature.</p>
 
-    <h2 style="font-size:17px">How do I delete my account?</h2>
+    <h3 class="faq-q">How do I delete my account?</h3>
     <p>Open the app, go to your profile/settings, and choose delete account. This removes your cloud profile and associated Arena data. Uninstalling the app removes the data stored on your device.</p>
 
-    <h2 style="font-size:17px">How is the Arena scored?</h2>
+    <h3 class="faq-q">How is the Arena scored?</h3>
     <p>Your position on a challenge leaderboard is how many days you hit the daily target, and finishing near the top can earn Arena Score. The full payout, the tie rules, and the rank ladder are on the <a href="/rules">Arena Rules</a> page.</p>
 
-    <h2 style="font-size:17px">Is my data private?</h2>
+    <h3 class="faq-q">Is my data private?</h3>
     <p>Yes. Solo data stays on your device. Account data is protected so only you (and the challenges you're part of) can access it. We don't sell data or run ad trackers. See our <a href="/privacy">Privacy Policy</a>.</p>
 
-    <h2 style="font-size:17px">Which platforms are supported?</h2>
+    <h3 class="faq-q">Which platforms are supported?</h3>
     <p>Tadapop is in open beta on both <strong>iPhone</strong> and <strong>Android</strong>. Install via <a href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">TestFlight (iOS)</a> or <a href="/android">Android</a> — or grab the QR codes on our <a href="/">home page</a>.</p>
-  </article>
+  </main>
 
   <script>
     (function () {
@@ -81,14 +179,36 @@
       var send = document.getElementById('send');
       var status = document.getElementById('formStatus');
       if (!send) return;
+      var sending = false;
 
       function setStatus(text, kind) {
         status.textContent = text || '';
         status.className = 'form-note' + (kind ? ' ' + kind : '');
       }
-      function refresh() { send.disabled = message.value.trim().length === 0; }
-      message.addEventListener('input', refresh);
-      refresh();
+      // The button is never disabled and the checks happen on the press. A
+      // disabled button is skipped by Tab, so a keyboard user could not reach
+      // the primary action at all, and pressing it said nothing about why
+      // nothing happened. `.is-idle` (styles.css) carries only the "not yet"
+      // look; it never stops the press, so there is always something to press
+      // and always an answer.
+      function refreshIdle() {
+        send.classList.toggle('is-idle', message.value.trim().length === 0);
+      }
+      function fail(field, text) {
+        setStatus(text, 'err');
+        field.setAttribute('aria-invalid', 'true');
+        field.focus();
+      }
+      // Take the complaint down as soon as they start fixing it.
+      function clearError() {
+        if (status.className.indexOf('err') === -1) return;
+        setStatus('');
+        email.removeAttribute('aria-invalid');
+        message.removeAttribute('aria-invalid');
+      }
+      email.addEventListener('input', clearError);
+      message.addEventListener('input', function () { clearError(); refreshIdle(); });
+      refreshIdle();
 
       // Fail-safe: if the relay is ever unreachable, open the user's email app
       // so the message still gets out — the form never dead-ends.
@@ -100,12 +220,29 @@
       }
 
       send.addEventListener('click', function () {
+        if (sending) return;
         var msg = message.value.trim();
-        if (!msg) return;
+        email.removeAttribute('aria-invalid');
+        message.removeAttribute('aria-invalid');
+
+        if (!msg) {
+          fail(message, 'Add a message first — a line about what you need is enough.');
+          return;
+        }
+        // The address is optional, so an empty one is fine. A malformed one is
+        // not: it is sent as the reply-to, which means the reply goes nowhere
+        // and the sender waits for something that can never arrive. The button
+        // sits outside form submission, so nothing else runs this check.
+        if (!email.validity.valid) {
+          fail(email, 'That email address doesn’t look right. Check it, or leave it blank if you don’t need a reply.');
+          return;
+        }
         if (honey && honey.value) return; // bot caught by honeypot
         var from = email.value.trim();
 
-        send.disabled = true;
+        // Guard the double-press with a flag rather than `disabled`: the
+        // button has to stay focusable while the request is in the air.
+        sending = true;
         setStatus('Sending…');
 
         fetch(ENDPOINT, {
@@ -122,11 +259,11 @@
         .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
         .then(function () {
           setStatus('Thanks! Your message is on its way. We typically reply within 1–2 business days.', 'ok');
-          message.value = ''; email.value = ''; refresh();
+          message.value = ''; email.value = ''; sending = false; refreshIdle();
         })
         .catch(function () {
           setStatus('Opening your email app so you can send your message…');
-          send.disabled = false;
+          sending = false;
           mailtoFallback(msg, from);
         });
       });

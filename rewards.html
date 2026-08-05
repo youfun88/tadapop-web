@@ -3,9 +3,30 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>What you earn · Tadapop</title>
-<meta name="description" content="One point for every day you clear every mission. Here's what those days turn into — ranks, badges and cosmetics you reach, never buy." />
+<title>What you earn in Tadapop — ranks, badges and cosmetics</title>
+<meta name="description" content="One Tpoint for every day you clear every mission. Seven consistency ranks from 7 to 1,825 clean days, nine badges and eight cosmetics — all reached by showing up, never bought." />
+<meta name="theme-color" content="#0B0E17" />
 <link rel="icon" href="/assets/favicon.png" />
+
+<!-- This page had no canonical and no Open Graph at all — a real landing page
+     that shared as a bare link and had no self-referencing canonical. -->
+<link rel="canonical" href="https://tadapop.app/rewards" />
+<meta property="og:site_name" content="Tadapop" />
+<meta property="og:title" content="What you earn in Tadapop" />
+<meta property="og:description" content="One Tpoint for every day you clear every mission. Seven ranks, nine badges and eight cosmetics — all reached by showing up, never bought." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://tadapop.app/rewards" />
+<meta property="og:image" content="https://tadapop.app/assets/og.png" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="1024" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="zh_Hant_TW" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What you earn in Tadapop" />
+<meta name="twitter:description" content="One Tpoint for every day you clear every mission. Seven ranks, nine badges and eight cosmetics — all reached by showing up, never bought." />
+<meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
+
 <link rel="alternate" hreflang="en" href="https://tadapop.app/rewards" />
 <link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rewards" />
 <link rel="alternate" hreflang="x-default" href="https://tadapop.app/rewards" />
@@ -42,7 +63,8 @@
   .hr-art { display:block; line-height: 0; }
   .hr-name { font-size: 11px; color: var(--dim); white-space: nowrap; }
   .hr-at { font-family: var(--mono); font-size: 10px; color: var(--faint); }
-  .hr-at::after { content: 'd'; }
+  /* unit now lives in the markup — CSS content() is invisible to
+     crawlers and unreliable for screen readers, so the ladder read "7" */
   .strip-hint { font-family: var(--mono); font-size: 11px; letter-spacing: 1px;
     color: var(--faint); }
   @keyframes rankIn { from { opacity:0; transform: translateY(14px) scale(.9); }
@@ -57,7 +79,7 @@
   .rule-strip { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
     gap: 14px; margin: 40px 0 8px; }
   .rule { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
-  .rule h3 { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px;
+  .rule :is(h2, h3) { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px;
     text-transform: uppercase; color: var(--amber); margin-bottom: 10px; font-weight: 600; }
   .rule p { color: var(--dim); font-size: 14px; }
 
@@ -197,10 +219,71 @@
     .gains { padding-left: 14px; }
   }
 </style>
+
+<!--
+  The progression system as structured data. Thresholds are CONSISTENCY_RANKS
+  and UNLOCK_EVERY in src/domain/progression.ts, and the "1 point per fully
+  cleared day" rule is src/domain/tpoint.ts. The ItemList is the part an answer
+  engine can actually lift — a rank ladder is a list of facts, so it is stated
+  as one rather than left implicit in a grid of SVG badges.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://tadapop.app/rewards#webpage",
+      "url": "https://tadapop.app/rewards",
+      "name": "What you earn in Tadapop — ranks, badges and cosmetics",
+      "description": "Tadapop awards exactly 1 Tpoint for each day on which every mission due that day is completed; a partly finished day is worth 0. Lifetime Tpoints — 'clean days' — drive seven consistency ranks, nine badges and eight cosmetics. Nothing on this page can be purchased, and nothing is ever deducted.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://tadapop.app/#website" },
+      "about": { "@id": "https://tadapop.app/#app" },
+      "publisher": { "@id": "https://tadapop.app/#organization" },
+      "image": "https://tadapop.app/assets/og.png",
+      "mainEntity": { "@id": "https://tadapop.app/rewards#consistency-ranks" }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://tadapop.app/rewards#consistency-ranks",
+      "name": "Tadapop consistency ranks",
+      "description": "Consistency ranks are earned with lifetime Tpoints, where 1 Tpoint = one day on which every mission due was completed. Below 7 clean days you are Unranked. Ranks are never lost and cannot be bought.",
+      "inLanguage": "en",
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "numberOfItems": 7,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cadet — 7 clean days" },
+        { "@type": "ListItem", "position": 2, "name": "Operator — 30 clean days" },
+        { "@type": "ListItem", "position": 3, "name": "Controller — 100 clean days" },
+        { "@type": "ListItem", "position": 4, "name": "Commander — 250 clean days" },
+        { "@type": "ListItem", "position": 5, "name": "Flight Director — 365 clean days" },
+        { "@type": "ListItem", "position": 6, "name": "Mission Director — 730 clean days" },
+        { "@type": "ListItem", "position": 7, "name": "Polaris — 1825 clean days" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://tadapop.app/rewards#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://tadapop.app/" },
+        { "@type": "ListItem", "position": 2, "name": "What you earn", "item": "https://tadapop.app/rewards" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
+  <style>
+    /* .promo-dismiss is a <button> now, so the promotion dialog has somewhere
+       for focus to go. That rule sits in this page's <head>, which is not ours
+       to edit, so only the UA button chrome is stripped here — the rule itself
+       still supplies the type and colour. */
+  </style>
+  <a class="skip-link" href="#main">Skip to content</a>
 <div class="grid-bg" aria-hidden="true"></div>
-<div class="wrap">
+<main class="wrap" id="main" tabindex="-1">
   <div class="doc-top">
     <a class="back" href="/">← tadapop.app</a>
     <div data-lang-switch></div>
@@ -226,7 +309,7 @@
   </g>
 </svg></span>
     <span class="hr-name">Cadet</span>
-    <span class="hr-at">7</span>
+    <span class="hr-at">7d</span>
   </button>
   <button class="hero-rank rankcard" data-level="1" type="button"
     style="--d:90ms" aria-label="Preview the promotion to Operator">
@@ -244,7 +327,7 @@
   </g>
 </svg></span>
     <span class="hr-name">Operator</span>
-    <span class="hr-at">30</span>
+    <span class="hr-at">30d</span>
   </button>
   <button class="hero-rank rankcard" data-level="2" type="button"
     style="--d:180ms" aria-label="Preview the promotion to Controller">
@@ -265,7 +348,7 @@
   </g>
 </svg></span>
     <span class="hr-name">Controller</span>
-    <span class="hr-at">100</span>
+    <span class="hr-at">100d</span>
   </button>
   <button class="hero-rank rankcard" data-level="3" type="button"
     style="--d:270ms" aria-label="Preview the promotion to Commander">
@@ -290,7 +373,7 @@
   </g>
 </svg></span>
     <span class="hr-name">Commander</span>
-    <span class="hr-at">250</span>
+    <span class="hr-at">250d</span>
   </button>
   <button class="hero-rank rankcard" data-level="4" type="button"
     style="--d:360ms" aria-label="Preview the promotion to Flight Director">
@@ -319,7 +402,7 @@
   </g>
 </svg></span>
     <span class="hr-name">Flight Director</span>
-    <span class="hr-at">365</span>
+    <span class="hr-at">365d</span>
   </button>
   <button class="hero-rank rankcard" data-level="5" type="button"
     style="--d:450ms" aria-label="Preview the promotion to Mission Director">
@@ -350,7 +433,7 @@
   </g>
 </svg></span>
     <span class="hr-name">Mission Director</span>
-    <span class="hr-at">730</span>
+    <span class="hr-at">730d</span>
   </button>
   <button class="hero-rank rankcard" data-level="6" type="button"
     style="--d:540ms" aria-label="Preview the promotion to Polaris">
@@ -394,7 +477,7 @@
   </g>
 </svg></span>
     <span class="hr-name">Polaris</span>
-    <span class="hr-at">1825</span>
+    <span class="hr-at">1825d</span>
   </button></div>
   <p class="strip-hint">Seven ranks, seven insignia — tap any one to watch the promotion.</p>
 
@@ -405,19 +488,24 @@
     <div class="count"><b>3</b><span>Arena exclusives</span></div>
   </div>
 
+  <!-- h2, not h3: these follow the h1 directly and skipping a level breaks the
+       outline. They were briefly h3-with-aria-level because `.rule h3` here and
+       `:lang(zh-Hant) .rule h3` in styles.css were keyed to the element name;
+       both are now :is(h2, h3), so the tag carries the meaning and the CSS no
+       longer has an opinion about it. -->
   <div class="rule-strip">
     <div class="rule">
-      <h3>One point a day, at most</h3>
+      <h2>One point a day, at most</h2>
       <p>A day counts once every mission due that day is done. Half a day counts for nothing,
       and a heroic day counts for one — the only input is turning up again tomorrow.</p>
     </div>
     <div class="rule">
-      <h3>Reached, never bought</h3>
+      <h2>Reached, never bought</h2>
       <p>Nothing here is for sale and nothing is deducted. Your point total simply passes a
       mark and the thing opens.</p>
     </div>
     <div class="rule">
-      <h3>Nothing is taken back</h3>
+      <h2>Nothing is taken back</h2>
       <p>Your record only goes up. A badge stays on the shelf for good, a cosmetic you've
       opened never closes, and a missed day doesn't undo any of it.</p>
     </div>
@@ -1120,7 +1208,7 @@
 
   <p class="note">Every number on this page is read from the app itself, so it can't drift
   from what you'll actually see. Questions? <a href="/support">Contact support</a>.</p>
-</div>
+</main>
 
 <div class="promo" id="promo" role="dialog" aria-modal="true" aria-label="Rank promotion">
   <div class="promo-inner">
@@ -1272,7 +1360,7 @@
     <div class="promo-kicker">Promoted</div>
     <div class="promo-name" id="promoName"></div>
     <div class="promo-sub" id="promoSub"></div>
-    <div class="promo-dismiss">Tap anywhere to close</div>
+    <button type="button" class="promo-dismiss" id="promoClose">Close</button>
   </div>
 </div>
 
@@ -1283,6 +1371,11 @@
   var nameEl = document.getElementById('promoName');
   var subEl = document.getElementById('promoSub');
   var arts = [].slice.call(document.querySelectorAll('.promo-art'));
+  var closeBtn = document.getElementById('promoClose');
+  // Where focus was before the dialog took over. Without this, opening it left
+  // focus on <body> and the next Tab restarted at the top of the document —
+  // a long way back from a rank card near the bottom of the page.
+  var opener = null;
 
   function play(level) {
     var r = RANKS[level];
@@ -1290,18 +1383,35 @@
     arts.forEach(function (a) { a.hidden = String(a.dataset.level) !== String(level); });
     nameEl.textContent = r.name;
     subEl.textContent = r.at + ' clean days · rank ' + (level + 1) + ' of ' + RANKS.length;
+    if (!promo.classList.contains('on')) opener = document.activeElement;
     // Restart the CSS animations by taking the class off and forcing a reflow.
     promo.classList.remove('on');
     void promo.offsetWidth;
     promo.classList.add('on');
+    // Only focusable once the class has made it display:flex.
+    try { closeBtn.focus(); } catch (e) {}
+  }
+
+  function dismiss() {
+    if (!promo.classList.contains('on')) return;
+    promo.classList.remove('on');
+    if (opener && opener.focus) { try { opener.focus(); } catch (e) {} }
+    opener = null;
   }
 
   [].forEach.call(document.querySelectorAll('.rankcard'), function (b) {
     b.addEventListener('click', function () { play(Number(b.dataset.level)); });
   });
-  promo.addEventListener('click', function () { promo.classList.remove('on'); });
+  promo.addEventListener('click', dismiss);
+  // aria-modal says the rest of the page is gone, so Tab must not leave. There
+  // is exactly one control in here, so every Tab lands back on it.
+  promo.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    try { closeBtn.focus(); } catch (err) {}
+  });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') promo.classList.remove('on');
+    if (e.key === 'Escape') dismiss();
   });
 })();
 </script>

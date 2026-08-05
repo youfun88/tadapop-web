@@ -4,16 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tadapop — 每日習慣清單 · 任務控制中心風格的習慣追蹤 App</title>
-  <meta name="description" content="Tadapop 是一款遊戲化的每日習慣追蹤 App：自訂任務，用打勾、計次或計時完成，累積連續紀錄和 T點數，把一整年的活動紀錄填滿。還能在競技場和朋友私下較勁。iOS 與 Android 公開測試中。" />
+  <meta name="description" content="iOS 與 Android 上的免費習慣追蹤 App：用打勾、計次或計時記錄任務，每有一天把任務全部做完就得 1 T點數，還能在私人邀請制的競技場和朋友較勁。" />
   <meta name="theme-color" content="#0B0E17" />
 
   <!-- Open Graph -->
+  <meta property="og:site_name" content="Tadapop" />
   <meta property="og:title" content="Tadapop — 每日習慣清單" />
   <meta property="og:description" content="一款遊戲化的每日習慣追蹤 App，骨子裡是一座任務控制中心。累積連續紀錄、賺進 T點數，再到競技場和朋友私下較勁。" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tadapop.app/zh" />
   <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:image:alt" content="Tadapop 標誌：深夜藍底上的琥珀色勾選符號。" />
   <meta property="og:locale" content="zh_Hant_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tadapop — 每日習慣清單" />
+  <meta name="twitter:description" content="一款遊戲化的每日習慣追蹤 App，骨子裡是一座任務控制中心。累積連續紀錄、賺進 T點數，再到競技場和朋友私下較勁。" />
+  <meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
+  <meta name="twitter:image:alt" content="Tadapop 標誌：深夜藍底上的琥珀色勾選符號。" />
 
   <link rel="canonical" href="https://tadapop.app/zh" />
   <link rel="alternate" hreflang="en" href="https://tadapop.app/" />
@@ -26,8 +37,77 @@
   <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/film.css" />
+
+  <!--
+    結構化資料 — the Chinese mirror of the graph on /. Terminology follows the
+    app itself (src/i18n/zh.ts): 競技場 / 任務 / T點數 / 競技分數. Locale-scoped
+    node ids, but the SAME #organization node as the English page, because QY LLC
+    is one company and not two. No aggregateRating here either.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://tadapop.app/zh#website",
+        "url": "https://tadapop.app/zh",
+        "name": "Tadapop",
+        "inLanguage": "zh-Hant-TW",
+        "publisher": { "@id": "https://tadapop.app/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://tadapop.app/zh#webpage",
+        "url": "https://tadapop.app/zh",
+        "name": "Tadapop — 每日習慣清單 · 任務控制中心風格的習慣追蹤 App",
+        "description": "iOS 與 Android 上的免費習慣追蹤 App：用打勾、計次或計時記錄任務，每有一天把任務全部做完就得 1 T點數，還能在私人邀請制的競技場和朋友較勁。",
+        "inLanguage": "zh-Hant-TW",
+        "isPartOf": { "@id": "https://tadapop.app/zh#website" },
+        "about": { "@id": "https://tadapop.app/zh#app" },
+        "primaryImageOfPage": { "@type": "ImageObject", "url": "https://tadapop.app/assets/og.png" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://tadapop.app/zh#app",
+        "name": "Tadapop",
+        "url": "https://tadapop.app/zh",
+        "inLanguage": "zh-Hant-TW",
+        "sameAs": "https://tadapop.app/",
+        "description": "Tadapop 是一款遊戲化的每日習慣追蹤 App，骨子裡是一座任務控制中心。任務可以用打勾、計次或倒數計時記錄，完全離線也能運作，個人使用不需要帳號。一天之內把當天所有任務都做完，就得到 1 T點數；T點數決定你的等級和可解鎖的外觀。競技場則是私人、邀請制的競賽功能，沒有公開排行榜，也不涉及真實金錢。",
+        "applicationCategory": "LifestyleApplication",
+        "applicationSubCategory": "Habit Tracker",
+        "operatingSystem": "iOS, Android",
+        "image": "https://tadapop.app/assets/og.png",
+        "publisher": { "@id": "https://tadapop.app/#organization" },
+        "author": { "@id": "https://tadapop.app/#organization" },
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "category": "Free"
+        },
+        "featureList": [
+          "三種記錄任務的方式：打勾、計次累積到目標，或倒數計時、時間到響鈴",
+          "完全離線也能記錄；個人的習慣追蹤不需要帳號",
+          "每有一天把當天所有任務做完，就得 1 T點數；少一項都不算",
+          "連續紀錄，並可自訂一天從幾點開始，熬夜完成仍算前一天",
+          "一整年的方格活動紀錄，以及每一項任務的完成率",
+          "等級、徽章和外觀全都靠累積達成，無法購買",
+          "競技場：和朋友之間私人、邀請制的挑戰，附即時排行榜"
+        ],
+        "softwareHelp": { "@type": "CreativeWork", "url": "https://tadapop.app/zh/support" },
+        "termsOfService": "https://tadapop.app/zh/terms",
+        "privacyPolicy": "https://tadapop.app/zh/privacy"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
   <div class="grid-bg" aria-hidden="true"></div>
 
   <header class="nav">
@@ -41,7 +121,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main" tabindex="-1">
     <section class="hero">
       <div class="mission-anim" id="missionAnim" role="img"
            aria-label="Tadapop：一項項每日任務繞著中央的目標運行，被逐一打勾完成，最後在達成目標的那一刻化作漫天彩帶。"></div>
@@ -56,7 +136,7 @@
       <div class="film-cta-row">
         <button type="button" class="film-launch" id="filmLaunch" aria-haspopup="dialog">
           <span class="film-launch-ico">▶</span>
-          <span>觀看影片 <span class="film-launch-time">· 90 秒</span></span>
+          <span>觀看影片 <span class="film-launch-time">· 75 秒</span></span>
         </button>
       </div>
 
@@ -67,25 +147,30 @@
       <p class="form-note">現正公開測試中 — Android 和 iOS（TestFlight）今天就裝得到。</p>
     </section>
 
+    <!-- These are h2, not h3: they sit directly under the page h1 and skipping a
+         level breaks the outline a screen reader announces and an extractor
+         reads. They were briefly h3-with-aria-level, because the styling was
+         keyed to the tag name; the selectors are now :is(h2, h3) so the level
+         is a semantic decision rather than a styling constraint. -->
     <section class="features">
       <article class="card">
         <div class="card-icon">⌁</div>
-        <h3>三種記錄方式</h3>
+        <h2>三種記錄方式</h2>
         <p>打勾、計次累積到目標，或是倒數計時、時間到響鈴。從主畫面點一下就記好 — 完全離線也照樣運作。</p>
       </article>
       <article class="card">
         <div class="card-icon">▲</div>
-        <h3>連續紀錄與 T點數，實實在在</h3>
+        <h2>連續紀錄與 T點數，實實在在</h2>
         <p>每天把所有任務做完得 1 T點數，少一項都不算。一天接著一天做下去，連續紀錄就一路往上疊。這種進展會推著你走，而不是拐著你走。</p>
       </article>
       <article class="card">
         <div class="card-icon">◳</div>
-        <h3>一整年的活動紀錄</h3>
+        <h2>一整年的活動紀錄</h2>
         <p>遙測等級的統計數據：一整年的方格活動紀錄，加上每一項任務的完成率，趨勢一眼就看得出來。</p>
       </article>
       <article class="card">
         <div class="card-icon">⚔</div>
-        <h3>競技場</h3>
+        <h2>競技場</h2>
         <p>和朋友之間私人、邀請制的挑戰。不公開、不涉及金錢 — 就是一張即時排行榜，還有贏了可以拿來說嘴。</p>
       </article>
     </section>
@@ -102,12 +187,12 @@
       <div class="beta-grid">
         <a class="beta-card" href="/zh/android">
           <div class="beta-plat">ANDROID</div>
-          <img src="/assets/qr-android.png" alt="掃描即可在 Android 上安裝 Tadapop" width="200" height="200" />
+          <img src="/assets/qr-android.png" alt="QR code：掃描即可在 Android 上安裝 Tadapop — https://tadapop.app/android" width="200" height="200" />
           <span class="beta-action">下載 APK →</span>
         </a>
         <a class="beta-card" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">
           <div class="beta-plat">iOS · TESTFLIGHT</div>
-          <img src="/assets/qr-ios.png" alt="掃描即可透過 TestFlight 在 iOS 上安裝 Tadapop" width="200" height="200" />
+          <img src="/assets/qr-ios.png" alt="QR code：掃描即可透過 TestFlight 在 iOS 上安裝 Tadapop — https://testflight.apple.com/join/TtXzD68k" width="200" height="200" />
           <span class="beta-action">加入 TestFlight →</span>
         </a>
       </div>

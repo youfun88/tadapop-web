@@ -3,16 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>競技場規則 — Tadapop</title>
-  <meta name="description" content="Tadapop 競技場挑戰的計分方式，以及競技分數到底是怎麼拿到手的。" />
+  <title>競技場規則 — Tadapop 挑戰怎麼計分</title>
+  <meta name="description" content="完整的競技場規則：一場挑戰要有 2 人以上、跑滿 7 天以上才會給競技分數 — 2 至 4 人時冠軍 +1，5 人以上則前三名分別 +3、+2、+1。" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="競技場規則 — Tadapop" />
-  <meta property="og:description" content="Tadapop 競技場挑戰的計分方式，以及競技分數到底是怎麼拿到手的。" />
+  <meta property="og:site_name" content="Tadapop" />
+  <meta property="og:title" content="競技場規則 — Tadapop 挑戰怎麼計分" />
+  <meta property="og:description" content="完整的競技場規則：計分資格、每個名次值多少、並列怎麼算、同一批成員每週計分一次、證明規定，以及競技等級階梯。" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://tadapop.app/zh/rules" />
   <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
   <meta property="og:locale" content="zh_Hant_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="競技場規則 — Tadapop 挑戰怎麼計分" />
+  <meta name="twitter:description" content="完整的競技場規則：計分資格、每個名次值多少、並列怎麼算、同一批成員每週計分一次、證明規定，以及競技等級階梯。" />
+  <meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
 
   <link rel="canonical" href="https://tadapop.app/zh/rules" />
   <link rel="alternate" hreflang="en" href="https://tadapop.app/rules" />
@@ -24,10 +33,69 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+
+  <!-- 競技場規則的結構化資料 — the Chinese mirror of the graph on /rules. Same
+       numbers, same source of truth (src/domain/progression.ts). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://tadapop.app/zh/rules#article",
+        "url": "https://tadapop.app/zh/rules",
+        "headline": "競技場規則",
+        "description": "Tadapop 競技場的完整計分規則：哪些挑戰會給競技分數、每個名次值多少、並列如何處理、同一批成員每週計分一次的規定、證明要求，以及競技等級階梯。",
+        "inLanguage": "zh-Hant-TW",
+        "dateModified": "2026-08-03",
+        "author": { "@id": "https://tadapop.app/#organization" },
+        "publisher": { "@id": "https://tadapop.app/#organization" },
+        "isPartOf": { "@id": "https://tadapop.app/zh#website" },
+        "about": { "@id": "https://tadapop.app/zh#app" },
+        "image": "https://tadapop.app/assets/og.png",
+        "articleSection": [
+          "競技分數怎麼拿",
+          "一場挑戰給多少分",
+          "並列",
+          "同一批成員每週計分一次",
+          "排行榜本身怎麼算",
+          "主辦人要求的證明",
+          "競技分數不是什麼",
+          "等級"
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://tadapop.app/zh/rules#arena-ranks",
+        "name": "Tadapop 競技等級",
+        "description": "由競技分數決定的競技等級階梯。競技分數不到 1 分時顯示為未定級。這些等級附帶的外觀都無法購買。",
+        "inLanguage": "zh-Hant-TW",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 5,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Recruit — 競技分數 1" },
+          { "@type": "ListItem", "position": 2, "name": "Contender — 競技分數 5，解鎖 Victory Splash 啟動畫面" },
+          { "@type": "ListItem", "position": 3, "name": "Challenger — 競技分數 15" },
+          { "@type": "ListItem", "position": 4, "name": "Rival — 競技分數 30，解鎖 Ace Mark App 圖示" },
+          { "@type": "ListItem", "position": 5, "name": "Ace — 競技分數 60" }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://tadapop.app/zh/rules#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://tadapop.app/zh" },
+          { "@type": "ListItem", "position": 2, "name": "競技場規則", "item": "https://tadapop.app/zh/rules" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
   <div class="grid-bg" aria-hidden="true"></div>
-  <article class="doc">
+  <main class="doc" id="main" tabindex="-1">
     <div class="doc-top">
       <a class="back" href="/zh">← 回到 tadapop.app</a>
       <div data-lang-switch></div>
@@ -49,7 +117,12 @@
     <h2>一場挑戰給多少分</h2>
     <p>一個名次值多少，取決於這一場有多少人。人數夠多，前三名才都有分：</p>
 
-    <div class="table-wrap">
+    <!-- The wrapper scrolls sideways on a narrow screen, and a scroll
+         container that nothing can focus is unreachable by keyboard — the
+         last columns simply cannot be brought into view without a mouse
+         (WCAG 2.1.1). tabindex makes it a scroll stop; the group and its
+         label say what has just been landed on. -->
+    <div class="table-wrap" tabindex="0" role="group" aria-label="依名次與人數計算的競技分數">
       <table>
         <thead>
           <tr>
@@ -119,7 +192,12 @@
     <h2>等級</h2>
     <p>競技分數有一條自己的階梯，和你靠全清日一天一天累積出來的持續力等級是分開的。不到 1 分就是「尚無等級」。</p>
 
-    <div class="table-wrap">
+    <!-- The wrapper scrolls sideways on a narrow screen, and a scroll
+         container that nothing can focus is unreachable by keyboard — the
+         last columns simply cannot be brought into view without a mouse
+         (WCAG 2.1.1). tabindex makes it a scroll stop; the group and its
+         label say what has just been landed on. -->
+    <div class="table-wrap" tabindex="0" role="group" aria-label="競技分數等級與解鎖項目">
       <table>
         <thead>
           <tr>
@@ -147,7 +225,7 @@
 
     <h2>有疑問</h2>
     <p>如果這裡寫的和你在 App 裡看到的不一樣，請透過<a href="/zh/support">支援表單</a>告訴我們 — 那是個 bug，我們會想知道。</p>
-  </article>
+  </main>
 
   <script src="/lang.js" defer></script>
 </body>

@@ -3,8 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arena Rules — Tadapop</title>
-  <meta name="description" content="How Tadapop's Arena challenges are scored, and exactly how Arena Score is earned." />
+  <title>Arena Rules — how Tadapop challenges are scored</title>
+  <!-- Leads with the two numbers a person (or an assistant) is most likely to be
+       looking for, rather than promising the answer is somewhere on the page. -->
+  <meta name="description" content="The full Arena rulebook: a challenge pays Arena Score only with 2+ players over 7+ days — +1 to the winner in a field of 2–4, and +3/+2/+1 to the podium in a field of 5 or more." />
+
+  <!-- Open Graph — this page had none, so every share of the rulebook rendered
+       as a bare link with no title, image or summary. -->
+  <meta property="og:site_name" content="Tadapop" />
+  <meta property="og:title" content="Arena Rules — how Tadapop challenges are scored" />
+  <meta property="og:description" content="The full Arena rulebook: eligibility, what each place pays, ties, the once-a-week roster rule, proof, and the rank ladder." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://tadapop.app/rules" />
+  <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_Hant_TW" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arena Rules — how Tadapop challenges are scored" />
+  <meta name="twitter:description" content="The full Arena rulebook: eligibility, what each place pays, ties, the once-a-week roster rule, proof, and the rank ladder." />
+  <meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
 
   <link rel="canonical" href="https://tadapop.app/rules" />
   <link rel="alternate" hreflang="en" href="https://tadapop.app/rules" />
@@ -16,10 +36,79 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+
+  <!--
+    The rulebook as structured data. The numbers here are the ones the app
+    actually runs on — ARENA_WIN_SCORE, ARENA_PODIUM_SCORES,
+    ARENA_MIN_ELIGIBLE_PLAYERS, ARENA_MIN_ELIGIBLE_DAYS,
+    ARENA_LONG_CHALLENGE_DAYS, ARENA_ROSTER_COOLDOWN_DAYS and ARENA_RANKS in
+    src/domain/progression.ts. If a rule changes in the app it changes here, on
+    the page body, and in /llms.txt, or the site is lying about its own scoring.
+
+    dateModified is the "Last updated" line on the page. No datePublished: the
+    real first-publication date isn't recorded anywhere trustworthy, and a
+    guessed one is a fabricated fact like any other.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://tadapop.app/rules#article",
+        "url": "https://tadapop.app/rules",
+        "headline": "Arena Rules",
+        "description": "The complete scoring rulebook for Tadapop's Arena: which challenges pay Arena Score, what each place is worth, how ties resolve, the once-a-week roster rule, proof requirements, and the Arena rank ladder.",
+        "inLanguage": "en",
+        "dateModified": "2026-08-03",
+        "author": { "@id": "https://tadapop.app/#organization" },
+        "publisher": { "@id": "https://tadapop.app/#organization" },
+        "isPartOf": { "@id": "https://tadapop.app/#website" },
+        "about": { "@id": "https://tadapop.app/#app" },
+        "image": "https://tadapop.app/assets/og.png",
+        "articleSection": [
+          "How you earn Arena Score",
+          "What a challenge pays",
+          "Ties",
+          "The same group scores once a week",
+          "How the leaderboard itself is scored",
+          "Proof, if the host asks for it",
+          "What Arena Score is not",
+          "Ranks"
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://tadapop.app/rules#arena-ranks",
+        "name": "Tadapop Arena ranks",
+        "description": "The Arena rank ladder, driven by Arena Score. Below 1 Arena Score you are Unranked. None of the cosmetics attached to these ranks can be bought.",
+        "inLanguage": "en",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 5,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Recruit — 1 Arena Score" },
+          { "@type": "ListItem", "position": 2, "name": "Contender — 5 Arena Score, unlocks the Victory Splash boot screen" },
+          { "@type": "ListItem", "position": 3, "name": "Challenger — 15 Arena Score" },
+          { "@type": "ListItem", "position": 4, "name": "Rival — 30 Arena Score, unlocks the Ace Mark app icon" },
+          { "@type": "ListItem", "position": 5, "name": "Ace — 60 Arena Score" }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://tadapop.app/rules#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://tadapop.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Arena Rules", "item": "https://tadapop.app/rules" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="grid-bg" aria-hidden="true"></div>
-  <article class="doc">
+  <main class="doc" id="main" tabindex="-1">
     <div class="doc-top">
       <a class="back" href="/">← Back to tadapop.app</a>
       <div data-lang-switch></div>
@@ -41,7 +130,12 @@
     <h2>What a challenge pays</h2>
     <p>How much a place is worth depends on how many people were in it. A podium is what a real field unlocks:</p>
 
-    <div class="table-wrap">
+    <!-- The wrapper scrolls sideways on a narrow screen, and a scroll
+         container that nothing can focus is unreachable by keyboard — the
+         last columns simply cannot be brought into view without a mouse
+         (WCAG 2.1.1). tabindex makes it a scroll stop; the group and its
+         label say what has just been landed on. -->
+    <div class="table-wrap" tabindex="0" role="group" aria-label="Arena Score paid by placement and field size">
       <table>
         <thead>
           <tr>
@@ -111,7 +205,12 @@
     <h2>Ranks</h2>
     <p>Arena Score puts you on a ladder of its own, separate from the consistency ranks you earn by showing up day after day. Below 1 you're simply Unranked.</p>
 
-    <div class="table-wrap">
+    <!-- The wrapper scrolls sideways on a narrow screen, and a scroll
+         container that nothing can focus is unreachable by keyboard — the
+         last columns simply cannot be brought into view without a mouse
+         (WCAG 2.1.1). tabindex makes it a scroll stop; the group and its
+         label say what has just been landed on. -->
+    <div class="table-wrap" tabindex="0" role="group" aria-label="Arena Score ranks and what they unlock">
       <table>
         <thead>
           <tr>
@@ -139,7 +238,7 @@
 
     <h2>Questions</h2>
     <p>If something here doesn't match what you're seeing in the app, tell us through the <a href="/support">support form</a> — that's a bug, and we'd want to know.</p>
-  </article>
+  </main>
 
   <script src="/lang.js" defer></script>
 </body>

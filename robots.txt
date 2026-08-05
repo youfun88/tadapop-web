@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
+# /android and /join carry <meta name="robots" content="noindex"> in the page
+# itself, and are deliberately NOT Disallow-ed here: a blocked URL can't be
+# crawled, so the noindex is never read and the bare URL can still surface in
+# results. Crawl-then-noindex is the combination that actually works.
+
 Sitemap: https://tadapop.app/sitemap.xml
+
+# A plain-language summary of the product and its exact scoring rules, written
+# for assistants and answer engines. Facts, not marketing copy:
+# https://tadapop.app/llms.txt

@@ -377,3 +377,51 @@
   .film-host .ag-eye, .film-host.speaking .ag-bob, .film-host.speaking .ag-ant,
   .film-host.speaking .ag-arm-l, .film-host.speaking .ag-arm-r { animation: none !important; }
 }
+
+/* ==========================================================================
+   Traditional Chinese
+   ==========================================================================
+   The film has its OWN font variables, so the CJK stack added to styles.css
+   never reached it — this overlay was the worst-looking Chinese on the site
+   while the pages around it were already fixed.
+
+   Two problems, the same two the pages had:
+
+   1. None of Chivo / Inter / JetBrains Mono contains a CJK glyph, so every
+      Chinese character was drawn by an unspecified fallback. The TC faces go
+      BEFORE system-ui deliberately: on Android system-ui font-links to Noto
+      Sans CJK **SC**, which puts Simplified glyph shapes on a Traditional
+      page. The mono falls through to the same proportional sans on purpose —
+      mono is here for stable digits, and a browser resolving CJK through the
+      `monospace` generic can land on a full-width CJK mono, which is far worse
+      than a proportional CJK beside monospaced Latin.
+
+   2. Letter-spacing is a Latin idiom. Applied to Chinese it pushes the
+      characters apart and the word stops reading as a word — 「喝 水 挑 戰」,
+      「最 終 排 名」. Every rule below whose text can be Chinese loses its
+      tracking; the ones that are always Latin (the BOBO host name is a Latin
+      brand, the timecode is digits) keep it.
+
+   Scoped to :lang(zh-Hant), which the overlay inherits from <html> on /zh, so
+   the English film is untouched. */
+:root:lang(zh-Hant) {
+  --f-disp: 'Chivo', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+  --f-mono: 'JetBrains Mono', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+  --f-body: 'Inter', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+}
+
+:lang(zh-Hant) .film-launch,
+:lang(zh-Hant) .film-close,
+:lang(zh-Hant) .film-btn,
+:lang(zh-Hant) .film-unmute,
+:lang(zh-Hant) .film-end .film-cta,
+:lang(zh-Hant) .fm-meta span,
+:lang(zh-Hant) .fm-stat .k,
+:lang(zh-Hant) .fm-lb-sub,
+:lang(zh-Hant) .fm-lb-head,
+:lang(zh-Hant) .fm-chip { letter-spacing: normal; }
+
+/* Captions are the film. They carry the display face at a large size, where
+   Latin negative tracking closes CJK glyphs into each other, and a leading
+   tuned for Latin lets two Chinese lines touch. */
+:lang(zh-Hant) .film-cap { letter-spacing: normal; line-height: 1.35; }

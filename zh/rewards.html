@@ -3,20 +3,30 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>你會得到什麼 · Tadapop</title>
-<meta name="description" content="每有一天把所有任務做完，就得 1 T點數。這一頁說明這些日子最後會變成什麼 — 等級、徽章和外觀，全都靠累積達成，無法購買。" />
+<title>Tadapop 你會得到什麼 — 等級、徽章與外觀</title>
+<meta name="description" content="每有一天把所有任務做完，就得 1 T點數。7 天到 1825 天共七個持續力等級、九枚徽章和八款外觀 — 全都靠一天一天累積達成，無法購買。" />
 <meta name="theme-color" content="#0B0E17" />
 <link rel="icon" href="/assets/favicon.png" />
+<!-- Was missing a self-referencing canonical, same as the English page. -->
+<link rel="canonical" href="https://tadapop.app/zh/rewards" />
 <link rel="alternate" hreflang="en" href="https://tadapop.app/rewards" />
 <link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rewards" />
 <link rel="alternate" hreflang="x-default" href="https://tadapop.app/rewards" />
-<meta property="og:title" content="你會得到什麼 · Tadapop" />
-<meta property="og:description" content="每有一天把所有任務做完，就得 1 T點數。等級、徽章和外觀全都靠累積達成，無法購買。" />
+<meta property="og:site_name" content="Tadapop" />
+<meta property="og:title" content="Tadapop 你會得到什麼" />
+<meta property="og:description" content="每有一天把所有任務做完，就得 1 T點數。七個等級、九枚徽章和八款外觀，全都靠累積達成，無法購買。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://tadapop.app/zh/rewards" />
 <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="1024" />
 <meta property="og:locale" content="zh_Hant_TW" />
 <meta property="og:locale:alternate" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Tadapop 你會得到什麼" />
+<meta name="twitter:description" content="每有一天把所有任務做完，就得 1 T點數。七個等級、九枚徽章和八款外觀，全都靠累積達成，無法購買。" />
+<meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
@@ -50,7 +60,8 @@
   .hr-art { display:block; line-height: 0; }
   .hr-name { font-size: 11px; color: var(--dim); white-space: nowrap; }
   .hr-at { font-family: var(--mono); font-size: 10px; color: var(--faint); }
-  .hr-at::after { content: '天'; }
+  /* unit now lives in the markup — CSS content() is invisible to
+     crawlers and unreliable for screen readers, so the ladder read "7" */
   .strip-hint { font-family: var(--mono); font-size: 11px; letter-spacing: 1px;
     color: var(--faint); }
   @keyframes rankIn { from { opacity:0; transform: translateY(14px) scale(.9); }
@@ -65,7 +76,7 @@
   .rule-strip { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
     gap: 14px; margin: 40px 0 8px; }
   .rule { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
-  .rule h3 { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px;
+  .rule :is(h2, h3) { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px;
     text-transform: uppercase; color: var(--amber); margin-bottom: 10px; font-weight: 600; }
   .rule p { color: var(--dim); font-size: 14px; }
 
@@ -205,10 +216,66 @@
     .gains { padding-left: 14px; }
   }
 </style>
+
+<!-- 進度系統的結構化資料 — the Chinese mirror of the graph on /rewards. Same
+     thresholds (CONSISTENCY_RANKS, UNLOCK_EVERY in src/domain/progression.ts). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://tadapop.app/zh/rewards#webpage",
+      "url": "https://tadapop.app/zh/rewards",
+      "name": "Tadapop 你會得到什麼 — 等級、徽章與外觀",
+      "description": "在 Tadapop 裡，一天之內把當天所有到期的任務都完成，就得到 1 T點數；只做完一部分則是 0。累積的 T點數（也就是「全清的天數」）決定七個持續力等級、九枚徽章和八款外觀。這一頁上的東西全都無法購買，也不會被扣除。",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": { "@id": "https://tadapop.app/zh#website" },
+      "about": { "@id": "https://tadapop.app/zh#app" },
+      "publisher": { "@id": "https://tadapop.app/#organization" },
+      "image": "https://tadapop.app/assets/og.png",
+      "mainEntity": { "@id": "https://tadapop.app/zh/rewards#consistency-ranks" }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://tadapop.app/zh/rewards#consistency-ranks",
+      "name": "Tadapop 持續力等級",
+      "description": "持續力等級由累積的 T點數決定，1 T點數 = 一天之內把當天所有到期任務都完成。不到 7 天為未定級。等級不會被收回，也無法購買。",
+      "inLanguage": "zh-Hant-TW",
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "numberOfItems": 7,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cadet — 全清 7 天" },
+        { "@type": "ListItem", "position": 2, "name": "Operator — 全清 30 天" },
+        { "@type": "ListItem", "position": 3, "name": "Controller — 全清 100 天" },
+        { "@type": "ListItem", "position": 4, "name": "Commander — 全清 250 天" },
+        { "@type": "ListItem", "position": 5, "name": "Flight Director — 全清 365 天" },
+        { "@type": "ListItem", "position": 6, "name": "Mission Director — 全清 730 天" },
+        { "@type": "ListItem", "position": 7, "name": "Polaris — 全清 1825 天" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://tadapop.app/zh/rewards#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://tadapop.app/zh" },
+        { "@type": "ListItem", "position": 2, "name": "你會得到什麼", "item": "https://tadapop.app/zh/rewards" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
+  <style>
+    /* .promo-dismiss is a <button> now, so the promotion dialog has somewhere
+       for focus to go. That rule sits in this page's <head>, which is not ours
+       to edit, so only the UA button chrome is stripped here — the rule itself
+       still supplies the type and colour. */
+  </style>
+  <a class="skip-link" href="#main">跳到主要內容</a>
 <div class="grid-bg" aria-hidden="true"></div>
-<div class="wrap">
+<main class="wrap" id="main" tabindex="-1">
   <div class="doc-top">
     <a class="back" href="/zh">← 回到 tadapop.app</a>
     <div data-lang-switch></div>
@@ -233,7 +300,7 @@
   </g>
 </svg></span>
     <span class="hr-name">學員</span>
-    <span class="hr-at">7</span>
+    <span class="hr-at">7天</span>
   </button>
   <button class="hero-rank rankcard" data-level="1" type="button"
     style="--d:90ms" aria-label="預覽晉升到操作員">
@@ -251,7 +318,7 @@
   </g>
 </svg></span>
     <span class="hr-name">操作員</span>
-    <span class="hr-at">30</span>
+    <span class="hr-at">30天</span>
   </button>
   <button class="hero-rank rankcard" data-level="2" type="button"
     style="--d:180ms" aria-label="預覽晉升到管制員">
@@ -272,7 +339,7 @@
   </g>
 </svg></span>
     <span class="hr-name">管制員</span>
-    <span class="hr-at">100</span>
+    <span class="hr-at">100天</span>
   </button>
   <button class="hero-rank rankcard" data-level="3" type="button"
     style="--d:270ms" aria-label="預覽晉升到指揮官">
@@ -297,7 +364,7 @@
   </g>
 </svg></span>
     <span class="hr-name">指揮官</span>
-    <span class="hr-at">250</span>
+    <span class="hr-at">250天</span>
   </button>
   <button class="hero-rank rankcard" data-level="4" type="button"
     style="--d:360ms" aria-label="預覽晉升到飛航總指揮">
@@ -326,7 +393,7 @@
   </g>
 </svg></span>
     <span class="hr-name">飛航總指揮</span>
-    <span class="hr-at">365</span>
+    <span class="hr-at">365天</span>
   </button>
   <button class="hero-rank rankcard" data-level="5" type="button"
     style="--d:450ms" aria-label="預覽晉升到任務總指揮">
@@ -357,7 +424,7 @@
   </g>
 </svg></span>
     <span class="hr-name">任務總指揮</span>
-    <span class="hr-at">730</span>
+    <span class="hr-at">730天</span>
   </button>
   <button class="hero-rank rankcard" data-level="6" type="button"
     style="--d:540ms" aria-label="預覽晉升到北極星">
@@ -401,7 +468,7 @@
   </g>
 </svg></span>
     <span class="hr-name">北極星</span>
-    <span class="hr-at">1825</span>
+    <span class="hr-at">1825天</span>
   </button></div>
   <p class="strip-hint">七個等級，七枚徽記 — 點按任何一個，就能看到晉升的畫面。</p>
 
@@ -412,19 +479,24 @@
     <div class="count"><b>3</b><span>競技場專屬</span></div>
   </div>
 
+  <!-- h2, not h3: these follow the h1 directly and skipping a level breaks the
+       outline. They were briefly h3-with-aria-level because `.rule h3` here and
+       `:lang(zh-Hant) .rule h3` in styles.css were keyed to the element name;
+       both are now :is(h2, h3), so the tag carries the meaning and the CSS no
+       longer has an opinion about it. -->
   <div class="rule-strip">
     <div class="rule">
-      <h3>一天最多 1 點</h3>
+      <h2>一天最多 1 點</h2>
       <p>當天該做的任務全部完成，這一天才算數。做一半不算，做得再多也只算一點 —
       你能做的只有明天再來一次。</p>
     </div>
     <div class="rule">
-      <h3>達成，不是購買</h3>
+      <h2>達成，不是購買</h2>
       <p>這裡沒有任何東西在賣，也不會扣掉你任何東西。只是你的 T點數累積到了門檻，
       該開啟的就開啟了。</p>
     </div>
     <div class="rule">
-      <h3>不會被收回</h3>
+      <h2>不會被收回</h2>
       <p>你的紀錄只會往上。徽章會永久留在架上，開啟過的外觀不會再關起來，
       漏掉一天也不會把這些抹掉。</p>
     </div>
@@ -1125,7 +1197,7 @@
 
   <p class="note">這一頁上的每個數字都直接取自 App，不會和你實際看到的有出入。
   有問題嗎？<a href="/zh/support">聯絡客服</a>。</p>
-</div>
+</main>
 
 <div class="promo" id="promo" role="dialog" aria-modal="true" aria-label="等級晉升">
   <div class="promo-inner">
@@ -1277,7 +1349,7 @@
     <div class="promo-kicker">晉升</div>
     <div class="promo-name" id="promoName"></div>
     <div class="promo-sub" id="promoSub"></div>
-    <div class="promo-dismiss">點按任意處關閉</div>
+    <button type="button" class="promo-dismiss" id="promoClose">關閉</button>
   </div>
 </div>
 
@@ -1288,6 +1360,11 @@
   var nameEl = document.getElementById('promoName');
   var subEl = document.getElementById('promoSub');
   var arts = [].slice.call(document.querySelectorAll('.promo-art'));
+  var closeBtn = document.getElementById('promoClose');
+  // Where focus was before the dialog took over. Without this, opening it left
+  // focus on <body> and the next Tab restarted at the top of the document —
+  // a long way back from a rank card near the bottom of the page.
+  var opener = null;
 
   function play(level) {
     var r = RANKS[level];
@@ -1295,18 +1372,35 @@
     arts.forEach(function (a) { a.hidden = String(a.dataset.level) !== String(level); });
     nameEl.textContent = r.name;
     subEl.textContent = r.at + ' 個全清日 · 第 ' + (level + 1) + ' 級 / 共 ' + RANKS.length + ' 級';
+    if (!promo.classList.contains('on')) opener = document.activeElement;
     // Restart the CSS animations by taking the class off and forcing a reflow.
     promo.classList.remove('on');
     void promo.offsetWidth;
     promo.classList.add('on');
+    // Only focusable once the class has made it display:flex.
+    try { closeBtn.focus(); } catch (e) {}
+  }
+
+  function dismiss() {
+    if (!promo.classList.contains('on')) return;
+    promo.classList.remove('on');
+    if (opener && opener.focus) { try { opener.focus(); } catch (e) {} }
+    opener = null;
   }
 
   [].forEach.call(document.querySelectorAll('.rankcard'), function (b) {
     b.addEventListener('click', function () { play(Number(b.dataset.level)); });
   });
-  promo.addEventListener('click', function () { promo.classList.remove('on'); });
+  promo.addEventListener('click', dismiss);
+  // aria-modal says the rest of the page is gone, so Tab must not leave. There
+  // is exactly one control in here, so every Tab lands back on it.
+  promo.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    try { closeBtn.focus(); } catch (err) {}
+  });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') promo.classList.remove('on');
+    if (e.key === 'Escape') dismiss();
   });
 })();
 </script>

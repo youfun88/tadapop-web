@@ -52,6 +52,9 @@ const COPY = {
     'ui.tapForSound': '🔊 Tap for sound',
     'ui.hostName': 'HOST · <b>BOBO</b>',
     'ui.tada': 'Tada! 🎉',
+    /* Stamped onto the launch button from the real scene durations — see the
+       note where TOTAL is computed. */
+    'ui.filmLength': '· {n} sec',
     'end.headline': 'Your first mission starts now.',
     'end.watchAgain': '⟳ Watch again',
     'end.close': 'Close',
@@ -171,6 +174,7 @@ const COPY = {
     'ui.tapForSound': '🔊 點一下開聲音',
     'ui.hostName': '主持人 · <b>BOBO</b>',
     'ui.tada': 'Tada! 🎉',
+    'ui.filmLength': '· {n} 秒',
     'end.headline': '你的第一項任務，現在開始。',
     'end.watchAgain': '⟳ 再看一次',
     'end.close': '關閉',
@@ -443,6 +447,13 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   const stageWrap = el('div', 'film-stagewrap');
   const stage = el('div', 'film-stage');
   stageWrap.appendChild(stage);
+  // The stage is a picture of the app, not a copy of it. Scenes draw <button>
+  // elements to mime taps, and those have no accessible name and nothing to
+  // operate — reachable by Tab they are just dead stops between the real
+  // controls. The film's meaning reaches a screen reader through the caption
+  // and the voiceover instead.
+  stageWrap.setAttribute('aria-hidden', 'true');
+  if ('inert' in HTMLElement.prototype) stageWrap.inert = true;
 
   const host = el('div', 'film-host');
   host.innerHTML =
@@ -499,6 +510,12 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   const scenes = buildScenes(ctx);
   const TOTAL = scenes.reduce((s, x) => s + x.dur, 0);
   time.textContent = '0:00 / ' + fmtClock(TOTAL);
+
+  // The launch button used to carry a hand-written running time and it drifted:
+  // it promised 90 seconds for a film whose own clock read 1:15. Only the
+  // scenes know how long the film is, so the button asks them.
+  const lengthEl = launch.querySelector('.film-launch-time');
+  if (lengthEl) lengthEl.textContent = t('ui.filmLength', { n: Math.round(TOTAL / 1000) });
 
   /* ---- pre-recorded voiceover (ElevenLabs, voice: Jessica) ----
      One MP3 per scene in /assets/vo/. Bump VOV to bust the CDN cache when
@@ -570,14 +587,47 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     }, 250);
   }
 
+  /* --------------------------- focus management -------------------------
+     The overlay is aria-modal, which promises a screen reader that nothing
+     outside it exists any more. Without focus moving in, that promise is a
+     trap: the reader is sealed into a dialog it was never placed inside, and
+     Tab keeps walking the page behind the film. So focus enters on open, is
+     kept inside while the film runs, and is handed back to whatever opened it.
+
+     `trapTargets` deliberately skips the stage — see where it is built. */
+  let lastFocused = null;
+  let hideTimer = null;
+  const FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  function trapTargets() {
+    return [].slice.call(overlay.querySelectorAll(FOCUSABLE))
+      .filter((n) => !stageWrap.contains(n) && n.getClientRects().length);
+  }
+
   function play(startMuted) {
+    // Where to hand focus back. Anything already inside the overlay is not an
+    // answer — Replay and a reopen during the close fade both re-enter here
+    // from a button in the film itself — so those fall back to the launcher.
+    if (!lastFocused) {
+      const was = document.activeElement;
+      lastFocused = was && was !== document.body && !overlay.contains(was) ? was : launch;
+    }
     playing = true;
     muted = !!startMuted;
     muteBtn.textContent = muted ? t('ui.soundOff') : t('ui.soundOn');
     unmute.style.display = muted ? 'block' : 'none';
     end.classList.remove('show');
+    // Reopening inside the close fade would otherwise let that fade's pending
+    // "now hide it" fire over the top of an open film — and now that focus
+    // lives inside, hiding it would strand focus on a display:none button.
+    clearTimeout(hideTimer);
     overlay.hidden = false;
     document.body.style.overflow = 'hidden';
+    // Close first: the one control every visitor needs, and the safe landing
+    // spot for someone who cannot see that a film has taken over the page.
+    // Not inside the rAF below — that never runs in a background tab, and
+    // where focus sits must not depend on whether a fade got to start.
+    try { closeBtn.focus(); } catch (e) {}
     requestAnimationFrame(() => overlay.classList.add('show'));
     fit();
     if (!muted) ac();
@@ -608,7 +658,12 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     unmute.style.display = 'none';
     overlay.classList.remove('show');
     document.body.style.overflow = '';
-    setTimeout(() => { overlay.hidden = true; }, 380);
+    // Focus has to leave with the dialog. Dropped on <body> it would restart
+    // keyboard navigation at the top of the document, which is a long way back
+    // for someone who was three quarters of the way down the page.
+    if (lastFocused && lastFocused.focus) { try { lastFocused.focus(); } catch (e) {} }
+    lastFocused = null;
+    hideTimer = setTimeout(() => { overlay.hidden = true; }, 380);
   }
 
   /* ------------------------------ controls ------------------------------ */
@@ -643,7 +698,21 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     else if (act === 'close') closeFilm();
     else if (act === 'install') { closeFilm(); const sec = document.getElementById('get'); if (sec) setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450); else location.hash = '#get'; }
   });
-  document.addEventListener('keydown', (e) => { if (!overlay.hidden && e.key === 'Escape') closeFilm(); });
+  document.addEventListener('keydown', (e) => {
+    if (overlay.hidden) return;
+    if (e.key === 'Escape') { closeFilm(); return; }
+    if (e.key !== 'Tab') return;
+
+    const list = trapTargets();
+    if (!list.length) { e.preventDefault(); return; }
+    const first = list[0], last = list[list.length - 1];
+    const at = document.activeElement;
+    const inside = overlay.contains(at) && !stageWrap.contains(at);
+
+    if (!inside) { e.preventDefault(); (e.shiftKey ? last : first).focus(); }
+    else if (e.shiftKey && at === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && at === last) { e.preventDefault(); first.focus(); }
+  });
 
   /* ---- auto-play on load (muted, captioned) so the film isn't missed ----
      Forced with #film / ?film=1. Otherwise once per browser, and never for

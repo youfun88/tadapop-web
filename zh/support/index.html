@@ -3,16 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>支援 — Tadapop</title>
-  <meta name="description" content="取得 Tadapop 的協助：回報問題、提出建議，或詢問任何關於這個 App 的事。" />
+  <title>支援與常見問題 — Tadapop</title>
+  <meta name="description" content="Tadapop 常見問題：需不需要帳號、如何刪除帳號、競技場怎麼計分、資料是否私密、支援哪些平台，並附聯絡表單。我們通常在 1 到 2 個工作天內回覆。" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="支援 — Tadapop" />
-  <meta property="og:description" content="取得 Tadapop 的協助：回報問題、提出建議，或詢問任何關於這個 App 的事。" />
+  <meta property="og:site_name" content="Tadapop" />
+  <meta property="og:title" content="支援與常見問題 — Tadapop" />
+  <meta property="og:description" content="Tadapop 常見問題：需不需要帳號、如何刪除帳號、競技場怎麼計分、資料是否私密、支援哪些平台，並附聯絡表單。" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tadapop.app/zh/support" />
   <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
   <meta property="og:locale" content="zh_Hant_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="支援與常見問題 — Tadapop" />
+  <meta name="twitter:description" content="Tadapop 常見問題：需不需要帳號、如何刪除帳號、競技場怎麼計分、資料是否私密、支援哪些平台，並附聯絡表單。" />
+  <meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
 
   <link rel="canonical" href="https://tadapop.app/zh/support" />
   <link rel="alternate" hreflang="en" href="https://tadapop.app/support" />
@@ -24,10 +33,86 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+
+  <!--
+    FAQPage — 常見問題. Every Q and A below is the SAME text rendered in the
+    「常見問題」 section of this page. Keep the two in step if either is edited.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "@id": "https://tadapop.app/zh/support#faq",
+        "url": "https://tadapop.app/zh/support",
+        "name": "Tadapop — 常見問題",
+        "inLanguage": "zh-Hant-TW",
+        "isPartOf": { "@id": "https://tadapop.app/zh#website" },
+        "publisher": { "@id": "https://tadapop.app/#organization" },
+        "about": { "@id": "https://tadapop.app/zh#app" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "我需要帳號嗎？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不需要。個人的習慣追蹤完全離線也能用，不需要帳號。只有競技場 — 也就是私人、邀請制的挑戰功能 — 才需要帳號。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "我要怎麼刪除帳號？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "開啟 App，進到個人／設定，選擇刪除帳號。這會刪除你的雲端個人檔案和相關的競技場資料。刪除 App 則會一併清除留在這台裝置上的資料。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "競技場怎麼計分？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "你在挑戰排行榜上的排名，看的是你達成每日目標的天數；名次在前的人可以獲得競技分數。完整的給分方式、並列規則和等級階梯都在競技場規則這一頁。",
+              "url": "https://tadapop.app/zh/rules"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "我的資料是私密的嗎？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "是的。個人紀錄留在你自己的裝置上。帳號資料受到保護，只有你（以及你參加的那些挑戰）能夠存取。我們不會販售資料，也不會使用廣告追蹤工具。詳見我們的隱私權政策。",
+              "url": "https://tadapop.app/zh/privacy"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "支援哪些平台？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tadapop 目前在 iPhone 和 Android 上公開測試中。可以透過 TestFlight（iOS）或 Android 版安裝，也可以到首頁掃描 QR code。",
+              "url": "https://tadapop.app/zh"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://tadapop.app/zh/support#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://tadapop.app/zh" },
+          { "@type": "ListItem", "position": 2, "name": "支援", "item": "https://tadapop.app/zh/support" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
   <div class="grid-bg" aria-hidden="true"></div>
-  <article class="doc">
+  <main class="doc" id="main" tabindex="-1">
     <div class="doc-top">
       <a class="back" href="/zh">← 回到 tadapop.app</a>
       <div data-lang-switch></div>
@@ -52,7 +137,7 @@
         <textarea id="message" name="message" placeholder="描述你的問題，或是你遇到的狀況…"></textarea>
       </div>
       <div class="send-row">
-        <button id="send" type="button" disabled>送出訊息</button>
+        <button id="send" type="button" class="is-idle">送出訊息</button>
         <p class="form-note" id="formStatus" role="status" aria-live="polite"></p>
       </div>
     </form>
@@ -61,21 +146,21 @@
 
     <h2>常見問題</h2>
 
-    <h2 style="font-size:17px">我需要帳號嗎？</h2>
+    <h3 class="faq-q">我需要帳號嗎？</h3>
     <p>不需要。個人的習慣追蹤完全離線也能用，不需要帳號。只有競技場 — 也就是私人、邀請制的挑戰功能 — 才需要帳號。</p>
 
-    <h2 style="font-size:17px">我要怎麼刪除帳號？</h2>
+    <h3 class="faq-q">我要怎麼刪除帳號？</h3>
     <p>開啟 App，進到個人／設定，選擇刪除帳號。這會刪除你的雲端個人檔案和相關的競技場資料。刪除 App 則會一併清除留在這台裝置上的資料。</p>
 
-    <h2 style="font-size:17px">競技場怎麼計分？</h2>
+    <h3 class="faq-q">競技場怎麼計分？</h3>
     <p>你在挑戰排行榜上的排名，看的是你達成每日目標的天數；名次在前的人可以獲得競技分數。完整的給分方式、並列規則和等級階梯都在<a href="/zh/rules">競技場規則</a>這一頁。</p>
 
-    <h2 style="font-size:17px">我的資料是私密的嗎？</h2>
+    <h3 class="faq-q">我的資料是私密的嗎？</h3>
     <p>是的。個人紀錄留在你自己的裝置上。帳號資料受到保護，只有你（以及你參加的那些挑戰）能夠存取。我們不會販售資料，也不會使用廣告追蹤工具。詳見我們的<a href="/zh/privacy">隱私權政策</a>。</p>
 
-    <h2 style="font-size:17px">支援哪些平台？</h2>
+    <h3 class="faq-q">支援哪些平台？</h3>
     <p>Tadapop 目前在 <strong>iPhone</strong> 和 <strong>Android</strong> 上公開測試中。可以透過 <a href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">TestFlight（iOS）</a>或 <a href="/zh/android">Android 版</a>安裝，也可以到<a href="/zh">首頁</a>掃描 QR code。</p>
-  </article>
+  </main>
 
   <script>
     (function () {
@@ -89,14 +174,36 @@
       var send = document.getElementById('send');
       var status = document.getElementById('formStatus');
       if (!send) return;
+      var sending = false;
 
       function setStatus(text, kind) {
         status.textContent = text || '';
         status.className = 'form-note' + (kind ? ' ' + kind : '');
       }
-      function refresh() { send.disabled = message.value.trim().length === 0; }
-      message.addEventListener('input', refresh);
-      refresh();
+      // The button is never disabled and the checks happen on the press. A
+      // disabled button is skipped by Tab, so a keyboard user could not reach
+      // the primary action at all, and pressing it said nothing about why
+      // nothing happened. `.is-idle` (styles.css) carries only the "not yet"
+      // look; it never stops the press, so there is always something to press
+      // and always an answer.
+      function refreshIdle() {
+        send.classList.toggle('is-idle', message.value.trim().length === 0);
+      }
+      function fail(field, text) {
+        setStatus(text, 'err');
+        field.setAttribute('aria-invalid', 'true');
+        field.focus();
+      }
+      // Take the complaint down as soon as they start fixing it.
+      function clearError() {
+        if (status.className.indexOf('err') === -1) return;
+        setStatus('');
+        email.removeAttribute('aria-invalid');
+        message.removeAttribute('aria-invalid');
+      }
+      email.addEventListener('input', clearError);
+      message.addEventListener('input', function () { clearError(); refreshIdle(); });
+      refreshIdle();
 
       // Fail-safe: if the relay is ever unreachable, open the user's email app
       // so the message still gets out — the form never dead-ends.
@@ -108,12 +215,29 @@
       }
 
       send.addEventListener('click', function () {
+        if (sending) return;
         var msg = message.value.trim();
-        if (!msg) return;
+        email.removeAttribute('aria-invalid');
+        message.removeAttribute('aria-invalid');
+
+        if (!msg) {
+          fail(message, '請先寫下訊息內容，簡單說明你需要什麼就可以了。');
+          return;
+        }
+        // The address is optional, so an empty one is fine. A malformed one is
+        // not: it is sent as the reply-to, which means the reply goes nowhere
+        // and the sender waits for something that can never arrive. The button
+        // sits outside form submission, so nothing else runs this check.
+        if (!email.validity.valid) {
+          fail(email, '這個電子郵件地址看起來不太對，請再檢查一次；如果不需要回覆，也可以留空。');
+          return;
+        }
         if (honey && honey.value) return; // bot caught by honeypot
         var from = email.value.trim();
 
-        send.disabled = true;
+        // Guard the double-press with a flag rather than `disabled`: the
+        // button has to stay focusable while the request is in the air.
+        sending = true;
         setStatus('送出中…');
 
         fetch(ENDPOINT, {
@@ -121,8 +245,8 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             email: from || 'no-reply@tadapop.app',
-            // Tagged zh so whoever answers knows to reply in Chinese.
             message: msg,
+            // Tagged zh so whoever answers knows to reply in Chinese.
             _subject: 'Tadapop support — new message (zh)',
             _template: 'table',
             _captcha: 'false'
@@ -131,11 +255,11 @@
         .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
         .then(function () {
           setStatus('謝謝！你的訊息已經送出。我們通常會在 1 到 2 個工作天內回覆。', 'ok');
-          message.value = ''; email.value = ''; refresh();
+          message.value = ''; email.value = ''; sending = false; refreshIdle();
         })
         .catch(function () {
           setStatus('正在開啟你的郵件 App，請直接從那裡把訊息寄給我們…');
-          send.disabled = false;
+          sending = false;
           mailtoFallback(msg, from);
         });
       });

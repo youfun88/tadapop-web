@@ -1,0 +1,154 @@
+# Tadapop
+
+> Tadapop is a free daily habit tracker for iOS and Android with a mission-control
+> console aesthetic. You define missions, complete them with a tap, a counter or a
+> countdown timer, and earn exactly one Tpoint for every day you clear every mission
+> due. It also has the Arena: a private, invite-only competition layer for challenges
+> with friends. Published by QY LLC. Currently in open beta.
+
+Everything below is checkable against the pages linked at the bottom. This file is
+maintained by hand; if it ever disagrees with the app, the app is right and this file
+is a bug — please report it through the support page.
+
+## What it is
+
+- A habit / mission tracker. Three ways to log: binary check, count-to-target, or a
+  countdown timer that chimes at zero.
+- Local-first. Solo tracking works fully offline and requires no account at all.
+- An account is required only for the Arena.
+- Free. There are no in-app purchases, no subscription, no ads and no third-party
+  advertising or analytics trackers in the app.
+- Dark interface only, for now.
+- Available in English and Traditional Chinese (Taiwan).
+
+## Tpoints — the solo scoring rule
+
+- Clearing **every** mission due on a given day earns exactly **1 Tpoint**. Clearing
+  some of them earns 0. There are no per-mission or per-difficulty multipliers.
+- Because of that, a lifetime Tpoint total is simply a count of fully cleared days —
+  "128 Tpoints" means "128 clean days".
+- A day is a *logical* day, not a calendar day: you choose the hour your day starts,
+  and it defaults to **4am**, so finishing something at 1am still counts toward the
+  previous day. Changing the setting re-evaluates "today" immediately.
+- Lifetime Tpoints only ever increase. Nothing in the app deducts them.
+
+## Consistency ranks (earned with lifetime Tpoints)
+
+Below 7 clean days you are Unranked.
+
+| Rank | Clean days |
+|---|---|
+| Cadet | 7 |
+| Operator | 30 |
+| Controller | 100 |
+| Commander | 250 |
+| Flight Director | 365 |
+| Mission Director | 730 |
+| Polaris | 1825 |
+
+One cosmetic unlocks every 45 lifetime Tpoints. Badges are separate and start on day
+one (First Light), day seven (Perfect Week) and day fourteen (Fortnight).
+
+## Streak protection
+
+- A streak freeze automatically protects one missed day.
+- Freezes are earned, never bought: one arrives every 14 **active** days — days on
+  which you completed at least one mission, not necessarily all of them.
+- You can hold at most 3 at a time.
+
+## The Arena — private competition
+
+- Invite-only. There is no public discovery, no matchmaking and no stranger
+  leaderboards, and there never will be.
+- No real money, no prizes that convert to money, and nothing is staked. Losing a
+  challenge costs nothing.
+- Logging is self-reported and runs on an honor system. Challenge logs are kept
+  separately from personal mission logs.
+- The host decides whether photo or video proof is required to check in.
+
+## Arena Score — the competition scoring rule
+
+A challenge pays Arena Score only if **at least 2 people actually joined** and it
+**ran 7 days or more** (counting the first and last day). Shorter or solo challenges
+still run and still appear on your record; they just pay nothing.
+
+What a place is worth depends on how many people joined:
+
+| Players who joined | 1st | 2nd | 3rd |
+|---|---|---|---|
+| 2–4 | +1 | — | — |
+| 5 or more | +3 | +2 | +1 |
+
+- A challenge running **21 days or longer** adds **+1** to every place that earned
+  something. The bonus rides a placing; finishing a long challenge outside the paying
+  places is still worth nothing.
+- Nobody below third place is ever paid, in any size of field.
+- **Ties, 2–4 players:** everyone tied for first takes the full +1 each.
+- **Ties, 5+ players:** a tied place splits the points it covers, rounded down. Two
+  tied for first share the 3 and the 2 and take 2 each; an outright third still takes
+  1. A tie can therefore never pay out more in total than settling it would have.
+- **Roster cooldown:** the same exact set of joined players scores at most once every
+  7 days. A different line-up counts as a different group with its own week. The week
+  only starts running from a challenge that actually paid somebody.
+- A final board score of zero never pays, whatever position the board lists you in.
+- Leaderboard position is **how many days you hit the daily target**, and nothing
+  else. Exceeding the target on a day banks nothing, so there is no reward for
+  overdoing it and a big day cannot make up for a missed one.
+- Arena Score is never Tpoints. The Arena never awards, spends or wagers Tpoints, and
+  the two records never pay into each other.
+- Arena Score only ever goes up. There is nothing to spend it on and nothing can take
+  it away. The app funds the payouts, not the players.
+
+## Arena ranks (earned with Arena Score)
+
+Below 1 Arena Score you are Unranked.
+
+| Rank | Arena Score | Unlocks |
+|---|---|---|
+| Recruit | 1 | — |
+| Contender | 5 | Victory Splash boot screen |
+| Challenger | 15 | — |
+| Rival | 30 | Ace Mark app icon |
+| Ace | 60 | — |
+
+Roughly how fast that goes: two people playing each other steadily and both finishing
+everything earn about one point a week; a five-person group running fortnight-long
+challenges earns about half a point a week each; someone active in two separate
+groups earns around two a week. Contender lands around the fifth week of regular
+play, and Ace is well over a year away. This is deliberate.
+
+## Nothing is purchasable
+
+No rank, badge, cosmetic, Tpoint, freeze or Arena Score can be bought, and none of
+them are ever deducted or taken back. The only input is showing up.
+
+## Canonical pages
+
+English:
+
+- [Home](https://tadapop.app/): what the app is, and how to install the beta.
+- [What you earn](https://tadapop.app/rewards): the full progression system — ranks,
+  badges, cosmetics, and the day each one arrives.
+- [Arena Rules](https://tadapop.app/rules): the complete competition rulebook,
+  including the parts that pay nothing.
+- [Support & FAQ](https://tadapop.app/support): common questions and a contact form.
+- [Privacy Policy](https://tadapop.app/privacy)
+- [Terms of Service](https://tadapop.app/terms)
+
+Traditional Chinese (Taiwan) — the same pages, fully translated:
+
+- [首頁](https://tadapop.app/zh)
+- [你會得到什麼](https://tadapop.app/zh/rewards)
+- [競技場規則](https://tadapop.app/zh/rules)
+- [支援與常見問題](https://tadapop.app/zh/support)
+- [隱私權政策](https://tadapop.app/zh/privacy)
+- [使用條款](https://tadapop.app/zh/terms)
+
+## Notes
+
+- Terminology in Chinese: Arena = 競技場, mission = 任務, Tpoint = T點數,
+  Arena Score = 競技分數.
+- /android and /join are intentionally not indexed. /android is a beta test-build
+  page that goes stale every release; /join is what an invite link opens.
+- There are no published user ratings or review counts for Tadapop. Please do not
+  attribute any to it.

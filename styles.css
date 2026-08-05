@@ -3,9 +3,24 @@
   --panel: #141A29;
   --panel2: #1A2233;
   --line: #26304A;
+  /* The value --faint used to hold. Borders are not text, so its 2.8:1 is
+     fine here, and it is the tone every hover outline in this file was tuned
+     against — keeping it under its own name means lifting --faint for
+     legibility doesn't quietly brighten every card edge at the same time. */
+  --line-lit: #4F5B76;
   --ink: #E8ECF5;
   --dim: #7C8AA5;
-  --faint: #4F5B76;
+  /* --faint was #4F5B76: 2.84:1 on --void, 2.56 on --panel, 2.34 on --panel2 —
+     about half the 4.5:1 body text needs. It was never decorative either. It
+     carries the badge and rank requirement lines that are the whole payload of
+     /rewards, the table headers on /rules, every "last updated" stamp, the
+     form placeholders, and the note under each form.
+     #79859E is the quietest grey that still clears 4.5:1 on --void (5.20) and
+     --panel (4.68) — the two surfaces this colour actually sits on — so the
+     step below --dim survives as a real tone instead of collapsing into it.
+     On --panel2 it only reaches 4.29 (large text), so the one place --faint sat
+     on that surface, .doc thead th, is moved to --dim further down. */
+  --faint: #79859E;
   --amber: #FFB454;
   --amber-deep: #E8922E;
   --go: #5BE39B;
@@ -28,6 +43,19 @@ body {
   overflow-x: hidden;
 }
 
+/* Reduced motion. Only the things that actually move are switched off: the
+   smooth scroll, the card lift, and the button press. The colour and
+   border-colour transitions stay — a fade is not motion, and killing them would
+   leave the site with no hover feedback at all. Deliberately no blanket
+   `* { transition: none !important }`: film.css and film.js run their own
+   reduced-motion handling and a hammer here would reach into them. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .card:hover { transform: none; }
+  .waitlist button:active,
+  .support-form button:active { transform: none; }
+}
+
 /* faint console grid behind everything */
 .grid-bg {
   position: fixed;
@@ -42,6 +70,25 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
+
+/* Keyboard focus. The site defined none of its own: the two form controls set
+   `outline: none` and everything else fell back to whatever ring the browser
+   drew for it. One amber ring, offset so it reads as a ring rather than as a
+   thickened border, using the same accent the console already uses to mean
+   "this is the live element". :focus-visible, not :focus, so a mouse click
+   doesn't leave a ring sitting on a button. */
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+/* The inputs need saying twice: their own rules set `outline: none` at 0-1-1,
+   which outranks the bare :focus-visible above. */
+.waitlist input:focus-visible,
+.support-form input:focus-visible,
+.support-form textarea:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
 
 /* ---- nav ---- */
 .nav {
@@ -70,7 +117,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 8px;
   transition: border-color .2s, color .2s;
 }
-.nav-cta:hover { color: var(--ink); border-color: var(--faint); }
+.nav-cta:hover { color: var(--ink); border-color: var(--line-lit); }
 
 /* ---- hero ---- */
 .hero {
@@ -309,15 +356,37 @@ a { color: inherit; text-decoration: none; }
   font-size: 14px;
   color: #1a1205;
   background: var(--amber);
-  border: none;
+  /* A transparent border in the resting state, with the padding wound back by
+     the same 1px, so the disabled ghost below can take a real border without
+     the button changing size the moment you type. */
+  border: 1px solid transparent;
   border-radius: 10px;
-  padding: 13px 24px;
+  padding: 12px 23px;
   cursor: pointer;
   transition: background .15s, transform .05s;
 }
-.support-form button:hover { background: var(--amber-deep); }
+.support-form button:hover:not(.is-idle) { background: var(--amber-deep); }
 .support-form button:active { transform: translateY(1px); }
-.support-form button:disabled { opacity: .55; cursor: default; }
+/* /support shows this button as "not yet ready" until the message box has text,
+   and `opacity: .55` over solid amber on navy came out as a flat brown — the
+   first thing on the page read as a broken primary action rather than as one
+   that isn't ready. An outlined ghost says "not yet" without inventing a
+   colour: it is the same border and dim label the .nav-cta already uses, and
+   the fill returning is what confirms the form is now sendable.
+   
+   Driven by a CLASS, not by the `disabled` attribute. A disabled button is
+   skipped by Tab, so a keyboard user could not reach the primary action at all
+   — and pressing it produced no message explaining why nothing happened. The
+   button now stays enabled and validates on click; this only carries the look.
+   `:disabled` is kept in the selector so the state still renders correctly if
+   anything ever does disable it. */
+.support-form button.is-idle,
+.support-form button:disabled {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--dim);
+  cursor: default;
+}
 
 /* ---- features ---- */
 .features {
@@ -335,13 +404,13 @@ a { color: inherit; text-decoration: none; }
   padding: 28px;
   transition: border-color .2s, transform .2s;
 }
-.card:hover { border-color: var(--faint); transform: translateY(-2px); }
+.card:hover { border-color: var(--line-lit); transform: translateY(-2px); }
 .card-icon {
   font-size: 24px;
   color: var(--amber);
   margin-bottom: 14px;
 }
-.card h3 {
+.card :is(h2, h3) {
   font-family: var(--display);
   font-weight: 700;
   font-size: 19px;
@@ -462,7 +531,15 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
   padding: 40px 24px 80px;
 }
+/* inline-flex + min-height turns a 17px line box into a 36px tap target. The
+   negative inline margin cancels the padding so nothing moves horizontally —
+   the target grows, the layout doesn't. */
 .doc .back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding-inline: 6px;
+  margin-inline: -6px;
   font-family: var(--mono);
   font-size: 13px;
   color: var(--dim);
@@ -480,17 +557,55 @@ a { color: inherit; text-decoration: none; }
   color: var(--faint);
   margin-bottom: 28px;
 }
+/* 46px above, 10px below. The old 32/10 gave a section heading almost as much
+   space beneath it as above, so on /rules — ten sections of near-solid grey
+   prose — the headings floated between two paragraphs instead of opening one.
+   Space above binds the heading to the text it introduces; that pairing is the
+   only structure a page this long has. */
 .doc h2 {
   font-family: var(--display);
   font-weight: 700;
   font-size: 20px;
-  margin: 32px 0 10px;
+  margin: 46px 0 10px;
+  color: var(--ink);
+}
+/* .doc h3 had no rule at all, so any page using one fell back to the browser's
+   bold-Inter-at-1.17em with 1em margins above AND below — a different family
+   from the h2 above it and a rhythm that read as a gap rather than a heading.
+   /android already defines its own uppercase variant, which still wins: this is
+   the floor, not an override. */
+.doc h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 17px;
+  margin: 28px 0 8px;
   color: var(--ink);
 }
 .doc p, .doc li { color: var(--dim); font-size: 15px; margin-bottom: 12px; }
+/* .doc is 740px wide because the payout tables need it. Running prose does not:
+   at 15px that was ~95 characters a line, well past the 65–75 where the eye
+   still finds the next line reliably, and these are the pages people actually
+   have to read. 62ch is ~70 Latin characters, and because CJK glyphs are a full
+   em wide it lands at ~34 characters on /zh — also right. Headings and tables
+   deliberately keep the full width, so the column edge still reads as one.
+
+   Two kinds of paragraph are exempt, because they draw a full-width top border
+   as a section separator and a rule that stops short of the column edge reads
+   as broken rather than as a measure: the .note on /android and /rewards, and
+   the translation disclaimers on /zh/privacy and /zh/terms, which carry that
+   same treatment as an inline style. Both are two lines long anyway. */
+.doc p:not(.note):not([style]),
+.doc li { max-width: 62ch; }
 .doc ul { padding-left: 22px; }
-.doc a:not(.back) { color: var(--info, #7FA9FF); }
-.doc a:not(.back):hover { text-decoration: underline; }
+/* :not(.button) matters. This rule is 0-2-1 and .button's own `color: #1a1205`
+   is 0-1-0, so inside a .doc article the link colour won, and /android's
+   "Download for Android" — the only place the APK is served, and where the home
+   page's Android CTA lands — rendered pale blue on amber at 1.32:1. The second
+   rule is deliberate belt and braces: if a .button ever gains another class or
+   a wrapper, the dark ink it needs still wins. */
+.doc a:not(.back):not(.button) { color: var(--info, #7FA9FF); }
+.doc a:not(.back):not(.button):hover { text-decoration: underline; }
+.doc a.button { color: #1a1205; }
 
 /* ---- doc tables ---- */
 .doc .table-wrap { overflow-x: auto; margin: 18px 0 20px; }
@@ -516,7 +631,11 @@ a { color: inherit; text-decoration: none; }
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--faint);
+  /* --dim, not --faint: this is the one header row that sits on --panel2, the
+     lightest surface in the palette, where --faint only reaches 4.29:1. These
+     labels name the columns of the payout table — the reader can't parse the
+     numbers without them. */
+  color: var(--dim);
   background: var(--panel2);
   white-space: nowrap;
 }
@@ -532,6 +651,18 @@ a { color: inherit; text-decoration: none; }
   /* stack the install buttons full-width with breathing room on phones */
   .hero-cta { flex-direction: column; align-items: stretch; }
   .hero-cta .button { width: 100%; text-align: center; }
+
+  /* The payout table on /rules is 420px of min-width inside a 342px wrapper at
+     390px, so "3rd" and its column head were simply gone — and because the cut
+     lands exactly on the panel's own rounded border it reads as the edge of the
+     table, not as something scrolled out of sight. A phone reader concluded
+     that only two places pay. Letting the cells give up their generous desktop
+     padding, and the headers wrap onto two lines, fits all four columns instead
+     of hiding two of them; .table-wrap stays in place as the safety net for any
+     table that still can't. */
+  .doc table { min-width: 0; }
+  .doc th, .doc td { padding: 10px 11px; font-size: 14px; }
+  .doc thead th { white-space: normal; }
 }
 
 /* ---- beta / QR install ---- */
@@ -543,7 +674,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 16px; padding: 22px 26px; text-decoration: none;
   transition: border-color .15s ease;
 }
-.beta-card:hover { border-color: var(--faint); }
+.beta-card:hover { border-color: var(--line-lit); }
 .beta-plat { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--dim); }
 .beta-card img { width: 200px; height: 200px; border-radius: 10px; background: #fff; padding: 10px; display: block; }
 .beta-action { font-family: var(--display); font-weight: 700; letter-spacing: .5px; color: var(--amber); font-size: 15px; }
@@ -555,6 +686,17 @@ a { color: inherit; text-decoration: none; }
    deserves. The label is always the language you'd be going TO, written in
    that language, which is the one convention every bilingual site shares. */
 .lang-switch {
+  /* This was a 53x18px target — the smallest thing on the page, and, because
+     the site sends every first-time visitor to /zh, the single most
+     consequential control on it for an English reader. inline-flex + a 36px
+     min-height gives it a real target; the negative inline margin cancels the
+     padding so the label stays exactly where it was in the nav and footer rows.
+     Anything taller would start pushing .doc-top around. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding-inline: 8px;
+  margin-inline: -8px;
   font-family: var(--mono);
   font-size: 13px;
   /* Same reason as .footer-links a — this label is 繁體中文 half the time, and
@@ -581,7 +723,11 @@ a { color: inherit; text-decoration: none; }
      · home      — inside the nav, beside the "Get the app" button
      · doc pages — the .doc-top row, opposite the back-link
      · join      — its own corner, since that page has no header at all      */
-.nav-right { display: flex; align-items: center; gap: 18px; }
+/* 24px, up from 18. The switcher's tap target now reaches 8px past its label on
+   each side (see .lang-switch), and at the old gap that left it almost touching
+   the "Get the app" button — two adjacent targets with 2px between them is how
+   you mis-tap a language switch. */
+.nav-right { display: flex; align-items: center; gap: 24px; }
 .nav-right .lang-switch::before { content: none; }
 
 /* join/ has no nav to hang it on. Absolute rather than fixed so it scrolls
@@ -591,6 +737,162 @@ a { color: inherit; text-decoration: none; }
 .lang-corner .lang-switch::before { content: none; }
 
 @media (max-width: 560px) {
-  .nav-right { gap: 12px; }
+  /* 20px rather than 12 for the same reason as the desktop 24 — the two targets
+     now overlap their labels, so the visual gap has to carry the separation. */
+  .nav-right { gap: 20px; }
   .lang-corner { top: 14px; right: 16px; }
+}
+
+/* ==========================================================================
+   Traditional Chinese — the /zh mirror
+
+   Every rule below is scoped with :lang(zh-Hant), never a bare selector. The
+   English pages have to keep rendering exactly as they did before this file
+   knew Chinese existed, and `<html lang="zh-Hant">` on the /zh pages is the
+   single switch that turns all of it on.
+
+   Some of the selectors here belong to rules that live in <style> blocks inside
+   zh/rewards.html and zh/android/index.html rather than in this file. They are
+   overridden from here — with the extra specificity :lang() happens to buy —
+   because a stylesheet is the only thing that can reach them; the markup those
+   rules sit in is not this file's to edit.
+   ========================================================================== */
+
+/* Chivo, Inter and JetBrains Mono contain no CJK glyphs whatsoever, so on the
+   /zh pages every Chinese character is drawn by whatever the browser reaches
+   for once the stack runs out — and that answer is different on every platform.
+   Worse, the mono stack ends in `monospace`, and a browser resolving CJK
+   through that generic can land on a full-width monospaced CJK face, which is
+   nothing like the rest of the site.
+
+   Naming the faces makes it one font everywhere. The order matters twice:
+     · the Latin face stays first, so Latin still comes from Chivo / Inter /
+       JetBrains Mono and nothing about the English-language look changes;
+     · the TC faces come *before* system-ui, because on Android system-ui
+       font-links to Noto Sans CJK **SC** — Simplified glyph shapes on a
+       Traditional page, which is the one substitution a Taiwanese reader will
+       notice immediately.
+   The mono stack falls through to the same proportional sans as everything
+   else, deliberately. Mono is here for stable digits; a monospaced Latin
+   sitting beside a proportional CJK is a far smaller cost than dropping the
+   whole line into a full-width CJK mono face. */
+:root:lang(zh-Hant) {
+  --display: 'Chivo', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', ui-monospace, monospace;
+  --body: 'Inter', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', system-ui, sans-serif;
+}
+
+/* Letter-spacing is a Latin device — it opens the gaps *between the letters of
+   a word*, which is why a tracked-out label still reads as one unit. Chinese
+   has no words in that sense; every character is already its own square. Adding
+   tracking just prises them apart, and 「一 天 最 多 1 點」 stops reading as a
+   phrase and starts reading as a rendering fault.
+
+   `text-transform: uppercase` is switched off in the same breath. It does
+   nothing to CJK, but these are mixed strings, and a lone Latin word forced
+   into caps inside a Chinese sentence (「請用 ANDROID 手機掃描」) reads as
+   shouting mid-sentence rather than as a small-caps label.
+
+   The two places tracking survives are .brand-name and .beta-plat: those are
+   always "TADAPOP" and "ANDROID" / "iOS · TESTFLIGHT", Latin in every language,
+   so the idiom still applies. */
+:lang(zh-Hant) .readout,
+:lang(zh-Hant) .button,
+:lang(zh-Hant) .waitlist button,
+:lang(zh-Hant) .support-form button,
+:lang(zh-Hant) .support-form label,
+:lang(zh-Hant) .beta-action,
+:lang(zh-Hant) .doc thead th,
+/* zh/android/index.html */
+:lang(zh-Hant) .qr-card .qr-label,
+:lang(zh-Hant) .doc h3,
+/* zh/rewards.html */
+:lang(zh-Hant) .back,
+:lang(zh-Hant) .strip-hint,
+:lang(zh-Hant) .rule :is(h2, h3),
+:lang(zh-Hant) h2.sec,
+:lang(zh-Hant) .count span,
+:lang(zh-Hant) .dayword,
+:lang(zh-Hant) .gkind,
+:lang(zh-Hant) .tkind,
+:lang(zh-Hant) .tflag,
+:lang(zh-Hant) .inline-flag,
+:lang(zh-Hant) .rcplay,
+:lang(zh-Hant) .promo-kicker,
+:lang(zh-Hant) .promo-dismiss {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* The display faces are tracked slightly negative so Chivo's caps close up at
+   large sizes, and set at 1.05 leading because Latin headline descenders leave
+   room to spare. Neither assumption holds for Chinese: the glyphs already fill
+   their em box edge to edge, so negative tracking makes them collide
+   horizontally and 1.05 makes consecutive lines touch vertically. Tracking back
+   to normal and opening the leading to 1.25 gives a three-line Chinese headline
+   the same amount of air a two-line English one has. */
+:lang(zh-Hant) .hero h1,
+:lang(zh-Hant) .cta-final h2,
+:lang(zh-Hant) .lead-h,          /* zh/rewards.html */
+:lang(zh-Hant) .promo-name {     /* zh/rewards.html */
+  letter-spacing: normal;
+}
+:lang(zh-Hant) .hero h1,
+:lang(zh-Hant) .lead-h {
+  line-height: 1.25;
+}
+
+/* CJK wants more leading than Latin at the same size. Latin gets its vertical
+   rhythm for free from ascenders and descenders poking out of the x-height
+   band; Chinese is a solid run of full-height squares, so at 1.55 the lines
+   have nothing between them and a long paragraph turns into a grey block.
+   1.8 is the usual answer, and the rules and privacy pages — which are almost
+   nothing but long paragraphs — are where it matters most.
+
+   Deliberately only the running prose. Single-line labels and metric readouts
+   keep their tight line boxes, because that is what holds the console rows in
+   alignment. */
+:lang(zh-Hant) .lede,
+:lang(zh-Hant) .card p,
+:lang(zh-Hant) .cta-final p,
+:lang(zh-Hant) .doc p,
+:lang(zh-Hant) .doc li,
+:lang(zh-Hant) .doc td,
+/* zh/rewards.html */
+:lang(zh-Hant) .lead-p,
+:lang(zh-Hant) .sec-p,
+:lang(zh-Hant) .rule p,
+:lang(zh-Hant) .note {
+  line-height: 1.8;
+}
+
+/* ---- skip link ----
+   Was inlined into a <style> block on fourteen separate pages, which is fine
+   for shipping one fix fast and awful to change later. One rule instead.
+
+   Off-canvas rather than display:none — a hidden element is not focusable, and
+   the whole point is that it appears for the one person who Tabs into it. */
+.skip-link { position: fixed; left: -9999px; top: 0; z-index: 100; }
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--amber);
+  color: var(--void);
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 600;
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* The rank/badge cards on /rewards carry a real <button> underneath; these
+   strip the UA chrome so it renders as the card it looks like. Lived in each
+   rewards page's own <style> because .promo-dismiss is declared in its head. */
+button.promo-dismiss {
+  background: none;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
 }
