@@ -1,14 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>What you earn · Tadapop</title>
-<meta name="description" content="One point for every day you clear every mission. Here's what those days turn into — ranks, badges and cosmetics you reach, never buy." />
+<title>你會得到什麼 · Tadapop</title>
+<meta name="description" content="每有一天把所有任務做完，就得 1 T點。這一頁說明這些日子最後會變成什麼 — 等級、徽章和外觀，全都靠累積達成，無法購買。" />
+<meta name="theme-color" content="#0B0E17" />
 <link rel="icon" href="/assets/favicon.png" />
 <link rel="alternate" hreflang="en" href="https://tadapop.app/rewards" />
 <link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rewards" />
 <link rel="alternate" hreflang="x-default" href="https://tadapop.app/rewards" />
+<meta property="og:title" content="你會得到什麼 · Tadapop" />
+<meta property="og:description" content="每有一天把所有任務做完，就得 1 T點。等級、徽章和外觀全都靠累積達成，無法購買。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://tadapop.app/zh/rewards" />
+<meta property="og:image" content="https://tadapop.app/assets/og.png" />
+<meta property="og:locale" content="zh_Hant_TW" />
+<meta property="og:locale:alternate" content="en_US" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
@@ -42,7 +50,7 @@
   .hr-art { display:block; line-height: 0; }
   .hr-name { font-size: 11px; color: var(--dim); white-space: nowrap; }
   .hr-at { font-family: var(--mono); font-size: 10px; color: var(--faint); }
-  .hr-at::after { content: 'd'; }
+  .hr-at::after { content: '天'; }
   .strip-hint { font-family: var(--mono); font-size: 11px; letter-spacing: 1px;
     color: var(--faint); }
   @keyframes rankIn { from { opacity:0; transform: translateY(14px) scale(.9); }
@@ -181,7 +189,7 @@
   .rname { font-size: 15px; }
   .rdots { flex: 1; border-bottom: 1px dotted var(--line); }
   .rat { font-family: var(--mono); color: var(--amber); font-size: 14px; }
-  .rat::after { content: ' days'; color: var(--faint); font-size: 11px; }
+  .rat::after { content: ' 天'; color: var(--faint); font-size: 11px; }
 
   .note { color: var(--faint); font-size: 14px; border-top: 1px solid var(--line);
     padding-top: 18px; margin-top: 56px; }
@@ -202,20 +210,19 @@
 <div class="grid-bg" aria-hidden="true"></div>
 <div class="wrap">
   <div class="doc-top">
-    <a class="back" href="/">← tadapop.app</a>
+    <a class="back" href="/zh">← tadapop.app</a>
     <div data-lang-switch></div>
   </div>
 
-  <h1 class="lead-h">Show up.<br />Watch it <em>add up</em>.</h1>
-  <p class="lead-p">One point for every day you clear every mission on your list. That's the
-  whole rule — there's no way to rush it, and nothing to buy. What follows is simply what
-  those days turn into.</p>
+  <h1 class="lead-h">每天出現。<br />看它<em>累積起來</em>。</h1>
+  <p class="lead-p">清單上的任務全部完成，那一天就得 1 T點。規則就只有這一條 —
+  沒辦法加速，也沒有東西可以買。以下就是這些日子最後會變成什麼。</p>
 
-  <div class="ladderstrip" role="group" aria-label="The seven ranks">
+  <div class="ladderstrip" role="group" aria-label="七個等級">
   <button class="hero-rank rankcard" data-level="0" type="button"
-    style="--d:0ms" aria-label="Preview the promotion to Cadet">
+    style="--d:0ms" aria-label="預覽晉升到學員">
     <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cadet insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="學員徽記">
   <defs></defs>
   <g>
     <path d="M31 77 A38 38 0 1 1 89 77" fill="none" stroke="#8592AE" stroke-linecap="round" stroke-width="2" opacity="0.5"/>
@@ -225,13 +232,13 @@
     
   </g>
 </svg></span>
-    <span class="hr-name">Cadet</span>
+    <span class="hr-name">學員</span>
     <span class="hr-at">7</span>
   </button>
   <button class="hero-rank rankcard" data-level="1" type="button"
-    style="--d:90ms" aria-label="Preview the promotion to Operator">
+    style="--d:90ms" aria-label="預覽晉升到操作員">
     <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Operator insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="操作員徽記">
   <defs></defs>
   <g>
     <circle cx="60" cy="50" r="38" fill="none" stroke="#7FA9FF" stroke-linecap="round" stroke-width="2" opacity="0.55"/>
@@ -243,13 +250,13 @@
     
   </g>
 </svg></span>
-    <span class="hr-name">Operator</span>
+    <span class="hr-name">操作員</span>
     <span class="hr-at">30</span>
   </button>
   <button class="hero-rank rankcard" data-level="2" type="button"
-    style="--d:180ms" aria-label="Preview the promotion to Controller">
+    style="--d:180ms" aria-label="預覽晉升到管制員">
     <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Controller insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="管制員徽記">
   <defs></defs>
   <g>
     <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.6"/>
@@ -264,13 +271,13 @@
     
   </g>
 </svg></span>
-    <span class="hr-name">Controller</span>
+    <span class="hr-name">管制員</span>
     <span class="hr-at">100</span>
   </button>
   <button class="hero-rank rankcard" data-level="3" type="button"
-    style="--d:270ms" aria-label="Preview the promotion to Commander">
+    style="--d:270ms" aria-label="預覽晉升到指揮官">
     <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Commander insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="指揮官徽記">
   <defs></defs>
   <g>
     <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.7"/>
@@ -289,13 +296,13 @@
     
   </g>
 </svg></span>
-    <span class="hr-name">Commander</span>
+    <span class="hr-name">指揮官</span>
     <span class="hr-at">250</span>
   </button>
   <button class="hero-rank rankcard" data-level="4" type="button"
-    style="--d:360ms" aria-label="Preview the promotion to Flight Director">
+    style="--d:360ms" aria-label="預覽晉升到飛航總指揮">
     <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flight Director insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="飛航總指揮徽記">
   <defs><filter id="gh4" x="-60%" y="-60%" width="220%" height="220%">
          <feGaussianBlur stdDeviation="4" result="b"/>
          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -318,13 +325,13 @@
     
   </g>
 </svg></span>
-    <span class="hr-name">Flight Director</span>
+    <span class="hr-name">飛航總指揮</span>
     <span class="hr-at">365</span>
   </button>
   <button class="hero-rank rankcard" data-level="5" type="button"
-    style="--d:450ms" aria-label="Preview the promotion to Mission Director">
+    style="--d:450ms" aria-label="預覽晉升到任務總指揮">
     <span class="hr-art"><svg viewBox="0 0 120 112" width="74" height="69"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mission Director insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="任務總指揮徽記">
   <defs><filter id="gh5" x="-60%" y="-60%" width="220%" height="220%">
          <feGaussianBlur stdDeviation="4" result="b"/>
          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -349,13 +356,13 @@
     <rect x="43" y="105" width="34" height="2.6" rx="1.3" fill="#FFF3C4" opacity="0.9"/>
   </g>
 </svg></span>
-    <span class="hr-name">Mission Director</span>
+    <span class="hr-name">任務總指揮</span>
     <span class="hr-at">730</span>
   </button>
   <button class="hero-rank rankcard" data-level="6" type="button"
-    style="--d:540ms" aria-label="Preview the promotion to Polaris">
+    style="--d:540ms" aria-label="預覽晉升到北極星">
     <span class="hr-art"><svg viewBox="0 0 120 116" width="74" height="72"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Polaris insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="北極星徽記">
   <defs><filter id="gh6" x="-60%" y="-60%" width="220%" height="220%">
          <feGaussianBlur stdDeviation="4" result="b"/>
          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -393,342 +400,341 @@
     <rect x="43" y="105" width="34" height="2.6" rx="1.3" fill="#FFFFFF" opacity="0.9"/><rect x="49" y="110" width="22" height="2.2" rx="1.1" fill="#FFE9A8" opacity="0.75"/>
   </g>
 </svg></span>
-    <span class="hr-name">Polaris</span>
+    <span class="hr-name">北極星</span>
     <span class="hr-at">1825</span>
   </button></div>
-  <p class="strip-hint">Seven ranks, seven insignia — tap any one to watch the promotion.</p>
+  <p class="strip-hint">七個等級，七枚徽記 — 點按任何一個，就能看到晉升的畫面。</p>
 
   <div class="counts">
-    <div class="count"><b>7</b><span>Ranks</span></div>
-    <div class="count"><b>9</b><span>Badges</span></div>
-    <div class="count"><b>8</b><span>Cosmetics</span></div>
-    <div class="count"><b>3</b><span>Arena exclusives</span></div>
+    <div class="count"><b>7</b><span>等級</span></div>
+    <div class="count"><b>9</b><span>徽章</span></div>
+    <div class="count"><b>8</b><span>外觀</span></div>
+    <div class="count"><b>3</b><span>競技場專屬</span></div>
   </div>
 
   <div class="rule-strip">
     <div class="rule">
-      <h3>One point a day, at most</h3>
-      <p>A day counts once every mission due that day is done. Half a day counts for nothing,
-      and a heroic day counts for one — the only input is turning up again tomorrow.</p>
+      <h3>一天最多 1 點</h3>
+      <p>當天該做的任務全部完成，這一天才算數。做一半不算，做得再多也只算一點 —
+      你能做的只有明天再出現一次。</p>
     </div>
     <div class="rule">
-      <h3>Reached, never bought</h3>
-      <p>Nothing here is for sale and nothing is deducted. Your point total simply passes a
-      mark and the thing opens.</p>
+      <h3>達成，不是購買</h3>
+      <p>這裡沒有任何東西在賣，也不會扣掉你任何東西。只是你的 T點累積到了門檻，
+      東西就開啟了。</p>
     </div>
     <div class="rule">
-      <h3>Nothing is taken back</h3>
-      <p>Your record only goes up. A badge stays on the shelf for good, a cosmetic you've
-      opened never closes, and a missed day doesn't undo any of it.</p>
+      <h3>不會被收回</h3>
+      <p>你的紀錄只會往上。徽章會永久留在架上，開啟過的外觀不會再關起來，
+      漏掉一天也不會把這些抹掉。</p>
     </div>
   </div>
 
-  <h2 class="sec">The road</h2>
-  <p class="sec-p">Every point where something changes, from your first clean day to a full
-  year. Nothing in between is a dead stretch — the next thing is always in sight. This is the
-  solo road; <strong>Champion</strong> and <strong>Contender</strong> aren't on it, because
-  they're won in the Arena and no number of clean days will open them.</p>
+  <h2 class="sec">路線圖</h2>
+  <p class="sec-p">從第一個全清日到滿一年，每一個會有東西改變的節點都在這裡。
+  中間沒有哪一段是空白的 — 下一個目標永遠看得見。這是個人的路線；
+  <strong>冠軍</strong>和<strong>完賽者</strong>不在上面，因為它們要在競技場裡贏得，
+  累積再多全清日也開不出來。</p>
   <ol class="road">
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">1</span><span class="dayword">day</span>
-      <span class="dayhint">your first</span></div>
+    <div class="day"><span class="daynum">1</span><span class="dayword">天</span>
+      <span class="dayhint">第一天</span></div>
     <div class="gains">
       
         <div class="gain g-trophy">
           <span class="gicon" aria-hidden="true">★</span>
           <div>
-            <div class="gname">First Light</div>
-            <div class="gdetail"><span class="gkind">Badge</span> · Clear every mission for one day</div>
+            <div class="gname">曙光</div>
+            <div class="gdetail"><span class="gkind">徽章</span> · 完成一整天的所有任務</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">7</span><span class="dayword">days</span>
-      <span class="dayhint">one week</span></div>
+    <div class="day"><span class="daynum">7</span><span class="dayword">天</span>
+      <span class="dayhint">一週</span></div>
     <div class="gains">
       
         <div class="gain g-rank">
           <span class="gicon" aria-hidden="true">▲</span>
           <div>
-            <div class="gname">Cadet</div>
-            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+            <div class="gname">學員</div>
+            <div class="gdetail"><span class="gkind">等級</span> · 新的持續力等級</div>
           </div>
         </div>
         <div class="gain g-trophy">
           <span class="gicon" aria-hidden="true">★</span>
           <div>
-            <div class="gname">Perfect Week</div>
-            <div class="gdetail"><span class="gkind">Badge</span> · Clear every mission 7 days running</div>
+            <div class="gname">完美一週</div>
+            <div class="gdetail"><span class="gkind">徽章</span> · 連續 7 天完成所有任務</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">14</span><span class="dayword">days</span>
-      <span class="dayhint">2 weeks</span></div>
+    <div class="day"><span class="daynum">14</span><span class="dayword">天</span>
+      <span class="dayhint">2 週</span></div>
     <div class="gains">
       
         <div class="gain g-trophy">
           <span class="gicon" aria-hidden="true">★</span>
           <div>
-            <div class="gname">Fortnight</div>
-            <div class="gdetail"><span class="gkind">Badge</span> · Clear every mission 14 days running</div>
+            <div class="gname">完美兩週</div>
+            <div class="gdetail"><span class="gkind">徽章</span> · 連續 14 天完成所有任務</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">30</span><span class="dayword">days</span>
-      <span class="dayhint">4 weeks</span></div>
+    <div class="day"><span class="daynum">30</span><span class="dayword">天</span>
+      <span class="dayhint">4 週</span></div>
     <div class="gains">
       
         <div class="gain g-rank">
           <span class="gicon" aria-hidden="true">▲</span>
           <div>
-            <div class="gname">Operator</div>
-            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+            <div class="gname">操作員</div>
+            <div class="gdetail"><span class="gkind">等級</span> · 新的持續力等級</div>
           </div>
         </div>
         <div class="gain g-trophy">
           <span class="gicon" aria-hidden="true">★</span>
           <div>
-            <div class="gname">Perfect Month</div>
-            <div class="gdetail"><span class="gkind">Badge</span> · Clear every mission 30 days running</div>
+            <div class="gname">完美一個月</div>
+            <div class="gdetail"><span class="gkind">徽章</span> · 連續 30 天完成所有任務</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">45</span><span class="dayword">days</span>
-      <span class="dayhint">6 weeks</span></div>
+    <div class="day"><span class="daynum">45</span><span class="dayword">天</span>
+      <span class="dayhint">6 週</span></div>
     <div class="gains">
       
         <div class="gain g-cosmetic">
           <span class="gicon" aria-hidden="true">◆</span>
           <div>
-            <div class="gname">Aurora</div>
-            <div class="gdetail"><span class="gkind">Cosmetic</span> · ACCENT CHANNEL</div>
+            <div class="gname">極光</div>
+            <div class="gdetail"><span class="gkind">外觀</span> · 主題色</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">90</span><span class="dayword">days</span>
-      <span class="dayhint">3 months</span></div>
+    <div class="day"><span class="daynum">90</span><span class="dayword">天</span>
+      <span class="dayhint">3 個月</span></div>
     <div class="gains">
       
         <div class="gain g-cosmetic">
           <span class="gicon" aria-hidden="true">◆</span>
           <div>
-            <div class="gname">Blackout</div>
-            <div class="gdetail"><span class="gkind">Cosmetic</span> · PANEL THEME</div>
+            <div class="gname">靜默</div>
+            <div class="gdetail"><span class="gkind">外觀</span> · 面板主題</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">100</span><span class="dayword">days</span>
-      <span class="dayhint">3 months</span></div>
+    <div class="day"><span class="daynum">100</span><span class="dayword">天</span>
+      <span class="dayhint">3 個月</span></div>
     <div class="gains">
       
         <div class="gain g-rank">
           <span class="gicon" aria-hidden="true">▲</span>
           <div>
-            <div class="gname">Controller</div>
-            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+            <div class="gname">管制員</div>
+            <div class="gdetail"><span class="gkind">等級</span> · 新的持續力等級</div>
           </div>
         </div>
         <div class="gain g-trophy">
           <span class="gicon" aria-hidden="true">★</span>
           <div>
-            <div class="gname">100 Club</div>
-            <div class="gdetail"><span class="gkind">Badge</span> · 100 clean days</div>
+            <div class="gname">百日俱樂部</div>
+            <div class="gdetail"><span class="gkind">徽章</span> · 累積 100 個全清日</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">135</span><span class="dayword">days</span>
-      <span class="dayhint">5 months</span></div>
+    <div class="day"><span class="daynum">135</span><span class="dayword">天</span>
+      <span class="dayhint">5 個月</span></div>
     <div class="gains">
       
         <div class="gain g-cosmetic">
           <span class="gicon" aria-hidden="true">◆</span>
           <div>
-            <div class="gname">Eclipse</div>
-            <div class="gdetail"><span class="gkind">Cosmetic</span> · APP ICON</div>
+            <div class="gname">日蝕</div>
+            <div class="gdetail"><span class="gkind">外觀</span> · App 圖示</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">180</span><span class="dayword">days</span>
-      <span class="dayhint">6 months</span></div>
+    <div class="day"><span class="daynum">180</span><span class="dayword">天</span>
+      <span class="dayhint">6 個月</span></div>
     <div class="gains">
       
         <div class="gain g-cosmetic">
           <span class="gicon" aria-hidden="true">◆</span>
           <div>
-            <div class="gname">Nebula</div>
-            <div class="gdetail"><span class="gkind">Cosmetic</span> · ACCENT CHANNEL</div>
+            <div class="gname">星雲</div>
+            <div class="gdetail"><span class="gkind">外觀</span> · 主題色</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">225</span><span class="dayword">days</span>
-      <span class="dayhint">8 months</span></div>
+    <div class="day"><span class="daynum">225</span><span class="dayword">天</span>
+      <span class="dayhint">8 個月</span></div>
     <div class="gains">
       
         <div class="gain g-cosmetic">
           <span class="gicon" aria-hidden="true">◆</span>
           <div>
-            <div class="gname">T-Minus</div>
-            <div class="gdetail"><span class="gkind">Cosmetic</span> · BOOT SCREEN</div>
+            <div class="gname">發射倒數</div>
+            <div class="gdetail"><span class="gkind">外觀</span> · 啟動畫面</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">250</span><span class="dayword">days</span>
-      <span class="dayhint">8 months</span></div>
+    <div class="day"><span class="daynum">250</span><span class="dayword">天</span>
+      <span class="dayhint">8 個月</span></div>
     <div class="gains">
       
         <div class="gain g-rank">
           <span class="gicon" aria-hidden="true">▲</span>
           <div>
-            <div class="gname">Commander</div>
-            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+            <div class="gname">指揮官</div>
+            <div class="gdetail"><span class="gkind">等級</span> · 新的持續力等級</div>
           </div>
         </div>
         <div class="gain g-trophy">
           <span class="gicon" aria-hidden="true">★</span>
           <div>
-            <div class="gname">Quarter Deck</div>
-            <div class="gdetail"><span class="gkind">Badge</span> · 250 clean days</div>
+            <div class="gname">深空</div>
+            <div class="gdetail"><span class="gkind">徽章</span> · 累積 250 個全清日</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">270</span><span class="dayword">days</span>
-      <span class="dayhint">9 months</span></div>
+    <div class="day"><span class="daynum">270</span><span class="dayword">天</span>
+      <span class="dayhint">9 個月</span></div>
     <div class="gains">
       
         <div class="gain g-cosmetic">
           <span class="gicon" aria-hidden="true">◆</span>
           <div>
-            <div class="gname">Phosphor</div>
-            <div class="gdetail"><span class="gkind">Cosmetic</span> · PANEL THEME</div>
+            <div class="gname">磷光</div>
+            <div class="gdetail"><span class="gkind">外觀</span> · 面板主題</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">315</span><span class="dayword">days</span>
-      <span class="dayhint">11 months</span></div>
+    <div class="day"><span class="daynum">315</span><span class="dayword">天</span>
+      <span class="dayhint">11 個月</span></div>
     <div class="gains">
       
         <div class="gain g-cosmetic">
           <span class="gicon" aria-hidden="true">◆</span>
           <div>
-            <div class="gname">Ion</div>
-            <div class="gdetail"><span class="gkind">Cosmetic</span> · ACCENT CHANNEL</div>
+            <div class="gname">離子</div>
+            <div class="gdetail"><span class="gkind">外觀</span> · 主題色</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">360</span><span class="dayword">days</span>
-      <span class="dayhint">12 months</span></div>
+    <div class="day"><span class="daynum">360</span><span class="dayword">天</span>
+      <span class="dayhint">12 個月</span></div>
     <div class="gains">
       
         <div class="gain g-cosmetic">
           <span class="gicon" aria-hidden="true">◆</span>
           <div>
-            <div class="gname">Solar</div>
-            <div class="gdetail"><span class="gkind">Cosmetic</span> · APP ICON</div>
+            <div class="gname">日冕</div>
+            <div class="gdetail"><span class="gkind">外觀</span> · App 圖示</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">365</span><span class="dayword">days</span>
-      <span class="dayhint">one year</span></div>
+    <div class="day"><span class="daynum">365</span><span class="dayword">天</span>
+      <span class="dayhint">一年</span></div>
     <div class="gains">
       
         <div class="gain g-rank">
           <span class="gicon" aria-hidden="true">▲</span>
           <div>
-            <div class="gname">Flight Director</div>
-            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+            <div class="gname">飛航總指揮</div>
+            <div class="gdetail"><span class="gkind">等級</span> · 新的持續力等級</div>
           </div>
         </div>
         <div class="gain g-trophy">
           <span class="gicon" aria-hidden="true">★</span>
           <div>
-            <div class="gname">Veteran</div>
-            <div class="gdetail"><span class="gkind">Badge</span> · 365 clean days</div>
+            <div class="gname">老將</div>
+            <div class="gdetail"><span class="gkind">徽章</span> · 累積 365 個全清日</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">730</span><span class="dayword">days</span>
-      <span class="dayhint">24 months</span></div>
+    <div class="day"><span class="daynum">730</span><span class="dayword">天</span>
+      <span class="dayhint">24 個月</span></div>
     <div class="gains">
       
         <div class="gain g-rank">
           <span class="gicon" aria-hidden="true">▲</span>
           <div>
-            <div class="gname">Mission Director</div>
-            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+            <div class="gname">任務總指揮</div>
+            <div class="gdetail"><span class="gkind">等級</span> · 新的持續力等級</div>
           </div>
         </div>
     </div>
   </li>
   <li class="step">
     <div class="dot" aria-hidden="true"></div>
-    <div class="day"><span class="daynum">1825</span><span class="dayword">days</span>
-      <span class="dayhint">61 months</span></div>
+    <div class="day"><span class="daynum">1825</span><span class="dayword">天</span>
+      <span class="dayhint">61 個月</span></div>
     <div class="gains">
       
         <div class="gain g-rank">
           <span class="gicon" aria-hidden="true">▲</span>
           <div>
-            <div class="gname">Polaris</div>
-            <div class="gdetail"><span class="gkind">Rank</span> · New consistency rank</div>
+            <div class="gname">北極星</div>
+            <div class="gdetail"><span class="gkind">等級</span> · 新的持續力等級</div>
           </div>
         </div>
     </div>
   </li></ol>
 
-  <h2 class="sec">Ranks</h2>
-  <p class="sec-p">Your standing, measured in clean days. It only ever climbs — and every
-  rung has its own insignia, so a promotion is something you can see rather than a word that
-  quietly changed. Tap one to watch the moment.</p>
+  <h2 class="sec">等級</h2>
+  <p class="sec-p">你目前的位置，用全清日來算。它只會往上 — 而且每一級都有自己的徽記，
+  所以晉升是看得見的一件事，而不是某個字悄悄換掉了。點按任何一級，就能看到那個瞬間。</p>
   <div class="rankgrid">
   <button class="rankcard" data-level="0" type="button"
-    aria-label="Preview the promotion to Cadet">
+    aria-label="預覽晉升到學員">
     <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cadet insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="學員徽記">
   <defs></defs>
   <g>
     <path d="M31 77 A38 38 0 1 1 89 77" fill="none" stroke="#8592AE" stroke-linecap="round" stroke-width="2" opacity="0.5"/>
@@ -738,14 +744,14 @@
     
   </g>
 </svg></div>
-    <div class="rcname">Cadet</div>
-    <div class="rcat">7 clean days</div>
-    <div class="rcplay">Play promotion ▸</div>
+    <div class="rcname">學員</div>
+    <div class="rcat">7 個全清日</div>
+    <div class="rcplay">播放晉升 ▸</div>
   </button>
   <button class="rankcard" data-level="1" type="button"
-    aria-label="Preview the promotion to Operator">
+    aria-label="預覽晉升到操作員">
     <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Operator insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="操作員徽記">
   <defs></defs>
   <g>
     <circle cx="60" cy="50" r="38" fill="none" stroke="#7FA9FF" stroke-linecap="round" stroke-width="2" opacity="0.55"/>
@@ -757,14 +763,14 @@
     
   </g>
 </svg></div>
-    <div class="rcname">Operator</div>
-    <div class="rcat">30 clean days</div>
-    <div class="rcplay">Play promotion ▸</div>
+    <div class="rcname">操作員</div>
+    <div class="rcat">30 個全清日</div>
+    <div class="rcplay">播放晉升 ▸</div>
   </button>
   <button class="rankcard" data-level="2" type="button"
-    aria-label="Preview the promotion to Controller">
+    aria-label="預覽晉升到管制員">
     <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Controller insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="管制員徽記">
   <defs></defs>
   <g>
     <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.6"/>
@@ -779,14 +785,14 @@
     
   </g>
 </svg></div>
-    <div class="rcname">Controller</div>
-    <div class="rcat">100 clean days</div>
-    <div class="rcplay">Play promotion ▸</div>
+    <div class="rcname">管制員</div>
+    <div class="rcat">100 個全清日</div>
+    <div class="rcplay">播放晉升 ▸</div>
   </button>
   <button class="rankcard" data-level="3" type="button"
-    aria-label="Preview the promotion to Commander">
+    aria-label="預覽晉升到指揮官">
     <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Commander insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="指揮官徽記">
   <defs></defs>
   <g>
     <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.7"/>
@@ -805,14 +811,14 @@
     
   </g>
 </svg></div>
-    <div class="rcname">Commander</div>
-    <div class="rcat">250 clean days</div>
-    <div class="rcplay">Play promotion ▸</div>
+    <div class="rcname">指揮官</div>
+    <div class="rcat">250 個全清日</div>
+    <div class="rcplay">播放晉升 ▸</div>
   </button>
   <button class="rankcard" data-level="4" type="button"
-    aria-label="Preview the promotion to Flight Director">
+    aria-label="預覽晉升到飛航總指揮">
     <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flight Director insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="飛航總指揮徽記">
   <defs><filter id="gr4" x="-60%" y="-60%" width="220%" height="220%">
          <feGaussianBlur stdDeviation="4" result="b"/>
          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -835,14 +841,14 @@
     
   </g>
 </svg></div>
-    <div class="rcname">Flight Director</div>
-    <div class="rcat">365 clean days</div>
-    <div class="rcplay">Play promotion ▸</div>
+    <div class="rcname">飛航總指揮</div>
+    <div class="rcat">365 個全清日</div>
+    <div class="rcplay">播放晉升 ▸</div>
   </button>
   <button class="rankcard" data-level="5" type="button"
-    aria-label="Preview the promotion to Mission Director">
+    aria-label="預覽晉升到任務總指揮">
     <div class="rcart"><svg viewBox="0 0 120 112" width="86" height="80"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mission Director insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="任務總指揮徽記">
   <defs><filter id="gr5" x="-60%" y="-60%" width="220%" height="220%">
          <feGaussianBlur stdDeviation="4" result="b"/>
          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -867,14 +873,14 @@
     <rect x="43" y="105" width="34" height="2.6" rx="1.3" fill="#FFF3C4" opacity="0.9"/>
   </g>
 </svg></div>
-    <div class="rcname">Mission Director</div>
-    <div class="rcat">730 clean days</div>
-    <div class="rcplay">Play promotion ▸</div>
+    <div class="rcname">任務總指揮</div>
+    <div class="rcat">730 個全清日</div>
+    <div class="rcplay">播放晉升 ▸</div>
   </button>
   <button class="rankcard" data-level="6" type="button"
-    aria-label="Preview the promotion to Polaris">
+    aria-label="預覽晉升到北極星">
     <div class="rcart"><svg viewBox="0 0 120 116" width="86" height="83"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Polaris insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="北極星徽記">
   <defs><filter id="gr6" x="-60%" y="-60%" width="220%" height="220%">
          <feGaussianBlur stdDeviation="4" result="b"/>
          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -912,74 +918,74 @@
     <rect x="43" y="105" width="34" height="2.6" rx="1.3" fill="#FFFFFF" opacity="0.9"/><rect x="49" y="110" width="22" height="2.2" rx="1.1" fill="#FFE9A8" opacity="0.75"/>
   </g>
 </svg></div>
-    <div class="rcname">Polaris</div>
-    <div class="rcat">1825 clean days</div>
-    <div class="rcplay">Play promotion ▸</div>
+    <div class="rcname">北極星</div>
+    <div class="rcat">1825 個全清日</div>
+    <div class="rcplay">播放晉升 ▸</div>
   </button></div>
 
-  <h2 class="sec">Badges</h2>
-  <p class="sec-p">The shelf. Locked ones stay visible on purpose, so you can always see
-  what's still on the table — and each one tells you how close you are. Seven come from clean
-  days; the two marked <span class="inline-flag">Arena</span> are won against friends.</p>
+  <h2 class="sec">徽章</h2>
+  <p class="sec-p">這是獎盃架。尚未取得的也會一直顯示，讓你隨時看得到還有什麼可以爭取 —
+  每一項也會告訴你還差多少。其中 7 項來自全清日；標示<span class="inline-flag">競技場</span>的
+  2 項則要跟朋友較量才能贏得。</p>
   <div class="tiles">
   <div class="tile arena">
     <div class="glyph">🏆</div>
-    <div class="tname">Champion</div>
-    <div class="tgate">Win an Arena challenge</div>
-    <div class="tflag">Arena</div>
+    <div class="tname">冠軍</div>
+    <div class="tgate">贏得一場競技場挑戰</div>
+    <div class="tflag">競技場</div>
   </div>
   <div class="tile">
     <div class="glyph">◦</div>
-    <div class="tname">First Light</div>
-    <div class="tgate">Clear every mission for one day</div>
+    <div class="tname">曙光</div>
+    <div class="tgate">完成一整天的所有任務</div>
     
   </div>
   <div class="tile">
     <div class="glyph">◆</div>
-    <div class="tname">Perfect Week</div>
-    <div class="tgate">Clear every mission 7 days running</div>
+    <div class="tname">完美一週</div>
+    <div class="tgate">連續 7 天完成所有任務</div>
     
   </div>
   <div class="tile">
     <div class="glyph">◇</div>
-    <div class="tname">Fortnight</div>
-    <div class="tgate">Clear every mission 14 days running</div>
+    <div class="tname">完美兩週</div>
+    <div class="tgate">連續 14 天完成所有任務</div>
     
   </div>
   <div class="tile">
     <div class="glyph">◈</div>
-    <div class="tname">Perfect Month</div>
-    <div class="tgate">Clear every mission 30 days running</div>
+    <div class="tname">完美一個月</div>
+    <div class="tgate">連續 30 天完成所有任務</div>
     
   </div>
   <div class="tile arena">
     <div class="glyph">▣</div>
-    <div class="tname">Contender</div>
-    <div class="tgate">Finish an Arena challenge</div>
-    <div class="tflag">Arena</div>
+    <div class="tname">完賽者</div>
+    <div class="tgate">完成一場競技場挑戰</div>
+    <div class="tflag">競技場</div>
   </div>
   <div class="tile">
     <div class="glyph">⬢</div>
-    <div class="tname">100 Club</div>
-    <div class="tgate">100 clean days</div>
+    <div class="tname">百日俱樂部</div>
+    <div class="tgate">累積 100 個全清日</div>
     
   </div>
   <div class="tile">
     <div class="glyph">⬡</div>
-    <div class="tname">Quarter Deck</div>
-    <div class="tgate">250 clean days</div>
+    <div class="tname">深空</div>
+    <div class="tgate">累積 250 個全清日</div>
     
   </div>
   <div class="tile">
     <div class="glyph">⬣</div>
-    <div class="tname">Veteran</div>
-    <div class="tgate">365 clean days</div>
+    <div class="tname">老將</div>
+    <div class="tgate">累積 365 個全清日</div>
     
   </div></div>
 
-  <h2 class="sec">Cosmetics</h2>
-  <p class="sec-p">One opens every 45 clean days. Accent colours and panel
-  themes you can wear; the app changes with you. Earned app icons are iPhone-only.</p>
+  <h2 class="sec">外觀</h2>
+  <p class="sec-p">每累積 45 個全清日就開啟一項。主題色和面板主題都可以裝備，
+  App 會跟著你一起變。取得的 App 圖示僅限 iPhone。</p>
   <div class="tiles">
   <div class="tile">
     <div class="pvwrap"><span class="pv"><svg viewBox="0 0 88 64" width="88" height="64" aria-hidden="true">
@@ -992,9 +998,9 @@
     <rect x="12" y="38" width="40" height="6" rx="3" fill="#4FD6C8"/>
     <rect x="12" y="50" width="22" height="3" rx="1.5" fill="#4FD6C8" opacity=".5"/>
   </svg></span></div>
-    <div class="tname">Aurora</div>
-    <div class="tkind">ACCENT CHANNEL</div>
-    <div class="tgate">45 clean days</div>
+    <div class="tname">極光</div>
+    <div class="tkind">主題色</div>
+    <div class="tgate">45 個全清日</div>
   </div>
   <div class="tile">
     <div class="pvwrap"><span class="pv"><svg viewBox="0 0 88 64" width="88" height="64" aria-hidden="true">
@@ -1003,15 +1009,15 @@
       <rect x="20" y="36" width="30" height="3" rx="1.5" fill="rgba(255,255,255,.28)"/>
       <rect x="20" y="44" width="46" height="3" rx="1.5" fill="rgba(255,255,255,.14)"/>
     </svg></span></div>
-    <div class="tname">Blackout</div>
-    <div class="tkind">PANEL THEME</div>
-    <div class="tgate">90 clean days</div>
+    <div class="tname">靜默</div>
+    <div class="tkind">面板主題</div>
+    <div class="tgate">90 個全清日</div>
   </div>
   <div class="tile">
     <div class="pvwrap"><img class="pv pv-icon" src="/assets/cosmetics/mark-mono.png" alt="" width="64" height="64" loading="lazy" /></div>
-    <div class="tname">Eclipse</div>
-    <div class="tkind">APP ICON</div>
-    <div class="tgate">135 clean days</div>
+    <div class="tname">日蝕</div>
+    <div class="tkind">App 圖示</div>
+    <div class="tgate">135 個全清日</div>
   </div>
   <div class="tile">
     <div class="pvwrap"><span class="pv"><svg viewBox="0 0 88 64" width="88" height="64" aria-hidden="true">
@@ -1024,9 +1030,9 @@
     <rect x="12" y="38" width="40" height="6" rx="3" fill="#EE7EBB"/>
     <rect x="12" y="50" width="22" height="3" rx="1.5" fill="#EE7EBB" opacity=".5"/>
   </svg></span></div>
-    <div class="tname">Nebula</div>
-    <div class="tkind">ACCENT CHANNEL</div>
-    <div class="tgate">180 clean days</div>
+    <div class="tname">星雲</div>
+    <div class="tkind">主題色</div>
+    <div class="tgate">180 個全清日</div>
   </div>
   <div class="tile">
     <div class="pvwrap"><span class="pv"><svg viewBox="0 0 88 64" width="88" height="64" aria-hidden="true">
@@ -1035,9 +1041,9 @@
       <path d="M44 17 L46.6 24 L54 26 L46.6 28 L44 35 L41.4 28 L34 26 L41.4 24 Z" fill="#0B0E17"/>
       <rect x="30" y="45" width="28" height="3" rx="1.5" fill="#FFB454" opacity=".85"/>
     </svg></span></div>
-    <div class="tname">T-Minus</div>
-    <div class="tkind">BOOT SCREEN</div>
-    <div class="tgate">225 clean days</div>
+    <div class="tname">發射倒數</div>
+    <div class="tkind">啟動畫面</div>
+    <div class="tgate">225 個全清日</div>
   </div>
   <div class="tile">
     <div class="pvwrap"><span class="pv"><svg viewBox="0 0 88 64" width="88" height="64" aria-hidden="true">
@@ -1046,9 +1052,9 @@
       <rect x="20" y="36" width="30" height="3" rx="1.5" fill="rgba(255,255,255,.28)"/>
       <rect x="20" y="44" width="46" height="3" rx="1.5" fill="rgba(255,255,255,.14)"/>
     </svg></span></div>
-    <div class="tname">Phosphor</div>
-    <div class="tkind">PANEL THEME</div>
-    <div class="tgate">270 clean days</div>
+    <div class="tname">磷光</div>
+    <div class="tkind">面板主題</div>
+    <div class="tgate">270 個全清日</div>
   </div>
   <div class="tile">
     <div class="pvwrap"><span class="pv"><svg viewBox="0 0 88 64" width="88" height="64" aria-hidden="true">
@@ -1061,20 +1067,20 @@
     <rect x="12" y="38" width="40" height="6" rx="3" fill="#9B8CFF"/>
     <rect x="12" y="50" width="22" height="3" rx="1.5" fill="#9B8CFF" opacity=".5"/>
   </svg></span></div>
-    <div class="tname">Ion</div>
-    <div class="tkind">ACCENT CHANNEL</div>
-    <div class="tgate">315 clean days</div>
+    <div class="tname">離子</div>
+    <div class="tkind">主題色</div>
+    <div class="tgate">315 個全清日</div>
   </div>
   <div class="tile">
     <div class="pvwrap"><img class="pv pv-icon" src="/assets/cosmetics/mark-amber.png" alt="" width="64" height="64" loading="lazy" /></div>
-    <div class="tname">Solar</div>
-    <div class="tkind">APP ICON</div>
-    <div class="tgate">360 clean days</div>
+    <div class="tname">日冕</div>
+    <div class="tkind">App 圖示</div>
+    <div class="tgate">360 個全清日</div>
   </div></div>
 
-  <h2 class="sec">Won, not earned</h2>
-  <p class="sec-p">A small track you can only take in the Arena, against friends. Clean days
-  will never open one, however many you stack up — that's the entire point of them.</p>
+  <h2 class="sec">贏來的，不是累積來的</h2>
+  <p class="sec-p">一條只能在競技場裡、跟朋友較量才走得到的小路。全清日永遠開不出任何一項，
+  累積再多也一樣 — 這正是它們的意義所在。</p>
   <div class="tiles">
   <div class="tile gold">
     <div class="pvwrap"><span class="pv"><svg viewBox="0 0 88 64" width="88" height="64" aria-hidden="true">
@@ -1087,9 +1093,9 @@
     <rect x="12" y="38" width="40" height="6" rx="3" fill="#FFD24A"/>
     <rect x="12" y="50" width="22" height="3" rx="1.5" fill="#FFD24A" opacity=".5"/>
   </svg></span></div>
-    <div class="tname">Champion Gold</div>
-    <div class="tkind">ACCENT CHANNEL</div>
-    <div class="tgate">Win a challenge</div>
+    <div class="tname">王者金</div>
+    <div class="tkind">主題色</div>
+    <div class="tgate">贏得一場挑戰</div>
   </div>
   <div class="tile gold">
     <div class="pvwrap"><span class="pv"><svg viewBox="0 0 88 64" width="88" height="64" aria-hidden="true">
@@ -1098,36 +1104,35 @@
       <path d="M44 17 L46.6 24 L54 26 L46.6 28 L44 35 L41.4 28 L34 26 L41.4 24 Z" fill="#5BE39B"/>
       <rect x="30" y="45" width="28" height="3" rx="1.5" fill="#FFD24A" opacity=".85"/>
     </svg></span></div>
-    <div class="tname">Victory Splash</div>
-    <div class="tkind">BOOT SCREEN</div>
-    <div class="tgate">Reach Contender rank</div>
+    <div class="tname">凱旋</div>
+    <div class="tkind">啟動畫面</div>
+    <div class="tgate">達到「選手」等級</div>
   </div>
   <div class="tile gold">
     <div class="pvwrap"><img class="pv pv-icon" src="/assets/cosmetics/ace-mark.png" alt="" width="64" height="64" loading="lazy" /></div>
-    <div class="tname">Ace Mark</div>
-    <div class="tkind">APP ICON</div>
-    <div class="tgate">Reach Rival rank</div>
+    <div class="tname">王牌塗裝</div>
+    <div class="tkind">App 圖示</div>
+    <div class="tgate">達到「勁敵」等級</div>
   </div></div>
 
-  <h2 class="sec">Streak freezes</h2>
-  <p class="sec-p">A streak freeze quietly protects a day you missed, so a bad week doesn't
-  erase a good month. One arrives every 14 days you do at least one thing, up to 3 held at
-  once — showing up is what earns protection, not being perfect. They're earned, never
-  bought, so holding one can never cost you a rank or close a cosmetic you've already
-  opened.</p>
+  <h2 class="sec">連續紀錄保護</h2>
+  <p class="sec-p">漏掉一天時，一次保護會安靜地守住那一天，不讓狀況不好的一週抹掉
+  表現良好的一個月。每有 14 天你至少完成一件事就獲得一次，最多同時持有 3 次 —
+  保護是努力得來的，不是買來的，所以它永遠不會讓你掉一個等級，也不會關掉
+  你已經開啟的外觀。</p>
 
-  <div class="cta"><a class="button" href="/android">Get the Android beta</a></div>
+  <div class="cta"><a class="button" href="/zh/android">取得 Android 測試版</a></div>
 
-  <p class="note">Every number on this page is read from the app itself, so it can't drift
-  from what you'll actually see. Questions? <a href="/support">Contact support</a>.</p>
+  <p class="note">這一頁上的每個數字都直接取自 App，不會和你實際看到的有出入。
+  有問題嗎？<a href="/zh/support">聯絡客服</a>。</p>
 </div>
 
-<div class="promo" id="promo" role="dialog" aria-modal="true" aria-label="Rank promotion">
+<div class="promo" id="promo" role="dialog" aria-modal="true" aria-label="等級晉升">
   <div class="promo-inner">
     <div class="promo-ring" aria-hidden="true"></div>
     <div class="promo-ring two" aria-hidden="true"></div>
     <div class="promo-art" data-level="0" hidden><svg viewBox="0 0 120 112" width="210" height="196"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cadet insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="學員徽記">
   <defs></defs>
   <g>
     <path d="M31 77 A38 38 0 1 1 89 77" fill="none" stroke="#8592AE" stroke-linecap="round" stroke-width="2" opacity="0.5"/>
@@ -1137,7 +1142,7 @@
     
   </g>
 </svg></div><div class="promo-art" data-level="1" hidden><svg viewBox="0 0 120 112" width="210" height="196"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Operator insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="操作員徽記">
   <defs></defs>
   <g>
     <circle cx="60" cy="50" r="38" fill="none" stroke="#7FA9FF" stroke-linecap="round" stroke-width="2" opacity="0.55"/>
@@ -1149,7 +1154,7 @@
     
   </g>
 </svg></div><div class="promo-art" data-level="2" hidden><svg viewBox="0 0 120 112" width="210" height="196"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Controller insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="管制員徽記">
   <defs></defs>
   <g>
     <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.6"/>
@@ -1164,7 +1169,7 @@
     
   </g>
 </svg></div><div class="promo-art" data-level="3" hidden><svg viewBox="0 0 120 112" width="210" height="196"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Commander insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="指揮官徽記">
   <defs></defs>
   <g>
     <circle cx="60" cy="50" r="38" fill="none" stroke="#FFB454" stroke-linecap="round" stroke-width="2" opacity="0.7"/>
@@ -1183,7 +1188,7 @@
     
   </g>
 </svg></div><div class="promo-art" data-level="4" hidden><svg viewBox="0 0 120 112" width="210" height="196"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flight Director insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="飛航總指揮徽記">
   <defs><filter id="gp4" x="-60%" y="-60%" width="220%" height="220%">
          <feGaussianBlur stdDeviation="4" result="b"/>
          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -1206,7 +1211,7 @@
     
   </g>
 </svg></div><div class="promo-art" data-level="5" hidden><svg viewBox="0 0 120 112" width="210" height="196"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mission Director insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="任務總指揮徽記">
   <defs><filter id="gp5" x="-60%" y="-60%" width="220%" height="220%">
          <feGaussianBlur stdDeviation="4" result="b"/>
          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -1231,7 +1236,7 @@
     <rect x="43" y="105" width="34" height="2.6" rx="1.3" fill="#FFF3C4" opacity="0.9"/>
   </g>
 </svg></div><div class="promo-art" data-level="6" hidden><svg viewBox="0 0 120 116" width="210" height="203"
-   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Polaris insignia">
+   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="北極星徽記">
   <defs><filter id="gp6" x="-60%" y="-60%" width="220%" height="220%">
          <feGaussianBlur stdDeviation="4" result="b"/>
          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -1269,16 +1274,16 @@
     <rect x="43" y="105" width="34" height="2.6" rx="1.3" fill="#FFFFFF" opacity="0.9"/><rect x="49" y="110" width="22" height="2.2" rx="1.1" fill="#FFE9A8" opacity="0.75"/>
   </g>
 </svg></div>
-    <div class="promo-kicker">Promoted</div>
+    <div class="promo-kicker">晉升</div>
     <div class="promo-name" id="promoName"></div>
     <div class="promo-sub" id="promoSub"></div>
-    <div class="promo-dismiss">Tap anywhere to close</div>
+    <div class="promo-dismiss">點按任意處關閉</div>
   </div>
 </div>
 
 <script>
 (function () {
-  var RANKS = [{"name":"Cadet","at":7},{"name":"Operator","at":30},{"name":"Controller","at":100},{"name":"Commander","at":250},{"name":"Flight Director","at":365},{"name":"Mission Director","at":730},{"name":"Polaris","at":1825}];
+  var RANKS = [{"name":"學員","at":7},{"name":"操作員","at":30},{"name":"管制員","at":100},{"name":"指揮官","at":250},{"name":"飛航總指揮","at":365},{"name":"任務總指揮","at":730},{"name":"北極星","at":1825}];
   var promo = document.getElementById('promo');
   var nameEl = document.getElementById('promoName');
   var subEl = document.getElementById('promoSub');
@@ -1289,7 +1294,7 @@
     if (!r) return;
     arts.forEach(function (a) { a.hidden = String(a.dataset.level) !== String(level); });
     nameEl.textContent = r.name;
-    subEl.textContent = r.at + ' clean days · rank ' + (level + 1) + ' of ' + RANKS.length;
+    subEl.textContent = r.at + ' 個全清日 · 第 ' + (level + 1) + ' 級 / 共 ' + RANKS.length + ' 級';
     // Restart the CSS animations by taking the class off and forcing a reflow.
     promo.classList.remove('on');
     void promo.offsetWidth;

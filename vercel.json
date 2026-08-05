@@ -13,7 +13,25 @@
       ]
     },
     {
-      "source": "/(index.html|rewards.html|rewards|styles.css|film.css|film.js|robots.txt|sitemap.xml|android|join|privacy|rules|support|terms|android/index.html|join/index.html|privacy/index.html|rules/index.html|support/index.html|terms/index.html)",
+      "source": "/(index.html|rewards.html|rewards|styles.css|film.css|film.js|lang.js|robots.txt|sitemap.xml|android|join|privacy|rules|support|terms|android/index.html|join/index.html|privacy/index.html|rules/index.html|support/index.html|terms/index.html)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
+      "source": "/zh/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
+      "source": "/zh",
       "headers": [
         {
           "key": "Cache-Control",
@@ -61,6 +79,10 @@
     {
       "source": "/join/(.*)",
       "destination": "/join"
+    },
+    {
+      "source": "/zh/join/(.*)",
+      "destination": "/zh/join"
     }
   ],
   "redirects": [

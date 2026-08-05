@@ -4,6 +4,309 @@
    with synced captions (captions carry the message when muted).
    Internal scene coordinate space: 1000 x 563 (scaled to fit viewport).
    ===================================================================== */
+
+/* ========================== film copy (i18n) ==========================
+   Every user-visible string in the film lives here and nowhere else: the
+   player chrome, the captions, the voiceover script, and the text drawn
+   inside the mock app UI the scenes render. Nothing below this block should
+   hold an English literal — translating the film is exactly this object.
+
+   ## The language comes from the page, never from the browser
+
+   Each page exists twice, and /zh/ declares `lang="zh-Hant"`. By the time the
+   film loads, lang.js has already decided which of the two the visitor is on
+   and remembered a manual choice. The film is embedded in that page, so it
+   reads the decision off <html> instead of re-deciding from navigator.language
+   — otherwise a Chinese-browser reader who deliberately clicked "English"
+   would get a Chinese film sitting on an English page.
+
+   ## Fallbacks
+
+   An unknown or missing lang is English, and so is any key a translation
+   happens to be missing: a gap shows the English line rather than the word
+   "undefined" burned into a caption.
+
+   ## Markup and timing
+
+   Lines that carry markup keep it. The <span class="hi"> / <span class="go">
+   highlights are what make a caption legible in the second and a half it is on
+   screen, so a translation highlights the *equivalent word* rather than
+   whatever happens to sit in the same position.
+
+   Every caption is on screen for a fixed number of seconds, choreographed
+   against the animation. The copy is written to the beat of the English line,
+   not to its word count, and it fits the clock — the clock never moves for it.
+
+   Chinese terminology follows the app (its src/i18n/zh.ts): 競技場 for Arena,
+   任務 for mission, T點 for Tpoint, 連續紀錄 for streak, and the four example
+   habits are the app's own template names so the film and the product name the
+   same things. Traditional (Taiwan) forms and full-width punctuation only.
+   ====================================================================== */
+const COPY = {
+  en: {
+    /* ---- player chrome ---- */
+    'ui.close': '✕ CLOSE',
+    'ui.soundOn': '♪ SOUND ON',
+    'ui.soundOff': '♪ SOUND OFF',
+    'ui.replay': '⟳ REPLAY',
+    'ui.tapForSound': '🔊 Tap for sound',
+    'ui.hostName': 'HOST · <b>BOBO</b>',
+    'ui.tada': 'Tada! 🎉',
+    'end.headline': 'Your first mission starts now.',
+    'end.watchAgain': '⟳ Watch again',
+    'end.close': 'Close',
+    'cta.getBeta': 'Get the beta — iOS & Android →',
+
+    /* ---- chrome of the mock app the scenes draw ---- */
+    'app.missionControl': 'MISSION CONTROL',
+    'app.todayOnTrack': 'TODAY · ON TRACK',
+    'app.streak': 'STREAK',
+    'app.tpoints': 'TPOINTS',
+    'app.dayUnit': 'd',
+    'app.missionsToday': 'MISSIONS · TODAY',
+    'app.dayStreak': 'DAY STREAK',
+    'app.longest': 'LONGEST',
+    'app.completion': 'COMPLETION',
+
+    /* ---- scene 1 · cold open ---- */
+    's1.brandSub': 'DAILY MISSIONS · STREAKS · THE ARENA',
+    's1.cap1': 'Still saying <span class="hi">tomorrow</span>?',
+    's1.cap2': '<span class="go">Tomorrow just clocked in.</span>',
+    's1.vo': 'Yeah, you — the one who keeps saying tomorrow. Tomorrow just clocked in.',
+
+    /* ---- scene 2 · the three mission types ---- */
+    's2.mInbox': 'Inbox to zero',
+    's2.mWater': 'Drink 8 glasses of water',
+    's2.mRead': 'Read 20 pages',
+    's2.mDeepWork': 'Deep work block — 90 min',
+    's2.metaDaily': 'DAILY',
+    's2.metaWater': '{n}/8 glasses',
+    's2.metaPages': '20/20 pages',
+    's2.metaTimer': '90 MIN',
+    's2.metaTimerLeft': '89:58 LEFT',
+    's2.metaTimerDone': '90 MIN DONE',
+    's2.cap1': 'Today is asking for <span class="hi">you</span>.',
+    's2.cap2': 'Tap. Count. <span class="go">Lock in.</span>',
+    's2.vo': 'See those missions glowing? That\'s today, asking for you. Tap one done. Count the water, the steps, the pages. Or punch a timer and vanish into deep work.',
+
+    /* ---- scene 3 · the all-or-nothing Tpoint ---- */
+    's3.mission': 'Morning workout — 20 min',
+    's3.metaTimer': '20 MIN',
+    's3.metaDone': '20 MIN DONE',
+    's3.cleared': 'ALL MISSIONS CLEARED · +1 TPOINT',
+    's3.cap1': 'Clear them all → <span class="go">+1 Tpoint</span>',
+    's3.cap2': 'Miss one → nothing',
+    's3.vo': 'Clear every single one and the day pays out: one Tpoint. Miss one? Nothing. All or nothing, no nibbling.',
+
+    /* ---- scene 4 · streaks ---- */
+    's4.cleared': 'ALL OBJECTIVES CLEARED — DAY SECURED',
+    's4.cap1': '<span class="go">Day locked.</span> Streak climbs.',
+    's4.cap2': 'Yesterday-you never stood a chance.',
+    's4.vo': 'Day locked. Your streak climbs one taller. No freebies out here, friend, just yesterday-you losing to today-you, again.',
+
+    /* ---- scene 5 · stats ---- */
+    's5.heatmap': 'ACTIVITY · 1 YEAR',
+    's5.byMission': 'BY MISSION · LAST 30 DAYS',
+    's5.barWater': 'Drink 8 glasses of water',
+    's5.barDeepWork': 'Deep work block',
+    's5.barMeditate': 'Meditate 10 minutes',
+    's5.cap1': 'A whole year of <span class="go">green</span>.',
+    's5.cap2': 'Numbers that don\'t lie.',
+    's5.vo': 'Now look back. A whole year going green, and numbers too honest to argue with. That\'s your receipts.',
+
+    /* ---- scene 6 · the Arena opens ---- */
+    's6.tabToday': 'TODAY',
+    's6.tabStats': 'STATS',
+    's6.tabArena': 'ARENA',
+    's6.tabProfile': 'PROFILE',
+    's6.convene': '⚑ CONVENE A CHALLENGE',
+    's6.challenge': 'Hydration Challenge',
+    's6.challengeMeta': '8 GLASSES EACH DAY · 7 DAYS · 4 PLAYERS',
+    's6.live': 'LIVE',
+    's6.cap1': 'Doing it solo? <span class="hi">Cute.</span>',
+    's6.cap2': 'Enter the <span class="hi">Arena</span>.',
+    's6.vo': 'Doing it solo? Cute. Drag your friends in — the Arena\'s open.',
+
+    /* ---- scene 7 · the live leaderboard ---- */
+    's7.liveDay': 'LIVE · DAY 3/7',
+    's7.leaderboard': 'LEADERBOARD · MOST DAYS',
+    's7.missedCol': 'MISSED',
+    's7.today': '{v} TODAY',
+    's7.doneProof': '✓ DONE TODAY · 📷 PROOF',
+    's7.missedADay': 'MISSED A DAY',
+    's7.you': 'You',
+    's7.youTag': '(you)',
+    's7.cap1': 'Go live. Climb the board.',
+    's7.cap2': 'Miss a day → <span class="hi">−1</span>.',
+    's7.vo': 'Invite your crew, set days and a target, go live. Most days completed tops the board. Miss one, minus one. Post proof, talk trash.',
+
+    /* the three rivals — they appear in scene 7 and again in scene 8 */
+    'player.a': 'Aria K.',
+    'player.b': 'Kenji T.',
+    'player.c': 'Noor A.',
+
+    /* ---- scene 8 · results ---- */
+    's8.challengeLine': '💧 HYDRATION CHALLENGE · 7 DAYS',
+    's8.winner': 'You — that\'s you!',
+    's8.winnerMeta': '7 DAYS · MOST DAYS COMPLETED',
+    's8.standings': 'FINAL STANDINGS',
+    's8.daysUnit': 'DAYS',
+    's8.cap1': 'Win. Lose.',
+    's8.cap2': 'Get scary good — <span class="hi">together</span>.',
+    's8.vo': 'Win together. Lose together. Get scary good — together.',
+
+    /* ---- scene 9 · sign-off ---- */
+    's9.title': 'Track. Compete. <span style="color:{amber}">Become.</span>',
+    's9.cap1': 'Become who you said you\'d be.',
+    's9.cap2': 'Your first mission starts <span class="go">now</span>.',
+    's9.vo': 'Tadapop. Track it, race your friends, become the you you keep describing. Free on iPhone and Android. Now up, soldier. Your first mission starts now. Tada!',
+  },
+
+  zh: {
+    /* ---- player chrome ---- */
+    'ui.close': '✕ 關閉',
+    'ui.soundOn': '♪ 聲音開',
+    'ui.soundOff': '♪ 聲音關',
+    'ui.replay': '⟳ 重播',
+    'ui.tapForSound': '🔊 點一下開聲音',
+    'ui.hostName': '主持人 · <b>BOBO</b>',
+    'ui.tada': 'Tada! 🎉',
+    'end.headline': '你的第一項任務，現在開始。',
+    'end.watchAgain': '⟳ 再看一次',
+    'end.close': '關閉',
+    'cta.getBeta': '下載測試版 — iOS 與 Android →',
+
+    /* ---- chrome of the mock app the scenes draw ----
+       The English console voice shouts in ALL CAPS; Chinese has no case, so
+       the same emphasis comes from being terse — two to four characters, as
+       in the app itself. */
+    'app.missionControl': '任務控制中心',
+    'app.todayOnTrack': '今天 · 進度正常',
+    'app.streak': '連續天數',
+    'app.tpoints': 'T點',
+    'app.dayUnit': '天',
+    'app.missionsToday': '任務 · 今天',
+    'app.dayStreak': '連續天數',
+    'app.longest': '最長',
+    'app.completion': '完成率',
+
+    /* ---- scene 1 · cold open ---- */
+    's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
+    's1.cap1': '還在說<span class="hi">明天</span>再說？',
+    's1.cap2': '<span class="go">明天已經來報到了。</span>',
+    's1.vo': '對，就是你 — 那個老是說「明天再說」的人。明天，已經來報到了。',
+
+    /* ---- scene 2 · the three mission types ----
+       Mission names are the app's own template translations, so a viewer who
+       downloads after watching sees the identical wording in the library. */
+    's2.mInbox': '清空收件匣',
+    's2.mWater': '喝 8 杯水',
+    's2.mRead': '讀 20 頁書',
+    's2.mDeepWork': '深度工作 — 90 分鐘',
+    's2.metaDaily': '每天',
+    's2.metaWater': '{n}/8 杯',
+    's2.metaPages': '20/20 頁',
+    's2.metaTimer': '90 分鐘',
+    's2.metaTimerLeft': '剩 89:58',
+    's2.metaTimerDone': '90 分鐘完成',
+    's2.cap1': '今天正在點名<span class="hi">你</span>。',
+    's2.cap2': '點一下。數一數。<span class="go">鎖定。</span>',
+    's2.vo': '看到那些亮起來的任務了嗎？那是今天在點名你。點一下打勾，數你的水、你的步數、你的頁數。或者按下計時器，一頭栽進深度工作。',
+
+    /* ---- scene 3 · the all-or-nothing Tpoint ---- */
+    's3.mission': '晨間運動 — 20 分鐘',
+    's3.metaTimer': '20 分鐘',
+    's3.metaDone': '20 分鐘完成',
+    's3.cleared': '今天全部完成 · +1 T點',
+    's3.cap1': '全部完成 → <span class="go">+1 T點</span>',
+    's3.cap2': '少一項 → 什麼都沒有',
+    's3.vo': '一項不漏地全部完成，這一天就會結算：1 T點。少一項呢？什麼都沒有。全清才算，不能討價還價。',
+
+    /* ---- scene 4 · streaks ---- */
+    's4.cleared': '所有任務完成 — 今天到手',
+    's4.cap1': '<span class="go">今天鎖定。</span>連續紀錄再長一天。',
+    's4.cap2': '昨天的你，從來沒有勝算。',
+    's4.vo': '這一天鎖定，連續紀錄再往上長一天。這裡沒有僥倖，朋友 — 只有昨天的你，又輸給了今天的你。',
+
+    /* ---- scene 5 · stats ---- */
+    's5.heatmap': '活動紀錄 · 一年',
+    's5.byMission': '依任務 · 近 30 天',
+    's5.barWater': '喝 8 杯水',
+    's5.barDeepWork': '深度工作',
+    's5.barMeditate': '冥想 10 分鐘',
+    's5.cap1': '整整一年的<span class="go">綠</span>。',
+    's5.cap2': '數字不會說謊。',
+    's5.vo': '現在回頭看看。整整一年一路綠下去，數字誠實到沒得爭辯。這就是你的戰績。',
+
+    /* ---- scene 6 · the Arena opens ---- */
+    's6.tabToday': '今天',
+    's6.tabStats': '統計',
+    's6.tabArena': '競技場',
+    's6.tabProfile': '個人',
+    's6.convene': '⚑ 發起挑戰',
+    's6.challenge': '喝水挑戰',
+    's6.challengeMeta': '每天 8 杯 · 7 天 · 4 位成員',
+    's6.live': '進行中',
+    's6.cap1': '一個人練？<span class="hi">很可愛。</span>',
+    's6.cap2': '進入<span class="hi">競技場</span>。',
+    's6.vo': '一個人練？很可愛。把朋友們拖下水吧 — 競技場開了。',
+
+    /* ---- scene 7 · the live leaderboard ---- */
+    's7.liveDay': '進行中 · 第 3/7 天',
+    's7.leaderboard': '排行榜 · 最多天數',
+    's7.missedCol': '漏掉',
+    's7.today': '今天 {v} 杯',
+    's7.doneProof': '✓ 今日打卡 · 📷 證明',
+    's7.missedADay': '漏掉一天',
+    's7.you': '你',
+    's7.youTag': '（你）',
+    's7.cap1': '開賽。往榜上爬。',
+    's7.cap2': '漏掉一天 → <span class="hi">−1 天</span>。',
+    's7.vo': '找齊你的人馬，設定天數和目標，開賽。完成天數最多的人站上榜首。漏掉一天，就扣一天。上傳證明，順便嘴一下對手。',
+
+    /* Taiwanese given names rather than transliterated ones: the rivals have
+       to read as the viewer's own friends at a glance, and the avatar badge
+       shows only name[0]. */
+    'player.a': '怡君',
+    'player.b': '志豪',
+    'player.c': '雅婷',
+
+    /* ---- scene 8 · results ---- */
+    's8.challengeLine': '💧 喝水挑戰 · 7 天',
+    's8.winner': '冠軍 — 就是你！',
+    's8.winnerMeta': '7 天 · 完成天數最多',
+    's8.standings': '最終排名',
+    's8.daysUnit': '天',
+    's8.cap1': '一起贏。一起輸。',
+    's8.cap2': '<span class="hi">一起</span>變得可怕地強。',
+    's8.vo': '一起贏，一起輸，一起變得可怕地強。',
+
+    /* ---- scene 9 · sign-off ---- */
+    's9.title': '記錄。競爭。<span style="color:{amber}">成為。</span>',
+    's9.cap1': '成為你說過要成為的那個人。',
+    's9.cap2': '你的第一項任務，<span class="go">現在</span>開始。',
+    's9.vo': 'Tadapop。記錄它，跟朋友比一場，成為你一直掛在嘴邊的那個自己。iPhone 和 Android 免費下載。起來吧，戰士。你的第一項任務，現在開始。Tada！',
+  },
+};
+
+/** 'zh-Hant' / 'zh-TW' -> zh. Anything else, or nothing at all, -> en. */
+const LANG = /^zh/i.test(document.documentElement.lang || '') ? 'zh' : 'en';
+
+/**
+ * One line of copy in the page's language, with `{slot}` substitution.
+ * A key missing from a translation falls through to the English line.
+ */
+function t(key, vars) {
+  var s = COPY[LANG][key];
+  if (s == null) s = COPY.en[key];
+  if (s == null) return '';
+  if (!vars) return s;
+  return s.replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; });
+}
+
+/** For plain-text copy that has to be dropped into an innerHTML string. */
+function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
 (function () {
   'use strict';
   const overlay = document.getElementById('filmOverlay');
@@ -52,6 +355,12 @@
     if (!window.speechSynthesis) return;
     const vs = speechSynthesis.getVoices() || [];
     if (!vs.length) return;
+    if (LANG === 'zh') {
+      // Traditional first: a zh-CN voice reads these characters with Mainland
+      // pronunciation and vocabulary, which is not the page this film is on.
+      voice = vs.find((x) => /^zh[-_](TW|HK|Hant)/i.test(x.lang)) || vs.find((x) => /^zh/i.test(x.lang)) || null;
+      return;
+    }
     const pref = ['samantha', 'google uk english female', 'google us english', 'victoria', 'karen', 'moira', 'tessa', 'serena', 'fiona', 'allison', 'ava', 'zira', 'aria', 'jenny'];
     for (const name of pref) { const v = vs.find((x) => x.name.toLowerCase().includes(name)); if (v) { voice = v; return; } }
     voice = vs.find((x) => /female/i.test(x.name) && /en/i.test(x.lang)) || vs.find((x) => /^en/i.test(x.lang)) || vs[0];
@@ -63,6 +372,7 @@
     if (muted || !text) { host.classList.remove('speaking'); return; }
     const u = new SpeechSynthesisUtterance(text);
     if (voice) u.voice = voice;
+    u.lang = LANG === 'zh' ? 'zh-TW' : 'en-US';
     u.rate = 1.03; u.pitch = 1.07; u.volume = 1;
     u.onstart = () => { host.classList.add('speaking'); startMouth(null); };
     u.onend = () => { host.classList.remove('speaking'); stopMouth(); };
@@ -127,7 +437,7 @@
   overlay.innerHTML = '';
   const top = el('div', 'film-top');
   top.appendChild(el('div', 'film-brand', null, '<img src="/assets/logo.png" alt=""/> TADAPOP'));
-  const closeBtn = el('button', 'film-close', null, '✕ CLOSE');
+  const closeBtn = el('button', 'film-close', null, t('ui.close'));
   top.appendChild(closeBtn);
 
   const stageWrap = el('div', 'film-stagewrap');
@@ -136,32 +446,32 @@
 
   const host = el('div', 'film-host');
   host.innerHTML =
-    '<div class="film-host-tada">Tada! 🎉</div>' +
+    '<div class="film-host-tada">' + t('ui.tada') + '</div>' +
     '<div class="film-host-ring"><div class="film-host-inner">' + hostSVG() + '</div></div>' +
     '<div class="film-wave"><i></i><i></i><i></i><i></i><i></i></div>' +
-    '<div class="film-host-name">HOST · <b>BOBO</b></div>';
+    '<div class="film-host-name">' + t('ui.hostName') + '</div>';
 
   const caption = el('div', 'film-caption');
 
   const controls = el('div', 'film-controls');
   const prog = el('div', 'film-progress', null, '<span></span>');
   const progFill = prog.firstChild;
-  const muteBtn = el('button', 'film-btn', null, '♪ SOUND ON');
-  const replayBtn = el('button', 'film-btn', null, '⟳ REPLAY');
+  const muteBtn = el('button', 'film-btn', null, t('ui.soundOn'));
+  const replayBtn = el('button', 'film-btn', null, t('ui.replay'));
   const time = el('div', 'film-time', null, '0:00 / 1:37');
   controls.append(prog, time, muteBtn, replayBtn);
 
   const end = el('div', 'film-end');
   end.innerHTML =
     '<img src="/assets/logo.png" alt="Tadapop"/>' +
-    '<h3>Your first mission starts now.</h3>' +
+    '<h3>' + t('end.headline') + '</h3>' +
     '<div class="film-end-row">' +
-    '<button class="film-cta" data-act="install">Get the beta — iOS &amp; Android →</button>' +
-    '<button class="film-btn" data-act="replay">⟳ Watch again</button>' +
-    '<button class="film-btn" data-act="close">Close</button>' +
+    '<button class="film-cta" data-act="install">' + escText(t('cta.getBeta')) + '</button>' +
+    '<button class="film-btn" data-act="replay">' + t('end.watchAgain') + '</button>' +
+    '<button class="film-btn" data-act="close">' + t('end.close') + '</button>' +
     '</div>';
 
-  const unmute = el('button', 'film-unmute', null, '🔊 Tap for sound');
+  const unmute = el('button', 'film-unmute', null, t('ui.tapForSound'));
   overlay.append(stageWrap, host, caption, top, controls, unmute, end);
 
   /* --------------------------- engine state ----------------------------- */
@@ -192,10 +502,15 @@
 
   /* ---- pre-recorded voiceover (ElevenLabs, voice: Jessica) ----
      One MP3 per scene in /assets/vo/. Bump VOV to bust the CDN cache when
-     regenerating. Falls back to the browser voice if a clip won't load/play. */
+     regenerating. Falls back to the browser voice if a clip won't load/play.
+
+     English only: the clips are a recorded performance in English and there is
+     no Chinese set. On /zh we leave the cache empty so every scene takes the
+     speechSynthesis path and reads the translated line — an English voice
+     talking over Chinese captions is worse than a synthetic Chinese one. */
   const VOV = 3;
   const voCache = {};
-  scenes.forEach((sc) => { if (sc.id) { const a = new Audio('/assets/vo/' + sc.id + '.mp3?v=' + VOV); a.preload = 'auto'; voCache[sc.id] = a; } });
+  if (LANG === 'en') scenes.forEach((sc) => { if (sc.id) { const a = new Audio('/assets/vo/' + sc.id + '.mp3?v=' + VOV); a.preload = 'auto'; voCache[sc.id] = a; } });
   function stopVO() {
     if (curAudio) { try { curAudio.pause(); } catch (e) {} curAudio.onended = null; curAudio = null; }
     try { speechSynthesis.cancel(); } catch (e) {}
@@ -258,7 +573,7 @@
   function play(startMuted) {
     playing = true;
     muted = !!startMuted;
-    muteBtn.textContent = muted ? '♪ SOUND OFF' : '♪ SOUND ON';
+    muteBtn.textContent = muted ? t('ui.soundOff') : t('ui.soundOn');
     unmute.style.display = muted ? 'block' : 'none';
     end.classList.remove('show');
     overlay.hidden = false;
@@ -307,7 +622,7 @@
 
   function enableSound() {
     muted = false;
-    muteBtn.textContent = '♪ SOUND ON';
+    muteBtn.textContent = t('ui.soundOn');
     unmute.style.display = 'none';
     ac();
     if (playing && idx >= 0 && scenes[idx]) playVO(scenes[idx]);
@@ -319,7 +634,7 @@
   muteBtn.addEventListener('click', () => {
     if (muted) { enableSound(); return; }
     muted = true;
-    muteBtn.textContent = '♪ SOUND OFF';
+    muteBtn.textContent = t('ui.soundOff');
     stopVO();
   });
   end.addEventListener('click', (e) => {
@@ -385,13 +700,13 @@ function buildScenes(ctx) {
       '<div style="display:flex;align-items:center;justify-content:space-between;gap:16px">' +
         '<div style="display:flex;align-items:center;gap:12px">' +
           '<span style="width:12px;height:12px;border-radius:99px;background:' + COL.amber + ';box-shadow:0 0 16px 2px rgba(255,180,84,.8)"></span>' +
-          '<div><div class="fm-disp" style="font-weight:900;letter-spacing:.22em;font-size:16px">MISSION CONTROL</div>' +
-          '<div class="fm-mono" style="color:' + COL.dim + ';font-size:10px;letter-spacing:.15em;margin-top:5px">TODAY · ON TRACK</div></div>' +
+          '<div><div class="fm-disp" style="font-weight:900;letter-spacing:.22em;font-size:16px">' + t('app.missionControl') + '</div>' +
+          '<div class="fm-mono" style="color:' + COL.dim + ';font-size:10px;letter-spacing:.15em;margin-top:5px">' + t('app.todayOnTrack') + '</div></div>' +
         '</div>' +
         '<div style="display:flex;align-items:center;gap:24px">' +
-          '<div style="text-align:right"><div class="fm-mono" style="color:' + COL.faint + ';font-size:9px;letter-spacing:.18em">STREAK</div>' +
-          '<div class="fm-disp js-streak" style="font-weight:700;font-size:22px;color:' + COL.amber + '">' + streakVal + '<span style="font-size:11px;color:' + COL.dim + ';margin-left:3px">d</span></div></div>' +
-          '<div style="text-align:right"><div class="fm-mono" style="color:' + COL.faint + ';font-size:9px;letter-spacing:.18em">TPOINTS</div>' +
+          '<div style="text-align:right"><div class="fm-mono" style="color:' + COL.faint + ';font-size:9px;letter-spacing:.18em">' + t('app.streak') + '</div>' +
+          '<div class="fm-disp js-streak" style="font-weight:700;font-size:22px;color:' + COL.amber + '">' + streakVal + '<span style="font-size:11px;color:' + COL.dim + ';margin-left:3px">' + t('app.dayUnit') + '</span></div></div>' +
+          '<div style="text-align:right"><div class="fm-mono" style="color:' + COL.faint + ';font-size:9px;letter-spacing:.18em">' + t('app.tpoints') + '</div>' +
           '<div class="fm-disp js-tp" style="font-weight:700;font-size:22px;color:' + COL.amber + '">' + tpoints + '</div></div>' +
         '</div>' +
       '</div>';
@@ -437,8 +752,8 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 1 ----------------------------- */
   const s1 = {
     id: 's1', dur: 5000,
-    vo: 'Yeah, you — the one who keeps saying tomorrow. Tomorrow just clocked in.',
-    caps: [{ at: 0, html: 'Still saying <span class="hi">tomorrow</span>?' }, { at: 2, html: '<span class="go">Tomorrow just clocked in.</span>' }],
+    vo: t('s1.vo'),
+    caps: [{ at: 0, html: t('s1.cap1') }, { at: 2, html: t('s1.cap2') }],
     render(node) {
       const wrap = el('div', null, { position: 'absolute', inset: '0', display: 'grid', placeItems: 'center' });
       const box = el('div', null, { textAlign: 'center' });
@@ -447,7 +762,7 @@ function buildScenes(ctx) {
       const title = el('div', 'fm-disp', { fontWeight: '900', fontSize: '60px', letterSpacing: '4px', marginTop: '22px', color: COL.ink });
       title.textContent = 'TADAPOP';
       const sub = el('div', 'fm-mono', { fontSize: '14px', letterSpacing: '.3em', color: COL.amber, marginTop: '10px' });
-      sub.textContent = 'DAILY MISSIONS · STREAKS · THE ARENA';
+      sub.textContent = t('s1.brandSub');
       box.append(logo, title, sub); wrap.appendChild(box); node.appendChild(wrap);
       anim(logo, [{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 700, easing: POP });
       anim(title, [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 600, delay: 250, fill: 'both' });
@@ -459,21 +774,21 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 2 ----------------------------- */
   const s2 = {
     id: 's2', dur: 12000,
-    vo: 'See those missions glowing? That\'s today, asking for you. Tap one done. Count the water, the steps, the pages. Or punch a timer and vanish into deep work.',
-    caps: [{ at: 0, html: 'Today is asking for <span class="hi">you</span>.' }, { at: 5.2, html: 'Tap. Count. <span class="go">Lock in.</span>' }],
+    vo: t('s2.vo'),
+    caps: [{ at: 0, html: t('s2.cap1') }, { at: 5.2, html: t('s2.cap2') }],
     render(node) {
       const c = appCol(node, 600);
       c.appendChild(header(11, 47));
       const panel = el('div', 'fm-panel', { padding: '14px 16px 16px' });
       panel.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">' +
-        '<span class="fm-mono" style="font-size:12px;letter-spacing:.2em;color:' + COL.dim + '">MISSIONS · TODAY</span>' +
+        '<span class="fm-mono" style="font-size:12px;letter-spacing:.2em;color:' + COL.dim + '">' + t('app.missionsToday') + '</span>' +
         '<span class="fm-mono js-count" style="font-size:13px;font-weight:700;color:' + COL.ink + '">1/4</span></div>';
-      const r1 = missionRow({ title: 'Inbox to zero', meta: 'DAILY', kind: 'binary', cat: COL.amber });
-      const r2 = missionRow({ title: 'Drink 8 glasses of water', meta: '5/8 glasses', kind: 'count', cat: COL.teal });
-      const r3 = missionRow({ title: 'Read 20 pages', meta: '20/20 pages', kind: 'count', cat: COL.blue });
-      const r4 = missionRow({ title: 'Deep work block — 90 min', meta: '90 MIN', kind: 'timer', cat: COL.amber });
+      const r1 = missionRow({ title: t('s2.mInbox'), meta: t('s2.metaDaily'), kind: 'binary', cat: COL.amber });
+      const r2 = missionRow({ title: t('s2.mWater'), meta: t('s2.metaWater', { n: 5 }), kind: 'count', cat: COL.teal });
+      const r3 = missionRow({ title: t('s2.mRead'), meta: t('s2.metaPages'), kind: 'count', cat: COL.blue });
+      const r4 = missionRow({ title: t('s2.mDeepWork'), meta: t('s2.metaTimer'), kind: 'timer', cat: COL.amber });
       // pre-set r3 done
-      complete(r3, '20/20 pages');
+      complete(r3, t('s2.metaPages'));
       panel.append(r1, r2, r4); panel.insertBefore(r3, r4);
       c.appendChild(panel);
       const count = panel.querySelector('.js-count');
@@ -482,34 +797,34 @@ function buildScenes(ctx) {
       after(900, () => { complete(r1); count.textContent = '2/4'; });
       // water count up 5 -> 8
       let g = 5;
-      const tickWater = () => { g++; r2._metric.textContent = g + '/8 glasses'; anim(r2._tg, [{ transform: 'scale(1.15)' }, { transform: 'scale(1)' }], { duration: 200 }); sfx.tick(); if (g < 8) after(380, tickWater); else after(150, () => { complete(r2, '8/8 glasses'); count.textContent = '3/4'; }); };
+      const tickWater = () => { g++; r2._metric.textContent = t('s2.metaWater', { n: g }); anim(r2._tg, [{ transform: 'scale(1.15)' }, { transform: 'scale(1)' }], { duration: 200 }); sfx.tick(); if (g < 8) after(380, tickWater); else after(150, () => { complete(r2, t('s2.metaWater', { n: 8 })); count.textContent = '3/4'; }); };
       after(2200, tickWater);
       // timer starts running, bar fills, completes
-      after(5200, () => { r4._tg.classList.add('run'); r4._tg.innerHTML = pauseIcon(); r4._metric.textContent = '89:58 LEFT'; r4._metric.style.color = COL.blue; anim(r4._bar, [{ width: '0%' }, { width: '100%' }], { duration: 6000, fill: 'both', easing: 'linear' }); });
-      after(11400, () => { complete(r4, '90 MIN DONE'); count.textContent = '4/4'; count.style.color = COL.go; sfx.chime(); });
+      after(5200, () => { r4._tg.classList.add('run'); r4._tg.innerHTML = pauseIcon(); r4._metric.textContent = t('s2.metaTimerLeft'); r4._metric.style.color = COL.blue; anim(r4._bar, [{ width: '0%' }, { width: '100%' }], { duration: 6000, fill: 'both', easing: 'linear' }); });
+      after(11400, () => { complete(r4, t('s2.metaTimerDone')); count.textContent = '4/4'; count.style.color = COL.go; sfx.chime(); });
     },
   };
 
   /* ----------------------------- Scene 3 ----------------------------- */
   const s3 = {
     id: 's3', dur: 9200,
-    vo: 'Clear every single one and the day pays out: one Tpoint. Miss one? Nothing. All or nothing, no nibbling.',
-    caps: [{ at: 0, html: 'Clear them all → <span class="go">+1 Tpoint</span>' }, { at: 4.4, html: 'Miss one → nothing' }],
+    vo: t('s3.vo'),
+    caps: [{ at: 0, html: t('s3.cap1') }, { at: 4.4, html: t('s3.cap2') }],
     render(node) {
       const c = appCol(node, 560);
       const head = header(12, 47);
       c.appendChild(head);
       const tpLabel = head.querySelector('.js-tp');
       const panel = el('div', 'fm-panel', { padding: '16px' });
-      const r = missionRow({ title: 'Morning workout — 20 min', meta: '20 MIN', kind: 'binary', cat: COL.teal });
+      const r = missionRow({ title: t('s3.mission'), meta: t('s3.metaTimer'), kind: 'binary', cat: COL.teal });
       panel.appendChild(r);
       // the day's all-or-nothing payout, revealed once the last mission clears
       const cleared = el('div', 'fm-cleared', { opacity: '0', marginTop: '14px' });
-      cleared.innerHTML = '<span style="width:9px;height:9px;border-radius:99px;background:' + COL.go + ';box-shadow:0 0 12px 2px rgba(91,227,155,.8)"></span> ALL MISSIONS CLEARED · +1 TPOINT';
+      cleared.innerHTML = '<span style="width:9px;height:9px;border-radius:99px;background:' + COL.go + ';box-shadow:0 0 12px 2px rgba(91,227,155,.8)"></span> ' + t('s3.cleared');
       panel.appendChild(cleared);
       c.appendChild(panel);
 
-      after(700, () => { complete(r, '20 MIN DONE'); floatTpoint(r); });
+      after(700, () => { complete(r, t('s3.metaDone')); floatTpoint(r); });
       after(1500, () => {
         anim(cleared, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 450, fill: 'both' });
         sfx.chime();
@@ -525,8 +840,8 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 4 ----------------------------- */
   const s4 = {
     id: 's4', dur: 8400,
-    vo: 'Day locked. Your streak climbs one taller. No freebies out here, friend, just yesterday-you losing to today-you, again.',
-    caps: [{ at: 0, html: '<span class="go">Day locked.</span> Streak climbs.' }, { at: 4.2, html: 'Yesterday-you never stood a chance.' }],
+    vo: t('s4.vo'),
+    caps: [{ at: 0, html: t('s4.cap1') }, { at: 4.2, html: t('s4.cap2') }],
     render(node) {
       const c = appCol(node, 560);
       const panel = el('div', 'fm-panel', { padding: '18px' });
@@ -536,14 +851,14 @@ function buildScenes(ctx) {
           '<span class="fm-mono js-count" style="font-size:13px;font-weight:700;color:' + COL.ink + '">2/5</span></div>';
       const segWrap = panel.querySelector('.fm-seg');
       const cleared = el('div', 'fm-cleared', { opacity: '0', marginBottom: '16px' });
-      cleared.innerHTML = '<span style="width:9px;height:9px;border-radius:99px;background:' + COL.go + ';box-shadow:0 0 12px 2px rgba(91,227,155,.8)"></span> ALL OBJECTIVES CLEARED — DAY SECURED';
+      cleared.innerHTML = '<span style="width:9px;height:9px;border-radius:99px;background:' + COL.go + ';box-shadow:0 0 12px 2px rgba(91,227,155,.8)"></span> ' + t('s4.cleared');
       panel.appendChild(cleared);
       // streak + rest day row
       const bottom = el('div', null, { display: 'flex', gap: '12px', marginTop: '4px' });
       const stat = el('div', 'fm-panel fm-stat', { flex: '1', textAlign: 'center' });
-      stat.innerHTML = '<div class="k">DAY STREAK</div><div class="v js-streak">11d</div>';
+      stat.innerHTML = '<div class="k">' + t('app.dayStreak') + '</div><div class="v js-streak">11' + t('app.dayUnit') + '</div>';
       const longest = el('div', 'fm-panel fm-stat', { flex: '1', textAlign: 'center' });
-      longest.innerHTML = '<div class="k">LONGEST</div><div class="v">23d</div>';
+      longest.innerHTML = '<div class="k">' + t('app.longest') + '</div><div class="v">23' + t('app.dayUnit') + '</div>';
       bottom.append(stat, longest); panel.appendChild(bottom);
       c.appendChild(panel);
       const segs = segWrap.querySelectorAll('i');
@@ -558,30 +873,34 @@ function buildScenes(ctx) {
         count.style.color = COL.go;
         anim(cleared, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 450, fill: 'both' });
         sfx.chime();
-        after(700, () => { countUp(stat.querySelector('.js-streak'), 11, 12, 600, (v) => v + 'd'); anim(stat, [{ boxShadow: '0 0 0 0 rgba(255,180,84,0)' }, { boxShadow: '0 0 26px -4px rgba(255,180,84,.6)' }, { boxShadow: '0 0 0 0 rgba(255,180,84,0)' }], { duration: 900 }); });
+        after(700, () => { countUp(stat.querySelector('.js-streak'), 11, 12, 600, (v) => v + t('app.dayUnit')); anim(stat, [{ boxShadow: '0 0 0 0 rgba(255,180,84,0)' }, { boxShadow: '0 0 26px -4px rgba(255,180,84,.6)' }, { boxShadow: '0 0 0 0 rgba(255,180,84,0)' }], { duration: 900 }); });
       }
-      // highlight rest day
-      after(6800, () => { const r = rest.querySelector('.js-rest'); anim(r, [{ opacity: .4 }, { opacity: 1 }], { duration: 500, iterations: 3, direction: 'alternate' }); });
+      // A rest-day highlight used to live here. Both the `rest` container and
+      // the `.js-rest` element it looked for are gone — neither is created
+      // anywhere in this file — so the timer only ever threw an uncaught
+      // ReferenceError 6.8s into the scene, on every play, in both languages.
+      // Deleted rather than rebuilt: scene 4 is about the streak climbing, and
+      // it reads fine without a rest day in it.
     },
   };
 
   /* ----------------------------- Scene 5 ----------------------------- */
   const s5 = {
     id: 's5', dur: 6800,
-    vo: 'Now look back. A whole year going green, and numbers too honest to argue with. That\'s your receipts.',
-    caps: [{ at: 0, html: 'A whole year of <span class="go">green</span>.' }, { at: 3, html: 'Numbers that don\'t lie.' }],
+    vo: t('s5.vo'),
+    caps: [{ at: 0, html: t('s5.cap1') }, { at: 3, html: t('s5.cap2') }],
     render(node) {
       const c = appCol(node, 560, true);
       // stat cards
       const stats = el('div', null, { display: 'flex', gap: '10px', marginBottom: '12px' });
-      [['DAY STREAK', '12d'], ['LONGEST', '23d'], ['TPOINTS', '142'], ['COMPLETION', '86%']].forEach(([k, v]) => {
+      [[t('app.dayStreak'), '12' + t('app.dayUnit')], [t('app.longest'), '23' + t('app.dayUnit')], [t('app.tpoints'), '142'], [t('app.completion'), '86%']].forEach(([k, v]) => {
         const s = el('div', 'fm-panel fm-stat'); s.innerHTML = '<div class="k">' + k + '</div><div class="v">' + v + '</div>'; stats.appendChild(s);
       });
       c.appendChild(stats);
       // heatmap — a full year, GitHub-style (52 weeks × 7 days)
       const WEEKS = 52;
       const hm = el('div', 'fm-panel', { padding: '16px' });
-      hm.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.2em;color:' + COL.dim + ';margin-bottom:12px">ACTIVITY · 1 YEAR</div>';
+      hm.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.2em;color:' + COL.dim + ';margin-bottom:12px">' + t('s5.heatmap') + '</div>';
       const grid = el('div', null, { display: 'flex', gap: '3px', maxWidth: '520px', margin: '0 auto' });
       const cells = [];
       for (let w = 0; w < WEEKS; w++) {
@@ -592,11 +911,11 @@ function buildScenes(ctx) {
       hm.appendChild(grid); c.appendChild(hm);
       // completion bars
       const cr = el('div', 'fm-panel', { padding: '16px', marginTop: '12px' });
-      cr.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.2em;color:' + COL.dim + ';margin-bottom:12px">BY MISSION · LAST 30 DAYS</div>';
-      [['Drink 8 glasses of water', 92, COL.teal], ['Deep work block', 78, COL.amber], ['Meditate 10 minutes', 84, COL.blue]].forEach(([t, pct, col]) => {
+      cr.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.2em;color:' + COL.dim + ';margin-bottom:12px">' + t('s5.byMission') + '</div>';
+      [[t('s5.barWater'), 92, COL.teal], [t('s5.barDeepWork'), 78, COL.amber], [t('s5.barMeditate'), 84, COL.blue]].forEach(([label, pct, col]) => {
         const row = el('div', null, { marginBottom: '9px' });
         row.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:5px">' +
-          '<span class="fm-disp" style="font-size:14px">' + t + '</span><span class="fm-mono" style="font-size:12px">' + pct + '%</span></div>' +
+          '<span class="fm-disp" style="font-size:14px">' + label + '</span><span class="fm-mono" style="font-size:12px">' + pct + '%</span></div>' +
           '<div style="height:7px;border-radius:4px;background:rgba(79,91,118,.22);overflow:hidden"><div class="js-pb" data-pct="' + pct + '" style="height:100%;width:0%;background:' + col + ';opacity:.85;border-radius:4px"></div></div>';
         cr.appendChild(row);
       });
@@ -623,26 +942,28 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 6 ----------------------------- */
   const s6 = {
     id: 's6', dur: 5900,
-    vo: 'Doing it solo? Cute. Drag your friends in — the Arena\'s open.',
-    caps: [{ at: 0, html: 'Doing it solo? <span class="hi">Cute.</span>' }, { at: 2.8, html: 'Enter the <span class="hi">Arena</span>.' }],
+    vo: t('s6.vo'),
+    caps: [{ at: 0, html: t('s6.cap1') }, { at: 2.8, html: t('s6.cap2') }],
     render(node) {
       const c = appCol(node, 560);
       // tabs
       const tabs = el('div', 'fm-panel', { padding: '6px', marginBottom: '14px', display: 'flex', gap: '6px' });
-      ['TODAY', 'STATS', 'ARENA', 'PROFILE'].forEach((t) => {
-        const b = el('div', 'fm-mono', { flex: '1', textAlign: 'center', padding: '10px 4px', fontSize: '12px', letterSpacing: '.12em', color: t === 'ARENA' ? COL.ink : COL.faint, borderBottom: '2px solid ' + (t === 'ARENA' ? COL.amber : 'transparent') });
-        b.textContent = t; tabs.appendChild(b);
+      // The Arena tab is the selected one — flagged rather than inferred from
+      // the label, which is no longer a fixed English word.
+      [['s6.tabToday', false], ['s6.tabStats', false], ['s6.tabArena', true], ['s6.tabProfile', false]].forEach(([key, on]) => {
+        const b = el('div', 'fm-mono', { flex: '1', textAlign: 'center', padding: '10px 4px', fontSize: '12px', letterSpacing: '.12em', color: on ? COL.ink : COL.faint, borderBottom: '2px solid ' + (on ? COL.amber : 'transparent') });
+        b.textContent = t(key); tabs.appendChild(b);
       });
       c.appendChild(tabs);
       const convene = el('button', 'fm-disp', { width: '100%', padding: '15px', borderRadius: '12px', border: 'none', cursor: 'default', marginBottom: '14px', fontWeight: '700', fontSize: '14px', letterSpacing: '.06em', color: '#1a1206', background: 'linear-gradient(180deg,' + COL.amber + ',' + COL.amberDeep + ')', boxShadow: '0 8px 24px -8px rgba(255,180,84,.6)' });
-      convene.textContent = '⚑ CONVENE A CHALLENGE';
+      convene.textContent = t('s6.convene');
       c.appendChild(convene);
       const card = el('div', 'fm-panel', { padding: '16px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' });
       card.innerHTML = '<div style="display:flex;align-items:center;gap:12px">' +
         '<span style="font-size:26px">💧</span><div>' +
-        '<div class="fm-disp" style="font-weight:700;font-size:17px">Hydration Challenge</div>' +
-        '<div class="fm-mono" style="font-size:10px;color:' + COL.dim + ';margin-top:3px">8 GLASSES EACH DAY · 7 DAYS · 4 PLAYERS</div></div></div>' +
-        '<span class="fm-tag" style="color:' + COL.go + ';border-color:' + COL.go + '">LIVE</span>';
+        '<div class="fm-disp" style="font-weight:700;font-size:17px">' + t('s6.challenge') + '</div>' +
+        '<div class="fm-mono" style="font-size:10px;color:' + COL.dim + ';margin-top:3px">' + t('s6.challengeMeta') + '</div></div></div>' +
+        '<span class="fm-tag" style="color:' + COL.go + ';border-color:' + COL.go + '">' + t('s6.live') + '</span>';
       c.appendChild(card);
       anim(tabs.children[2], [{ opacity: .4 }, { opacity: 1 }], { duration: 500, fill: 'both' });
       anim(convene, [{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 500, delay: 400, fill: 'both', easing: POP });
@@ -654,37 +975,38 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 7 ----------------------------- */
   const s7 = {
     id: 's7', dur: 10500,
-    vo: 'Invite your crew, set days and a target, go live. Most days completed tops the board. Miss one, minus one. Post proof, talk trash.',
-    caps: [{ at: 0, html: 'Go live. Climb the board.' }, { at: 5.4, html: 'Miss a day → <span class="hi">−1</span>.' }],
+    vo: t('s7.vo'),
+    caps: [{ at: 0, html: t('s7.cap1') }, { at: 5.4, html: t('s7.cap2') }],
     render(node) {
       const c = appCol(node, 580);
       const RED = '#FF6B6B';
       const hdr = el('div', 'fm-panel', { padding: '16px 18px', marginBottom: '12px' });
       hdr.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between">' +
         '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">💧</span>' +
-        '<span class="fm-disp" style="font-weight:700;font-size:18px">Hydration Challenge</span></div>' +
-        '<span class="fm-tag" style="color:' + COL.go + ';border-color:' + COL.go + '">LIVE · DAY 3/7</span></div>';
+        '<span class="fm-disp" style="font-weight:700;font-size:18px">' + t('s6.challenge') + '</span></div>' +
+        '<span class="fm-tag" style="color:' + COL.go + ';border-color:' + COL.go + '">' + t('s7.liveDay') + '</span></div>';
       c.appendChild(hdr);
       const board = el('div', 'fm-panel', { padding: '14px 16px' });
       board.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">' +
-        '<span class="fm-mono" style="font-size:11px;letter-spacing:.16em;color:' + COL.dim + '">LEADERBOARD · MOST DAYS</span>' +
-        '<span class="fm-mono" style="font-size:10px;letter-spacing:.18em;color:' + RED + '">MISSED</span></div>';
+        '<span class="fm-mono" style="font-size:11px;letter-spacing:.16em;color:' + COL.dim + '">' + t('s7.leaderboard') + '</span>' +
+        '<span class="fm-mono" style="font-size:10px;letter-spacing:.18em;color:' + RED + '">' + t('s7.missedCol') + '</span></div>';
       // DAY 3/7: ranked by days completed; the MISSED column is the star stat.
+      // `done` is a flag rather than a '✓' sniffed off the subtitle — the
+      // subtitle is translated copy and must not double as a data field.
       const data = [
-        { name: 'Aria K.',  me: false, today: '5/8 TODAY',    missed: 0 },
-        { name: 'You',      me: true,  today: '6/8 TODAY',    missed: 0 },
-        { name: 'Kenji T.', me: false, today: '✓ DONE TODAY', missed: 1 },
-        { name: 'Noor A.',  me: false, today: '3/8 TODAY',    missed: 1 },
+        { name: t('player.a'), me: false, today: t('s7.today', { v: '5/8' }), done: false, missed: 0 },
+        { name: t('s7.you'),   me: true,  today: t('s7.today', { v: '6/8' }), done: false, missed: 0 },
+        { name: t('player.b'), me: false, today: '',                          done: true,  missed: 1 },
+        { name: t('player.c'), me: false, today: t('s7.today', { v: '3/8' }), done: false, missed: 1 },
       ];
       const rows = data.map((p, i) => {
         const row = el('div', 'fm-lb-row' + (p.me ? ' me' : ''));
         row.style.position = 'relative';
-        const done = p.today.indexOf('✓') === 0;
         row.innerHTML =
           '<span class="fm-rank' + (i === 0 ? ' lead' : '') + '">' + (i + 1) + '</span>' +
           '<span class="fm-ava' + (p.me ? ' me' : '') + '">' + p.name[0] + '</span>' +
-          '<div style="flex:1;min-width:0"><div class="fm-lb-name">' + p.name + (p.me ? ' <span style="color:' + COL.amber + ';font-size:11px">(you)</span>' : '') + '</div>' +
-          '<div class="fm-lb-sub' + (done ? ' done' : '') + '">' + (done ? '✓ DONE TODAY · 📷 PROOF' : p.today) + '</div></div>' +
+          '<div style="flex:1;min-width:0"><div class="fm-lb-name">' + p.name + (p.me ? ' <span style="color:' + COL.amber + ';font-size:11px">' + t('s7.youTag') + '</span>' : '') + '</div>' +
+          '<div class="fm-lb-sub' + (p.done ? ' done' : '') + '">' + (p.done ? t('s7.doneProof') : p.today) + '</div></div>' +
           '<span class="js-miss fm-mono" style="font-weight:700;font-size:16px;width:44px;text-align:right;color:' + (p.missed > 0 ? RED : COL.faint) + '">' + (p.missed > 0 ? '−' + p.missed : '0') + '</span>';
         board.appendChild(row);
         row._rank = row.querySelector('.fm-rank'); row._sub = row.querySelector('.fm-lb-sub'); row._miss = row.querySelector('.js-miss');
@@ -693,14 +1015,14 @@ function buildScenes(ctx) {
       c.appendChild(board);
 
       // a friend finishes; the leader MISSES a day (-1, red) and drops; you finish clean and climb to #1.
-      after(1300, () => { rows[3]._sub.textContent = '7/8 TODAY'; sfx.tick(); });
+      after(1300, () => { rows[3]._sub.textContent = t('s7.today', { v: '7/8' }); sfx.tick(); });
       after(2500, () => {
-        rows[0]._sub.textContent = 'MISSED A DAY'; rows[0]._sub.style.color = RED;
+        rows[0]._sub.textContent = t('s7.missedADay'); rows[0]._sub.style.color = RED;
         rows[0]._miss.textContent = '−1'; rows[0]._miss.style.color = RED;
         anim(rows[0]._miss, [{ transform: 'scale(1.7)' }, { transform: 'scale(1)' }], { duration: 460, easing: POP });
         sfx.whoosh();
       });
-      after(4100, () => { rows[1]._sub.textContent = '✓ DONE TODAY · 📷 PROOF'; rows[1]._sub.classList.add('done'); anim(rows[1]._sub, [{ opacity: .3 }, { opacity: 1 }], { duration: 420 }); sfx.pop(); });
+      after(4100, () => { rows[1]._sub.textContent = t('s7.doneProof'); rows[1]._sub.classList.add('done'); anim(rows[1]._sub, [{ opacity: .3 }, { opacity: 1 }], { duration: 420 }); sfx.pop(); });
       after(5300, () => {
         const H = rows[1].offsetTop - rows[0].offsetTop;
         anim(rows[1], [{ transform: 'translateY(0)' }, { transform: 'translateY(' + (-H) + 'px)' }], { duration: 650, fill: 'both', easing: 'cubic-bezier(.3,1.1,.3,1)' });
@@ -721,24 +1043,24 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 8 ----------------------------- */
   const s8 = {
     id: 's8', dur: 5600,
-    vo: 'Win together. Lose together. Get scary good — together.',
-    caps: [{ at: 0, html: 'Win. Lose.' }, { at: 2.5, html: 'Get scary good — <span class="hi">together</span>.' }],
+    vo: t('s8.vo'),
+    caps: [{ at: 0, html: t('s8.cap1') }, { at: 2.5, html: t('s8.cap2') }],
     render(node) {
       const c = appCol(node, 560);
       const win = el('div', 'fm-panel', { padding: '24px', textAlign: 'center', marginBottom: '14px', position: 'relative', overflow: 'hidden' });
       win.innerHTML = '<div style="font-size:46px;margin-bottom:6px">🏆</div>' +
-        '<div class="fm-mono" style="font-size:10px;letter-spacing:.22em;color:' + COL.faint + ';margin-bottom:8px">💧 HYDRATION CHALLENGE · 7 DAYS</div>' +
-        '<div class="fm-disp" style="font-weight:900;font-size:28px;color:' + COL.amber + '">You — that\'s you!</div>' +
-        '<div class="fm-mono" style="font-size:12px;color:' + COL.dim + ';margin-top:6px">7 DAYS · MOST DAYS COMPLETED</div>';
+        '<div class="fm-mono" style="font-size:10px;letter-spacing:.22em;color:' + COL.faint + ';margin-bottom:8px">' + t('s8.challengeLine') + '</div>' +
+        '<div class="fm-disp" style="font-weight:900;font-size:28px;color:' + COL.amber + '">' + t('s8.winner') + '</div>' +
+        '<div class="fm-mono" style="font-size:12px;color:' + COL.dim + ';margin-top:6px">' + t('s8.winnerMeta') + '</div>';
       c.appendChild(win);
       // podium standings
       const board = el('div', 'fm-panel', { padding: '16px' });
-      board.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.18em;color:' + COL.dim + ';margin-bottom:10px">FINAL STANDINGS</div>';
-      [['🥇', 'You', '7'], ['🥈', 'Aria K.', '6'], ['🥉', 'Kenji T.', '5'], ['', 'Noor A.', '4']].forEach(([m, n, s], i) => {
+      board.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.18em;color:' + COL.dim + ';margin-bottom:10px">' + t('s8.standings') + '</div>';
+      [['🥇', t('s7.you'), '7'], ['🥈', t('player.a'), '6'], ['🥉', t('player.b'), '5'], ['', t('player.c'), '4']].forEach(([m, n, s], i) => {
         const row = el('div', 'fm-lb-row' + (i === 0 ? ' me' : ''));
         row.innerHTML = '<span style="font-size:18px;width:28px;text-align:center">' + m + '</span>' +
           '<span class="fm-disp" style="flex:1;font-size:15px;font-weight:' + (i === 0 ? '700' : '500') + '">' + n + '</span>' +
-          '<span class="fm-mono" style="font-size:14px;font-weight:700">' + s + ' <span style="color:' + COL.faint + ';font-size:9px">DAYS</span></span>';
+          '<span class="fm-mono" style="font-size:14px;font-weight:700">' + s + ' <span style="color:' + COL.faint + ';font-size:9px">' + t('s8.daysUnit') + '</span></span>';
         board.appendChild(row);
       });
       c.appendChild(board);
@@ -766,17 +1088,17 @@ function buildScenes(ctx) {
   /* ----------------------------- Scene 9 ----------------------------- */
   const s9 = {
     id: 's9', dur: 11400,
-    vo: 'Tadapop. Track it, race your friends, become the you you keep describing. Free on iPhone and Android. Now up, soldier. Your first mission starts now. Tada!',
-    caps: [{ at: 0, html: 'Become who you said you\'d be.' }, { at: 6, html: 'Your first mission starts <span class="go">now</span>.' }],
+    vo: t('s9.vo'),
+    caps: [{ at: 0, html: t('s9.cap1') }, { at: 6, html: t('s9.cap2') }],
     render(node) {
       const wrap = el('div', null, { position: 'absolute', inset: '0', display: 'grid', placeItems: 'center' });
       const box = el('div', null, { textAlign: 'center' });
       const logo = el('img', null, { width: '96px', height: '96px', borderRadius: '22px', boxShadow: '0 0 60px rgba(255,180,84,.3)' });
       logo.src = '/assets/logo.png';
       const title = el('div', 'fm-disp', { fontWeight: '900', fontSize: '40px', letterSpacing: '2px', marginTop: '20px' });
-      title.innerHTML = 'Track. Compete. <span style="color:' + COL.amber + '">Become.</span>';
+      title.innerHTML = t('s9.title', { amber: COL.amber });
       const cta = el('div', 'fm-disp', { display: 'inline-block', marginTop: '24px', padding: '14px 28px', borderRadius: '10px', background: COL.amber, color: '#1a1205', fontWeight: '700', letterSpacing: '1px', fontSize: '15px' });
-      cta.textContent = 'Get the beta — iOS & Android →';
+      cta.textContent = t('cta.getBeta');
       box.append(logo, title, cta); wrap.appendChild(box); node.appendChild(wrap);
       anim(logo, [{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 600, easing: POP, fill: 'both' });
       anim(title, [{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 600, delay: 250, fill: 'both' });

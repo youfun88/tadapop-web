@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>在 Android 上試用 Tadapop</title>
+  <meta name="description" content="安裝 Tadapop 的 Android 測試版。" />
+  <meta name="robots" content="noindex" />
+
+  <link rel="alternate" hreflang="en" href="https://tadapop.app/android" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/android" />
+  <link rel="alternate" hreflang="x-default" href="https://tadapop.app/android" />
+
+  <link rel="icon" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .install-cta { text-align: center; margin: 28px 0 8px; }
+    .install-cta .button { font-size: 17px; padding: 16px 34px; }
+    .qr-card {
+      margin: 28px auto;
+      max-width: 320px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+    }
+    .qr-card img { width: 220px; height: 220px; border-radius: 10px; background: #fff; padding: 10px; }
+    .qr-card .qr-label { color: var(--dim); font-family: var(--mono, monospace); font-size: 13px; letter-spacing: 1px; margin-top: 14px; text-transform: uppercase; }
+    .steps { counter-reset: step; list-style: none; padding: 0; }
+    .steps li { position: relative; padding-left: 38px; margin: 14px 0; }
+    .steps li::before {
+      counter-increment: step; content: counter(step);
+      position: absolute; left: 0; top: -2px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(255,180,84,0.14); color: var(--amber);
+      font-family: var(--mono, monospace); font-weight: 600;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .note { color: var(--faint); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; margin-top: 28px; }
+    .doc h3 {
+      font-family: var(--display, inherit); color: var(--ink); font-size: 15px;
+      letter-spacing: 0.5px; text-transform: uppercase; margin: 22px 0 8px;
+    }
+    .doc h3:first-of-type { margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <article class="doc">
+    <div class="doc-top">
+      <a class="back" href="/zh">← 回到 tadapop.app</a>
+      <div data-lang-switch></div>
+    </div>
+    <h1>在 Android 上試用 Tadapop</h1>
+    <div class="updated">Android 測試版 · v1.4.1 · 2026 年 8 月 5 日</div>
+
+    <p>Tadapop 正在測試中。安裝下面的 Android 版本試試看 — 你的回饋會決定這個 App 之後的樣子。</p>
+
+    <div class="install-cta">
+      <a class="button" href="/tadapop.apk" download>下載 Android 版</a>
+    </div>
+
+    <div class="qr-card">
+      <img src="/android/qr.png" alt="開啟這一頁的 QR code" />
+      <div class="qr-label">用電腦看嗎？請用你的 Android 手機掃描</div>
+    </div>
+
+    <h2>這一版有什麼新東西</h2>
+    <p>獎勵系統整個重做了，外觀也終於真的有作用。</p>
+
+    <h3>獎勵</h3>
+    <ul>
+      <li><strong>九座獎盃</strong>，不再是五座 — 第一座在你的第一個全清日就會拿到，7 天和 14 天還有更多。</li>
+      <li><strong>到處都看得到進度。</strong>還沒解鎖的獎盃現在會直接顯示「12 / 30」，而不是只告訴你它要什麼。</li>
+      <li><strong>點一下任何鎖住的項目</strong>，就能看到它到底要怎麼拿，以及你還差多少。</li>
+      <li>「個人」頁的每個區塊都有<strong>說明圖示</strong>，告訴你那條進度實際上是怎麼運作的。</li>
+    </ul>
+
+    <h3>可以穿戴的外觀</h3>
+    <ul>
+      <li><strong>主題色和面板主題現在真的會套用。</strong>點一下已經拿到的就穿上，再點一下就脫下來。</li>
+      <li><strong>你的外觀跟著帳號走</strong> — 登入之後，換了新手機也會一起帶過去。</li>
+      <li><strong>拿到的 App 圖示只在 iPhone 上有效。</strong>在 Android 上換圖示得把 App 關掉重開，還可能弄壞主畫面的捷徑，所以 Android 只保留一個圖示。</li>
+    </ul>
+
+    <h2>怎麼安裝</h2>
+    <ol class="steps">
+      <li>點上面的<strong>下載 Android 版</strong>，然後開啟下載好的 <code>.apk</code> 檔。</li>
+      <li>如果 Android 提醒你這是來源不明的檔案，點<strong>設定</strong> → 開啟<strong>允許來自此來源</strong>，再返回。</li>
+      <li>點<strong>安裝</strong>，然後從應用程式列表開啟 <strong>Tadapop</strong>。</li>
+    </ol>
+    <p>已經裝了七月的版本嗎？這一版可以直接覆蓋上去，不需要先移除，你的任務也會原封不動地留著。</p>
+
+    <h2>先知道這幾件事</h2>
+    <ul>
+      <li><strong>只有 Android 能裝。</strong>這是一個 <code>.apk</code> 檔，沒辦法裝在 iPhone 上。</li>
+      <li><strong>個人紀錄不需要帳號。</strong>只有競技場才需要帳號，用電子郵件收一組驗證碼就好。</li>
+      <li><strong>要開啟邀請連結嗎？</strong>在 Android 上會先跳到一個網頁 — 在那裡點<strong>用 Tadapop 開啟</strong>，就會進到 App 裡。</li>
+      <li>這是正式發布前的測試版，會有一些粗糙的地方 — 那正是我們要測的東西。</li>
+    </ul>
+
+    <p class="note">有問題或發現 bug 嗎？<a href="/zh/support">聯絡支援</a>。安裝即表示你同意我們的<a href="/zh/terms">服務條款</a>與<a href="/zh/privacy">隱私權政策</a>。</p>
+  </article>
+
+  <script src="/lang.js" defer></script>
+</body>
+</html>

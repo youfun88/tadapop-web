@@ -1,8 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tadapop.app/</loc><priority>1.0</priority></url>
-  <url><loc>https://tadapop.app/rules</loc><priority>0.6</priority></url>
-  <url><loc>https://tadapop.app/privacy</loc><priority>0.5</priority></url>
-  <url><loc>https://tadapop.app/terms</loc><priority>0.5</priority></url>
-  <url><loc>https://tadapop.app/support</loc><priority>0.5</priority></url>
+<!--
+  Every page twice — English at /thing, Traditional Chinese at /zh/thing — and
+  each entry declares BOTH with xhtml:link. Google accepts an hreflang set only
+  when every URL in it points back at every other, so the annotation is repeated
+  in full on both entries of a pair rather than stated once on the English one.
+  The <link rel="alternate"> tags in each page's <head> say the same thing;
+  having it here too is the version Search Console reports on.
+
+  x-default is the English page: what someone gets when no language matches,
+  which is also where the client-side redirect in /lang.js leaves people alone.
+
+  /rewards was missing entirely before this — a real landing page that was
+  never being submitted for indexing.
+
+  /android and /join are absent on purpose, and must stay that way: both carry
+  <meta name="robots" content="noindex">. Listing a noindexed URL in a sitemap
+  is a contradiction — you are asking Google to crawl a page and then telling it
+  not to keep the result. /android is a beta test-build page whose content goes
+  stale every release, and /join is what an invite link opens, not something
+  anyone should arrive at from a search result. If either should be indexed,
+  remove its noindex FIRST and add it here second.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://tadapop.app/</loc>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/"/>
+  </url>
+  <url>
+    <loc>https://tadapop.app/zh</loc>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/"/>
+  </url>
+
+  <url>
+    <loc>https://tadapop.app/rewards</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/rewards"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rewards"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/rewards"/>
+  </url>
+  <url>
+    <loc>https://tadapop.app/zh/rewards</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/rewards"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rewards"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/rewards"/>
+  </url>
+
+  <url>
+    <loc>https://tadapop.app/rules</loc>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/rules"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rules"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/rules"/>
+  </url>
+  <url>
+    <loc>https://tadapop.app/zh/rules</loc>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/rules"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rules"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/rules"/>
+  </url>
+
+  <url>
+    <loc>https://tadapop.app/support</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/support"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/support"/>
+  </url>
+  <url>
+    <loc>https://tadapop.app/zh/support</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/support"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/support"/>
+  </url>
+
+  <url>
+    <loc>https://tadapop.app/privacy</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/privacy"/>
+  </url>
+  <url>
+    <loc>https://tadapop.app/zh/privacy</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/privacy"/>
+  </url>
+
+  <url>
+    <loc>https://tadapop.app/terms</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/terms"/>
+  </url>
+  <url>
+    <loc>https://tadapop.app/zh/terms</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/terms"/>
+  </url>
+
 </urlset>

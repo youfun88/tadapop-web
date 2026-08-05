@@ -1,11 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Join a challenge · Tadapop</title>
-<meta name="description" content="You've been invited to a Tadapop Arena challenge." />
+<title>加入挑戰 · Tadapop</title>
+<meta name="description" content="有人邀請你加入 Tadapop 競技場的挑戰。" />
 <meta name="robots" content="noindex" />
+<meta property="og:title" content="加入挑戰 · Tadapop" />
+<meta property="og:description" content="有人邀請你加入 Tadapop 競技場的挑戰。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://tadapop.app/zh/join" />
+<meta property="og:image" content="https://tadapop.app/assets/og.png" />
+<meta property="og:locale" content="zh_Hant_TW" />
 <link rel="alternate" hreflang="en" href="https://tadapop.app/join" />
 <link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/join" />
 <link rel="alternate" hreflang="x-default" href="https://tadapop.app/join" />
@@ -39,19 +45,18 @@
 </head>
 <body>
   <main class="invite">
-    <h1>You've been invited to a challenge</h1>
-    <p>Open Tadapop and enter this code to join.</p>
+    <h1>有人邀請你加入挑戰</h1>
+    <p>開啟 Tadapop，輸入這組邀請碼就能加入。</p>
 
     <div class="code" id="code">——————</div>
 
     <div class="actions">
-      <a class="primary" id="open" href="#">Open in Tadapop</a>
-      <a class="secondary" href="/">Get the app</a>
+      <a class="primary" id="open" href="#">用 Tadapop 開啟</a>
+      <a class="secondary" href="/zh">下載 App</a>
     </div>
 
     <p class="hint">
-      Already have Tadapop? Tapping this link on your phone should open it straight to the invite.
-      If it doesn't, open the app, tap <strong>Arena → Join code</strong> and type the code above.
+      已經有 Tadapop 了嗎？在手機上點按這個連結，應該會直接開啟 App 並顯示這則邀請。如果沒有，請開啟 App，點按<strong>競技場 → 輸入邀請碼</strong>，再輸入上方的邀請碼。
     </p>
 
     <div class="lang-foot" data-lang-switch></div>
@@ -65,7 +70,7 @@
 
   if (valid) {
     document.getElementById('code').textContent = code;
-    document.title = 'Join with code ' + code + ' · Tadapop';
+    document.title = '以邀請碼 ' + code + ' 加入 · Tadapop';
     var deepLink = 'tadapop://join/' + code;
     document.getElementById('open').setAttribute('href', deepLink);
 
@@ -80,7 +85,7 @@
   } else {
     document.getElementById('code').textContent = '?';
     document.querySelector('.invite p').textContent =
-      "That invite link doesn't look complete. Ask whoever invited you to send it again.";
+      '這個邀請連結看起來不完整。請邀請你的人重新傳一次給你。';
     document.getElementById('open').style.display = 'none';
   }
 </script>

@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support — Tadapop</title>
-  <meta name="description" content="Get help with Tadapop." />
+  <title>支援 — Tadapop</title>
+  <meta name="description" content="取得 Tadapop 的協助：回報問題、提出建議，或詢問任何關於這個 App 的事。" />
 
-  <link rel="canonical" href="https://tadapop.app/support" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="支援 — Tadapop" />
+  <meta property="og:description" content="取得 Tadapop 的協助：回報問題、提出建議，或詢問任何關於這個 App 的事。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tadapop.app/zh/support" />
+  <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+  <meta property="og:locale" content="zh_Hant_TW" />
+
+  <link rel="canonical" href="https://tadapop.app/zh/support" />
   <link rel="alternate" hreflang="en" href="https://tadapop.app/support" />
   <link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/support" />
   <link rel="alternate" hreflang="x-default" href="https://tadapop.app/support" />
@@ -21,17 +29,17 @@
   <div class="grid-bg" aria-hidden="true"></div>
   <article class="doc">
     <div class="doc-top">
-      <a class="back" href="/">← Back to tadapop.app</a>
+      <a class="back" href="/zh">← 回到 tadapop.app</a>
       <div data-lang-switch></div>
     </div>
-    <h1>Support</h1>
-    <div class="updated">We're happy to help.</div>
+    <h1>支援</h1>
+    <div class="updated">我們很樂意幫忙。</div>
 
-    <p>Have a question, found a bug, or want to suggest a feature? Send us a message below and we'll get back to you.</p>
+    <p>有問題、發現 bug，或是想提出功能建議嗎？在下面留言給我們，我們會回覆你。</p>
 
     <form class="support-form" id="supportForm" autocomplete="on">
       <div class="field">
-        <label for="email">Your email <span class="hint">(so we can reply)</span></label>
+        <label for="email">你的電子郵件 <span class="hint">（方便我們回覆）</span></label>
         <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" />
       </div>
       <!-- honeypot: bots fill this in, humans never see it -->
@@ -40,33 +48,33 @@
         <input id="company" name="_honey" type="text" tabindex="-1" autocomplete="off" />
       </div>
       <div class="field">
-        <label for="message">How can we help?</label>
-        <textarea id="message" name="message" placeholder="Describe your question or the issue you're running into…"></textarea>
+        <label for="message">有什麼需要協助的？</label>
+        <textarea id="message" name="message" placeholder="說說你的問題，或是你遇到的狀況…"></textarea>
       </div>
       <div class="send-row">
-        <button id="send" type="button" disabled>Send message</button>
+        <button id="send" type="button" disabled>送出訊息</button>
         <p class="form-note" id="formStatus" role="status" aria-live="polite"></p>
       </div>
     </form>
 
-    <p class="form-note">Tap “Send message” and your note goes straight to our team. We typically reply within 1–2 business days.</p>
+    <p class="form-note">點「送出訊息」，你的內容就會直接送到我們的信箱。我們通常會在 1 到 2 個工作天內回覆。</p>
 
-    <h2>Frequently asked</h2>
+    <h2>常見問題</h2>
 
-    <h2 style="font-size:17px">Do I need an account?</h2>
-    <p>No. Solo habit tracking works fully offline with no account. You only need an account to use the Arena — the private competition feature.</p>
+    <h2 style="font-size:17px">我需要帳號嗎？</h2>
+    <p>不需要。個人的習慣追蹤完全離線也能用，不需要帳號。只有競技場 — 也就是私人的較勁功能 — 才需要帳號。</p>
 
-    <h2 style="font-size:17px">How do I delete my account?</h2>
-    <p>Open the app, go to your profile/settings, and choose delete account. This removes your cloud profile and associated Arena data. Uninstalling the app removes the data stored on your device.</p>
+    <h2 style="font-size:17px">我要怎麼刪除帳號？</h2>
+    <p>打開 App，進到個人／設定，選擇刪除帳號。這會刪除你的雲端個人檔案和相關的競技場資料。移除 App 則會清掉存在這台裝置上的資料。</p>
 
-    <h2 style="font-size:17px">How is the Arena scored?</h2>
-    <p>Your position on a challenge leaderboard is how many days you hit the daily target, and finishing near the top can earn Arena Score. The full payout, the tie rules, and the rank ladder are on the <a href="/rules">Arena Rules</a> page.</p>
+    <h2 style="font-size:17px">競技場怎麼計分？</h2>
+    <p>你在挑戰排行榜上的名次，就是你達成每日目標的天數；名次在前的人可以獲得競技分數。完整的給分方式、並列規則和等級階梯都在<a href="/zh/rules">競技場規則</a>這一頁。</p>
 
-    <h2 style="font-size:17px">Is my data private?</h2>
-    <p>Yes. Solo data stays on your device. Account data is protected so only you (and the challenges you're part of) can access it. We don't sell data or run ad trackers. See our <a href="/privacy">Privacy Policy</a>.</p>
+    <h2 style="font-size:17px">我的資料是私密的嗎？</h2>
+    <p>是的。個人紀錄留在你自己的裝置上。帳號資料受到保護，只有你（以及你參加的那些挑戰）能夠存取。我們不會販售資料，也不會放廣告追蹤器。詳見我們的<a href="/zh/privacy">隱私權政策</a>。</p>
 
-    <h2 style="font-size:17px">Which platforms are supported?</h2>
-    <p>Tadapop is in open beta on both <strong>iPhone</strong> and <strong>Android</strong>. Install via <a href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">TestFlight (iOS)</a> or <a href="/android">Android</a> — or grab the QR codes on our <a href="/">home page</a>.</p>
+    <h2 style="font-size:17px">支援哪些平台？</h2>
+    <p>Tadapop 目前在 <strong>iPhone</strong> 和 <strong>Android</strong> 上公開測試中。可以透過 <a href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">TestFlight（iOS）</a>或 <a href="/zh/android">Android</a> 安裝，也可以到<a href="/zh">首頁</a>掃描 QR code。</p>
   </article>
 
   <script>
@@ -93,9 +101,9 @@
       // Fail-safe: if the relay is ever unreachable, open the user's email app
       // so the message still gets out — the form never dead-ends.
       function mailtoFallback(msg, from) {
-        var body = msg + (from ? '\n\nReply to: ' + from : '');
+        var body = msg + (from ? '\n\n請回覆至：' + from : '');
         window.location.href = 'mailto:' + SUPPORT_EMAIL +
-          '?subject=' + encodeURIComponent('Tadapop support') +
+          '?subject=' + encodeURIComponent('Tadapop 支援') +
           '&body=' + encodeURIComponent(body);
       }
 
@@ -106,26 +114,27 @@
         var from = email.value.trim();
 
         send.disabled = true;
-        setStatus('Sending…');
+        setStatus('送出中…');
 
         fetch(ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             email: from || 'no-reply@tadapop.app',
+            // Tagged zh so whoever answers knows to reply in Chinese.
             message: msg,
-            _subject: 'Tadapop support — new message',
+            _subject: 'Tadapop support — new message (zh)',
             _template: 'table',
             _captcha: 'false'
           })
         })
         .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
         .then(function () {
-          setStatus('Thanks! Your message is on its way. We typically reply within 1–2 business days.', 'ok');
+          setStatus('謝謝！你的訊息已經送出。我們通常會在 1 到 2 個工作天內回覆。', 'ok');
           message.value = ''; email.value = ''; refresh();
         })
         .catch(function () {
-          setStatus('Opening your email app so you can send your message…');
+          setStatus('正在開啟你的郵件 App，讓你把訊息寄出…');
           send.disabled = false;
           mailtoFallback(msg, from);
         });
