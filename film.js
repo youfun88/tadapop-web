@@ -38,7 +38,7 @@
    not to its word count, and it fits the clock — the clock never moves for it.
 
    Chinese terminology follows the app (its src/i18n/zh.ts): 競技場 for Arena,
-   任務 for mission, T點 for Tpoint, 連續紀錄 for streak, and the four example
+   任務 for mission, T點數 for Tpoint, 連續紀錄 for streak, and the four example
    habits are the app's own template names so the film and the product name the
    same things. Traditional (Taiwan) forms and full-width punctuation only.
    ====================================================================== */
@@ -183,7 +183,7 @@ const COPY = {
     'app.missionControl': '任務控制中心',
     'app.todayOnTrack': '今天 · 進度正常',
     'app.streak': '連續天數',
-    'app.tpoints': 'T點',
+    'app.tpoints': 'T點數',
     'app.dayUnit': '天',
     'app.missionsToday': '任務 · 今天',
     'app.dayStreak': '連續天數',
@@ -192,7 +192,7 @@ const COPY = {
 
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
-    's1.cap1': '還在說<span class="hi">明天</span>再說？',
+    's1.cap1': '老是<span class="hi">明天</span>再說？',
     's1.cap2': '<span class="go">明天已經來報到了。</span>',
     's1.vo': '對，就是你 — 那個老是說「明天再說」的人。明天，已經來報到了。',
 
@@ -209,21 +209,21 @@ const COPY = {
     's2.metaTimer': '90 分鐘',
     's2.metaTimerLeft': '剩 89:58',
     's2.metaTimerDone': '90 分鐘完成',
-    's2.cap1': '今天正在點名<span class="hi">你</span>。',
+    's2.cap1': '今天點名，點到<span class="hi">你</span>。',
     's2.cap2': '點一下。數一數。<span class="go">鎖定。</span>',
-    's2.vo': '看到那些亮起來的任務了嗎？那是今天在點名你。點一下打勾，數你的水、你的步數、你的頁數。或者按下計時器，一頭栽進深度工作。',
+    's2.vo': '看到那些亮起來的任務了嗎？那是今天在點你的名。點一下打勾，數水杯、數步數、數頁數。或者按下計時器，一頭栽進深度工作。',
 
     /* ---- scene 3 · the all-or-nothing Tpoint ---- */
     's3.mission': '晨間運動 — 20 分鐘',
     's3.metaTimer': '20 分鐘',
     's3.metaDone': '20 分鐘完成',
-    's3.cleared': '今天全部完成 · +1 T點',
-    's3.cap1': '全部完成 → <span class="go">+1 T點</span>',
+    's3.cleared': '今天全部完成 · +1 T點數',
+    's3.cap1': '全部完成 → <span class="go">+1 T點數</span>',
     's3.cap2': '少一項 → 什麼都沒有',
-    's3.vo': '一項不漏地全部完成，這一天就會結算：1 T點。少一項呢？什麼都沒有。全清才算，不能討價還價。',
+    's3.vo': '一項不漏地全部完成，這一天就會結算：1 T點數。少一項呢？什麼都沒有。全清才算，不能討價還價。',
 
     /* ---- scene 4 · streaks ---- */
-    's4.cleared': '所有任務完成 — 今天到手',
+    's4.cleared': '所有任務完成 — 拿下今天',
     's4.cap1': '<span class="go">今天鎖定。</span>連續紀錄再長一天。',
     's4.cap2': '昨天的你，從來沒有勝算。',
     's4.vo': '這一天鎖定，連續紀錄再往上長一天。這裡沒有僥倖，朋友 — 只有昨天的你，又輸給了今天的你。',
@@ -247,14 +247,14 @@ const COPY = {
     's6.challenge': '喝水挑戰',
     's6.challengeMeta': '每天 8 杯 · 7 天 · 4 位成員',
     's6.live': '進行中',
-    's6.cap1': '一個人練？<span class="hi">很可愛。</span>',
+    's6.cap1': '一個人練？<span class="hi">真可愛。</span>',
     's6.cap2': '進入<span class="hi">競技場</span>。',
-    's6.vo': '一個人練？很可愛。把朋友們拖下水吧 — 競技場開了。',
+    's6.vo': '一個人練？真可愛。把朋友拖下水吧 — 競技場開了。',
 
     /* ---- scene 7 · the live leaderboard ---- */
     's7.liveDay': '進行中 · 第 3/7 天',
     's7.leaderboard': '排行榜 · 最多天數',
-    's7.missedCol': '漏掉',
+    's7.missedCol': '漏掉天數',
     's7.today': '今天 {v} 杯',
     's7.doneProof': '✓ 今日打卡 · 📷 證明',
     's7.missedADay': '漏掉一天',
@@ -278,14 +278,14 @@ const COPY = {
     's8.standings': '最終排名',
     's8.daysUnit': '天',
     's8.cap1': '一起贏。一起輸。',
-    's8.cap2': '<span class="hi">一起</span>變得可怕地強。',
-    's8.vo': '一起贏，一起輸，一起變得可怕地強。',
+    's8.cap2': '<span class="hi">一起</span>強到可怕。',
+    's8.vo': '一起贏，一起輸，一起強到可怕。',
 
     /* ---- scene 9 · sign-off ---- */
-    's9.title': '記錄。競爭。<span style="color:{amber}">成為。</span>',
-    's9.cap1': '成為你說過要成為的那個人。',
+    's9.title': '記錄。較勁。<span style="color:{amber}">蛻變。</span>',
+    's9.cap1': '成為你說過的那個人。',
     's9.cap2': '你的第一項任務，<span class="go">現在</span>開始。',
-    's9.vo': 'Tadapop。記錄它，跟朋友比一場，成為你一直掛在嘴邊的那個自己。iPhone 和 Android 免費下載。起來吧，戰士。你的第一項任務，現在開始。Tada！',
+    's9.vo': 'Tadapop。記錄下來，跟朋友比一場，成為你一直掛在嘴邊的那個自己。iPhone 和 Android 免費下載。起來吧，戰士。你的第一項任務，現在開始。Tada！',
   },
 };
 

@@ -49,7 +49,7 @@
       </div>
       <div class="field">
         <label for="message">有什麼需要協助的？</label>
-        <textarea id="message" name="message" placeholder="說說你的問題，或是你遇到的狀況…"></textarea>
+        <textarea id="message" name="message" placeholder="描述你的問題，或是你遇到的狀況…"></textarea>
       </div>
       <div class="send-row">
         <button id="send" type="button" disabled>送出訊息</button>
@@ -57,24 +57,24 @@
       </div>
     </form>
 
-    <p class="form-note">點「送出訊息」，你的內容就會直接送到我們的信箱。我們通常會在 1 到 2 個工作天內回覆。</p>
+    <p class="form-note">點一下「送出訊息」，你寫的內容就會直接送到我們的信箱。我們通常會在 1 到 2 個工作天內回覆。</p>
 
     <h2>常見問題</h2>
 
     <h2 style="font-size:17px">我需要帳號嗎？</h2>
-    <p>不需要。個人的習慣追蹤完全離線也能用，不需要帳號。只有競技場 — 也就是私人的較勁功能 — 才需要帳號。</p>
+    <p>不需要。個人的習慣追蹤完全離線也能用，不需要帳號。只有競技場 — 也就是私人、邀請制的挑戰功能 — 才需要帳號。</p>
 
     <h2 style="font-size:17px">我要怎麼刪除帳號？</h2>
-    <p>打開 App，進到個人／設定，選擇刪除帳號。這會刪除你的雲端個人檔案和相關的競技場資料。移除 App 則會清掉存在這台裝置上的資料。</p>
+    <p>開啟 App，進到個人／設定，選擇刪除帳號。這會刪除你的雲端個人檔案和相關的競技場資料。刪除 App 則會一併清除留在這台裝置上的資料。</p>
 
     <h2 style="font-size:17px">競技場怎麼計分？</h2>
-    <p>你在挑戰排行榜上的名次，就是你達成每日目標的天數；名次在前的人可以獲得競技分數。完整的給分方式、並列規則和等級階梯都在<a href="/zh/rules">競技場規則</a>這一頁。</p>
+    <p>你在挑戰排行榜上的排名，看的是你達成每日目標的天數；名次在前的人可以獲得競技分數。完整的給分方式、並列規則和等級階梯都在<a href="/zh/rules">競技場規則</a>這一頁。</p>
 
     <h2 style="font-size:17px">我的資料是私密的嗎？</h2>
-    <p>是的。個人紀錄留在你自己的裝置上。帳號資料受到保護，只有你（以及你參加的那些挑戰）能夠存取。我們不會販售資料，也不會放廣告追蹤器。詳見我們的<a href="/zh/privacy">隱私權政策</a>。</p>
+    <p>是的。個人紀錄留在你自己的裝置上。帳號資料受到保護，只有你（以及你參加的那些挑戰）能夠存取。我們不會販售資料，也不會使用廣告追蹤工具。詳見我們的<a href="/zh/privacy">隱私權政策</a>。</p>
 
     <h2 style="font-size:17px">支援哪些平台？</h2>
-    <p>Tadapop 目前在 <strong>iPhone</strong> 和 <strong>Android</strong> 上公開測試中。可以透過 <a href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">TestFlight（iOS）</a>或 <a href="/zh/android">Android</a> 安裝，也可以到<a href="/zh">首頁</a>掃描 QR code。</p>
+    <p>Tadapop 目前在 <strong>iPhone</strong> 和 <strong>Android</strong> 上公開測試中。可以透過 <a href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">TestFlight（iOS）</a>或 <a href="/zh/android">Android 版</a>安裝，也可以到<a href="/zh">首頁</a>掃描 QR code。</p>
   </article>
 
   <script>
@@ -134,7 +134,7 @@
           message.value = ''; email.value = ''; refresh();
         })
         .catch(function () {
-          setStatus('正在開啟你的郵件 App，讓你把訊息寄出…');
+          setStatus('正在開啟你的郵件 App，請直接從那裡把訊息寄給我們…');
           send.disabled = false;
           mailtoFallback(msg, from);
         });
