@@ -431,10 +431,19 @@ a { color: inherit; text-decoration: none; }
 .footer-brand { display: flex; align-items: center; gap: 8px; }
 .footer-brand .brand-mark { font-size: 16px; }
 .footer-brand .brand-logo { width: 22px; height: 22px; border-radius: 6px; }
-.footer-links { display: flex; gap: 22px; }
+/* align-items and an explicit line-height are both load-bearing once the links
+   are Chinese. JetBrains Mono carries no CJK glyphs, so 競技場規則 is drawn by
+   whatever system font the browser falls back to — one with taller metrics than
+   the mono. Under the default `align-items: stretch` that made every Chinese
+   link sit a couple of pixels off its Latin neighbours. Pinning the cross-axis
+   and the line box makes the row sit flat whatever script is in it.
+   flex-wrap + a row gap because four Chinese labels are wider than four English
+   ones and will wrap on a phone. */
+.footer-links { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 22px; }
 .footer-links a {
   font-family: var(--mono);
   font-size: 13px;
+  line-height: 1.6;
   color: var(--dim);
   transition: color .2s;
 }
@@ -548,6 +557,10 @@ a { color: inherit; text-decoration: none; }
 .lang-switch {
   font-family: var(--mono);
   font-size: 13px;
+  /* Same reason as .footer-links a — this label is 繁體中文 half the time, and
+     the mono has no CJK, so the line box has to be pinned or it rides high
+     next to its Latin neighbours. */
+  line-height: 1.6;
   color: var(--dim);
   transition: color .2s;
   white-space: nowrap;
@@ -556,6 +569,28 @@ a { color: inherit; text-decoration: none; }
 .lang-switch:hover { color: var(--amber); }
 .footer-links .lang-switch::before { content: none; }
 
-/* On the long-form pages the switcher rides the top row with "← Back". */
-.doc .doc-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+/* On the long-form pages the switcher rides the top row with "← Back".
+   center, not baseline: baseline aligns on the text baseline, which differs
+   between the mono and the CJK fallback font, so a Chinese back-link and a
+   Latin switcher (or the reverse) would sit at visibly different heights. */
+.doc .doc-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .doc .doc-top .back { margin: 0; }
+
+/* The switcher sits top-right on every page. Three mounts because the pages
+   have three different tops, not because the placement differs:
+     · home      — inside the nav, beside the "Get the app" button
+     · doc pages — the .doc-top row, opposite the back-link
+     · join      — its own corner, since that page has no header at all      */
+.nav-right { display: flex; align-items: center; gap: 18px; }
+.nav-right .lang-switch::before { content: none; }
+
+/* join/ has no nav to hang it on. Absolute rather than fixed so it scrolls
+   away with the page — the invite code is the only thing that matters there,
+   and a control pinned over it would compete with the primary action. */
+.lang-corner { position: absolute; top: 20px; right: 22px; z-index: 2; }
+.lang-corner .lang-switch::before { content: none; }
+
+@media (max-width: 560px) {
+  .nav-right { gap: 12px; }
+  .lang-corner { top: 14px; right: 16px; }
+}
