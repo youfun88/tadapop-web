@@ -30,6 +30,23 @@
  */
 (function () {
   var KEY = 'tadapop-lang';
+
+  /**
+   * TEMPORARY: send everyone to Chinese on a first visit, not just people whose
+   * browser asks for it. Every tester is a Chinese speaker right now, so the
+   * English pages are the ones nobody wants to land on.
+   *
+   * **Set this to false when that stops being true.** It is the whole switch —
+   * flipping it restores the normal behaviour, which is to move only visitors
+   * whose browser actually asks for Traditional Chinese.
+   *
+   * The two protections that make this survivable are below and must stay:
+   * crawlers are never redirected (so the English pages keep being indexed on
+   * their own URLs), and anyone who clicks "English" is remembered forever.
+   * Without the second one this would be a trap — an English reader would be
+   * thrown back to Chinese on every single page load.
+   */
+  var DEFAULT_TO_ZH = true;
   var BOT = /bot|crawl|spider|slurp|bingpreview|duckduckbot|baiduspider|yandex|facebookexternalhit|embedly|quora link preview|whatsapp|telegram|lighthouse|headlesschrome/i;
 
   /** '/zh/rules' -> '/rules'; '/rules' -> '/rules'. Always the English path. */
@@ -107,5 +124,5 @@
     return /^zh\b/i.test(l) && !/^zh[-_](CN|SG|Hans)/i.test(l);
   });
 
-  if (wantsZh && !here) location.replace(otherHref(path, true) + location.hash);
+  if ((DEFAULT_TO_ZH || wantsZh) && !here) location.replace(otherHref(path, true) + location.hash);
 })();
