@@ -84,7 +84,10 @@ const COPY = {
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': 'DAILY MISSIONS · STREAKS · THE ARENA',
     's1.cap1': 'Yeah, you — the one who keeps saying <span class="hi">tomorrow</span>.',
-    's1.cap2': '<span class="go">Tomorrow just clocked in.</span>',
+    /* Carries the setup as well, for the reason the Chinese one does: captions
+       replace each other, so a two-part joke lost its first half at the exact
+       moment the second half needed it. */
+    's1.cap2': 'Yeah, you — the one who keeps saying tomorrow.<br><span class="go">Tomorrow just clocked in.</span>',
     's1.vo': 'Yeah, you — the one who keeps saying tomorrow. Tomorrow just clocked in.',
 
     /* ---- scene 2 · the three mission types ---- */
