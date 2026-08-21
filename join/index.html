@@ -112,8 +112,16 @@
 
        If nothing has taken over after a beat, the code is promoted from a
        footnote to the answer, rather than the visitor being left guessing. */
-    var IN_APP = /(\bLine\b|FBAN|FBAV|FB_IAB|Instagram|MicroMessenger|KAKAOTALK|Twitter)/i
-      .test(navigator.userAgent || '');
+    var UA = navigator.userAgent || '';
+    var IN_APP = /(\bLine\b|FBAN|FBAV|FB_IAB|Instagram|MicroMessenger|KAKAOTALK|Twitter)/i.test(UA);
+    /* LINE is singled out because it is the one in-app browser with a way out:
+       a link carrying openExternalBrowser=1 is handed to the system browser
+       instead of being opened inside LINE. The others have no such switch. */
+    var IS_LINE = /\bLine\b/i.test(UA);
+    var EXTERNAL_URL = location.origin + location.pathname + '?openExternalBrowser=1';
+    /* We arrived here because LINE was asked to hand us to Safari — so finish
+       the job the visitor already started rather than making them tap again. */
+    var HANDED_OVER = /[?&]openExternalBrowser=1/.test(location.search);
     var left = false;
     function markLeft() { left = true; }
     document.addEventListener('visibilitychange', function () { if (document.hidden) markLeft(); });
@@ -122,21 +130,30 @@
     openBtn.addEventListener('click', function (e) {
       e.preventDefault();
       left = false;
-      /* Inside an in-app browser this never navigates the page.
-         Both ways of firing a custom scheme from LINE's webview have now been
-         tried on a real phone and neither opens the app: the iframe is refused
-         outright (iOS has blocked that since iOS 9), and sending the top-level
-         location there produces the permission prompt, then a blank black
-         screen — the webview follows the navigation, cannot render a
-         tadapop:// URL, and the invite is gone. A dead end with the code taken
-         off the screen is the worst of the available outcomes, so it is not on
-         the menu any more.
+      /* Both ways of firing a custom scheme from inside LINE have now been
+         tried on a real phone and neither opens the app. The iframe is refused
+         outright — iOS has blocked that since iOS 9. Sending the top-level
+         location there raises the permission prompt and then leaves a blank
+         black screen, because the webview follows the navigation and cannot
+         render a tadapop:// URL, taking the invite code with it.
 
-         The way out of a webview is out of the webview. LINE opens a link in
-         the system browser when it carries openExternalBrowser=1, and in
-         Safari the scheme behaves — the prompt appears and the page survives
-         whatever the visitor answers. So the in-app case offers that door
-         instead of rattling a locked one. */
+         Which left the button doing nothing at all, which is its own bug: the
+         one obvious control on the page, and tapping it produced silence.
+
+         The way out of a webview is out of the webview. So in LINE this button
+         does the only thing that can work — hands the page to the system
+         browser, where the scheme behaves and the page survives whatever the
+         visitor answers to the prompt. The trip is invisible: Safari opens on
+         this same page and fires the deep link on arrival (see HANDED_OVER),
+         so from the visitor's side one tap still lands in the app.
+
+         Other in-app browsers have no equivalent switch, so they get the
+         iframe — which costs nothing when it fails — and then the code, which
+         is what they will actually be using. */
+      if (IS_LINE) {
+        window.location.href = EXTERNAL_URL;
+        return;
+      }
       if (IN_APP) {
         var f = document.createElement('iframe');
         f.setAttribute('aria-hidden', 'true');
@@ -154,8 +171,9 @@
         var hint = document.getElementById('hint');
         if (hint) { hint.classList.add('nudge'); }
         var ext = document.getElementById('external');
-        if (ext && IN_APP) {
-          ext.href = location.origin + location.pathname + '?openExternalBrowser=1';
+        if (ext && IN_APP && !IS_LINE) {
+          // LINE's button already goes to the browser; the rest get it here.
+          ext.href = EXTERNAL_URL;
           ext.hidden = false;
           ext.scrollIntoView({ block: 'nearest' });
         } else if (hint) {
@@ -163,6 +181,15 @@
         }
       }, 900);
     });
+
+    /* Handed over from LINE: fire the deep link on arrival so the visitor does
+       not have to tap the same button twice. Only ever runs in a real browser
+       — IN_APP is checked because a webview without LINE's switch would still
+       be sitting here with the parameter on the URL, and navigating there is
+       what blanks the page. */
+    if (HANDED_OVER && !IN_APP) {
+      setTimeout(function () { openBtn.click(); }, 400);
+    }
   } else {
     document.getElementById('code').textContent = '?';
     document.querySelector('.invite p').textContent =
