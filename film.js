@@ -229,9 +229,9 @@ const COPY = {
 
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
-    's1.cap1': '喂！說你喔。',
-    's1.cap2': '<span class="hi">明天</span>已經打卡了。',
-    's1.vo': '喂！说你喔。明天已经打卡了。',
+    's1.cap1': '嘴上老是<span class="hi">明天明天</span>。',
+    's1.cap2': '<span class="go">明天，早就來打卡了。</span>',
+    's1.vo': '嘴上老是明天明天。明天，早就来打卡了。',
 
     /* ---- scene 2 · the three mission types ----
        Mission names are the app's own template translations, so a viewer who
@@ -367,7 +367,7 @@ const CAP_AT = {
     s9: [0.0, 3.98, 7.14],
   },
   zh: {
-    s1: [0, 1.68],
+    s1: [0, 1.74],
     s2: [0, 6.12],
     s3: [0, 2.08],
     s4: [0, 3.22],
@@ -599,6 +599,20 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
 
   /* ------------------------------ scenes -------------------------------- */
   const scenes = buildScenes(ctx);
+
+  /* A scene's length is the English performance's length, and Chinese does not
+     always fit in it. Where the gap is only rhythm, the Chinese is cut to fit —
+     that is the rule everywhere else in this film and it holds.
+     
+     s1 is where it stopped holding. The cold open is a two-part joke: the first
+     caption establishes that you are the one always saying "tomorrow", the
+     second lands it by having tomorrow turn up for work. Cutting the setup to
+     fit five seconds left 「明天已經打卡了」 on screen with nothing behind it,
+     which is not a tighter joke — it is half of one. The scene gets the extra
+     second instead. English is untouched. */
+  const SCENE_DUR = { zh: { s1: 6200 } };
+  const durOverrides = SCENE_DUR[LANG];
+  if (durOverrides) scenes.forEach((sc) => { if (durOverrides[sc.id]) sc.dur = durOverrides[sc.id]; });
   const TOTAL = scenes.reduce((s, x) => s + x.dur, 0);
   time.textContent = '0:00 / ' + fmtClock(TOTAL);
 
@@ -623,7 +637,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 6;
+  const VOV = 7;
   const VO_DIR = LANG === 'zh' ? '/assets/vo/zh/' : '/assets/vo/';
   function voSrc(id) { return VO_DIR + id + '.mp3?v=' + VOV; }
 

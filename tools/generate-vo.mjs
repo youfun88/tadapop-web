@@ -121,9 +121,16 @@ function die(msg) { console.error(`\n✗ ${msg}\n`); process.exit(1); }
 async function readFilm(lang) {
   const src = await readFile(FILM_JS, 'utf8');
 
-  // `dur` is the authority on how long a clip may be.
+  // `dur` is the authority on how long a clip may be — but film.js lets a
+  // language lengthen a scene it cannot fit in (SCENE_DUR), and a clip measured
+  // against the English length would be rejected for overrunning a scene that
+  // is no longer that long. Read the override too.
   const durations = {};
   for (const m of src.matchAll(/id:\s*'(s\d+)',\s*dur:\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
+  const over = new RegExp(`\\b${lang}:\\s*\\{([^}]*)\\}`).exec(
+    (/const SCENE_DUR = \{([\s\S]*?)\};/.exec(src) || [, ''])[1],
+  );
+  if (over) for (const m of over[1].matchAll(/(s\d+):\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
 
   // Narrow to the requested language's block inside COPY so `en:` lines can't
   // be picked up while generating `zh:` (both define the same keys).
