@@ -593,8 +593,33 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      truncated by the scene change. */
   const VOV = 5;
   const VO_DIR = LANG === 'zh' ? '/assets/vo/zh/' : '/assets/vo/';
-  const voCache = {};
-  scenes.forEach((sc) => { if (sc.id) { const a = new Audio(VO_DIR + sc.id + '.mp3?v=' + VOV); a.preload = 'auto'; voCache[sc.id] = a; } });
+  function voSrc(id) { return VO_DIR + id + '.mp3?v=' + VOV; }
+
+  /* ONE element for all nine lines, re-pointed per scene.
+     There used to be nine, one per clip, and on iOS the voice died partway
+     through every viewing while the music kept going. iOS unlocks media
+     elements one at a time, and only the ones you call play() on inside a
+     user gesture — so the tap that started the sound unlocked the clip that
+     happened to be playing, and the music, and nothing else. Every later
+     scene called play() on an element the browser had never been given
+     permission for, and it was refused.
+
+     A single element unlocked once stays unlocked however many times its src
+     changes afterwards, which is why this is the shape to keep. Do not go
+     back to an element per clip to get preloading — warm the HTTP cache
+     instead, as below. */
+  const voEl = new Audio();
+  voEl.preload = 'auto';
+
+  /* Prefetch through the HTTP cache rather than through media elements, so
+     the clips are local by the time the element asks for them without
+     creating ten decoders iOS has to keep alive. */
+  let voWarmed = false;
+  function warmVO() {
+    if (voWarmed) return;
+    voWarmed = true;
+    scenes.forEach((sc) => { if (sc.id) { try { fetch(voSrc(sc.id), { cache: 'force-cache' }).catch(() => {}); } catch (e) {} } });
+  }
   /* ---- score bed (ElevenLabs Music — chiptune) ----
      One 78-second track under the whole 74.8-second film. A plain <audio>
      element rather than a Web Audio node, for the same reason the voiceover is
@@ -645,16 +670,28 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
 
   function stopVO() {
     if (curAudio) { try { curAudio.pause(); } catch (e) {} curAudio.onended = null; curAudio = null; }
+    // The element is reused, so leave its src alone — reloading it here would
+    // throw away the buffered clip and re-fetch on every scene change.
     try { speechSynthesis.cancel(); } catch (e) {}
     host.classList.remove('speaking');
     stopMouth();
   }
+  /** A clip that will not play at all — drop back to the browser voice. */
+  function voFailed(a, sc) {
+    if (curAudio !== a) return;
+    host.classList.remove('speaking');
+    stopMouth();
+    rampMusic(MUSIC_FULL, 550);
+    sayTTS(sc.vo);
+  }
   function playVO(sc) {
     stopVO();
     if (muted || !sc) return;
-    const a = sc.id && voCache[sc.id];
-    if (a) {
+    if (sc.id) {
+      const a = voEl;
       curAudio = a;
+      // Re-pointing the element is what keeps the iOS unlock — see voEl.
+      if (a.getAttribute('src') !== voSrc(sc.id)) a.src = voSrc(sc.id);
       try { a.currentTime = 0; } catch (e) {}
       a.volume = 1;
       host.classList.add('speaking');
@@ -666,7 +703,25 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
       // playback in iOS WebKit / in-app webviews (SFX oscillators are fine),
       // which dropped the voiceover while clicks kept playing.
       startMouth(null);
-      if (p && p.catch) p.catch(() => { if (curAudio === a) { host.classList.remove('speaking'); stopMouth(); rampMusic(MUSIC_FULL, 550); sayTTS(sc.vo); } });
+      if (p && p.catch) {
+        p.catch((err) => {
+          if (curAudio !== a) return;
+          // Pointing the element at a new clip and playing it in the same tick
+          // makes Safari reject the previous request with AbortError. That is
+          // this code doing its job, not a failure — retry once the new clip
+          // is ready before giving up and falling back to the browser voice.
+          if (err && err.name === 'AbortError') {
+            a.addEventListener('canplay', function once() {
+              a.removeEventListener('canplay', once);
+              if (curAudio !== a || muted) return;
+              const q = a.play();
+              if (q && q.catch) q.catch(() => voFailed(a, sc));
+            }, { once: true });
+            return;
+          }
+          voFailed(a, sc);
+        });
+      }
     } else {
       sayTTS(sc.vo);
     }
@@ -752,6 +807,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     requestAnimationFrame(() => overlay.classList.add('show'));
     fit();
     if (!muted) ac();
+    warmVO();
     startMusic(true);
     pickVoice();
     rootAnims.forEach((a) => { try { a.cancel(); } catch (e) {} });

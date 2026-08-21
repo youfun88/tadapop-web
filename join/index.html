@@ -31,6 +31,12 @@
   .primary { background: #FFB454; color: #1B2438; }
   .secondary { border: 1px solid rgba(255,255,255,.2); }
   .hint { font-size: .85rem; opacity: .6; margin-top: 1.5rem; line-height: 1.6; }
+  /* Raised when the deep link did not take, which is the moment the typed-in
+     code stops being a footnote and becomes the way in. */
+  .hint.nudge {
+    opacity: 1; border: 1px solid rgba(255, 180, 84, .45);
+    background: rgba(255, 180, 84, .08); border-radius: 10px; padding: .9rem 1rem;
+  }
   /* The switcher sits under the hint, well below the primary action — this
      page's job is to get someone into a challenge, not to offer them a menu. */
   .lang-foot { margin-top: 2rem; }
@@ -50,7 +56,7 @@
       <a class="secondary" href="/">Get the app</a>
     </div>
 
-    <p class="hint">
+    <p class="hint" id="hint">
       Already have Tadapop? Tapping this link on your phone should open it straight to the invite.
       If it doesn't, open the app, tap <strong>Arena → Join code</strong> and type the code above.
     </p>
@@ -78,16 +84,55 @@
     document.getElementById('code').textContent = code;
     document.title = 'Join with code ' + code + ' · Tadapop';
     var deepLink = 'tadapop://join/' + code;
-    document.getElementById('open').setAttribute('href', deepLink);
+    var openBtn = document.getElementById('open');
+    openBtn.setAttribute('href', deepLink);
 
-    // If the app is installed but the universal link didn't take (a link opened
-    // from inside an in-app browser, say), the custom scheme still gets there.
-    // Only auto-attempt on a first visit, so it can't trap someone who came
-    // back here deliberately.
-    if (!sessionStorage.getItem('tadapop.join.tried')) {
-      sessionStorage.setItem('tadapop.join.tried', '1');
-      location.href = deepLink;
-    }
+    /* Opening the app must never cost the page.
+       ------------------------------------------------------------------
+       This used to send the top-level location to tadapop:// — and it did it
+       automatically, before the visitor had touched anything. In a normal
+       browser that is harmless: the OS prompt appears and the page stays put.
+       Inside an in-app browser it is not. LINE's webview follows the
+       navigation, has nothing it can render, and leaves a blank black screen
+       — taking the join code with it, which is the one thing the visitor
+       still needed. An invite that ends in a blank screen is a dead invite.
+
+       So the page never navigates itself away any more. In an in-app browser
+       the scheme is offered through a hidden iframe, which the webview either
+       hands to the OS or quietly ignores; either way this document survives.
+       Everywhere else the direct navigation is kept, because that is what
+       makes the prompt appear and the page is not at risk there.
+
+       If nothing has taken over after a beat, the code is promoted from a
+       footnote to the answer, rather than the visitor being left guessing. */
+    var IN_APP = /(\bLine\b|FBAN|FBAV|FB_IAB|Instagram|MicroMessenger|KAKAOTALK|Twitter)/i
+      .test(navigator.userAgent || '');
+    var left = false;
+    function markLeft() { left = true; }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) markLeft(); });
+    window.addEventListener('pagehide', markLeft);
+
+    openBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      left = false;
+      if (IN_APP) {
+        var f = document.createElement('iframe');
+        f.setAttribute('aria-hidden', 'true');
+        f.setAttribute('tabindex', '-1');
+        f.style.cssText = 'position:absolute;width:0;height:0;border:0;opacity:0';
+        f.src = deepLink;
+        document.body.appendChild(f);
+        setTimeout(function () { if (f.parentNode) f.parentNode.removeChild(f); }, 1500);
+      } else {
+        window.location.href = deepLink;
+      }
+      // Still here means the app never came forward.
+      setTimeout(function () {
+        if (left) return;
+        var hint = document.getElementById('hint');
+        if (hint) { hint.classList.add('nudge'); hint.scrollIntoView({ block: 'nearest' }); }
+      }, 1600);
+    });
   } else {
     document.getElementById('code').textContent = '?';
     document.querySelector('.invite p').textContent =
