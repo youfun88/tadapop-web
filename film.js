@@ -230,7 +230,12 @@ const COPY = {
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
     's1.cap1': '嘴上老是<span class="hi">明天明天</span>。',
-    's1.cap2': '<span class="go">明天，早就來打卡了。</span>',
+    /* The setup stays on screen under the punchline. Captions replace each
+       other, so a two-part joke lost its first half at the exact moment the
+       second half needed it — 「明天，早就來打卡了。」 alone is not a
+       shorter joke, it is an unparseable sentence. The reveal still happens
+       on the beat; it just does not take the setup away with it. */
+    's1.cap2': '嘴上老是明天明天。<br><span class="go">明天，早就來打卡了。</span>',
     's1.vo': '嘴上老是明天明天。明天，早就来打卡了。',
 
     /* ---- scene 2 · the three mission types ----
