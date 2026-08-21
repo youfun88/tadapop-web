@@ -234,14 +234,14 @@ const COPY = {
 
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
-    's1.cap1': '嘴上老是<span class="hi">明天明天</span>。',
+    's1.cap1': '喂！說你喔。嘴上老是<span class="hi">明天明天</span>。',
     /* The setup stays on screen under the punchline. Captions replace each
        other, so a two-part joke lost its first half at the exact moment the
        second half needed it — 「明天，早就來打卡了。」 alone is not a
        shorter joke, it is an unparseable sentence. The reveal still happens
        on the beat; it just does not take the setup away with it. */
-    's1.cap2': '嘴上老是明天明天。<br><span class="go">明天，這不就來了。</span>',
-    's1.vo': '嘴上老是明天明天。明天，这不就来了。',
+    's1.cap2': '喂！說你喔。嘴上老是明天明天。<br><span class="go">明天，這不就來了。</span>',
+    's1.vo': '喂！说你喔。嘴上老是明天明天。明天，这不就来了。',
 
     /* ---- scene 2 · the three mission types ----
        Mission names are the app's own template translations, so a viewer who
@@ -377,7 +377,7 @@ const CAP_AT = {
     s9: [0.0, 3.98, 7.14],
   },
   zh: {
-    s1: [0, 2.36],
+    s1: [0, 4.06],
     s2: [0, 6.12],
     s3: [0, 2.08],
     s4: [0, 3.22],
@@ -681,7 +681,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      fit five seconds left 「明天已經打卡了」 on screen with nothing behind it,
      which is not a tighter joke — it is half of one. The scene gets the extra
      second instead. English is untouched. */
-  const SCENE_DUR = { zh: { s1: 6200 } };
+  const SCENE_DUR = { zh: { s1: 7600 } };
   const durOverrides = SCENE_DUR[LANG];
   if (durOverrides) scenes.forEach((sc) => { if (durOverrides[sc.id]) sc.dur = durOverrides[sc.id]; });
   const TOTAL = scenes.reduce((s, x) => s + x.dur, 0);
@@ -708,7 +708,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 9;
+  const VOV = 10;
   const VO_DIR = LANG === 'zh' ? '/assets/vo/zh/' : '/assets/vo/';
   function voSrc(id) { return VO_DIR + id + '.mp3?v=' + VOV; }
 
