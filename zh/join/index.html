@@ -59,7 +59,6 @@
 
     <div class="actions">
       <a class="primary" id="open" href="#">用 Tadapop 開啟</a>
-      <a class="secondary" id="external" href="#" hidden>改用 Safari 開啟</a>
       <a class="secondary" href="/zh#get">下載 App</a>
     </div>
 
@@ -175,15 +174,7 @@
         if (left) return;
         var hint = document.getElementById('hint');
         if (hint) { hint.classList.add('nudge'); }
-        var ext = document.getElementById('external');
-        if (ext && IN_APP && !IS_LINE) {
-          // LINE's button already goes to the browser; the rest get it here.
-          ext.href = EXTERNAL_URL;
-          ext.hidden = false;
-          ext.scrollIntoView({ block: 'nearest' });
-        } else if (hint) {
-          hint.scrollIntoView({ block: 'nearest' });
-        }
+        if (hint) hint.scrollIntoView({ block: 'nearest' });
       }, 900);
     });
 

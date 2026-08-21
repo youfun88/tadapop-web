@@ -53,7 +53,6 @@
 
     <div class="actions">
       <a class="primary" id="open" href="#">Open in Tadapop</a>
-      <a class="secondary" id="external" href="#" hidden>Open in Safari instead</a>
       <a class="secondary" href="/#get">Get the app</a>
     </div>
 
@@ -170,15 +169,7 @@
         if (left) return;
         var hint = document.getElementById('hint');
         if (hint) { hint.classList.add('nudge'); }
-        var ext = document.getElementById('external');
-        if (ext && IN_APP && !IS_LINE) {
-          // LINE's button already goes to the browser; the rest get it here.
-          ext.href = EXTERNAL_URL;
-          ext.hidden = false;
-          ext.scrollIntoView({ block: 'nearest' });
-        } else if (hint) {
-          hint.scrollIntoView({ block: 'nearest' });
-        }
+        if (hint) hint.scrollIntoView({ block: 'nearest' });
       }, 900);
     });
 
