@@ -49,6 +49,8 @@ const COPY = {
     'ui.soundOn': '♪ SOUND ON',
     'ui.soundOff': '♪ SOUND OFF',
     'ui.replay': '⟳ REPLAY',
+    'ui.pause': '❚❚ PAUSE',
+    'ui.resume': '▶ PLAY',
     'ui.tapForSound': '🔊 Tap for sound',
     'ui.hostName': 'HOST · <b>BOBO</b>',
     'ui.tada': 'Tada! 🎉',
@@ -171,6 +173,8 @@ const COPY = {
     'ui.soundOn': '♪ 聲音開',
     'ui.soundOff': '♪ 聲音關',
     'ui.replay': '⟳ 重播',
+    'ui.pause': '❚❚ 暫停',
+    'ui.resume': '▶ 播放',
     'ui.tapForSound': '🔊 點一下開聲音',
     'ui.hostName': '主持人 · <b>BOBO</b>',
     'ui.tada': 'Tada! 🎉',
@@ -194,11 +198,30 @@ const COPY = {
     'app.longest': '最長',
     'app.completion': '完成率',
 
+    /* ---- narration ----
+       These nine lines are the ONLY Simplified text in this file, and that is
+       deliberate: `vo:` is never rendered. It is fed to the speech engine and
+       nothing else — the words on screen come from `capN`, and the mock app UI
+       has its own keys. So this is a pronunciation script, not copy.
+
+       It is Simplified because Traditional input made this voice misread the
+       terms that matter. 競技場 came back as "重擊場", 鎖定 as "耍定", and s9
+       stuttered on 成為. The same lines in Simplified read correctly. The
+       model's Mandarin prior is Mainland-weighted; giving it the character
+       forms it expects fixes the pronunciation without changing one character
+       of what a viewer actually reads.
+
+       tools/generate-vo.mjs transcribes every take back with speech-to-text
+       and rejects any that does not match these lines, because the failures
+       are per-take: the same text renders correctly on one attempt and slurs
+       on the next. Homophone spellings in the transcript are fine (亮/量);
+       a changed sound is not. */
+
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
     's1.cap1': '老是<span class="hi">明天</span>再說？',
     's1.cap2': '<span class="go">明天已經來報到了。</span>',
-    's1.vo': '喂！說你喔。明天已經打卡了。',
+    's1.vo': '喂！说你喔。明天已经打卡了。',
 
     /* ---- scene 2 · the three mission types ----
        Mission names are the app's own template translations, so a viewer who
@@ -215,7 +238,7 @@ const COPY = {
     's2.metaTimerDone': '90 分鐘完成',
     's2.cap1': '今天點名，點到<span class="hi">你</span>。',
     's2.cap2': '點一下。數一數。<span class="go">鎖定。</span>',
-    's2.vo': '任務亮了。做完打個勾，幾杯水、幾頁書，通通記下來。計時器一按，直接閉關。',
+    's2.vo': '任务亮了。做完打个勾，几杯水、几页书，通通记下来。计时器一按，直接闭关。',
 
     /* ---- scene 3 · the all-or-nothing Tpoint ---- */
     's3.mission': '晨間運動 — 20 分鐘',
@@ -224,13 +247,13 @@ const COPY = {
     's3.cleared': '今天全部完成 · +1 T點數',
     's3.cap1': '全部完成 → <span class="go">+1 T點數</span>',
     's3.cap2': '少一項 → 什麼都沒有',
-    's3.vo': '全部做完才有T點數。少一項？直接歸零。要嘛全拿，要嘛空手。',
+    's3.vo': '全部做完才有T点数。少一项？直接归零。要嘛全拿，要嘛空手。',
 
     /* ---- scene 4 · streaks ---- */
     's4.cleared': '所有任務完成 — 拿下今天',
     's4.cap1': '<span class="go">今天鎖定。</span>連續紀錄再長一天。',
     's4.cap2': '昨天的你，從來沒有勝算。',
-    's4.vo': '今天鎖定，連續紀錄再疊一層。沒在放水，昨天的你又輸了。',
+    's4.vo': '今天锁定，连续纪录再叠一层。没在放水，昨天的你又输了。',
 
     /* ---- scene 5 · stats ---- */
     's5.heatmap': '活動紀錄 · 一年',
@@ -240,7 +263,7 @@ const COPY = {
     's5.barMeditate': '冥想 10 分鐘',
     's5.cap1': '整整一年的<span class="go">綠</span>。',
     's5.cap2': '數字不會說謊。',
-    's5.vo': '回頭看，一整年綠得發亮。數字懶得跟你客氣。',
+    's5.vo': '回头看，一整年绿得发亮。数字懒得跟你客气。',
 
     /* ---- scene 6 · the Arena opens ---- */
     's6.tabToday': '今天',
@@ -253,7 +276,7 @@ const COPY = {
     's6.live': '進行中',
     's6.cap1': '一個人練？<span class="hi">真可愛。</span>',
     's6.cap2': '進入<span class="hi">競技場</span>。',
-    's6.vo': '自己練？真乖。揪朋友進競技場。',
+    's6.vo': '自己练？真乖。揪朋友进竞技场。',
 
     /* ---- scene 7 · the live leaderboard ---- */
     's7.liveDay': '進行中 · 第 3/7 天',
@@ -266,7 +289,7 @@ const COPY = {
     's7.youTag': '（你）',
     's7.cap1': '開賽。往榜上爬。',
     's7.cap2': '漏掉一天 → <span class="hi">−1 天</span>。',
-    's7.vo': '揪人、設天數，開賽。做越多，爬越高，漏一天扣一天，拍照嗆爆對手。',
+    's7.vo': '揪人、设天数，开赛。做越多，爬越高，漏一天扣一天，拍照呛爆对手。',
 
     /* Taiwanese given names rather than transliterated ones: the rivals have
        to read as the viewer's own friends at a glance, and the avatar badge
@@ -283,13 +306,13 @@ const COPY = {
     's8.daysUnit': '天',
     's8.cap1': '一起贏。一起輸。',
     's8.cap2': '<span class="hi">一起</span>強到可怕。',
-    's8.vo': '一起贏，一起輸，最後一起強到爆。',
+    's8.vo': '一起赢，一起输，最后一起强到爆。',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': '記錄。較勁。<span style="color:{amber}">蛻變。</span>',
     's9.cap1': '成為你說過的那個人。',
     's9.cap2': '你的第一項任務，<span class="go">現在</span>開始。',
-    's9.vo': 'Tadapop。成為你說過的那個人。iPhone、Android免費。換你上場。Tada！',
+    's9.vo': 'Tadapop。成为你说过的那个人。iPhone、Android免费。换你上场。Tada！',
   },
 };
 
@@ -468,9 +491,10 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   const prog = el('div', 'film-progress', null, '<span></span>');
   const progFill = prog.firstChild;
   const muteBtn = el('button', 'film-btn', null, t('ui.soundOn'));
+  const pauseBtn = el('button', 'film-btn', null, t('ui.pause'));
   const replayBtn = el('button', 'film-btn', null, t('ui.replay'));
   const time = el('div', 'film-time', null, '0:00 / 1:37');
-  controls.append(prog, time, muteBtn, replayBtn);
+  controls.append(prog, time, pauseBtn, muteBtn, replayBtn);
 
   const end = el('div', 'film-end');
   end.innerHTML =
@@ -487,14 +511,24 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
 
   /* --------------------------- engine state ----------------------------- */
   let sceneAnims = [], sceneTimers = [], rootAnims = [], idx = -1, playing = false, timeTimer = null, curAudio = null;
+  let paused = false, pausedAt = 0, clockT0 = 0, clockHeld = 0;
   function anim(node, frames, opts) {
     const a = node.animate(frames, Object.assign({ duration: 600, fill: 'both', easing: 'ease' }, opts || {}));
     sceneAnims.push(a); return a;
   }
-  function after(ms, fn) { const t = setTimeout(fn, ms); sceneTimers.push(t); return t; }
+  /* A scene is choreographed out of setTimeout calls, and a setTimeout cannot
+     be paused — so each one remembers the function it owes and the moment it
+     is due. Pausing clears the real timer and keeps the debt; resuming
+     re-arms it for whatever was left. */
+  function after(ms, fn) {
+    const rec = { fn: fn, due: performance.now() + ms };
+    rec.id = setTimeout(function () { rec.done = true; fn(); }, ms);
+    sceneTimers.push(rec);
+    return rec;
+  }
   function clearScene() {
     sceneAnims.forEach((a) => { try { a.cancel(); } catch (e) {} });
-    sceneTimers.forEach((t) => clearTimeout(t));
+    sceneTimers.forEach((t) => clearTimeout(t.id));
     sceneAnims = []; sceneTimers = [];
     stage.innerHTML = '';
   }
@@ -532,7 +566,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 4;
+  const VOV = 5;
   const VO_DIR = LANG === 'zh' ? '/assets/vo/zh/' : '/assets/vo/';
   const voCache = {};
   scenes.forEach((sc) => { if (sc.id) { const a = new Audio(VO_DIR + sc.id + '.mp3?v=' + VOV); a.preload = 'auto'; voCache[sc.id] = a; } });
@@ -635,11 +669,12 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   }
 
   function startTimeReadout() {
-    const t0 = performance.now();
+    clockT0 = performance.now();
+    clockHeld = 0;
     clearInterval(timeTimer);
     timeTimer = setInterval(() => {
-      if (!playing) return;
-      const e = Math.min(TOTAL, performance.now() - t0);
+      if (!playing || paused) return;
+      const e = Math.min(TOTAL, performance.now() - clockT0 - clockHeld);
       time.textContent = fmtClock(e) + ' / ' + fmtClock(TOTAL);
     }, 250);
   }
@@ -670,6 +705,10 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
       lastFocused = was && was !== document.body && !overlay.contains(was) ? was : launch;
     }
     playing = true;
+    paused = false;
+    clockHeld = 0;
+    pauseBtn.textContent = t('ui.pause');
+    pauseBtn.setAttribute('aria-pressed', 'false');
     muted = !!startMuted;
     muteBtn.textContent = muted ? t('ui.soundOff') : t('ui.soundOn');
     unmute.style.display = muted ? 'block' : 'none';
@@ -701,8 +740,62 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     gotoScene(0);
   }
 
+  /* ---- pause / resume ----
+     Everything that moves has to stop together, and each kind stops its own
+     way: Web Animations pause in place, the scene timers hand back what they
+     still owe (see `after`), and the two media elements pause where they are.
+     The clock keeps its own tally of time spent held so the readout does not
+     jump forward over a pause.
+
+     The mouth is stopped rather than frozen mid-shape: a held-open mouth on a
+     silent frame reads as a bug, a closed one reads as someone waiting. */
+  function setPaused(on) {
+    if (!playing || paused === on) return;
+    paused = on;
+    pauseBtn.textContent = t(on ? 'ui.resume' : 'ui.pause');
+    pauseBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    const anims = sceneAnims.concat(rootAnims);
+
+    if (on) {
+      pausedAt = performance.now();
+      sceneTimers.forEach((r) => {
+        if (r.done) return;
+        clearTimeout(r.id);
+        r.left = Math.max(0, r.due - pausedAt);
+      });
+      anims.forEach((a) => { try { a.pause(); } catch (e) {} });
+      if (curAudio) { try { curAudio.pause(); } catch (e) {} }
+      clearInterval(musicRamp); musicRamp = null;
+      try { music.pause(); } catch (e) {}
+      host.classList.remove('speaking');
+      stopMouth();
+      return;
+    }
+
+    clockHeld += performance.now() - pausedAt;
+    sceneTimers.forEach((r) => {
+      if (r.done || r.left == null) return;
+      r.due = performance.now() + r.left;
+      r.id = setTimeout(function () { r.done = true; r.fn(); }, r.left);
+      r.left = null;
+    });
+    anims.forEach((a) => { try { a.play(); } catch (e) {} });
+    if (!muted) {
+      // Only if the clip had not already finished before the pause — resuming
+      // a played-out element would replay a line the viewer just heard.
+      if (curAudio && !curAudio.ended) {
+        const p = curAudio.play();
+        if (p && p.catch) p.catch(() => {});
+        host.classList.add('speaking');
+        startMouth(null);
+      }
+      startMusic(false);
+    }
+  }
+
   function finish() {
     playing = false;
+    paused = false;
     stopVO();
     fadeOutMusic();
     end.classList.add('show');
@@ -710,6 +803,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
 
   function closeFilm() {
     playing = false;
+    paused = false;
     clearScene();
     rootAnims.forEach((a) => { try { a.cancel(); } catch (e) {} });
     clearInterval(timeTimer);
@@ -747,6 +841,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   closeBtn.addEventListener('click', closeFilm);
   replayBtn.addEventListener('click', () => play(false));
   unmute.addEventListener('click', enableSound);
+  pauseBtn.addEventListener('click', () => setPaused(!paused));
   muteBtn.addEventListener('click', () => {
     if (muted) { enableSound(); return; }
     muted = true;
@@ -763,6 +858,11 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   document.addEventListener('keydown', (e) => {
     if (overlay.hidden) return;
     if (e.key === 'Escape') { closeFilm(); return; }
+    // Space is the universal play/pause. Let it through when a button has
+    // focus, though — there it belongs to the button.
+    if ((e.key === ' ' || e.key === 'Spacebar') && !(document.activeElement && document.activeElement.tagName === 'BUTTON')) {
+      e.preventDefault(); setPaused(!paused); return;
+    }
     if (e.key !== 'Tab') return;
 
     const list = trapTargets();

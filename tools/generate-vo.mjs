@@ -40,6 +40,7 @@
  *   node tools/generate-vo.mjs --lang en --bump       # English + cache-bust
  *   node tools/generate-vo.mjs --lang zh --dry-run    # show text + budgets only
  *   node tools/generate-vo.mjs --lang zh --takes 5    # more tries at a tight fit
+ *   node tools/generate-vo.mjs --lang zh --no-verify  # skip the transcription check
  *
  * CONFIG (env)
  *   ELEVENLABS_API_KEY      required (also accepts XI_API_KEY)
@@ -95,6 +96,9 @@ const LANGS = {
 /** A clip must finish this many seconds before its scene ends. */
 const HEADROOM = 0.6;
 
+/** Below this transcription similarity, a take counts as misspoken. */
+const MATCH_MIN = 0.82;
+
 const args = process.argv.slice(2);
 const flags = new Set(args.filter((a) => a.startsWith('--')));
 const optVal = (name, dflt) => {
@@ -144,6 +148,58 @@ async function listVoices() {
   console.log(`\nUse one with:  export ELEVENLABS_VOICE_ID=<id>   (or _ZH for Chinese)\n`);
 }
 
+/* ---------------------- transcription check ----------------------------
+   Fitting the scene is not the only way a take fails. The engine slurs, and
+   it slurs per-take: the same line renders cleanly on one attempt and comes
+   back as a different word on the next. 競技場 arrived as "重擊場", 鎖定 as
+   "耍定", and one take of s9 stuttered "成為" into "成衛成為". Nothing about
+   the file's duration reveals any of that.
+
+   So each take is transcribed back and compared with what it was supposed to
+   say. The comparison ignores punctuation and is a ratio, not an equality
+   test, because a correct rendering still comes back with homophone spellings
+   (亮 as 量) and the transcriber picks its own punctuation. A changed SOUND
+   drags the ratio down; a changed spelling of the same sound barely moves it.
+   ---------------------------------------------------------------------- */
+
+/** Strip everything that is not a word character — punctuation is noise here. */
+function bare(s) {
+  return s.replace(/[\s\u3000-\u303f\uff00-\uffef!-/:-@[-`{-~]/g, '').toLowerCase();
+}
+
+function editDistance(a, b) {
+  const m = a.length, n = b.length;
+  if (!m || !n) return Math.max(m, n);
+  let prev = Array.from({ length: n + 1 }, (_, j) => j);
+  for (let i = 1; i <= m; i++) {
+    const cur = [i];
+    for (let j = 1; j <= n; j++) {
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    }
+    prev = cur;
+  }
+  return prev[n];
+}
+
+/** 1.0 is identical; below MATCH_MIN the take is treated as misspoken. */
+function similarity(want, got) {
+  const a = bare(want), b = bare(got);
+  if (!a || !b) return 0;
+  return 1 - editDistance(a, b) / Math.max(a.length, b.length);
+}
+
+async function transcribe(file) {
+  const form = new FormData();
+  form.append('file', new Blob([await readFile(file)]), 'clip.mp3');
+  form.append('model_id', 'scribe_v1');
+  form.append('language_code', 'zho');
+  const res = await fetch('https://api.elevenlabs.io/v1/speech-to-text', {
+    method: 'POST', headers: { 'xi-api-key': API_KEY }, body: form,
+  });
+  if (!res.ok) return null; // no speech_to_text scope: fall back to timing only
+  return (await res.json()).text || '';
+}
+
 /** Seconds of audio, or null when ffprobe isn't installed. */
 async function duration(file) {
   try {
@@ -163,7 +219,7 @@ async function render(voice, model, text, file) {
 }
 
 /** Render a scene `TAKES` times and keep the best-fitting take. */
-async function synth(sc, cfg) {
+async function synth(sc, cfg, check) {
   const limit = sc.dur != null ? sc.dur - HEADROOM : null;
   const dest = join(cfg.dir, `${sc.id}.mp3`);
   const takes = [];
@@ -171,29 +227,41 @@ async function synth(sc, cfg) {
   for (let i = 0; i < TAKES; i++) {
     const tmp = join(cfg.dir, `.${sc.id}.take${i}.mp3`);
     await render(cfg.voice, cfg.model, sc.vo, tmp);
-    takes.push({ file: tmp, secs: await duration(tmp) });
-    if (takes[0].secs == null) break; // no ffprobe — one take is all we can judge
+    const secs = await duration(tmp);
+    const heard = check ? await transcribe(tmp) : null;
+    takes.push({ file: tmp, secs, heard, score: heard == null ? null : similarity(sc.vo, heard) });
+    // Both tests passed — no reason to keep paying for takes.
+    if (secs != null && limit != null && secs <= limit && (takes[takes.length - 1].score == null || takes[takes.length - 1].score >= MATCH_MIN)) break;
+    if (secs == null) break; // no ffprobe — one take is all we can judge
   }
 
   const timed = takes.filter((t) => t.secs != null);
   let pick = takes[0], note = 'no ffprobe — fit unchecked';
   if (timed.length && limit != null) {
     const fits = timed.filter((t) => t.secs <= limit);
-    pick = fits.length ? fits.reduce((a, b) => (b.secs > a.secs ? b : a))   // fullest read that fits
-                       : timed.reduce((a, b) => (b.secs < a.secs ? b : a)); // least-bad overrun
-    const margin = limit - pick.secs;
+    const clean = fits.filter((t) => t.score == null || t.score >= MATCH_MIN);
+    // Prefer a take that both fits and is spoken correctly; then one that
+    // merely fits; then the shortest, so the failure is at least visible.
+    pick = clean.length ? clean.reduce((a, b) => (b.secs > a.secs ? b : a))
+         : fits.length ? fits.reduce((a, b) => ((b.score || 0) > (a.score || 0) ? b : a))
+         : timed.reduce((a, b) => (b.secs < a.secs ? b : a));
     note = fits.length
-      ? `${pick.secs.toFixed(2)}s / ${sc.dur.toFixed(1)}s scene  (${margin.toFixed(2)}s spare)`
+      ? `${pick.secs.toFixed(2)}s / ${sc.dur.toFixed(1)}s scene  (${(limit - pick.secs).toFixed(2)}s spare)`
       : `${pick.secs.toFixed(2)}s OVERRUNS a ${sc.dur.toFixed(1)}s scene — SHORTEN '${sc.id}.vo' in film.js`;
   }
 
   await writeFile(dest, await readFile(pick.file));
   await Promise.all(takes.map((t) => unlink(t.file).catch(() => {})));
 
-  const ok = limit == null || pick.secs == null || pick.secs <= limit;
-  console.log(`  ${ok ? '✓' : '✗'} ${sc.id}.mp3  ${note}`);
-  if (timed.length > 1) console.log(`      takes: ${timed.map((t) => t.secs.toFixed(2)).join('  ')}`);
-  return ok;
+  const fitOk = limit == null || pick.secs == null || pick.secs <= limit;
+  const saidOk = pick.score == null || pick.score >= MATCH_MIN;
+  console.log(`  ${fitOk && saidOk ? '✓' : '✗'} ${sc.id}.mp3  ${note}${pick.score == null ? '' : `  · heard ${(pick.score * 100).toFixed(0)}%`}`);
+  if (timed.length > 1) console.log(`      takes: ${timed.map((t) => t.secs.toFixed(2) + (t.score == null ? '' : `/${(t.score * 100).toFixed(0)}%`)).join('  ')}`);
+  if (!saidOk) {
+    console.log(`      want: ${sc.vo}`);
+    console.log(`      said: ${pick.heard}`);
+  }
+  return fitOk && saidOk;
 }
 
 /** Increment `const VOV = N` in film.js so the new clips bust the CDN cache. */
@@ -229,15 +297,19 @@ async function main() {
 
   await mkdir(cfg.dir, { recursive: true });
   const results = [];
-  for (const sc of targets) results.push(await synth(sc, cfg)); // sequential — friendly to rate limits
+  const check = !flags.has('--no-verify');
+  if (!check) console.log('  ! --no-verify: takes will not be transcribed back\n');
+  for (const sc of targets) results.push(await synth(sc, cfg, check)); // sequential — friendly to rate limits
 
   if (flags.has('--bump')) await bumpVov();
 
-  const over = targets.filter((_, i) => !results[i]);
-  if (over.length) {
-    console.log(`\n✗ ${over.length} clip(s) overrun their scene: ${over.map((s) => s.id).join(', ')}`);
-    console.log(`  Shorten those '<id>.vo' lines in film.js and re-run. Punctuation is`);
-    console.log(`  expensive — each 。or ，costs roughly half a second of pause.\n`);
+  const bad = targets.filter((_, i) => !results[i]);
+  if (bad.length) {
+    console.log(`\n✗ ${bad.length} clip(s) failed: ${bad.map((s) => s.id).join(', ')}`);
+    console.log(`  Too long → shorten the '<id>.vo' line; punctuation is expensive,`);
+    console.log(`  each 。or ，costs roughly half a second of pause.`);
+    console.log(`  Misspoken → re-run (it varies per take), or respell the word. The`);
+    console.log(`  vo line is never displayed, so spell it however it reads correctly.\n`);
     process.exit(1);
   }
   console.log(`\nDone.${flags.has('--bump') ? '' : '  Remember to bump `const VOV` in film.js (or re-run with --bump).'}\n`);
