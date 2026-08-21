@@ -235,8 +235,8 @@ const COPY = {
        second half needed it — 「明天，早就來打卡了。」 alone is not a
        shorter joke, it is an unparseable sentence. The reveal still happens
        on the beat; it just does not take the setup away with it. */
-    's1.cap2': '嘴上老是明天明天。<br><span class="go">明天，早就來打卡了。</span>',
-    's1.vo': '嘴上老是明天明天。明天，早就来打卡了。',
+    's1.cap2': '嘴上老是明天明天。<br><span class="go">明天，這不就來了。</span>',
+    's1.vo': '嘴上老是明天明天。明天，这不就来了。',
 
     /* ---- scene 2 · the three mission types ----
        Mission names are the app's own template translations, so a viewer who
@@ -372,7 +372,7 @@ const CAP_AT = {
     s9: [0.0, 3.98, 7.14],
   },
   zh: {
-    s1: [0, 1.74],
+    s1: [0, 2.36],
     s2: [0, 6.12],
     s3: [0, 2.08],
     s4: [0, 3.22],
@@ -642,7 +642,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 7;
+  const VOV = 8;
   const VO_DIR = LANG === 'zh' ? '/assets/vo/zh/' : '/assets/vo/';
   function voSrc(id) { return VO_DIR + id + '.mp3?v=' + VOV; }
 
