@@ -579,19 +579,77 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   /* --------------------------- engine state ----------------------------- */
   let sceneAnims = [], sceneTimers = [], rootAnims = [], idx = -1, playing = false, timeTimer = null, curAudio = null;
   let paused = false, pausedAt = 0, clockT0 = 0, clockHeld = 0;
+  /* ---- the scene clock ----
+     A scene is render() plus a queue of timers plus a set of animations, all
+     measured from the moment the scene started. Everything below records its
+     position on that clock rather than on the wall clock, which is what makes
+     a scene reconstructible at an arbitrary offset — see catchUpTo.
+
+     While catching up, `catchUp` IS the clock: anything scheduled by a timer we
+     are replaying must be placed where it would have been, not where the wall
+     clock happens to be. */
+  let sceneT0 = 0, catchUp = null;
+  function sceneNow() { return catchUp != null ? catchUp : performance.now() - sceneT0; }
+
   function anim(node, frames, opts) {
     const a = node.animate(frames, Object.assign({ duration: 600, fill: 'both', easing: 'ease' }, opts || {}));
+    // Where in the scene this animation began, so a seek knows how far into it
+    // to wind. Animations created by a replayed timer start later than 0.
+    a.__at = sceneNow();
     sceneAnims.push(a); return a;
   }
-  /* A scene is choreographed out of setTimeout calls, and a setTimeout cannot
-     be paused — so each one remembers the function it owes and the moment it
-     is due. Pausing clears the real timer and keeps the debt; resuming
-     re-arms it for whatever was left. */
+  /* A scene is choreographed out of setTimeout calls, and a setTimeout can
+     neither be paused nor asked where it had got to — so each one remembers the
+     function it owes and its position on the scene clock. Pausing clears the
+     real timer and keeps the debt; seeking replays or re-arms it. */
   function after(ms, fn) {
-    const rec = { fn: fn, due: performance.now() + ms };
+    const rec = { fn: fn, at: sceneNow() + ms, due: performance.now() + ms };
     rec.id = setTimeout(function () { rec.done = true; fn(); }, ms);
     sceneTimers.push(rec);
     return rec;
+  }
+
+  /**
+   * Wind a freshly built scene forward to `offset` ms.
+   *
+   * Fires every timer already due, in order, letting each schedule whatever it
+   * would have scheduled; re-arms the rest for the time they have left; then
+   * winds each animation to where it would be. The result is the scene as it
+   * would look had you watched it to that point.
+   *
+   * Sound effects are muted throughout: replaying eight seconds of a scene in
+   * one tick would otherwise fire eight seconds of clicks and chimes at once.
+   */
+  function catchUpTo(offset) {
+    if (!(offset > 0)) return;
+    const realSfx = {};
+    Object.keys(sfx).forEach((k) => { realSfx[k] = sfx[k]; sfx[k] = function () {}; });
+    let guard = 0;
+    for (;;) {
+      let next = null;
+      for (const r of sceneTimers) {
+        if (r.done || r.at > offset) continue;
+        if (!next || r.at < next.at) next = r;
+      }
+      if (!next || ++guard > 2000) break;
+      clearTimeout(next.id);
+      next.done = true;
+      catchUp = next.at;
+      try { next.fn(); } catch (e) { /* a scene that throws mid-seek still plays on */ }
+    }
+    catchUp = null;
+    Object.keys(realSfx).forEach((k) => { sfx[k] = realSfx[k]; });
+    const now = performance.now();
+    sceneTimers.forEach((r) => {
+      if (r.done) return;
+      clearTimeout(r.id);
+      const left = Math.max(0, r.at - offset);
+      r.due = now + left;
+      r.id = setTimeout(function () { r.done = true; r.fn(); }, left);
+    });
+    sceneAnims.forEach((a) => {
+      try { a.currentTime = Math.max(0, offset - (a.__at || 0)); } catch (e) {}
+    });
   }
   function clearScene() {
     sceneAnims.forEach((a) => { try { a.cancel(); } catch (e) {} });
@@ -750,15 +808,26 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     rampMusic(MUSIC_FULL, 550);
     sayTTS(sc.vo);
   }
-  function playVO(sc) {
+  /** `offset` ms into the scene, so a seek starts the line where the picture is. */
+  function playVO(sc, offset) {
     stopVO();
     if (muted || !sc) return;
     if (sc.id) {
       const a = voEl;
       curAudio = a;
       // Re-pointing the element is what keeps the iOS unlock — see voEl.
-      if (a.getAttribute('src') !== voSrc(sc.id)) a.src = voSrc(sc.id);
-      try { a.currentTime = 0; } catch (e) {}
+      const want = voSrc(sc.id);
+      const from = Math.max(0, (offset || 0) / 1000);
+      if (a.getAttribute('src') !== want) {
+        a.src = want;
+        // currentTime cannot be set before the new source has metadata, and a
+        // seek into a scene lands mid-line often enough to matter.
+        if (from > 0) a.addEventListener('loadedmetadata', function once() {
+          a.removeEventListener('loadedmetadata', once);
+          if (curAudio === a) { try { a.currentTime = from; } catch (e) {} }
+        }, { once: true });
+      }
+      try { a.currentTime = from; } catch (e) {}
       a.volume = 1;
       host.classList.add('speaking');
       a.onended = () => { if (curAudio === a) { host.classList.remove('speaking'); stopMouth(); rampMusic(MUSIC_FULL, 550); } };
@@ -798,20 +867,26 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     anim(caption, [{ opacity: 0, transform: 'translateX(-50%) translateY(8px)' }, { opacity: 1, transform: 'translateX(-50%) translateY(0)' }], { duration: 400, fill: 'both' });
   }
 
-  function gotoScene(i) {
+  /** `offset` ms into the scene — non-zero only when seeking. */
+  function gotoScene(i, offset) {
     clearScene();
     idx = i;
     if (i >= scenes.length) { return; }
     const sc = scenes[i];
+    sceneT0 = performance.now();
+    catchUp = offset > 0 ? 0 : null;
     const node = el('div', 'film-scene');
     stage.appendChild(node);
     sfx.whoosh();
     anim(node, [{ opacity: 0 }, { opacity: 1 }], { duration: 450, fill: 'both' });
     try { sc.render(node, ctx); } catch (e) { /* keep film resilient */ }
-    playVO(sc);
     (sc.caps || []).forEach((c) => { if (c.at <= 0) showCaption(c.html); else after(c.at * 1000, () => showCaption(c.html)); });
     if (i < scenes.length - 1) after(sc.dur, () => gotoScene(i + 1));
     else after(sc.dur, finish);
+    catchUp = null;
+    catchUpTo(offset);
+    // After the wind-forward, so the line starts from where the picture is.
+    playVO(sc, offset);
   }
 
   function startTimeReadout() {
@@ -1020,24 +1095,27 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     time.textContent = fmtClock(ms) + ' / ' + fmtClock(TOTAL);
   }
 
-  /** Jump the film to whichever scene contains `ms`. */
+  /** Jump the film to `ms`, landing exactly there rather than on a scene edge. */
   function seekTo(ms) {
+    const target = Math.max(0, Math.min(TOTAL - 1, ms));
     let acc = 0, i = 0;
     for (; i < scenes.length - 1; i++) {
-      if (ms < acc + scenes[i].dur) break;
+      if (target < acc + scenes[i].dur) break;
       acc += scenes[i].dur;
     }
     // The clock is "now minus how far in we are", so the readout and the
-    // progress animation below agree without either of them being told twice.
-    clockT0 = performance.now() - acc;
+    // progress animation agree without either of them being told twice.
+    clockT0 = performance.now() - target;
     clockHeld = 0;
-    rootAnims.forEach((a) => { try { a.currentTime = acc; a.play(); } catch (e) {} });
-    if (!muted) { try { music.currentTime = (acc / 1000) % (music.duration || 1e9); } catch (e) {} }
+    rootAnims.forEach((a) => { try { a.currentTime = target; a.play(); } catch (e) {} });
+    if (!muted) {
+      try { music.currentTime = (target / 1000) % (music.duration || 1e9); } catch (e) {}
+    }
     end.classList.remove('show');
     playing = true;
     paused = false;
     pauseBtn.textContent = t('ui.pause');
-    gotoScene(i);
+    gotoScene(i, target - acc);
   }
 
   prog.addEventListener('pointerdown', (e) => {
