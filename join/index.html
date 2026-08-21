@@ -83,7 +83,13 @@
   if (valid) {
     document.getElementById('code').textContent = code;
     document.title = 'Join with code ' + code + ' · Tadapop';
-    var deepLink = 'tadapop://join/' + code;
+    /* The app's screen is arena/join and it reads the code off the query
+       string (useLocalSearchParams<{ code }>), so that is the shape the link
+       has to take. It used to be tadapop://join/<code>, which matches no route
+       the app has — the scheme fired, iOS handed it over, and the app opened
+       to nothing. A deep link is only as good as the route on the other end;
+       if arena/join ever moves, this moves with it. */
+    var deepLink = 'tadapop://arena/join?code=' + encodeURIComponent(code);
     var openBtn = document.getElementById('open');
     openBtn.setAttribute('href', deepLink);
 
@@ -115,6 +121,10 @@
     openBtn.addEventListener('click', function (e) {
       e.preventDefault();
       left = false;
+      // The iframe is tried first because it cannot cost us the page, but iOS
+      // has refused custom schemes from iframes since iOS 9, so it is a
+      // courtesy rather than a plan. If we are still here a beat later, take
+      // the top-level navigation that actually works.
       if (IN_APP) {
         var f = document.createElement('iframe');
         f.setAttribute('aria-hidden', 'true');
@@ -122,7 +132,8 @@
         f.style.cssText = 'position:absolute;width:0;height:0;border:0;opacity:0';
         f.src = deepLink;
         document.body.appendChild(f);
-        setTimeout(function () { if (f.parentNode) f.parentNode.removeChild(f); }, 1500);
+        setTimeout(function () { if (f.parentNode) f.parentNode.removeChild(f); }, 1200);
+        setTimeout(function () { if (!left) window.location.href = deepLink; }, 700);
       } else {
         window.location.href = deepLink;
       }
