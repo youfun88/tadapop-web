@@ -82,7 +82,7 @@ const COPY = {
 
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': 'DAILY MISSIONS · STREAKS · THE ARENA',
-    's1.cap1': 'Still saying <span class="hi">tomorrow</span>?',
+    's1.cap1': 'Yeah, you — the one who keeps saying <span class="hi">tomorrow</span>.',
     's1.cap2': '<span class="go">Tomorrow just clocked in.</span>',
     's1.vo': 'Yeah, you — the one who keeps saying tomorrow. Tomorrow just clocked in.',
 
@@ -97,8 +97,9 @@ const COPY = {
     's2.metaTimer': '90 MIN',
     's2.metaTimerLeft': '89:58 LEFT',
     's2.metaTimerDone': '90 MIN DONE',
-    's2.cap1': 'Today is asking for <span class="hi">you</span>.',
-    's2.cap2': 'Tap. Count. <span class="go">Lock in.</span>',
+    's2.cap1': 'See those missions glowing? That\'s <span class="hi">today</span>, asking for you.',
+    's2.cap2': 'Tap one done. Count the water, the steps, the pages.',
+    's2.cap3': 'Or punch a timer and <span class="go">vanish into deep work</span>.',
     's2.vo': 'See those missions glowing? That\'s today, asking for you. Tap one done. Count the water, the steps, the pages. Or punch a timer and vanish into deep work.',
 
     /* ---- scene 3 · the all-or-nothing Tpoint ---- */
@@ -106,14 +107,14 @@ const COPY = {
     's3.metaTimer': '20 MIN',
     's3.metaDone': '20 MIN DONE',
     's3.cleared': 'ALL MISSIONS CLEARED · +1 TPOINT',
-    's3.cap1': 'Clear them all → <span class="go">+1 Tpoint</span>',
-    's3.cap2': 'Miss one → nothing',
+    's3.cap1': 'Clear every single one and the day pays out: <span class="go">one Tpoint</span>.',
+    's3.cap2': 'Miss one? Nothing. <span class="hi">All or nothing</span>, no nibbling.',
     's3.vo': 'Clear every single one and the day pays out: one Tpoint. Miss one? Nothing. All or nothing, no nibbling.',
 
     /* ---- scene 4 · streaks ---- */
     's4.cleared': 'ALL OBJECTIVES CLEARED — DAY SECURED',
-    's4.cap1': '<span class="go">Day locked.</span> Streak climbs.',
-    's4.cap2': 'Yesterday-you never stood a chance.',
+    's4.cap1': '<span class="go">Day locked.</span> Your streak climbs one taller.',
+    's4.cap2': 'No freebies out here, friend, just yesterday-you losing to today-you, again.',
     's4.vo': 'Day locked. Your streak climbs one taller. No freebies out here, friend, just yesterday-you losing to today-you, again.',
 
     /* ---- scene 5 · stats ---- */
@@ -122,8 +123,8 @@ const COPY = {
     's5.barWater': 'Drink 8 glasses of water',
     's5.barDeepWork': 'Deep work block',
     's5.barMeditate': 'Meditate 10 minutes',
-    's5.cap1': 'A whole year of <span class="go">green</span>.',
-    's5.cap2': 'Numbers that don\'t lie.',
+    's5.cap1': 'Now look back. A whole year going <span class="go">green</span>,',
+    's5.cap2': 'and numbers too honest to argue with. That\'s your receipts.',
     's5.vo': 'Now look back. A whole year going green, and numbers too honest to argue with. That\'s your receipts.',
 
     /* ---- scene 6 · the Arena opens ---- */
@@ -136,7 +137,7 @@ const COPY = {
     's6.challengeMeta': '8 GLASSES EACH DAY · 7 DAYS · 4 PLAYERS',
     's6.live': 'LIVE',
     's6.cap1': 'Doing it solo? <span class="hi">Cute.</span>',
-    's6.cap2': 'Enter the <span class="hi">Arena</span>.',
+    's6.cap2': 'Drag your friends in — the <span class="hi">Arena</span>\'s open.',
     's6.vo': 'Doing it solo? Cute. Drag your friends in — the Arena\'s open.',
 
     /* ---- scene 7 · the live leaderboard ---- */
@@ -148,8 +149,9 @@ const COPY = {
     's7.missedADay': 'MISSED A DAY',
     's7.you': 'You',
     's7.youTag': '(you)',
-    's7.cap1': 'Go live. Climb the board.',
-    's7.cap2': 'Miss a day → <span class="hi">−1</span>.',
+    's7.cap1': 'Invite your crew, set days and a target, go live.',
+    's7.cap2': 'Most days completed tops the board. <span class="hi">Miss one, minus one.</span>',
+    's7.cap3': 'Post proof, talk trash.',
     's7.vo': 'Invite your crew, set days and a target, go live. Most days completed tops the board. Miss one, minus one. Post proof, talk trash.',
 
     /* the three rivals — they appear in scene 7 and again in scene 8 */
@@ -163,14 +165,15 @@ const COPY = {
     's8.winnerMeta': '7 DAYS · MOST DAYS COMPLETED',
     's8.standings': 'FINAL STANDINGS',
     's8.daysUnit': 'DAYS',
-    's8.cap1': 'Win. Lose.',
+    's8.cap1': 'Win together. Lose together.',
     's8.cap2': 'Get scary good — <span class="hi">together</span>.',
     's8.vo': 'Win together. Lose together. Get scary good — together.',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': 'Track. Compete. <span style="color:{amber}">Become.</span>',
-    's9.cap1': 'Become who you said you\'d be.',
-    's9.cap2': 'Your first mission starts <span class="go">now</span>.',
+    's9.cap1': 'Tadapop. Track it, race your friends, become the you you keep describing.',
+    's9.cap2': 'Free on iPhone and Android.',
+    's9.cap3': 'Now up, soldier. Your first mission starts <span class="go">now</span>. Tada!',
     's9.vo': 'Tadapop. Track it, race your friends, become the you you keep describing. Free on iPhone and Android. Now up, soldier. Your first mission starts now. Tada!',
   },
 
@@ -339,21 +342,50 @@ function t(key, vars) {
 }
 
 /**
- * When the second caption of a scene appears, per language.
+ * The captions of a scene, and the moment each one appears.
  *
- * The two narrators do not reach the same sentence at the same moment, and the
- * Chinese captions are a transcript of what BOBO is saying — so a shared number
- * would put the words on screen before or after he says them. The zh values are
- * measured from the rendered clips with word-level speech-to-text (see
- * tools/generate-vo.mjs); re-measure them if a line is re-recorded.
+ * Both languages caption what BOBO is actually saying, word for word, so these
+ * are subtitle cues rather than display copy. The two narrators do not reach
+ * the same sentence at the same moment, so the timings are per language and
+ * measured off the rendered clips with word-level speech-to-text — not
+ * guessed, and not shared. English also needs a third beat in the scenes where
+ * its line is long; the number of entries here is the number of `capN` keys
+ * the scene has in that language.
+ *
+ * Re-record a line and these numbers are stale. Re-measure them.
  */
 const CAP_AT = {
-  en: { s1: 2, s2: 5.2, s3: 4.4, s4: 4.2, s5: 3, s6: 2.8, s7: 5.4, s8: 2.5, s9: 6 },
-  zh: { s1: 1.68, s2: 6.12, s3: 2.08, s4: 3.22, s5: 2.36, s6: 1.34, s7: 5.14, s8: 1.62, s9: 3.4 },
+  en: {
+    s1: [0.0, 2.58],
+    s2: [0.0, 4.04, 7.84],
+    s3: [0.0, 4.14],
+    s4: [0.0, 3.12],
+    s5: [0.0, 2.66],
+    s6: [0.0, 2.36],
+    s7: [0.0, 3.96, 7.94],
+    s8: [0.0, 2.5],
+    s9: [0.0, 3.98, 7.14],
+  },
+  zh: {
+    s1: [0, 1.68],
+    s2: [0, 6.12],
+    s3: [0, 2.08],
+    s4: [0, 3.22],
+    s5: [0, 2.36],
+    s6: [0, 1.34],
+    s7: [0, 5.14],
+    s8: [0, 1.62],
+    s9: [0, 3.4],
+  },
 };
-function capAt(id) {
-  const m = CAP_AT[LANG] || CAP_AT.en;
-  return m[id] != null ? m[id] : (CAP_AT.en[id] || 0);
+function capsFor(id) {
+  const times = (CAP_AT[LANG] || CAP_AT.en)[id] || [0];
+  const out = [];
+  for (let i = 0; i < times.length; i++) {
+    const html = t(id + '.cap' + (i + 1));
+    if (html) out.push({ at: times[i], html: html });
+  }
+  return out;
 }
 
 /** For plain-text copy that has to be dropped into an innerHTML string. */
@@ -1075,7 +1107,7 @@ function buildScenes(ctx) {
   const s1 = {
     id: 's1', dur: 5000,
     vo: t('s1.vo'),
-    caps: [{ at: 0, html: t('s1.cap1') }, { at: capAt('s1'), html: t('s1.cap2') }],
+    caps: capsFor('s1'),
     render(node) {
       const wrap = el('div', null, { position: 'absolute', inset: '0', display: 'grid', placeItems: 'center' });
       const box = el('div', null, { textAlign: 'center' });
@@ -1097,7 +1129,7 @@ function buildScenes(ctx) {
   const s2 = {
     id: 's2', dur: 12000,
     vo: t('s2.vo'),
-    caps: [{ at: 0, html: t('s2.cap1') }, { at: capAt('s2'), html: t('s2.cap2') }],
+    caps: capsFor('s2'),
     render(node) {
       const c = appCol(node, 600);
       c.appendChild(header(11, 47));
@@ -1131,7 +1163,7 @@ function buildScenes(ctx) {
   const s3 = {
     id: 's3', dur: 9200,
     vo: t('s3.vo'),
-    caps: [{ at: 0, html: t('s3.cap1') }, { at: capAt('s3'), html: t('s3.cap2') }],
+    caps: capsFor('s3'),
     render(node) {
       const c = appCol(node, 560);
       const head = header(12, 47);
@@ -1163,7 +1195,7 @@ function buildScenes(ctx) {
   const s4 = {
     id: 's4', dur: 8400,
     vo: t('s4.vo'),
-    caps: [{ at: 0, html: t('s4.cap1') }, { at: capAt('s4'), html: t('s4.cap2') }],
+    caps: capsFor('s4'),
     render(node) {
       const c = appCol(node, 560);
       const panel = el('div', 'fm-panel', { padding: '18px' });
@@ -1210,7 +1242,7 @@ function buildScenes(ctx) {
   const s5 = {
     id: 's5', dur: 6800,
     vo: t('s5.vo'),
-    caps: [{ at: 0, html: t('s5.cap1') }, { at: capAt('s5'), html: t('s5.cap2') }],
+    caps: capsFor('s5'),
     render(node) {
       const c = appCol(node, 560, true);
       // stat cards
@@ -1265,7 +1297,7 @@ function buildScenes(ctx) {
   const s6 = {
     id: 's6', dur: 5900,
     vo: t('s6.vo'),
-    caps: [{ at: 0, html: t('s6.cap1') }, { at: capAt('s6'), html: t('s6.cap2') }],
+    caps: capsFor('s6'),
     render(node) {
       const c = appCol(node, 560);
       // tabs
@@ -1298,7 +1330,7 @@ function buildScenes(ctx) {
   const s7 = {
     id: 's7', dur: 10500,
     vo: t('s7.vo'),
-    caps: [{ at: 0, html: t('s7.cap1') }, { at: capAt('s7'), html: t('s7.cap2') }],
+    caps: capsFor('s7'),
     render(node) {
       const c = appCol(node, 580);
       const RED = '#FF6B6B';
@@ -1366,7 +1398,7 @@ function buildScenes(ctx) {
   const s8 = {
     id: 's8', dur: 5600,
     vo: t('s8.vo'),
-    caps: [{ at: 0, html: t('s8.cap1') }, { at: capAt('s8'), html: t('s8.cap2') }],
+    caps: capsFor('s8'),
     render(node) {
       const c = appCol(node, 560);
       const win = el('div', 'fm-panel', { padding: '24px', textAlign: 'center', marginBottom: '14px', position: 'relative', overflow: 'hidden' });
@@ -1411,7 +1443,7 @@ function buildScenes(ctx) {
   const s9 = {
     id: 's9', dur: 11400,
     vo: t('s9.vo'),
-    caps: [{ at: 0, html: t('s9.cap1') }, { at: capAt('s9'), html: t('s9.cap2') }],
+    caps: capsFor('s9'),
     render(node) {
       const wrap = el('div', null, { position: 'absolute', inset: '0', display: 'grid', placeItems: 'center' });
       const box = el('div', null, { textAlign: 'center' });

@@ -59,7 +59,8 @@
 
     <div class="actions">
       <a class="primary" id="open" href="#">用 Tadapop 開啟</a>
-      <a class="secondary" href="/zh">下載 App</a>
+      <a class="secondary" id="external" href="#" hidden>改用 Safari 開啟</a>
+      <a class="secondary" href="/zh#get">下載 App</a>
     </div>
 
     <p class="hint" id="hint">
@@ -126,10 +127,21 @@
     openBtn.addEventListener('click', function (e) {
       e.preventDefault();
       left = false;
-      // The iframe is tried first because it cannot cost us the page, but iOS
-      // has refused custom schemes from iframes since iOS 9, so it is a
-      // courtesy rather than a plan. If we are still here a beat later, take
-      // the top-level navigation that actually works.
+      /* Inside an in-app browser this never navigates the page.
+         Both ways of firing a custom scheme from LINE's webview have now been
+         tried on a real phone and neither opens the app: the iframe is refused
+         outright (iOS has blocked that since iOS 9), and sending the top-level
+         location there produces the permission prompt, then a blank black
+         screen — the webview follows the navigation, cannot render a
+         tadapop:// URL, and the invite is gone. A dead end with the code taken
+         off the screen is the worst of the available outcomes, so it is not on
+         the menu any more.
+
+         The way out of a webview is out of the webview. LINE opens a link in
+         the system browser when it carries openExternalBrowser=1, and in
+         Safari the scheme behaves — the prompt appears and the page survives
+         whatever the visitor answers. So the in-app case offers that door
+         instead of rattling a locked one. */
       if (IN_APP) {
         var f = document.createElement('iframe');
         f.setAttribute('aria-hidden', 'true');
@@ -138,7 +150,6 @@
         f.src = deepLink;
         document.body.appendChild(f);
         setTimeout(function () { if (f.parentNode) f.parentNode.removeChild(f); }, 1200);
-        setTimeout(function () { if (!left) window.location.href = deepLink; }, 700);
       } else {
         window.location.href = deepLink;
       }
@@ -146,8 +157,16 @@
       setTimeout(function () {
         if (left) return;
         var hint = document.getElementById('hint');
-        if (hint) { hint.classList.add('nudge'); hint.scrollIntoView({ block: 'nearest' }); }
-      }, 1600);
+        if (hint) { hint.classList.add('nudge'); }
+        var ext = document.getElementById('external');
+        if (ext && IN_APP) {
+          ext.href = location.origin + location.pathname + '?openExternalBrowser=1';
+          ext.hidden = false;
+          ext.scrollIntoView({ block: 'nearest' });
+        } else if (hint) {
+          hint.scrollIntoView({ block: 'nearest' });
+        }
+      }, 900);
     });
   } else {
     document.getElementById('code').textContent = '?';
