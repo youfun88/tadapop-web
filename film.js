@@ -198,7 +198,7 @@ const COPY = {
     's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
     's1.cap1': '老是<span class="hi">明天</span>再說？',
     's1.cap2': '<span class="go">明天已經來報到了。</span>',
-    's1.vo': '對，就是你 — 那個老是說「明天再說」的人。明天，已經來報到了。',
+    's1.vo': '喂！說你喔。明天已經打卡了。',
 
     /* ---- scene 2 · the three mission types ----
        Mission names are the app's own template translations, so a viewer who
@@ -215,7 +215,7 @@ const COPY = {
     's2.metaTimerDone': '90 分鐘完成',
     's2.cap1': '今天點名，點到<span class="hi">你</span>。',
     's2.cap2': '點一下。數一數。<span class="go">鎖定。</span>',
-    's2.vo': '看到那些亮起來的任務了嗎？那是今天在點你的名。點一下打勾，數水杯、數步數、數頁數。或者按下計時器，一頭栽進深度工作。',
+    's2.vo': '任務亮了。做完打個勾，幾杯水、幾頁書，通通記下來。計時器一按，直接閉關。',
 
     /* ---- scene 3 · the all-or-nothing Tpoint ---- */
     's3.mission': '晨間運動 — 20 分鐘',
@@ -224,13 +224,13 @@ const COPY = {
     's3.cleared': '今天全部完成 · +1 T點數',
     's3.cap1': '全部完成 → <span class="go">+1 T點數</span>',
     's3.cap2': '少一項 → 什麼都沒有',
-    's3.vo': '一項不漏地全部完成，這一天就會結算：1 T點數。少一項呢？什麼都沒有。全清才算，不能討價還價。',
+    's3.vo': '全部做完才有T點數。少一項？直接歸零。要嘛全拿，要嘛空手。',
 
     /* ---- scene 4 · streaks ---- */
     's4.cleared': '所有任務完成 — 拿下今天',
     's4.cap1': '<span class="go">今天鎖定。</span>連續紀錄再長一天。',
     's4.cap2': '昨天的你，從來沒有勝算。',
-    's4.vo': '這一天鎖定，連續紀錄再往上長一天。這裡沒有僥倖，朋友 — 只有昨天的你，又輸給了今天的你。',
+    's4.vo': '今天鎖定，連續紀錄再疊一層。沒在放水，昨天的你又輸了。',
 
     /* ---- scene 5 · stats ---- */
     's5.heatmap': '活動紀錄 · 一年',
@@ -240,7 +240,7 @@ const COPY = {
     's5.barMeditate': '冥想 10 分鐘',
     's5.cap1': '整整一年的<span class="go">綠</span>。',
     's5.cap2': '數字不會說謊。',
-    's5.vo': '現在回頭看看。整整一年一路綠下去，數字誠實到沒得爭辯。這就是你的戰績。',
+    's5.vo': '回頭看，一整年綠得發亮。數字懶得跟你客氣。',
 
     /* ---- scene 6 · the Arena opens ---- */
     's6.tabToday': '今天',
@@ -253,7 +253,7 @@ const COPY = {
     's6.live': '進行中',
     's6.cap1': '一個人練？<span class="hi">真可愛。</span>',
     's6.cap2': '進入<span class="hi">競技場</span>。',
-    's6.vo': '一個人練？真可愛。把朋友拖下水吧 — 競技場開了。',
+    's6.vo': '自己練？真乖。揪朋友進競技場。',
 
     /* ---- scene 7 · the live leaderboard ---- */
     's7.liveDay': '進行中 · 第 3/7 天',
@@ -266,7 +266,7 @@ const COPY = {
     's7.youTag': '（你）',
     's7.cap1': '開賽。往榜上爬。',
     's7.cap2': '漏掉一天 → <span class="hi">−1 天</span>。',
-    's7.vo': '找齊你的人馬，設定天數和目標，開賽。完成天數最多的人站上榜首。漏掉一天，就扣一天。上傳證明，順便嘴一下對手。',
+    's7.vo': '揪人、設天數，開賽。做越多，爬越高，漏一天扣一天，拍照嗆爆對手。',
 
     /* Taiwanese given names rather than transliterated ones: the rivals have
        to read as the viewer's own friends at a glance, and the avatar badge
@@ -283,13 +283,13 @@ const COPY = {
     's8.daysUnit': '天',
     's8.cap1': '一起贏。一起輸。',
     's8.cap2': '<span class="hi">一起</span>強到可怕。',
-    's8.vo': '一起贏，一起輸，一起強到可怕。',
+    's8.vo': '一起贏，一起輸，最後一起強到爆。',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': '記錄。較勁。<span style="color:{amber}">蛻變。</span>',
     's9.cap1': '成為你說過的那個人。',
     's9.cap2': '你的第一項任務，<span class="go">現在</span>開始。',
-    's9.vo': 'Tadapop。記錄下來，跟朋友比一場，成為你一直掛在嘴邊的那個自己。iPhone 和 Android 免費下載。起來吧，戰士。你的第一項任務，現在開始。Tada！',
+    's9.vo': 'Tadapop。成為你說過的那個人。iPhone、Android免費。換你上場。Tada！',
   },
 };
 
@@ -378,8 +378,8 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     if (voice) u.voice = voice;
     u.lang = LANG === 'zh' ? 'zh-TW' : 'en-US';
     u.rate = 1.03; u.pitch = 1.07; u.volume = 1;
-    u.onstart = () => { host.classList.add('speaking'); startMouth(null); };
-    u.onend = () => { host.classList.remove('speaking'); stopMouth(); };
+    u.onstart = () => { host.classList.add('speaking'); startMouth(null); rampMusic(MUSIC_DUCK, 260); };
+    u.onend = () => { host.classList.remove('speaking'); stopMouth(); rampMusic(MUSIC_FULL, 550); };
     try { speechSynthesis.speak(u); } catch (e) {}
   }
 
@@ -517,17 +517,73 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   const lengthEl = launch.querySelector('.film-launch-time');
   if (lengthEl) lengthEl.textContent = t('ui.filmLength', { n: Math.round(TOTAL / 1000) });
 
-  /* ---- pre-recorded voiceover (ElevenLabs, voice: Jessica) ----
-     One MP3 per scene in /assets/vo/. Bump VOV to bust the CDN cache when
+  /* ---- pre-recorded voiceover (ElevenLabs) ----
+     One MP3 per scene per language: /assets/vo/<id>.mp3 in English (voice:
+     Liam) and /assets/vo/zh/<id>.mp3 in Traditional Chinese (voice: Akun, a
+     native Taiwan-Mandarin speaker). Bump VOV to bust the CDN cache when
      regenerating. Falls back to the browser voice if a clip won't load/play.
 
-     English only: the clips are a recorded performance in English and there is
-     no Chinese set. On /zh we leave the cache empty so every scene takes the
-     speechSynthesis path and reads the translated line — an English voice
-     talking over Chinese captions is worse than a synthetic Chinese one. */
-  const VOV = 3;
+     /zh shipped for a while with no clips at all and fell through to
+     speechSynthesis, which stalled mid-sentence and read the lines in
+     whichever Chinese voice the OS happened to have installed. Both languages
+     are a recorded performance now, and sayTTS() is only a safety net for a
+     clip that fails to download.
+
+     Every clip is cut to finish inside its scene's `dur` — see tools/
+     generate-vo.mjs, which measures each render and rejects one that would be
+     truncated by the scene change. */
+  const VOV = 4;
+  const VO_DIR = LANG === 'zh' ? '/assets/vo/zh/' : '/assets/vo/';
   const voCache = {};
-  if (LANG === 'en') scenes.forEach((sc) => { if (sc.id) { const a = new Audio('/assets/vo/' + sc.id + '.mp3?v=' + VOV); a.preload = 'auto'; voCache[sc.id] = a; } });
+  scenes.forEach((sc) => { if (sc.id) { const a = new Audio(VO_DIR + sc.id + '.mp3?v=' + VOV); a.preload = 'auto'; voCache[sc.id] = a; } });
+  /* ---- score bed (ElevenLabs Music — chiptune) ----
+     One 78-second track under the whole 74.8-second film. A plain <audio>
+     element rather than a Web Audio node, for the same reason the voiceover is
+     one: createMediaElementSource() silences media playback in iOS WebKit.
+
+     It ducks rather than sitting at a single level. A bed loud enough to be
+     felt in the gaps buries BOBO while he talks, and one quiet enough to stay
+     clear of him is not worth having — so the volume follows him down and back
+     up. The ramp is stepped by hand because HTMLMediaElement.volume has no
+     scheduled automation the way a GainNode does. */
+  const MUSIC_FULL = 0.22, MUSIC_DUCK = 0.09;
+  const music = new Audio('/assets/music/film-bed.mp3?v=' + VOV);
+  music.preload = 'auto';
+  music.loop = true; // the end card outlasts the track
+  music.volume = 0;
+  let musicRamp = null, musicOff = null;
+  function rampMusic(to, ms) {
+    clearInterval(musicRamp);
+    const from = music.volume, steps = Math.max(1, Math.round(ms / 40));
+    let i = 0;
+    musicRamp = setInterval(() => {
+      i++;
+      try { music.volume = Math.max(0, Math.min(1, from + (to - from) * (i / steps))); } catch (e) {}
+      if (i >= steps) { clearInterval(musicRamp); musicRamp = null; }
+    }, 40);
+  }
+  /** `rewind` on a fresh play; false when un-muting part-way through. */
+  function startMusic(rewind) {
+    if (muted) return;
+    clearTimeout(musicOff);
+    if (rewind) { try { music.currentTime = 0; } catch (e) {} music.volume = 0; }
+    const p = music.play();
+    // Autoplay policy can refuse this; the film is still watchable without it.
+    if (p && p.catch) p.catch(() => {});
+    rampMusic(MUSIC_FULL, 900);
+  }
+  function stopMusic() {
+    clearInterval(musicRamp); musicRamp = null;
+    clearTimeout(musicOff);
+    try { music.pause(); } catch (e) {}
+  }
+  /** Under the closing card, let it go rather than looping at somebody. */
+  function fadeOutMusic() {
+    rampMusic(0, 1800);
+    clearTimeout(musicOff);
+    musicOff = setTimeout(stopMusic, 1900);
+  }
+
   function stopVO() {
     if (curAudio) { try { curAudio.pause(); } catch (e) {} curAudio.onended = null; curAudio = null; }
     try { speechSynthesis.cancel(); } catch (e) {}
@@ -543,14 +599,15 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
       try { a.currentTime = 0; } catch (e) {}
       a.volume = 1;
       host.classList.add('speaking');
-      a.onended = () => { if (curAudio === a) { host.classList.remove('speaking'); stopMouth(); } };
+      a.onended = () => { if (curAudio === a) { host.classList.remove('speaking'); stopMouth(); rampMusic(MUSIC_FULL, 550); } };
+      rampMusic(MUSIC_DUCK, 260);
       const p = a.play();
       // Drive the mouth with the synthesized "chatter" — do NOT route the VO
       // element through Web Audio. createMediaElementSource() silences media
       // playback in iOS WebKit / in-app webviews (SFX oscillators are fine),
       // which dropped the voiceover while clicks kept playing.
       startMouth(null);
-      if (p && p.catch) p.catch(() => { if (curAudio === a) { host.classList.remove('speaking'); stopMouth(); sayTTS(sc.vo); } });
+      if (p && p.catch) p.catch(() => { if (curAudio === a) { host.classList.remove('speaking'); stopMouth(); rampMusic(MUSIC_FULL, 550); sayTTS(sc.vo); } });
     } else {
       sayTTS(sc.vo);
     }
@@ -631,6 +688,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     requestAnimationFrame(() => overlay.classList.add('show'));
     fit();
     if (!muted) ac();
+    startMusic(true);
     pickVoice();
     rootAnims.forEach((a) => { try { a.cancel(); } catch (e) {} });
     rootAnims = [];
@@ -646,6 +704,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   function finish() {
     playing = false;
     stopVO();
+    fadeOutMusic();
     end.classList.add('show');
   }
 
@@ -655,6 +714,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     rootAnims.forEach((a) => { try { a.cancel(); } catch (e) {} });
     clearInterval(timeTimer);
     stopVO();
+    stopMusic();
     unmute.style.display = 'none';
     overlay.classList.remove('show');
     document.body.style.overflow = '';
@@ -680,6 +740,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     muteBtn.textContent = t('ui.soundOn');
     unmute.style.display = 'none';
     ac();
+    startMusic(!playing);
     if (playing && idx >= 0 && scenes[idx]) playVO(scenes[idx]);
   }
   launch.addEventListener('click', () => play(false));
@@ -691,6 +752,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     muted = true;
     muteBtn.textContent = t('ui.soundOff');
     stopVO();
+    stopMusic();
   });
   end.addEventListener('click', (e) => {
     const act = e.target && e.target.getAttribute('data-act');

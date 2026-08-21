@@ -8,3 +8,6 @@ tadapop.apk
 
 # macOS
 .DS_Store
+
+# scratch takes from tools/generate-music.mjs
+.music-takes/
