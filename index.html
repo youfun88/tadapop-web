@@ -173,10 +173,10 @@
       </div>
 
       <div class="hero-cta">
-        <a class="button" href="/android">Get it on Android</a>
         <a class="button" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">Get it on iOS (TestFlight)</a>
+        <a class="button" href="/android">Get it on Android</a>
       </div>
-      <p class="form-note">Now in open beta — install on Android or iOS (TestFlight) today.</p>
+      <p class="form-note">Now in open beta — install on iOS (TestFlight) or Android today.</p>
     </section>
 
     <!-- These are h2, not h3: they sit directly under the page h1 and skipping a
@@ -215,17 +215,21 @@
 
     <section class="cta-final" id="get">
       <h2>Try the beta.</h2>
-      <p>Help shape Tadapop — scan with your phone to install on Android or iOS.</p>
+      <p>Help shape Tadapop — scan the code, or just tap it, to install on iOS or Android.</p>
+      <!-- iOS first: nearly every tester so far is on an iPhone, and the one
+           they need should not be the one they scroll past. Each card is a
+           link as well as a QR — someone already reading this ON their phone
+           has nothing to scan it with, which the old copy never admitted. -->
       <div class="beta-grid">
-        <a class="beta-card" href="/android">
-          <div class="beta-plat">ANDROID</div>
-          <img src="/assets/qr-android.png" alt="QR code: scan to install Tadapop on Android — https://tadapop.app/android" width="200" height="200" />
-          <span class="beta-action">Download the APK →</span>
-        </a>
         <a class="beta-card" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">
           <div class="beta-plat">iOS · TESTFLIGHT</div>
           <img src="/assets/qr-ios.png" alt="QR code: scan to install Tadapop on iOS via TestFlight — https://testflight.apple.com/join/TtXzD68k" width="200" height="200" />
-          <span class="beta-action">Join the TestFlight →</span>
+          <span class="beta-action">Tap to join the TestFlight →</span>
+        </a>
+        <a class="beta-card" href="/android">
+          <div class="beta-plat">ANDROID</div>
+          <img src="/assets/qr-android.png" alt="QR code: scan to install Tadapop on Android — https://tadapop.app/android" width="200" height="200" />
+          <span class="beta-action">Tap to download the APK →</span>
         </a>
       </div>
     </section>
