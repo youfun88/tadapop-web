@@ -56,6 +56,7 @@ const COPY = {
     'ui.soundOn': '♪ SOUND ON',
     'ui.soundOff': '♪ SOUND OFF',
     'ui.replay': '⟳ REPLAY',
+    'ui.seek': 'Seek',
     'ui.pause': '❚❚ PAUSE',
     'ui.resume': '▶ PLAY',
     'ui.tapForSound': '🔊 Tap for sound',
@@ -183,6 +184,7 @@ const COPY = {
     'ui.soundOn': '♪ 聲音開',
     'ui.soundOff': '♪ 聲音關',
     'ui.replay': '⟳ 重播',
+    'ui.seek': '調整播放位置',
     'ui.pause': '❚❚ 暫停',
     'ui.resume': '▶ 播放',
     'ui.tapForSound': '🔊 點一下開聲音',
@@ -551,6 +553,9 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
 
   const controls = el('div', 'film-controls');
   const prog = el('div', 'film-progress', null, '<span></span>');
+  prog.setAttribute('role', 'slider');
+  prog.setAttribute('aria-label', t('ui.seek'));
+  prog.setAttribute('aria-valuemin', '0');
   const progFill = prog.firstChild;
   const muteBtn = el('button', 'film-btn', null, t('ui.soundOn'));
   const pauseBtn = el('button', 'film-btn', null, t('ui.pause'));
@@ -642,7 +647,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 8;
+  const VOV = 9;
   const VO_DIR = LANG === 'zh' ? '/assets/vo/zh/' : '/assets/vo/';
   function voSrc(id) { return VO_DIR + id + '.mp3?v=' + VOV; }
 
@@ -984,6 +989,99 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   replayBtn.addEventListener('click', () => play(false));
   unmute.addEventListener('click', enableSound);
   pauseBtn.addEventListener('click', () => setPaused(!paused));
+
+  /* ---- scrubbing ----
+     Dragging the amber line moves through the film.
+
+     It SNAPS TO THE START OF A SCENE, and that is a real limitation rather than
+     a rough edge to polish later. This is not a video: there is no frame to
+     seek to. A scene is built by running render() and then a queue of timers
+     against a fresh DOM, so the only states that exist are "scene N, played
+     from its beginning". Landing halfway into one would mean rebuilding it and
+     fast-forwarding every animation and timer inside it — for a 75-second film
+     of nine scenes, the cost of that is not worth the precision it buys.
+
+     So the readout while dragging shows where the thumb is, and letting go
+     lands on the scene that contains it. Committing on release rather than on
+     every move also stops a drag across the bar tearing down and rebuilding
+     nine scenes on the way past. */
+  let scrubbing = false;
+
+  /** Where a pointer sits on the bar, as milliseconds into the film. */
+  function timeFromPointer(e) {
+    const r = prog.getBoundingClientRect();
+    const f = r.width ? (e.clientX - r.left) / r.width : 0;
+    return Math.max(0, Math.min(1, f)) * TOTAL;
+  }
+
+  /** Paint the bar and clock at `ms` without moving the film. */
+  function previewAt(ms) {
+    progFill.style.width = (ms / TOTAL) * 100 + '%';
+    time.textContent = fmtClock(ms) + ' / ' + fmtClock(TOTAL);
+  }
+
+  /** Jump the film to whichever scene contains `ms`. */
+  function seekTo(ms) {
+    let acc = 0, i = 0;
+    for (; i < scenes.length - 1; i++) {
+      if (ms < acc + scenes[i].dur) break;
+      acc += scenes[i].dur;
+    }
+    // The clock is "now minus how far in we are", so the readout and the
+    // progress animation below agree without either of them being told twice.
+    clockT0 = performance.now() - acc;
+    clockHeld = 0;
+    rootAnims.forEach((a) => { try { a.currentTime = acc; a.play(); } catch (e) {} });
+    if (!muted) { try { music.currentTime = (acc / 1000) % (music.duration || 1e9); } catch (e) {} }
+    end.classList.remove('show');
+    playing = true;
+    paused = false;
+    pauseBtn.textContent = t('ui.pause');
+    gotoScene(i);
+  }
+
+  prog.addEventListener('pointerdown', (e) => {
+    if (overlay.hidden) return;
+    scrubbing = true;
+    prog.classList.add('scrubbing');
+    try { prog.setPointerCapture(e.pointerId); } catch (err) {}
+    // Freeze the bar so its own animation stops fighting the thumb.
+    rootAnims.forEach((a) => { try { a.pause(); } catch (err) {} });
+    stopVO();
+    previewAt(timeFromPointer(e));
+    e.preventDefault();
+  });
+  prog.addEventListener('pointermove', (e) => {
+    if (!scrubbing) return;
+    previewAt(timeFromPointer(e));
+  });
+  const endScrub = (e) => {
+    if (!scrubbing) return;
+    scrubbing = false;
+    prog.classList.remove('scrubbing');
+    try { prog.releasePointerCapture(e.pointerId); } catch (err) {}
+    seekTo(timeFromPointer(e));
+  };
+  prog.addEventListener('pointerup', endScrub);
+  prog.addEventListener('pointercancel', endScrub);
+
+  /* Tapping the picture pauses it, the way every video player behaves.
+     
+     The pause button is in a row of five controls along the bottom edge, which
+     on a phone is a small target in the least reachable part of the screen. The
+     picture itself is the whole rest of the film and needs no aiming.
+
+     Everything that already does something keeps doing it: the controls, the
+     top bar, the end card and the "tap for sound" button are all excluded, so
+     this only ever fires on the film itself. It stays off until the film is
+     actually playing, so the tap that opens it cannot immediately pause it, and
+     off once the end card is up, where the tap belongs to the buttons on it. */
+  overlay.addEventListener('click', (e) => {
+    if (!playing) return;
+    const t = e.target;
+    if (t && t.closest && t.closest('.film-controls, .film-top, .film-end, .film-unmute, button, a')) return;
+    setPaused(!paused);
+  });
   muteBtn.addEventListener('click', () => {
     if (muted) { enableSound(); return; }
     muted = true;

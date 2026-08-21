@@ -155,7 +155,16 @@
   border-radius: 3px;
   background: rgba(124, 138, 165, 0.25);
   overflow: hidden;
+  /* Scrubbable. The bar itself is 4px, which is nothing to hit with a thumb, so
+     the padding below grows the touch target without moving the line. */
+  cursor: pointer;
+  touch-action: none;
+  box-sizing: content-box;
+  padding: 12px 0;
+  background-clip: content-box;
 }
+.film-progress > span { border-radius: 3px; }
+.film-progress.scrubbing > span { box-shadow: 0 0 14px rgba(255, 180, 84, 0.9); }
 .film-progress > span {
   position: absolute; left: 0; top: 0; bottom: 0;
   width: 0%;
