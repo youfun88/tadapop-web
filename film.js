@@ -34,8 +34,15 @@
    whatever happens to sit in the same position.
 
    Every caption is on screen for a fixed number of seconds, choreographed
-   against the animation. The copy is written to the beat of the English line,
+   against the animation. The English copy is written to the beat of the line,
    not to its word count, and it fits the clock — the clock never moves for it.
+
+   The Chinese captions are different in kind: they are a TRANSCRIPT of what
+   BOBO says, word for word. They used to be separate display copy that said
+   the same thing a different way, which reads as a subtitling bug to anyone
+   who is both listening and reading — the voice says 「喂！說你喔。」 while the
+   screen says 「老是明天再說？」. If you change a zh `capN`, change the matching
+   `vo` line with it, and re-measure CAP_AT.
 
    Chinese terminology follows the app (its src/i18n/zh.ts): 競技場 for Arena,
    任務 for mission, T點數 for Tpoint, 連續紀錄 for streak, and the four example
@@ -219,8 +226,8 @@ const COPY = {
 
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
-    's1.cap1': '老是<span class="hi">明天</span>再說？',
-    's1.cap2': '<span class="go">明天已經來報到了。</span>',
+    's1.cap1': '喂！說你喔。',
+    's1.cap2': '<span class="hi">明天</span>已經打卡了。',
     's1.vo': '喂！说你喔。明天已经打卡了。',
 
     /* ---- scene 2 · the three mission types ----
@@ -236,8 +243,8 @@ const COPY = {
     's2.metaTimer': '90 分鐘',
     's2.metaTimerLeft': '剩 89:58',
     's2.metaTimerDone': '90 分鐘完成',
-    's2.cap1': '今天點名，點到<span class="hi">你</span>。',
-    's2.cap2': '點一下。數一數。<span class="go">鎖定。</span>',
+    's2.cap1': '任務亮了。做完<span class="go">打個勾</span>，幾杯水、幾頁書，通通記下來。',
+    's2.cap2': '計時器一按，<span class="go">直接閉關</span>。',
     's2.vo': '任务亮了。做完打个勾，几杯水、几页书，通通记下来。计时器一按，直接闭关。',
 
     /* ---- scene 3 · the all-or-nothing Tpoint ---- */
@@ -245,14 +252,14 @@ const COPY = {
     's3.metaTimer': '20 分鐘',
     's3.metaDone': '20 分鐘完成',
     's3.cleared': '今天全部完成 · +1 T點數',
-    's3.cap1': '全部完成 → <span class="go">+1 T點數</span>',
-    's3.cap2': '少一項 → 什麼都沒有',
+    's3.cap1': '全部做完才有 <span class="go">T點數</span>。',
+    's3.cap2': '少一項？<span class="hi">直接歸零</span>。要嘛全拿，要嘛空手。',
     's3.vo': '全部做完才有T点数。少一项？直接归零。要嘛全拿，要嘛空手。',
 
     /* ---- scene 4 · streaks ---- */
     's4.cleared': '所有任務完成 — 拿下今天',
-    's4.cap1': '<span class="go">今天鎖定。</span>連續紀錄再長一天。',
-    's4.cap2': '昨天的你，從來沒有勝算。',
+    's4.cap1': '今天<span class="go">鎖定</span>，連續紀錄再疊一層。',
+    's4.cap2': '沒在放水，昨天的你<span class="hi">又輸了</span>。',
     's4.vo': '今天锁定，连续纪录再叠一层。没在放水，昨天的你又输了。',
 
     /* ---- scene 5 · stats ---- */
@@ -261,8 +268,8 @@ const COPY = {
     's5.barWater': '喝 8 杯水',
     's5.barDeepWork': '深度工作',
     's5.barMeditate': '冥想 10 分鐘',
-    's5.cap1': '整整一年的<span class="go">綠</span>。',
-    's5.cap2': '數字不會說謊。',
+    's5.cap1': '回頭看，一整年<span class="go">綠得發亮</span>。',
+    's5.cap2': '數字懶得跟你客氣。',
     's5.vo': '回头看，一整年绿得发亮。数字懒得跟你客气。',
 
     /* ---- scene 6 · the Arena opens ---- */
@@ -274,8 +281,8 @@ const COPY = {
     's6.challenge': '喝水挑戰',
     's6.challengeMeta': '每天 8 杯 · 7 天 · 4 位成員',
     's6.live': '進行中',
-    's6.cap1': '一個人練？<span class="hi">真可愛。</span>',
-    's6.cap2': '進入<span class="hi">競技場</span>。',
+    's6.cap1': '自己練？<span class="hi">真乖。</span>',
+    's6.cap2': '揪朋友進<span class="hi">競技場</span>。',
     's6.vo': '自己练？真乖。揪朋友进竞技场。',
 
     /* ---- scene 7 · the live leaderboard ---- */
@@ -287,8 +294,8 @@ const COPY = {
     's7.missedADay': '漏掉一天',
     's7.you': '你',
     's7.youTag': '（你）',
-    's7.cap1': '開賽。往榜上爬。',
-    's7.cap2': '漏掉一天 → <span class="hi">−1 天</span>。',
+    's7.cap1': '揪人、設天數，開賽。做越多，<span class="go">爬越高</span>。',
+    's7.cap2': '<span class="hi">漏一天扣一天</span>，拍照嗆爆對手。',
     's7.vo': '揪人、设天数，开赛。做越多，爬越高，漏一天扣一天，拍照呛爆对手。',
 
     /* Taiwanese given names rather than transliterated ones: the rivals have
@@ -304,14 +311,14 @@ const COPY = {
     's8.winnerMeta': '7 天 · 完成天數最多',
     's8.standings': '最終排名',
     's8.daysUnit': '天',
-    's8.cap1': '一起贏。一起輸。',
-    's8.cap2': '<span class="hi">一起</span>強到可怕。',
+    's8.cap1': '一起贏，一起輸，',
+    's8.cap2': '<span class="hi">最後一起強到爆。</span>',
     's8.vo': '一起赢，一起输，最后一起强到爆。',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': '記錄。較勁。<span style="color:{amber}">蛻變。</span>',
-    's9.cap1': '成為你說過的那個人。',
-    's9.cap2': '你的第一項任務，<span class="go">現在</span>開始。',
+    's9.cap1': 'Tadapop。成為你說過的那個人。',
+    's9.cap2': 'iPhone、Android 免費。<span class="go">換你上場。</span>',
     's9.vo': 'Tadapop。成为你说过的那个人。iPhone、Android免费。换你上场。Tada！',
   },
 };
@@ -329,6 +336,24 @@ function t(key, vars) {
   if (s == null) return '';
   if (!vars) return s;
   return s.replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; });
+}
+
+/**
+ * When the second caption of a scene appears, per language.
+ *
+ * The two narrators do not reach the same sentence at the same moment, and the
+ * Chinese captions are a transcript of what BOBO is saying — so a shared number
+ * would put the words on screen before or after he says them. The zh values are
+ * measured from the rendered clips with word-level speech-to-text (see
+ * tools/generate-vo.mjs); re-measure them if a line is re-recorded.
+ */
+const CAP_AT = {
+  en: { s1: 2, s2: 5.2, s3: 4.4, s4: 4.2, s5: 3, s6: 2.8, s7: 5.4, s8: 2.5, s9: 6 },
+  zh: { s1: 1.68, s2: 6.12, s3: 2.08, s4: 3.22, s5: 2.36, s6: 1.34, s7: 5.14, s8: 1.62, s9: 3.4 },
+};
+function capAt(id) {
+  const m = CAP_AT[LANG] || CAP_AT.en;
+  return m[id] != null ? m[id] : (CAP_AT.en[id] || 0);
 }
 
 /** For plain-text copy that has to be dropped into an innerHTML string. */
@@ -984,7 +1009,7 @@ function buildScenes(ctx) {
   const s1 = {
     id: 's1', dur: 5000,
     vo: t('s1.vo'),
-    caps: [{ at: 0, html: t('s1.cap1') }, { at: 2, html: t('s1.cap2') }],
+    caps: [{ at: 0, html: t('s1.cap1') }, { at: capAt('s1'), html: t('s1.cap2') }],
     render(node) {
       const wrap = el('div', null, { position: 'absolute', inset: '0', display: 'grid', placeItems: 'center' });
       const box = el('div', null, { textAlign: 'center' });
@@ -1006,7 +1031,7 @@ function buildScenes(ctx) {
   const s2 = {
     id: 's2', dur: 12000,
     vo: t('s2.vo'),
-    caps: [{ at: 0, html: t('s2.cap1') }, { at: 5.2, html: t('s2.cap2') }],
+    caps: [{ at: 0, html: t('s2.cap1') }, { at: capAt('s2'), html: t('s2.cap2') }],
     render(node) {
       const c = appCol(node, 600);
       c.appendChild(header(11, 47));
@@ -1040,7 +1065,7 @@ function buildScenes(ctx) {
   const s3 = {
     id: 's3', dur: 9200,
     vo: t('s3.vo'),
-    caps: [{ at: 0, html: t('s3.cap1') }, { at: 4.4, html: t('s3.cap2') }],
+    caps: [{ at: 0, html: t('s3.cap1') }, { at: capAt('s3'), html: t('s3.cap2') }],
     render(node) {
       const c = appCol(node, 560);
       const head = header(12, 47);
@@ -1072,7 +1097,7 @@ function buildScenes(ctx) {
   const s4 = {
     id: 's4', dur: 8400,
     vo: t('s4.vo'),
-    caps: [{ at: 0, html: t('s4.cap1') }, { at: 4.2, html: t('s4.cap2') }],
+    caps: [{ at: 0, html: t('s4.cap1') }, { at: capAt('s4'), html: t('s4.cap2') }],
     render(node) {
       const c = appCol(node, 560);
       const panel = el('div', 'fm-panel', { padding: '18px' });
@@ -1119,7 +1144,7 @@ function buildScenes(ctx) {
   const s5 = {
     id: 's5', dur: 6800,
     vo: t('s5.vo'),
-    caps: [{ at: 0, html: t('s5.cap1') }, { at: 3, html: t('s5.cap2') }],
+    caps: [{ at: 0, html: t('s5.cap1') }, { at: capAt('s5'), html: t('s5.cap2') }],
     render(node) {
       const c = appCol(node, 560, true);
       // stat cards
@@ -1174,7 +1199,7 @@ function buildScenes(ctx) {
   const s6 = {
     id: 's6', dur: 5900,
     vo: t('s6.vo'),
-    caps: [{ at: 0, html: t('s6.cap1') }, { at: 2.8, html: t('s6.cap2') }],
+    caps: [{ at: 0, html: t('s6.cap1') }, { at: capAt('s6'), html: t('s6.cap2') }],
     render(node) {
       const c = appCol(node, 560);
       // tabs
@@ -1207,7 +1232,7 @@ function buildScenes(ctx) {
   const s7 = {
     id: 's7', dur: 10500,
     vo: t('s7.vo'),
-    caps: [{ at: 0, html: t('s7.cap1') }, { at: 5.4, html: t('s7.cap2') }],
+    caps: [{ at: 0, html: t('s7.cap1') }, { at: capAt('s7'), html: t('s7.cap2') }],
     render(node) {
       const c = appCol(node, 580);
       const RED = '#FF6B6B';
@@ -1275,7 +1300,7 @@ function buildScenes(ctx) {
   const s8 = {
     id: 's8', dur: 5600,
     vo: t('s8.vo'),
-    caps: [{ at: 0, html: t('s8.cap1') }, { at: 2.5, html: t('s8.cap2') }],
+    caps: [{ at: 0, html: t('s8.cap1') }, { at: capAt('s8'), html: t('s8.cap2') }],
     render(node) {
       const c = appCol(node, 560);
       const win = el('div', 'fm-panel', { padding: '24px', textAlign: 'center', marginBottom: '14px', position: 'relative', overflow: 'hidden' });
@@ -1320,7 +1345,7 @@ function buildScenes(ctx) {
   const s9 = {
     id: 's9', dur: 11400,
     vo: t('s9.vo'),
-    caps: [{ at: 0, html: t('s9.cap1') }, { at: 6, html: t('s9.cap2') }],
+    caps: [{ at: 0, html: t('s9.cap1') }, { at: capAt('s9'), html: t('s9.cap2') }],
     render(node) {
       const wrap = el('div', null, { position: 'absolute', inset: '0', display: 'grid', placeItems: 'center' });
       const box = el('div', null, { textAlign: 'center' });
