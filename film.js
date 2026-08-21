@@ -591,7 +591,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 5;
+  const VOV = 6;
   const VO_DIR = LANG === 'zh' ? '/assets/vo/zh/' : '/assets/vo/';
   function voSrc(id) { return VO_DIR + id + '.mp3?v=' + VOV; }
 
@@ -625,12 +625,22 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      element rather than a Web Audio node, for the same reason the voiceover is
      one: createMediaElementSource() silences media playback in iOS WebKit.
 
-     It ducks rather than sitting at a single level. A bed loud enough to be
-     felt in the gaps buries BOBO while he talks, and one quiet enough to stay
-     clear of him is not worth having — so the volume follows him down and back
-     up. The ramp is stepped by hand because HTMLMediaElement.volume has no
-     scheduled automation the way a GainNode does. */
-  const MUSIC_FULL = 0.22, MUSIC_DUCK = 0.09;
+     THE LEVEL LIVES IN THE FILE, NOT IN THIS CODE. iOS ignores
+     HTMLMediaElement.volume outright — there it is effectively read-only, and
+     only the hardware buttons move it. So every volume set below does nothing
+     on an iPhone, and the bed as originally mastered (-10.6 LUFS, a good 7 dB
+     LOUDER than the -17.7 LUFS narration) simply buried BOBO for the whole
+     film. The mp3 is now mastered to about -34 LUFS, roughly 16 LU under the
+     voice, which is what actually makes the speech audible on a phone. If you
+     replace the track, match that measurement — ffmpeg -af ebur128 — rather
+     than turning a number down here, or iOS will not hear the difference.
+
+     The ducking below is a refinement for the browsers that honour volume,
+     not the thing keeping the narration clear. The ramp is stepped by hand
+     because HTMLMediaElement.volume has no scheduled automation the way a
+     GainNode does — and routing this through a GainNode is not an option,
+     see the note on the voiceover element. */
+  const MUSIC_FULL = 1, MUSIC_DUCK = 0.45;
   const music = new Audio('/assets/music/film-bed.mp3?v=' + VOV);
   music.preload = 'auto';
   music.loop = true; // the end card outlasts the track
