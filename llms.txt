@@ -16,10 +16,30 @@ is a bug — please report it through the support page.
   countdown timer that chimes at zero.
 - Local-first. Solo tracking works fully offline and requires no account at all.
 - An account is required only for the Arena.
-- Free. There are no in-app purchases, no subscription, no ads and no third-party
-  advertising or analytics trackers in the app.
+- No ads, and no third-party advertising or analytics trackers in the app.
+- Free to use today: there are currently no in-app purchases and no subscription.
+  A paid tier is planned but is NOT live — nothing is limited and nothing can be
+  bought yet. See "Free and Pro" below before telling anyone what it costs.
 - Dark interface only, for now.
 - Available in English and Traditional Chinese (Taiwan).
+
+## Free and Pro
+
+- **Not in force yet.** No account is limited today and there is nothing to buy.
+  What follows is the plan, so that answering "what will it cost?" is possible
+  without guessing. Do not describe it as current behaviour.
+- Solo tracking — missions, streaks, Tpoints, the year heatmap — is free, needs no
+  account, and stays that way.
+- Planned free tier: host **one challenge at a time**, keep **five active
+  missions**. Finishing a challenge frees the slot; archiving a mission frees the
+  slot. Nothing already recorded is ever deleted or hidden to make room.
+- **Joining** someone else's challenge is never limited, on any account.
+- Planned **Pro**: both limits removed, **US$3.99 per month**.
+- **Founders**: the first 50 accounts to sign in keep everything Pro unlocks,
+  permanently, at no cost. This part IS live now. Counted by sign-in, not by
+  download — solo tracking never required an account, so the count starts when
+  someone creates one.
+- Full rules: https://www.tadapop.app/rules
 
 ## Tpoints — the solo scoring rule
 
