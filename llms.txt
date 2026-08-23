@@ -111,6 +111,20 @@ What a place is worth depends on how many people joined:
   7 days. A different line-up counts as a different group with its own week. The week
   only starts running from a challenge that actually paid somebody.
 - A final board score of zero never pays, whatever position the board lists you in.
+- **The roster closes when a challenge starts.** An invite code or link shared
+  beforehand keeps working, but not once play has begun — a late arrival cannot
+  catch up and changes whether the challenge scores at all. One exception: a
+  running challenge that falls BELOW its own minimum player count reopens until
+  it is back at strength.
+- **Leaving and returning:** somebody who left may come back at any point,
+  including mid-challenge, as long as nobody has taken their seat. Their logged
+  days survive, missed ones included.
+- **A removed player can never return by invite** — not by code, link, or
+  leaving and rejoining. Only the host can readmit them from the roster.
+- **Approval:** if the host requires it, joining sends a request instead, and
+  only the host can accept. A pending person sees nothing inside the challenge.
+- All of the above is enforced in the database as well as the app, so a stale
+  copy of the app cannot get anyone in.
 - Leaderboard position is **how many days you hit the daily target**, and nothing
   else. Exceeding the target on a day banks nothing, so there is no reward for
   overdoing it and a big day cannot make up for a missed one.
