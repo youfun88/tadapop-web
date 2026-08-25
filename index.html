@@ -276,15 +276,25 @@
                engine. .film-launch-time is where film.js stamps the real
                runtime — the number must not be written anywhere else. -->
           <button class="poster-hit" type="button" id="filmLaunch" aria-haspopup="dialog"
-                  aria-label="Play the film — with voiceover and captions, in English or Traditional Chinese">
+                  aria-label="See what BOBO has to say — the explainer film, with voiceover and captions, in English or Traditional Chinese">
             <span class="hit-bar">
               <span class="hit-rail" aria-hidden="true"><i></i></span>
               <span class="play-disc" aria-hidden="true">▶</span>
-              <span class="hit-text">Play the film<span class="film-launch-time"></span></span>
+              <span class="hit-text">See what BOBO has to say<span class="film-launch-time"></span></span>
               <span class="hit-meta" aria-hidden="true">Voiceover + captions</span>
               <span class="hit-time" aria-hidden="true">0:00</span>
             </span>
           </button>
+
+          <!-- The film plays HERE on a desktop. film.css positions this
+               fixed; the rule in styles.css re-points it to fill this frame
+               above 900px. film.js needs no change for that — its fit()
+               already scales the 1000x563 stage from the overlay's own box.
+               Below 900px it stays fixed and takes the screen, because a
+               16:9 stage at 360px wide is 202px tall and the captions are
+               what carry the script. A fixed descendant is not clipped by
+               an ancestor's overflow, so nesting it here is safe. -->
+          <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop explainer film" hidden></div>
         </div>
 
         <p class="player-note">
@@ -596,10 +606,6 @@
     </section>
   </main>
 
-  <!-- film.js empties this and builds the player inside it. Both this id and
-       #filmLaunch are mandatory: if either is missing, film.js returns early
-       and the film silently does not exist. -->
-  <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop explainer film" hidden></div>
 
   <footer class="footer">
     <div class="footer-brand">

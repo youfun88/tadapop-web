@@ -226,15 +226,25 @@
           </div>
 
           <button class="poster-hit" type="button" id="filmLaunch" aria-haspopup="dialog"
-                  aria-label="播放影片 — 有旁白和字幕，中文或英文">
+                  aria-label="看 BOBO 怎麼說 — 介紹影片，有旁白和字幕，中文或英文">
             <span class="hit-bar">
               <span class="hit-rail" aria-hidden="true"><i></i></span>
               <span class="play-disc" aria-hidden="true">▶</span>
-              <span class="hit-text">播放影片<span class="film-launch-time"></span></span>
+              <span class="hit-text">看 BOBO 怎麼說<span class="film-launch-time"></span></span>
               <span class="hit-meta" aria-hidden="true">旁白＋字幕</span>
               <span class="hit-time" aria-hidden="true">0:00</span>
             </span>
           </button>
+
+          <!-- The film plays HERE on a desktop. film.css positions this
+               fixed; the rule in styles.css re-points it to fill this frame
+               above 900px. film.js needs no change for that — its fit()
+               already scales the 1000x563 stage from the overlay's own box.
+               Below 900px it stays fixed and takes the screen, because a
+               16:9 stage at 360px wide is 202px tall and the captions are
+               what carry the script. A fixed descendant is not clipped by
+               an ancestor's overflow, so nesting it here is safe. -->
+          <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop 介紹影片" hidden></div>
         </div>
 
         <p class="player-note">
@@ -516,7 +526,6 @@
     </section>
   </main>
 
-  <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop 介紹影片" hidden></div>
 
   <footer class="footer">
     <div class="footer-brand">

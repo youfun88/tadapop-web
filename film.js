@@ -947,6 +947,13 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     // lives inside, hiding it would strand focus on a display:none button.
     clearTimeout(hideTimer);
     overlay.hidden = false;
+    // The film no longer always takes the page: above 900px it plays inside
+    // the poster's own frame. Locking the page's scroll would then trap a
+    // reader beside a 980px box for 75 seconds, so the lock is tied to
+    // whether the overlay is actually covering the viewport rather than
+    // assumed. Read after unhiding, because a hidden element has no
+    // resolved position.
+    const takesTheScreen = getComputedStyle(overlay).position === 'fixed';
     // BOBO's three layers are marked loading="lazy" so a visitor who never
     // presses play does not pay 3.1MB for them. Un-hiding their container is
     // NOT enough to start that fetch — nothing scrolls inside the overlay, so
@@ -955,7 +962,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     // actually starts the load, so it happens here, once, at the only moment
     // the artwork is genuinely needed.
     boboLayers().forEach((img) => { if (img.loading === 'lazy') img.loading = 'eager'; });
-    document.body.style.overflow = 'hidden';
+    if (takesTheScreen) document.body.style.overflow = 'hidden';
     // Close first: the one control every visitor needs, and the safe landing
     // spot for someone who cannot see that a film has taken over the page.
     // Not inside the rAF below — that never runs in a background tab, and
