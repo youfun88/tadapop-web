@@ -896,3 +896,516 @@ button.promo-dismiss {
   font: inherit;
   cursor: pointer;
 }
+
+/* =====================================================================
+   HOME v2 — the 1.4.2 launch page.
+   ---------------------------------------------------------------------
+   Everything below is NEW and used only by / and /zh. Nothing above this
+   line is redefined, because /rewards, /rules, /support, /privacy,
+   /terms, /android and /join all load this same file and none of them
+   may move a pixel.
+
+   Three names were deliberately not reused, and the reason is worth
+   recording: `.card` is also mounted on /android, `.sec` and `.sec-p`
+   are the section furniture on /rewards, and `.strip` belongs to both.
+   The home page's versions are `.home-card`, `.hsec` and `.hsec-p`.
+   `.form-note`, `.beta-grid`, `.beta-card`, `.lang-switch`, `.skip-link`,
+   `.grid-bg` and the whole `.ma-*` animation ARE reused, verbatim and
+   unmodified — they already do exactly the right thing.
+   ===================================================================== */
+
+/* The sticky bar's height lives in one place: the scroll-margin every
+   anchored section needs is derived from it, so a change to the bar can
+   never leave an anchor landing underneath it. */
+:root { --bar: 64px; }
+
+.hsec :is(h2, h3) { scroll-margin-top: calc(var(--bar) + 16px); }
+section[id] { scroll-margin-top: calc(var(--bar) + 12px); }
+
+/* ── 1 · top navigation ───────────────────────────────────────────────
+   The menu used to exist only in the footer, which meant a visitor had
+   to reach the end of the page to find out the site had any depth. One
+   <nav> in the markup and two layouts in CSS — never two menus, so a
+   screen reader never meets the same five links twice. */
+.site-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(11, 14, 23, .84);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.site-nav-in {
+  max-width: 1180px; margin: 0 auto;
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 18px;
+}
+.site-brand { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.site-brand img { width: 30px; height: 30px; border-radius: 8px; display: block; }
+.site-brand-name { font-family: var(--display); font-weight: 900; letter-spacing: 2px; font-size: 17px; }
+.nav-menu { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+.nav-menu a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  padding: 0 11px; border-radius: 8px;
+  font-family: var(--mono); font-size: 13px; line-height: 1.6; color: var(--dim);
+  transition: color .2s, background .2s;
+}
+.nav-menu a:hover { color: var(--ink); background: rgba(38, 48, 74, .5); }
+.nav-tail { display: flex; align-items: center; gap: 12px; }
+/* .lang-switch is untouched above — its 36px height is load-bearing on the
+   doc pages, where it sits in .doc-top. The nav's copy gets its 44px target
+   from a scoped rule so /rules and /privacy keep the switcher they have. */
+.site-nav .lang-switch { min-height: 44px; padding-inline: 10px; margin-inline: 0; }
+/* The "· " separator exists so the switcher reads as the last item of a row
+   it shares with other links. In this nav it sits in its own group after a
+   gap, so the bullet has nothing to separate and reads as a typo. The footer
+   already suppresses it for the same reason. */
+.site-nav .lang-switch::before { content: none; }
+.site-cta {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 15px;
+  font-family: var(--mono); font-size: 13px; color: var(--ink);
+  border: 1px solid var(--line-lit); border-radius: 8px;
+  transition: border-color .2s, background .2s;
+}
+.site-cta:hover { border-color: var(--amber); background: rgba(255, 180, 84, .08); }
+.nav-toggle {
+  display: none;
+  width: 44px; height: 44px; margin-left: auto;
+  align-items: center; justify-content: center;
+  background: none; border: 1px solid var(--line); border-radius: 8px;
+  color: var(--ink); cursor: pointer;
+}
+.nav-toggle span { display: block; width: 18px; height: 2px; background: currentColor; box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor; }
+.nav-toggle[aria-expanded="true"] span { background: var(--amber); }
+
+/* ── 2 · hero: the film player is the hero ────────────────────────── */
+.home-hero { max-width: 1040px; margin: 0 auto; padding: 26px 20px 8px; text-align: center; }
+.status-chip {
+  display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px;
+  color: var(--amber);
+  border: 1px solid rgba(255, 180, 84, .3);
+  background: rgba(255, 180, 84, .06);
+  border-radius: 999px; padding: 7px 15px; margin-bottom: 18px;
+}
+.status-chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--go); box-shadow: 0 0 10px 1px rgba(91, 227, 155, .8); }
+/* The headline is not the hero here — the player is — so it says the thing
+   and gets out of the way. No hand-placed <br>: clamp plus text-wrap breaks
+   it sensibly at every width, which a fixed break never did at 360. */
+.home-hero h1 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(26px, 3.5vw, 42px); line-height: 1.08; letter-spacing: -1px;
+  max-width: 30ch; margin: 0 auto;
+  text-wrap: balance;
+}
+.home-hero h1 .amber { color: var(--amber); text-shadow: 0 0 32px rgba(255, 180, 84, .35); }
+.home-lede { color: var(--dim); font-size: clamp(15px, 2vw, 18px); max-width: 62ch; margin: 20px auto 0; }
+
+/* The player is sized by the space left in the first screen, not by the page
+   width: as wide as 980, but never so tall that the play bar drops below the
+   fold on a short laptop. 330px is the bar, the chip, two lines of h1 and the
+   gaps. dvh, not vh, because a phone's browser chrome collapses as you scroll
+   and vh would size the player against a viewport that isn't there yet. */
+.player { width: min(980px, calc((100dvh - 330px) * 16 / 9)); min-width: 0; margin: 22px auto 0; position: relative; }
+.player-frame {
+  position: relative;
+  border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+  background:
+    radial-gradient(720px 380px at 50% -12%, rgba(255, 180, 84, .10), transparent 62%),
+    linear-gradient(180deg, var(--panel2), var(--void) 72%);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .02) inset;
+  transition: border-color .2s, box-shadow .25s;
+}
+.player:hover .player-frame,
+.player:focus-within .player-frame {
+  border-color: rgba(255, 180, 84, .55);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .9), 0 0 0 4px rgba(255, 180, 84, .08);
+}
+/* The poster is the film's own opening scene, rebuilt in DOM: the mark, the
+   TADAPOP lockup, the amber subline, BOBO where the film stands him, and the
+   real first caption. Pressing play therefore does not cut to something else
+   — the same picture gets bigger and starts talking. Two images in the whole
+   composition, and one of them is the logo the page already loads. */
+.poster-art { position: relative; aspect-ratio: 16 / 9; display: grid; grid-template-rows: auto 1fr auto auto; isolation: isolate; }
+.poster-grid {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 44px 44px; opacity: .22;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 20%, transparent 78%);
+}
+.poster-corner { position: absolute; width: 20px; height: 20px; border: 2px solid var(--line-lit); opacity: .7; z-index: 1; }
+.poster-corner.tl { top: 12px; left: 12px; border-right: 0; border-bottom: 0; border-radius: 5px 0 0 0; }
+.poster-corner.tr { top: 12px; right: 12px; border-left: 0; border-bottom: 0; border-radius: 0 5px 0 0; }
+.poster-corner.bl { bottom: 12px; left: 12px; border-right: 0; border-top: 0; border-radius: 0 0 0 5px; }
+.poster-corner.br { bottom: 12px; right: 12px; border-left: 0; border-top: 0; border-radius: 0 0 5px 0; }
+.poster-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 16px 22px;
+  font-family: var(--mono); font-size: clamp(9px, 1.05vw, 12px); letter-spacing: .14em;
+}
+.poster-top .pt-brand { display: flex; align-items: center; gap: 9px; color: var(--ink); font-family: var(--display); font-weight: 900; letter-spacing: .16em; }
+.poster-top .pt-brand img { width: clamp(16px, 2vw, 22px); height: clamp(16px, 2vw, 22px); border-radius: 5px; display: block; }
+.poster-top .pt-cc { color: var(--faint); border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; white-space: nowrap; }
+.poster-stage { position: relative; z-index: 2; display: grid; place-items: center; align-content: center; padding: 0 16px; }
+/* The orbiting-missions animation lives here now. It is reused from the
+   .ma-* rules above, only made smaller — the orbit radius is computed from
+   the box in JS, so narrowing the box narrows the flight path with it and
+   nothing needs re-choreographing. */
+.poster-art .mission-anim { position: relative; width: clamp(104px, 17vw, 176px); aspect-ratio: 1 / 1; margin: 0 auto; user-select: none; }
+.poster-art .ma-logo { width: 64%; }
+.poster-art .ma-core svg { width: 68%; height: 68%; }
+.poster-word { font-family: var(--display); font-weight: 900; font-size: clamp(19px, 5.1vw, 50px); letter-spacing: .16em; line-height: 1; margin-top: clamp(6px, 1.4vw, 16px); }
+.poster-sub { font-family: var(--mono); color: var(--amber); font-size: clamp(7.5px, 1.25vw, 13px); letter-spacing: .28em; margin-top: clamp(5px, .9vw, 11px); text-align: center; }
+.poster-bobo { position: absolute; z-index: 3; left: 3.2%; bottom: 14%; width: 14.5%; height: auto; filter: drop-shadow(0 10px 26px rgba(0, 0, 0, .6)); pointer-events: none; }
+/* The film's real opening line, burned in. Someone who never presses play
+   still hears BOBO's first sentence. */
+.poster-cap {
+  position: relative; z-index: 2; padding: 0 6% 0 20%; text-align: center;
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(11px, 2.1vw, 21px); line-height: 1.25;
+  color: #fff; text-shadow: 0 2px 20px rgba(0, 0, 0, .8);
+  margin-bottom: clamp(10px, 1.8vw, 20px);
+}
+.poster-cap .hi { color: var(--amber); }
+/* Floor space for the overlaid control bar, so it never covers the caption
+   or BOBO's feet. */
+.poster-barspace { height: clamp(58px, 7.4vw, 86px); }
+
+/* The control bar is INSIDE the button, so the visible play affordance and
+   the hit area are the same object — 900x506 instead of a 240x44 text link.
+   This element is #filmLaunch: film.js has always bound to it by id. */
+.poster-hit {
+  position: absolute; inset: 0; z-index: 4;
+  display: flex; align-items: flex-end;
+  background: none; border: 0; padding: 0;
+  color: inherit; font: inherit; text-align: left;
+  cursor: pointer; border-radius: 18px;
+}
+.poster-hit::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(60% 60% at 50% 88%, rgba(255, 180, 84, .10), transparent 70%);
+  opacity: 0; transition: opacity .25s;
+}
+.player:hover .poster-hit::before, .poster-hit:focus-visible::before { opacity: 1; }
+.hit-bar {
+  position: relative; display: flex; align-items: center; gap: 14px; width: 100%;
+  padding: 14px 20px 16px;
+  background: linear-gradient(0deg, rgba(5, 7, 12, .92), rgba(5, 7, 12, .55) 60%, transparent);
+}
+.play-disc {
+  flex: 0 0 auto; display: grid; place-items: center;
+  width: clamp(38px, 5.2vw, 54px); height: clamp(38px, 5.2vw, 54px);
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--amber), var(--amber-deep));
+  color: #1a1206; font-size: clamp(13px, 1.7vw, 18px); padding-left: 3px;
+  box-shadow: 0 0 22px -2px rgba(255, 180, 84, .75);
+  transition: transform .18s ease;
+}
+.player:hover .play-disc, .poster-hit:focus-visible .play-disc { transform: scale(1.08); }
+.hit-text { font-family: var(--display); font-weight: 700; font-size: clamp(14px, 1.75vw, 19px); letter-spacing: .2px; }
+/* film.js writes the real runtime into .film-launch-time. It is the only
+   thing stopping the advertised length drifting from the film's own clock,
+   so the number appears here and NOWHERE else in prose on the page. */
+.hit-text .film-launch-time { color: var(--faint); font-family: var(--mono); font-weight: 400; font-size: .78em; margin-left: .45em; }
+.hit-meta { font-family: var(--mono); font-size: clamp(9px, 1.05vw, 12px); color: var(--dim); letter-spacing: .04em; margin-left: 4px; }
+.hit-time { margin-left: auto; font-family: var(--mono); font-size: clamp(9px, 1.05vw, 12px); color: var(--faint); white-space: nowrap; }
+.hit-rail { position: absolute; left: 20px; right: 20px; top: 6px; height: 3px; border-radius: 3px; background: rgba(124, 138, 165, .22); }
+.hit-rail i { display: block; width: 0; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--amber-deep), var(--amber)); transition: width .35s ease; }
+.player:hover .hit-rail i { width: 7%; }
+.player-note { margin: 14px auto 0; max-width: 62ch; font-family: var(--mono); font-size: 12.5px; color: var(--faint); text-align: center; }
+.player-note b { color: var(--dim); font-weight: 400; }
+/* Without JavaScript there is no film, so the play affordance would be a
+   lie. It is removed and the film's payload is stated in text instead. */
+.nojs-line { display: none; }
+
+/* ── store status, stated rather than faked ──────────────────────────
+   No Apple or Google trade dress and no dead links: a badge that goes
+   nowhere is worse than no badge. These are non-interactive on purpose.
+   On launch day they become <a>s around the official assets and the
+   state line is deleted — nothing else on the page changes. */
+.store-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 26px auto 0; }
+.store-badge {
+  display: flex; align-items: center; gap: 12px;
+  min-width: 232px; min-height: 60px;
+  padding: 10px 18px 10px 15px;
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--panel); text-align: left;
+}
+.store-badge > span:last-child { display: block; }
+.sb-glyph { font-size: 22px; line-height: 1; color: var(--ink); }
+.sb-kicker { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; color: var(--amber); }
+.sb-name { display: block; font-family: var(--display); font-weight: 700; font-size: 17px; line-height: 1.25; }
+.sb-state { display: block; font-family: var(--mono); font-size: 11px; color: var(--faint); margin-top: 2px; }
+.store-aside { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 14px; }
+.store-aside a { color: var(--dim); border-bottom: 1px solid var(--line-lit); padding-bottom: 1px; }
+.store-aside a:hover { color: var(--amber); border-color: var(--amber); }
+
+/* ── 3 · section furniture ───────────────────────────────────────── */
+.hsec { max-width: 1080px; margin: 0 auto; padding: clamp(48px, 6vw, 72px) 20px 0; }
+.hsec-head { max-width: 62ch; }
+.hsec-k { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; color: var(--amber); }
+.hsec h2 { font-family: var(--display); font-weight: 900; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -.5px; margin: 10px 0 10px; }
+.hsec-p { color: var(--dim); font-size: 15.5px; max-width: 62ch; }
+
+/* ── facts strip ─────────────────────────────────────────────────── */
+.facts {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
+  max-width: 1080px; margin: clamp(34px, 5vw, 54px) auto 0;
+  padding: 22px 20px;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.fact b { display: block; font-family: var(--display); font-weight: 900; font-size: 17px; }
+.fact span { display: block; font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 4px; }
+
+/* ── 4 · the app, at size ────────────────────────────────────────────
+   The site showed zero pixels of the product for its whole life. The
+   screenshots are already navy-and-amber and better designed than any
+   illustration we could commission. */
+.appshow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; margin-top: 30px; }
+/* The glow is a background on the box, not an oversized pseudo-element.
+   A 118%-wide ::before centred on this container hangs 9% past each edge
+   and puts the document into horizontal scroll at exactly 1024 — where
+   body{overflow-x:hidden} then hides it and the bug looks fixed. */
+.app-art {
+  position: relative; display: flex; justify-content: center; min-width: 0;
+  background: radial-gradient(circle at 50% 46%, rgba(255, 180, 84, .15), rgba(255, 180, 84, 0) 58%);
+}
+/* .device-stack is the width of the WHOLE cluster, never of the front
+   phone: the front is a percentage of it and the back is pinned to the
+   cluster's own right edge, so the pair can never exceed the column. */
+.device-stack { position: relative; width: min(400px, 100%); }
+.device-front { position: relative; z-index: 1; width: 73%; }
+.device-back { position: absolute; right: 0; top: 7%; width: 64%; z-index: 0; opacity: .82; filter: saturate(.9); }
+.device-frame {
+  position: relative; border-radius: 14.5%/6.7%; padding: 2.9%;
+  background: linear-gradient(150deg, #6E7B96 0%, #2B3350 22%, #1B2236 50%, #333C5A 78%, #5D6883 100%);
+  box-shadow: 0 2px 0 rgba(255, 255, 255, .06) inset, 0 40px 80px -30px rgba(0, 0, 0, .9), 0 0 0 1px rgba(11, 14, 23, .6);
+}
+.device-screen { border-radius: 11.6%/5.4%; overflow: hidden; background: var(--void); box-shadow: 0 0 0 1px rgba(0, 0, 0, .8); display: block; }
+.device-screen img { display: block; width: 100%; height: auto; }
+/* Side hardware: two hairlines, drawn rather than photographed. */
+.device-frame::before, .device-frame::after { content: ""; position: absolute; width: 2px; border-radius: 2px; background: linear-gradient(#5D6883, #2B3350); }
+.device-frame::before { left: -1px; top: 22%; height: 9%; }
+.device-frame::after { right: -1px; top: 26%; height: 13%; }
+.app-copy p { color: var(--dim); font-size: 15.5px; margin-top: 12px; }
+
+/* ── 5 · screen by screen ────────────────────────────────────────── */
+.shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); margin-top: 30px; }
+.shot { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.shot .device { width: min(240px, 62vw); }
+.shot-cap { font-size: 13.5px; color: var(--dim); text-align: center; max-width: 34ch; }
+.shot-cap b { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--faint); margin-bottom: 4px; }
+
+/* ── 6 · the rules ────────────────────────────────────────────────
+   Statements, not adjectives — each one is a thing that is false of most
+   habit trackers, which is the only kind of claim worth the space. */
+.rules-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 30px; }
+.home-card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; transition: border-color .2s, transform .2s; }
+.home-card:hover { border-color: var(--line-lit); transform: translateY(-2px); }
+.home-card-ico { font-size: 22px; color: var(--amber); margin-bottom: 12px; }
+.home-card h3 { font-family: var(--display); font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+.home-card p { color: var(--dim); font-size: 14.5px; }
+
+/* ── 7 · the Arena ───────────────────────────────────────────────────
+   Text on a console panel. No Arena screenshot exists, and one is not
+   being faked to fill the hole. */
+.arena-panel {
+  margin-top: 30px; border: 1px solid var(--line); border-radius: 18px;
+  background: radial-gradient(700px 300px at 20% 0%, rgba(255, 180, 84, .06), transparent 65%), var(--panel);
+  padding: clamp(26px, 4vw, 44px);
+}
+.arena-panel p { color: var(--dim); font-size: 15.5px; max-width: 68ch; }
+.arena-panel p + p { margin-top: 12px; }
+.arena-more { display: inline-flex; align-items: center; min-height: 44px; margin-top: 14px; font-family: var(--mono); font-size: 13px; color: var(--amber); }
+.arena-more:hover { text-decoration: underline; }
+
+/* ── 8 · free and Pro ────────────────────────────────────────────────
+   Two cards, never a table: there are exactly two differences and both
+   are limits, and a comparison matrix at 360px is either a horizontal
+   scroller or unreadable. */
+.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 30px; max-width: 760px; }
+.plan { border: 1px solid var(--line); border-radius: 16px; padding: 26px; background: var(--panel); }
+.plan.lit { border-color: rgba(255, 180, 84, .45); background: linear-gradient(180deg, rgba(255, 180, 84, .05), var(--panel) 60%); }
+.plan h3 { font-family: var(--display); font-weight: 900; font-size: 20px; }
+.plan-price { font-family: var(--mono); font-size: 12.5px; letter-spacing: .08em; color: var(--amber); margin-top: 6px; }
+.plan ul { list-style: none; margin-top: 16px; }
+.plan li { color: var(--dim); font-size: 14.5px; padding-left: 20px; position: relative; margin-bottom: 8px; }
+.plan li::before { content: "\25B8"; position: absolute; left: 0; color: var(--amber); }
+.plan-foot { font-family: var(--mono); font-size: 11.5px; color: var(--faint); margin-top: 16px; }
+.plans-note { margin-top: 22px; max-width: 68ch; }
+.plans-note p { color: var(--dim); font-size: 15px; }
+.plans-note p + p { margin-top: 10px; }
+.plans-note b { color: var(--ink); font-weight: 600; }
+
+/* ── 9 · FAQ ─────────────────────────────────────────────────────────
+   <details>, so it needs no JavaScript, has no hover dependency, and
+   ships collapsed on a phone where the page is longest. */
+.faq { margin-top: 26px; max-width: 62ch; }
+.faq-item { border-top: 1px solid var(--line); }
+.faq-item:last-of-type { border-bottom: 1px solid var(--line); }
+.faq-item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  min-height: 56px; padding: 8px 0; cursor: pointer;
+  font-family: var(--display); font-weight: 700; font-size: 16px;
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; flex: 0 0 auto; font-family: var(--mono); font-size: 18px; color: var(--amber); }
+.faq-item[open] summary::after { content: "\2212"; }
+.faq-item p { color: var(--dim); font-size: 14.5px; padding-bottom: 18px; }
+
+/* ── 10 · get it ─────────────────────────────────────────────────── */
+.get { max-width: 1080px; margin: 0 auto; padding: clamp(48px, 6vw, 72px) 20px 40px; }
+.get-wrap {
+  border: 1px solid var(--line); border-radius: 20px;
+  background: radial-gradient(700px 300px at 50% 0%, rgba(255, 180, 84, .07), transparent 65%), var(--panel);
+  padding: 34px 24px; text-align: center;
+}
+.get h2 { font-family: var(--display); font-weight: 900; font-size: clamp(24px, 3.6vw, 36px); letter-spacing: -.5px; }
+.get > .get-wrap > p { color: var(--dim); margin: 12px auto 0; max-width: 56ch; }
+.notify { display: flex; gap: 10px; max-width: 460px; margin: 24px auto 0; }
+.notify input {
+  flex: 1; min-width: 0; min-height: 48px;
+  background: var(--void); border: 1px solid var(--line); border-radius: 10px;
+  color: var(--ink); font-family: var(--mono); font-size: 15px; padding: 0 14px;
+}
+.notify input::placeholder { color: var(--faint); }
+.notify input:focus { border-color: var(--amber); outline: none; }
+.notify button {
+  min-height: 48px; padding: 0 20px;
+  font-family: var(--display); font-weight: 700; letter-spacing: 1px; font-size: 14px;
+  color: #1a1205; background: var(--amber); border: 1px solid transparent; border-radius: 10px; cursor: pointer;
+}
+.notify button:hover { background: var(--amber-deep); }
+.rightnow { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 22px; }
+.rightnow .hsec-k { display: block; margin-bottom: 12px; }
+.rightnow-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.ghost {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px;
+  border: 1px solid var(--line-lit); border-radius: 10px;
+  font-family: var(--mono); font-size: 13px; color: var(--dim);
+  transition: color .2s, border-color .2s;
+}
+.ghost:hover { color: var(--ink); border-color: var(--amber); }
+/* .beta-grid / .beta-card are reused from above: the QR cards keep the
+   styling they already had, they are simply no longer the main event. */
+.rightnow .beta-grid { margin-top: 22px; }
+
+/* ── widths ──────────────────────────────────────────────────────────
+   Checked at 360 (Android), 375 and 390 (iPhone), 768, 1024 and 1440.
+   Nothing here relies on body{overflow-x:hidden} to look clean. */
+@media (max-width: 1080px) {
+  .rules-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  /* The nav collapses here, not at a phone width: five mono labels plus a
+     language switch plus a CTA run out of room long before 400px, and the
+     Chinese labels run out sooner still. */
+  .nav-menu, .nav-tail { display: none; }
+  .nav-toggle { display: flex; }
+  .site-nav.open .nav-menu,
+  .site-nav.open .nav-tail { display: flex; flex-direction: column; align-items: stretch; width: 100%; margin: 0; gap: 2px; }
+  .site-nav.open .site-nav-in { flex-wrap: wrap; row-gap: 6px; padding-bottom: 14px; }
+  .site-nav.open .nav-menu { order: 3; border-top: 1px solid var(--line); padding-top: 8px; max-height: 60dvh; overflow-y: auto; }
+  .site-nav.open .nav-menu a { min-height: 48px; padding: 0 8px; font-size: 14px; }
+  .site-nav.open .nav-tail { order: 4; gap: 8px; }
+  .site-nav.open .nav-tail .lang-switch,
+  .site-nav.open .nav-tail .site-cta { min-height: 48px; justify-content: center; }
+  /* 16:10 buys back the height the wordmark and caption need under ~800px. */
+  .poster-art { aspect-ratio: 16 / 10; }
+  .player { width: min(980px, calc((100dvh - 300px) * 16 / 10)); }
+  .appshow { grid-template-columns: 1fr; gap: 30px; }
+  .app-art { order: -1; }
+  .plans { grid-template-columns: 1fr; max-width: 460px; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .home-hero { padding: 20px 16px 4px; }
+  .status-chip { font-size: 10px; letter-spacing: 1.2px; padding: 6px 12px; }
+  .hsec, .get, .facts { padding-left: 16px; padding-right: 16px; }
+
+  /* A 16:9 box at 328px wide is 185px tall — too short to hold BOBO, a
+     wordmark and a legible caption at once. The poster is not the film's
+     stage, so it does not have to share its ratio: it goes to 4:3 and gets
+     its height back. The film still plays full-screen, where film.js scales
+     the real 16:9 stage to fit. */
+  .player { width: 100%; }
+  .poster-art { aspect-ratio: 4 / 3; }
+  /* BOBO takes the left quarter outright and the title block moves out of
+     his way rather than sitting under him — which is the composition the
+     film already uses: a host on the left, talking about the thing. */
+  .poster-stage { padding: 0 6% 0 27%; }
+  .poster-art .mission-anim { width: clamp(96px, 27vw, 140px); }
+  .poster-word { font-size: clamp(19px, 5.6vw, 28px); letter-spacing: .12em; }
+  .poster-sub { font-size: clamp(7.5px, 2.1vw, 10px); letter-spacing: .16em; }
+  .poster-bobo { width: 23%; bottom: 4%; left: 3%; }
+  .poster-cap { padding: 0 6% 0 27%; font-size: clamp(12px, 3.4vw, 16px); text-align: left; }
+  .poster-top { padding: 12px 14px; }
+  .poster-corner { width: 14px; height: 14px; }
+
+  /* The play bar stops being an overlay and becomes its own band under the
+     art: 62px that cannot be mistaken for decoration and cannot be covered
+     by BOBO. Still the same <button>. */
+  .poster-hit { position: static; display: block; }
+  .player-frame { display: flex; flex-direction: column; }
+  .hit-bar { padding: 12px 14px 13px; background: var(--panel2); border-top: 1px solid var(--line); gap: 11px; min-height: 62px; }
+  .hit-rail, .hit-meta, .hit-time, .poster-barspace { display: none; }
+  .poster-hit::before { display: none; }
+  .hit-text { font-size: 16px; }
+  .play-disc { width: 42px; height: 42px; font-size: 15px; }
+
+  .store-badge { min-width: 0; flex: 1 1 100%; }
+  .rules-grid, .shots { grid-template-columns: 1fr; }
+  .shot .device { width: min(260px, 70vw); }
+  .device-stack { width: min(240px, 62vw); }
+  /* The back phone is dropped on a phone, not shrunk: at this size two
+     overlapping devices read as one blurry object. */
+  .device-back { display: none; }
+  .device-front { width: 100%; }
+  .notify { flex-direction: column; }
+}
+@media (max-width: 400px) {
+  .home-hero h1 { font-size: 27px; }
+  .poster-cap { font-size: 12.5px; padding-left: 32%; }
+  .hit-text { font-size: 15px; }
+  .site-nav-in { padding-inline: 14px; }
+  .site-brand-name { font-size: 16px; }
+  .facts { grid-template-columns: 1fr; }
+  /* Nobody scans a QR code with the phone they are already holding. */
+  .rightnow .beta-grid { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-disc, .hit-rail i, .poster-hit::before, .player-frame, .home-card { transition: none; }
+  .player:hover .play-disc { transform: none; }
+  .player:hover .hit-rail i { width: 0; }
+  .home-card:hover { transform: none; }
+}
+
+/* Chinese: the tracked-uppercase treatment is a Latin device and collides
+   in CJK, and running prose needs 1.8 leading. Same reasoning as the block
+   above; these are the new classes that need to join it. */
+:lang(zh-Hant) .sb-kicker,
+:lang(zh-Hant) .sb-state,
+:lang(zh-Hant) .hsec-k,
+:lang(zh-Hant) .status-chip,
+:lang(zh-Hant) .fact span,
+:lang(zh-Hant) .shot-cap b,
+:lang(zh-Hant) .hit-meta,
+:lang(zh-Hant) .plan-foot {
+  letter-spacing: normal;
+  text-transform: none;
+}
+:lang(zh-Hant) .home-hero h1,
+:lang(zh-Hant) .get h2,
+:lang(zh-Hant) .hsec h2 { letter-spacing: normal; line-height: 1.25; }
+:lang(zh-Hant) .home-lede,
+:lang(zh-Hant) .hsec-p,
+:lang(zh-Hant) .home-card p,
+:lang(zh-Hant) .shot-cap,
+:lang(zh-Hant) .arena-panel p,
+:lang(zh-Hant) .plan li,
+:lang(zh-Hant) .plans-note p,
+:lang(zh-Hant) .faq-item p,
+:lang(zh-Hant) .app-copy p,
+:lang(zh-Hant) .plan-price { line-height: 1.8; }
+/* ── end home v2 ──────────────────────────────────────────────────── */
