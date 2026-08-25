@@ -35,15 +35,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/styles.css" />
 <style>
-  .wrap { max-width: 940px; margin: 0 auto; padding: 0 24px 96px; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 28px 24px 96px; }
   .back { display:inline-block; color: var(--dim); font-family: var(--mono);
     font-size: 13px; letter-spacing: 1px; margin: 8px 0 28px; }
   .back:hover { color: var(--amber); }
-  /* styles.css scopes .doc-top to the .doc pages; this one is .wrap, so the
-     top row is restated here rather than reaching into the shared sheet. */
-  .doc-top { display: flex; align-items: baseline; justify-content: space-between;
-    gap: 16px; margin: 8px 0 28px; }
-  .doc-top .back { margin: 0; }
 
   .lead-h { font-family: var(--display); font-weight: 900; font-size: clamp(32px, 6vw, 52px);
     line-height: 1.05; letter-spacing: -0.5px; margin-bottom: 16px; }
@@ -283,12 +278,30 @@
   </style>
   <a class="skip-link" href="#main">Skip to content</a>
 <div class="grid-bg" aria-hidden="true"></div>
-<main class="wrap" id="main" tabindex="-1">
-  <div class="doc-top">
-    <a class="back" href="/">← tadapop.app</a>
-    <div data-lang-switch></div>
+<header class="site-nav" id="siteNav">
+  <div class="site-nav-in">
+    <a class="site-brand" href="/">
+      <img src="/assets/logo.png" alt="Tadapop" width="30" height="30" />
+      <span class="site-brand-name">TADAPOP</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Menu">
+      <span></span>
+    </button>
+    <nav class="nav-menu" id="navMenu" aria-label="Main">
+      <a href="/#app">The app</a>
+      <a href="/rewards">What you earn</a>
+      <a href="/rules">Arena Rules</a>
+      <a href="/#pricing">Free &amp; Pro</a>
+      <a href="/support">Support</a>
+    </nav>
+    <div class="nav-tail">
+      <div data-lang-switch></div>
+      <a class="site-cta" href="/#get">Get the app</a>
+    </div>
   </div>
+</header>
 
+<main class="wrap" id="main" tabindex="-1">
   <h1 class="lead-h">Show up.<br />Watch it <em>add up</em>.</h1>
   <p class="lead-p">One point for every day you clear every mission on your list. That's the
   whole rule — there's no way to rush it, and no way to buy it. What follows is simply what
@@ -1210,6 +1223,22 @@
   from what you'll actually see. Questions? <a href="/support">Contact support</a>.</p>
 </main>
 
+  <footer class="footer">
+    <div class="footer-brand">
+      <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/rewards">What you earn</a>
+      <a href="/rules">Arena Rules</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/delete-account">Delete account</a>
+      <a href="/support">Support</a>
+    </nav>
+    <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
+  </footer>
+
+
 <div class="promo" id="promo" role="dialog" aria-modal="true" aria-label="Rank promotion">
   <div class="promo-inner">
     <div class="promo-ring" aria-hidden="true"></div>
@@ -1415,6 +1444,7 @@
   });
 })();
 </script>
+<script src="/nav.js" defer></script>
 <script src="/lang.js" defer></script>
 </body>
 </html>

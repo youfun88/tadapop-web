@@ -610,36 +610,13 @@
       <a href="/rules">Arena Rules</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
+      <a href="/delete-account">Delete account</a>
       <a href="/support">Support</a>
     </nav>
     <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
   </footer>
 
   <script>
-    /* ---- top nav disclosure -------------------------------------------
-       The panel is the same <nav> the desktop shows, revealed by a class on
-       the header: one menu in the markup, two layouts in CSS, so a screen
-       reader never meets the same five links twice. No overlay, no scroll
-       lock and no focus trap — five links do not need a modal. */
-    (function () {
-      var nav = document.getElementById('siteNav');
-      var btn = document.getElementById('navToggle');
-      if (!nav || !btn) return;
-      function set(open) {
-        nav.classList.toggle('open', open);
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      }
-      btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
-      // Following a link has to close the panel, or the #pricing anchor on
-      // this page scrolls to a section sitting behind an open menu.
-      nav.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); btn.focus(); }
-      });
-      // Crossing the breakpoint must not strand the panel in the open state.
-      window.addEventListener('resize', function () { if (window.innerWidth > 900) set(false); });
-    })();
-
     /* ---- warm the film's artwork on intent ----------------------------
        film.js builds its overlay eagerly but its three BOBO layers are
        loading="lazy", so they cost a visitor who never presses play
@@ -1099,6 +1076,7 @@
     })();
   </script>
 
+  <script src="/nav.js" defer></script>
   <script src="/film.js" defer></script>
   <script src="/lang.js" defer></script>
 </body>

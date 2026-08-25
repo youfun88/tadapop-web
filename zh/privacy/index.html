@@ -62,11 +62,30 @@
 <body>
   <a class="skip-link" href="#main">跳到主要內容</a>
   <div class="grid-bg" aria-hidden="true"></div>
-  <main class="doc" id="main" tabindex="-1">
-    <div class="doc-top">
-      <a class="back" href="/zh">← 回到 tadapop.app</a>
-      <div data-lang-switch></div>
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav-in">
+      <a class="site-brand" href="/zh">
+        <img src="/assets/logo.png" alt="Tadapop" width="30" height="30" />
+        <span class="site-brand-name">TADAPOP</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
+        <span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu" aria-label="主選單">
+        <a href="/zh#app">App 長什麼樣</a>
+        <a href="/zh/rewards">你會得到什麼</a>
+        <a href="/zh/rules">競技場規則</a>
+        <a href="/zh#pricing">免費與 Pro</a>
+        <a href="/zh/support">支援</a>
+      </nav>
+      <div class="nav-tail">
+        <div data-lang-switch></div>
+        <a class="site-cta" href="/zh#get">取得 App</a>
+      </div>
     </div>
+  </header>
+
+  <main class="doc" id="main" tabindex="-1">
     <h1>隱私權政策</h1>
     <div class="updated">最後更新：2026 年 6 月 23 日</div>
 
@@ -116,6 +135,23 @@
 
     <p style="margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--faint); font-size: 14px;">本頁的中文內容僅為方便閱讀而提供；提交給 App Store 與 Google Play 的是<a href="/privacy" hreflang="en">英文版隱私權政策</a>，如中英文有任何出入，一律以英文版為準。</p>
   </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+    </div>
+    <nav class="footer-links" aria-label="頁尾連結">
+      <a href="/zh/rewards">你會得到什麼</a>
+      <a href="/zh/rules">競技場規則</a>
+      <a href="/zh/privacy">隱私權政策</a>
+      <a href="/zh/terms">使用條款</a>
+      <a href="/delete-account">刪除帳號</a>
+      <a href="/zh/support">支援</a>
+    </nav>
+    <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
+  </footer>
+
+<script src="/nav.js" defer></script>
 <script src="/lang.js" defer></script>
 </body>
 </html>

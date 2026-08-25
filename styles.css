@@ -932,6 +932,13 @@ button.promo-dismiss {
 
 .hsec :is(h2, h3) { scroll-margin-top: calc(var(--bar) + 16px); }
 section[id] { scroll-margin-top: calc(var(--bar) + 12px); }
+/* The doc pages anchor on headings rather than sections — /rules#plans and
+   /terms#pro are linked from the app and from the home page — and with a
+   sticky header those would otherwise land underneath it. */
+.doc :is(h1, h2, h3)[id] { scroll-margin-top: calc(var(--bar) + 16px); }
+/* The header supplies the top spacing these pages used to get from .doc-top,
+   so the first heading does not sit against the bar. */
+.doc { padding-top: 28px; }
 
 /* ── 1 · top navigation ───────────────────────────────────────────────
    The menu used to exist only in the footer, which meant a visitor had

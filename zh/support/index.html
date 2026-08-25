@@ -112,11 +112,30 @@
 <body>
   <a class="skip-link" href="#main">跳到主要內容</a>
   <div class="grid-bg" aria-hidden="true"></div>
-  <main class="doc" id="main" tabindex="-1">
-    <div class="doc-top">
-      <a class="back" href="/zh">← 回到 tadapop.app</a>
-      <div data-lang-switch></div>
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav-in">
+      <a class="site-brand" href="/zh">
+        <img src="/assets/logo.png" alt="Tadapop" width="30" height="30" />
+        <span class="site-brand-name">TADAPOP</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
+        <span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu" aria-label="主選單">
+        <a href="/zh#app">App 長什麼樣</a>
+        <a href="/zh/rewards">你會得到什麼</a>
+        <a href="/zh/rules">競技場規則</a>
+        <a href="/zh#pricing">免費與 Pro</a>
+        <a href="/zh/support">支援</a>
+      </nav>
+      <div class="nav-tail">
+        <div data-lang-switch></div>
+        <a class="site-cta" href="/zh#get">取得 App</a>
+      </div>
     </div>
+  </header>
+
+  <main class="doc" id="main" tabindex="-1">
     <h1>支援</h1>
     <div class="updated">我們很樂意幫忙。</div>
 
@@ -161,6 +180,22 @@
     <h3 class="faq-q">支援哪些平台？</h3>
     <p>Tadapop 支援 <strong>iPhone</strong> 和 <strong>Android</strong>。1.4.2 版目前正在 Apple 審核中，Google Play 上架也在進行中。在正式上架之前，可以透過 <a href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">TestFlight（iOS）</a>安裝，或下載 <a href="/zh/android">Android 版</a> — <a href="/zh">首頁</a>上有兩邊的 QR code。</p>
   </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+    </div>
+    <nav class="footer-links" aria-label="頁尾連結">
+      <a href="/zh/rewards">你會得到什麼</a>
+      <a href="/zh/rules">競技場規則</a>
+      <a href="/zh/privacy">隱私權政策</a>
+      <a href="/zh/terms">使用條款</a>
+      <a href="/delete-account">刪除帳號</a>
+      <a href="/zh/support">支援</a>
+    </nav>
+    <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
+  </footer>
+
 
   <script>
     (function () {
@@ -266,6 +301,7 @@
     })();
   </script>
 
-  <script src="/lang.js" defer></script>
+  <script src="/nav.js" defer></script>
+<script src="/lang.js" defer></script>
 </body>
 </html>
