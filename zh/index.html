@@ -280,8 +280,7 @@
         </div>
       </div>
       <p class="store-aside">
-        還沒上架，所以這裡不放按了沒用的按鈕。<a href="#get">上架當天寄一封信給你</a>，
-        或者<a href="#get">現在就裝起來</a> — TestFlight 或 Android 都可以。
+        還沒上架，所以這裡不放按了沒用的按鈕。不過<a href="#get">現在就裝得到</a> — TestFlight 或 Android 都可以。
       </p>
     </section>
 
@@ -491,17 +490,8 @@
     <section class="get" id="get">
       <div class="get-wrap">
         <h2>即將登陸 App Store 與 Google Play。</h2>
-        <p>iOS 正在 Apple 審核中，Android 已送出 Google Play。留個信箱，上架當天寄一封信給你 —
-          這個地址只會用在這件事上。</p>
-
-        <form class="notify" id="notifyForm" autocomplete="on">
-          <label class="vh" for="notifyEmail">電子郵件地址</label>
-          <input id="notifyEmail" name="email" type="email" inputmode="email" autocomplete="email"
-                 placeholder="you@example.com" required />
-          <input class="vh" id="notifyHoney" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <button type="submit">通知我</button>
-        </form>
-        <p class="form-note" id="notifyNote">只有上架當天那一封。沒有名單、沒有電子報、不給第三方。</p>
+        <p>iOS 正在 Apple 審核中，Android 已送出 Google Play，兩邊都還沒有公開。不過同一個 1.4.2 版本
+          現在就裝得到，正式版上架時也不用重來。</p>
 
         <div class="rightnow">
           <span class="hsec-k">現在就想用？</span>
@@ -565,56 +555,6 @@
       // A touch visitor gets no hover, so the first contact of the press
       // starts the fetch a beat before the click completes.
       launch.addEventListener('touchstart', warm, { once: true, passive: true });
-    })();
-
-    /* ---- notify-on-launch --------------------------------------------
-       Same relay and the same mailto fallback /support already uses, so
-       there is no new backend and no list to manage. */
-    (function () {
-      var ENDPOINT = 'https://formsubmit.co/ajax/yufansapp@gmail.com';
-      var form = document.getElementById('notifyForm');
-      var note = document.getElementById('notifyNote');
-      var email = document.getElementById('notifyEmail');
-      var honey = document.getElementById('notifyHoney');
-      if (!form || !note || !email) return;
-      var sending = false;
-
-      function say(text, cls) {
-        note.textContent = text;
-        note.className = 'form-note' + (cls ? ' ' + cls : '');
-      }
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (sending) return;
-        if (honey && honey.value) return;          // bot caught by the honeypot
-        var addr = email.value.trim();
-        if (!addr) return;
-
-        sending = true;
-        say('傳送中…');
-        fetch(ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            email: addr,
-            message: 'Notify me when Tadapop is on the App Store / Google Play. (zh)',
-            _subject: 'Tadapop — launch notification request',
-            _template: 'table',
-            _captcha: 'false'
-          })
-        })
-        .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
-        .then(function () {
-          say('收到 — 上架當天會寄一封信給你。', 'ok');
-          email.value = '';
-          sending = false;
-        })
-        .catch(function () {
-          say('這次沒送出去。寄信到 hello@tadapop.app，我們幫你加上。', 'err');
-          sending = false;
-        });
-      });
     })();
   </script>
 

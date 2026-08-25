@@ -335,8 +335,7 @@
         </div>
       </div>
       <p class="store-aside">
-        Not live yet — no fake buttons. <a href="#get">Get one email when it lands</a>, or
-        <a href="#get">install it right now</a> on TestFlight or Android.
+        Not live yet — no fake buttons. You can <a href="#get">install it today</a> on TestFlight or Android.
       </p>
     </section>
 
@@ -567,18 +566,8 @@
     <section class="get" id="get">
       <div class="get-wrap">
         <h2>Coming to the App Store and Google Play.</h2>
-        <p>iOS is in review with Apple. Android is submitted to Google Play. Leave an address and you get one
-          email on the day it lands — that is the only thing it will ever be used for.</p>
-
-        <form class="notify" id="notifyForm" autocomplete="on">
-          <label class="vh" for="notifyEmail">Email address</label>
-          <input id="notifyEmail" name="email" type="email" inputmode="email" autocomplete="email"
-                 placeholder="you@example.com" required />
-          <!-- Honeypot: same trick /support uses. Real people never fill it. -->
-          <input class="vh" id="notifyHoney" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <button type="submit">Notify me</button>
-        </form>
-        <p class="form-note" id="notifyNote">One email, on launch day. No list, no newsletter, no third parties.</p>
+        <p>iOS is in review with Apple. Android is submitted to Google Play. Neither listing is public yet —
+          but the same 1.4.2 build installs today, and nothing resets when the store versions arrive.</p>
 
         <div class="rightnow">
           <span class="hsec-k">WANT IT BEFORE THEN?</span>
@@ -645,56 +634,6 @@
       // A touch visitor gets no hover, so the first contact of the press
       // starts the fetch a beat before the click completes.
       launch.addEventListener('touchstart', warm, { once: true, passive: true });
-    })();
-
-    /* ---- notify-on-launch --------------------------------------------
-       Same relay and the same mailto fallback /support already uses, so
-       there is no new backend and no list to manage. */
-    (function () {
-      var ENDPOINT = 'https://formsubmit.co/ajax/yufansapp@gmail.com';
-      var form = document.getElementById('notifyForm');
-      var note = document.getElementById('notifyNote');
-      var email = document.getElementById('notifyEmail');
-      var honey = document.getElementById('notifyHoney');
-      if (!form || !note || !email) return;
-      var sending = false;
-
-      function say(text, cls) {
-        note.textContent = text;
-        note.className = 'form-note' + (cls ? ' ' + cls : '');
-      }
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (sending) return;
-        if (honey && honey.value) return;          // bot caught by the honeypot
-        var addr = email.value.trim();
-        if (!addr) return;
-
-        sending = true;
-        say('Sending…');
-        fetch(ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            email: addr,
-            message: 'Notify me when Tadapop is on the App Store / Google Play.',
-            _subject: 'Tadapop — launch notification request',
-            _template: 'table',
-            _captcha: 'false'
-          })
-        })
-        .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
-        .then(function () {
-          say('Done — one email, on launch day.', 'ok');
-          email.value = '';
-          sending = false;
-        })
-        .catch(function () {
-          say('That did not send. Email hello@tadapop.app and we will add you.', 'err');
-          sending = false;
-        });
-      });
     })();
   </script>
 
