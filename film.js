@@ -920,6 +920,11 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
       .filter((n) => !stageWrap.contains(n) && n.getClientRects().length);
   }
 
+  /** The three lazy BOBO layers, looked up fresh — the host is re-rendered. */
+  function boboLayers() {
+    return Array.prototype.slice.call(overlay.querySelectorAll('.bobo-layer'));
+  }
+
   function play(startMuted) {
     // Where to hand focus back. Anything already inside the overlay is not an
     // answer — Replay and a reopen during the close fade both re-enter here
@@ -942,6 +947,14 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     // lives inside, hiding it would strand focus on a display:none button.
     clearTimeout(hideTimer);
     overlay.hidden = false;
+    // BOBO's three layers are marked loading="lazy" so a visitor who never
+    // presses play does not pay 3.1MB for them. Un-hiding their container is
+    // NOT enough to start that fetch — nothing scrolls inside the overlay, so
+    // the intersection that would trigger it never happens and the host stays
+    // invisible for the whole film. Flipping the attribute to "eager" is what
+    // actually starts the load, so it happens here, once, at the only moment
+    // the artwork is genuinely needed.
+    boboLayers().forEach((img) => { if (img.loading === 'lazy') img.loading = 'eager'; });
     document.body.style.overflow = 'hidden';
     // Close first: the one control every visitor needs, and the safe landing
     // spot for someone who cannot see that a film has taken over the page.
@@ -1197,18 +1210,20 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     else if (!e.shiftKey && at === last) { e.preventDefault(); first.focus(); }
   });
 
-  /* ---- auto-play on load (muted, captioned) so the film isn't missed ----
-     Forced with #film / ?film=1. Otherwise once per browser, and never for
-     reduced-motion. Audio stays off until the visitor taps "Tap for sound". */
+  /* ---- auto-play, now only when it is explicitly asked for ----
+     Forced with #film / ?film=1, which is what a shared "watch the film"
+     link uses.
+
+     The once-per-browser autoplay that used to live here is gone. It threw
+     the full-screen overlay over the page 1.4 seconds after load, before
+     the visitor had read a line of it — defensible when the film was hidden
+     behind a small text button and would otherwise be missed, and simply a
+     hijack now that the home page leads with a poster you press. The
+     localStorage flag it set ('tdp_film_seen') is no longer read or
+     written; a stale one on a returning visitor's machine is harmless. */
   function maybeAutoplay() {
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const forced = /(^|[#&?])film(=1)?($|[#&?])/.test(location.hash + location.search);
-    let seen = false;
-    try { seen = localStorage.getItem('tdp_film_seen') === '1'; } catch (e) {}
     if (forced) { setTimeout(() => play(true), 600); return; }
-    if (reduce || seen) return;
-    try { localStorage.setItem('tdp_film_seen', '1'); } catch (e) {}
-    setTimeout(() => { if (overlay.hidden) play(true); }, 1400);
   }
   if (document.readyState === 'complete') maybeAutoplay();
   else window.addEventListener('load', maybeAutoplay);
@@ -1224,9 +1239,19 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     var b = '/assets/host/';
     return '' +
       '<div class="bobo-fit"><div class="bobo ag-bob">' +
-      '<img class="bobo-layer bobo-base" src="' + b + 'bobo-base.png" alt="" draggable="false">' +
-      '<img class="bobo-layer ag-eye bobo-eye" src="' + b + 'bobo-eye.png" alt="" draggable="false">' +
-      '<img class="bobo-layer bobo-mouth" id="alienMouth" src="' + b + 'bobo-mouth.png" alt="" draggable="false">' +
+      // loading="lazy" is load-bearing, not a nicety. This overlay is built
+      // eagerly on every page load so the film can open instantly, but these
+      // three layers are 3.1MB of PNG that a visitor who never presses play
+      // has no use for — which was more than twenty times the weight of the
+      // rest of the home page put together. They sit inside a [hidden]
+      // ancestor, so they never intersect the viewport and are not fetched
+      // until the overlay is shown. Layout is unaffected: .bobo-layer is
+      // inset:0/100% inside a container with a fixed aspect-ratio, so the
+      // intrinsic size is never consulted. The home page warms them on
+      // hover/focus of the play button, so pressing play still starts dry.
+      '<img class="bobo-layer bobo-base" src="' + b + 'bobo-base.png" alt="" draggable="false" loading="lazy">' +
+      '<img class="bobo-layer ag-eye bobo-eye" src="' + b + 'bobo-eye.png" alt="" draggable="false" loading="lazy">' +
+      '<img class="bobo-layer bobo-mouth" id="alienMouth" src="' + b + 'bobo-mouth.png" alt="" draggable="false" loading="lazy">' +
       '</div></div>';
   }
 })();
