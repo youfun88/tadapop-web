@@ -119,6 +119,14 @@
     <loc>https://tadapop.app/delete-account</loc>
     <priority>0.4</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/delete-account"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/delete-account"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/delete-account"/>
+  </url>
+  <url>
+    <loc>https://tadapop.app/zh/delete-account</loc>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/delete-account"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/delete-account"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/delete-account"/>
   </url>
 </urlset>

@@ -198,6 +198,7 @@ Traditional Chinese (Taiwan) — the same pages, fully translated:
 - [你會得到什麼](https://tadapop.app/zh/rewards)
 - [競技場規則](https://tadapop.app/zh/rules)
 - [支援與常見問題](https://tadapop.app/zh/support)
+- [刪除帳號](https://tadapop.app/zh/delete-account)
 - [隱私權政策](https://tadapop.app/zh/privacy)
 - [使用條款](https://tadapop.app/zh/terms)
 

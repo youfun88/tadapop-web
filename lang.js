@@ -32,21 +32,26 @@
   var KEY = 'tadapop-lang';
 
   /**
-   * TEMPORARY: send everyone to Chinese on a first visit, not just people whose
-   * browser asks for it. Every tester is a Chinese speaker right now, so the
-   * English pages are the ones nobody wants to land on.
+   * Off since 2026-08-25, and this is now the normal behaviour: a first-time
+   * visitor is moved to /zh only if their own browser asks for Traditional
+   * Chinese. Everyone else stays on the English page they asked for.
    *
-   * **Set this to false when that stops being true.** It is the whole switch —
-   * flipping it restores the normal behaviour, which is to move only visitors
-   * whose browser actually asks for Traditional Chinese.
+   * It was true while every tester was a Chinese speaker and the English
+   * pages were the ones nobody wanted to land on. That stopped being true
+   * when 1.4.2 went to Apple and Google Play: the audience is now whoever
+   * finds the app in a store, most of them English-speaking, and one of them
+   * is an App Store reviewer. Sending all of them to a page they cannot read
+   * was costing more than it ever bought.
    *
-   * The two protections that make this survivable are below and must stay:
-   * crawlers are never redirected (so the English pages keep being indexed on
-   * their own URLs), and anyone who clicks "English" is remembered forever.
-   * Without the second one this would be a trap — an English reader would be
-   * thrown back to Chinese on every single page load.
+   * Setting it back to true sends EVERYONE to Chinese again, which is almost
+   * certainly not what you want — prefer leaving it false and letting
+   * `wantsZh` below do the deciding.
+   *
+   * The two protections either way are below and must stay: crawlers are
+   * never redirected, so the English pages keep being indexed on their own
+   * URLs, and anyone who clicks the switcher is remembered forever.
    */
-  var DEFAULT_TO_ZH = true;
+  var DEFAULT_TO_ZH = false;
   var BOT = /bot|crawl|spider|slurp|bingpreview|duckduckbot|baiduspider|yandex|facebookexternalhit|embedly|quora link preview|whatsapp|telegram|lighthouse|headlesschrome/i;
 
   /** '/zh/rules' -> '/rules'; '/rules' -> '/rules'. Always the English path. */
@@ -116,13 +121,31 @@
   }
   if (saved) return; // they have chosen; never move them again
 
-  // Traditional Chinese only. A zh-CN reader is a Simplified reader, and
-  // sending them to a Traditional page is not a kindness — the app makes the
-  // same distinction (see useLanguageStore.languageForLocale).
+  // ANY Chinese, not just Traditional — the same rule the app applies in
+  // useLanguageStore.languageForLocale, and for the same reason recorded
+  // there: a Simplified reader can read Traditional far more comfortably
+  // than they can read English, so showing them the script we have beats
+  // showing them a language they may not have at all.
+  //
+  // This used to exclude zh-CN/zh-SG/zh-Hans, with a comment claiming the app
+  // agreed. The app does not, and the exclusion did not even work: it tested
+  // `some()` across the whole list, so a browser sending ['zh-CN', 'zh'] —
+  // which is what a Simplified browser typically sends — matched on the bare
+  // 'zh' and was redirected anyway. The result depended on list order, which
+  // is not a decision anyone made. Nothing exposed it while DEFAULT_TO_ZH
+  // sent everybody to /zh regardless.
+  // navigator.languages is in PREFERENCE order, and that order is the whole
+  // answer. `some()` would only ask "is there Chinese anywhere in this list",
+  // which sends a reader whose languages are ['en-US', 'en', 'zh-TW'] — an
+  // English speaker who also reads Chinese — to a page they did not ask for.
+  // Chinese wins only when it is asked for BEFORE English is.
   var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
-  var wantsZh = langs.some(function (l) {
-    return /^zh\b/i.test(l) && !/^zh[-_](CN|SG|Hans)/i.test(l);
-  });
+  var firstZh = -1, firstEn = -1;
+  for (var i = 0; i < langs.length; i++) {
+    if (firstZh < 0 && /^zh([-_]|$)/i.test(langs[i])) firstZh = i;
+    if (firstEn < 0 && /^en([-_]|$)/i.test(langs[i])) firstEn = i;
+  }
+  var wantsZh = firstZh >= 0 && (firstEn < 0 || firstZh < firstEn);
 
   if ((DEFAULT_TO_ZH || wantsZh) && !here) location.replace(otherHref(path, true) + location.hash);
 })();
