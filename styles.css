@@ -96,7 +96,8 @@ a { color: inherit; text-decoration: none; }
    which outranks the bare :focus-visible above. */
 .waitlist input:focus-visible,
 .support-form input:focus-visible,
-.support-form textarea:focus-visible {
+.support-form textarea:focus-visible,
+.notify input:focus-visible {
   outline: 2px solid var(--amber);
   outline-offset: 2px;
 }
@@ -373,6 +374,9 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid transparent;
   border-radius: 10px;
   padding: 12px 23px;
+  /* The padding alone came to 42px. This is the primary action on /support,
+     so it gets the same 44px floor every other control on the site has. */
+  min-height: 44px;
   cursor: pointer;
   transition: background .15s, transform .05s;
 }
@@ -521,6 +525,13 @@ a { color: inherit; text-decoration: none; }
    ones and will wrap on a phone. */
 .footer-links { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 22px; }
 .footer-links a {
+  /* inline-flex + min-height turns a 21px line box into a real target. The
+     same trick .lang-switch and .doc .back already use, applied here because
+     the footer is now mounted on every page rather than just the home one —
+     six 21px links in a row is the hardest thing on the site to hit. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--mono);
   font-size: 13px;
   line-height: 1.6;
@@ -722,12 +733,14 @@ a { color: inherit; text-decoration: none; }
 .lang-switch:hover { color: var(--amber); }
 .footer-links .lang-switch::before { content: none; }
 
-/* On the long-form pages the switcher rides the top row with "← Back".
-   center, not baseline: baseline aligns on the text baseline, which differs
-   between the mono and the CJK fallback font, so a Chinese back-link and a
-   Latin switcher (or the reverse) would sit at visibly different heights. */
+/* No page mounts .doc-top any more — the site header replaced that row when
+   the header went site-wide. The rules are kept rather than deleted because
+   /delete-account is being written in another branch against the old shape,
+   and two lines of unused CSS cost less than a page that arrives unstyled.
+   Delete them once nothing has referenced .doc-top for a release. */
 .doc .doc-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .doc .doc-top .back { margin: 0; }
+
 
 /* The switcher sits top-right on every page. Three mounts because the pages
    have three different tops, not because the placement differs:

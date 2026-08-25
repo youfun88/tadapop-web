@@ -13,7 +13,7 @@
       ]
     },
     {
-      "source": "/(index.html|rewards.html|rewards|styles.css|film.css|film.js|lang.js|robots.txt|llms.txt|sitemap.xml|android|join|privacy|rules|support|terms|delete-account|android/index.html|join/index.html|privacy/index.html|rules/index.html|support/index.html|terms/index.html|delete-account/index.html)",
+      "source": "/(index.html|rewards.html|rewards|styles.css|film.css|film.js|lang.js|nav.js|robots.txt|llms.txt|sitemap.xml|android|join|privacy|rules|support|terms|delete-account|android/index.html|join/index.html|privacy/index.html|rules/index.html|support/index.html|terms/index.html|delete-account/index.html)",
       "headers": [
         {
           "key": "Cache-Control",

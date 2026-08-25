@@ -186,6 +186,9 @@ English:
 - [Arena Rules](https://tadapop.app/rules): the complete competition rulebook,
   including the parts that pay nothing.
 - [Support & FAQ](https://tadapop.app/support): common questions and a contact form.
+- [Delete your account](https://tadapop.app/delete-account): how to delete an
+  account and what that removes, for someone who no longer has the app
+  installed.
 - [Privacy Policy](https://tadapop.app/privacy)
 - [Terms of Service](https://tadapop.app/terms)
 
