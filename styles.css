@@ -40,7 +40,18 @@ body {
   font-family: var(--body);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip, not hidden. `overflow-x: hidden` computes overflow-y to `auto`,
+     which turns <body> into a scroll container — and a sticky child sticks to
+     its nearest scroll container, not the viewport. The site header is a
+     direct child of <body>, so under `hidden` it scrolled away instead of
+     staying put, on every page. `clip` clips without creating a scroll
+     container, so sticky keeps working.
+
+     This is a net, not the plan: no page should overflow horizontally in the
+     first place, and none does at 360, 375, 390, 768, 1024 or 1440. Safari
+     below 16 ignores `clip` and simply does not clip, which is harmless while
+     that stays true — and visible rather than silent if it ever stops. */
+  overflow-x: clip;
 }
 
 /* Reduced motion. Only the things that actually move are switched off: the
