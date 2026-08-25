@@ -82,12 +82,32 @@
         "publisher": { "@id": "https://tadapop.app/#organization" },
         "author": { "@id": "https://tadapop.app/#organization" },
         "isAccessibleForFree": true,
+        "softwareVersion": "1.4.2",
         "offers": {
-          "@type": "Offer",
-          "price": "0",
+          "@type": "AggregateOffer",
           "priceCurrency": "USD",
+          "lowPrice": "0",
+          "highPrice": "3.99",
+          "offerCount": 2,
           "availability": "https://schema.org/InStock",
-          "category": "Free"
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "\u514d\u8cbb",
+              "price": "0",
+              "priceCurrency": "USD",
+              "category": "Free",
+              "description": "\u4e0d\u7528\u5e33\u865f\u5c31\u80fd\u8ffd\u8e64\u81ea\u5df1\u7684\u7fd2\u6163\uff1a\u4efb\u52d9\u3001\u9023\u7e8c\u7d00\u9304\u3001T\u9ede\u6578\u548c\u6574\u5e74\u6d3b\u52d5\u7d00\u9304\u3002\u540c\u6642\u9032\u884c 5 \u9805\u4efb\u52d9\u30011 \u5834\u81ea\u5df1\u958b\u7684\u6311\u6230\u3002\u53c3\u52a0\u670b\u53cb\u7684\u6311\u6230\u6c38\u9060\u4e0d\u53d7\u9650\u5236\u3002"
+            },
+            {
+              "@type": "Offer",
+              "name": "Tadapop Pro",
+              "price": "3.99",
+              "priceCurrency": "USD",
+              "category": "Subscription",
+              "description": "\u4efb\u52d9\u4e0d\u9650\u6578\u91cf\uff0c\u81ea\u5df1\u958b\u6311\u6230\u4e5f\u4e0d\u9650\u5834\u6b21\uff0c\u6309\u6708\u8a08\u8cbb\u3002\u4e5f\u6709\u5e74\u7e73\u65b9\u6848\uff0c\u5e73\u5747\u6bcf\u6708\u66f4\u4f4e\uff1b\u5169\u7a2e\u50f9\u683c\u90fd\u7531\u5546\u5e97\u4f9d\u5730\u5340\u8a2d\u5b9a\u3002"
+            }
+          ]
         },
         "featureList": [
           "三種記錄任務的方式：打勾、計次累積到目標，或倒數計時、時間到響鈴",
@@ -101,6 +121,44 @@
         "softwareHelp": { "@type": "CreativeWork", "url": "https://tadapop.app/zh/support" },
         "termsOfService": "https://tadapop.app/zh/terms",
         "privacyPolicy": "https://tadapop.app/zh/privacy"
+      }      ,
+      {
+        "@type": "FAQPage",
+        "@id": "https://tadapop.app/zh#faq",
+        "inLanguage": "zh-Hant",
+        "isPartOf": { "@id": "https://tadapop.app/zh#webpage" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Tadapop \u662f\u514d\u8cbb\u7684\u55ce\uff1f",
+            "acceptedAnswer": { "@type": "Answer", "text": "\u662f\u3002\u8a18\u9304\u81ea\u5df1\u7684\u7fd2\u6163\u4e00\u76f4\u90fd\u662f\u514d\u8cbb\u7684\uff0c\u4e0d\u7528\u5e33\u865f\uff0c\u4ee5\u5f8c\u4e5f\u662f\u3002\u514d\u8cbb\u5e33\u865f\u53ef\u4ee5\u540c\u6642\u9032\u884c 5 \u9805\u4efb\u52d9\u3001\u81ea\u5df1\u958b 1 \u5834\u6311\u6230\u3002Pro \u89e3\u9664\u9019\u5169\u500b\u9650\u5236\uff0c\u6bcf\u6708 US$3.99\uff0c\u9078\u5e74\u7e73\u5e73\u5747\u6bcf\u6708\u66f4\u4f4e\u3002" }
+          },
+          {
+            "@type": "Question",
+            "name": "T\u9ede\u6578\u662f\u4ec0\u9ebc\uff1f",
+            "acceptedAnswer": { "@type": "Answer", "text": "\u628a\u7576\u5929\u8a72\u505a\u7684\u4efb\u52d9\u5168\u90e8\u5b8c\u6210\uff0c\u9019\u5929\u5c31\u7d66\u4f60 1 \u9ede T\u9ede\u6578\u3002\u53ea\u5b8c\u6210\u4e00\u90e8\u5206\u4e0d\u7b97\uff0c\u4e5f\u6c92\u8fa6\u6cd5\u591a\u505a\u4f86\u591a\u62ff\u3002\u6240\u4ee5\u7d2f\u8a08 128 \u9ede\uff0c\u5c31\u662f 128 \u5929\u5168\u90e8\u5b8c\u6210\u7684\u65e5\u5b50\u3002" }
+          },
+          {
+            "@type": "Question",
+            "name": "\u96e2\u7dda\u80fd\u7528\u55ce\uff1f",
+            "acceptedAnswer": { "@type": "Answer", "text": "\u5b8c\u5168\u53ef\u4ee5\u3002\u500b\u4eba\u7684\u8ffd\u8e64\u90fd\u5728\u4f60\u7684\u88dd\u7f6e\u4e0a\u8dd1\uff0c\u4e0d\u9700\u8981\u7db2\u8def\u3002\u53ea\u6709\u60f3\u7528\u7af6\u6280\u5834\uff0c\u6216\u60f3\u5728\u4e0d\u540c\u624b\u6a5f\u4e4b\u9593\u5099\u4efd\u6642\uff0c\u624d\u9700\u8981\u767b\u5165\u3002" }
+          },
+          {
+            "@type": "Question",
+            "name": "\u4e00\u5b9a\u8981\u8a3b\u518a\u5e33\u865f\u55ce\uff1f",
+            "acceptedAnswer": { "@type": "Answer", "text": "\u8ffd\u8e64\u4efb\u4f55\u6771\u897f\u90fd\u4e0d\u7528\u3002\u53ea\u6709\u7af6\u6280\u5834\u9700\u8981\u5e33\u865f\uff0c\u56e0\u70ba\u79c1\u4eba\u6311\u6230\u5fc5\u9808\u77e5\u9053\u4f60\u5728\u5225\u4eba\u773c\u4e2d\u662f\u8ab0\u3002" }
+          },
+          {
+            "@type": "Question",
+            "name": "Android \u771f\u7684\u5b8c\u5168\u514d\u8cbb\u55ce\uff1f",
+            "acceptedAnswer": { "@type": "Answer", "text": "\u73fe\u5728\u662f\u3002Android \u7248\u9084\u5728\u8a66\u71df\u904b\uff0c\u4e0a\u9762\u6c92\u6709\u4efb\u4f55\u4ed8\u8cbb\u6a5f\u5236\uff0c\u4e5f\u4e0d\u6703\u57f7\u884c\u514d\u8cbb\u65b9\u6848\u7684\u9650\u5236\u3002" }
+          },
+          {
+            "@type": "Question",
+            "name": "\u4ec0\u9ebc\u6642\u5019\u6703\u4e0a App Store \u548c Google Play\uff1f",
+            "acceptedAnswer": { "@type": "Answer", "text": "1.4.2 \u7248\u5df2\u7d93\u9001\u4ea4 Apple \u5be9\u6838\uff0cGoogle Play \u7684\u4e0a\u67b6\u4e5f\u5728\u9032\u884c\u4e2d\uff0c\u5169\u908a\u90fd\u9084\u6c92\u6709\u516c\u958b\u3002\u5728\u90a3\u4e4b\u524d\uff0ciOS \u53ef\u4ee5\u900f\u904e TestFlight \u5b89\u88dd\uff0cAndroid \u53ef\u4ee5\u76f4\u63a5\u4e0b\u8f09\u3002" }
+          }
+        ]
       }
     ]
   }
@@ -110,93 +168,350 @@
   <a class="skip-link" href="#main">跳到主要內容</a>
   <div class="grid-bg" aria-hidden="true"></div>
 
-  <header class="nav">
-    <a class="brand" href="/zh/">
-      <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="32" height="32" />
-      <span class="brand-name">TADAPOP</span>
-    </a>
-    <div class="nav-right">
-      <div data-lang-switch></div>
-      <a class="nav-cta" href="#get">下載 App</a>
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav-in">
+      <a class="site-brand" href="/zh">
+        <img src="/assets/logo.png" alt="Tadapop" width="30" height="30" />
+        <span class="site-brand-name">TADAPOP</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
+        <span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu" aria-label="主選單">
+        <a href="#app">App 長什麼樣</a>
+        <a href="/zh/rewards">你會得到什麼</a>
+        <a href="/zh/rules">競技場規則</a>
+        <a href="#pricing">免費與 Pro</a>
+        <a href="/zh/support">支援</a>
+      </nav>
+      <div class="nav-tail">
+        <div data-lang-switch></div>
+        <a class="site-cta" href="#get">取得 App</a>
+      </div>
     </div>
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero">
-      <div class="mission-anim" id="missionAnim" role="img"
-           aria-label="Tadapop：一項項每日任務繞著中央的目標運行，被逐一打勾完成，最後在達成目標的那一刻化作漫天彩帶。"></div>
-      <div class="readout">系統上線 · 公開測試中 · iOS &amp; ANDROID</div>
-      <h1>你的每日任務，<br />裝進一台你真的<br /><span class="amber">會想打開的控制台。</span></h1>
-      <p class="lede">
-        Tadapop 是一款遊戲化的習慣追蹤 App，骨子裡是一座任務控制中心。自訂任務，
-        用打勾、計次或計時完成，看著連續紀錄變長、T點數累積，一整年的活動紀錄一格一格亮起來。
-        然後，到競技場和朋友私下較勁。
+
+    <section class="home-hero">
+      <p class="status-chip"><i aria-hidden="true"></i> v1.4.2 · Apple 審核中 · 已送出 Google Play</p>
+
+      <h1>你的每日任務，裝進一台你真的<span class="amber">會想打開的控制台。</span></h1>
+
+      <div class="player">
+        <div class="player-frame">
+          <div class="poster-art">
+            <div class="poster-grid" aria-hidden="true"></div>
+            <span class="poster-corner tl" aria-hidden="true"></span>
+            <span class="poster-corner tr" aria-hidden="true"></span>
+            <span class="poster-corner bl" aria-hidden="true"></span>
+            <span class="poster-corner br" aria-hidden="true"></span>
+
+            <div class="poster-top">
+              <span class="pt-brand"><img src="/assets/logo.png" alt="" width="22" height="22" /> TADAPOP</span>
+              <span class="pt-cc">字幕 · 中 / EN</span>
+            </div>
+
+            <div class="poster-stage">
+              <div class="mission-anim" id="missionAnim" aria-hidden="true"></div>
+              <div class="poster-word">TADAPOP</div>
+              <div class="poster-sub">每日任務 · 連續紀錄 · 競技場</div>
+            </div>
+
+            <p class="poster-cap">喂！說你喔。嘴上老是<span class="hi">明天明天</span>。</p>
+
+            <img class="poster-bobo" src="/assets/bobo-poster.webp" alt="" width="364" height="420" decoding="async" />
+
+            <div class="poster-barspace" aria-hidden="true"></div>
+          </div>
+
+          <button class="poster-hit" type="button" id="filmLaunch" aria-haspopup="dialog"
+                  aria-label="播放影片 — 有旁白和字幕，中文或英文">
+            <span class="hit-bar">
+              <span class="hit-rail" aria-hidden="true"><i></i></span>
+              <span class="play-disc" aria-hidden="true">▶</span>
+              <span class="hit-text">播放影片<span class="film-launch-time"></span></span>
+              <span class="hit-meta" aria-hidden="true">旁白＋字幕</span>
+              <span class="hit-time" aria-hidden="true">0:00</span>
+            </span>
+          </button>
+        </div>
+
+        <p class="player-note">
+          BOBO 用一段影片把整件事說完。<b>按下播放才會有聲音；字幕一直都在。</b>
+        </p>
+        <p class="player-note nojs-line">
+          影片需要 JavaScript。一句話講完：用打勾、計次或計時完成任務；今天到期的任務全部做完，
+          這天就給你 1 點 T點數；再到只能靠邀請進入的私人競技場和朋友較勁。
+        </p>
+      </div>
+
+      <p class="home-lede">
+        Tadapop 是一款骨子裡像任務控制中心的習慣追蹤 App。自訂任務，用打勾、計次或計時完成，
+        看著連續紀錄變長、T點數累積，一整年的活動紀錄一格一格亮起來。完全離線可用，也不用註冊帳號。
       </p>
 
-      <div class="film-cta-row">
-        <button type="button" class="film-launch" id="filmLaunch" aria-haspopup="dialog">
-          <span class="film-launch-ico">▶</span>
-          <span>看 BOBO 怎麼說 <span class="film-launch-time">· 75 秒</span></span>
-        </button>
+      <div class="store-row">
+        <div class="store-badge">
+          <span class="sb-glyph" aria-hidden="true"></span>
+          <span>
+            <span class="sb-kicker">即將上架</span>
+            <span class="sb-name">App Store</span>
+            <span class="sb-state">Apple 審核中 · iPhone 與 iPad</span>
+          </span>
+        </div>
+        <div class="store-badge">
+          <span class="sb-glyph" aria-hidden="true">▶</span>
+          <span>
+            <span class="sb-kicker">即將上架</span>
+            <span class="sb-name">Google Play</span>
+            <span class="sb-state">已送審 · Android</span>
+          </span>
+        </div>
       </div>
+      <p class="store-aside">
+        還沒上架，所以這裡不放按了沒用的按鈕。<a href="#get">上架當天寄一封信給你</a>，
+        或者<a href="#get">現在就裝起來</a> — TestFlight 或 Android 都可以。
+      </p>
+    </section>
 
-      <div class="hero-cta">
-        <a class="button" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">下載 iOS 版（TestFlight）</a>
-        <a class="button" href="/zh/android">下載 Android 版</a>
+    <div class="facts">
+      <div class="fact"><b>離線可用</b><span>記錄從來不需要連網</span></div>
+      <div class="fact"><b>不用帳號</b><span>除非你想用競技場</span></div>
+      <div class="fact"><b>沒有追蹤</b><span>沒有廣告、沒有第三方分析</span></div>
+      <div class="fact"><b>中文 · EN</b><span>App 和網站都完整翻譯</span></div>
+    </div>
+
+    <section class="hsec" id="app" aria-labelledby="h-app">
+      <div class="hsec-head">
+        <p class="hsec-k">實際畫面</p>
+        <h2 id="h-app">不是示意圖，這就是送審中的版本。</h2>
       </div>
-      <p class="form-note">現正公開測試中 — iOS（TestFlight）和 Android 今天就裝得到。</p>
+      <div class="appshow">
+        <div class="app-art">
+          <div class="device-stack">
+            <div class="device device-back" aria-hidden="true">
+              <div class="device-frame"><span class="device-screen">
+                <img src="/assets/shots/02-stats.webp" alt="" width="660" height="1434" loading="lazy" decoding="async" />
+              </span></div>
+            </div>
+            <div class="device device-front">
+              <div class="device-frame"><span class="device-screen">
+                <img src="/assets/shots/01-today.webp" width="660" height="1434" fetchpriority="high" decoding="async"
+                     alt="「今天」畫面：問候語、4 項任務完成 1 項、還差 3 項才拿得到今天的 T點數，以及「喝水 5/8 杯」「閱讀 0/20 頁」「重量訓練 本週 2/3」和 10 分鐘的「冥想」計時任務。" />
+              </span></div>
+            </div>
+          </div>
+        </div>
+        <div class="app-copy">
+          <p>「今天」只會顯示今天真的該做的事，其他都不出現。每一項就是點一下、加一次，或開一個計時，
+            最上面那條進度告訴你，離今天的 T點數還差多少。</p>
+          <p>整個介面深色、安靜，是為了「打開五秒就關掉」設計的。沒有動態消息，斷了連續紀錄也不會有人數落你，
+            更不會一直推播 — 提醒是你自己設定的本機通知。</p>
+          <p>你的一天從幾點開始由你決定，預設是凌晨 4 點。所以半夜一點才做完的事，還是算在你認定的那一天。</p>
+        </div>
+      </div>
     </section>
 
-    <!-- These are h2, not h3: they sit directly under the page h1 and skipping a
-         level breaks the outline a screen reader announces and an extractor
-         reads. They were briefly h3-with-aria-level, because the styling was
-         keyed to the tag name; the selectors are now :is(h2, h3) so the level
-         is a semantic decision rather than a styling constraint. -->
-    <section class="features">
-      <article class="card">
-        <div class="card-icon">⌁</div>
-        <h2>三種記錄方式</h2>
-        <p>打勾、計次累積到目標，或是倒數計時、時間到響鈴。從主畫面點一下就記好 — 完全離線也照樣運作。</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">▲</div>
-        <h2>連續紀錄與 T點數，實實在在</h2>
-        <p>每天把所有任務做完得 1 T點數，少一項都不算。一天接著一天做下去，連續紀錄就一路往上疊。這種進展會推著你走，而不是拐著你走。</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">◳</div>
-        <h2>一整年的活動紀錄</h2>
-        <p>遙測等級的統計數據：一整年的方格活動紀錄，加上每一項任務的完成率，趨勢一眼就看得出來。</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">⚔</div>
-        <h2>競技場</h2>
-        <p>和朋友之間私人、邀請制的挑戰。不公開、不涉及金錢 — 就是一張即時排行榜，還有贏了可以拿來說嘴。</p>
-      </article>
+    <section class="hsec" aria-labelledby="h-shots">
+      <div class="hsec-head">
+        <h2 id="h-shots">另外三個畫面。</h2>
+        <p class="hsec-p">來自 Tadapop 1.4.2，就是實際的樣子。</p>
+      </div>
+      <div class="shots">
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/02-stats.webp" width="660" height="1434" loading="lazy" decoding="async"
+                 alt="數據畫面：連續 27 天、累計 82 點 T點數、本週完成率 92%、一整年的方格活動紀錄，以及每一項任務的完成率長條。" />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>數據</b>一整年的日子在同一個畫面上，還有每項任務 30 天或 90 天的完成率。</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/03-editor.webp" width="660" height="1434" loading="lazy" decoding="async"
+                 alt="任務編輯畫面：選擇這項任務是打勾、計次到目標還是倒數計時，以及哪幾天要做。" />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>編輯</b>打勾、計次到目標，或倒數計時。每天、指定星期幾，或一週幾次。</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/04-profile.webp" width="660" height="1434" loading="lazy" decoding="async"
+                 alt="個人畫面：持續等級、已獲得的徽章，以及累計數據。" />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>個人</b>靠一天一天累積來的等級和徽章。沒有一項是可以買的。</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section class="strip">
-      <div class="strip-item"><span class="metric">+1 / 天</span><span class="metric-label">全部完成就有 1 T點數</span></div>
-      <div class="strip-item"><span class="metric">100%</span><span class="metric-label">離線優先的記錄方式</span></div>
-      <div class="strip-item"><span class="metric">0</span><span class="metric-label">廣告與追蹤程式</span></div>
+    <section class="hsec" aria-labelledby="h-rules">
+      <div class="hsec-head">
+        <p class="hsec-k">六條規則</p>
+        <h2 id="h-rules">為什麼是這一款，不是另一款。</h2>
+      </div>
+      <div class="rules-grid">
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">▲</div>
+          <h3>一天 1 點，不然就是 0 點</h3>
+          <p>當天該做的全部完成，這天就給 1 點 T點數。只做一部分不算，多做也不會多給。
+            所以累計點數，就是你完整清空的天數。</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">❄</div>
+          <h3>凍結卡靠賺的，不能買</h3>
+          <p>每 14 個有活動的日子拿到一張，最多存 3 張，漏掉的那天會自動用掉一張。
+            狀況不好的一天，不會毀掉你累積好幾個月的紀錄。</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">◷</div>
+          <h3>你的一天從凌晨 4 點開始</h3>
+          <p>或是你說幾點就幾點。半夜一點做完的事，算在它該算的那一天，
+            而不是日曆堅持的那一天。</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">⌁</div>
+          <h3>離線，而且不用帳號</h3>
+          <p>個人的追蹤完全在你的裝置上跑。只有想用競技場、或想在不同手機之間備份時才需要登入 —
+            其他都不需要網路，也不需要註冊。</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">⊘</div>
+          <h3>沒有廣告，沒有追蹤程式</h3>
+          <p>沒有廣告，App 裡也沒有第三方的廣告或分析 SDK。證明照片和筆記都留在你的裝置上。</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">⚔</div>
+          <h3>競技場只能靠邀請進來</h3>
+          <p>和你真正認識的人比。沒有公開探索、沒有配對、沒有陌生人，也不涉及任何真實金錢。</p>
+        </article>
+      </div>
     </section>
 
-    <section class="cta-final" id="get">
-      <h2>來試試測試版。</h2>
-      <p>一起把 Tadapop 做得更好 — 掃描 QR code，或直接點一下，就能安裝 iOS 或 Android 版。</p>
-      <!-- iOS first: nearly every tester so far is on an iPhone. See the note
-           in the English page. -->
-      <div class="beta-grid">
-        <a class="beta-card" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">
-          <div class="beta-plat">iOS · TESTFLIGHT</div>
-          <img src="/assets/qr-ios.png" alt="QR code：掃描即可透過 TestFlight 在 iOS 上安裝 Tadapop — https://testflight.apple.com/join/TtXzD68k" width="200" height="200" />
-          <span class="beta-action">點一下加入 TestFlight →</span>
-        </a>
-        <a class="beta-card" href="/zh/android">
-          <div class="beta-plat">ANDROID</div>
-          <img src="/assets/qr-android.png" alt="QR code：掃描即可在 Android 上安裝 Tadapop — https://tadapop.app/android" width="200" height="200" />
-          <span class="beta-action">點一下下載 APK →</span>
-        </a>
+    <section class="hsec" aria-labelledby="h-arena">
+      <div class="hsec-head">
+        <p class="hsec-k">競技場</p>
+        <h2 id="h-arena">和真的會盯著你的人比。</h2>
+      </div>
+      <div class="arena-panel">
+        <p>設定目標和天數，決定要不要附照片或影片才能打卡，然後邀請你想找的人。
+          有一個群組聊天串可以邊做邊聊，還有一張即時排行榜 — 它只算一件事：你達成每日目標的天數。
+          超過目標不會多算。</p>
+        <p>沒有任何東西被押注，也不會換成錢。輸掉一場挑戰完全沒有代價，
+          而參加別人的挑戰，在任何方案上都永遠免費。</p>
+        <a class="arena-more" href="/zh/rules">看完整的競技場規則 →</a>
+      </div>
+    </section>
+
+    <section class="hsec" id="pricing" aria-labelledby="h-plans">
+      <div class="hsec-head">
+        <p class="hsec-k">免費與 Pro</p>
+        <h2 id="h-plans">Pro 解除的是上限，不是努力。</h2>
+        <p class="hsec-p">免費帳號只有兩個限制，Pro 把這兩個都解除。差別就只有這樣。</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>免費</h3>
+          <p class="plan-price">不需要帳號</p>
+          <ul>
+            <li>同時進行 5 項任務</li>
+            <li>同時自己開 1 場挑戰</li>
+            <li>參加朋友的挑戰 — 永遠不限</li>
+            <li>完整的數據、連續紀錄、活動紀錄和等級</li>
+          </ul>
+          <p class="plan-foot">把任務封存，位置就空出來；把挑戰跑完，就能再開一場。
+            已經記錄過的東西，永遠不會為了空出位置而被刪除或隱藏。</p>
+        </div>
+        <div class="plan lit">
+          <h3>Tadapop Pro</h3>
+          <p class="plan-price">每月 US$3.99，年繳平均每月更低</p>
+          <ul>
+            <li>任務不限數量</li>
+            <li>自己開挑戰不限場次</li>
+            <li>免費方案的一切，沒有上限</li>
+          </ul>
+          <p class="plan-foot">確認付款前，商店會用你自己的幣別把價格顯示給你看。
+            目前只有 iOS 會執行這些限制；Android 還在試營運，完全沒有付費牆。</p>
+        </div>
+      </div>
+      <div class="plans-note">
+        <p><b>兩種方案都一樣。</b>被邀請參加一件事，永遠不會撞上付費牆。等級、徽章、外觀、T點數、
+          凍結卡和競技分數，一樣都不能買。同一場挑戰裡，Pro 玩家不會比免費玩家佔到任何便宜，
+          而且已經拿到的東西永遠不會被收回。</p>
+        <p><b>五項任務是一套日常，不是試用版。</b>因為當天的 T點數是全有或全無，
+          清單短一點反而比較容易拿到，不是比較難 — 而且這兩個限制都是「同時幾個」，
+          從來不是「總共幾個」。</p>
+      </div>
+    </section>
+
+    <section class="hsec" aria-labelledby="h-faq">
+      <div class="hsec-head">
+        <h2 id="h-faq">大家最常問的問題。</h2>
+      </div>
+      <div class="faq">
+        <details class="faq-item">
+          <summary>Tadapop 是免費的嗎？</summary>
+          <p>是。記錄自己的習慣一直都是免費的，不用帳號，以後也是。免費帳號可以同時進行 5 項任務、
+            自己開 1 場挑戰。Pro 解除這兩個限制，每月 US$3.99，選年繳平均每月更低。</p>
+        </details>
+        <details class="faq-item">
+          <summary>T點數是什麼？</summary>
+          <p>把當天該做的任務全部完成，這天就給你 1 點 T點數。只完成一部分不算，也沒辦法多做來多拿。
+            所以累計 128 點，就是 128 天你全部完成的日子。</p>
+        </details>
+        <details class="faq-item">
+          <summary>離線能用嗎？</summary>
+          <p>完全可以。個人的追蹤都在你的裝置上跑，不需要網路。只有想用競技場，
+            或想在不同手機之間備份時，才需要登入。</p>
+        </details>
+        <details class="faq-item">
+          <summary>一定要註冊帳號嗎？</summary>
+          <p>追蹤任何東西都不用。只有競技場需要帳號，因為私人挑戰必須知道你在別人眼中是誰。</p>
+        </details>
+        <details class="faq-item">
+          <summary>Android 真的完全免費嗎？</summary>
+          <p>現在是。Android 版還在試營運，上面沒有任何付費機制，也不會執行免費方案的限制。</p>
+        </details>
+        <details class="faq-item">
+          <summary>什麼時候會上 App Store 和 Google Play？</summary>
+          <p>1.4.2 版已經送交 Apple 審核，Google Play 的上架也在進行中，兩邊都還沒有公開。
+            在那之前，iOS 可以透過 TestFlight 安裝，Android 可以直接下載。</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="get" id="get">
+      <div class="get-wrap">
+        <h2>即將登陸 App Store 與 Google Play。</h2>
+        <p>iOS 正在 Apple 審核中，Android 已送出 Google Play。留個信箱，上架當天寄一封信給你 —
+          這個地址只會用在這件事上。</p>
+
+        <form class="notify" id="notifyForm" autocomplete="on">
+          <label class="vh" for="notifyEmail">電子郵件地址</label>
+          <input id="notifyEmail" name="email" type="email" inputmode="email" autocomplete="email"
+                 placeholder="you@example.com" required />
+          <input class="vh" id="notifyHoney" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <button type="submit">通知我</button>
+        </form>
+        <p class="form-note" id="notifyNote">只有上架當天那一封。沒有名單、沒有電子報、不給第三方。</p>
+
+        <div class="rightnow">
+          <span class="hsec-k">現在就想用？</span>
+          <div class="rightnow-row">
+            <a class="ghost" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">iOS · 加入 TestFlight →</a>
+            <a class="ghost" href="/zh/android">Android · 下載安裝檔 →</a>
+          </div>
+          <div class="beta-grid">
+            <a class="beta-card" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">
+              <div class="beta-plat">iOS · TESTFLIGHT</div>
+              <img src="/assets/qr-ios.png" alt="QR code：掃描即可透過 TestFlight 在 iOS 上安裝 Tadapop — https://testflight.apple.com/join/TtXzD68k" width="200" height="200" loading="lazy" />
+              <span class="beta-action">點一下加入 TestFlight →</span>
+            </a>
+            <a class="beta-card" href="/zh/android">
+              <div class="beta-plat">ANDROID</div>
+              <img src="/assets/qr-android.png" alt="QR code：掃描即可在 Android 上安裝 Tadapop — https://tadapop.app/android" width="200" height="200" loading="lazy" />
+              <span class="beta-action">點一下下載安裝檔 →</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -207,15 +522,115 @@
     <div class="footer-brand">
       <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="24" height="24" /> TADAPOP
     </div>
-    <nav class="footer-links">
+    <nav class="footer-links" aria-label="頁尾連結">
       <a href="/zh/rewards">你會得到什麼</a>
       <a href="/zh/rules">競技場規則</a>
       <a href="/zh/privacy">隱私權政策</a>
       <a href="/zh/terms">使用條款</a>
       <a href="/zh/support">支援</a>
     </nav>
-    <div class="footer-copy">© 2026 QY LLC · 獻給喜歡動手把事情做完的人。</div>
+    <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
   </footer>
+
+  <script>
+    /* ---- top nav disclosure -------------------------------------------
+       The panel is the same <nav> the desktop shows, revealed by a class on
+       the header: one menu in the markup, two layouts in CSS, so a screen
+       reader never meets the same five links twice. No overlay, no scroll
+       lock and no focus trap — five links do not need a modal. */
+    (function () {
+      var nav = document.getElementById('siteNav');
+      var btn = document.getElementById('navToggle');
+      if (!nav || !btn) return;
+      function set(open) {
+        nav.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
+      // Following a link has to close the panel, or the #pricing anchor on
+      // this page scrolls to a section sitting behind an open menu.
+      nav.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); btn.focus(); }
+      });
+      // Crossing the breakpoint must not strand the panel in the open state.
+      window.addEventListener('resize', function () { if (window.innerWidth > 900) set(false); });
+    })();
+
+    /* ---- warm the film's artwork on intent ----------------------------
+       film.js builds its overlay eagerly but its three BOBO layers are
+       loading="lazy", so they cost a visitor who never presses play
+       nothing. Someone who hovers or tabs to the play button has told us
+       they probably will, which is enough notice to fetch 3.1MB before
+       the click rather than during it. Once, and never on a cold load. */
+    (function () {
+      var launch = document.getElementById('filmLaunch');
+      if (!launch) return;
+      var warmed = false;
+      function warm() {
+        if (warmed) return;
+        warmed = true;
+        ['bobo-base', 'bobo-eye', 'bobo-mouth'].forEach(function (n) {
+          new Image().src = '/assets/host/' + n + '.png';
+        });
+      }
+      launch.addEventListener('pointerenter', warm, { once: true });
+      launch.addEventListener('focus', warm, { once: true });
+      // A touch visitor gets no hover, so the first contact of the press
+      // starts the fetch a beat before the click completes.
+      launch.addEventListener('touchstart', warm, { once: true, passive: true });
+    })();
+
+    /* ---- notify-on-launch --------------------------------------------
+       Same relay and the same mailto fallback /support already uses, so
+       there is no new backend and no list to manage. */
+    (function () {
+      var ENDPOINT = 'https://formsubmit.co/ajax/yufansapp@gmail.com';
+      var form = document.getElementById('notifyForm');
+      var note = document.getElementById('notifyNote');
+      var email = document.getElementById('notifyEmail');
+      var honey = document.getElementById('notifyHoney');
+      if (!form || !note || !email) return;
+      var sending = false;
+
+      function say(text, cls) {
+        note.textContent = text;
+        note.className = 'form-note' + (cls ? ' ' + cls : '');
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (sending) return;
+        if (honey && honey.value) return;          // bot caught by the honeypot
+        var addr = email.value.trim();
+        if (!addr) return;
+
+        sending = true;
+        say('傳送中…');
+        fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            email: addr,
+            message: 'Notify me when Tadapop is on the App Store / Google Play. (zh)',
+            _subject: 'Tadapop — launch notification request',
+            _template: 'table',
+            _captcha: 'false'
+          })
+        })
+        .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
+        .then(function () {
+          say('收到 — 上架當天會寄一封信給你。', 'ok');
+          email.value = '';
+          sending = false;
+        })
+        .catch(function () {
+          say('這次沒送出去。寄信到 hello@tadapop.app，我們幫你加上。', 'err');
+          sending = false;
+        });
+      });
+    })();
+  </script>
 
   <script>
     // ---- Hero mission animation ----------------------------------------
@@ -567,13 +982,34 @@
       }
 
       const builder = reduce ? buildGentle : build;
-      builder();
-      // click to replay the one-shot
-      root.style.cursor = 'pointer';
-      root.title = '重播';
-      root.addEventListener('click', builder);
+
+      // The animation now lives inside the film poster, so it waits until it
+      // is on screen rather than playing to an empty room on load. The full
+      // reasoning is on the English page.
+      let played = false;
+      function playOnce() {
+        if (played) return;
+        played = true;
+        builder();
+      }
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting) { playOnce(); io.disconnect(); }
+          });
+        }, { threshold: 0.35 });
+        io.observe(root);
+      } else {
+        playOnce();
+      }
+
+      // No click-to-replay: the click belongs to the play button over it.
       let rt;
-      window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(builder, 200); });
+      window.addEventListener('resize', () => {
+        if (!played) return;
+        clearTimeout(rt);
+        rt = setTimeout(builder, 200);
+      });
     })();
   </script>
 
