@@ -114,12 +114,32 @@
         "publisher": { "@id": "https://tadapop.app/#organization" },
         "author": { "@id": "https://tadapop.app/#organization" },
         "isAccessibleForFree": true,
+        "softwareVersion": "1.4.2",
         "offers": {
-          "@type": "Offer",
-          "price": "0",
+          "@type": "AggregateOffer",
           "priceCurrency": "USD",
+          "lowPrice": "0",
+          "highPrice": "3.99",
+          "offerCount": 2,
           "availability": "https://schema.org/InStock",
-          "category": "Free"
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Free",
+              "price": "0",
+              "priceCurrency": "USD",
+              "category": "Free",
+              "description": "Solo tracking with no account: missions, streaks, Tpoints and the year heatmap. Five active missions and one hosted challenge. Joining a friend\u2019s challenge is never limited."
+            },
+            {
+              "@type": "Offer",
+              "name": "Tadapop Pro",
+              "price": "3.99",
+              "priceCurrency": "USD",
+              "category": "Subscription",
+              "description": "Unlimited active missions and unlimited challenges to host, billed monthly. A yearly plan is offered at a lower monthly rate; both prices are set per territory by the store."
+            }
+          ]
         },
         "featureList": [
           "Three ways to log a mission: binary check, count-to-target, or a countdown timer with a chime",
@@ -133,6 +153,44 @@
         "softwareHelp": { "@type": "CreativeWork", "url": "https://tadapop.app/support" },
         "termsOfService": "https://tadapop.app/terms",
         "privacyPolicy": "https://tadapop.app/privacy"
+      }      ,
+      {
+        "@type": "FAQPage",
+        "@id": "https://tadapop.app/#faq",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://tadapop.app/#webpage" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Tadapop free?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Tracking your own habits is free, needs no account, and stays that way. A free account can keep five active missions and host one challenge at a time. Tadapop Pro removes both limits for US$3.99 a month, or less per month on the yearly plan." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a Tpoint?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Clear every mission due on a given day and that day pays exactly one Tpoint. Clearing some of them pays nothing, and there is no way to earn more by doing extra. A lifetime Tpoint total is therefore simply a count of days you cleared completely." }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it work offline?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Completely. Solo tracking runs on your device and needs no connection. Sign in only if you want the Arena, or a backup across phones." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need an account?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Not to track anything. An account is required only for the Arena, because a private challenge needs to know who you are to the other players." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Android really free?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, for now. There is no billing on Android at all while the Android version is being trialled, and the free-tier limits are not enforced there." }
+          },
+          {
+            "@type": "Question",
+            "name": "When will it be on the App Store and Google Play?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Version 1.4.2 is with Apple for review and a Google Play release is in progress. Neither listing is public yet. Until they are, you can install through TestFlight on iOS or download the Android build." }
+          }
+        ]
       }
     ]
   }
@@ -142,106 +200,412 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="grid-bg" aria-hidden="true"></div>
 
-  <header class="nav">
-    <a class="brand" href="/">
-      <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="32" height="32" />
-      <span class="brand-name">TADAPOP</span>
-    </a>
-    <div class="nav-right">
-      <div data-lang-switch></div>
-      <a class="nav-cta" href="#get">Get the app</a>
+  <!-- ============ 1 · top navigation ============
+       The menu lived only in the footer until now, which meant the site
+       looked like a single page until you reached the bottom of it. One
+       <nav> in the markup, two layouts in CSS. -->
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav-in">
+      <a class="site-brand" href="/">
+        <img src="/assets/logo.png" alt="Tadapop" width="30" height="30" />
+        <span class="site-brand-name">TADAPOP</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Menu">
+        <span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu" aria-label="Main">
+        <a href="#app">The app</a>
+        <a href="/rewards">What you earn</a>
+        <a href="/rules">Arena Rules</a>
+        <a href="#pricing">Free &amp; Pro</a>
+        <a href="/support">Support</a>
+      </nav>
+      <div class="nav-tail">
+        <div data-lang-switch></div>
+        <a class="site-cta" href="#get">Get the app</a>
+      </div>
     </div>
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero">
-      <div class="mission-anim" id="missionAnim" role="img"
-           aria-label="Tadapop: small daily missions orbit the central goal, get checked off one by one, then burst into confetti as the goal is achieved."></div>
-      <div class="readout">SYSTEM ONLINE · OPEN BETA · iOS &amp; ANDROID</div>
-      <h1>Your daily missions,<br />on a console you actually<br /><span class="amber">want to open.</span></h1>
-      <p class="lede">
-        Tadapop is a gamified habit tracker with a mission-control soul. Define missions,
-        complete them with a tap, a counter, or a timer, and watch your streak, Tpoints, and a
-        year-long heatmap fill in. Then compete privately with friends in the Arena.
+
+    <!-- ============ 2 · hero ============
+         The film is the hero. It is not a video file — film.js renders nine
+         scenes in the DOM — so the poster below is that film's own opening
+         scene, rebuilt: pressing play does not cut to something else, the
+         same picture gets bigger and starts talking. -->
+    <section class="home-hero">
+      <p class="status-chip"><i aria-hidden="true"></i> v1.4.2 · IN REVIEW WITH APPLE · SUBMITTED TO GOOGLE PLAY</p>
+
+      <h1>Your daily missions, on a console you actually <span class="amber">want to open.</span></h1>
+
+      <div class="player">
+        <div class="player-frame">
+          <div class="poster-art">
+            <div class="poster-grid" aria-hidden="true"></div>
+            <span class="poster-corner tl" aria-hidden="true"></span>
+            <span class="poster-corner tr" aria-hidden="true"></span>
+            <span class="poster-corner bl" aria-hidden="true"></span>
+            <span class="poster-corner br" aria-hidden="true"></span>
+
+            <div class="poster-top">
+              <span class="pt-brand"><img src="/assets/logo.png" alt="" width="22" height="22" /> TADAPOP</span>
+              <span class="pt-cc">CC · EN / 繁中</span>
+            </div>
+
+            <div class="poster-stage">
+              <!-- The orbiting-missions animation, moved here from the top of
+                   the page. It ends on the real mark with the dust cleared,
+                   which is exactly the film's first frame — so it reads as a
+                   title card rather than as decoration, and it no longer
+                   delays the headline by a whole screen. -->
+              <div class="mission-anim" id="missionAnim" aria-hidden="true"></div>
+              <div class="poster-word">TADAPOP</div>
+              <div class="poster-sub">DAILY MISSIONS · STREAKS · THE ARENA</div>
+            </div>
+
+            <p class="poster-cap">Yeah, you — the one who keeps saying <span class="hi">tomorrow</span>.</p>
+
+            <img class="poster-bobo" src="/assets/bobo-poster.webp" alt="" width="364" height="420" decoding="async" />
+
+            <div class="poster-barspace" aria-hidden="true"></div>
+          </div>
+
+          <!-- This button is #filmLaunch. film.js has always bound to that id,
+               so making the whole poster the button costs nothing in the
+               engine. .film-launch-time is where film.js stamps the real
+               runtime — the number must not be written anywhere else. -->
+          <button class="poster-hit" type="button" id="filmLaunch" aria-haspopup="dialog"
+                  aria-label="Play the film — with voiceover and captions, in English or Traditional Chinese">
+            <span class="hit-bar">
+              <span class="hit-rail" aria-hidden="true"><i></i></span>
+              <span class="play-disc" aria-hidden="true">▶</span>
+              <span class="hit-text">Play the film<span class="film-launch-time"></span></span>
+              <span class="hit-meta" aria-hidden="true">Voiceover + captions</span>
+              <span class="hit-time" aria-hidden="true">0:00</span>
+            </span>
+          </button>
+        </div>
+
+        <p class="player-note">
+          BOBO explains the whole thing, out loud. <b>Sound starts when you press play; captions are always on.</b>
+        </p>
+        <p class="player-note nojs-line">
+          The film needs JavaScript. In one line: log missions by tap, count or timer; clear every mission
+          due today and the day pays exactly 1 Tpoint; race friends in the private, invite-only Arena.
+        </p>
+      </div>
+
+      <p class="home-lede">
+        Tadapop is a habit tracker with a mission-control soul. Define missions, complete them with a tap,
+        a counter or a timer, and watch your streak, Tpoints and a year-long heatmap fill in. Works fully
+        offline, and needs no account at all.
       </p>
 
-      <div class="film-cta-row">
-        <button type="button" class="film-launch" id="filmLaunch" aria-haspopup="dialog">
-          <span class="film-launch-ico">▶</span>
-          <span>See what BOBO has to say <span class="film-launch-time">· 75 sec</span></span>
-        </button>
+      <!-- Deliberately not links and not official badge art: the listings are
+           not public yet, and a store badge that goes nowhere is worse than no
+           badge. On launch day these become <a>s around the real assets and the
+           state line is deleted. Nothing else on the page changes. -->
+      <div class="store-row">
+        <div class="store-badge">
+          <span class="sb-glyph" aria-hidden="true"></span>
+          <span>
+            <span class="sb-kicker">COMING TO</span>
+            <span class="sb-name">App Store</span>
+            <span class="sb-state">In review with Apple · iPhone &amp; iPad</span>
+          </span>
+        </div>
+        <div class="store-badge">
+          <span class="sb-glyph" aria-hidden="true">▶</span>
+          <span>
+            <span class="sb-kicker">COMING TO</span>
+            <span class="sb-name">Google Play</span>
+            <span class="sb-state">Submitted, in review · Android</span>
+          </span>
+        </div>
       </div>
+      <p class="store-aside">
+        Not live yet — no fake buttons. <a href="#get">Get one email when it lands</a>, or
+        <a href="#get">install it right now</a> on TestFlight or Android.
+      </p>
+    </section>
 
-      <div class="hero-cta">
-        <a class="button" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">Get it on iOS (TestFlight)</a>
-        <a class="button" href="/android">Get it on Android</a>
+    <!-- ============ 3 · facts strip ============ -->
+    <div class="facts">
+      <div class="fact"><b>Offline</b><span>Logging never needs a connection</span></div>
+      <div class="fact"><b>No account</b><span>Until you want the Arena</span></div>
+      <div class="fact"><b>No trackers</b><span>No ads, no third-party analytics</span></div>
+      <div class="fact"><b>EN · 繁中</b><span>Fully translated, app and site</span></div>
+    </div>
+
+    <!-- ============ 4 · the app, at size ============ -->
+    <section class="hsec" id="app" aria-labelledby="h-app">
+      <div class="hsec-head">
+        <p class="hsec-k">THE ACTUAL APP</p>
+        <h2 id="h-app">Not a mockup. This is the build in review.</h2>
       </div>
-      <p class="form-note">Now in open beta — install on iOS (TestFlight) or Android today.</p>
+      <div class="appshow">
+        <div class="app-art">
+          <div class="device-stack">
+            <div class="device device-back" aria-hidden="true">
+              <div class="device-frame"><span class="device-screen">
+                <img src="/assets/shots/02-stats.webp" alt="" width="660" height="1434" loading="lazy" decoding="async" />
+              </span></div>
+            </div>
+            <div class="device device-front">
+              <div class="device-frame"><span class="device-screen">
+                <img src="/assets/shots/01-today.webp" width="660" height="1434" fetchpriority="high" decoding="async"
+                     alt="The Today screen: a greeting, one of four missions complete with three to go for today's Tpoint, and cards for Drink water at 5 of 8 glasses, Read at 0 of 20 pages, Strength training at 2 of 3 this week, and a ten-minute Meditate timer." />
+              </span></div>
+            </div>
+          </div>
+        </div>
+        <div class="app-copy">
+          <p>Today shows only what is actually due — nothing else. Each mission is one tap, one count, or one
+            timer, and the bar at the top tells you how far off the day's Tpoint you are.</p>
+          <p>The whole interface is dark, quiet and built for a five-second visit. There is no feed, no
+            streak-shaming, and nothing is pushed at you: reminders are local notifications you asked for.</p>
+          <p>Your day starts when you say it does. The default is 4am, so finishing something at one in the
+            morning still counts toward the day you think it belongs to.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- These are h2, not h3: they sit directly under the page h1 and skipping a
-         level breaks the outline a screen reader announces and an extractor
-         reads. They were briefly h3-with-aria-level, because the styling was
-         keyed to the tag name; the selectors are now :is(h2, h3) so the level
-         is a semantic decision rather than a styling constraint. -->
-    <section class="features">
-      <article class="card">
-        <div class="card-icon">⌁</div>
-        <h2>Three ways to log</h2>
-        <p>Binary check, count-to-target, or a countdown timer with a chime. One tap from the home screen — logging works fully offline.</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">▲</div>
-        <h2>Streaks &amp; Tpoints, honestly</h2>
-        <p>Clear every mission to earn the day's Tpoint — all or nothing. Show up day after day and your streak climbs. Progress that motivates without manipulating.</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">◳</div>
-        <h2>A full-year heatmap</h2>
-        <p>Telemetry-grade stats: a console-grid heatmap of your whole year and per-mission completion rates so you can actually see the trend.</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">⚔</div>
-        <h2>The Arena</h2>
-        <p>Private, invite-only challenges with friends. No public discovery, no real money — just bragging rights and a live leaderboard.</p>
-      </article>
+    <!-- ============ 5 · screen by screen ============ -->
+    <section class="hsec" aria-labelledby="h-shots">
+      <div class="hsec-head">
+        <h2 id="h-shots">Three more screens.</h2>
+        <p class="hsec-p">From Tadapop 1.4.2, exactly as they ship.</p>
+      </div>
+      <div class="shots">
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/02-stats.webp" width="660" height="1434" loading="lazy" decoding="async"
+                 alt="The Stats screen: a 27 day streak, 82 lifetime Tpoints, 92 percent completion this week, a full-year heatmap of cleared days, and per-mission completion bars." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>STATS</b>A full year of days on one screen, and the completion rate of every mission over 30 or 90 days.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/03-editor.webp" width="660" height="1434" loading="lazy" decoding="async"
+                 alt="The mission editor: choosing whether a mission is checked off, counted to a target or timed, and which days it is due." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>EDITOR</b>Check off, count to a target, or run a countdown. Daily, chosen weekdays, or a number of times a week.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/04-profile.webp" width="660" height="1434" loading="lazy" decoding="async"
+                 alt="The Profile screen: consistency rank, badges earned, and lifetime totals." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>PROFILE</b>Ranks and badges you reach by showing up. None of it is for sale.</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section class="strip">
-      <div class="strip-item"><span class="metric">+1 / day</span><span class="metric-label">Tpoint when you clear them all</span></div>
-      <div class="strip-item"><span class="metric">100%</span><span class="metric-label">offline-first logging</span></div>
-      <div class="strip-item"><span class="metric">0</span><span class="metric-label">ads &amp; trackers</span></div>
+    <!-- ============ 6 · the rules ============
+         Statements rather than adjectives. Each one is a thing that is not
+         true of most habit trackers, which is the only claim worth the room. -->
+    <section class="hsec" aria-labelledby="h-rules">
+      <div class="hsec-head">
+        <p class="hsec-k">SIX RULES</p>
+        <h2 id="h-rules">Why this one, and not another habit app.</h2>
+      </div>
+      <div class="rules-grid">
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">▲</div>
+          <h3>One Tpoint a day, or none</h3>
+          <p>Clear every mission due and the day pays exactly 1 Tpoint. Clearing some pays nothing, and doing
+            extra earns nothing. A lifetime total is simply a count of clean days.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">❄</div>
+          <h3>Streak freezes are earned, never bought</h3>
+          <p>One arrives every 14 active days, you can hold three, and one is spent automatically on a day you
+            miss. A bad day does not cost you a run you spent months building.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">◷</div>
+          <h3>Your day starts at 4am</h3>
+          <p>Or whenever you say it does. Finishing something at 1am counts toward the day it belongs to, not
+            the one the calendar insists on.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">⌁</div>
+          <h3>Offline, with no account</h3>
+          <p>Solo tracking runs entirely on your device. Sign in only if you want the Arena or a backup across
+            phones — everything else works with no connection and no sign-up.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">⊘</div>
+          <h3>No ads, no trackers</h3>
+          <p>No advertising, and no third-party advertising or analytics SDKs in the app. Proof photos and
+            notes stay on your device.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">⚔</div>
+          <h3>The Arena is invite-only</h3>
+          <p>Private challenges with people you actually know. No public discovery, no matchmaking, no
+            strangers, and no real money anywhere near it.</p>
+        </article>
+      </div>
     </section>
 
-    <section class="cta-final" id="get">
-      <h2>Try the beta.</h2>
-      <p>Help shape Tadapop — scan the code, or just tap it, to install on iOS or Android.</p>
-      <!-- iOS first: nearly every tester so far is on an iPhone, and the one
-           they need should not be the one they scroll past. Each card is a
-           link as well as a QR — someone already reading this ON their phone
-           has nothing to scan it with, which the old copy never admitted. -->
-      <div class="beta-grid">
-        <a class="beta-card" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">
-          <div class="beta-plat">iOS · TESTFLIGHT</div>
-          <img src="/assets/qr-ios.png" alt="QR code: scan to install Tadapop on iOS via TestFlight — https://testflight.apple.com/join/TtXzD68k" width="200" height="200" />
-          <span class="beta-action">Tap to join the TestFlight →</span>
-        </a>
-        <a class="beta-card" href="/android">
-          <div class="beta-plat">ANDROID</div>
-          <img src="/assets/qr-android.png" alt="QR code: scan to install Tadapop on Android — https://tadapop.app/android" width="200" height="200" />
-          <span class="beta-action">Tap to download the APK →</span>
-        </a>
+    <!-- ============ 7 · the Arena ============
+         Text on a console panel. No Arena screenshot exists and one is not
+         being faked to fill the space. -->
+    <section class="hsec" aria-labelledby="h-arena">
+      <div class="hsec-head">
+        <p class="hsec-k">THE ARENA</p>
+        <h2 id="h-arena">Competition with the people who keep you honest.</h2>
+      </div>
+      <div class="arena-panel">
+        <p>Set a goal and a length, decide whether a photo or video is required to check in, and invite the
+          people you want. There is a group thread for the running commentary, and a live leaderboard that
+          counts one thing: how many days you hit the target. Exceeding it banks nothing.</p>
+        <p>Nothing is staked and nothing converts to money. Losing a challenge costs you nothing at all, and
+          joining someone else's challenge is free on every plan, forever.</p>
+        <a class="arena-more" href="/rules">Read the Arena Rules →</a>
+      </div>
+    </section>
+
+    <!-- ============ 8 · free and Pro ============ -->
+    <section class="hsec" id="pricing" aria-labelledby="h-plans">
+      <div class="hsec-head">
+        <p class="hsec-k">FREE AND PRO</p>
+        <h2 id="h-plans">Pro removes limits, not effort.</h2>
+        <p class="hsec-p">There are exactly two limits on a free account, and Pro lifts both. That is the
+          whole difference.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>Free</h3>
+          <p class="plan-price">NO ACCOUNT NEEDED</p>
+          <ul>
+            <li>5 active missions</li>
+            <li>1 challenge you host at a time</li>
+            <li>Joining a friend's challenge — always</li>
+            <li>Full stats, streaks, heatmap and ranks</li>
+          </ul>
+          <p class="plan-foot">Archiving a mission frees a slot; finishing a challenge frees the other. Nothing
+            you have already recorded is ever deleted or hidden to make room.</p>
+        </div>
+        <div class="plan lit">
+          <h3>Tadapop Pro</h3>
+          <p class="plan-price">US$3.99 A MONTH, OR LESS PER MONTH ON THE YEARLY PLAN</p>
+          <ul>
+            <li>Unlimited active missions</li>
+            <li>Unlimited challenges to host</li>
+            <li>Everything in Free, without the ceiling</li>
+          </ul>
+          <p class="plan-foot">The store shows the price in your own currency before you agree to anything.
+            Limits apply on iOS today; there is no paywall on Android while it is being trialled.</p>
+        </div>
+      </div>
+      <div class="plans-note">
+        <p><b>The same on both plans.</b> Being invited to something never hits a paywall. No rank, badge,
+          cosmetic, Tpoint, streak freeze or Arena Score can be bought. A Pro player has no advantage over a
+          free player in the same challenge, and nothing you have earned is ever taken back.</p>
+        <p><b>Five missions is a routine, not a demo.</b> Because a Tpoint is all or nothing, a shorter list
+          makes the day's point easier to earn, not harder — and both limits are a question of how many at
+          once, never how many ever.</p>
+      </div>
+    </section>
+
+    <!-- ============ 9 · FAQ ============ -->
+    <section class="hsec" aria-labelledby="h-faq">
+      <div class="hsec-head">
+        <h2 id="h-faq">Questions people actually ask.</h2>
+      </div>
+      <div class="faq">
+        <details class="faq-item">
+          <summary>Is Tadapop free?</summary>
+          <p>Yes. Tracking your own habits is free, needs no account, and stays that way. A free account keeps
+            five active missions and hosts one challenge at a time. Pro removes both limits for US$3.99 a
+            month, or less per month on the yearly plan.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is a Tpoint?</summary>
+          <p>Clear every mission due on a given day and that day pays exactly one Tpoint. Clearing some of them
+            pays nothing, and there is no way to earn more by doing extra. So a lifetime total of 128 Tpoints
+            means 128 days you cleared completely.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does it work offline?</summary>
+          <p>Completely. Solo tracking runs on your device and needs no connection. Sign in only if you want
+            the Arena, or a backup across phones.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need an account?</summary>
+          <p>Not to track anything. An account is required only for the Arena, because a private challenge has
+            to know who you are to the other players.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is Android really free?</summary>
+          <p>Yes, for now. There is no billing on Android at all while the Android version is being trialled,
+            and the free-tier limits are not enforced there.</p>
+        </details>
+        <details class="faq-item">
+          <summary>When will it be on the App Store and Google Play?</summary>
+          <p>Version 1.4.2 is with Apple for review, and a Google Play release is in progress. Neither listing
+            is public yet. Until they are, you can install through TestFlight on iOS or download the Android
+            build below.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ 10 · get it ============ -->
+    <section class="get" id="get">
+      <div class="get-wrap">
+        <h2>Coming to the App Store and Google Play.</h2>
+        <p>iOS is in review with Apple. Android is submitted to Google Play. Leave an address and you get one
+          email on the day it lands — that is the only thing it will ever be used for.</p>
+
+        <form class="notify" id="notifyForm" autocomplete="on">
+          <label class="vh" for="notifyEmail">Email address</label>
+          <input id="notifyEmail" name="email" type="email" inputmode="email" autocomplete="email"
+                 placeholder="you@example.com" required />
+          <!-- Honeypot: same trick /support uses. Real people never fill it. -->
+          <input class="vh" id="notifyHoney" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <button type="submit">Notify me</button>
+        </form>
+        <p class="form-note" id="notifyNote">One email, on launch day. No list, no newsletter, no third parties.</p>
+
+        <div class="rightnow">
+          <span class="hsec-k">WANT IT BEFORE THEN?</span>
+          <div class="rightnow-row">
+            <a class="ghost" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">iOS · Join the TestFlight →</a>
+            <a class="ghost" href="/android">Android · Download the build →</a>
+          </div>
+          <!-- The QR cards are the same ones that used to be the main call to
+               action. They are still useful on a desktop, and hidden at phone
+               widths where nobody can scan them with the device in their hand. -->
+          <div class="beta-grid">
+            <a class="beta-card" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">
+              <div class="beta-plat">iOS · TESTFLIGHT</div>
+              <img src="/assets/qr-ios.png" alt="QR code: scan to install Tadapop on iOS via TestFlight — https://testflight.apple.com/join/TtXzD68k" width="200" height="200" loading="lazy" />
+              <span class="beta-action">Tap to join the TestFlight →</span>
+            </a>
+            <a class="beta-card" href="/android">
+              <div class="beta-plat">ANDROID</div>
+              <img src="/assets/qr-android.png" alt="QR code: scan to install Tadapop on Android — https://tadapop.app/android" width="200" height="200" loading="lazy" />
+              <span class="beta-action">Tap to download the build →</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- film.js empties this and builds the player inside it. Both this id and
+       #filmLaunch are mandatory: if either is missing, film.js returns early
+       and the film silently does not exist. -->
   <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop explainer film" hidden></div>
 
   <footer class="footer">
     <div class="footer-brand">
       <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="24" height="24" /> TADAPOP
     </div>
-    <nav class="footer-links">
+    <nav class="footer-links" aria-label="Footer">
       <a href="/rewards">What you earn</a>
       <a href="/rules">Arena Rules</a>
       <a href="/privacy">Privacy</a>
@@ -250,6 +614,106 @@
     </nav>
     <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
   </footer>
+
+  <script>
+    /* ---- top nav disclosure -------------------------------------------
+       The panel is the same <nav> the desktop shows, revealed by a class on
+       the header: one menu in the markup, two layouts in CSS, so a screen
+       reader never meets the same five links twice. No overlay, no scroll
+       lock and no focus trap — five links do not need a modal. */
+    (function () {
+      var nav = document.getElementById('siteNav');
+      var btn = document.getElementById('navToggle');
+      if (!nav || !btn) return;
+      function set(open) {
+        nav.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
+      // Following a link has to close the panel, or the #pricing anchor on
+      // this page scrolls to a section sitting behind an open menu.
+      nav.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); btn.focus(); }
+      });
+      // Crossing the breakpoint must not strand the panel in the open state.
+      window.addEventListener('resize', function () { if (window.innerWidth > 900) set(false); });
+    })();
+
+    /* ---- warm the film's artwork on intent ----------------------------
+       film.js builds its overlay eagerly but its three BOBO layers are
+       loading="lazy", so they cost a visitor who never presses play
+       nothing. Someone who hovers or tabs to the play button has told us
+       they probably will, which is enough notice to fetch 3.1MB before
+       the click rather than during it. Once, and never on a cold load. */
+    (function () {
+      var launch = document.getElementById('filmLaunch');
+      if (!launch) return;
+      var warmed = false;
+      function warm() {
+        if (warmed) return;
+        warmed = true;
+        ['bobo-base', 'bobo-eye', 'bobo-mouth'].forEach(function (n) {
+          new Image().src = '/assets/host/' + n + '.png';
+        });
+      }
+      launch.addEventListener('pointerenter', warm, { once: true });
+      launch.addEventListener('focus', warm, { once: true });
+      // A touch visitor gets no hover, so the first contact of the press
+      // starts the fetch a beat before the click completes.
+      launch.addEventListener('touchstart', warm, { once: true, passive: true });
+    })();
+
+    /* ---- notify-on-launch --------------------------------------------
+       Same relay and the same mailto fallback /support already uses, so
+       there is no new backend and no list to manage. */
+    (function () {
+      var ENDPOINT = 'https://formsubmit.co/ajax/yufansapp@gmail.com';
+      var form = document.getElementById('notifyForm');
+      var note = document.getElementById('notifyNote');
+      var email = document.getElementById('notifyEmail');
+      var honey = document.getElementById('notifyHoney');
+      if (!form || !note || !email) return;
+      var sending = false;
+
+      function say(text, cls) {
+        note.textContent = text;
+        note.className = 'form-note' + (cls ? ' ' + cls : '');
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (sending) return;
+        if (honey && honey.value) return;          // bot caught by the honeypot
+        var addr = email.value.trim();
+        if (!addr) return;
+
+        sending = true;
+        say('Sending…');
+        fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            email: addr,
+            message: 'Notify me when Tadapop is on the App Store / Google Play.',
+            _subject: 'Tadapop — launch notification request',
+            _template: 'table',
+            _captcha: 'false'
+          })
+        })
+        .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
+        .then(function () {
+          say('Done — one email, on launch day.', 'ok');
+          email.value = '';
+          sending = false;
+        })
+        .catch(function () {
+          say('That did not send. Email hello@tadapop.app and we will add you.', 'err');
+          sending = false;
+        });
+      });
+    })();
+  </script>
 
   <script>
     // ---- Hero mission animation ----------------------------------------
@@ -601,13 +1065,37 @@
       }
 
       const builder = reduce ? buildGentle : build;
-      builder();
-      // click to replay the one-shot
-      root.style.cursor = 'pointer';
-      root.title = 'Replay';
-      root.addEventListener('click', builder);
+
+      // The animation is a one-shot, and it now lives inside the film poster
+      // rather than at the top of the page. Playing it on load would mean it
+      // had finished before most people scrolled to it, so it waits until it
+      // is actually on screen. Once is enough — it ends on the mark, which is
+      // the poster's resting state.
+      let played = false;
+      function playOnce() {
+        if (played) return;
+        played = true;
+        builder();
+      }
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting) { playOnce(); io.disconnect(); }
+          });
+        }, { threshold: 0.35 });
+        io.observe(root);
+      } else {
+        playOnce();
+      }
+
+      // No click-to-replay any more: the click on this element belongs to the
+      // play button sitting over it, and a second handler here would race it.
       let rt;
-      window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(builder, 200); });
+      window.addEventListener('resize', () => {
+        if (!played) return;
+        clearTimeout(rt);
+        rt = setTimeout(builder, 200);
+      });
     })();
   </script>
 
