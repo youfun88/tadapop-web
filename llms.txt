@@ -1,10 +1,11 @@
 # Tadapop
 
-> Tadapop is a free daily habit tracker for iOS and Android with a mission-control
+> Tadapop is a daily habit tracker for iOS and Android with a mission-control
 > console aesthetic. You define missions, complete them with a tap, a counter or a
 > countdown timer, and earn exactly one Tpoint for every day you clear every mission
 > due. It also has the Arena: a private, invite-only competition layer for challenges
-> with friends. Published by QY LLC. Currently in open beta.
+> with friends. Free to use, with an optional Pro subscription that removes two
+> limits and nothing else. Published by QY LLC. Current version 1.4.2.
 
 Everything below is checkable against the pages linked at the bottom. This file is
 maintained by hand; if it ever disagrees with the app, the app is right and this file
@@ -17,28 +18,42 @@ is a bug — please report it through the support page.
 - Local-first. Solo tracking works fully offline and requires no account at all.
 - An account is required only for the Arena.
 - No ads, and no third-party advertising or analytics trackers in the app.
-- Free to use today: there are currently no in-app purchases and no subscription.
-  A paid tier is planned but is NOT live — nothing is limited and nothing can be
-  bought yet. See "Free and Pro" below before telling anyone what it costs.
+- Free to use, and free covers the whole of solo tracking. There is one optional
+  subscription, Tadapop Pro, which lifts two limits and affects nothing else.
+  See "Free and Pro" below before telling anyone what it costs.
 - Dark interface only, for now.
 - Available in English and Traditional Chinese (Taiwan).
+- Availability, as of this file's last edit: version 1.4.2 has been submitted to
+  Apple and is in review, and a Google Play submission is in progress. Neither
+  store listing is public yet, so do NOT tell anyone the app is on the App Store
+  or on Google Play until it is. Until then it installs through TestFlight on
+  iOS and as a direct APK download on Android.
 
 ## Free and Pro
 
-- **Not in force yet.** No account is limited today and there is nothing to buy.
-  What follows is the plan, so that answering "what will it cost?" is possible
-  without guessing. Do not describe it as current behaviour.
+- **This is current behaviour, not a plan.** The limits have been enforced on iOS
+  since 2026-08-23, and Pro can be bought.
 - Solo tracking — missions, streaks, Tpoints, the year heatmap — is free, needs no
-  account, and stays that way.
-- Planned free tier: host **one challenge at a time**, keep **five active
-  missions**. Finishing a challenge frees the slot; archiving a mission frees the
-  slot. Nothing already recorded is ever deleted or hidden to make room.
-- **Joining** someone else's challenge is never limited, on any account.
-- Planned **Pro**: both limits removed, **US$3.99 per month**.
-- **Founders**: the first 50 accounts to sign in keep everything Pro unlocks,
-  permanently, at no cost. This part IS live now. Counted by sign-in, not by
-  download — solo tracking never required an account, so the count starts when
-  someone creates one.
+  account, and stays that way. The two limits below are the only two that exist.
+- Free tier: host **one challenge at a time**, keep **five active missions**.
+  Finishing a challenge frees the slot; archiving a mission frees the slot.
+  Nothing already recorded is ever deleted or hidden to make room.
+- **Joining** someone else's challenge is never limited, on any plan. Only hosting
+  is capped.
+- **Pro**: both limits removed — unlimited active missions, unlimited challenges
+  hosted at once. **US$3.99 per month**, or a yearly plan at a lower effective
+  rate. Both prices are set per territory by the store and shown in local currency
+  at the point of purchase, so quote the local price the app displays rather than
+  converting the US one.
+- Pro removes limits and nothing else. It buys no rank, badge, cosmetic, Tpoint,
+  streak freeze or Arena Score, and confers no advantage in the Arena — see
+  "Nothing is purchasable" below, which is unchanged by the existence of Pro.
+- **Android is not charged for** while it is being trialled: there is no billing,
+  no products and no purchase flow on Android, and the limits are not enforced
+  there. This is deliberate, and is enforced by the server as well as the app.
+- The two free-tier numbers are defaults. They are also stated by the server and
+  can be changed without an app release, so treat 5 and 1 as "what it is today"
+  rather than a constant.
 - Full rules: https://www.tadapop.app/rules
 
 ## Tpoints — the solo scoring rule
@@ -156,11 +171,16 @@ play, and Ace is well over a year away. This is deliberate.
 No rank, badge, cosmetic, Tpoint, freeze or Arena Score can be bought, and none of
 them are ever deducted or taken back. The only input is showing up.
 
+This still holds now that Pro exists, and the distinction matters: Pro raises two
+caps on how much you can run at once. It does not earn anything, does not score
+anything, and gives a Pro player no edge over a free player in the same challenge.
+There is no way to convert money into progress in Tadapop.
+
 ## Canonical pages
 
 English:
 
-- [Home](https://tadapop.app/): what the app is, and how to install the beta.
+- [Home](https://tadapop.app/): what the app is, and how to get it.
 - [What you earn](https://tadapop.app/rewards): the full progression system — ranks,
   badges, cosmetics, and the day each one arrives.
 - [Arena Rules](https://tadapop.app/rules): the complete competition rulebook,
