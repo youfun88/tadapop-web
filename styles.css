@@ -1252,7 +1252,10 @@ section[id] { scroll-margin-top: calc(var(--bar) + 12px); }
    Two cards, never a table: there are exactly two differences and both
    are limits, and a comparison matrix at 360px is either a horizontal
    scroller or unreadable. */
-.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 30px; max-width: 760px; }
+/* Two plans, so they split the section down the middle. The old 760px cap
+   dates from when this grid held three cards and 1/3 of 760 was a sensible
+   card; with two it just left a third of the row empty. */
+.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 30px; }
 .plan { border: 1px solid var(--line); border-radius: 16px; padding: 26px; background: var(--panel); }
 .plan.lit { border-color: rgba(255, 180, 84, .45); background: linear-gradient(180deg, rgba(255, 180, 84, .05), var(--panel) 60%); }
 .plan h3 { font-family: var(--display); font-weight: 900; font-size: 20px; }

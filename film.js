@@ -1066,11 +1066,79 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   }
 
   /* ------------------------------ controls ------------------------------ */
+  /* ---- fitting the picture ----
+     The stage is a fixed 1000x563 coordinate space, but no scene paints all
+     of it: every one draws inside a centred column no wider than SAFE_W, and
+     the rest is empty margin. Fitting all 1000 units is right whenever height
+     is what runs out — a wide window, the poster frame — and wrong when width
+     is. On a phone-shaped window it spent more than a third of the screen on
+     margin and left the app mock the size of a postage stamp. So the fit is
+     taken against the column instead, and the empty margins run off the
+     sides, where .film-stagewrap clips them. Nothing is lost that way: the
+     column is 600 units at its widest, so it always lands inside the screen
+     with room to spare.
+
+     The rest is where the three pieces that are NOT the picture go. In the
+     poster frame that is styles.css's business. Full screen, film.css pins
+     the caption and BOBO to the bottom edge, which was right when the film
+     was only ever shown on a desktop and is what put BOBO across the caption
+     with the timecode printed over his name on a phone. So full screen the
+     placement is derived here, and it differs by which way the screen runs:
+
+       tall  — the picture cannot fill the height, so picture, caption and
+               BOBO are stacked as one block between the bar and the controls;
+       short — the picture cannot fill the width, so it keeps the middle with
+               the caption over it, and BOBO stands in the side margin the
+               fit leaves, narrowed to whatever that margin can hold. */
+  const SAFE_W = 660, STAGE_H = 563;
   function fit() {
-    const availW = overlay.clientWidth * 0.96;
-    const availH = overlay.clientHeight * 0.82;
-    const s = Math.min(availW / 1000, availH / 563);
+    const W = overlay.clientWidth, H = overlay.clientHeight;
+    const byWidth = W * 0.96 / SAFE_W, byHeight = H * 0.82 / STAGE_H;
+    const s = Math.min(byWidth, byHeight);
     stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+
+    // Inside the poster frame every piece is laid out in container units by
+    // styles.css, which knows the frame's shape. Hand them all back.
+    if (getComputedStyle(overlay).position !== 'fixed') {
+      stage.style.top = '';
+      caption.style.top = caption.style.bottom = caption.style.width = '';
+      host.style.left = host.style.bottom = host.style.width = '';
+      return;
+    }
+
+    // The controls own the bottom strip of the screen either way: BOBO stands
+    // on top of them, never inside them.
+    const stageH = STAGE_H * s, stageW = 1000 * s;
+    const ctrlH = controls.offsetHeight;
+    host.style.bottom = (ctrlH + 10) + 'px';
+
+    if (byHeight <= byWidth) {
+      stage.style.top = '';
+      caption.style.top = caption.style.bottom = '';
+      const margin = (W - stageW) / 2;
+      const hostW = Math.max(72, Math.min(132, margin - 12));
+      host.style.width = hostW + 'px';
+      host.style.left = Math.max(6, margin - hostW - 8) + 'px';
+      // The caption belongs to the picture, so it is measured against the
+      // picture rather than the screen — otherwise it runs out past the sides
+      // of the film and into BOBO's margin.
+      caption.style.width = Math.min(920, Math.max(280, stageW * 0.88)) + 'px';
+      return;
+    }
+
+    host.style.left = host.style.width = '';
+    caption.style.width = '';
+    // Three lines of caption held in reserve rather than the caption's own
+    // height: measuring it would shift the whole composition every time the
+    // line changed, which is once every few seconds for 97 seconds.
+    const barH = top.offsetHeight;
+    const capLine = parseFloat(getComputedStyle(caption).fontSize) * 1.3;
+    const gap = Math.min(28, Math.round(H * 0.03));
+    const floor = H - ctrlH - 10 - host.offsetHeight - gap;
+    const y0 = barH + Math.max(0, (floor - barH - (stageH + gap + capLine * 3)) / 2);
+    stage.style.top = Math.round(y0 + stageH / 2) + 'px';
+    caption.style.top = Math.round(y0 + stageH + gap) + 'px';
+    caption.style.bottom = 'auto';
   }
   window.addEventListener('resize', () => { if (!overlay.hidden) fit(); });
 

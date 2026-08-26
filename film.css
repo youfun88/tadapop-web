@@ -237,6 +237,15 @@
   font-family: var(--f-mono); font-size: 10px; letter-spacing: .14em; color: var(--f-dim);
 }
 .film-host .film-host-name b { color: var(--f-amber); font-weight: 700; }
+
+/* Taking the whole screen, the film has no frame to stand BOBO in and no
+   empty margin to stand him on: at 132px he is a quarter of a phone's width,
+   leaning into the picture. fit() lifts him clear of the controls; the width
+   is a fraction of the screen here, not a constant. */
+@media (max-width: 899px) {
+  .film-host { left: 14px; width: clamp(84px, 21vw, 132px); }
+  .film-caption { width: min(92vw, 920px); }
+}
 /* Bobo's "Tada!" celebration bubble (pops on task completion) */
 .film-host-tada {
   position: absolute; top: -14px; left: 70px; z-index: 5;
