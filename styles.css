@@ -1008,15 +1008,24 @@ section[id] { scroll-margin-top: calc(var(--bar) + 12px); }
 
 /* ── 2 · hero: the film player is the hero ────────────────────────── */
 .home-hero { max-width: 1040px; margin: 0 auto; padding: 26px 20px 8px; text-align: center; }
+/* The dot belongs to the version, not to the line. As a flex item beside a
+   single text item it could only ever wrap as a whole: on a phone, where the
+   line runs to two, the text moved down and left the dot alone and centred on
+   a row of its own. Inline it is instead — part of the text it labels, glued
+   to "v1.4.2" by the markup carrying no space between them — so the text
+   wraps as text and the dot never leads an empty line. */
 .status-chip {
-  display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
+  display: inline-block; text-align: center;
   font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px;
   color: var(--amber);
   border: 1px solid rgba(255, 180, 84, .3);
   background: rgba(255, 180, 84, .06);
   border-radius: 999px; padding: 7px 15px; margin-bottom: 18px;
 }
-.status-chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--go); box-shadow: 0 0 10px 1px rgba(91, 227, 155, .8); }
+.status-chip i {
+  display: inline-block; width: 7px; height: 7px; margin-right: 9px; vertical-align: middle;
+  border-radius: 50%; background: var(--go); box-shadow: 0 0 10px 1px rgba(91, 227, 155, .8);
+}
 /* The headline is not the hero here — the player is — so it says the thing
    and gets out of the way. No hand-placed <br>: clamp plus text-wrap breaks
    it sensibly at every width, which a fixed break never did at 360. */
