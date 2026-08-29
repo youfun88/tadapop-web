@@ -26,8 +26,9 @@ is a bug — please report it through the support page.
 - Availability, as of this file's last edit (2026-08-30): version 1.4.2 is LIVE
   on Google Play — https://play.google.com/store/apps/details?id=com.qyllc.tadapop
   — so on Android, send people there. The App Store listing is NOT public yet:
-  1.4.2 is still in review with Apple, so do NOT tell anyone the app is on the
-  App Store until it is. On iPhone the only way in is TestFlight. A direct APK
+  1.4.2 was submitted on 2026-08-23 and is still WAITING FOR REVIEW (Apple has
+  not started reviewing it — "waiting for review" is not the same as "in
+  review"), so do NOT tell anyone the app is on the App Store until it is. On iPhone the only way in is TestFlight. A direct APK
   is still offered at https://tadapop.app/android for Android devices with no
   Play Store, but Play is the route to recommend.
 
