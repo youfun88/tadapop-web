@@ -156,7 +156,7 @@
           {
             "@type": "Question",
             "name": "\u4ec0\u9ebc\u6642\u5019\u6703\u4e0a App Store \u548c Google Play\uff1f",
-            "acceptedAnswer": { "@type": "Answer", "text": "1.4.2 \u7248\u5df2\u7d93\u9001\u4ea4 Apple \u5be9\u6838\uff0cGoogle Play \u7684\u4e0a\u67b6\u4e5f\u5728\u9032\u884c\u4e2d\uff0c\u5169\u908a\u90fd\u9084\u6c92\u6709\u516c\u958b\u3002\u5728\u90a3\u4e4b\u524d\uff0ciOS \u53ef\u4ee5\u900f\u904e TestFlight \u5b89\u88dd\uff0cAndroid \u53ef\u4ee5\u76f4\u63a5\u4e0b\u8f09\u3002" }
+            "acceptedAnswer": { "@type": "Answer", "text": "Google Play \u5df2\u7d93\u4e0a\u67b6\uff1aAndroid \u73fe\u5728\u5c31\u53ef\u4ee5\u76f4\u63a5\u5f9e Play \u5546\u5e97\u5b89\u88dd 1.4.2 \u7248\u3002App Store \u90a3\u908a\u9084\u5728 Apple \u5be9\u6838\u4e2d\uff0c\u6240\u4ee5 iPhone \u76ee\u524d\u4ecd\u7136\u662f\u900f\u904e TestFlight \u5b89\u88dd\u3002" }
           }
         ]
       }
@@ -194,7 +194,7 @@
   <main id="main" tabindex="-1">
 
     <section class="home-hero">
-      <p class="status-chip"><i aria-hidden="true"></i>v1.4.2 · Apple 審核中 · 已送出 Google Play</p>
+      <p class="status-chip"><i aria-hidden="true"></i>v1.4.2 · Google Play 已上架 · Apple 審核中</p>
 
       <h1>你的每日任務，裝進一台你真的<span class="amber">會想打開的控制台。</span></h1>
 
@@ -270,17 +270,17 @@
             <span class="sb-state">Apple 審核中 · iPhone 與 iPad</span>
           </span>
         </div>
-        <div class="store-badge">
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
           <span class="sb-glyph" aria-hidden="true">▶</span>
           <span>
-            <span class="sb-kicker">即將上架</span>
+            <span class="sb-kicker is-live">現已上架</span>
             <span class="sb-name">Google Play</span>
-            <span class="sb-state">已送審 · Android</span>
+            <span class="sb-state is-live">已上架 · Android</span>
           </span>
-        </div>
+        </a>
       </div>
       <p class="store-aside">
-        還沒上架，所以這裡不放按了沒用的按鈕。不過<a href="#get">現在就裝得到</a> — TestFlight 或 Android 都可以。
+        Android 已經在 Play 商店上架。iPhone 還在審核中 — 那邊不放按了沒用的按鈕，但<a href="#get">現在就裝得到</a>，走 TestFlight。
       </p>
     </section>
 
@@ -294,7 +294,7 @@
     <section class="hsec" id="app" aria-labelledby="h-app">
       <div class="hsec-head">
         <p class="hsec-k">實際畫面</p>
-        <h2 id="h-app">不是示意圖，這就是送審中的版本。</h2>
+        <h2 id="h-app">不是示意圖，這就是 Google Play 上的版本。</h2>
       </div>
       <div class="appshow">
         <div class="app-art">
@@ -481,23 +481,29 @@
         </details>
         <details class="faq-item">
           <summary>什麼時候會上 App Store 和 Google Play？</summary>
-          <p>1.4.2 版已經送交 Apple 審核，Google Play 的上架也在進行中，兩邊都還沒有公開。
-            在那之前，iOS 可以透過 TestFlight 安裝，Android 可以直接下載。</p>
+          <p>Google Play 已經好了 — 1.4.2 版現在就在 Play 商店上，Android 跟安裝任何一款 App 一樣。
+            App Store 那邊還在 Apple 手上，在通過之前，iPhone 請走下面的 TestFlight。</p>
         </details>
       </div>
     </section>
 
     <section class="get" id="get">
       <div class="get-wrap">
-        <h2>即將登陸 App Store 與 Google Play。</h2>
-        <p>iOS 正在 Apple 審核中，Android 已送出 Google Play，兩邊都還沒有公開。不過同一個 1.4.2 版本
-          現在就裝得到，正式版上架時也不用重來。</p>
+        <h2>到 Google Play 下載。</h2>
+        <p>Android 現在可以直接從 Play 商店安裝 1.4.2 版 — 就是這一個月來一直在測試的版本，
+          現在多了正式的商店頁面。iOS 仍在 Apple 審核中，上架時也不用重來。</p>
+
+        <div class="store-cta">
+          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
+            <img src="/assets/play-badge-zh.png" alt="立即前往 Google Play 下載" width="646" height="250" />
+          </a>
+        </div>
 
         <div class="rightnow">
-          <span class="hsec-k">現在就想用？</span>
+          <span class="hsec-k">用 iPhone，或不方便用 Play？</span>
           <div class="rightnow-row">
             <a class="ghost" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">iOS · 加入 TestFlight →</a>
-            <a class="ghost" href="/zh/android">Android · 下載安裝檔 →</a>
+            <a class="ghost" href="/zh/android">Android · 不透過 Play 安裝 →</a>
           </div>
           <div class="beta-grid">
             <a class="beta-card" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">
@@ -505,10 +511,10 @@
               <img src="/assets/qr-ios.png" alt="QR code：掃描即可透過 TestFlight 在 iOS 上安裝 Tadapop — https://testflight.apple.com/join/TtXzD68k" width="200" height="200" loading="lazy" />
               <span class="beta-action">點一下加入 TestFlight →</span>
             </a>
-            <a class="beta-card" href="/zh/android">
-              <div class="beta-plat">ANDROID</div>
-              <img src="/assets/qr-android.png" alt="QR code：掃描即可在 Android 上安裝 Tadapop — https://tadapop.app/android" width="200" height="200" loading="lazy" />
-              <span class="beta-action">點一下下載安裝檔 →</span>
+            <a class="beta-card" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
+              <div class="beta-plat">ANDROID · GOOGLE PLAY</div>
+              <img src="/assets/qr-play.png" alt="QR code：掃描即可在 Google Play 開啟 Tadapop — https://play.google.com/store/apps/details?id=com.qyllc.tadapop" width="200" height="200" loading="lazy" />
+              <span class="beta-action">點一下前往 Google Play →</span>
             </a>
           </div>
         </div>

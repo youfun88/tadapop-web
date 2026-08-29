@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Test Tadapop on Android</title>
-  <meta name="description" content="Install the Tadapop Android test build." />
+  <title>Install Tadapop on Android</title>
+  <meta name="description" content="Install Tadapop on Android from Google Play, or sideload the APK directly." />
   <meta name="robots" content="noindex" />
 
   <link rel="alternate" hreflang="en" href="https://tadapop.app/android" />
@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="/styles.css" />
   <style>
     .install-cta { text-align: center; margin: 28px 0 8px; }
+    .play-cta { text-align: center; margin: 24px 0 6px; }
+    .play-cta img { height: 76px; width: auto; }  /* PNG has ~33% built-in clear space */
+    .fallback-rule { border: 0; border-top: 1px solid var(--line); margin: 40px 0 0; }
     .install-cta .button { font-size: 17px; padding: 16px 34px; }
     .qr-card {
       margin: 28px auto;
@@ -75,18 +78,32 @@
   </header>
 
   <main class="doc" id="main" tabindex="-1">
-    <h1>Test Tadapop on Android</h1>
-    <div class="updated">Android test build · v1.4.1 · 5 August 2026</div>
+    <h1>Install Tadapop on Android</h1>
+    <div class="updated">v1.4.2 · on Google Play since 29 August 2026</div>
 
-    <p>Tadapop is in testing. Install the Android build below to try it out — your feedback helps shape the app.</p>
+    <p>Tadapop is on Google Play. That is the way in for almost everyone: it installs like any
+      other app, updates itself, and skips the unknown-source warning entirely.</p>
 
-    <div class="install-cta">
-      <a class="button" href="/tadapop.apk" download>Download for Android</a>
+    <div class="play-cta">
+      <a href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
+        <img src="/assets/play-badge-en.png" alt="Get it on Google Play" width="646" height="250" />
+      </a>
     </div>
 
     <div class="qr-card">
-      <img src="/android/qr.png" alt="QR code: scan to open this page — https://tadapop.app/android" / width="600" height="600" loading="lazy" decoding="async">
+      <img src="/assets/qr-play.png" alt="QR code: scan to open Tadapop on Google Play — https://play.google.com/store/apps/details?id=com.qyllc.tadapop" width="600" height="600" loading="lazy" decoding="async">
       <div class="qr-label">On a computer? Scan with your Android phone</div>
+    </div>
+
+    <hr class="fallback-rule" />
+
+    <h2>If you can't use Google Play</h2>
+    <p>Some devices ship without the Play Store. For those, the same v1.4.2 build is available as a
+      direct <code>.apk</code>. Everything works the same — but nothing updates itself, so you have
+      to come back here for each new version. If Play is an option, use Play.</p>
+
+    <div class="install-cta">
+      <a class="button" href="/tadapop.apk" download>Download the APK instead</a>
     </div>
 
     <h2>What's new in this build</h2>
@@ -107,9 +124,9 @@
       <li><strong>Earned app icons are iPhone-only.</strong> Changing the icon on Android means closing and reopening the app and can break home-screen shortcuts, so Android keeps one icon.</li>
     </ul>
 
-    <h2>How to install</h2>
+    <h2>How to install the APK</h2>
     <ol class="steps">
-      <li>Tap <strong>Download for Android</strong> above and open the downloaded <code>.apk</code> file.</li>
+      <li>Tap <strong>Download the APK instead</strong> above and open the downloaded <code>.apk</code> file.</li>
       <li>If Android warns about an unknown source, tap <strong>Settings</strong> → enable <strong>Allow from this source</strong>, then go back.</li>
       <li>Tap <strong>Install</strong>, then open <strong>Tadapop</strong> from your app drawer.</li>
     </ol>
@@ -120,7 +137,9 @@
       <li><strong>Android only.</strong> This is an <code>.apk</code> — it can't be installed on an iPhone.</li>
       <li><strong>Solo tracking needs no account.</strong> An account (a quick email code) is only needed for the Arena.</li>
       <li><strong>Opening an invite link?</strong> On Android it lands on a web page first — tap <strong>Open in Tadapop</strong> there to jump into the app.</li>
-      <li>This is a pre-release test build, so expect rough edges — that's what we're testing.</li>
+      <li><strong>Installed the APK before?</strong> Play won't recognise it as the same app — uninstall
+        the sideloaded copy first if you want Play to handle updates from now on. Signed-in Arena data
+        comes back when you sign in; solo data on that device does not.</li>
     </ul>
 
     <p class="note">Questions or bugs? <a href="/support">Contact support</a>. By installing you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>

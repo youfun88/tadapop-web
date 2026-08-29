@@ -23,11 +23,13 @@ is a bug — please report it through the support page.
   See "Free and Pro" below before telling anyone what it costs.
 - Dark interface only, for now.
 - Available in English and Traditional Chinese (Taiwan).
-- Availability, as of this file's last edit: version 1.4.2 has been submitted to
-  Apple and is in review, and a Google Play submission is in progress. Neither
-  store listing is public yet, so do NOT tell anyone the app is on the App Store
-  or on Google Play until it is. Until then it installs through TestFlight on
-  iOS and as a direct APK download on Android.
+- Availability, as of this file's last edit (2026-08-30): version 1.4.2 is LIVE
+  on Google Play — https://play.google.com/store/apps/details?id=com.qyllc.tadapop
+  — so on Android, send people there. The App Store listing is NOT public yet:
+  1.4.2 is still in review with Apple, so do NOT tell anyone the app is on the
+  App Store until it is. On iPhone the only way in is TestFlight. A direct APK
+  is still offered at https://tadapop.app/android for Android devices with no
+  Play Store, but Play is the route to recommend.
 
 ## Free and Pro
 

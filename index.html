@@ -188,7 +188,7 @@
           {
             "@type": "Question",
             "name": "When will it be on the App Store and Google Play?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Version 1.4.2 is with Apple for review and a Google Play release is in progress. Neither listing is public yet. Until they are, you can install through TestFlight on iOS or download the Android build." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Google Play is live: Android can install version 1.4.2 from the Play Store today. The App Store listing is still with Apple for review, so on iPhone the way in is TestFlight until it clears." }
           }
         ]
       }
@@ -235,7 +235,7 @@
          scene, rebuilt: pressing play does not cut to something else, the
          same picture gets bigger and starts talking. -->
     <section class="home-hero">
-      <p class="status-chip"><i aria-hidden="true"></i>v1.4.2 · IN REVIEW WITH APPLE · SUBMITTED TO GOOGLE PLAY</p>
+      <p class="status-chip"><i aria-hidden="true"></i>v1.4.2 · LIVE ON GOOGLE PLAY · IN REVIEW WITH APPLE</p>
 
       <h1>Your daily missions, on a console you actually <span class="amber">want to open.</span></h1>
 
@@ -325,17 +325,18 @@
             <span class="sb-state">In review with Apple · iPhone &amp; iPad</span>
           </span>
         </div>
-        <div class="store-badge">
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
           <span class="sb-glyph" aria-hidden="true">▶</span>
           <span>
-            <span class="sb-kicker">COMING TO</span>
+            <span class="sb-kicker is-live">AVAILABLE ON</span>
             <span class="sb-name">Google Play</span>
-            <span class="sb-state">Submitted, in review · Android</span>
+            <span class="sb-state is-live">Live now · Android</span>
           </span>
-        </div>
+        </a>
       </div>
       <p class="store-aside">
-        Not live yet — no fake buttons. You can <a href="#get">install it today</a> on TestFlight or Android.
+        Android is on Play today. iPhone is still in review — no fake buttons for that one, but you can
+        <a href="#get">install it now</a> on TestFlight.
       </p>
     </section>
 
@@ -351,7 +352,7 @@
     <section class="hsec" id="app" aria-labelledby="h-app">
       <div class="hsec-head">
         <p class="hsec-k">THE ACTUAL APP</p>
-        <h2 id="h-app">Not a mockup. This is the build in review.</h2>
+        <h2 id="h-app">Not a mockup. This is the build on Google Play.</h2>
       </div>
       <div class="appshow">
         <div class="app-art">
@@ -555,9 +556,9 @@
         </details>
         <details class="faq-item">
           <summary>When will it be on the App Store and Google Play?</summary>
-          <p>Version 1.4.2 is with Apple for review, and a Google Play release is in progress. Neither listing
-            is public yet. Until they are, you can install through TestFlight on iOS or download the Android
-            build below.</p>
+          <p>Google Play is done — version 1.4.2 is on the Play Store now, so Android installs it like any
+            other app. The App Store listing is still with Apple. Until that clears, iPhone goes through
+            TestFlight below.</p>
         </details>
       </div>
     </section>
@@ -565,15 +566,22 @@
     <!-- ============ 10 · get it ============ -->
     <section class="get" id="get">
       <div class="get-wrap">
-        <h2>Coming to the App Store and Google Play.</h2>
-        <p>iOS is in review with Apple. Android is submitted to Google Play. Neither listing is public yet —
-          but the same 1.4.2 build installs today, and nothing resets when the store versions arrive.</p>
+        <h2>Get it on Google Play.</h2>
+        <p>Android installs version 1.4.2 straight from the Play Store — the same build that has been in
+          testing all month, now with a store listing behind it. iOS is still in review with Apple; nothing
+          resets when that one arrives.</p>
+
+        <div class="store-cta">
+          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
+            <img src="/assets/play-badge-en.png" alt="Get it on Google Play" width="646" height="250" />
+          </a>
+        </div>
 
         <div class="rightnow">
-          <span class="hsec-k">WANT IT BEFORE THEN?</span>
+          <span class="hsec-k">ON IPHONE, OR WITHOUT PLAY?</span>
           <div class="rightnow-row">
             <a class="ghost" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">iOS · Join the TestFlight →</a>
-            <a class="ghost" href="/android">Android · Download the build →</a>
+            <a class="ghost" href="/android">Android · Install without Play →</a>
           </div>
           <!-- The QR cards are the same ones that used to be the main call to
                action. They are still useful on a desktop, and hidden at phone
@@ -584,10 +592,10 @@
               <img src="/assets/qr-ios.png" alt="QR code: scan to install Tadapop on iOS via TestFlight — https://testflight.apple.com/join/TtXzD68k" width="200" height="200" loading="lazy" />
               <span class="beta-action">Tap to join the TestFlight →</span>
             </a>
-            <a class="beta-card" href="/android">
-              <div class="beta-plat">ANDROID</div>
-              <img src="/assets/qr-android.png" alt="QR code: scan to install Tadapop on Android — https://tadapop.app/android" width="200" height="200" loading="lazy" />
-              <span class="beta-action">Tap to download the build →</span>
+            <a class="beta-card" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
+              <div class="beta-plat">ANDROID · GOOGLE PLAY</div>
+              <img src="/assets/qr-play.png" alt="QR code: scan to open Tadapop on Google Play — https://play.google.com/store/apps/details?id=com.qyllc.tadapop" width="200" height="200" loading="lazy" />
+              <span class="beta-action">Tap to open Google Play →</span>
             </a>
           </div>
         </div>

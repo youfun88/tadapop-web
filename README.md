@@ -25,7 +25,14 @@ vercel.json       clean URLs + cache headers
 
 The home page offers open-beta installs via QR codes in `assets/`:
 
-- **Android:** `assets/qr-android.png` → Play Store / APK link.
+- **Android:** `assets/qr-play.png` → the Google Play listing,
+  `https://play.google.com/store/apps/details?id=com.qyllc.tadapop` (live since
+  2026-08-29). The official Play badge is `assets/play-badge-en.png` /
+  `assets/play-badge-zh.png`, downloaded unmodified from Google as their brand
+  guidelines require — do not recolour or crop them.
+  The older `assets/qr-android.png` (→ `/android`) and `android/qr.png` are now
+  unused by the home page; `/android` survives as the sideload fallback for
+  devices with no Play Store.
 - **iOS:** `assets/qr-ios.png` → `https://testflight.apple.com/join/TtXzD68k`
   (same URL as the "Get it on iOS (TestFlight)" button in `index.html`).
 

@@ -1174,6 +1174,23 @@ section[id] { scroll-margin-top: calc(var(--bar) + 12px); }
 .sb-kicker { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; color: var(--amber); }
 .sb-name { display: block; font-family: var(--display); font-weight: 700; font-size: 17px; line-height: 1.25; }
 .sb-state { display: block; font-family: var(--mono); font-size: 11px; color: var(--faint); margin-top: 2px; }
+/* A store badge becomes a LINK the moment that store is live, and stays a
+   plain <div> while it isn't. The difference between the two is the whole
+   point of the row: one of them you can press. */
+a.store-badge { text-decoration: none; color: inherit; transition: border-color .15s ease; }
+a.store-badge:hover { border-color: var(--amber); }
+.sb-kicker.is-live { color: var(--go); }
+.sb-state.is-live { color: var(--dim); }
+
+/* Google's badge, unmodified, as their brand guidelines require.
+   The PNG carries its own transparent clear space — 41px of the 250px canvas
+   at the top and bottom — so the VISIBLE button is only 67% of whatever height
+   you set. 56px looked right in the stylesheet and rendered a 38px button,
+   under Google's 40px minimum. 76px puts the visible button at ~51px. */
+.store-cta { margin: 22px 0 2px; }
+.play-badge { display: inline-block; line-height: 0; }
+.play-badge img { height: 76px; width: auto; display: block; }
+
 .store-aside { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 14px; }
 .store-aside a { color: var(--dim); border-bottom: 1px solid var(--line-lit); padding-bottom: 1px; }
 .store-aside a:hover { color: var(--amber); border-color: var(--amber); }
