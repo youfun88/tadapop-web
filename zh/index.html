@@ -32,15 +32,19 @@
   <link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/" />
 
   <link rel="icon" href="/assets/favicon.png" />
-  <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
-       so the first paint no longer waits on a fonts.googleapis.com round trip and
-       then a second one to fonts.gstatic.com. The two faces below are the ones the
-       first screen actually paints with — the headline (Chivo 900) and body copy
-       (Inter 400) — so they are preloaded rather than being discovered only once
-       styles.css has finished parsing. crossorigin is required on a font preload
-       even for a same-origin file; without it the browser fetches it twice. -->
-  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/chivo-900-latin.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+  <!-- Fonts are self-hosted (the @font-face block at the top of styles.css), so
+       the first paint no longer waits on a fonts.googleapis.com round trip and
+       then a second one to fonts.gstatic.com. They are deliberately NOT
+       preloaded any more — see the note below. -->
+  <!-- Lighthouse names img.poster-bobo as the LCP element, and its phase
+       breakdown put ~0.7s into Load Delay before the request even started: a
+       plain <img> this deep in the document is found late and queued at low
+       priority behind everything else on the connection. Naming it here is what
+       the "LCP request discovery" audit asks for. The fonts used to be
+       preloaded on this line instead, which was worse than useless once the LCP
+       turned out to be an image: they won the bandwidth this file needed, while
+       font-display:swap already paints the text without them. -->
+  <link rel="preload" as="image" href="/assets/bobo-poster.webp" fetchpriority="high" />
   <link rel="stylesheet" href="/styles.css" />
   <!-- film.css styles nothing that exists at first paint: the player is built by
        film.js, which is deferred. Loading it as media="print" and flipping to
@@ -236,7 +240,7 @@
 
             <p class="poster-cap">喂！說你喔。嘴上老是<span class="hi">明天明天</span>。</p>
 
-            <img class="poster-bobo" src="/assets/bobo-poster.webp" alt="" width="363" height="420" decoding="async" />
+            <img class="poster-bobo" src="/assets/bobo-poster.webp" alt="" width="363" height="420" fetchpriority="high" decoding="async" />
 
             <div class="poster-barspace" aria-hidden="true"></div>
           </div>
