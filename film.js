@@ -758,8 +758,28 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      GainNode does — and routing this through a GainNode is not an option,
      see the note on the voiceover element. */
   const MUSIC_FULL = 1, MUSIC_DUCK = 0.45;
-  const music = new Audio('/assets/music/film-bed.mp3?v=' + VOV);
-  music.preload = 'auto';
+  const MUSIC_SRC = '/assets/music/film-bed.mp3?v=' + VOV;
+  const music = new Audio(MUSIC_SRC);
+  /* preload was 'auto', which fetched all 1.2 MB of the score on every page
+     load — for a film most visitors never press play on. It is by far the
+     largest thing the site ships, and on a throttled connection it saturated
+     the pipe for about six seconds, which is where the home page's Largest
+     Contentful Paint was going: the poster image had downloaded but could not
+     paint while this was in flight. Same treatment as the voiceover above:
+     nothing until intent, then warm the HTTP cache so pressing play is still
+     instant. */
+  music.preload = 'none';
+  let musicWarmed = false;
+  function warmMusic() {
+    if (musicWarmed) return;
+    musicWarmed = true;
+    try { fetch(MUSIC_SRC, { cache: 'force-cache' }).catch(() => {}); } catch (e) {}
+  }
+  if (launch) {
+    launch.addEventListener('pointerenter', warmMusic, { once: true });
+    launch.addEventListener('focus', warmMusic, { once: true });
+    launch.addEventListener('touchstart', warmMusic, { once: true, passive: true });
+  }
   music.loop = true; // the end card outlasts the track
   music.volume = 0;
   let musicRamp = null, musicOff = null;
@@ -972,6 +992,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     fit();
     if (!muted) ac();
     warmVO();
+    warmMusic();
     startMusic(true);
     pickVoice();
     rootAnims.forEach((a) => { try { a.cancel(); } catch (e) {} });
