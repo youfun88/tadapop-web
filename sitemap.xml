@@ -20,113 +20,135 @@
   stale every release, and /join is what an invite link opens, not something
   anyone should arrive at from a search result. If either should be indexed,
   remove its noindex FIRST and add it here second.
+
+  lastmod was absent entirely. It is worth having now precisely because of the
+  host migration: every canonical on the site moved from the apex to www on
+  2026-08-30, so every one of these pages genuinely changed on that date, and
+  saying so is what asks Google to recrawl them rather than sit on the cached
+  apex versions. Identical dates are correct here for the same reason — it was
+  one site-wide edit. Keep this honest: a lastmod that does not track real
+  content changes is one Google learns to ignore.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://tadapop.app/</loc>
+    <loc>https://www.tadapop.app/</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/"/>
   </url>
   <url>
-    <loc>https://tadapop.app/zh</loc>
+    <loc>https://www.tadapop.app/zh</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/"/>
   </url>
 
   <url>
-    <loc>https://tadapop.app/rewards</loc>
+    <loc>https://www.tadapop.app/rewards</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/rewards"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rewards"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/rewards"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/rewards"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/rewards"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/rewards"/>
   </url>
   <url>
-    <loc>https://tadapop.app/zh/rewards</loc>
+    <loc>https://www.tadapop.app/zh/rewards</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/rewards"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rewards"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/rewards"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/rewards"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/rewards"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/rewards"/>
   </url>
 
   <url>
-    <loc>https://tadapop.app/rules</loc>
+    <loc>https://www.tadapop.app/rules</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/rules"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rules"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/rules"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/rules"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/rules"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/rules"/>
   </url>
   <url>
-    <loc>https://tadapop.app/zh/rules</loc>
+    <loc>https://www.tadapop.app/zh/rules</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/rules"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rules"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/rules"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/rules"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/rules"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/rules"/>
   </url>
 
   <url>
-    <loc>https://tadapop.app/support</loc>
+    <loc>https://www.tadapop.app/support</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/support"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/support"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/support"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/support"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/support"/>
   </url>
   <url>
-    <loc>https://tadapop.app/zh/support</loc>
+    <loc>https://www.tadapop.app/zh/support</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/support"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/support"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/support"/>
-  </url>
-
-  <url>
-    <loc>https://tadapop.app/privacy</loc>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/privacy"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/privacy"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/privacy"/>
-  </url>
-  <url>
-    <loc>https://tadapop.app/zh/privacy</loc>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/privacy"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/privacy"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/support"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/support"/>
   </url>
 
   <url>
-    <loc>https://tadapop.app/terms</loc>
+    <loc>https://www.tadapop.app/privacy</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/terms"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/terms"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/privacy"/>
   </url>
   <url>
-    <loc>https://tadapop.app/zh/terms</loc>
+    <loc>https://www.tadapop.app/zh/privacy</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/terms"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/terms"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/privacy"/>
+  </url>
+
+  <url>
+    <loc>https://www.tadapop.app/terms</loc>
+    <lastmod>2026-08-30</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/terms"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/zh/terms</loc>
+    <lastmod>2026-08-30</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/terms"/>
   </url>
 
 
   <url>
-    <loc>https://tadapop.app/delete-account</loc>
+    <loc>https://www.tadapop.app/delete-account</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/delete-account"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/delete-account"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/delete-account"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/delete-account"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/delete-account"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/delete-account"/>
   </url>
   <url>
-    <loc>https://tadapop.app/zh/delete-account</loc>
+    <loc>https://www.tadapop.app/zh/delete-account</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tadapop.app/delete-account"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/delete-account"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tadapop.app/delete-account"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/delete-account"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/delete-account"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/delete-account"/>
   </url>
 </urlset>

@@ -2,7 +2,7 @@
 
 Marketing landing page for **Tadapop** — the gamified daily habit tracker.
 
-- **Live:** https://tadapop.app
+- **Live:** https://www.tadapop.app
 - **Stack:** static HTML/CSS (no build step). Brand: midnight navy + amber console aesthetic.
 - **Install:** the home page offers open-beta installs (Android + iOS TestFlight) via QR codes — see the Beta install section below.
 - **Support form:** messages on `/support` are relayed to the support inbox via [Formsubmit](https://formsubmit.co) (no backend).

@@ -12,8 +12,8 @@
   <meta property="og:title" content="Tadapop — 每日習慣清單" />
   <meta property="og:description" content="一款遊戲化的每日習慣追蹤 App，骨子裡是一座任務控制中心。累積連續紀錄、賺進 T點數，再到競技場和朋友私下較勁。" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tadapop.app/zh" />
-  <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+  <meta property="og:url" content="https://www.tadapop.app/zh" />
+  <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
   <meta property="og:image:width" content="1024" />
   <meta property="og:image:height" content="1024" />
   <meta property="og:image:alt" content="Tadapop 標誌：深夜藍底上的琥珀色勾選符號。" />
@@ -23,20 +23,31 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tadapop — 每日習慣清單" />
   <meta name="twitter:description" content="一款遊戲化的每日習慣追蹤 App，骨子裡是一座任務控制中心。累積連續紀錄、賺進 T點數，再到競技場和朋友私下較勁。" />
-  <meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
+  <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
   <meta name="twitter:image:alt" content="Tadapop 標誌：深夜藍底上的琥珀色勾選符號。" />
 
-  <link rel="canonical" href="https://tadapop.app/zh" />
-  <link rel="alternate" hreflang="en" href="https://tadapop.app/" />
-  <link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh" />
-  <link rel="alternate" hreflang="x-default" href="https://tadapop.app/" />
+  <link rel="canonical" href="https://www.tadapop.app/zh" />
+  <link rel="alternate" hreflang="en" href="https://www.tadapop.app/" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh" />
+  <link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/" />
 
   <link rel="icon" href="/assets/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
+       so the first paint no longer waits on a fonts.googleapis.com round trip and
+       then a second one to fonts.gstatic.com. The two faces below are the ones the
+       first screen actually paints with — the headline (Chivo 900) and body copy
+       (Inter 400) — so they are preloaded rather than being discovered only once
+       styles.css has finished parsing. crossorigin is required on a font preload
+       even for a same-origin file; without it the browser fetches it twice. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/chivo-900-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/film.css" />
+  <!-- film.css styles nothing that exists at first paint: the player is built by
+       film.js, which is deferred. Loading it as media="print" and flipping to
+       "all" on load keeps 19 KiB off the critical path while still having it in
+       place long before anyone can press play. -->
+  <link rel="stylesheet" href="/film.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/film.css" /></noscript>
 
   <!--
     結構化資料 — the Chinese mirror of the graph on /. Terminology follows the
@@ -50,37 +61,37 @@
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://tadapop.app/zh#website",
-        "url": "https://tadapop.app/zh",
+        "@id": "https://www.tadapop.app/zh#website",
+        "url": "https://www.tadapop.app/zh",
         "name": "Tadapop",
         "inLanguage": "zh-Hant-TW",
-        "publisher": { "@id": "https://tadapop.app/#organization" }
+        "publisher": { "@id": "https://www.tadapop.app/#organization" }
       },
       {
         "@type": "WebPage",
-        "@id": "https://tadapop.app/zh#webpage",
-        "url": "https://tadapop.app/zh",
+        "@id": "https://www.tadapop.app/zh#webpage",
+        "url": "https://www.tadapop.app/zh",
         "name": "Tadapop — 每日習慣清單 · 任務控制中心風格的習慣追蹤 App",
         "description": "iOS 與 Android 上的免費習慣追蹤 App：用打勾、計次或計時記錄任務，每有一天把任務全部做完就得 1 T點數，還能在私人邀請制的競技場和朋友較勁。",
         "inLanguage": "zh-Hant-TW",
-        "isPartOf": { "@id": "https://tadapop.app/zh#website" },
-        "about": { "@id": "https://tadapop.app/zh#app" },
-        "primaryImageOfPage": { "@type": "ImageObject", "url": "https://tadapop.app/assets/og.png" }
+        "isPartOf": { "@id": "https://www.tadapop.app/zh#website" },
+        "about": { "@id": "https://www.tadapop.app/zh#app" },
+        "primaryImageOfPage": { "@type": "ImageObject", "url": "https://www.tadapop.app/assets/og.png" }
       },
       {
         "@type": "SoftwareApplication",
-        "@id": "https://tadapop.app/zh#app",
+        "@id": "https://www.tadapop.app/zh#app",
         "name": "Tadapop",
-        "url": "https://tadapop.app/zh",
+        "url": "https://www.tadapop.app/zh",
         "inLanguage": "zh-Hant-TW",
-        "sameAs": "https://tadapop.app/",
+        "sameAs": "https://www.tadapop.app/",
         "description": "Tadapop 是一款遊戲化的每日習慣追蹤 App，骨子裡是一座任務控制中心。任務可以用打勾、計次或倒數計時記錄，完全離線也能運作，個人使用不需要帳號。一天之內把當天所有任務都做完，就得到 1 T點數；T點數決定你的等級和可解鎖的外觀。競技場則是私人、邀請制的競賽功能，沒有公開排行榜，也不涉及真實金錢。",
         "applicationCategory": "LifestyleApplication",
         "applicationSubCategory": "Habit Tracker",
         "operatingSystem": "iOS, Android",
-        "image": "https://tadapop.app/assets/og.png",
-        "publisher": { "@id": "https://tadapop.app/#organization" },
-        "author": { "@id": "https://tadapop.app/#organization" },
+        "image": "https://www.tadapop.app/assets/og.png",
+        "publisher": { "@id": "https://www.tadapop.app/#organization" },
+        "author": { "@id": "https://www.tadapop.app/#organization" },
         "isAccessibleForFree": true,
         "softwareVersion": "1.4.2",
         "offers": {
@@ -118,15 +129,15 @@
           "等級、徽章和外觀全都靠累積達成，無法購買",
           "競技場：和朋友之間私人、邀請制的挑戰，附即時排行榜"
         ],
-        "softwareHelp": { "@type": "CreativeWork", "url": "https://tadapop.app/zh/support" },
-        "termsOfService": "https://tadapop.app/zh/terms",
-        "privacyPolicy": "https://tadapop.app/zh/privacy"
+        "softwareHelp": { "@type": "CreativeWork", "url": "https://www.tadapop.app/zh/support" },
+        "termsOfService": "https://www.tadapop.app/zh/terms",
+        "privacyPolicy": "https://www.tadapop.app/zh/privacy"
       }      ,
       {
         "@type": "FAQPage",
-        "@id": "https://tadapop.app/zh#faq",
+        "@id": "https://www.tadapop.app/zh#faq",
         "inLanguage": "zh-Hant",
-        "isPartOf": { "@id": "https://tadapop.app/zh#webpage" },
+        "isPartOf": { "@id": "https://www.tadapop.app/zh#webpage" },
         "mainEntity": [
           {
             "@type": "Question",
@@ -171,7 +182,7 @@
   <header class="site-nav" id="siteNav">
     <div class="site-nav-in">
       <a class="site-brand" href="/zh">
-        <img src="/assets/logo.png" alt="Tadapop" width="30" height="30" />
+        <img src="/assets/logo-96.png" alt="Tadapop" width="30" height="30" />
         <span class="site-brand-name">TADAPOP</span>
       </a>
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
@@ -208,7 +219,7 @@
             <span class="poster-corner br" aria-hidden="true"></span>
 
             <div class="poster-top">
-              <span class="pt-brand"><img src="/assets/logo.png" alt="" width="22" height="22" /> TADAPOP</span>
+              <span class="pt-brand"><img src="/assets/logo-96.png" alt="" width="22" height="22" /> TADAPOP</span>
               <span class="pt-cc">字幕 · 中 / EN</span>
             </div>
 
@@ -306,7 +317,7 @@
             </div>
             <div class="device device-front">
               <div class="device-frame"><span class="device-screen">
-                <img src="/assets/shots/01-today.webp" width="660" height="1434" fetchpriority="high" decoding="async"
+                <img src="/assets/shots/01-today.webp" width="660" height="1434" loading="lazy" decoding="async"
                      alt="「今天」畫面：問候語、4 項任務完成 1 項、還差 3 項才拿得到今天的 T點數，以及「喝水 5/8 杯」「閱讀 0/20 頁」「重量訓練 本週 2/3」和 10 分鐘的「冥想」計時任務。" />
               </span></div>
             </div>
@@ -525,7 +536,7 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+      <img class="brand-logo" src="/assets/logo-96.png" alt="Tadapop" width="24" height="24" /> TADAPOP
     </div>
     <nav class="footer-links" aria-label="頁尾連結">
       <a href="/zh/rewards">你會得到什麼</a>

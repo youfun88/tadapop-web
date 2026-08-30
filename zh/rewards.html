@@ -8,16 +8,16 @@
 <meta name="theme-color" content="#0B0E17" />
 <link rel="icon" href="/assets/favicon.png" />
 <!-- Was missing a self-referencing canonical, same as the English page. -->
-<link rel="canonical" href="https://tadapop.app/zh/rewards" />
-<link rel="alternate" hreflang="en" href="https://tadapop.app/rewards" />
-<link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rewards" />
-<link rel="alternate" hreflang="x-default" href="https://tadapop.app/rewards" />
+<link rel="canonical" href="https://www.tadapop.app/zh/rewards" />
+<link rel="alternate" hreflang="en" href="https://www.tadapop.app/rewards" />
+<link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/rewards" />
+<link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/rewards" />
 <meta property="og:site_name" content="Tadapop" />
 <meta property="og:title" content="Tadapop 你會得到什麼" />
 <meta property="og:description" content="每有一天把所有任務做完，就得 1 T點數。七個等級、九枚徽章和八款外觀，全都靠累積達成，無法購買。" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://tadapop.app/zh/rewards" />
-<meta property="og:image" content="https://tadapop.app/assets/og.png" />
+<meta property="og:url" content="https://www.tadapop.app/zh/rewards" />
+<meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
 <meta property="og:image:width" content="1024" />
 <meta property="og:image:height" content="1024" />
 <meta property="og:locale" content="zh_Hant_TW" />
@@ -26,10 +26,16 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Tadapop 你會得到什麼" />
 <meta name="twitter:description" content="每有一天把所有任務做完，就得 1 T點數。七個等級、九枚徽章和八款外觀，全都靠累積達成，無法購買。" />
-<meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
+  <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
+       so the first paint no longer waits on a fonts.googleapis.com round trip and
+       then a second one to fonts.gstatic.com. The two faces below are the ones the
+       first screen actually paints with — the headline (Chivo 900) and body copy
+       (Inter 400) — so they are preloaded rather than being discovered only once
+       styles.css has finished parsing. crossorigin is required on a font preload
+       even for a same-origin file; without it the browser fetches it twice. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/chivo-900-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
 <link rel="stylesheet" href="/styles.css" />
 <style>
   .wrap { max-width: 940px; margin: 0 auto; padding: 28px 24px 96px; }
@@ -220,20 +226,20 @@
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://tadapop.app/zh/rewards#webpage",
-      "url": "https://tadapop.app/zh/rewards",
+      "@id": "https://www.tadapop.app/zh/rewards#webpage",
+      "url": "https://www.tadapop.app/zh/rewards",
       "name": "Tadapop 你會得到什麼 — 等級、徽章與外觀",
       "description": "在 Tadapop 裡，一天之內把當天所有到期的任務都完成，就得到 1 T點數；只做完一部分則是 0。累積的 T點數（也就是「全清的天數」）決定七個持續力等級、九枚徽章和八款外觀。這一頁上的東西全都無法購買，也不會被扣除。",
       "inLanguage": "zh-Hant-TW",
-      "isPartOf": { "@id": "https://tadapop.app/zh#website" },
-      "about": { "@id": "https://tadapop.app/zh#app" },
-      "publisher": { "@id": "https://tadapop.app/#organization" },
-      "image": "https://tadapop.app/assets/og.png",
-      "mainEntity": { "@id": "https://tadapop.app/zh/rewards#consistency-ranks" }
+      "isPartOf": { "@id": "https://www.tadapop.app/zh#website" },
+      "about": { "@id": "https://www.tadapop.app/zh#app" },
+      "publisher": { "@id": "https://www.tadapop.app/#organization" },
+      "image": "https://www.tadapop.app/assets/og.png",
+      "mainEntity": { "@id": "https://www.tadapop.app/zh/rewards#consistency-ranks" }
     },
     {
       "@type": "ItemList",
-      "@id": "https://tadapop.app/zh/rewards#consistency-ranks",
+      "@id": "https://www.tadapop.app/zh/rewards#consistency-ranks",
       "name": "Tadapop 持續力等級",
       "description": "持續力等級由累積的 T點數決定，1 T點數 = 一天之內把當天所有到期任務都完成。不到 7 天為未定級。等級不會被收回，也無法購買。",
       "inLanguage": "zh-Hant-TW",
@@ -251,10 +257,10 @@
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://tadapop.app/zh/rewards#breadcrumb",
+      "@id": "https://www.tadapop.app/zh/rewards#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://tadapop.app/zh" },
-        { "@type": "ListItem", "position": 2, "name": "你會得到什麼", "item": "https://tadapop.app/zh/rewards" }
+        { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://www.tadapop.app/zh" },
+        { "@type": "ListItem", "position": 2, "name": "你會得到什麼", "item": "https://www.tadapop.app/zh/rewards" }
       ]
     }
   ]
@@ -273,7 +279,7 @@
 <header class="site-nav" id="siteNav">
   <div class="site-nav-in">
     <a class="site-brand" href="/zh">
-      <img src="/assets/logo.png" alt="Tadapop" width="30" height="30" />
+      <img src="/assets/logo-96.png" alt="Tadapop" width="30" height="30" />
       <span class="site-brand-name">TADAPOP</span>
     </a>
     <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
@@ -1214,7 +1220,7 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+      <img class="brand-logo" src="/assets/logo-96.png" alt="Tadapop" width="24" height="24" /> TADAPOP
     </div>
     <nav class="footer-links" aria-label="頁尾連結">
       <a href="/zh/rewards">你會得到什麼</a>

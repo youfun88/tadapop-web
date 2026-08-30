@@ -6,8 +6,65 @@ Allow: /
 # crawled, so the noindex is never read and the bare URL can still surface in
 # results. Crawl-then-noindex is the combination that actually works.
 
-Sitemap: https://tadapop.app/sitemap.xml
+# ---------------------------------------------------------------------------
+# Assistants and answer engines.
+#
+# Be clear about what this section does and does not do. "User-agent: *" above
+# already allows every one of these — none of the groups below grant access
+# that wasn't there. They are here to state the intent explicitly, so that
+# "was Tadapop meant to be readable by assistants?" has a written answer in the
+# repo rather than being inferred from a wildcard.
+#
+# Two of them are load-bearing rather than decorative. Google-Extended and
+# Applebot-Extended are opt-OUT-only tokens: they control whether Google and
+# Apple may use already-crawled pages for AI answers, and the only way to
+# signal "yes" is to not disallow them. Naming them makes that a decision
+# somebody made rather than an omission.
+#
+# One real caveat: a crawler that finds its own name here obeys ONLY its own
+# group and ignores "User-agent: *" entirely. So every group below has to be
+# complete on its own — if a Disallow is ever added to the wildcard, it must be
+# added to each of these too, or these crawlers will keep fetching the path.
+#
+# The product summary written for exactly these readers is /llms.txt.
+# ---------------------------------------------------------------------------
+
+# OpenAI — training, the ChatGPT search index, and user-initiated fetches
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI surfaces (AI Overviews, Gemini grounding). Opt-out-only token:
+# this group is a deliberate "yes", not a no-op.
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence / Siri. Also opt-out-only.
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl — not an answer engine itself, but the corpus a lot of them read
+User-agent: CCBot
+Allow: /
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: https://www.tadapop.app/sitemap.xml
 
 # A plain-language summary of the product and its exact scoring rules, written
 # for assistants and answer engines. Facts, not marketing copy:
-# https://tadapop.app/llms.txt
+# https://www.tadapop.app/llms.txt

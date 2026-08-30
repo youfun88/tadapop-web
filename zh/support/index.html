@@ -11,8 +11,8 @@
   <meta property="og:title" content="支援與常見問題 — Tadapop" />
   <meta property="og:description" content="Tadapop 常見問題：需不需要帳號、如何刪除帳號、競技場怎麼計分、資料是否私密、支援哪些平台，並附聯絡表單。" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tadapop.app/zh/support" />
-  <meta property="og:image" content="https://tadapop.app/assets/og.png" />
+  <meta property="og:url" content="https://www.tadapop.app/zh/support" />
+  <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
   <meta property="og:image:width" content="1024" />
   <meta property="og:image:height" content="1024" />
   <meta property="og:locale" content="zh_Hant_TW" />
@@ -21,17 +21,23 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="支援與常見問題 — Tadapop" />
   <meta name="twitter:description" content="Tadapop 常見問題：需不需要帳號、如何刪除帳號、競技場怎麼計分、資料是否私密、支援哪些平台，並附聯絡表單。" />
-  <meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
+  <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
 
-  <link rel="canonical" href="https://tadapop.app/zh/support" />
-  <link rel="alternate" hreflang="en" href="https://tadapop.app/support" />
-  <link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/support" />
-  <link rel="alternate" hreflang="x-default" href="https://tadapop.app/support" />
+  <link rel="canonical" href="https://www.tadapop.app/zh/support" />
+  <link rel="alternate" hreflang="en" href="https://www.tadapop.app/support" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/support" />
+  <link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/support" />
 
   <link rel="icon" href="/assets/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
+       so the first paint no longer waits on a fonts.googleapis.com round trip and
+       then a second one to fonts.gstatic.com. The two faces below are the ones the
+       first screen actually paints with — the headline (Chivo 900) and body copy
+       (Inter 400) — so they are preloaded rather than being discovered only once
+       styles.css has finished parsing. crossorigin is required on a font preload
+       even for a same-origin file; without it the browser fetches it twice. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/chivo-900-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
   <link rel="stylesheet" href="/styles.css" />
 
   <!--
@@ -44,13 +50,13 @@
     "@graph": [
       {
         "@type": "FAQPage",
-        "@id": "https://tadapop.app/zh/support#faq",
-        "url": "https://tadapop.app/zh/support",
+        "@id": "https://www.tadapop.app/zh/support#faq",
+        "url": "https://www.tadapop.app/zh/support",
         "name": "Tadapop — 常見問題",
         "inLanguage": "zh-Hant-TW",
-        "isPartOf": { "@id": "https://tadapop.app/zh#website" },
-        "publisher": { "@id": "https://tadapop.app/#organization" },
-        "about": { "@id": "https://tadapop.app/zh#app" },
+        "isPartOf": { "@id": "https://www.tadapop.app/zh#website" },
+        "publisher": { "@id": "https://www.tadapop.app/#organization" },
+        "about": { "@id": "https://www.tadapop.app/zh#app" },
         "mainEntity": [
           {
             "@type": "Question",
@@ -74,7 +80,7 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "你在挑戰排行榜上的排名，看的是你達成每日目標的天數；名次在前的人可以獲得競技分數。完整的給分方式、並列規則和等級階梯都在競技場規則這一頁。",
-              "url": "https://tadapop.app/zh/rules"
+              "url": "https://www.tadapop.app/zh/rules"
             }
           },
           {
@@ -83,7 +89,7 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "是的。個人紀錄留在你自己的裝置上。帳號資料受到保護，只有你（以及你參加的那些挑戰）能夠存取。我們不會販售資料，也不會使用廣告追蹤工具。詳見我們的隱私權政策。",
-              "url": "https://tadapop.app/zh/privacy"
+              "url": "https://www.tadapop.app/zh/privacy"
             }
           },
           {
@@ -92,17 +98,17 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Tadapop 支援 iPhone 和 Android。Android 可以直接從 Google Play 安裝 1.4.2 版。iPhone 這邊的 App Store 還沒公開 — 1.4.2 版在 2026 年 8 月 23 日送出，目前仍在等待審核 — 在通過之前請透過 TestFlight 安裝 — 首頁上有兩邊的 QR code。",
-              "url": "https://tadapop.app/zh"
+              "url": "https://www.tadapop.app/zh"
             }
           }
         ]
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://tadapop.app/zh/support#breadcrumb",
+        "@id": "https://www.tadapop.app/zh/support#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://tadapop.app/zh" },
-          { "@type": "ListItem", "position": 2, "name": "支援", "item": "https://tadapop.app/zh/support" }
+          { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://www.tadapop.app/zh" },
+          { "@type": "ListItem", "position": 2, "name": "支援", "item": "https://www.tadapop.app/zh/support" }
         ]
       }
     ]
@@ -115,7 +121,7 @@
   <header class="site-nav" id="siteNav">
     <div class="site-nav-in">
       <a class="site-brand" href="/zh">
-        <img src="/assets/logo.png" alt="Tadapop" width="30" height="30" />
+        <img src="/assets/logo-96.png" alt="Tadapop" width="30" height="30" />
         <span class="site-brand-name">TADAPOP</span>
       </a>
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
@@ -183,7 +189,7 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+      <img class="brand-logo" src="/assets/logo-96.png" alt="Tadapop" width="24" height="24" /> TADAPOP
     </div>
     <nav class="footer-links" aria-label="頁尾連結">
       <a href="/zh/rewards">你會得到什麼</a>

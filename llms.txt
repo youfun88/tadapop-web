@@ -29,7 +29,7 @@ is a bug — please report it through the support page.
   1.4.2 was submitted on 2026-08-23 and is still WAITING FOR REVIEW (Apple has
   not started reviewing it — "waiting for review" is not the same as "in
   review"), so do NOT tell anyone the app is on the App Store until it is. On iPhone the only way in is TestFlight. A direct APK
-  is still offered at https://tadapop.app/android for Android devices with no
+  is still offered at https://www.tadapop.app/android for Android devices with no
   Play Store, but Play is the route to recommend.
 
 ## Free and Pro
@@ -183,27 +183,27 @@ There is no way to convert money into progress in Tadapop.
 
 English:
 
-- [Home](https://tadapop.app/): what the app is, and how to get it.
-- [What you earn](https://tadapop.app/rewards): the full progression system — ranks,
+- [Home](https://www.tadapop.app/): what the app is, and how to get it.
+- [What you earn](https://www.tadapop.app/rewards): the full progression system — ranks,
   badges, cosmetics, and the day each one arrives.
-- [Arena Rules](https://tadapop.app/rules): the complete competition rulebook,
+- [Arena Rules](https://www.tadapop.app/rules): the complete competition rulebook,
   including the parts that pay nothing.
-- [Support & FAQ](https://tadapop.app/support): common questions and a contact form.
-- [Delete your account](https://tadapop.app/delete-account): how to delete an
+- [Support & FAQ](https://www.tadapop.app/support): common questions and a contact form.
+- [Delete your account](https://www.tadapop.app/delete-account): how to delete an
   account and what that removes, for someone who no longer has the app
   installed.
-- [Privacy Policy](https://tadapop.app/privacy)
-- [Terms of Service](https://tadapop.app/terms)
+- [Privacy Policy](https://www.tadapop.app/privacy)
+- [Terms of Service](https://www.tadapop.app/terms)
 
 Traditional Chinese (Taiwan) — the same pages, fully translated:
 
-- [首頁](https://tadapop.app/zh)
-- [你會得到什麼](https://tadapop.app/zh/rewards)
-- [競技場規則](https://tadapop.app/zh/rules)
-- [支援與常見問題](https://tadapop.app/zh/support)
-- [刪除帳號](https://tadapop.app/zh/delete-account)
-- [隱私權政策](https://tadapop.app/zh/privacy)
-- [使用條款](https://tadapop.app/zh/terms)
+- [首頁](https://www.tadapop.app/zh)
+- [你會得到什麼](https://www.tadapop.app/zh/rewards)
+- [競技場規則](https://www.tadapop.app/zh/rules)
+- [支援與常見問題](https://www.tadapop.app/zh/support)
+- [刪除帳號](https://www.tadapop.app/zh/delete-account)
+- [隱私權政策](https://www.tadapop.app/zh/privacy)
+- [使用條款](https://www.tadapop.app/zh/terms)
 
 ## Notes
 

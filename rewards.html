@@ -10,13 +10,13 @@
 
 <!-- This page had no canonical and no Open Graph at all — a real landing page
      that shared as a bare link and had no self-referencing canonical. -->
-<link rel="canonical" href="https://tadapop.app/rewards" />
+<link rel="canonical" href="https://www.tadapop.app/rewards" />
 <meta property="og:site_name" content="Tadapop" />
 <meta property="og:title" content="What you earn in Tadapop" />
 <meta property="og:description" content="One Tpoint for every day you clear every mission. Seven ranks, nine badges and eight cosmetics — all reached by showing up, never bought." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://tadapop.app/rewards" />
-<meta property="og:image" content="https://tadapop.app/assets/og.png" />
+<meta property="og:url" content="https://www.tadapop.app/rewards" />
+<meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
 <meta property="og:image:width" content="1024" />
 <meta property="og:image:height" content="1024" />
 <meta property="og:locale" content="en_US" />
@@ -25,14 +25,20 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="What you earn in Tadapop" />
 <meta name="twitter:description" content="One Tpoint for every day you clear every mission. Seven ranks, nine badges and eight cosmetics — all reached by showing up, never bought." />
-<meta name="twitter:image" content="https://tadapop.app/assets/og.png" />
+<meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
 
-<link rel="alternate" hreflang="en" href="https://tadapop.app/rewards" />
-<link rel="alternate" hreflang="zh-Hant" href="https://tadapop.app/zh/rewards" />
-<link rel="alternate" hreflang="x-default" href="https://tadapop.app/rewards" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="alternate" hreflang="en" href="https://www.tadapop.app/rewards" />
+<link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/rewards" />
+<link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/rewards" />
+  <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
+       so the first paint no longer waits on a fonts.googleapis.com round trip and
+       then a second one to fonts.gstatic.com. The two faces below are the ones the
+       first screen actually paints with — the headline (Chivo 900) and body copy
+       (Inter 400) — so they are preloaded rather than being discovered only once
+       styles.css has finished parsing. crossorigin is required on a font preload
+       even for a same-origin file; without it the browser fetches it twice. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/chivo-900-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
 <link rel="stylesheet" href="/styles.css" />
 <style>
   .wrap { max-width: 940px; margin: 0 auto; padding: 28px 24px 96px; }
@@ -228,20 +234,20 @@
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://tadapop.app/rewards#webpage",
-      "url": "https://tadapop.app/rewards",
+      "@id": "https://www.tadapop.app/rewards#webpage",
+      "url": "https://www.tadapop.app/rewards",
       "name": "What you earn in Tadapop — ranks, badges and cosmetics",
       "description": "Tadapop awards exactly 1 Tpoint for each day on which every mission due that day is completed; a partly finished day is worth 0. Lifetime Tpoints — 'clean days' — drive seven consistency ranks, nine badges and eight cosmetics. Nothing on this page can be purchased, and nothing is ever deducted.",
       "inLanguage": "en",
-      "isPartOf": { "@id": "https://tadapop.app/#website" },
-      "about": { "@id": "https://tadapop.app/#app" },
-      "publisher": { "@id": "https://tadapop.app/#organization" },
-      "image": "https://tadapop.app/assets/og.png",
-      "mainEntity": { "@id": "https://tadapop.app/rewards#consistency-ranks" }
+      "isPartOf": { "@id": "https://www.tadapop.app/#website" },
+      "about": { "@id": "https://www.tadapop.app/#app" },
+      "publisher": { "@id": "https://www.tadapop.app/#organization" },
+      "image": "https://www.tadapop.app/assets/og.png",
+      "mainEntity": { "@id": "https://www.tadapop.app/rewards#consistency-ranks" }
     },
     {
       "@type": "ItemList",
-      "@id": "https://tadapop.app/rewards#consistency-ranks",
+      "@id": "https://www.tadapop.app/rewards#consistency-ranks",
       "name": "Tadapop consistency ranks",
       "description": "Consistency ranks are earned with lifetime Tpoints, where 1 Tpoint = one day on which every mission due was completed. Below 7 clean days you are Unranked. Ranks are never lost and cannot be bought.",
       "inLanguage": "en",
@@ -259,10 +265,10 @@
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://tadapop.app/rewards#breadcrumb",
+      "@id": "https://www.tadapop.app/rewards#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://tadapop.app/" },
-        { "@type": "ListItem", "position": 2, "name": "What you earn", "item": "https://tadapop.app/rewards" }
+        { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://www.tadapop.app/" },
+        { "@type": "ListItem", "position": 2, "name": "What you earn", "item": "https://www.tadapop.app/rewards" }
       ]
     }
   ]
@@ -281,7 +287,7 @@
 <header class="site-nav" id="siteNav">
   <div class="site-nav-in">
     <a class="site-brand" href="/">
-      <img src="/assets/logo.png" alt="Tadapop" width="30" height="30" />
+      <img src="/assets/logo-96.png" alt="Tadapop" width="30" height="30" />
       <span class="site-brand-name">TADAPOP</span>
     </a>
     <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Menu">
@@ -1225,7 +1231,7 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <img class="brand-logo" src="/assets/logo.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+      <img class="brand-logo" src="/assets/logo-96.png" alt="Tadapop" width="24" height="24" /> TADAPOP
     </div>
     <nav class="footer-links" aria-label="Footer">
       <a href="/rewards">What you earn</a>
