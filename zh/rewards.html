@@ -220,6 +220,16 @@
 
 <!-- 進度系統的結構化資料 — the Chinese mirror of the graph on /rewards. Same
      thresholds (CONSISTENCY_RANKS, UNLOCK_EVERY in src/domain/progression.ts). -->
+<!-- The FAQPage node below carries the questions people actually put to an
+     assistant about this page, answered from the page itself. Google retired FAQ
+     rich results for sites like this in 2023, so it earns no SERP accordion — it
+     is here so an answer engine quoting the progression quotes the real numbers
+     rather than paraphrasing them. Every answer must stay checkable against the
+     visible copy: if a number changes on the page, it changes here in the same edit.
+
+     This note lives OUT here on purpose. JSON has no comment syntax, so a /* */
+     inside the script block below is not valid JSON-LD and silently invalidates
+     the whole graph. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -231,6 +241,7 @@
       "name": "Tadapop 你會得到什麼 — 等級、徽章與外觀",
       "description": "在 Tadapop 裡，一天之內把當天所有到期的任務都完成，就得到 1 T點數；只做完一部分則是 0。累積的 T點數（也就是「全清的天數」）決定七個持續力等級、九枚徽章和八款外觀。這一頁上的東西全都無法購買，也不會被扣除。",
       "inLanguage": "zh-Hant-TW",
+      "dateModified": "2026-08-30",
       "isPartOf": { "@id": "https://www.tadapop.app/zh#website" },
       "about": { "@id": "https://www.tadapop.app/zh#app" },
       "publisher": { "@id": "https://www.tadapop.app/#organization" },
@@ -262,6 +273,64 @@
         { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://www.tadapop.app/zh" },
         { "@type": "ListItem", "position": 2, "name": "你會得到什麼", "item": "https://www.tadapop.app/zh/rewards" }
       ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.tadapop.app/zh/rewards#faq",
+      "inLanguage": "zh-Hant",
+      "isPartOf": {
+        "@id": "https://www.tadapop.app/zh/rewards#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "T點數要怎麼拿？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "把當天該做的任務全部完成，那一天就得 1 T點數。做一半不算，做得再多也只算一點，所以沒辦法加速。也因為這樣，你的 T點數總數其實就是你全部做完的天數。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "持續力等級有哪些？各要幾天？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "一共七級，用累積的全清日計算：學員 7 天、操作員 30 天、管制員 100 天、指揮官 250 天、飛航總指揮 365 天、任務總指揮 730 天、北極星 1825 天。不到 7 個全清日就是「尚無等級」。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "外觀是怎麼開啟的？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "每累積 45 個全清日就開啟一項，一共八項，從 45 天的「極光」和 90 天的「靜默」開始。主題色和面板主題都可以裝備，整個 App 的樣子會跟著一起變；開啟的 App 圖示僅限 iPhone。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "等級、徽章或外觀可以用錢買嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不行。這裡沒有任何東西在賣，也不會扣掉你任何東西 — 只是你的 T點數累積到了門檻，該開啟的就開啟了。Tadapop Pro 只是解除兩項同時進行的數量上限，它不會幫你賺到任何等級、徽章、外觀或 T點數，在競技場裡也不會讓你比免費玩家佔便宜。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "總共有幾枚徽章？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "九枚。其中 7 項來自全清日，從第一天的「曙光」開始，接著是 7 天的「完美一週」、14 天的「完美兩週」、30 天的「完美一個月」和 100 天的「百日俱樂部」。另外 2 項「冠軍」和「完賽者」要在競技場裡贏得，累積再多全清日也開不出來。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "什麼是連續紀錄保護？要怎麼取得？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "漏掉一天時，系統會自動用掉一次保護守住那一天，不讓狀況不好的一週抹掉表現良好的一個月。每有 14 天你至少完成一件事就獲得一次 — 有做就算，不必完美 — 最多同時持有 3 次。保護是努力得來的，不是買來的，所以不管是持有還是用掉，都不會讓你掉一個等級，也不會關掉你已經開啟的外觀。"
+          }
+        }
+      ]
     }
   ]
 }
@@ -279,7 +348,7 @@
 <header class="site-nav" id="siteNav">
   <div class="site-nav-in">
     <a class="site-brand" href="/zh">
-      <img src="/assets/logo-96.png" alt="Tadapop" width="30" height="30" />
+      <img src="/assets/logo-96.png" alt="" width="30" height="30" />
       <span class="site-brand-name">TADAPOP</span>
     </a>
     <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
@@ -1220,7 +1289,7 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <img class="brand-logo" src="/assets/logo-96.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+      <img class="brand-logo" src="/assets/logo-96.png" alt="" width="24" height="24" /> TADAPOP
     </div>
     <nav class="footer-links" aria-label="頁尾連結">
       <a href="/zh/rewards">你會得到什麼</a>

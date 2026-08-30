@@ -44,6 +44,10 @@
        requires the URL to be findable. Same WebPage + BreadcrumbList shape as the
        other legal pages. No HowTo: Google retired that rich result, and the steps
        are already plain <ol> markup that a parser can read. -->
+  <!-- dateModified: unlike /privacy, /terms and /rules, this page carries no
+       visible "Last updated" line to mirror, so the value tracks the sitemap
+       lastmod for this URL. Move BOTH when the page copy actually changes; a
+       date that stops tracking real edits is one Google learns to ignore. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,6 +59,7 @@
         "name": "刪除帳號與資料 — Tadapop",
         "description": "如何刪除 Tadapop 帳號和所有相關資料：可以在 App 的設定裡直接刪除，已經解除安裝的話也可以來信辦理。也說明如何只刪除部分資料而不關閉帳號、哪些會被刪掉、哪些會保留多久，以及取消訂閱和刪除帳號是兩件不同的事。",
         "inLanguage": "zh-Hant",
+        "dateModified": "2026-08-30",
         "isPartOf": { "@id": "https://www.tadapop.app/#website" },
         "about": { "@id": "https://www.tadapop.app/#app" },
         "publisher": { "@id": "https://www.tadapop.app/#organization" }
@@ -78,7 +83,7 @@
   <header class="site-nav" id="siteNav">
     <div class="site-nav-in">
       <a class="site-brand" href="/zh">
-        <img src="/assets/logo-96.png" alt="Tadapop" width="30" height="30" />
+        <img src="/assets/logo-96.png" alt="" width="30" height="30" />
         <span class="site-brand-name">TADAPOP</span>
       </a>
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
@@ -177,7 +182,7 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <img class="brand-logo" src="/assets/logo-96.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+      <img class="brand-logo" src="/assets/logo-96.png" alt="" width="24" height="24" /> TADAPOP
     </div>
     <nav class="footer-links" aria-label="頁尾連結">
       <a href="/zh/rewards">你會得到什麼</a>

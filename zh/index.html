@@ -55,6 +55,10 @@
     node ids, but the SAME #organization node as the English page, because QY LLC
     is one company and not two. No aggregateRating here either.
   -->
+  <!-- dateModified: unlike /privacy, /terms and /rules, this page carries no
+       visible "Last updated" line to mirror, so the value tracks the sitemap
+       lastmod for this URL. Move BOTH when the page copy actually changes; a
+       date that stops tracking real edits is one Google learns to ignore. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -74,6 +78,7 @@
         "name": "Tadapop — 每日習慣清單 · 任務控制中心風格的習慣追蹤 App",
         "description": "iOS 與 Android 上的免費習慣追蹤 App：用打勾、計次或計時記錄任務，每有一天把任務全部做完就得 1 T點數，還能在私人邀請制的競技場和朋友較勁。",
         "inLanguage": "zh-Hant-TW",
+        "dateModified": "2026-08-30",
         "isPartOf": { "@id": "https://www.tadapop.app/zh#website" },
         "about": { "@id": "https://www.tadapop.app/zh#app" },
         "primaryImageOfPage": { "@type": "ImageObject", "url": "https://www.tadapop.app/assets/og.png" }
@@ -182,7 +187,7 @@
   <header class="site-nav" id="siteNav">
     <div class="site-nav-in">
       <a class="site-brand" href="/zh">
-        <img src="/assets/logo-96.png" alt="Tadapop" width="30" height="30" />
+        <img src="/assets/logo-96.png" alt="" width="30" height="30" />
         <span class="site-brand-name">TADAPOP</span>
       </a>
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
@@ -536,7 +541,7 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <img class="brand-logo" src="/assets/logo-96.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+      <img class="brand-logo" src="/assets/logo-96.png" alt="" width="24" height="24" /> TADAPOP
     </div>
     <nav class="footer-links" aria-label="頁尾連結">
       <a href="/zh/rewards">你會得到什麼</a>

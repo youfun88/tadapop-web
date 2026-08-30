@@ -767,8 +767,20 @@ a { color: inherit; text-decoration: none; }
    page's Android CTA lands — rendered pale blue on amber at 1.32:1. The second
    rule is deliberate belt and braces: if a .button ever gains another class or
    a wrapper, the dark ink it needs still wins. */
-.doc a:not(.back):not(.button) { color: var(--info, #7FA9FF); }
-.doc a:not(.back):not(.button):hover { text-decoration: underline; }
+/* The underline used to be on :hover only, which meant an inline link was
+   distinguished from the words around it by colour and nothing else. At
+   #7FA9FF inside #7C8AA5 body copy that is 1.49:1 against the surrounding
+   text — WCAG wants 3:1 before colour may carry the distinction alone, so
+   this failed 1.4.1 outright and was invisible to anyone who cannot separate
+   blue from grey. The underline is permanent now, and :hover moves to amber
+   so hovering still says something. */
+.doc a:not(.back):not(.button) {
+  color: var(--info, #7FA9FF);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.doc a:not(.back):not(.button):hover { color: var(--amber); }
 .doc a.button { color: #1a1205; }
 
 /* ---- doc tables ---- */
@@ -1287,7 +1299,11 @@ section[id] { scroll-margin-top: calc(var(--bar) + 12px); }
 /* film.js writes the real runtime into .film-launch-time. It is the only
    thing stopping the advertised length drifting from the film's own clock,
    so the number appears here and NOWHERE else in prose on the page. */
-.hit-text .film-launch-time { color: var(--faint); font-family: var(--mono); font-weight: 400; font-size: .78em; margin-left: .45em; }
+/* --dim, not --faint. The comment on --faint says it clears 4.5:1 on --void
+   (5.20) and --panel (4.68) — the two surfaces it was checked against. This
+   label sits on --panel2, a third surface, where --faint is 4.28:1 and fails.
+   --dim is 4.64:1 there. */
+.hit-text .film-launch-time { color: var(--dim); font-family: var(--mono); font-weight: 400; font-size: .78em; margin-left: .45em; }
 .hit-meta { font-family: var(--mono); font-size: clamp(9px, 1.05vw, 12px); color: var(--dim); letter-spacing: .04em; margin-left: 4px; }
 .hit-time { margin-left: auto; font-family: var(--mono); font-size: clamp(9px, 1.05vw, 12px); color: var(--faint); white-space: nowrap; }
 .hit-rail { position: absolute; left: 20px; right: 20px; top: 6px; height: 3px; border-radius: 3px; background: rgba(124, 138, 165, .22); }

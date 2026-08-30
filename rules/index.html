@@ -55,6 +55,17 @@
     real first-publication date isn't recorded anywhere trustworthy, and a
     guessed one is a fabricated fact like any other.
   -->
+  <!-- The FAQPage node below carries the questions people actually put to an
+       assistant about this page, answered from the page itself. Google retired
+       FAQ rich results for sites like this in 2023, so it earns no SERP
+       accordion — it is here so an answer engine quoting these rules quotes the
+       real numbers instead of paraphrasing them loosely. Every answer must stay
+       checkable against the visible copy: if a number changes on the page, it
+       changes here in the same edit.
+
+       Note for future edits: this comment lives OUT here on purpose. JSON has no
+       comment syntax, so a /* */ inside the script block below is not valid
+       JSON-LD and silently invalidates the whole graph. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -107,6 +118,80 @@
           { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://www.tadapop.app/" },
           { "@type": "ListItem", "position": 2, "name": "Arena Rules", "item": "https://www.tadapop.app/rules" }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.tadapop.app/rules#faq",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@id": "https://www.tadapop.app/rules#webpage"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "When does an Arena challenge pay Arena Score?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Only if at least two people actually joined — invitations that were never accepted do not count — and it ran for seven days or more, counting the first and last day. Shorter or solo challenges still run and still appear on your record; they simply pay nothing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much is each place worth in the Arena?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It depends on how many people joined. In a field of 2 to 4, the winner takes +1 and nobody else is paid. In a field of 5 or more, the podium takes +3, +2 and +1. Nobody below third place is ever paid, in any size of field."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does a longer challenge pay more?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A challenge that runs 21 days or longer adds +1 to every place that earned something. The bonus rides a placing rather than being paid on its own, so finishing a long challenge outside the paying places is still worth nothing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens when players tie in the Arena?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In a challenge of 2 to 4 people, everyone tied for first takes the full +1 each. In a challenge of 5 or more, a tied place splits the points it covers, rounded down: two tied for first share the 3 and the 2 and take 2 each, while an outright third still takes 1. A tie can therefore never pay out more in total than settling it would have."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How often can the same group earn Arena Score?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "At most once every 7 days. The same group means the exact set of people who joined; a different line-up counts as a different group with its own week. The week only starts running from a challenge that actually paid somebody, so a board where nobody placed does not use up your week."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is position on the Arena leaderboard decided?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "By how many days you hit the daily target, and nothing else. Doing more than the target on a given day banks nothing, so there is no reward for overdoing it and a big day cannot make up for a missed one. Logging is self-reported and runs on an honor system."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can someone join after an Arena challenge has started?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The roster closes the moment a challenge starts, even though an invite code or link shared beforehand keeps working. The one exception is a running challenge that drops below its own minimum player count, which reopens until it is back at strength. A player the host removed can never return by invite; only the host can readmit them."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there real money or betting in the Arena?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. No challenge involves real money, prizes, or anything that converts into them, and nothing is staked, so losing a challenge costs nothing. Arena Score is never Tpoints: the Arena never awards, spends or wagers them, and the two records never pay into each other."
+            }
+          }
+        ]
       }
     ]
   }
@@ -118,7 +203,7 @@
   <header class="site-nav" id="siteNav">
     <div class="site-nav-in">
       <a class="site-brand" href="/">
-        <img src="/assets/logo-96.png" alt="Tadapop" width="30" height="30" />
+        <img src="/assets/logo-96.png" alt="" width="30" height="30" />
         <span class="site-brand-name">TADAPOP</span>
       </a>
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Menu">
@@ -286,7 +371,7 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <img class="brand-logo" src="/assets/logo-96.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+      <img class="brand-logo" src="/assets/logo-96.png" alt="" width="24" height="24" /> TADAPOP
     </div>
     <nav class="footer-links" aria-label="Footer">
       <a href="/rewards">What you earn</a>

@@ -42,6 +42,17 @@
 
   <!-- 競技場規則的結構化資料 — the Chinese mirror of the graph on /rules. Same
        numbers, same source of truth (src/domain/progression.ts). -->
+  <!-- The FAQPage node below carries the questions people actually put to an
+       assistant about this page, answered from the page itself. Google retired
+       FAQ rich results for sites like this in 2023, so it earns no SERP
+       accordion — it is here so an answer engine quoting these rules quotes the
+       real numbers instead of paraphrasing them loosely. Every answer must stay
+       checkable against the visible copy: if a number changes on the page, it
+       changes here in the same edit.
+
+       Note for future edits: this comment lives OUT here on purpose. JSON has no
+       comment syntax, so a /* */ inside the script block below is not valid
+       JSON-LD and silently invalidates the whole graph. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -94,6 +105,80 @@
           { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://www.tadapop.app/zh" },
           { "@type": "ListItem", "position": 2, "name": "競技場規則", "item": "https://www.tadapop.app/zh/rules" }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.tadapop.app/zh/rules#faq",
+        "inLanguage": "zh-Hant",
+        "isPartOf": {
+          "@id": "https://www.tadapop.app/zh/rules#webpage"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "競技場的挑戰什麼時候才會給競技分數？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "必須同時滿足兩個條件：至少有 2 位成員實際加入（對方沒有接受的邀請不算），而且跑滿 7 天以上，頭尾兩天都算在內。比這更短、或是沒有其他人加入的挑戰照樣可以正常進行，也仍然算是你完成過的一場挑戰，只是不會給競技分數。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "一個名次可以拿到多少競技分數？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "取決於這一場有多少人加入。2 至 4 人時，只有第一名拿 +1，其他名次都沒有分。5 人以上時，前三名分別拿 +3、+2、+1。不論人數多少，第三名之後都不會有分數。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "挑戰跑比較久會拿比較多分嗎？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "挑戰只要跑滿 21 天以上，每個有得分的名次都會額外多拿 1 分。這一分是跟著名次走的，不會單獨發放 — 長挑戰跑完了卻沒擠進有分的名次，一樣什麼都沒有。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "並列的時候怎麼算？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "在 2 至 4 人的挑戰裡，並列第一的每個人都拿到完整的 1 分。在 5 人以上的挑戰裡，並列的名次會平分它所佔的分數，小數點以下無條件捨去：兩個人並列第一就平分第一名和第二名的 3 分和 2 分，各拿 2 分，單獨拿下第三名的人照樣拿他的 1 分。這樣一來，並列的總分永遠不會比分出高下拿得更多。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "同一批成員多久可以計分一次？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "每 7 天最多一次。「同一批成員」指的是完全相同的那份加入名單；換了人就算是另一批成員，有自己獨立的一週。這一週是從真的有人拿到分數的那一場開始算的，結束時沒有任何人得分的挑戰不會用掉你的這一週。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "排行榜的名次是怎麼決定的？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "由你達成每日目標的天數決定，沒有別的。某一天做超過目標，多出來的部分不會存起來，所以超標硬做並不會加分，某一天做得再多也補不回漏掉的一天。記錄由每個人自行回報，靠的是誠信。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "挑戰開始之後還可以加入嗎？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不行。挑戰一開始，名單就關閉了，即使先前分享出去的邀請碼或連結還能用也一樣。只有一個例外：進行中的挑戰如果人數掉到低於自己設定的最低人數，名單會重新打開，直到人數補回來為止。被主辦人移除的人則無法用邀請回來，只有主辦人可以從名單裡重新讓他進來。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "競技場會涉及真實金錢或賭注嗎？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不會。任何挑戰都不會牽涉真實金錢或獎品，也沒有任何可以換成這些的東西，更沒有任何賭注 — 輸掉一場挑戰完全不會有損失。競技分數也永遠不是 T點數：競技場不會發放、消耗或拿 T點數下注，兩邊的紀錄互不相通。"
+            }
+          }
+        ]
       }
     ]
   }
@@ -105,7 +190,7 @@
   <header class="site-nav" id="siteNav">
     <div class="site-nav-in">
       <a class="site-brand" href="/zh">
-        <img src="/assets/logo-96.png" alt="Tadapop" width="30" height="30" />
+        <img src="/assets/logo-96.png" alt="" width="30" height="30" />
         <span class="site-brand-name">TADAPOP</span>
       </a>
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
@@ -273,7 +358,7 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <img class="brand-logo" src="/assets/logo-96.png" alt="Tadapop" width="24" height="24" /> TADAPOP
+      <img class="brand-logo" src="/assets/logo-96.png" alt="" width="24" height="24" /> TADAPOP
     </div>
     <nav class="footer-links" aria-label="頁尾連結">
       <a href="/zh/rewards">你會得到什麼</a>
