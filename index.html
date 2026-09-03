@@ -114,7 +114,7 @@
         "name": "Tadapop — Daily Habit Checklist with a mission-control soul",
         "description": "Free habit tracker for iOS and Android: log missions by tap, count or timer, earn 1 Tpoint for every day you clear them all, and challenge friends in the private Arena.",
         "inLanguage": "en",
-        "dateModified": "2026-08-30",
+        "dateModified": "2026-08-31",
         "isPartOf": { "@id": "https://www.tadapop.app/#website" },
         "about": { "@id": "https://www.tadapop.app/#app" },
         "primaryImageOfPage": { "@type": "ImageObject", "url": "https://www.tadapop.app/assets/og.png" }
@@ -134,7 +134,7 @@
         "publisher": { "@id": "https://www.tadapop.app/#organization" },
         "author": { "@id": "https://www.tadapop.app/#organization" },
         "isAccessibleForFree": true,
-        "softwareVersion": "1.4.2",
+        "softwareVersion": "1.4.5",
         "offers": {
           "@type": "AggregateOffer",
           "priceCurrency": "USD",
@@ -202,13 +202,13 @@
           },
           {
             "@type": "Question",
-            "name": "Is Android really free?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes, for now. There is no billing on Android at all while the Android version is being trialled, and the free-tier limits are not enforced there." }
+            "name": "Is Android still free?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Free is free on Android, exactly as it is on iPhone: track anything with no account, and a free account keeps five active missions and hosts one challenge at a time. The trial period when Android had no billing at all has ended — Pro is on sale in Google Play at the same US$3.99 a month, and the same two limits apply." }
           },
           {
             "@type": "Question",
-            "name": "When will it be on the App Store and Google Play?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Google Play is live: Android can install version 1.4.2 from the Play Store today. The App Store listing is not public yet: 1.4.2 was submitted on 23 August 2026 and is still waiting for review, so on iPhone the way in is TestFlight until it clears." }
+            "name": "Is it on the App Store and Google Play?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Both. Version 1.4.5 is on the App Store for iPhone and iPad, and the same version is on Google Play for Android. TestFlight is finished: if you installed the beta that way, install the App Store version over it and everything you have logged stays where it is." }
           }
         ]
       }
@@ -255,7 +255,7 @@
          scene, rebuilt: pressing play does not cut to something else, the
          same picture gets bigger and starts talking. -->
     <section class="home-hero">
-      <p class="status-chip"><i aria-hidden="true"></i>v1.4.2 · LIVE ON GOOGLE PLAY · WAITING FOR APPLE REVIEW</p>
+      <p class="status-chip"><i aria-hidden="true"></i>v1.4.5 · LIVE ON THE APP STORE AND GOOGLE PLAY</p>
 
       <h1>Your daily missions, on a console you actually <span class="amber">want to open.</span></h1>
 
@@ -332,19 +332,18 @@
         offline, and needs no account at all.
       </p>
 
-      <!-- Deliberately not links and not official badge art: the listings are
-           not public yet, and a store badge that goes nowhere is worse than no
-           badge. On launch day these become <a>s around the real assets and the
-           state line is deleted. Nothing else on the page changes. -->
+      <!-- Both listings went public (App Store 2 September 2026, Play 29 August),
+           so both of these are real links now. The official badge art lives once,
+           in #get, where somebody who has decided to install it is looking. -->
       <div class="store-row">
-        <div class="store-badge">
+        <a class="store-badge" href="https://apps.apple.com/app/id6782101150" target="_blank" rel="noopener">
           <span class="sb-glyph" aria-hidden="true"></span>
           <span>
-            <span class="sb-kicker">COMING TO</span>
+            <span class="sb-kicker is-live">AVAILABLE ON</span>
             <span class="sb-name">App Store</span>
-            <span class="sb-state">Waiting for review · iPhone &amp; iPad</span>
+            <span class="sb-state is-live">Live now · iPhone &amp; iPad</span>
           </span>
-        </div>
+        </a>
         <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
           <span class="sb-glyph" aria-hidden="true">▶</span>
           <span>
@@ -355,8 +354,8 @@
         </a>
       </div>
       <p class="store-aside">
-        Android is on Play today. iPhone is still waiting for review — no fake buttons for that one, but
-        you can <a href="#get">install it now</a> on TestFlight.
+        Both stores are live, on the same build. <a href="#get">Install it</a> from the App Store on
+        iPhone, or Google Play on Android.
       </p>
     </section>
 
@@ -405,7 +404,7 @@
     <section class="hsec" aria-labelledby="h-shots">
       <div class="hsec-head">
         <h2 id="h-shots">Three more screens.</h2>
-        <p class="hsec-p">From Tadapop 1.4.2, exactly as they ship.</p>
+        <p class="hsec-p">From Tadapop 1.4.5, exactly as they ship.</p>
       </div>
       <div class="shots">
         <figure class="shot">
@@ -528,7 +527,8 @@
             <li>Everything in Free, without the ceiling</li>
           </ul>
           <p class="plan-foot">The store shows the price in your own currency before you agree to anything.
-            Limits apply on iOS today; there is no paywall on Android while it is being trialled.</p>
+            The plans and the limits are the same on iPhone and Android — Pro is bought in the
+            App Store or in Google Play.</p>
         </div>
       </div>
       <div class="plans-note">
@@ -570,15 +570,18 @@
             to know who you are to the other players.</p>
         </details>
         <details class="faq-item">
-          <summary>Is Android really free?</summary>
-          <p>Yes, for now. There is no billing on Android at all while the Android version is being trialled,
-            and the free-tier limits are not enforced there.</p>
+          <summary>Is Android still free?</summary>
+          <p>Free is free on Android, exactly as it is on iPhone: track anything with no account, and a free
+            account keeps five active missions and hosts one challenge at a time. The trial period when
+            Android had no billing at all has ended — Pro is on sale in Google Play at the same
+            US$3.99 a month, and the same two limits apply.</p>
         </details>
         <details class="faq-item">
-          <summary>When will it be on the App Store and Google Play?</summary>
-          <p>Google Play is done — version 1.4.2 is on the Play Store now, so Android installs it like any
-            other app. The App Store side was submitted on 23 August 2026 and is still waiting for review —
-            Apple has not started it yet. Until that clears, iPhone goes through TestFlight below.</p>
+          <summary>Is it on the App Store and Google Play?</summary>
+          <p>Both of them. Version 1.4.5 is on the App Store for iPhone and iPad, and the same version is on
+            Google Play for Android — so it installs like any other app on either phone. TestFlight is
+            finished: if you were on the beta, install the App Store version over it and everything you have
+            logged stays where it is.</p>
         </details>
       </div>
     </section>
@@ -586,31 +589,33 @@
     <!-- ============ 10 · get it ============ -->
     <section class="get" id="get">
       <div class="get-wrap">
-        <h2>Get it on Google Play.</h2>
-        <p>Android installs version 1.4.2 straight from the Play Store — the same build that has been in
-          testing all month, now with a store listing behind it. iOS is still waiting for review with Apple; nothing
-          resets when that one arrives.</p>
+        <h2>Get it from your store.</h2>
+        <p>Version 1.4.5 is on both — the App Store for iPhone and iPad, Google Play for Android, the same
+          build on each. TestFlight is finished; installing the App Store version over the beta keeps
+          everything you have already logged.</p>
 
         <div class="store-cta">
+          <a class="appstore-badge" href="https://apps.apple.com/app/id6782101150" target="_blank" rel="noopener">
+            <img src="/assets/appstore-badge-en.svg" alt="Download on the App Store" width="120" height="40" />
+          </a>
           <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
             <img src="/assets/play-badge-en.png" alt="Get it on Google Play" width="646" height="250" />
           </a>
         </div>
 
         <div class="rightnow">
-          <span class="hsec-k">ON IPHONE, OR WITHOUT PLAY?</span>
+          <span class="hsec-k">NO PLAY STORE ON YOUR PHONE?</span>
           <div class="rightnow-row">
-            <a class="ghost" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">iOS · Join the TestFlight →</a>
             <a class="ghost" href="/android">Android · Install without Play →</a>
           </div>
           <!-- The QR cards are the same ones that used to be the main call to
                action. They are still useful on a desktop, and hidden at phone
                widths where nobody can scan them with the device in their hand. -->
           <div class="beta-grid">
-            <a class="beta-card" href="https://testflight.apple.com/join/TtXzD68k" target="_blank" rel="noopener">
-              <div class="beta-plat">iOS · TESTFLIGHT</div>
-              <img src="/assets/qr-ios.png" alt="QR code: scan to install Tadapop on iOS via TestFlight — https://testflight.apple.com/join/TtXzD68k" width="200" height="200" loading="lazy" />
-              <span class="beta-action">Tap to join the TestFlight →</span>
+            <a class="beta-card" href="https://apps.apple.com/app/id6782101150" target="_blank" rel="noopener">
+              <div class="beta-plat">iOS · APP STORE</div>
+              <img src="/assets/qr-appstore.png" alt="QR code: scan to open Tadapop on the App Store — https://apps.apple.com/app/id6782101150" width="200" height="200" loading="lazy" />
+              <span class="beta-action">Tap to open the App Store →</span>
             </a>
             <a class="beta-card" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
               <div class="beta-plat">ANDROID · GOOGLE PLAY</div>

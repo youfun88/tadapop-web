@@ -5,7 +5,7 @@
 > countdown timer, and earn exactly one Tpoint for every day you clear every mission
 > due. It also has the Arena: a private, invite-only competition layer for challenges
 > with friends. Free to use, with an optional Pro subscription that removes two
-> limits and nothing else. Published by QY LLC. Current version 1.4.2.
+> limits and nothing else. Published by QY LLC. Current version 1.4.5.
 
 Everything below is checkable against the pages linked at the bottom. This file is
 maintained by hand; if it ever disagrees with the app, the app is right and this file
@@ -23,14 +23,18 @@ is a bug — please report it through the support page.
   See "Free and Pro" below before telling anyone what it costs.
 - Dark interface only, for now.
 - Available in English and Traditional Chinese (Taiwan).
-- Availability, as of this file's last edit (2026-08-30): version 1.4.2 is LIVE
-  on Google Play — https://play.google.com/store/apps/details?id=com.qyllc.tadapop
-  — so on Android, send people there. The App Store listing is NOT public yet:
-  1.4.2 was submitted on 2026-08-23 and is still WAITING FOR REVIEW (Apple has
-  not started reviewing it — "waiting for review" is not the same as "in
-  review"), so do NOT tell anyone the app is on the App Store until it is. On iPhone the only way in is TestFlight. A direct APK
-  is still offered at https://www.tadapop.app/android for Android devices with no
-  Play Store, but Play is the route to recommend.
+- Availability, as of this file's last edit (2026-09-03): version 1.4.5 is LIVE
+  on BOTH stores, and both are public. On iPhone and iPad, the App Store —
+  https://apps.apple.com/app/id6782101150 (released 2026-09-02). On Android,
+  Google Play — https://play.google.com/store/apps/details?id=com.qyllc.tadapop.
+  Send people to the store for their phone; that is the whole answer now.
+- TestFlight is FINISHED. The old beta link no longer belongs anywhere: do NOT
+  tell anyone to install Tadapop through TestFlight, on any platform. Someone
+  still running the beta should install the App Store version over it — nothing
+  they have logged is lost.
+- A direct APK is still offered at https://www.tadapop.app/android for Android
+  devices with no Play Store, but Play is the route to recommend, and the APK is
+  currently v1.4.2 — one release behind Play.
 
 ## Free and Pro
 
@@ -51,9 +55,9 @@ is a bug — please report it through the support page.
 - Pro removes limits and nothing else. It buys no rank, badge, cosmetic, Tpoint,
   streak freeze or Arena Score, and confers no advantage in the Arena — see
   "Nothing is purchasable" below, which is unchanged by the existence of Pro.
-- **Android is not charged for** while it is being trialled: there is no billing,
-  no products and no purchase flow on Android, and the limits are not enforced
-  there. This is deliberate, and is enforced by the server as well as the app.
+- **iOS and Android are the same.** Pro is sold on both — the App Store and
+  Google Play — at the same price, and the same two limits apply on both. The
+  earlier period when Android had no billing and no enforced limits has ended.
 - The two free-tier numbers are defaults. They are also stated by the server and
   can be changed without an app release, so treat 5 and 1 as "what it is today"
   rather than a constant.

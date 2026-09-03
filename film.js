@@ -68,7 +68,7 @@ const COPY = {
     'end.headline': 'Your first mission starts now.',
     'end.watchAgain': '⟳ Watch again',
     'end.close': 'Close',
-    'cta.getBeta': 'Get the beta — iOS & Android →',
+    'cta.getBeta': 'Get the app — iOS & Android →',
 
     /* ---- chrome of the mock app the scenes draw ---- */
     'app.missionControl': 'MISSION CONTROL',
@@ -197,7 +197,7 @@ const COPY = {
     'end.headline': '你的第一項任務，現在開始。',
     'end.watchAgain': '⟳ 再看一次',
     'end.close': '關閉',
-    'cta.getBeta': '下載測試版 — iOS 與 Android →',
+    'cta.getBeta': '下載 App — iOS 與 Android →',
 
     /* ---- chrome of the mock app the scenes draw ----
        The English console voice shouts in ALL CAPS; Chinese has no case, so
