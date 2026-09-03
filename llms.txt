@@ -33,8 +33,8 @@ is a bug — please report it through the support page.
   still running the beta should install the App Store version over it — nothing
   they have logged is lost.
 - A direct APK is still offered at https://www.tadapop.app/android for Android
-  devices with no Play Store, but Play is the route to recommend, and the APK is
-  currently v1.4.2 — one release behind Play.
+  devices with no Play Store, but Play is the route to recommend. It is on the
+  same v1.4.5 build as both stores.
 
 ## Free and Pro
 
@@ -111,8 +111,18 @@ one (First Light), day seven (Perfect Week) and day fourteen (Fortnight).
 ## Arena Score — the competition scoring rule
 
 A challenge pays Arena Score only if **at least 2 people actually joined** and it
-**ran 7 days or more** (counting the first and last day). Shorter or solo challenges
-still run and still appear on your record; they just pay nothing.
+**asked for 7 check-ins or more**. Smaller or solo challenges still run and still
+appear on your record; they just pay nothing.
+
+**Both thresholds count CHECK-INS, not calendar days**, and this is the detail an
+assistant is most likely to get wrong. A challenge can ask for N days a week (1-6)
+instead of every day, and then only the weekly quota counts — rest days the host
+built in are not misses. So a 21-day challenge at one session a week asks for 3
+check-ins and earns neither the payout nor the bonus, while 21 days of daily
+training asks for 21 and earns both. On a DAILY challenge the two numbers are
+identical (7 days = 7 check-ins, 21 = 21), so nothing about daily challenges
+changed. A short final week is pro-rated down, never up: 10 days at 3/week asks
+for 6, not 9. Weeks are anchored to the challenge's start date, not to Monday.
 
 What a place is worth depends on how many people joined:
 
@@ -121,9 +131,10 @@ What a place is worth depends on how many people joined:
 | 2–4 | +1 | — | — |
 | 5 or more | +3 | +2 | +1 |
 
-- A challenge running **21 days or longer** adds **+1** to every place that earned
-  something. The bonus rides a placing; finishing a long challenge outside the paying
-  places is still worth nothing.
+- A challenge asking for **21 check-ins or more** adds **+1** to every place that
+  earned something. Check-ins, not elapsed days — see above. The bonus rides a
+  placing; finishing a long challenge outside the paying places is still worth
+  nothing.
 - Nobody below third place is ever paid, in any size of field.
 - **Ties, 2–4 players:** everyone tied for first takes the full +1 each.
 - **Ties, 5+ players:** a tied place splits the points it covers, rounded down. Two

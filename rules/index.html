@@ -6,7 +6,7 @@
   <title>Arena Rules — how Tadapop challenges are scored</title>
   <!-- Leads with the two numbers a person (or an assistant) is most likely to be
        looking for, rather than promising the answer is somewhere on the page. -->
-  <meta name="description" content="The full Arena rulebook: a challenge pays Arena Score only with 2+ players over 7+ days — +1 to the winner in a field of 2–4, and +3/+2/+1 to the podium in a field of 5 or more." />
+  <meta name="description" content="The full Arena rulebook: a challenge pays Arena Score only with 2+ players and 7+ check-ins asked for — +1 to the winner in a field of 2–4, and +3/+2/+1 to the podium in a field of 5 or more." />
 
   <!-- Open Graph — this page had none, so every share of the rulebook rendered
        as a bare link with no title, image or summary. -->
@@ -46,8 +46,8 @@
   <!--
     The rulebook as structured data. The numbers here are the ones the app
     actually runs on — ARENA_WIN_SCORE, ARENA_PODIUM_SCORES,
-    ARENA_MIN_ELIGIBLE_PLAYERS, ARENA_MIN_ELIGIBLE_DAYS,
-    ARENA_LONG_CHALLENGE_DAYS, ARENA_ROSTER_COOLDOWN_DAYS and ARENA_RANKS in
+    ARENA_MIN_ELIGIBLE_PLAYERS, ARENA_MIN_ELIGIBLE_SESSIONS,
+    ARENA_LONG_CHALLENGE_SESSIONS, ARENA_ROSTER_COOLDOWN_DAYS and ARENA_RANKS in
     src/domain/progression.ts. If a rule changes in the app it changes here, on
     the page body, and in /llms.txt, or the site is lying about its own scoring.
 
@@ -77,7 +77,7 @@
         "headline": "Arena Rules",
         "description": "The complete scoring rulebook for Tadapop's Arena: which challenges pay Arena Score, what each place is worth, how ties resolve, the once-a-week roster rule, proof requirements, and the Arena rank ladder.",
         "inLanguage": "en",
-        "dateModified": "2026-08-03",
+        "dateModified": "2026-09-03",
         "author": { "@id": "https://www.tadapop.app/#organization" },
         "publisher": { "@id": "https://www.tadapop.app/#organization" },
         "isPartOf": { "@id": "https://www.tadapop.app/#website" },
@@ -85,6 +85,7 @@
         "image": "https://www.tadapop.app/assets/og.png",
         "articleSection": [
           "How you earn Arena Score",
+          "Check-ins, not days",
           "What a challenge pays",
           "Ties",
           "The same group scores once a week",
@@ -132,7 +133,15 @@
             "name": "When does an Arena challenge pay Arena Score?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Only if at least two people actually joined — invitations that were never accepted do not count — and it ran for seven days or more, counting the first and last day. Shorter or solo challenges still run and still appear on your record; they simply pay nothing."
+              "text": "Only if at least two people actually joined — invitations that were never accepted do not count — and it asked for seven check-ins or more. Check-ins, not days: a challenge can ask for three days a week rather than every day, so a two-week challenge at three a week asks for six and does not pay. A daily challenge asks for one a day, so seven days is seven check-ins, exactly as before. Smaller or solo challenges still run and still appear on your record; they simply pay nothing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does the Arena count check-ins instead of days?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Because a challenge can ask for three days a week instead of every day, and once it can, elapsed time stops measuring what the challenge costs anyone. Twenty-one days at one session a week is three workouts; twenty-one days of daily training is twenty-one. Counting days would pay both the same. On a daily challenge the two are identical, so a seven-day daily challenge is seven check-ins and a twenty-one-day one is twenty-one, exactly as they always were."
             }
           },
           {
@@ -148,7 +157,7 @@
             "name": "Does a longer challenge pay more?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A challenge that runs 21 days or longer adds +1 to every place that earned something. The bonus rides a placing rather than being paid on its own, so finishing a long challenge outside the paying places is still worth nothing."
+              "text": "A challenge that asks for 21 check-ins or more adds +1 to every place that earned something. It counts check-ins rather than elapsed days, so 21 days of daily training earns it while 21 days at one session a week — three workouts — does not. The bonus rides a placing rather than being paid on its own, so finishing a long challenge outside the paying places is still worth nothing."
             }
           },
           {
@@ -225,7 +234,7 @@
 
   <main class="doc" id="main" tabindex="-1">
     <h1>Arena Rules</h1>
-    <div class="updated">Last updated: August 3, 2026</div>
+    <div class="updated">Last updated: September 3, 2026</div>
 
     <p>The Arena is where you run a private challenge with friends — invite-only, no strangers, no public boards. Finishing near the top of one can earn <strong>Arena Score</strong>, a reputation number that sits beside your solo stats.</p>
     <p>This page is the whole rulebook. A scoring rule you can't check isn't worth much, so all of it is here, including the parts that pay nothing.</p>
@@ -234,9 +243,39 @@
     <p>When a challenge ends, the app looks at the final leaderboard and pays out the top places. A challenge pays only if it:</p>
     <ul>
       <li>had <strong>at least 2 people who actually joined</strong> — invitations that were never accepted don't count, and</li>
-      <li>ran for <strong>7 days or more</strong>, counting the first and last day.</li>
+      <li>asked for <strong>7 check-ins or more</strong> in total.</li>
     </ul>
-    <p>Challenges shorter than that, or ones nobody else joined, still run normally and still show up on your record. They just don't pay Arena Score.</p>
+    <p>Challenges smaller than that, or ones nobody else joined, still run normally and still show up on your record. They just don't pay Arena Score.</p>
+
+    <h2>Check-ins, not days</h2>
+    <p>A challenge doesn't have to ask for something every day. The host can set a cadence — <strong>three days a week</strong>, say — and then only the weekly quota counts. Rest days your own plan builds in are not misses.</p>
+    <p>Because of that, both of the numbers above count <strong>check-ins the challenge asks for</strong>, not days on the calendar. The difference only appears once a cadence is set:</p>
+
+    <div class="table-wrap" tabindex="0" role="group" aria-label="How check-ins are counted for challenges of different lengths and cadences">
+      <table>
+        <thead>
+          <tr>
+            <th>Challenge</th>
+            <th class="num">Check-ins</th>
+            <th>Pays at all?</th>
+            <th>Long-haul +1?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>21 days, every day</td><td class="num">21</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>21 days, once a week</td><td class="num">3</td><td>No</td><td>No</td></tr>
+          <tr><td>6 weeks, 3 a week</td><td class="num">18</td><td>Yes</td><td>No</td></tr>
+          <tr><td>7 weeks, 3 a week</td><td class="num">21</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>7 days, every day</td><td class="num">7</td><td>Yes</td><td>No</td></tr>
+          <tr><td>7 days, once a week</td><td class="num">1</td><td>No</td><td>No</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The reason is straightforward. Twenty-one days at one session a week is three workouts; twenty-one days of daily training is twenty-one. Counting days paid both of them the same, which made the long-haul bonus something you could get by choosing a thinner cadence rather than by training for longer.</p>
+    <p><strong>Nothing about a daily challenge changed.</strong> When every day counts, check-ins and days are the same number — seven days is seven check-ins, twenty-one days is twenty-one. The thresholds are where they have always been; they are simply now measured in the thing the challenge actually asks of you.</p>
+    <p>A short final week asks for less, never more. Ten days at three a week is a full week plus a three-day tail, so it asks for six, not nine — three sessions can't be demanded inside three days you don't have.</p>
+    <p>The create screen shows you the total before you deploy anything, so you can see what you're asking for while you're still choosing it.</p>
 
     <h2>What a challenge pays</h2>
     <p>How much a place is worth depends on how many people were in it. A podium is what a real field unlocks:</p>
@@ -273,7 +312,7 @@
       </table>
     </div>
 
-    <p>A challenge that runs <strong>21 days or longer</strong> adds <strong>+1</strong> on top, for every place that earned something. It rides a placing rather than being paid on its own — finishing a long challenge outside the paying places is still worth nothing, so there's no way to collect it just by being present.</p>
+    <p>A challenge that asks for <strong>21 check-ins or more</strong> adds <strong>+1</strong> on top, for every place that earned something. It rides a placing rather than being paid on its own — finishing a long challenge outside the paying places is still worth nothing, so there's no way to collect it just by being present.</p>
     <p>Nobody below third place is ever paid, in any size of field.</p>
 
     <h2>Ties</h2>
@@ -363,7 +402,7 @@
       <li><strong>Pro</strong> removes both limits — as many challenges and missions as you like — for <strong>US$3.99 a month</strong>, or less per month on the yearly plan. The store shows you the price in your own currency before you agree to anything.</li>
     </ul>
     <p>Pro raises two caps and does nothing else. It earns you no rank, badge, cosmetic, Tpoint, streak freeze or Arena Score, and it gives you no advantage whatsoever over a free player in the same challenge. There is still no way to turn money into progress here.</p>
-    <p><strong>On Android none of this applies yet.</strong> There is nothing to buy and no limit is enforced there while the Android version is still being trialled.</p>
+    <p><strong>Android works exactly the same way.</strong> Pro is sold there through Google Play, and the same two limits apply. The earlier trial period, when nothing could be bought on Android and no limit was enforced, has ended.</p>
 
     <h2>Questions</h2>
     <p>If something here doesn't match what you're seeing in the app, tell us through the <a href="/support">support form</a> — that's a bug, and we'd want to know.</p>
