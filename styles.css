@@ -1366,9 +1366,32 @@ a.store-badge:hover { border-color: var(--amber); }
 
 /* ── 3 · section furniture ───────────────────────────────────────── */
 .hsec { max-width: 1080px; margin: 0 auto; padding: clamp(48px, 6vw, 72px) 20px 0; }
-.hsec-head { max-width: 62ch; }
+/* NO measure cap here, and that is the fix.
+   
+   It was `max-width: 62ch`, which sounds like "62 characters" and was not: `ch`
+   resolves against the font of the element it is written on, and this div is
+   plain 16px Inter. The h2 inside renders at up to 34px display — twice the
+   size — so the cap allowed barely thirty characters of the heading it was
+   supposed to be measuring. "Why this one, and not another habit app." is 40
+   and broke after "habit"; "Competition with the people who keep you honest."
+   is 48 and broke after "keep". Both had a whole column of empty space to
+   their right.
+   
+   The cap belongs on the h2, in the h2's own type. Same shape as the bug the
+   app had in its chat bubbles. */
 .hsec-k { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; color: var(--amber); }
-.hsec h2 { font-family: var(--display); font-weight: 900; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -.5px; margin: 10px 0 10px; }
+.hsec h2 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -.5px; margin: 10px 0 10px;
+  /* Measured in the heading's OWN font, so it means what it says — and it
+     tracks the clamp, shrinking with the type instead of against it. 52 clears
+     the longest heading on the page (48) with room for the next one. */
+  max-width: 52ch;
+  /* And if one ever is long enough to wrap — or the viewport is narrow — it
+     splits evenly rather than stranding one word on a line by itself, which is
+     what "app." was doing. */
+  text-wrap: balance;
+}
 .hsec-p { color: var(--dim); font-size: 15.5px; max-width: 62ch; }
 
 /* ── facts strip ─────────────────────────────────────────────────── */
