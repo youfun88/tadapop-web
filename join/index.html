@@ -24,13 +24,37 @@
        .35em tracking the pill was 3px wider than a 360px phone and put the
        page into horizontal scroll. Fluid type, and a max-width so it can
        never do that again whatever the code length. */
-    display: inline-block; font-family: ui-monospace, "JetBrains Mono", monospace;
+    /* BLOCK, so the copy control below sits on its own line rather than
+       alongside the pill. `fit-content` keeps the pill hugging the code, and
+       max-width keeps the narrow-phone fix above intact. */
+    display: block; width: fit-content; margin-left: auto; margin-right: auto;
+    font-family: ui-monospace, "JetBrains Mono", monospace;
     max-width: 100%; box-sizing: border-box;
     font-size: clamp(1.4rem, 7.5vw, 2rem); letter-spacing: .3em; font-weight: 700;
     padding: .75rem 1.25rem .75rem 1.6rem; border-radius: 12px;
     border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.04);
     margin-bottom: 1.75rem;
   }
+  /* COPY, because the code has to survive a trip to the App Store.
+     
+     iOS has no deferred deep linking: somebody without the app taps the
+     invite, lands here, leaves for the store, installs, opens — and the app
+     has no idea any of that happened. Showing the code is not enough, because
+     by the time they need it this page is three screens behind them. On the
+     clipboard it is still there, and both platforms offer it as a paste
+     suggestion the moment the code field is focused.
+     
+     A button rather than "tap the code": a copy that fires when somebody
+     merely touches the thing they were told to read is a surprise, and on this
+     page a surprise costs the invite. */
+  .copy {
+    display: inline-block; margin: -1rem 0 1.75rem;
+    background: none; border: 0; padding: .4rem .6rem;
+    font: inherit; font-size: .85rem; color: inherit; opacity: .65;
+    text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+  }
+  .copy:hover, .copy:focus-visible { opacity: 1; }
+  .copy.done { opacity: 1; color: #7FE0A8; text-decoration: none; }
   .actions { display: flex; flex-direction: column; gap: .75rem; align-items: center; }
   .actions a { display: inline-block; padding: .85rem 1.6rem; border-radius: 999px; text-decoration: none; font-weight: 600; }
   .primary { background: #FFB454; color: #1B2438; }
@@ -55,6 +79,7 @@
     <p>Open Tadapop and enter this code to join.</p>
 
     <div class="code" id="code">——————</div>
+    <button type="button" class="copy" id="copy" hidden>Copy code</button>
 
     <div class="actions">
       <a class="primary" id="open" href="#">Open in Tadapop</a>
@@ -69,6 +94,29 @@
   </main>
 
 <script>
+  var COPY_LABEL = "Copy code";
+  var COPY_DONE = "Copied";
+  var COPY_FAIL = "Copy it by hand";
+
+  /* execCommand is deprecated and still the only thing that works in an in-app
+     browser without a secure context — which is where a chat-app invite is
+     most likely to be opened. */
+  function legacyCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:absolute;left:-9999px;top:0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) {
+      return false;
+    }
+  }
+
   // The code is whatever follows "join": /join/ABC123, /zh/join/ABC123.
   //
   // Taking the *last* segment instead is the trap: on a bare /join it hands
@@ -94,6 +142,33 @@
        the app has — the scheme fired, iOS handed it over, and the app opened
        to nothing. A deep link is only as good as the route on the other end;
        if arena/join ever moves, this moves with it. */
+
+    /* Put the code on the clipboard, so it is still in hand after the store.
+       
+       navigator.clipboard needs a secure context and is not on every browser
+       that reaches this page, so there is a fallback — and if BOTH fail the
+       button says so rather than lying, because a visitor who believes they
+       copied it will paste whatever was on the clipboard before. */
+    var copyBtn = document.getElementById('copy');
+    if (copyBtn) {
+      copyBtn.hidden = false;
+      copyBtn.addEventListener('click', function () {
+        function done(ok) {
+          copyBtn.textContent = ok ? COPY_DONE : COPY_FAIL;
+          copyBtn.classList.toggle('done', ok);
+          setTimeout(function () {
+            copyBtn.textContent = COPY_LABEL;
+            copyBtn.classList.remove('done');
+          }, 2400);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(function () { done(true); }, function () { done(legacyCopy(code)); });
+        } else {
+          done(legacyCopy(code));
+        }
+      });
+    }
+
     var deepLink = 'tadapop://arena/join?code=' + encodeURIComponent(code);
     var openBtn = document.getElementById('open');
     openBtn.setAttribute('href', deepLink);
