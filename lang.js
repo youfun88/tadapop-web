@@ -70,6 +70,29 @@
     return toZh ? '/zh' + (base === '/' ? '' : base) : base;
   }
 
+  /**
+   * Every redirect in this file goes through here, and it refuses anything that
+   * is not a path on THIS site.
+   *
+   * `//evil.example.com/` is not a path — it is a protocol-relative URL, and a
+   * browser treats it as another origin. basePath() strips a leading `/zh`, so
+   * a pathname of `/zh//evil.example.com/` would strip to exactly that and send
+   * somebody off the site from a link that reads as tadapop.app. An open
+   * redirect like that is worth little on its own and a great deal wrapped
+   * around a fake sign-in page.
+   *
+   * Not reachable today: the host answers `/zh//x` with a 308 that collapses
+   * the slashes before this script ever runs. That is the point — the
+   * protection currently lives in somebody else's URL normalisation, not in
+   * this file. Changing host, or serving a 404 page that loads this script,
+   * would open it with nothing here to notice.
+   */
+  function go(target) {
+    // One leading slash, and the next character must not be another one.
+    if (!/^\/($|[^/])/.test(target)) return;
+    location.replace(target);
+  }
+
   var path = location.pathname.replace(/\/index\.html$/, '/');
   var here = isZh(path);
 
@@ -122,7 +145,7 @@
     // condition is false there. The parameter is kept rather than stripped so a
     // reload still works where localStorage is blocked.
     if ((wanted === 'zh') !== here) {
-      location.replace(otherHref(path, wanted === 'zh') + location.search + location.hash);
+      go(otherHref(path, wanted === 'zh') + location.search + location.hash);
     }
     return;
   }
@@ -163,5 +186,5 @@
   }
   var wantsZh = firstZh >= 0 && (firstEn < 0 || firstZh < firstEn);
 
-  if ((DEFAULT_TO_ZH || wantsZh) && !here) location.replace(otherHref(path, true) + location.hash);
+  if ((DEFAULT_TO_ZH || wantsZh) && !here) go(otherHref(path, true) + location.hash);
 })();
