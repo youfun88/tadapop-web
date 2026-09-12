@@ -20,77 +20,139 @@
   /* This page is reached in one of two ways:
      - iOS with the app installed: it never renders — the universal link opens
        the app directly (see /.well-known/apple-app-site-association).
-     - Everyone else: this is the landing page, so it has to carry the code
-       somewhere a person can read and retype it. */
-  .invite { max-width: 34rem; margin: 0 auto; padding: 4rem 1.5rem; text-align: center; }
-  .invite h1 { font-size: 1.6rem; margin: 0 0 .75rem; }
+     - Everyone else: this is the landing page.
+
+     It used to say only "有人邀請你加入挑戰" and show a code.
+     That wastes the best traffic this site gets: somebody a friend invited
+     personally, to a named thing, who has very likely never heard of Tadapop.
+     A code and an install button tell them nothing about what they are being
+     asked to join. So the challenge itself is fetched and shown — name, shape,
+     how many people are already in, and the host's own rules. */
+  .invite { max-width: 34rem; margin: 0 auto; padding: 3rem 1.5rem 4rem; text-align: center; }
+  .invite h1 { font-size: 1.5rem; margin: 0 0 .5rem; }
   .invite p { opacity: .8; line-height: 1.6; margin: 0 0 1.5rem; }
+
+  /* The challenge card. Hidden until the fetch lands so the page never flashes
+     an empty frame; if the fetch fails it simply never appears and everything
+     below still works exactly as it did before. */
+  .ch { text-align: left; border: 1px solid rgba(255,255,255,.14); border-radius: 14px;
+        background: rgba(255,255,255,.03); padding: 1.25rem 1.25rem 1.1rem; margin: 0 0 1.5rem; }
+  .ch-name { display: flex; align-items: baseline; gap: .5rem; font-size: 1.25rem; font-weight: 700;
+             line-height: 1.3; margin: 0 0 .4rem; }
+  .ch-emoji { font-size: 1.4rem; line-height: 1; flex: none; }
+  .ch-meta { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .8rem;
+             letter-spacing: .04em; text-transform: uppercase; opacity: .62; margin: 0 0 .1rem; }
+  .ch-rules { margin: .9rem 0 0; padding: .7rem 0 .1rem .9rem; border-left: 2px solid rgba(255,180,84,.55);
+              font-size: .95rem; line-height: 1.6; opacity: .9; white-space: pre-wrap; text-align: left; }
+  .ch-rules-label { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .72rem;
+                    letter-spacing: .1em; text-transform: uppercase; opacity: .55; display: block; margin-bottom: .3rem; }
+
+  /* One line for the person who has never heard of this. */
+  .what { font-size: .95rem; opacity: .75; line-height: 1.6; margin: 0 0 1.75rem; }
+
   .code {
+    /* The trailing letter-spacing counts toward the width, so at 2rem with
+       .35em tracking the pill was 3px wider than a 360px phone and put the
+       page into horizontal scroll. Fluid type, and a max-width so it can
+       never do that again whatever the code length. */
     /* BLOCK, so the copy control below sits on its own line rather than
        alongside the pill. `fit-content` keeps the pill hugging the code, and
        max-width keeps the narrow-phone fix above intact. */
     display: block; width: fit-content; margin-left: auto; margin-right: auto;
     font-family: ui-monospace, "JetBrains Mono", monospace;
     max-width: 100%; box-sizing: border-box;
-    font-size: clamp(1.4rem, 7.5vw, 2rem); letter-spacing: .3em; font-weight: 700;
-    padding: .75rem 1.25rem .75rem 1.6rem; border-radius: 12px;
+    font-size: clamp(1.2rem, 6.5vw, 1.7rem); letter-spacing: .3em; font-weight: 700;
+    padding: .6rem 1rem .6rem 1.3rem; border-radius: 12px;
     border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.04);
-    margin-bottom: 1.75rem;
+    margin-bottom: .5rem;
   }
-  /* COPY, because the code has to survive a trip to the App Store.
-     
-     iOS has no deferred deep linking: somebody without the app taps the
-     invite, lands here, leaves for the store, installs, opens — and the app
-     has no idea any of that happened. Showing the code is not enough, because
-     by the time they need it this page is three screens behind them. On the
-     clipboard it is still there, and both platforms offer it as a paste
-     suggestion the moment the code field is focused.
-     
-     A button rather than "tap the code": a copy that fires when somebody
-     merely touches the thing they were told to read is a surprise, and on this
-     page a surprise costs the invite. */
-  .copy {
-    display: inline-block; margin: -1rem 0 1.75rem;
-    background: none; border: 0; padding: .4rem .6rem;
-    font: inherit; font-size: .85rem; color: inherit; opacity: .65;
-    text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+  .code-label { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .72rem;
+                letter-spacing: .1em; text-transform: uppercase; opacity: .5; margin: 0 0 .5rem; }
+  .copy { background: none; border: 0; color: inherit; opacity: .7; text-decoration: underline;
+          font: inherit; cursor: pointer; padding: .25rem .5rem; margin-bottom: 1.5rem; }
+
+  .actions { display: flex; flex-direction: column; gap: .75rem; align-items: stretch; margin-bottom: 1.75rem; }
+  .actions .primary, .actions .secondary {
+    display: block; padding: .85rem 1.25rem; border-radius: 999px; text-decoration: none; font-weight: 600;
   }
-  .copy:hover, .copy:focus-visible { opacity: 1; }
-  .copy.done { opacity: 1; color: #7FE0A8; text-decoration: none; }
-  .actions { display: flex; flex-direction: column; gap: .75rem; align-items: center; }
-  .actions a { display: inline-block; padding: .85rem 1.6rem; border-radius: 999px; text-decoration: none; font-weight: 600; }
-  .primary { background: #FFB454; color: #1B2438; }
-  .secondary { border: 1px solid rgba(255,255,255,.2); }
-  .hint { font-size: .85rem; opacity: .6; margin-top: 1.5rem; line-height: 1.6; }
-  /* Raised when the deep link did not take, which is the moment the typed-in
-     code stops being a footnote and becomes the way in. */
-  .hint.nudge {
-    opacity: 1; border: 1px solid rgba(255, 180, 84, .45);
-    background: rgba(255, 180, 84, .08); border-radius: 10px; padding: .9rem 1rem;
-  }
-  /* The switcher sits under the hint, well below the primary action — this
-     page's job is to get someone into a challenge, not to offer them a menu. */
-  .lang-foot { margin-top: 2rem; }
-  .lang-foot .lang-switch::before { content: none; }
+  .actions .primary { background: #FFB454; color: #0B0E17; }
+  .actions .secondary { border: 1px solid rgba(255,255,255,.22); color: inherit; }
+
+  /* The steps, and the reason this page was rebuilt at all.
+     iOS has NO deferred deep linking: tap an invite without the app, install,
+     open it — and the app has never heard of the invite. Several people hit
+     exactly that and did not know what to do next. So the route back is spelled
+     out, in order, including the sign-in nobody expects. */
+  .steps { text-align: left; border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; }
+  .steps h2 { font-size: .78rem; font-family: ui-monospace, "JetBrains Mono", monospace;
+              letter-spacing: .12em; text-transform: uppercase; opacity: .6; margin: 0 0 1rem; font-weight: 600; }
+  .steps ol { margin: 0; padding: 0 0 0 1.35rem; }
+  .steps li { margin: 0 0 .9rem; line-height: 1.6; opacity: .85; }
+  .steps li strong { opacity: 1; }
+  .steps .why { display: block; opacity: .62; font-size: .9rem; margin-top: .2rem; }
+
+  /* Shown only to somebody coming back from the store. */
+  .back { display: none; border: 1px solid rgba(255,180,84,.45); background: rgba(255,180,84,.07);
+          border-radius: 12px; padding: .9rem 1rem; margin: 0 0 1.5rem; font-size: .95rem; line-height: 1.55; }
+  .back strong { color: #FFB454; }
+
+  .hint { font-size: .9rem; opacity: .65; line-height: 1.6; }
+  .gone { border: 1px solid rgba(255,154,124,.4); background: rgba(255,154,124,.07);
+          border-radius: 12px; padding: .9rem 1rem; margin: 0 0 1.5rem; font-size: .95rem; }
 </style>
 </head>
 <body>
   <header class="lang-corner" data-lang-switch></header>
   <main class="invite">
-    <h1>有人邀請你加入挑戰</h1>
-    <p>開啟 Tadapop，輸入這組邀請碼就能加入。</p>
 
-    <div class="code" id="code">——————</div>
-    <button type="button" class="copy" id="copy" hidden>複製邀請碼</button>
+    <div class="back" id="back">
+      從 App Store 回來了嗎？<strong>請點下方的「用 Tadapop 開啟」</strong>，這一步才會把邀請帶進 App。
+    </div>
+
+    <h1 id="title">有人邀請你加入挑戰</h1>
+
+    <div class="ch" id="ch" hidden>
+      <p class="ch-name"><span class="ch-emoji" id="ch-emoji" aria-hidden="true"></span><span id="ch-title"></span></p>
+      <p class="ch-meta" id="ch-meta"></p>
+      <div class="ch-rules" id="ch-rules" hidden>
+        <span class="ch-rules-label">玩法</span><span id="ch-rules-text"></span>
+      </div>
+    </div>
+
+    <div class="gone" id="gone" hidden></div>
+
+    <p class="what">
+      Tadapop 是每日習慣追蹤 App，還有一個只能邀請加入的私人競技場：你和朋友挑一件事，每天打卡，排行榜自己會說話。免費、無廣告，離線也能用。
+    </p>
 
     <div class="actions">
       <a class="primary" id="open" href="#">用 Tadapop 開啟</a>
-      <a class="secondary" href="/zh#get">下載 App</a>
+      <a class="secondary" id="get" href="/#get">免費下載 App</a>
     </div>
 
-    <p class="hint" id="hint">
-      已經有 Tadapop 了嗎？在手機上點一下這個連結，App 應該會直接開啟並顯示這則邀請。如果沒有自動開啟，請手動打開 App，點一下<strong>競技場 → 輸入邀請碼</strong>，然後輸入上方那一組。
-    </p>
+    <p class="code-label">邀請碼</p>
+    <div class="code" id="code">——————</div>
+    <button type="button" class="copy" id="copy" hidden>複製邀請碼</button>
+
+    <section class="steps">
+      <h2>第一次用 Tadapop？三個步驟</h2>
+      <ol>
+        <li>
+          到 App Store 或 Google Play <strong>下載 App</strong>。
+        </li>
+        <li>
+          <strong>回到這個頁面，點「用 Tadapop 開啟」。</strong>
+          <span class="why">只是安裝並不會把邀請帶過去，要靠這個連結。</span>
+        </li>
+        <li>
+          <strong>用 Email 登入。</strong>
+          <span class="why">競技場需要帳號，朋友才看得到你的名字。Tadapop 會寄一組 6 位數字到你的信箱，不用設密碼。你自己的任務完全不需要帳號。</span>
+        </li>
+      </ol>
+      <p class="hint" id="hint">
+        如果按鈕沒有打開 App，請自己開啟 Tadapop，到<strong>競技場 → 輸入邀請碼</strong>，輸入上面那組代碼。
+      </p>
+    </section>
 
   </main>
 
@@ -98,6 +160,7 @@
   var COPY_LABEL = "複製邀請碼";
   var COPY_DONE = "已複製";
   var COPY_FAIL = "請手動複製";
+  var BACK_KEY = 'tadapop-left-for-store';
 
   /* execCommand is deprecated and still the only thing that works in an in-app
      browser without a secure context — which is where a chat-app invite is
@@ -137,137 +200,90 @@
   if (valid) {
     document.getElementById('code').textContent = code;
     document.title = '以邀請碼 ' + code + ' 加入 · Tadapop';
-    /* The app's screen is arena/join and it reads the code off the query
-       string (useLocalSearchParams<{ code }>), so that is the shape the link
-       has to take. It used to be tadapop://join/<code>, which matches no route
-       the app has — the scheme fired, iOS handed it over, and the app opened
-       to nothing. A deep link is only as good as the route on the other end;
-       if arena/join ever moves, this moves with it. */
+    /* The app's screen is arena/join and it reads the code from the path. */
+    document.getElementById('open').href = 'tadapop://join/' + code;
 
-    /* Put the code on the clipboard, so it is still in hand after the store.
-       
-       navigator.clipboard needs a secure context and is not on every browser
-       that reaches this page, so there is a fallback — and if BOTH fail the
-       button says so rather than lying, because a visitor who believes they
-       copied it will paste whatever was on the clipboard before. */
     var copyBtn = document.getElementById('copy');
-    if (copyBtn) {
-      copyBtn.hidden = false;
-      copyBtn.addEventListener('click', function () {
-        function done(ok) {
-          copyBtn.textContent = ok ? COPY_DONE : COPY_FAIL;
-          copyBtn.classList.toggle('done', ok);
-          setTimeout(function () {
-            copyBtn.textContent = COPY_LABEL;
-            copyBtn.classList.remove('done');
-          }, 2400);
-        }
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(code).then(function () { done(true); }, function () { done(legacyCopy(code)); });
-        } else {
-          done(legacyCopy(code));
-        }
-      });
-    }
-
-    var deepLink = 'tadapop://arena/join?code=' + encodeURIComponent(code);
-    var openBtn = document.getElementById('open');
-    openBtn.setAttribute('href', deepLink);
-
-    /* Opening the app must never cost the page.
-       ------------------------------------------------------------------
-       This used to send the top-level location to tadapop:// — and it did it
-       automatically, before the visitor had touched anything. In a normal
-       browser that is harmless: the OS prompt appears and the page stays put.
-       Inside an in-app browser it is not. LINE's webview follows the
-       navigation, has nothing it can render, and leaves a blank black screen
-       — taking the join code with it, which is the one thing the visitor
-       still needed. An invite that ends in a blank screen is a dead invite.
-
-       So the page never navigates itself away any more. In an in-app browser
-       the scheme is offered through a hidden iframe, which the webview either
-       hands to the OS or quietly ignores; either way this document survives.
-       Everywhere else the direct navigation is kept, because that is what
-       makes the prompt appear and the page is not at risk there.
-
-       If nothing has taken over after a beat, the code is promoted from a
-       footnote to the answer, rather than the visitor being left guessing. */
-    var UA = navigator.userAgent || '';
-    var IN_APP = /(\bLine\b|FBAN|FBAV|FB_IAB|Instagram|MicroMessenger|KAKAOTALK|Twitter)/i.test(UA);
-    /* LINE is singled out because it is the one in-app browser with a way out:
-       a link carrying openExternalBrowser=1 is handed to the system browser
-       instead of being opened inside LINE. The others have no such switch. */
-    var IS_LINE = /\bLine\b/i.test(UA);
-    var EXTERNAL_URL = location.origin + location.pathname + '?openExternalBrowser=1';
-    /* We arrived here because LINE was asked to hand us to Safari — so finish
-       the job the visitor already started rather than making them tap again. */
-    var HANDED_OVER = /[?&]openExternalBrowser=1/.test(location.search);
-    var left = false;
-    function markLeft() { left = true; }
-    document.addEventListener('visibilitychange', function () { if (document.hidden) markLeft(); });
-    window.addEventListener('pagehide', markLeft);
-
-    openBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      left = false;
-      /* Both ways of firing a custom scheme from inside LINE have now been
-         tried on a real phone and neither opens the app. The iframe is refused
-         outright — iOS has blocked that since iOS 9. Sending the top-level
-         location there raises the permission prompt and then leaves a blank
-         black screen, because the webview follows the navigation and cannot
-         render a tadapop:// URL, taking the invite code with it.
-
-         Which left the button doing nothing at all, which is its own bug: the
-         one obvious control on the page, and tapping it produced silence.
-
-         The way out of a webview is out of the webview. So in LINE this button
-         does the only thing that can work — hands the page to the system
-         browser, where the scheme behaves and the page survives whatever the
-         visitor answers to the prompt. The trip is invisible: Safari opens on
-         this same page and fires the deep link on arrival (see HANDED_OVER),
-         so from the visitor's side one tap still lands in the app.
-
-         Other in-app browsers have no equivalent switch, so they get the
-         iframe — which costs nothing when it fails — and then the code, which
-         is what they will actually be using. */
-      if (IS_LINE) {
-        window.location.href = EXTERNAL_URL;
-        return;
-      }
-      if (IN_APP) {
-        var f = document.createElement('iframe');
-        f.setAttribute('aria-hidden', 'true');
-        f.setAttribute('tabindex', '-1');
-        f.style.cssText = 'position:absolute;width:0;height:0;border:0;opacity:0';
-        f.src = deepLink;
-        document.body.appendChild(f);
-        setTimeout(function () { if (f.parentNode) f.parentNode.removeChild(f); }, 1200);
+    copyBtn.hidden = false;
+    copyBtn.addEventListener('click', function () {
+      var done = function (ok) { copyBtn.textContent = ok ? COPY_DONE : COPY_FAIL; };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(function () { done(true); }, function () { done(legacyCopy(code)); });
       } else {
-        window.location.href = deepLink;
+        done(legacyCopy(code));
       }
-      // Still here means the app never came forward.
-      setTimeout(function () {
-        if (left) return;
-        var hint = document.getElementById('hint');
-        if (hint) { hint.classList.add('nudge'); }
-        if (hint) hint.scrollIntoView({ block: 'nearest' });
-      }, 900);
+      setTimeout(function () { copyBtn.textContent = COPY_LABEL; }, 2500);
     });
-
-    /* Handed over from LINE: fire the deep link on arrival so the visitor does
-       not have to tap the same button twice. Only ever runs in a real browser
-       — IN_APP is checked because a webview without LINE's switch would still
-       be sitting here with the parameter on the URL, and navigating there is
-       what blanks the page. */
-    if (HANDED_OVER && !IN_APP) {
-      setTimeout(function () { openBtn.click(); }, 400);
-    }
-  } else {
-    document.getElementById('code').textContent = '?';
-    document.querySelector('.invite p').textContent =
-      '這個邀請連結看起來不完整，請找邀請你的人重新傳一次給你。';
-    document.getElementById('open').style.display = 'none';
   }
+
+  /* Coming back from the store.
+     Set when they leave for it, read when they return — the one moment this
+     page can actually help with the gap iOS leaves. Wrapped because an in-app
+     browser in private mode throws on storage. */
+  try {
+    if (sessionStorage.getItem(BACK_KEY)) document.getElementById('back').style.display = 'block';
+    document.getElementById('get').addEventListener('click', function () {
+      try { sessionStorage.setItem(BACK_KEY, '1'); } catch (e) {}
+    });
+  } catch (e) { /* no storage: the steps below still say the same thing */ }
+
+  /* WHAT they have been invited to.
+     challenge_preview is a security-definer RPC that is anon-callable by
+     design (see src/data/supabase/arena.ts) — it returns a deliberately narrow
+     preview and nothing private. Best-effort in every direction: any failure
+     leaves the generic heading and the rest of the page untouched. */
+  (function () {
+    if (!valid || !window.fetch) return;
+    var URL_ = 'https://otwkbulyjmpzirvyxjtp.supabase.co/rest/v1/rpc/challenge_preview';
+    var KEY = 'sb_publishable_FFgmUW1BTmbJWPQvMA22Bg_f9uAMuBh';
+
+    function plural(n, one, many) { return n === 1 ? one : many; }
+
+    fetch(URL_, {
+      method: 'POST',
+      headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: code })
+    })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (rows) {
+        var c = rows && rows.length ? rows[0] : null;
+        if (!c) {
+          // A code that matches nothing. Say so here rather than letting
+          // somebody install an app to reach a challenge that is not there.
+          var gone = document.getElementById('gone');
+          gone.textContent = '這組邀請碼已經找不到對應的挑戰了，請向邀請你的人要一個新連結。';
+          gone.hidden = false;
+          return;
+        }
+
+        document.getElementById('ch-title').textContent = c.name || '一場挑戰';
+        if (c.emoji) document.getElementById('ch-emoji').textContent = c.emoji;
+
+        var bits = [];
+        if (c.days_per_week) bits.push('每週 ' + c.days_per_week + ' 天');
+        if (c.start_date && c.end_date) {
+          var days = Math.round((new Date(c.end_date) - new Date(c.start_date)) / 86400000) + 1;
+          if (days >= 14 && days % 7 === 0) bits.push((days / 7) + ' 週');
+          else if (days > 0) bits.push(days + ' 天');
+        }
+        if (c.player_count) bits.push('已加入 ' + c.player_count + ' 人');
+        document.getElementById('ch-meta').textContent = bits.join(' · ');
+
+        if (c.proof_note) {
+          document.getElementById('ch-rules-text').textContent = c.proof_note;
+          document.getElementById('ch-rules').hidden = false;
+        }
+        document.getElementById('ch').hidden = false;
+        document.getElementById('title').textContent = '有人邀請你';
+
+        if (c.status === 'completed') {
+          var over = document.getElementById('gone');
+          over.textContent = '這場挑戰已經結束了 — 不過 Tadapop 是免費的，你可以自己開一場。';
+          over.hidden = false;
+        }
+      })
+      .catch(function () { /* offline, or the RPC moved: the page still works */ });
+  })();
 </script>
 <script src="/lang.js" defer></script>
 </body>
