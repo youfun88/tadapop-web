@@ -115,9 +115,19 @@ const COPY = {
     'n3.vo': 'Whoever starts it writes the deal, in their own words. The forfeit, the dinner, whatever you actually agreed.',
 
     /* ---- n4 · checking in ---- */
-    'n4.cap1': 'Then it is just a tap. Or a count. Or a timer you start and forget.',
-    'n4.cap2': '<span class="go">Five seconds a day.</span> That is the whole ritual.',
-    'n4.vo': 'Then it is just a tap. Or a count. Or a timer you start and forget. Five seconds a day. That is the whole ritual.',
+    'n4.lbLabel': 'LEADERBOARD',
+    'n4.missed': 'NOBODY YET',
+    'n4.allDone': 'YOU\u2019RE UP',
+    'n4.pending': '0/1 TODAY',
+    'n4.logged': '1/1 TODAY',
+    'n4.day': 'TODAY \u00b7 DAY 12 OF 50',
+    'n4.notLogged': 'Not logged yet',
+    'n4.btn': 'CHECK IN \u00b7 ADD PROOF',
+    'n4.checkedIn': 'Checked in \u2713',
+    'n4.undo': 'UNDO CHECK-IN',
+    'n4.cap1': 'Every day, each of you answers the same question. <span class="hi">Did you do it?</span>',
+    'n4.cap2': 'One tap. <span class="go">That is the whole ritual.</span>',
+    'n4.vo': 'Every day, each of you answers the same question. Did you do it? One tap. That is the whole ritual.',
 
     /* ---- n5 · proof, if the group asked for it ---- */
     'n5.proofLabel': 'PROOF · VISIBLE TO ALL PLAYERS',
@@ -136,9 +146,9 @@ const COPY = {
     'n7.vo': 'Six weeks later, somebody is buying dinner. And all of you trained, which was the point.',
 
     /* ---- n8 · your own half, quietly ---- */
-    'n8.cap1': 'Your own habits stay yours — private, offline, no account.',
-    'n8.cap2': 'Start from a template, or throw them all away.',
-    'n8.vo': 'Your own habits stay yours. Private, offline, no account. Start from a template, or throw them all away.',
+    'n8.cap1': 'Your own habits are a <span class="hi">separate thing</span> — a list only you see.',
+    'n8.cap2': 'Tap, count or time them. Private, offline, <span class="go">no account at all</span>.',
+    'n8.vo': 'And your own habits are a separate thing entirely — a list only you see. Tap them, count them, or time them. Private, offline, no account at all.',
 
     /* ---- n9 · sign-off ---- */
     'n9.cap1': 'Joining someone’s challenge is <span class="go">free, forever</span>.',
@@ -201,19 +211,19 @@ const COPY = {
     's6.tabArena': 'ARENA',
     's6.tabProfile': 'PROFILE',
     's6.convene': '⚑ CONVENE A CHALLENGE',
-    's6.challenge': 'Hydration Challenge',
-    's6.challengeMeta': '8 GLASSES EACH DAY · 7 DAYS · 4 PLAYERS',
+    's6.challenge': '50-Day Movement',
+    's6.challengeMeta': '40 MINUTES A DAY · 50 DAYS · 4 PLAYERS',
     's6.live': 'LIVE',
     's6.cap1': 'Doing it solo? <span class="hi">Cute.</span>',
     's6.cap2': 'Drag your friends in — the <span class="hi">Arena</span>\'s open.',
     's6.vo': 'Doing it solo? Cute. Drag your friends in — the Arena\'s open.',
 
     /* ---- scene 7 · the live leaderboard ---- */
-    's7.liveDay': 'LIVE · DAY 3/7',
+    's7.liveDay': 'LIVE · DAY 12/50',
     's7.leaderboard': 'LEADERBOARD · MOST DAYS',
     's7.missedCol': 'MISSED',
-    's7.today': '{v} TODAY',
-    's7.doneProof': '✓ DONE TODAY · 📷 PROOF',
+    's7.today': '{v} DAYS',
+    's7.doneProof': '✓ DONE TODAY · 🎬 PROOF',
     's7.missedADay': 'MISSED A DAY',
     's7.you': 'You',
     's7.youTag': '(you)',
@@ -228,7 +238,7 @@ const COPY = {
     'player.c': 'Noor A.',
 
     /* ---- scene 8 · results ---- */
-    's8.challengeLine': '💧 HYDRATION CHALLENGE · 7 DAYS',
+    's8.challengeLine': '🏃 50-DAY MOVEMENT · 50 DAYS',
     's8.winner': 'You — that\'s you!',
     's8.winnerMeta': '7 DAYS · MOST DAYS COMPLETED',
     's8.standings': 'FINAL STANDINGS',
@@ -315,9 +325,19 @@ const COPY = {
     'n3.vo': '開挑戰的人用自己的話寫規則。罰則、請客，你們談好的都算。',
 
     /* ---- n4 ---- */
-    'n4.cap1': '之後就只是按一下、計一次，或按下計時。',
-    'n4.cap2': '<span class="go">一天五秒鐘。</span>就這樣而已。',
-    'n4.vo': '之後就只是按一下、計一次，或按下計時。一天五秒鐘，就這樣而已。',
+    'n4.lbLabel': '\u6392\u884c\u699c',
+    'n4.missed': '\u9084\u6c92\u4eba\u6253\u5361',
+    'n4.allDone': '\u4f60\u5148\u4e0a\u4f86\u4e86',
+    'n4.pending': '\u4eca\u5929 0/1',
+    'n4.logged': '\u4eca\u5929 1/1',
+    'n4.day': '\u4eca\u5929 \u00b7 \u7b2c 12 \u5929 / \u5171 50 \u5929',
+    'n4.notLogged': '今天還沒打卡',
+    'n4.btn': '打卡 · 附上成果',
+    'n4.checkedIn': '今天完成 ✓',
+    'n4.undo': '取消打卡',
+    'n4.cap1': '每天，每個人都回答同一個問題：<span class="hi">今天做了嗎？</span>',
+    'n4.cap2': '按一下。<span class="go">就這樣而已。</span>',
+    'n4.vo': '每天，每個人都回答同一個問題：今天做了嗎？按一下，就這樣而已。',
 
     /* ---- n5 ---- */
     'n5.proofLabel': '成果 · 所有人都看得到',
@@ -336,9 +356,9 @@ const COPY = {
     'n7.vo': '六個禮拜後，有人要請客了。而你們都動了，這才是重點。',
 
     /* ---- n8 ---- */
-    'n8.cap1': '你自己的習慣還是你的 — 不公開、離線可用、不用帳號。',
-    'n8.cap2': '從範本開始，或全部丟掉。',
-    'n8.vo': '你自己的習慣還是你的，不公開、離線可用、不用帳號。從範本開始，或全部丟掉。',
+    'n8.cap1': '你自己的習慣是<span class="hi">另一回事</span> — 一份只有你看得到的清單。',
+    'n8.cap2': '打勾、計次或計時。不公開、離線可用、<span class="go">完全不用帳號</span>。',
+    'n8.vo': '你自己的習慣是另一回事：一份只有你看得到的清單。打勾、計次或計時，不用帳號。',
 
     /* ---- n9 ---- */
     'n9.cap1': '參加別人的挑戰，<span class="go">永遠免費</span>。',
@@ -404,18 +424,18 @@ const COPY = {
     's6.tabArena': '競技場',
     's6.tabProfile': '個人',
     's6.convene': '⚑ 發起挑戰',
-    's6.challenge': '喝水挑戰',
-    's6.challengeMeta': '每天 8 杯 · 7 天 · 4 位成員',
+    's6.challenge': '50 天運動挑戰',
+    's6.challengeMeta': '每天 40 分鐘 · 50 天 · 4 位成員',
     's6.live': '進行中',
     's6.cap1': '自己練？<span class="hi">真乖。</span>',
     's6.cap2': '揪朋友進<span class="hi">競技場</span>。',
     's6.vo': '自己练？真乖。揪朋友进竞技场。',
 
     /* ---- scene 7 · the live leaderboard ---- */
-    's7.liveDay': '進行中 · 第 3/7 天',
+    's7.liveDay': '進行中 · 第 12/50 天',
     's7.leaderboard': '排行榜 · 最多天數',
     's7.missedCol': '漏掉天數',
-    's7.today': '今天 {v} 杯',
+    's7.today': '完成 {v} 天',
     's7.doneProof': '✓ 今日打卡 · 📷 證明',
     's7.missedADay': '漏掉一天',
     's7.you': '你',
@@ -432,7 +452,7 @@ const COPY = {
     'player.c': '雅婷',
 
     /* ---- scene 8 · results ---- */
-    's8.challengeLine': '💧 喝水挑戰 · 7 天',
+    's8.challengeLine': '🏃 50 天運動挑戰 · 50 天',
     's8.winner': '冠軍 — 就是你！',
     's8.winnerMeta': '7 天 · 完成天數最多',
     's8.standings': '最終排名',
@@ -654,6 +674,16 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   const stageWrap = el('div', 'film-stagewrap');
   const stage = el('div', 'film-stage');
   stageWrap.appendChild(stage);
+  /* A vignette over the whole frame, above the stage and below the chrome.
+     Every panel in this film is a dark rectangle on a dark ground, and
+     without a fall-off at the edges the picture has no centre — the eye has
+     nothing telling it where to sit. Built here rather than in film.css
+     because that stylesheet is shared with the film already on the homepage,
+     and this is not a change anybody asked for there. */
+  stageWrap.appendChild(el('div', null, {
+    position: 'absolute', inset: '0', pointerEvents: 'none', zIndex: '2',
+    background: 'radial-gradient(128% 104% at 50% 44%, transparent 44%, rgba(2,4,9,.58) 100%)',
+  }));
   // The stage is a picture of the app, not a copy of it. Scenes draw <button>
   // elements to mime taps, and those have no accessible name and nothing to
   // operate — reachable by Tab they are just dead stops between the real
@@ -804,7 +834,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      from the takes rather than guessed:
        n2 7.28s · n5 7.44s · n7 5.84s · n8 9.68s
      Each gets its clip plus the 0.6s of headroom the generator insists on. */
-  const SCENE_DUR = { zh: { s1: 7600, n2: 8000, n5: 8200, n7: 6600, n8: 10400 } };
+  const SCENE_DUR = { zh: { s1: 7600, n2: 8000, n4: 8400, n5: 8200, n7: 6600, n8: 11000 } };
   const durOverrides = SCENE_DUR[LANG];
   if (durOverrides) scenes.forEach((sc) => { if (durOverrides[sc.id]) sc.dur = durOverrides[sc.id]; });
   const TOTAL = scenes.reduce((s, x) => s + x.dur, 0);
@@ -832,6 +862,8 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
   const VOV = 1;
+  /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
+  const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   const VO_DIR = LANG === 'zh' ? '/assets/vo2/zh/' : '/assets/vo2/';
   function voSrc(id) { return VO_DIR + id + '.mp3?v=' + VOV; }
 
@@ -859,6 +891,11 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     if (voWarmed) return;
     voWarmed = true;
     scenes.forEach((sc) => { if (sc.id) { try { fetch(voSrc(sc.id), { cache: 'force-cache' }).catch(() => {}); } catch (e) {} } });
+    /* The proof photographs, too. They are the one scene whose whole claim is
+       that there is something real to look at, so arriving at it with three
+       empty frames is worse than arriving late. Decoded, not merely fetched —
+       a cached-but-undecoded JPEG still costs a frame on the way in. */
+    PROOF_SHOTS.forEach((src) => { try { const im = new Image(); im.src = src; if (im.decode) im.decode().catch(() => {}); } catch (e) {} });
   }
   /* ---- score bed (ElevenLabs Music — chiptune) ----
      One 78-second track under the whole 74.8-second film. A plain <audio>
@@ -1024,7 +1061,15 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     const node = el('div', 'film-scene');
     stage.appendChild(node);
     sfx.whoosh();
-    anim(node, [{ opacity: 0 }, { opacity: 1 }], { duration: 450, fill: 'both' });
+    /* A cut is a dip to black and then a slow settle forward. The flat
+       450ms opacity fade this used to be is what a slideshow does between
+       two slides; the push-in is what says a camera is looking at something.
+       Scale only — no blur — because this is the full 1000x563 stage and a
+       filter on it costs a frame on every cut. */
+    anim(node, [
+      { opacity: 0, transform: 'scale(1.035)' },
+      { opacity: 1, transform: 'scale(1)' },
+    ], { duration: 760, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' });
     try { sc.render(node, ctx); } catch (e) { /* keep film resilient */ }
     (sc.caps || []).forEach((c) => { if (c.at <= 0) showCaption(c.html); else after(c.at * 1000, () => showCaption(c.html)); });
     if (i < scenes.length - 1) after(sc.dur, () => gotoScene(i + 1));
@@ -1756,7 +1801,7 @@ function buildScenes(ctx) {
       c.appendChild(convene);
       const card = el('div', 'fm-panel', { padding: '16px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' });
       card.innerHTML = '<div style="display:flex;align-items:center;gap:12px">' +
-        '<span style="font-size:26px">💧</span><div>' +
+        '<span style="font-size:26px">🏃</span><div>' +
         '<div class="fm-disp" style="font-weight:700;font-size:17px">' + t('s6.challenge') + '</div>' +
         '<div class="fm-mono" style="font-size:10px;color:' + COL.dim + ';margin-top:3px">' + t('s6.challengeMeta') + '</div></div></div>' +
         '<span class="fm-tag" style="color:' + COL.go + ';border-color:' + COL.go + '">' + t('s6.live') + '</span>';
@@ -1778,7 +1823,7 @@ function buildScenes(ctx) {
       const RED = '#FF6B6B';
       const hdr = el('div', 'fm-panel', { padding: '16px 18px', marginBottom: '12px' });
       hdr.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between">' +
-        '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">💧</span>' +
+        '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">🏃</span>' +
         '<span class="fm-disp" style="font-weight:700;font-size:18px">' + t('s6.challenge') + '</span></div>' +
         '<span class="fm-tag" style="color:' + COL.go + ';border-color:' + COL.go + '">' + t('s7.liveDay') + '</span></div>';
       c.appendChild(hdr);
@@ -1786,14 +1831,14 @@ function buildScenes(ctx) {
       board.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">' +
         '<span class="fm-mono" style="font-size:11px;letter-spacing:.16em;color:' + COL.dim + '">' + t('s7.leaderboard') + '</span>' +
         '<span class="fm-mono" style="font-size:10px;letter-spacing:.18em;color:' + RED + '">' + t('s7.missedCol') + '</span></div>';
-      // DAY 3/7: ranked by days completed; the MISSED column is the star stat.
+      // DAY 12/50: ranked by days completed; the MISSED column is the star stat.
       // `done` is a flag rather than a '✓' sniffed off the subtitle — the
       // subtitle is translated copy and must not double as a data field.
       const data = [
-        { name: t('player.a'), me: false, today: t('s7.today', { v: '5/8' }), done: false, missed: 0 },
-        { name: t('s7.you'),   me: true,  today: t('s7.today', { v: '6/8' }), done: false, missed: 0 },
+        { name: t('player.a'), me: false, today: t('s7.today', { v: '9/12' }), done: false, missed: 0 },
+        { name: t('s7.you'),   me: true,  today: t('s7.today', { v: '10/12' }), done: false, missed: 0 },
         { name: t('player.b'), me: false, today: '',                          done: true,  missed: 1 },
-        { name: t('player.c'), me: false, today: t('s7.today', { v: '3/8' }), done: false, missed: 1 },
+        { name: t('player.c'), me: false, today: t('s7.today', { v: '7/12' }), done: false, missed: 1 },
       ];
       const rows = data.map((p, i) => {
         const row = el('div', 'fm-lb-row' + (p.me ? ' me' : ''));
@@ -1811,7 +1856,7 @@ function buildScenes(ctx) {
       c.appendChild(board);
 
       // a friend finishes; the leader MISSES a day (-1, red) and drops; you finish clean and climb to #1.
-      after(1300, () => { rows[3]._sub.textContent = t('s7.today', { v: '7/8' }); sfx.tick(); });
+      after(1300, () => { rows[3]._sub.textContent = t('s7.today', { v: '8/12' }); sfx.tick(); });
       after(2500, () => {
         rows[0]._sub.textContent = t('s7.missedADay'); rows[0]._sub.style.color = RED;
         rows[0]._miss.textContent = '−1'; rows[0]._miss.style.color = RED;
@@ -1925,7 +1970,7 @@ function buildScenes(ctx) {
       const c = appCol(node, 620);
       const panel = el('div', 'fm-panel', { padding: '18px 20px 20px' });
       const title = el('div', 'fm-disp', { fontSize: '24px', fontWeight: '800', color: COL.ink, marginBottom: '4px' });
-      title.textContent = '\ud83c\udfc3 ' + t('s6.chName');
+      title.textContent = '\ud83c\udfc3 ' + t('s6.challenge');
       const meta = el('div', 'fm-mono', { fontSize: '12px', letterSpacing: '.12em', color: COL.dim, marginBottom: '18px' });
       meta.textContent = t('n3.rulesLabel');
       /* The rules read as a quote — an amber rule down the left, the host's
@@ -1952,43 +1997,368 @@ function buildScenes(ctx) {
     },
   };
 
-  /* n5 · proof — somebody else can see it, which is the whole mechanism */
+  /* =====================================================================
+     Motion language for the recut scenes.
+
+     The first cut animated everything with POP — cubic-bezier(.2,1.4,.4,1),
+     an overshoot. On a small confirmation (a checkbox taking a tick) an
+     overshoot reads as delight. On a whole panel arriving it reads as cheap:
+     furniture should not bounce. So the big moves use EASE instead — a long
+     decelerating curve that starts fast and settles without ever passing the
+     mark — and things arrive slightly out of focus, which is most of what
+     makes a rendered rectangle feel like an object rather than a div that
+     appeared. POP survives only where something is being CONFIRMED.
+     ===================================================================== */
+  const EASE = 'cubic-bezier(.16,1,.3,1)';
+
+  /** A panel arriving: up, forward, into focus. Nothing overshoots. */
+  function reveal(node, opts) {
+    const o = opts || {};
+    const dy = o.dy == null ? 26 : o.dy;
+    anim(node, [
+      { opacity: 0, transform: 'translateY(' + dy + 'px) scale(.975)', filter: 'blur(10px)' },
+      { opacity: 1, transform: 'translateY(0px) scale(1)', filter: 'blur(0px)' },
+    ], { duration: o.duration || 900, delay: o.delay || 0, easing: EASE, fill: 'both' });
+  }
+
+  /** The slow push-in every product film has and no still frame has. */
+  function drift(col, ms, to) {
+    anim(col, [
+      { transform: 'translate(-50%,-50%) scale(1)' },
+      { transform: 'translate(-50%,-50%) scale(' + (to || 1.02) + ')' },
+    ], { duration: ms, easing: 'linear', fill: 'both' });
+  }
+
+  /** A soft pool of light behind the hero. Depth for one gradient. */
+  function ambient(node, color, size) {
+    const s = size || 900;
+    const g = el('div', null, {
+      position: 'absolute', left: '50%', top: '50%', width: s + 'px', height: s + 'px',
+      transform: 'translate(-50%,-50%)', pointerEvents: 'none', opacity: '0',
+      background: 'radial-gradient(circle, ' + color + ' 0%, transparent 62%)',
+    });
+    node.insertBefore(g, node.firstChild);
+    anim(g, [{ opacity: 0 }, { opacity: 1 }], { duration: 1500, easing: 'ease-out', fill: 'both' });
+    return g;
+  }
+
+  /* n5 · proof — somebody else can see it, which is the whole mechanism.
+
+     These are PHOTOGRAPHS, and they have to be. The claim the scene makes is
+     that a person actually went and did the thing; a drawn placeholder of
+     someone exercising makes the opposite case, and the first two attempts
+     here (a gradient with a camera glyph, then an abstract "video poster")
+     both read as an image that had failed to load. They are the owner's own
+     check-ins — a run, a swim, a ride — which is also the only honest source
+     for a screen whose entire subject is evidence. */
   const n5 = {
     id: 'n5', dur: 7200,
     vo: t('n5.vo'),
     caps: capsFor('n5'),
     render(node) {
-      const c = appCol(node, 560);
-      const panel = el('div', 'fm-panel', { padding: '16px' });
-      const label = el('div', 'fm-mono', { fontSize: '11px', letterSpacing: '.14em', color: COL.go, marginBottom: '14px' });
-      label.textContent = '\u25cf ' + t('n5.proofLabel');
-      const grid = el('div', null, { display: 'flex', gap: '12px' });
-      panel.append(label, grid); c.appendChild(panel);
-      anim(panel, [{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 560, easing: POP });
+      ambient(node, 'rgba(91,227,155,.10)', 1000);
+      const c = appCol(node, 700);
+      drift(c, 7200, 1.035);
 
-      /* Two tiles: a still and a clip, the two things a host can require.
-         Drawn rather than photographed — a stock gym photo would be the only
-         dishonest frame in the film. */
-      [[COL.blue, '\u25b6'], [COL.violet, '\ud83d\udcf7']].forEach(([tint, glyph], i) => {
-        const tile = el('div', null, {
-          width: '150px', height: '150px', borderRadius: '14px', position: 'relative',
-          background: 'linear-gradient(160deg,' + tint + '33,' + COL.panel2 + ')',
-          border: '1px solid ' + COL.line, display: 'grid', placeItems: 'center', opacity: '0',
+      const label = el('div', 'fm-mono', {
+        fontSize: '11px', letterSpacing: '.18em', color: COL.go,
+        marginBottom: '20px', textAlign: 'center', opacity: '0',
+      });
+      label.textContent = '● ' + t('n5.proofLabel');
+      c.appendChild(label);
+      anim(label, [
+        { opacity: 0, transform: 'translateY(10px)' },
+        { opacity: 1, transform: 'translateY(0px)' },
+      ], { duration: 760, easing: EASE, fill: 'both' });
+
+      const rail = el('div', null, {
+        display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: '22px',
+      });
+      c.appendChild(rail);
+
+      /* FLAT, and that took two goes to learn.
+         ------------------------------------------------------------------
+         The first build fanned these on a rotateY, which is the obvious
+         "photos in space" move and wrong twice over: a 3-D transform breaks
+         border-radius clipping in Chrome, so every angled card leaked its
+         photograph past its own rounded corner, and rotating a photograph
+         that is ITSELF a screenshot of a UI just makes that UI look broken.
+         Scale and elevation carry the same hierarchy with none of that.
+
+         The caption also moved OUT of the picture. Laid over it, the name sat
+         on whatever the photo happened to have at the bottom — over the run
+         it was white-on-white and simply could not be read. Below the frame
+         it is legible over anything, and it is what the app really does. */
+      const shots = [
+        { src: '/assets/proof/run.jpg', who: t('player.a'), when: '07:12', w: 186, h: 232 },
+        { src: '/assets/proof/swim.jpg', who: t('s7.you'), when: '19:04', w: 206, h: 258 },
+        { src: '/assets/proof/cycle.jpg', who: t('player.b'), when: '12:08', w: 186, h: 232 },
+      ];
+
+      shots.forEach((sh, i) => {
+        const col = el('div', null, {
+          display: 'flex', flexDirection: 'column', flex: '0 0 auto',
+          width: sh.w + 'px',
         });
-        const g = el('div', null, { fontSize: '34px' });
-        g.textContent = glyph;
-        const who = el('div', 'fm-mono', {
-          position: 'absolute', left: '10px', bottom: '9px', fontSize: '11px', color: COL.ink,
+        const card = el('div', null, {
+          position: 'relative', width: '100%', height: sh.h + 'px',
+          borderRadius: '18px', overflow: 'hidden',
+          border: '1px solid rgba(255,255,255,.10)',
+          boxShadow: '0 44px 90px -34px rgba(0,0,0,.92)',
+          opacity: '0',
         });
-        who.textContent = i === 0 ? t('s7.you') : t('player.b');
-        tile.append(g, who); grid.appendChild(tile);
-        after(700 + i * 700, () => {
-          anim(tile, [{ opacity: 0, transform: 'scale(.86)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 480, easing: POP, fill: 'both' });
+        const img = el('img');
+        img.src = sh.src;
+        img.alt = '';
+        Object.assign(img.style, {
+          position: 'absolute', inset: '0', width: '100%', height: '100%',
+          objectFit: 'cover', display: 'block',
+        });
+        /* Ken Burns INSIDE the frame — the photo moves, the frame holds. */
+        anim(img, [{ transform: 'scale(1)' }, { transform: 'scale(1.09)' }],
+          { duration: 7200, easing: 'linear', fill: 'both' });
+
+        const sheen = el('div', null, {
+          position: 'absolute', inset: '-40%', pointerEvents: 'none',
+          background: 'linear-gradient(74deg, transparent 43%, rgba(255,255,255,.16) 50%, transparent 57%)',
+          transform: 'translateX(-70%)',
+        });
+        const vig = el('div', null, {
+          position: 'absolute', inset: '0', pointerEvents: 'none',
+          background: 'radial-gradient(118% 96% at 50% 46%, transparent 52%, rgba(4,7,13,.42) 100%)',
+        });
+        card.append(img, vig, sheen);
+        col.appendChild(card);
+
+        /* caption: who, and that it counted */
+        const cap = el('div', null, {
+          display: 'flex', alignItems: 'center', gap: '8px', marginTop: '11px', padding: '0 2px',
+        });
+        const who = el('div', 'fm-disp', {
+          fontSize: '14px', fontWeight: '600', color: COL.ink,
+          whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+        });
+        who.textContent = sh.who;
+        const when = el('div', 'fm-mono', {
+          fontSize: '10px', color: COL.faint, marginLeft: 'auto', letterSpacing: '.06em',
+        });
+        when.textContent = sh.when;
+        const tick = el('div', null, {
+          width: '17px', height: '17px', borderRadius: '50%', flex: '0 0 auto',
+          background: 'rgba(91,227,155,.95)', display: 'grid', placeItems: 'center',
+          boxShadow: '0 0 14px -2px rgba(91,227,155,.8)', transform: 'scale(0)',
+        });
+        tick.innerHTML = '<svg viewBox="0 0 24 24" style="width:10px;height:10px">' +
+          '<path d="M5 12.5 L10 17.5 L19 6.5" fill="none" stroke="#07130c" stroke-width="3.6" ' +
+          'stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        cap.append(tick, who, when);
+        cap.style.opacity = '0';
+        col.appendChild(cap);
+        rail.appendChild(col);
+
+        after(480 + i * 300, () => {
+          anim(card, [
+            { opacity: 0, transform: 'translateY(38px) scale(1.10)', filter: 'blur(16px)' },
+            { opacity: 1, transform: 'translateY(0px) scale(1)', filter: 'blur(0px)' },
+          ], { duration: 1050, easing: EASE, fill: 'both' });
+          anim(cap, [
+            { opacity: 0, transform: 'translateY(10px)' },
+            { opacity: 1, transform: 'translateY(0px)' },
+          ], { duration: 700, delay: 260, easing: EASE, fill: 'both' });
           sfx.pop();
+        });
+        /* The tick lands after the photo is legible, not with it: first you
+           see what they did, then you see that it counted. */
+        after(1620 + i * 300, () => {
+          anim(tick, [
+            { transform: 'scale(0)' }, { transform: 'scale(1.25)' }, { transform: 'scale(1)' },
+          ], { duration: 480, easing: POP, fill: 'both' });
+          sfx.tick();
+        });
+        after(4300 + i * 150, () => {
+          anim(sheen, [{ transform: 'translateX(-70%)' }, { transform: 'translateX(70%)' }],
+            { duration: 1500, easing: 'ease-in-out' });
         });
       });
     },
   };
+
+
+  /* n4 · the daily check-in — the thing the first cut never showed.
+     ------------------------------------------------------------------
+     The previous assembly cut from "you made a challenge" straight to the
+     TODAY MISSION LIST and narrated it as though tapping those rows was how
+     you check in. It is not: those are your own habits, a separate half of
+     the app. A viewer came away thinking the challenge IS your mission list.
+
+     This is now the real screen, laid out from a photograph of it: the board
+     with everyone still on nothing, and under it the one amber card with one
+     button. The beat the scene is built around is that a single tap changes
+     the whole board — your line turns green, your score goes positive, and
+     you move to the top. That is the actual feeling of using it, and it is
+     the only thing this scene is trying to say. */
+  const n4 = {
+    id: 'n4', dur: 8000,
+    vo: t('n4.vo'),
+    caps: capsFor('n4'),
+    render(node) {
+      const glow = ambient(node, 'rgba(255,180,84,.12)', 860);
+      const c = appCol(node, 540);
+      drift(c, 8000, 1.025);
+
+      /* ---- the board, before anyone has answered ---- */
+      const lbHead = el('div', null, {
+        display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '0 6px 9px',
+      });
+      const lbTitle = el('div', 'fm-mono', { fontSize: '10px', letterSpacing: '.2em', color: COL.dim });
+      lbTitle.textContent = t('n4.lbLabel');
+      const lbState = el('div', 'fm-mono', { fontSize: '10px', letterSpacing: '.2em', color: COL.red });
+      lbState.textContent = t('n4.missed');
+      lbHead.append(lbTitle, lbState);
+
+      const board = el('div', 'fm-panel', { padding: '4px 12px', overflow: 'hidden' });
+      const people = [
+        { name: t('player.a'), initial: t('player.a').slice(0, 1), me: false },
+        { name: t('player.b'), initial: t('player.b').slice(0, 1), me: false },
+        { name: t('s7.you'), initial: t('s7.you').slice(0, 1), me: true },
+      ];
+      const rows = people.map((p) => {
+        const r = el('div', 'fm-lb-row' + (p.me ? ' me' : ''));
+        r.innerHTML =
+          '<span class="fm-rank">1</span>' +
+          '<span class="fm-ava' + (p.me ? ' me' : '') + '">' + escText(p.initial) + '</span>' +
+          '<span style="flex:1;min-width:0">' +
+            '<span class="fm-lb-name" style="display:block">' + escText(p.name) + '</span>' +
+            '<span class="fm-lb-sub js-sub" style="display:block">' + t('n4.pending') + '</span>' +
+          '</span>' +
+          '<span class="fm-lb-score js-score" style="color:' + COL.red + '">-1</span>';
+        board.appendChild(r);
+        return r;
+      });
+      const me = rows[2];
+
+      /* ---- the card: one question, one button ---- */
+      const card = el('div', 'fm-panel', {
+        padding: '18px 20px 20px', marginTop: '14px',
+        border: '1px solid ' + COL.amber,
+        boxShadow: '0 0 0 4px rgba(255,180,84,.07), 0 34px 80px -30px rgba(0,0,0,.9)',
+      });
+      const day = el('div', 'fm-mono', {
+        fontSize: '10px', letterSpacing: '.2em', color: COL.dim, marginBottom: '9px',
+      });
+      day.textContent = t('n4.day');
+      const state = el('div', 'fm-disp', {
+        fontSize: '26px', fontWeight: '800', color: COL.ink, marginBottom: '18px', letterSpacing: '-.01em',
+      });
+      state.textContent = t('n4.notLogged');
+      const btn = el('div', 'fm-mono', {
+        borderRadius: '999px', padding: '17px 0', textAlign: 'center',
+        background: 'linear-gradient(180deg,#FFC46E,' + COL.amber + ')',
+        color: '#1A1206', fontWeight: '800', fontSize: '15px', letterSpacing: '.12em',
+        boxShadow: '0 14px 34px -12px rgba(255,180,84,.65)',
+      });
+      btn.textContent = t('n4.btn');
+      card.append(day, state, btn);
+
+      c.append(lbHead, board, card);
+      reveal(board, { duration: 950 });
+      reveal(lbHead, { duration: 950, dy: 18 });
+      reveal(card, { duration: 1000, delay: 140, dy: 34 });
+
+      /* ---- the tap, and everything it moves ---- */
+      after(2750, () => {
+        /* A ring closing on the button, the way a finger is about to. */
+        const ring = el('div', null, {
+          position: 'absolute', left: '50%', top: '50%', width: '120px', height: '120px',
+          marginLeft: '-60px', marginTop: '-60px', borderRadius: '50%',
+          border: '2px solid rgba(255,180,84,.85)', pointerEvents: 'none',
+        });
+        btn.style.position = 'relative';
+        btn.appendChild(ring);
+        anim(ring, [
+          { opacity: 0, transform: 'scale(1.6)' },
+          { opacity: 1, transform: 'scale(.42)' },
+          { opacity: 0, transform: 'scale(.34)' },
+        ], { duration: 420, easing: 'ease-out', fill: 'both' });
+        anim(btn, [
+          { transform: 'scale(1)' }, { transform: 'scale(.955)' }, { transform: 'scale(1)' },
+        ], { duration: 400, delay: 240, easing: POP });
+        after(240, () => sfx.tick());
+      });
+
+      after(3220, () => {
+        card.style.borderColor = COL.go;
+        card.style.boxShadow = '0 0 0 4px rgba(91,227,155,.09), 0 34px 80px -30px rgba(0,0,0,.9)';
+        btn.style.background = 'rgba(91,227,155,.10)';
+        btn.style.color = COL.go;
+        btn.style.border = '1px solid rgba(91,227,155,.55)';
+        btn.style.boxShadow = 'none';
+        btn.style.padding = '16px 0';
+        btn.textContent = t('n4.undo');
+        anim(btn, [{ opacity: 0.2 }, { opacity: 1 }], { duration: 380, easing: EASE });
+        /* The line flips rather than crossfades: a value REPLACED, not a
+           value fading into another one. */
+        anim(state, [
+          { opacity: 1, transform: 'translateY(0px)' },
+          { opacity: 0, transform: 'translateY(-16px)' },
+        ], { duration: 190, easing: 'ease-in', fill: 'forwards' });
+        after(190, () => {
+          state.textContent = t('n4.checkedIn');
+          state.style.color = COL.go;
+          anim(state, [
+            { opacity: 0, transform: 'translateY(16px)' },
+            { opacity: 1, transform: 'translateY(0px)' },
+          ], { duration: 420, easing: EASE, fill: 'both' });
+        });
+        anim(glow, [{ opacity: 1 }, { opacity: 0.25 }], { duration: 900, easing: EASE, fill: 'both' });
+        sfx.chime();
+        boboTada();
+      });
+
+      /* Your line on the board answers a beat later — the board is a
+         consequence of the tap, so it must not move at the same instant. */
+      after(3620, () => {
+        const sub = me.querySelector('.js-sub');
+        const score = me.querySelector('.js-score');
+        sub.textContent = t('n4.logged');
+        sub.classList.add('done');
+        score.textContent = '+1';
+        score.style.color = COL.go;
+        me.style.background = 'rgba(91,227,155,.10)';
+        anim(score, [
+          { transform: 'scale(1)' }, { transform: 'scale(1.35)' }, { transform: 'scale(1)' },
+        ], { duration: 520, easing: POP });
+        anim(sub, [{ opacity: 0 }, { opacity: 1 }], { duration: 360, easing: EASE });
+      });
+
+      /* And then you move. Equal-height rows, so the reorder is two
+         translations rather than a layout thrash — and it reads better:
+         you can watch yourself pass them. */
+      after(4020, () => {
+        const h = me.offsetHeight;
+        anim(me, [{ transform: 'translateY(0px)' }, { transform: 'translateY(' + (-2 * h) + 'px)' }],
+          { duration: 720, easing: EASE, fill: 'both' });
+        rows.slice(0, 2).forEach((r, i) => {
+          anim(r, [{ transform: 'translateY(0px)' }, { transform: 'translateY(' + h + 'px)' }],
+            { duration: 720, delay: 60 + i * 50, easing: EASE, fill: 'both' });
+          const rk = r.querySelector('.fm-rank');
+          after(360 + i * 50, () => { rk.textContent = '2'; });
+        });
+        after(300, () => { me.querySelector('.fm-rank').classList.add('lead'); });
+        sfx.pop();
+      });
+
+      after(4400, () => {
+        lbState.style.color = COL.go;
+        lbState.textContent = t('n4.allDone');
+        anim(lbState, [
+          { opacity: 0, transform: 'translateY(-8px)' },
+          { opacity: 1, transform: 'translateY(0px)' },
+        ], { duration: 420, easing: EASE, fill: 'both' });
+      });
+    },
+  };
+
 
   /* Seven reused, two new. Same objects, re-narrated: a scene is its art plus
      its line, and only the line changed. */
@@ -1997,10 +2367,11 @@ function buildScenes(ctx) {
   }
   const n1 = recut(s1, 'n1', 6200);
   const n2 = recut(s6, 'n2', 7800);
-  const n4 = recut(s2, 'n4', 10500);
   const n6 = recut(s7, 'n6', 9000);
   const n7 = recut(s8, 'n7', 6400);
-  const n8 = recut(s5, 'n8', 8600);
+  /* The mission list appears ONCE, here, after the challenge has finished —
+     and the line over it says outright that this is the other half. */
+  const n8 = recut(s2, 'n8', 10500);
   const n9 = recut(s9, 'n9', 8200);
 
   return [n1, n2, n3, n4, n5, n6, n7, n8, n9];
