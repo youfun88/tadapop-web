@@ -103,10 +103,26 @@
   // ---- 2. The first-visit redirect --------------------------------------
   var qs = new URLSearchParams(location.search);
   if (qs.has('lang')) {
+    var wanted = qs.get('lang') === 'zh' ? 'zh' : 'en';
     try {
-      localStorage.setItem(KEY, qs.get('lang') === 'zh' ? 'zh' : 'en');
+      localStorage.setItem(KEY, wanted);
     } catch (e) {
       /* ignore */
+    }
+    // ...and ACT on it, which this used to skip.
+    //
+    // `?lang=zh` only remembered the choice for next time, so the visit that
+    // carried it still rendered English. That is the visit that matters: the
+    // app appends this to an invite when the SHARER is using Chinese, because
+    // the sharer's app language is the only signal the website has. The
+    // recipient's browser is often no help — a phone set to English can be
+    // running Tadapop in Chinese, which is exactly the case that surfaced this.
+    //
+    // Cannot loop: the redirect lands on the page that already matches, so the
+    // condition is false there. The parameter is kept rather than stripped so a
+    // reload still works where localStorage is blocked.
+    if ((wanted === 'zh') !== here) {
+      location.replace(otherHref(path, wanted === 'zh') + location.search + location.hash);
     }
     return;
   }

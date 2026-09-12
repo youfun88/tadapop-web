@@ -3,17 +3,26 @@
     "apps": [],
     "details": [
       {
-        "appIDs": ["WT6P5XQB6Y.com.qyllc.tadapop"],
+        "appIDs": [
+          "WT6P5XQB6Y.com.qyllc.tadapop"
+        ],
         "components": [
           {
             "/": "/join/*",
             "comment": "Arena challenge invites open straight in the app"
+          },
+          {
+            "/": "/zh/join/*",
+            "comment": "The Chinese mirror of the same invite — same app, same code"
           }
         ]
       },
       {
         "appID": "WT6P5XQB6Y.com.qyllc.tadapop",
-        "paths": ["/join/*"]
+        "paths": [
+          "/join/*",
+          "/zh/join/*"
+        ]
       }
     ]
   }
