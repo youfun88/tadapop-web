@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Second cut · Tadapop</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="/styles.css" />
+<link rel="stylesheet" href="/film.css" />
+<style>
+  /* A review page, not a product page. It exists so the two cuts can be
+     watched back to back before either is put on the homepage. Nothing links
+     here and it is noindex. */
+  .cut { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+  .cut h1 { font-size: 1.6rem; margin: 0 0 .4rem; }
+  .cut .sub { opacity: .7; line-height: 1.6; margin: 0 0 2rem; }
+  .cut .card { border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 1.5rem; margin: 0 0 1.25rem;
+               background: rgba(255,255,255,.03); }
+  .cut .k { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .72rem; letter-spacing: .12em;
+            text-transform: uppercase; opacity: .55; margin: 0 0 .6rem; }
+  .cut h2 { font-size: 1.15rem; margin: 0 0 .5rem; }
+  .cut p { line-height: 1.65; opacity: .85; margin: 0 0 1rem; }
+  .cut .go { display: inline-block; background: #FFB454; color: #0B0E17; font-weight: 700;
+             padding: .8rem 1.5rem; border-radius: 999px; text-decoration: none; border: 0; font: inherit;
+             font-weight: 700; cursor: pointer; }
+  .cut .alt { display: inline-block; margin-left: 1rem; color: inherit; opacity: .75; }
+  .cut ol { line-height: 1.7; opacity: .85; padding-left: 1.3rem; }
+</style>
+</head>
+<body>
+  <main class="cut">
+    <h1>The second cut</h1>
+    <p class="sub">
+      Same engine, a different argument. The first cut opens on the mechanics; this one opens on the
+      reason anybody sticks to anything, and lets the mechanics arrive once you care.
+    </p>
+
+    <div class="card">
+      <p class="k">Watch it</p>
+      <h2>Nobody sticks to it alone.</h2>
+      <p>
+        Nine scenes, voiced, captioned, about 75 seconds. Sound starts when you press play.
+        This page is in English; the Chinese cut is at
+        <a class="alt" href="/zh/film-new/" style="margin:0">/zh/film-new/</a>.
+      </p>
+      <button class="go" type="button" id="filmLaunch" aria-haspopup="dialog">
+        ▶ Play the second cut <span class="film-launch-time"></span>
+      </button>
+    </div>
+
+    <div class="card">
+      <p class="k">What changed</p>
+      <ol>
+        <li><strong>It leads with people.</strong> Pick one thing, then pick who will notice.</li>
+        <li><strong>The host writes the deal</strong> — a new scene, in their own words, forfeit and all.</li>
+        <li><strong>Proof somebody else can see</strong> — a new scene.</li>
+        <li><strong>The board does the nagging</strong>, so no one has to.</li>
+        <li><strong>Your own habits come second</strong>, where they belong for someone deciding whether to care.</li>
+      </ol>
+      <p style="opacity:.65;margin:0">
+        Seven scenes reuse the first cut's art unchanged — it was the good part. Only the order and
+        the narration are new. <a href="/">The first cut is still on the homepage</a>, untouched.
+      </p>
+    </div>
+  </main>
+
+  <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop explainer film" hidden></div>
+<script src="/film2.js" defer></script>
+</body>
+</html>

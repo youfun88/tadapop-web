@@ -62,7 +62,18 @@ import { promisify } from 'node:util';
 const execFileP = promisify(execFile);
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, '..');
-const FILM_JS = join(ROOT, 'film.js');
+const args = process.argv.slice(2);
+const flags = new Set(args.filter((a) => a.startsWith('--')));
+const optVal = (name, dflt) => {
+  const i = args.indexOf(name);
+  return i >= 0 && args[i + 1] && !args[i + 1].startsWith('--') ? args[i + 1] : dflt;
+};
+
+/* --film / --out let this drive a second cut (film2.js → assets/vo2) without
+   a forked copy of the script. Defaults are the original film, so every
+   existing invocation in the header above still means what it says. */
+const FILM_JS = join(ROOT, optVal('--film', 'film.js'));
+const VO_SUBDIR = optVal('--out', 'vo');
 
 const API_KEY = process.env.ELEVENLABS_API_KEY || process.env.XI_API_KEY || '';
 const VOICE_SETTINGS = { stability: 0.45, similarity_boost: 0.8, style: 0.2, use_speaker_boost: true };
@@ -78,13 +89,13 @@ function settingsFor(model) {
 /** Per language: where the clips live, and who reads them. */
 const LANGS = {
   en: {
-    dir: join(ROOT, 'assets', 'vo'),
+    dir: join(ROOT, 'assets', VO_SUBDIR),
     voice: process.env.ELEVENLABS_VOICE_ID || 'TX3LPaxmHKxFdv7VOQHJ', // Liam
     voiceName: 'Liam (energetic, social-media creator)',
     model: process.env.ELEVENLABS_MODEL_ID || 'eleven_multilingual_v2',
   },
   zh: {
-    dir: join(ROOT, 'assets', 'vo', 'zh'),
+    dir: join(ROOT, 'assets', VO_SUBDIR, 'zh'),
     voice: process.env.ELEVENLABS_VOICE_ID_ZH || 'BrbEfHMQu0fyclQR7lfh', // Kevin Tu
     voiceName: 'Kevin Tu (natural, steady — native Taiwan Mandarin)',
     // v3 renders Mandarin markedly better than multilingual_v2 for this voice;
@@ -99,15 +110,10 @@ const HEADROOM = 0.6;
 /** Below this transcription similarity, a take counts as misspoken. */
 const MATCH_MIN = 0.82;
 
-const args = process.argv.slice(2);
-const flags = new Set(args.filter((a) => a.startsWith('--')));
-const optVal = (name, dflt) => {
-  const i = args.indexOf(name);
-  return i >= 0 && args[i + 1] && !args[i + 1].startsWith('--') ? args[i + 1] : dflt;
-};
 const LANG = optVal('--lang', 'en');
 const TAKES = Math.max(1, Number(optVal('--takes', '3')) || 3);
-const sceneIds = args.filter((a) => /^s\d+$/.test(a));
+/* `s1` for the first cut, `n1` for the second — see --film. */
+const sceneIds = args.filter((a) => /^[sn]\d+$/.test(a));
 const dryRun = flags.has('--dry-run');
 
 function die(msg) { console.error(`\n✗ ${msg}\n`); process.exit(1); }
@@ -126,20 +132,23 @@ async function readFilm(lang) {
   // against the English length would be rejected for overrunning a scene that
   // is no longer that long. Read the override too.
   const durations = {};
-  for (const m of src.matchAll(/id:\s*'(s\d+)',\s*dur:\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
+  for (const m of src.matchAll(/id:\s*'([sn]\d+)',\s*dur:\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
+  /* The second cut re-narrates scenes it reuses, so its length is set where it
+     is recut rather than on the scene object: recut(s6, 'n2', 7000). */
+  for (const m of src.matchAll(/recut\([^,]+,\s*'([sn]\d+)',\s*(\d+)\)/g)) durations[m[1]] = Number(m[2]) / 1000;
   const over = new RegExp(`\\b${lang}:\\s*\\{([^}]*)\\}`).exec(
     (/const SCENE_DUR = \{([\s\S]*?)\};/.exec(src) || [, ''])[1],
   );
-  if (over) for (const m of over[1].matchAll(/(s\d+):\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
+  if (over) for (const m of over[1].matchAll(/([sn]\d+):\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
 
   // Narrow to the requested language's block inside COPY so `en:` lines can't
   // be picked up while generating `zh:` (both define the same keys).
   const open = src.indexOf(`\n  ${lang}: {`);
-  if (open < 0) die(`No \`${lang}:\` block in film.js's COPY object.`);
+  if (open < 0) die(`No \`${lang}:\` block in the film's COPY object.`);
   const block = src.slice(open, src.indexOf('\n  },', open));
 
   const out = [];
-  for (const m of block.matchAll(/'(s\d+)\.vo':\s*'((?:\\.|[^'\\])*)'/g)) {
+  for (const m of block.matchAll(/'([sn]\d+)\.vo':\s*'((?:\\.|[^'\\])*)'/g)) {
     out.push({ id: m[1], vo: m[2].replace(/\\(['"\\])/g, '$1'), dur: durations[m[1]] });
   }
   return out;
@@ -287,7 +296,7 @@ async function main() {
 
   const cfg = LANGS[LANG];
   const all = await readFilm(LANG);
-  if (!all.length) die(`No '<id>.vo' lines parsed from film.js's COPY.${LANG} — has the format changed?`);
+  if (!all.length) die(`No '<id>.vo' lines parsed from the film's COPY.${LANG} — has the format changed?`);
 
   const want = sceneIds.length ? sceneIds : all.map((s) => s.id);
   const targets = want.map((id) => all.find((s) => s.id === id) || die(`Scene "${id}" not in COPY.${LANG} (have: ${all.map((s) => s.id).join(', ')})`));
