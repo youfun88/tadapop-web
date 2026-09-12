@@ -22,20 +22,22 @@
        the app directly (see /.well-known/apple-app-site-association).
      - Everyone else: this is the landing page, so it has to carry the code
        somewhere a person can read and retype it. */
-  .invite { max-width: 34rem; margin: 0 auto; padding: 4rem 1.5rem; text-align: center; }
-  .invite h1 { font-size: 1.6rem; margin: 0 0 .75rem; }
-  .invite p { opacity: .8; line-height: 1.6; margin: 0 0 1.5rem; }
+  .invite { max-width: 30rem; margin: 0 auto; padding: 2.25rem 1.25rem 3rem; text-align: center; }
+  .invite h1 { font-size: 1.4rem; margin: 0 0 .5rem; line-height: 1.35; }
+  .invite p { opacity: .8; line-height: 1.6; margin: 0 0 1.25rem; }
   .code {
     /* BLOCK, so the copy control below sits on its own line rather than
        alongside the pill. `fit-content` keeps the pill hugging the code, and
        max-width keeps the narrow-phone fix above intact. */
-    display: block; width: fit-content; margin-left: auto; margin-right: auto;
+    /* FULL WIDTH, matching the two buttons above it. It used to hug its own
+       text, which left it looking like an afterthought beside them — and on
+       the one page where somebody may have to retype it, small is wrong. */
+    display: block; width: 100%; box-sizing: border-box;
     font-family: ui-monospace, "JetBrains Mono", monospace;
-    max-width: 100%; box-sizing: border-box;
-    font-size: clamp(1.4rem, 7.5vw, 2rem); letter-spacing: .3em; font-weight: 700;
-    padding: .75rem 1.25rem .75rem 1.6rem; border-radius: 12px;
+    font-size: clamp(1.5rem, 8vw, 1.9rem); letter-spacing: .3em; font-weight: 700;
+    padding: .8rem 1rem .8rem 1.3rem; border-radius: 999px;
     border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.04);
-    margin-bottom: 1.75rem;
+    margin: 0 0 .6rem;
   }
   /* COPY, because the code has to survive a trip to the App Store.
      
@@ -50,17 +52,19 @@
      merely touches the thing they were told to read is a surprise, and on this
      page a surprise costs the invite. */
   .copy {
-    display: inline-block; margin: -1rem 0 1.75rem;
+    display: inline-block; margin: 0 0 1.75rem;
     background: none; border: 0; padding: .4rem .6rem;
     font: inherit; font-size: .85rem; color: inherit; opacity: .65;
     text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
   }
   .copy:hover, .copy:focus-visible { opacity: 1; }
   .copy.done { opacity: 1; color: #7FE0A8; text-decoration: none; }
-  .actions { display: flex; flex-direction: column; gap: .75rem; align-items: center; }
-  .actions a { display: inline-block; padding: .85rem 1.6rem; border-radius: 999px; text-decoration: none; font-weight: 600; }
+  .actions { display: flex; flex-direction: column; gap: .6rem; align-items: stretch; margin: 0 0 1.5rem; }
+  .actions a { display: block; padding: .85rem 1.2rem; border-radius: 999px; text-decoration: none; font-weight: 600; }
   .primary { background: #FFB454; color: #1B2438; }
   .secondary { border: 1px solid rgba(255,255,255,.2); }
+  .code-label { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .72rem;
+                letter-spacing: .1em; text-transform: uppercase; opacity: .5; margin: 0 0 .5rem; }
   .hint { font-size: .85rem; opacity: .6; margin-top: 1.5rem; line-height: 1.6; }
   /* Raised when the deep link did not take, which is the moment the typed-in
      code stops being a footnote and becomes the way in. */
@@ -76,18 +80,21 @@
   /* Added 2026-09-12: the page used to show a code and nothing else. See the
      commit — this is the best traffic the site gets and it was being spent. */
   .ch { text-align: left; border: 1px solid rgba(255,255,255,.14); border-radius: 14px;
-        background: rgba(255,255,255,.03); padding: 1.2rem 1.2rem 1rem; margin: 0 0 1.5rem; }
+        background: rgba(255,255,255,.03); padding: 1rem 1.1rem; margin: 0 0 1.25rem; }
   .ch-name { display: flex; align-items: baseline; gap: .5rem; font-size: 1.2rem; font-weight: 700;
              line-height: 1.3; margin: 0 0 .4rem; opacity: 1; }
   .ch-emoji { font-size: 1.35rem; line-height: 1; flex: none; }
   .ch-meta { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .78rem;
              letter-spacing: .04em; text-transform: uppercase; opacity: .62; margin: 0; }
-  .ch-rules { margin: .9rem 0 0; padding: .1rem 0 .1rem .9rem; border-left: 2px solid rgba(255,180,84,.55);
-              font-size: .95rem; line-height: 1.6; opacity: .9; white-space: pre-wrap; }
+  .ch-rules { margin: .85rem 0 0; padding: 0 0 0 .85rem; border-left: 2px solid rgba(255,180,84,.55);
+              font-size: .94rem; line-height: 1.6; opacity: .9; }
+  /* pre-wrap ONLY here. On the container it rendered the HTML indentation as
+     real whitespace — a blank block above "How to play" on every invite. */
+  #ch-rules-text { white-space: pre-wrap; display: block; }
   .ch-rules-label { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .7rem;
                     letter-spacing: .1em; text-transform: uppercase; opacity: .55; display: block; margin-bottom: .3rem; }
-  .what { font-size: .95rem; opacity: .75; line-height: 1.6; margin: 0 0 1.75rem; }
-  .steps { text-align: left; border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; margin-top: 2rem; }
+  .what { font-size: .92rem; opacity: .72; line-height: 1.6; margin: 0 0 1.5rem; }
+  .steps { text-align: left; border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.4rem; margin-top: 1.75rem; }
   .steps h2 { font-size: .76rem; font-family: ui-monospace, "JetBrains Mono", monospace;
               letter-spacing: .12em; text-transform: uppercase; opacity: .6; margin: 0 0 1rem; font-weight: 600; }
   .steps ol { margin: 0; padding: 0 0 0 1.35rem; }
@@ -126,13 +133,15 @@
       排行榜自己會說話。免費、無廣告，離線也能用。
     </p>
 
-    <div class="code" id="code">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</div>
-    <button type="button" class="copy" id="copy" hidden>複製邀請碼</button>
 
     <div class="actions">
       <a class="primary" id="open" href="#">用 Tadapop 開啟</a>
       <a class="secondary" id="get" href="/zh#get">免費下載 App</a>
     </div>
+
+    <p class="code-label">或在 App 中輸入這組邀請碼</p>
+    <div class="code" id="code">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</div>
+    <button type="button" class="copy" id="copy" hidden>複製邀請碼</button>
 
     <section class="steps">
       <h2>第一次用 Tadapop？三個步驟</h2>
@@ -394,6 +403,11 @@
           document.getElementById('ch-rules').hidden = false;
         }
         document.getElementById('ch').hidden = false;
+        /* The subtitle told them to enter a code before they knew what they
+           were joining. Now that the card says it properly, drop the line —
+           only here, because the broken-link path still writes into it. */
+        var lede = document.querySelector('.invite > p');
+        if (lede && !lede.className) lede.style.display = 'none';
 
         if (c.status === 'completed') {
           gone.textContent = '這場挑戰已經結束了，不過 Tadapop 是免費的，你可以自己開一場。';
