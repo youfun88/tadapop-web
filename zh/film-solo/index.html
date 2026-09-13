@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>單人版影片 · Tadapop</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="/styles.css" />
+<link rel="stylesheet" href="/film.css" />
+<style>
+  /* A review page, not a product page: it exists so a cut can be watched
+     start to finish before it goes anywhere near the homepage. noindex. */
+  .cut { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+  .cut h1 { font-size: 1.6rem; margin: 0 0 .4rem; }
+  .cut .sub { opacity: .7; line-height: 1.6; margin: 0 0 2rem; }
+  .cut .card { border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 1.5rem; margin: 0 0 1.25rem;
+               background: rgba(255,255,255,.03); }
+  .cut .k { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .72rem; letter-spacing: .12em;
+            text-transform: uppercase; opacity: .55; margin: 0 0 .6rem; }
+  .cut h2 { font-size: 1.15rem; margin: 0 0 .5rem; }
+  .cut p { line-height: 1.65; opacity: .85; margin: 0 0 1rem; }
+  .cut .go { display: inline-block; background: #FFB454; color: #0B0E17; font-weight: 700;
+             padding: .8rem 1.5rem; border-radius: 999px; text-decoration: none; border: 0; font: inherit;
+             font-weight: 700; cursor: pointer; }
+  .cut ol, .cut ul { line-height: 1.7; opacity: .85; padding-left: 1.3rem; }
+  .cut .other { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1rem; }
+  .cut .other a { color: inherit; opacity: .75; border: 1px solid rgba(255,255,255,.16);
+                  border-radius: 999px; padding: .5rem 1rem; text-decoration: none; font-size: .9rem; }
+</style>
+</head>
+<body>
+  <main class="cut">
+    <h1>單人版影片</h1>
+    <p class="sub">另外一半，也是競技場版的相反。這支主打 Tadapop 跟其他習慣 App 最不一樣的地方：不用註冊、沒有人在看你，飛航模式下也能用。</p>
+
+    <div class="card">
+      <p class="k">看影片</p>
+      <h2>就是一份每天的清單，沒有別的。</h2>
+      <p>六個場景，有旁白和字幕，大約 53 秒。按下播放就有聲音。</p>
+      <button class="go" type="button" id="filmLaunch" aria-haspopup="dialog">
+        ▶ 播放單人版 <span class="film-launch-time"></span>
+      </button>
+    </div>
+
+    <div class="card">
+      <p class="k">影片內容</p>
+      <ol>
+        <li>不用帳號、沒有動態牆，飛機上也能用。</li>
+        <li>把你真正想做的事放上去。</li>
+        <li>打個勾、計次，或按下計時器關機專心做。</li>
+        <li>整天清空才拿得到一點 T 點數，漏一項就沒有。</li>
+        <li>連續紀錄加一天。斷了也沒人數落你。</li>
+        <li>一年後整面格子都綠了——除了你，沒人需要看到。</li>
+      </ol>
+      <div class="other">
+        <a href="/film-solo/">English</a>
+        <a href="/zh/film-arena/">競技場版 →</a>
+        <a href="/zh/film-new/">舊的合併版</a>
+      </div>
+    </div>
+  </main>
+
+  <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop 單人版影片" hidden></div>
+<script>window.TADAPOP_FILM_CUT = 'solo';</script>
+<script src="/film2.js" defer></script>
+</body>
+</html>

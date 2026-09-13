@@ -157,6 +157,7 @@ const COPY = {
 
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': 'DAILY MISSIONS · STREAKS · THE ARENA',
+    's1.brandSub.solo': 'DAILY MISSIONS · STREAKS · NO ACCOUNT',
     's1.cap1': 'Yeah, you — the one who keeps saying <span class="hi">tomorrow</span>.',
     /* Carries the setup as well, for the reason the Chinese one does: captions
        replace each other, so a two-part joke lost its first half at the exact
@@ -246,6 +247,35 @@ const COPY = {
     's8.cap1': 'Win together. Lose together.',
     's8.cap2': 'Get scary good — <span class="hi">together</span>.',
     's8.vo': 'Win together. Lose together. Get scary good — together.',
+
+    /* ---- the solo cut (b1..b6) ----
+       Same art as the first film's scenes; a different argument over it.
+       The Arena cut sells being watched by people you like. This one is the
+       opposite of that and has to say so in its first breath, or a viewer
+       who wants to be left alone never finds out that they can be. ---- */
+    'b1.cap1': 'Tadapop is a checklist for your day — <span class="hi">and nothing else</span>.',
+    'b1.cap2': '<span class="go">No account. No feed. Works on a plane.</span>',
+    'b1.vo': 'Tadapop is a checklist for your day, and nothing else. No account, no feed, and it works on a plane.',
+
+    'b2.cap1': 'Put the things you actually meant to do on it.',
+    'b2.cap2': 'Tap one done, count the water or the pages, or <span class="go">start a timer and disappear</span>.',
+    'b2.vo': 'Put the things you actually meant to do on it. Tap one done, count the water or the pages, or start a timer and disappear.',
+
+    'b3.cap1': 'Clear the whole day and it pays out: <span class="go">one Tpoint</span>.',
+    'b3.cap2': 'Miss one and it does not. <span class="hi">All or nothing</span> — no part marks.',
+    'b3.vo': 'Clear the whole day and it pays out one Tpoint. Miss one and it does not. All or nothing, no part marks.',
+
+    'b4.cap1': '<span class="go">Day locked.</span> The streak goes up one.',
+    'b4.cap2': 'Break it and nothing scolds you. <span class="hi">It simply starts again.</span>',
+    'b4.vo': 'Day locked, and the streak goes up one. Break it and nothing scolds you. It simply starts again.',
+
+    'b5.cap1': 'Then one day you look back at a year of this,',
+    'b5.cap2': 'and the grid has <span class="go">gone green</span>. Nobody had to see it but you.',
+    'b5.vo': 'Then one day you look back at a year of this, and the grid has gone green. Nobody had to see it but you.',
+
+    'b6.cap1': 'Free, offline, and <span class="go">nothing to sign up for</span>.',
+    'b6.cap2': 'Start tonight. <span class="hi">Tadapop.</span>',
+    'b6.vo': 'Free, offline, and nothing to sign up for. Start tonight. Tadapop.',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': 'Track. Compete. <span style="color:{amber}">Become.</span>',
@@ -367,6 +397,7 @@ const COPY = {
 
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
+    's1.brandSub.solo': '每日任務 · 連續紀錄 · 不用帳號',
     's1.cap1': '喂！說你喔。嘴上老是<span class="hi">明天明天</span>。',
     /* The setup stays on screen under the punchline. Captions replace each
        other, so a two-part joke lost its first half at the exact moment the
@@ -461,6 +492,31 @@ const COPY = {
     's8.cap2': '<span class="hi">最後一起強到爆。</span>',
     's8.vo': '一起赢，一起输，最后一起强到爆。',
 
+    /* ---- 單人版剪輯 (b1..b6) ---- */
+    'b1.cap1': 'Tadapop 就是一份每天的清單，<span class="hi">沒有別的</span>。',
+    'b1.cap2': '<span class="go">不用帳號、沒有動態牆，飛機上也能用。</span>',
+    'b1.vo': 'Tadapop 就是一份每天的清單。不用帳號、沒有動態牆，飛機上也能用。',
+
+    'b2.cap1': '把你真正想做的事放上去。',
+    'b2.cap2': '打個勾、計次，或<span class="go">按下計時器關機專心做</span>。',
+    'b2.vo': '把你真正想做的事放上去。打個勾、計次，或按下計時器關機專心做。',
+
+    'b3.cap1': '整天清空，才拿得到<span class="go">一點 T 點數</span>。',
+    'b3.cap2': '漏一項就沒有。<span class="hi">全有或全無</span>，沒有半分。',
+    'b3.vo': '整天清空才拿得到一點 T 點數。漏一項就沒有，全有或全無。',
+
+    'b4.cap1': '<span class="go">今天封存。</span>連續紀錄加一天。',
+    'b4.cap2': '斷了也不會有人數落你。<span class="hi">重新開始就好。</span>',
+    'b4.vo': '今天封存，連續紀錄加一天。斷了也沒人數落你，重新開始就好。',
+
+    'b5.cap1': '然後某天回頭看這一年，',
+    'b5.cap2': '整面格子都<span class="go">綠了</span>。除了你，沒人需要看到。',
+    'b5.vo': '然後某天回頭看這一年，整面格子都綠了。除了你，沒人需要看到。',
+
+    'b6.cap1': '免費、離線可用，<span class="go">完全不用註冊</span>。',
+    'b6.cap2': '今晚就開始。<span class="hi">Tadapop。</span>',
+    'b6.vo': '免費、離線可用，完全不用註冊。今晚就開始。Tadapop。',
+
     /* ---- scene 9 · sign-off ---- */
     's9.title': '記錄。較勁。<span style="color:{amber}">蛻變。</span>',
     's9.cap1': 'Tadapop。成為你說過的那個人。',
@@ -471,6 +527,24 @@ const COPY = {
 
 /** 'zh-Hant' / 'zh-TW' -> zh. Anything else, or nothing at all, -> en. */
 const LANG = /^zh/i.test(document.documentElement.lang || '') ? 'zh' : 'en';
+
+/**
+ * Which assembly this page is playing. One engine, three cuts.
+ *
+ * The combined cut kept having to announce which half of the app you were
+ * looking at — "and your own habits are a separate thing entirely" — and a
+ * viewer who has to be told that has already been confused. A film about one
+ * half never has to say it. So the Arena and the solo tracker each get their
+ * own, and the page picks by setting this before the script loads:
+ *
+ *   arena  n1..n7, n9   the challenge, end to end
+ *   solo   b1..b6       the private half: no account, no feed, offline
+ *   full   n1..n9       the original combined cut, kept for its old URL
+ *
+ * Anything unrecognised falls back to `full`, so an old page that never set
+ * the flag keeps playing exactly what it used to.
+ */
+const CUT = ({ arena: 'arena', solo: 'solo', full: 'full' })[window.TADAPOP_FILM_CUT] || 'full';
 
 /**
  * One line of copy in the page's language, with `{slot}` substitution.
@@ -501,6 +575,7 @@ const CAP_AT = {
   en: {
     n1: [0.0, 2.6], n2: [0.0, 3.5], n3: [0.0, 3.9], n4: [0.0, 3.8], n5: [0.0, 3.6],
     n6: [0.0, 2.5], n7: [0.0, 3.1], n8: [0.0, 4.2], n9: [0.0, 3.6],
+    b1: [0.0, 3.4], b2: [0.0, 2.8], b3: [0.0, 3.3], b4: [0.0, 2.7], b5: [0.0, 2.9], b6: [0.0, 3.2],
     s1: [0.0, 2.58],
     s2: [0.0, 4.04, 7.84],
     s3: [0.0, 4.14],
@@ -514,6 +589,7 @@ const CAP_AT = {
   zh: {
     n1: [0, 3.2], n2: [0, 3.4], n3: [0, 3.6], n4: [0, 4.6], n5: [0, 3.4],
     n6: [0, 2.6], n7: [0, 2.8], n8: [0, 3.8], n9: [0, 3.2],
+    b1: [0, 3.6], b2: [0, 2.6], b3: [0, 2.8], b4: [0, 2.6], b5: [0, 2.6], b6: [0, 3.0],
     s1: [0, 4.06],
     s2: [0, 6.12],
     s3: [0, 2.08],
@@ -834,7 +910,12 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      from the takes rather than guessed:
        n2 7.28s · n5 7.44s · n7 5.84s · n8 9.68s
      Each gets its clip plus the 0.6s of headroom the generator insists on. */
-  const SCENE_DUR = { zh: { s1: 7600, n2: 8800, n4: 9600, n5: 8200, n7: 6600, n8: 11000 } };
+  /* Chinese runs longer than English for the same sentence, so a handful of
+     scenes need more room. Keyed by SCENE ID — an entry whose id no longer
+     exists is silently dead, which is how `s1: 7600` sat here doing nothing
+     after that scene was recut as n1. */
+  const SCENE_DUR = { zh: { n1: 7600, n2: 8800, n4: 9600, n5: 8200, n7: 6600, n8: 11000,
+                            b1: 8000, b2: 11000, b3: 8000, b4: 9200, b5: 8800 } };
   const durOverrides = SCENE_DUR[LANG];
   if (durOverrides) scenes.forEach((sc) => { if (durOverrides[sc.id]) sc.dur = durOverrides[sc.id]; });
   const TOTAL = scenes.reduce((s, x) => s + x.dur, 0);
@@ -864,7 +945,11 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   const VOV = 2;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
-  const VO_DIR = LANG === 'zh' ? '/assets/vo2/zh/' : '/assets/vo2/';
+  /* The arena cut reuses the combined cut's clips unchanged — it is the same
+     scenes in the same order with one dropped, so re-rendering them would buy
+     nothing but a chance to make them worse. The solo cut is all new lines. */
+  const VO_BASE = CUT === 'solo' ? '/assets/vo-solo/' : '/assets/vo2/';
+  const VO_DIR = LANG === 'zh' ? VO_BASE + 'zh/' : VO_BASE;
   function voSrc(id) { return VO_DIR + id + '.mp3?v=' + VOV; }
 
   /* ONE element for all nine lines, re-pointed per scene.
@@ -1603,7 +1688,7 @@ function buildScenes(ctx) {
       const title = el('div', 'fm-disp', { fontWeight: '900', fontSize: '60px', letterSpacing: '4px', marginTop: '22px', color: COL.ink });
       title.textContent = 'TADAPOP';
       const sub = el('div', 'fm-mono', { fontSize: '14px', letterSpacing: '.3em', color: COL.amber, marginTop: '10px' });
-      sub.textContent = t('s1.brandSub');
+      sub.textContent = t(CUT === 'arena' ? 'n1.brandSub' : CUT === 'solo' ? 's1.brandSub.solo' : 's1.brandSub');
       box.append(logo, title, sub); wrap.appendChild(box); node.appendChild(wrap);
       anim(logo, [{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 700, easing: POP });
       anim(title, [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 600, delay: 250, fill: 'both' });
@@ -2370,10 +2455,23 @@ function buildScenes(ctx) {
   const n6 = recut(s7, 'n6', 9000);
   const n7 = recut(s8, 'n7', 6400);
   /* The mission list appears ONCE, here, after the challenge has finished —
-     and the line over it says outright that this is the other half. */
+     and the line over it says outright that this is the other half. It is in
+     the combined cut only; the two focused cuts do not need the disclaimer,
+     which is the whole reason they were split. */
   const n8 = recut(s2, 'n8', 10500);
   const n9 = recut(s9, 'n9', 8200);
 
+  /* The solo cut. Same art as the first film — the Today screen, the payout,
+     the streak, the heatmap — re-narrated around being left alone. */
+  const b1 = recut(s1, 'b1', 7000);
+  const b2 = recut(s2, 'b2', 11500);
+  const b3 = recut(s3, 'b3', 7800);
+  const b4 = recut(s4, 'b4', 7200);
+  const b5 = recut(s5, 'b5', 7600);
+  const b6 = recut(s9, 'b6', 8200);
+
+  if (CUT === 'arena') return [n1, n2, n3, n4, n5, n6, n7, n9];
+  if (CUT === 'solo') return [b1, b2, b3, b4, b5, b6];
   return [n1, n2, n3, n4, n5, n6, n7, n8, n9];
 
 }

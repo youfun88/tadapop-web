@@ -73,7 +73,15 @@ const optVal = (name, dflt) => {
    a forked copy of the script. Defaults are the original film, so every
    existing invocation in the header above still means what it says. */
 const FILM_JS = join(ROOT, optVal('--film', 'film.js'));
-const VO_SUBDIR = optVal('--out', 'vo');
+/* A SUBDIRECTORY of assets/, not a path. `--out assets/vo2` silently wrote
+   every clip to assets/assets/vo2 — a real URL that the film never requests,
+   so a whole regeneration appeared to succeed while the site kept serving the
+   old audio under the new captions. Accept either spelling. */
+const VO_SUBDIR = optVal('--out', 'vo').replace(/^\.?\/*/, '').replace(/^assets\//, '').replace(/\/+$/, '');
+if (!VO_SUBDIR || VO_SUBDIR.includes('..')) {
+  console.error(`--out must name a folder under assets/ (got ${JSON.stringify(optVal('--out', 'vo'))})`);
+  process.exit(1);
+}
 
 const API_KEY = process.env.ELEVENLABS_API_KEY || process.env.XI_API_KEY || '';
 const VOICE_SETTINGS = { stability: 0.45, similarity_boost: 0.8, style: 0.2, use_speaker_boost: true };
@@ -113,7 +121,7 @@ const MATCH_MIN = 0.82;
 const LANG = optVal('--lang', 'en');
 const TAKES = Math.max(1, Number(optVal('--takes', '3')) || 3);
 /* `s1` for the first cut, `n1` for the second — see --film. */
-const sceneIds = args.filter((a) => /^[sn]\d+$/.test(a));
+const sceneIds = args.filter((a) => /^[snb]\d+$/.test(a));
 const dryRun = flags.has('--dry-run');
 
 function die(msg) { console.error(`\n✗ ${msg}\n`); process.exit(1); }
@@ -132,14 +140,14 @@ async function readFilm(lang) {
   // against the English length would be rejected for overrunning a scene that
   // is no longer that long. Read the override too.
   const durations = {};
-  for (const m of src.matchAll(/id:\s*'([sn]\d+)',\s*dur:\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
+  for (const m of src.matchAll(/id:\s*'([snb]\d+)',\s*dur:\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
   /* The second cut re-narrates scenes it reuses, so its length is set where it
      is recut rather than on the scene object: recut(s6, 'n2', 7000). */
-  for (const m of src.matchAll(/recut\([^,]+,\s*'([sn]\d+)',\s*(\d+)\)/g)) durations[m[1]] = Number(m[2]) / 1000;
+  for (const m of src.matchAll(/recut\([^,]+,\s*'([snb]\d+)',\s*(\d+)\)/g)) durations[m[1]] = Number(m[2]) / 1000;
   const over = new RegExp(`\\b${lang}:\\s*\\{([^}]*)\\}`).exec(
     (/const SCENE_DUR = \{([\s\S]*?)\};/.exec(src) || [, ''])[1],
   );
-  if (over) for (const m of over[1].matchAll(/([sn]\d+):\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
+  if (over) for (const m of over[1].matchAll(/([snb]\d+):\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
 
   // Narrow to the requested language's block inside COPY so `en:` lines can't
   // be picked up while generating `zh:` (both define the same keys).
@@ -148,7 +156,7 @@ async function readFilm(lang) {
   const block = src.slice(open, src.indexOf('\n  },', open));
 
   const out = [];
-  for (const m of block.matchAll(/'([sn]\d+)\.vo':\s*'((?:\\.|[^'\\])*)'/g)) {
+  for (const m of block.matchAll(/'([snb]\d+)\.vo':\s*'((?:\\.|[^'\\])*)'/g)) {
     out.push({ id: m[1], vo: m[2].replace(/\\(['"\\])/g, '$1'), dur: durations[m[1]] });
   }
   return out;
