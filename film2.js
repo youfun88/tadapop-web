@@ -503,10 +503,10 @@ const COPY = {
     'a1.cEvery': '每天',
     'a1.cPerWeek': '每週幾天',
     'a1.cadNote': '每天，或每週任選幾天。',
-    'a1.cap1': '開一個，<span class="hi">你就是主辦人</span>。',
+    'a1.cap1': '發起一個挑戰，<span class="hi">你就是主辦人</span>。',
     'a1.cap2': '取名字、寫玩法——<span class="go">大家加入前都會先看到</span>。',
     'a1.cap3': '再決定做幾天、多常做。',
-    'a1.vo': '開一個，你就是主辦人。取名字、寫玩法，大家加入前都會先看到。再決定做幾天、多常做。',
+    'a1.vo': '發起一個挑戰，你就是主辦人。取名字、寫玩法，大家加入前都會先看到。再決定做幾天、多常做。',
 
     'a3.cMin': '最少幾人才能開始',
     'a3.minNote': '人數到了，主辦人就能按下開始。',
@@ -1133,7 +1133,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      scenes need more room. Keyed by SCENE ID — an entry whose id no longer
      exists is silently dead, which is how `s1: 7600` sat here doing nothing
      after that scene was recut as n1. */
-  const SCENE_DUR = { zh: { n1: 7600, n2: 13600, a1: 11000, a2: 11400, a3: 15600, a4: 9800, n3: 11500, 
+  const SCENE_DUR = { zh: { n1: 7600, n2: 13600, a1: 12200, a2: 11400, a3: 15600, a4: 9800, n3: 11500, 
                             n4: 9600, n5: 10600, n7: 10000, n8: 11000,
                             b1: 8400, b2: 11000, b3: 9200, b4: 9200, b5: 8800, b6: 10000 } };
   function withOverrides(list) {
@@ -1170,7 +1170,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 7;
+  const VOV = 8;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
