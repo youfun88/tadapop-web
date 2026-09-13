@@ -109,6 +109,30 @@ const COPY = {
     'n2.vo': 'So pick one thing, then pick the people who will notice. The Club is the third tab, and the one part that needs an account. Invite only — no strangers, no feed.',
 
     /* ---- n3 · the deal, in the host's own words ---- */
+    /* ---- c1 / c2 · categories and templates ---- */
+    'c1.screen': 'CATEGORIES',
+    'c1.order': 'PUT THEM IN ORDER',
+    'c1.cMind': 'MIND',
+    'c1.cHealth': 'HEALTH',
+    'c1.cWork': 'WORK',
+    'c1.newPlaceholder': 'Category name',
+    'c1.newName': 'MONEY',
+    'c1.cap1': 'Make the categories <span class="hi">you actually think in</span>.',
+    'c1.cap2': 'Drag them into the order you want — <span class="go">everything else follows it</span>.',
+    'c1.vo': 'Make the categories you actually think in, and drag them into the order you want. Everything else follows that order.',
+
+    'c2.tplLabel': 'TEMPLATES',
+    'c2.newTemplate': '+ NEW TEMPLATE',
+    'c2.add': 'ADD \u2192',
+    'c2.n1': 'Meditate 10 minutes',
+    'c2.m1': '10 MIN',
+    'c2.n2': 'Read 20 pages',
+    'c2.m2': '20 PAGES',
+    'c2.existing': 'Lights out by 11pm',
+    'c2.cap1': 'Templates are the quick way in — the starter packs, or ones you write.',
+    'c2.cap2': 'Press <span class="hi">Add</span>, and it is <span class="go">on your Today list</span>.',
+    'c2.vo': 'Templates are the quick way in — take one from the starter packs, or write your own. Press Add, and it is on your Today list.',
+
     /* ---- a2 · it does not have to be the gym ---- */
     'a2.label': 'CHALLENGES YOU COULD START',
     'a2.mMove': '40 MIN A DAY \u00b7 50 DAYS \u00b7 4 PLAYERS',
@@ -419,6 +443,30 @@ const COPY = {
     'n2.vo': '挑一件事，找幾個會看見你的人。俱樂部是第三個分頁，唯一需要帳號的地方。只能邀請加入，沒有動態牆。',
 
     /* ---- n3 ---- */
+    /* ---- c1 / c2 · 分類與範本 ---- */
+    'c1.screen': '分類',
+    'c1.order': '排出你要的順序',
+    'c1.cMind': '心智',
+    'c1.cHealth': '健康',
+    'c1.cWork': '工作',
+    'c1.newPlaceholder': '分類名稱',
+    'c1.newName': '理財',
+    'c1.cap1': '分類就照<span class="hi">你自己的想法</span>來分。',
+    'c1.cap2': '拖成你要的順序——<span class="go">其他地方都照這個排</span>。',
+    'c1.vo': '分類就照你自己的想法來分，拖成你要的順序。其他地方都照這個排。',
+
+    'c2.tplLabel': '範本',
+    'c2.newTemplate': '+ 新增範本',
+    'c2.add': '加入 \u2192',
+    'c2.n1': '冥想 10 分鐘',
+    'c2.m1': '10 分鐘',
+    'c2.n2': '讀 20 頁',
+    'c2.m2': '20 頁',
+    'c2.existing': '晚上 11 點前關燈',
+    'c2.cap1': '範本是最快的起手式——用現成的，或自己寫一個。',
+    'c2.cap2': '按下<span class="hi">加入</span>，它就<span class="go">出現在今天的任務裡</span>。',
+    'c2.vo': '範本是最快的起手式，用現成的或自己寫一個都行。按下加入，它就出現在今天的任務裡。',
+
     /* ---- a2 · 不一定是運動 ---- */
     'a2.label': '可以開的挑戰',
     'a2.mMove': '每天 40 分鐘 \u00b7 50 天 \u00b7 4 位成員',
@@ -721,6 +769,7 @@ const CAP_AT = {
     n6: [0.0, 2.5], n7: [0.0, 3.1], n8: [0.0, 4.2], n9: [0.0, 3.6],
     b1: [0.0, 3.4], b2: [0.0, 2.8], b3: [0.0, 3.3], b4: [0.0, 2.7], b5: [0.0, 2.9], b6: [0.0, 3.2],
     a1: [0.0, 2.6, 7.0], a2: [0.0, 2.4], a3: [0.0, 4.2, 10.9], a4: [0.0, 4.2],
+    c1: [0.0, 3.6], c2: [0.0, 4.2],
     s1: [0.0, 2.58],
     s2: [0.0, 4.04, 7.84],
     s3: [0.0, 4.14],
@@ -736,6 +785,7 @@ const CAP_AT = {
     n6: [0, 2.6], n7: [0, 2.8], n8: [0, 3.8], n9: [0, 3.2],
     b1: [0, 3.6], b2: [0, 2.6], b3: [0, 2.8], b4: [0, 2.6], b5: [0, 2.6], b6: [0, 3.0],
     a1: [0, 3.0, 8.0], a2: [0, 2.6], a3: [0, 3.4, 10.4], a4: [0, 4.0],
+    c1: [0, 3.2], c2: [0, 3.8],
     s1: [0, 4.06],
     s2: [0, 6.12],
     s3: [0, 2.08],
@@ -1103,7 +1153,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 4;
+  const VOV = 5;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
@@ -2442,6 +2492,271 @@ function buildScenes(ctx, cut) {
   };
 
 
+  /* c1 · categories — the list is yours to arrange.
+     ------------------------------------------------------------------
+     The solo cut showed a finished Today screen and never said where it
+     came from, so it read as a fixed list somebody else wrote. The order
+     is the user's, and it is the same order Templates groups by, which is
+     the only reason arranging it is worth doing. */
+  const c1 = {
+    id: 'c1', dur: 9600,
+    vo: t('c1.vo'),
+    caps: capsFor('c1'),
+    render(node) {
+      ambient(node, 'rgba(127,169,255,.09)', 900);
+      const c = appCol(node, 540);
+      drift(c, 9600, 1.02);
+
+      const head = el('div', 'fm-disp', {
+        fontSize: '22px', fontWeight: '900', letterSpacing: '.16em',
+        color: COL.ink, marginBottom: '4px', opacity: '0',
+      });
+      head.textContent = t('c1.screen');
+      const sub = el('div', 'fm-mono', {
+        fontSize: '10px', letterSpacing: '.2em', color: COL.dim, marginBottom: '14px', opacity: '0',
+      });
+      sub.textContent = t('c1.order');
+      c.append(head, sub);
+      [head, sub].forEach((n, i) => anim(n, [
+        { opacity: 0, transform: 'translateY(10px)' },
+        { opacity: 1, transform: 'translateY(0px)' },
+      ], { duration: 620, delay: i * 90, easing: EASE, fill: 'both' }));
+
+      const cats = [
+        { name: t('c1.cMind'), col: COL.blue },
+        { name: t('c1.cHealth'), col: COL.go },
+        { name: t('c1.cWork'), col: COL.amber },
+      ];
+      const ROW = 62;
+      const rows = cats.map((cat, i) => {
+        const r = el('div', 'fm-panel', {
+          display: 'flex', alignItems: 'center', gap: '14px',
+          padding: '14px 16px', marginBottom: '9px', opacity: '0',
+        });
+        const sw = el('div', null, {
+          width: '26px', height: '26px', borderRadius: '7px', background: cat.col, flex: '0 0 auto',
+        });
+        const nm = el('div', 'fm-disp', { flex: '1', fontSize: '19px', fontWeight: '700', color: COL.ink });
+        nm.textContent = cat.name;
+        /* The drag handle is the whole point of the screen, so it is drawn
+           rather than implied. */
+        const grip = el('div', null, {
+          display: 'flex', flexDirection: 'column', gap: '3px', flex: '0 0 auto', opacity: '.55',
+        });
+        for (let k = 0; k < 3; k++) {
+          grip.appendChild(el('div', null, { width: '18px', height: '2px', borderRadius: '2px', background: COL.dim }));
+        }
+        r.append(sw, nm, grip);
+        c.appendChild(r);
+        after(560 + i * 260, () => {
+          anim(r, [
+            { opacity: 0, transform: 'translateY(14px)' },
+            { opacity: 1, transform: 'translateY(0px)' },
+          ], { duration: 620, easing: EASE, fill: 'both' });
+          sfx.tick();
+        });
+        return r;
+      });
+
+      /* WORK is dragged to the top: it lifts, the other two slide down, and
+         it settles. A reorder is two translations, which reads better than a
+         layout thrash and is the only honest way to show a drag. */
+      after(3500, () => {
+        const work = rows[2];
+        work.style.zIndex = '3';
+        work.style.position = 'relative';
+        anim(work, [
+          { transform: 'translateY(0px) scale(1)', boxShadow: '0 0 0 rgba(0,0,0,0)' },
+          { transform: 'translateY(-8px) scale(1.03)', boxShadow: '0 22px 44px -14px rgba(0,0,0,.85)' },
+          { transform: 'translateY(' + (-2 * ROW - 8) + 'px) scale(1.03)', boxShadow: '0 22px 44px -14px rgba(0,0,0,.85)' },
+          { transform: 'translateY(' + (-2 * ROW) + 'px) scale(1)', boxShadow: '0 0 0 rgba(0,0,0,0)' },
+        ], { duration: 1150, easing: EASE, fill: 'both' });
+        rows.slice(0, 2).forEach((r, i) => {
+          anim(r, [{ transform: 'translateY(0px)' }, { transform: 'translateY(' + ROW + 'px)' }],
+            { duration: 900, delay: 220 + i * 60, easing: EASE, fill: 'both' });
+        });
+        sfx.pop();
+      });
+
+      /* …and a new one is typed, because "make the ones you think in" is the
+         line and an empty field is what that looks like. */
+      const nu = el('div', 'fm-panel', {
+        display: 'flex', alignItems: 'center', gap: '14px', padding: '14px 16px',
+        marginTop: '6px', border: '1px dashed ' + COL.line, opacity: '0',
+      });
+      const nsw = el('div', null, { width: '26px', height: '26px', borderRadius: '7px', background: COL.violet, flex: '0 0 auto' });
+      const ntx = el('div', 'fm-disp', { flex: '1', fontSize: '19px', fontWeight: '700', color: COL.faint });
+      ntx.textContent = t('c1.newPlaceholder');
+      nu.append(nsw, ntx);
+      c.appendChild(nu);
+      after(5900, () => {
+        anim(nu, [
+          { opacity: 0, transform: 'translateY(12px)' },
+          { opacity: 1, transform: 'translateY(0px)' },
+        ], { duration: 600, easing: EASE, fill: 'both' });
+      });
+      after(6600, () => {
+        const word = t('c1.newName');
+        ntx.style.color = COL.ink;
+        ntx.textContent = '';
+        for (let i = 1; i <= word.length; i++) {
+          after(i * 95, () => { ntx.textContent = word.slice(0, i); if (i % 2) sfx.tick(); });
+        }
+      });
+    },
+  };
+
+  /* c2 · templates — press ADD and it is on Today.
+     ------------------------------------------------------------------
+     This is the one concept the solo cut could not carry in words: a
+     template is a mission you have not started yet, and adding it is a
+     single tap. So the card physically moves from one list to the other. */
+  const c2 = {
+    id: 'c2', dur: 11000,
+    vo: t('c2.vo'),
+    caps: capsFor('c2'),
+    render(node) {
+      ambient(node, 'rgba(255,180,84,.09)', 960);
+      const c = appCol(node, 660);
+      drift(c, 11000, 1.02);
+
+      const row = el('div', null, { display: 'flex', alignItems: 'flex-start', gap: '28px' });
+      c.appendChild(row);
+
+      function column(title, width) {
+        const col = el('div', null, { width: width + 'px', flex: '0 0 auto' });
+        const h = el('div', 'fm-mono', {
+          fontSize: '10px', letterSpacing: '.2em', color: COL.dim, marginBottom: '10px', paddingLeft: '2px',
+        });
+        h.textContent = title;
+        col.appendChild(h);
+        row.appendChild(col);
+        return col;
+      }
+      const left = column(t('c2.tplLabel'), 300);
+      const right = column(t('app.missionsToday'), 300);
+
+      /* + NEW TEMPLATE, dashed, exactly as the screen has it. */
+      const mk = el('div', 'fm-mono', {
+        border: '1px dashed ' + COL.amber, borderRadius: '11px', color: COL.amber,
+        fontSize: '11px', letterSpacing: '.12em', padding: '11px 0', textAlign: 'center',
+        marginBottom: '12px', opacity: '0',
+      });
+      mk.textContent = t('c2.newTemplate');
+      left.appendChild(mk);
+
+      function tplCard(emoji, name, meta) {
+        const card = el('div', 'fm-panel', { padding: '12px 13px', marginBottom: '10px', opacity: '0' });
+        const top = el('div', null, { display: 'flex', alignItems: 'center', gap: '10px' });
+        const em = el('div', null, { fontSize: '19px', flex: '0 0 auto' });
+        em.textContent = emoji;
+        const nm = el('div', 'fm-disp', { flex: '1', fontSize: '15px', fontWeight: '600', color: COL.ink });
+        nm.textContent = name;
+        const add = el('div', 'fm-mono', {
+          fontSize: '11px', letterSpacing: '.1em', color: COL.amber, flex: '0 0 auto',
+        });
+        add.textContent = t('c2.add');
+        top.append(em, nm, add);
+        const tag = el('div', 'fm-mono', {
+          display: 'inline-block', marginTop: '9px', fontSize: '10px', letterSpacing: '.1em',
+          color: COL.dim, border: '1px solid ' + COL.line, borderRadius: '7px', padding: '4px 9px',
+        });
+        tag.textContent = meta;
+        card.append(top, tag);
+        card._add = add;
+        return card;
+      }
+      const t1 = tplCard('🧘', t('c2.n1'), t('c2.m1'));
+      const t2 = tplCard('📖', t('c2.n2'), t('c2.m2'));
+      left.append(t1, t2);
+
+      /* Today starts with one mission on it, so the arrival has something to
+         arrive ABOVE — an empty list would read as "this is the only way". */
+      const todayList = el('div', null, {});
+      right.appendChild(todayList);
+      const existing = el('div', 'fm-panel', { padding: '12px 13px', marginBottom: '10px', opacity: '0' });
+      existing.innerHTML =
+        '<div style="display:flex;align-items:center;gap:10px">' +
+        '<span style="font-size:19px">🛏️</span>' +
+        '<span class="fm-disp" style="flex:1;font-size:15px;font-weight:600">' + escText(t('c2.existing')) + '</span>' +
+        '<span style="width:22px;height:22px;border-radius:50%;border:1.5px solid ' + COL.faint + ';display:inline-block"></span></div>';
+      todayList.appendChild(existing);
+
+      [mk, t1, t2, existing].forEach((n, i) => {
+        after(500 + i * 240, () => {
+          anim(n, [
+            { opacity: 0, transform: 'translateY(14px)' },
+            { opacity: 1, transform: 'translateY(0px)' },
+          ], { duration: 620, easing: EASE, fill: 'both' });
+          sfx.tick();
+        });
+      });
+
+      /* The move itself. A clone flies the real distance between the two
+         columns — measured, not guessed, so it lands on the list rather than
+         near it — and the original dims behind it. */
+      after(4600, () => {
+        anim(t1._add, [
+          { transform: 'scale(1)' }, { transform: 'scale(1.35)' }, { transform: 'scale(1)' },
+        ], { duration: 420, easing: POP });
+        sfx.pop();
+      });
+      after(5000, () => {
+        const from = t1.getBoundingClientRect();
+        const to = todayList.getBoundingClientRect();
+        const stageScale = from.width / t1.offsetWidth || 1;
+        const dx = (to.left - from.left) / stageScale;
+        const dy = (to.top - from.top) / stageScale;
+
+        const ghost = t1.cloneNode(true);
+        Object.assign(ghost.style, {
+          position: 'absolute', left: '0px', top: '0px', width: t1.offsetWidth + 'px',
+          margin: '0', zIndex: '9', pointerEvents: 'none',
+        });
+        /* Positioned against the column so the maths stays in stage units. */
+        left.style.position = 'relative';
+        ghost.style.left = t1.offsetLeft + 'px';
+        ghost.style.top = t1.offsetTop + 'px';
+        left.appendChild(ghost);
+        /* The template is NOT dimmed on the way out. Adding one copies it into
+           Today and leaves it in the list — you can add it again tomorrow — so
+           a source that fades would be teaching the wrong thing. (It would not
+           have faded anyway: the entrance animation holds opacity with
+           fill:'both', and a filled animation beats an inline style.) */
+
+        anim(ghost, [
+          { transform: 'translate(0px,0px) scale(1)', opacity: 1 },
+          { transform: 'translate(' + (dx * 0.5) + 'px,' + (dy * 0.5 - 26) + 'px) scale(1.05)', opacity: 1 },
+          { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(1)', opacity: 1 },
+        ], { duration: 900, easing: EASE, fill: 'both' });
+
+        after(900, () => {
+          ghost.remove();
+          /* It lands as a real Today row: a check control, not an ADD link. */
+          const landed = el('div', 'fm-panel', {
+            padding: '12px 13px', marginBottom: '10px',
+            border: '1px solid ' + COL.go, opacity: '0',
+          });
+          landed.innerHTML =
+            '<div style="display:flex;align-items:center;gap:10px">' +
+            '<span style="font-size:19px">🧘</span>' +
+            '<span class="fm-disp" style="flex:1;font-size:15px;font-weight:600">' + escText(t('c2.n1')) + '</span>' +
+            '<span style="width:22px;height:22px;border-radius:50%;border:1.5px solid ' + COL.blue + ';display:grid;place-items:center;color:' + COL.blue + ';font-size:10px">▶</span></div>' +
+            '<div class="fm-mono" style="font-size:10px;color:' + COL.amber + ';margin-top:7px">' + escText(t('c2.m1')) + '</div>';
+          todayList.insertBefore(landed, existing);
+          anim(landed, [
+            { opacity: 0, transform: 'scale(.94)' },
+            { opacity: 1, transform: 'scale(1)' },
+          ], { duration: 480, easing: POP, fill: 'both' });
+          anim(existing, [{ transform: 'translateY(-10px)' }, { transform: 'translateY(0px)' }],
+            { duration: 480, easing: EASE });
+          sfx.chime();
+          boboTada();
+        });
+      });
+    },
+  };
+
   /* a2 · what a challenge can be.
      ------------------------------------------------------------------
      The cut only ever showed one kind of challenge — exercise — and a
@@ -3055,7 +3370,9 @@ function buildScenes(ctx, cut) {
   const b6 = recut(s9, 'b6', 8200);
 
   if (CUT === 'arena') return [n1, n2, a2, a1, a3, n3, n4, n5, a4, n6, n7, n9];
-  if (CUT === 'solo') return [b1, b2, b3, b4, b5, b6];
+  /* Categories and templates sit right after the Today screen: you have just
+     seen the list, so where it comes from is the next thing you want. */
+  if (CUT === 'solo') return [b1, b2, c1, c2, b3, b4, b5, b6];
   return [n1, n2, n3, n4, n5, n6, n7, n8, n9];
 
 }
