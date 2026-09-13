@@ -121,8 +121,8 @@ const COPY = {
     'a2.cap2': 'Anything you keep meaning to do and <span class="hi">keep putting off</span>.',
     'a2.vo': 'And it does not have to be the gym. Anything you keep meaning to do and keep putting off — moving more, getting to bed earlier, reading before you sleep.',
 
-    /* ---- a1 / a3 · the CONVENE screen, built from photographs of it ---- */
-    'a1.screen': 'CONVENE',
+    /* ---- a1 / a3 · the create screen, built from photographs of it ---- */
+    'a1.screen': 'NEW CHALLENGE',
     'a1.cName': 'CHALLENGE',
     'a1.cHow': 'HOW TO PLAY (OPTIONAL)',
     'a1.howText': 'Work out at least 40 minutes a day.\nYour photo must show the timer.',
@@ -162,7 +162,7 @@ const COPY = {
     'a3.sAll': 'ALL PLAYERS',
     'a3.sHost': 'HOST ONLY',
     'a3.proofNote': 'Proof is required to check in — back out of the camera and the day stays unlogged.',
-    'a3.btnCreate': '\u2691 CONVENE',
+    'a3.btnCreate': 'CREATE CHALLENGE',
     'a3.btnCancel': 'CANCEL',
     'a3.cap1': 'Then who is in it. <span class="hi">Once enough have joined, you start it.</span>',
     'a3.cap2': 'Who can join, who can invite — and whether a check-in needs <span class="hi">a photo, a clip, or both</span>.',
@@ -281,7 +281,7 @@ const COPY = {
     's6.tabStats': 'STATS',
     's6.tabArena': 'ARENA',
     's6.tabProfile': 'PROFILE',
-    's6.convene': '⚑ CONVENE A CHALLENGE',
+    's6.convene': '⚑ NEW CHALLENGE',
     's6.challenge': '50-Day Movement',
     's6.challengeMeta': '40 MINUTES A DAY · 50 DAYS · 4 PLAYERS',
     's6.live': 'LIVE',
@@ -472,7 +472,7 @@ const COPY = {
     'a3.sAll': '所有成員',
     'a3.sHost': '只有主辦人',
     'a3.proofNote': '沒附證明就不算打卡——退出相機，那天就會留空。',
-    'a3.btnCreate': '\u2691 發起挑戰',
+    'a3.btnCreate': '建立挑戰',
     'a3.btnCancel': '取消',
     'a3.cap1': '再決定誰能進來。<span class="hi">人數夠了，你按下開始。</span>',
     'a3.cap2': '誰能加入、誰能邀請，打卡要附<span class="hi">照片還是影片</span>。',
@@ -2531,7 +2531,7 @@ function buildScenes(ctx, cut) {
   };
 
   /* ---------------------------------------------------------------------
-     The CONVENE screen, in two scenes.
+     The create screen, in two scenes.
 
      The first version of a1 was invented — a tidy four-row form I guessed
      at. The real screen has nine sections and most of what makes the Arena
