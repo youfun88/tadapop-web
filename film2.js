@@ -359,6 +359,15 @@ const COPY = {
     'b3.cap2': 'Miss one and it does not — <span class="hi">the day is the unit</span>, not the task.',
     'b3.vo': 'Clear the whole day and it pays out one Tpoint. Miss one and it does not — the day is the unit here, not the task.',
 
+    /* Taken off the real Today ring and the Stats SNAPSHOT card. */
+    'b4.ringPart': '4 of 5 done',
+    'b4.ringNote': '1 more for today\u2019s Tpoint',
+    'b4.ringDone': '5 of 5 done',
+    'b4.banked': 'Today\u2019s Tpoint banked',
+    'b4.snapshot': 'SNAPSHOT',
+    'b4.streakLabel': 'DAY STREAK',
+    'b4.best': 'best 380d',
+    'b4.thisWeek': 'THIS WEEK',
     'b4.cap1': '<span class="go">Day locked.</span> The streak goes up one.',
     'b4.cap2': 'Break it and nothing scolds you. <span class="hi">It simply starts again.</span>',
     'b4.vo': 'Day locked, and the streak goes up one. Break it and nothing scolds you. It simply starts again.',
@@ -693,6 +702,14 @@ const COPY = {
     'b3.cap2': '漏一項就沒有——這裡算的是<span class="hi">一整天</span>，不是單項。',
     'b3.vo': '整天清空才拿得到一點 T 點數。漏一項就沒有，這裡算的是一整天，不是單項。',
 
+    'b4.ringPart': '5 項完成 4 項',
+    'b4.ringNote': '再 1 項就有今天的 T點數',
+    'b4.ringDone': '5 項全部完成',
+    'b4.banked': '今天的 T點數入袋',
+    'b4.snapshot': '快照',
+    'b4.streakLabel': '連續天數',
+    'b4.best': '最佳 380 天',
+    'b4.thisWeek': '本週',
     'b4.cap1': '<span class="go">今天封存。</span>連續紀錄加一天。',
     'b4.cap2': '斷了也不會有人數落你。<span class="hi">重新開始就好。</span>',
     'b4.vo': '今天封存，連續紀錄加一天。斷了也沒人數落你，重新開始就好。',
@@ -1118,7 +1135,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      after that scene was recut as n1. */
   const SCENE_DUR = { zh: { n1: 7600, n2: 13600, a1: 11000, a2: 11400, a3: 15200, a4: 9800, n3: 11500, 
                             n4: 9600, n5: 10600, n7: 10000, n8: 11000,
-                            b1: 8000, b2: 11000, b3: 9200, b4: 9200, b5: 8800, b6: 10000 } };
+                            b1: 8400, b2: 11000, b3: 9200, b4: 9200, b5: 8800, b6: 10000 } };
   function withOverrides(list) {
     const ov = SCENE_DUR[LANG];
     if (ov) list.forEach((sc) => { if (ov[sc.id]) sc.dur = ov[sc.id]; });
@@ -1153,7 +1170,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 5;
+  const VOV = 6;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
@@ -2492,6 +2509,125 @@ function buildScenes(ctx, cut) {
   };
 
 
+  /* b4 · the day closes, the streak moves.
+     ------------------------------------------------------------------
+     This used to reuse s4, which drew five segments filling and a banner
+     reading ALL OBJECTIVES CLEARED — DAY SECURED. No screen in the app has
+     ever looked like that or said that. Today shows a ring and "n of m
+     done"; Stats shows a SNAPSHOT card with the streak, the best, and the
+     week so far. Both of those are drawn here instead. */
+  const b4 = {
+    id: 'b4', dur: 7200,
+    vo: t('b4.vo'),
+    caps: capsFor('b4'),
+    render(node) {
+      ambient(node, 'rgba(91,227,155,.09)', 900);
+      const c = appCol(node, 540);
+      drift(c, 7200, 1.02);
+
+      /* ---- Today: the ring closing ---- */
+      const ringCard = el('div', 'fm-panel', {
+        display: 'flex', alignItems: 'center', gap: '18px',
+        padding: '16px 18px', marginBottom: '14px', opacity: '0',
+      });
+      const R = 26, CIRC = 2 * Math.PI * R;
+      const ring = el('div', null, { width: '64px', height: '64px', flex: '0 0 auto', position: 'relative' });
+      ring.innerHTML =
+        '<svg viewBox="0 0 64 64" style="width:64px;height:64px;transform:rotate(-90deg)">' +
+        '<circle cx="32" cy="32" r="' + R + '" fill="none" stroke="' + COL.line + '" stroke-width="5"/>' +
+        '<circle class="js-arc" cx="32" cy="32" r="' + R + '" fill="none" stroke="' + COL.go + '" ' +
+        'stroke-width="5" stroke-linecap="round" stroke-dasharray="' + CIRC + '" ' +
+        'stroke-dashoffset="' + (CIRC * 0.2) + '"/></svg>';
+      const arc = ring.querySelector('.js-arc');
+      const mid = el('div', null, { flex: '1', minWidth: '0' });
+      const done = el('div', 'fm-disp', { fontSize: '22px', fontWeight: '800', color: COL.ink });
+      done.textContent = t('b4.ringPart');
+      const note = el('div', 'fm-mono', { fontSize: '11px', color: COL.dim, marginTop: '5px' });
+      note.textContent = t('b4.ringNote');
+      mid.append(done, note);
+      ringCard.append(ring, mid);
+      c.appendChild(ringCard);
+
+      /* ---- Stats: the SNAPSHOT card, as the screen actually has it ---- */
+      const snapLabel = el('div', 'fm-mono', {
+        fontSize: '10px', letterSpacing: '.2em', color: COL.dim,
+        marginBottom: '9px', paddingLeft: '4px', opacity: '0',
+      });
+      snapLabel.textContent = t('b4.snapshot');
+      const snap = el('div', 'fm-panel', { padding: '18px 20px 20px', opacity: '0' });
+      const streakRow = el('div', null, { display: 'flex', alignItems: 'center', gap: '14px' });
+      const flame = el('div', null, { fontSize: '26px', lineHeight: '1' });
+      flame.textContent = '🔥';
+      const num = el('div', 'fm-disp js-streak', { fontSize: '30px', fontWeight: '800', color: COL.amber });
+      num.textContent = '11';
+      const unit = el('div', 'fm-mono', { fontSize: '13px', letterSpacing: '.18em', color: COL.dim });
+      unit.textContent = t('b4.streakLabel');
+      streakRow.append(flame, num, unit);
+      const best = el('div', 'fm-mono', { fontSize: '12px', color: COL.faint, marginTop: '7px' });
+      best.textContent = t('b4.best');
+      const rule = el('div', null, { height: '1px', background: COL.lineSoft, margin: '15px 0 13px' });
+      const weekRow = el('div', null, { display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' });
+      const wLab = el('div', 'fm-mono', { fontSize: '11px', letterSpacing: '.18em', color: COL.dim });
+      wLab.textContent = t('b4.thisWeek');
+      const wPct = el('div', 'fm-disp js-pct', { fontSize: '19px', fontWeight: '800', color: COL.ink });
+      wPct.textContent = '58%';
+      weekRow.append(wLab, wPct);
+      const track = el('div', null, {
+        height: '9px', borderRadius: '5px', background: 'rgba(79,91,118,.25)',
+        marginTop: '10px', overflow: 'hidden',
+      });
+      const bar = el('div', null, {
+        height: '100%', width: '58%',
+        background: 'linear-gradient(90deg,' + COL.amberDeep + ',' + COL.amber + ')',
+      });
+      track.appendChild(bar);
+      snap.append(streakRow, best, rule, weekRow, track);
+      c.append(snapLabel, snap);
+
+      [ringCard, snapLabel, snap].forEach((n, i) => {
+        after(360 + i * 200, () => {
+          anim(n, [
+            { opacity: 0, transform: 'translateY(16px)' },
+            { opacity: 1, transform: 'translateY(0px)' },
+          ], { duration: 700, easing: EASE, fill: 'both' });
+        });
+      });
+
+      /* The last mission of the day lands: the ring closes, the day banks. */
+      after(1900, () => {
+        anim(arc, [{ strokeDashoffset: CIRC * 0.2 }, { strokeDashoffset: 0 }],
+          { duration: 760, easing: EASE, fill: 'both' });
+        after(560, () => {
+          done.textContent = t('b4.ringDone');
+          done.style.color = COL.go;
+          note.textContent = t('b4.banked');
+          note.style.color = COL.go;
+          anim(done, [
+            { opacity: 0, transform: 'translateY(8px)' },
+            { opacity: 1, transform: 'translateY(0px)' },
+          ], { duration: 400, easing: EASE, fill: 'both' });
+          anim(ring, [{ transform: 'scale(1)' }, { transform: 'scale(1.09)' }, { transform: 'scale(1)' }],
+            { duration: 480, easing: POP });
+          sfx.chime();
+        });
+      });
+
+      /* …and only then does the streak move. It is a consequence of the day
+         closing, so it must not happen at the same instant. */
+      after(3400, () => {
+        countUp(num, 11, 12, 620);
+        anim(snap, [
+          { boxShadow: '0 0 0 0 rgba(255,180,84,0)' },
+          { boxShadow: '0 0 30px -6px rgba(255,180,84,.55)' },
+          { boxShadow: '0 0 0 0 rgba(255,180,84,0)' },
+        ], { duration: 1100 });
+        anim(bar, [{ width: '58%' }, { width: '71%' }], { duration: 900, easing: EASE, fill: 'both' });
+        countUp(wPct, 58, 71, 900, (v) => v + '%');
+        boboTada();
+      });
+    },
+  };
+
   /* c1 · categories — the list is yours to arrange.
      ------------------------------------------------------------------
      The solo cut showed a finished Today screen and never said where it
@@ -3362,10 +3498,11 @@ function buildScenes(ctx, cut) {
 
   /* The solo cut. Same art as the first film — the Today screen, the payout,
      the streak, the heatmap — re-narrated around being left alone. */
-  const b1 = recut(s1, 'b1', 7000);
+  const b1 = recut(s1, 'b1', 7400);
   const b2 = recut(s2, 'b2', 11500);
   const b3 = recut(s3, 'b3', 7800);
-  const b4 = recut(s4, 'b4', 7200);
+  /* b4 has its own render now — s4's banner said ALL OBJECTIVES CLEARED,
+     which no screen in this app has ever said. */
   const b5 = recut(s5, 'b5', 7600);
   const b6 = recut(s9, 'b6', 8200);
 
