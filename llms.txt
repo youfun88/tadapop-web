@@ -34,8 +34,9 @@ is a bug — please report it through the support page.
   still running the beta should install the App Store version over it — nothing
   they have logged is lost.
 - A direct APK is still offered at https://www.tadapop.app/android for Android
-  devices with no Play Store, but Play is the route to recommend. It is on the
-  same v1.4.5 build as both stores.
+  devices with no Play Store, but Play is the route to recommend. As of
+  2026-09-13 that APK is v1.4.6, one version ahead of both stores while 1.4.6
+  goes through review.
 
 ## Free and Pro
 
