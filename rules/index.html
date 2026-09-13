@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arena Rules — how Tadapop challenges are scored</title>
+  <title>Club Rules — how Tadapop challenges are scored</title>
   <!-- Leads with the two numbers a person (or an assistant) is most likely to be
        looking for, rather than promising the answer is somewhere on the page. -->
-  <meta name="description" content="The full Arena rulebook: a challenge pays Arena Score only with 2+ players and 7+ check-ins asked for — +1 to the winner in a field of 2–4, and +3/+2/+1 to the podium in a field of 5 or more." />
+  <meta name="description" content="The full Club rulebook: a challenge pays Club Score only with 2+ players and 7+ check-ins asked for — +1 to the winner in a field of 2–4, and +3/+2/+1 to the podium in a field of 5 or more." />
 
   <!-- Open Graph — this page had none, so every share of the rulebook rendered
        as a bare link with no title, image or summary. -->
   <meta property="og:site_name" content="Tadapop" />
-  <meta property="og:title" content="Arena Rules — how Tadapop challenges are scored" />
-  <meta property="og:description" content="The full Arena rulebook: eligibility, what each place pays, ties, the once-a-week roster rule, proof, and the rank ladder." />
+  <meta property="og:title" content="Club Rules — how Tadapop challenges are scored" />
+  <meta property="og:description" content="The full Club rulebook: eligibility, what each place pays, ties, the once-a-week roster rule, proof, and the rank ladder." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://www.tadapop.app/rules" />
   <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
@@ -22,8 +22,8 @@
   <meta property="og:locale:alternate" content="zh_Hant_TW" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Arena Rules — how Tadapop challenges are scored" />
-  <meta name="twitter:description" content="The full Arena rulebook: eligibility, what each place pays, ties, the once-a-week roster rule, proof, and the rank ladder." />
+  <meta name="twitter:title" content="Club Rules — how Tadapop challenges are scored" />
+  <meta name="twitter:description" content="The full Club rulebook: eligibility, what each place pays, ties, the once-a-week roster rule, proof, and the rank ladder." />
   <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
 
   <link rel="canonical" href="https://www.tadapop.app/rules" />
@@ -45,9 +45,9 @@
 
   <!--
     The rulebook as structured data. The numbers here are the ones the app
-    actually runs on — ARENA_WIN_SCORE, ARENA_PODIUM_SCORES,
-    ARENA_MIN_ELIGIBLE_PLAYERS, ARENA_MIN_ELIGIBLE_SESSIONS,
-    ARENA_LONG_CHALLENGE_SESSIONS, ARENA_ROSTER_COOLDOWN_DAYS and ARENA_RANKS in
+    actually runs on — CLUB_WIN_SCORE, CLUB_PODIUM_SCORES,
+    CLUB_MIN_ELIGIBLE_PLAYERS, CLUB_MIN_ELIGIBLE_SESSIONS,
+    CLUB_LONG_CHALLENGE_SESSIONS, CLUB_ROSTER_COOLDOWN_DAYS and CLUB_RANKS in
     src/domain/progression.ts. If a rule changes in the app it changes here, on
     the page body, and in /llms.txt, or the site is lying about its own scoring.
 
@@ -74,8 +74,8 @@
         "@type": "Article",
         "@id": "https://www.tadapop.app/rules#article",
         "url": "https://www.tadapop.app/rules",
-        "headline": "Arena Rules",
-        "description": "The complete scoring rulebook for Tadapop's Arena: which challenges pay Arena Score, what each place is worth, how ties resolve, the once-a-week roster rule, proof requirements, and the Arena rank ladder.",
+        "headline": "Club Rules",
+        "description": "The complete scoring rulebook for Tadapop's Club: which challenges pay Club Score, what each place is worth, how ties resolve, the once-a-week roster rule, proof requirements, and the Club rank ladder.",
         "inLanguage": "en",
         "dateModified": "2026-09-03",
         "author": { "@id": "https://www.tadapop.app/#organization" },
@@ -84,7 +84,7 @@
         "about": { "@id": "https://www.tadapop.app/#app" },
         "image": "https://www.tadapop.app/assets/og.png",
         "articleSection": [
-          "How you earn Arena Score",
+          "How you earn Club Score",
           "Check-ins, not days",
           "What a challenge pays",
           "Ties",
@@ -92,24 +92,24 @@
           "How the leaderboard itself is scored",
           "Who can join, and when",
           "Proof, if the host asks for it",
-          "What Arena Score is not",
+          "What Club Score is not",
           "Ranks"
         ]
       },
       {
         "@type": "ItemList",
         "@id": "https://www.tadapop.app/rules#arena-ranks",
-        "name": "Tadapop Arena ranks",
-        "description": "The Arena rank ladder, driven by Arena Score. Below 1 Arena Score you are Unranked. None of the cosmetics attached to these ranks can be bought.",
+        "name": "Tadapop Club ranks",
+        "description": "The Club rank ladder, driven by Club Score. Below 1 Club Score you are Unranked. None of the cosmetics attached to these ranks can be bought.",
         "inLanguage": "en",
         "itemListOrder": "https://schema.org/ItemListOrderAscending",
         "numberOfItems": 5,
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Recruit — 1 Arena Score" },
-          { "@type": "ListItem", "position": 2, "name": "Contender — 5 Arena Score, unlocks the Victory Splash boot screen" },
-          { "@type": "ListItem", "position": 3, "name": "Challenger — 15 Arena Score" },
-          { "@type": "ListItem", "position": 4, "name": "Rival — 30 Arena Score, unlocks the Ace Mark app icon" },
-          { "@type": "ListItem", "position": 5, "name": "Ace — 60 Arena Score" }
+          { "@type": "ListItem", "position": 1, "name": "Recruit — 1 Club Score" },
+          { "@type": "ListItem", "position": 2, "name": "Contender — 5 Club Score, unlocks the Victory Splash boot screen" },
+          { "@type": "ListItem", "position": 3, "name": "Challenger — 15 Club Score" },
+          { "@type": "ListItem", "position": 4, "name": "Rival — 30 Club Score, unlocks the Ace Mark app icon" },
+          { "@type": "ListItem", "position": 5, "name": "Ace — 60 Club Score" }
         ]
       },
       {
@@ -117,7 +117,7 @@
         "@id": "https://www.tadapop.app/rules#breadcrumb",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://www.tadapop.app/" },
-          { "@type": "ListItem", "position": 2, "name": "Arena Rules", "item": "https://www.tadapop.app/rules" }
+          { "@type": "ListItem", "position": 2, "name": "Club Rules", "item": "https://www.tadapop.app/rules" }
         ]
       },
       {
@@ -130,7 +130,7 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "When does an Arena challenge pay Arena Score?",
+            "name": "When does a Club challenge pay Club Score?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Only if at least two people actually joined — invitations that were never accepted do not count — and it asked for seven check-ins or more. Check-ins, not days: a challenge can ask for three days a week rather than every day, so a two-week challenge at three a week asks for six and does not pay. A daily challenge asks for one a day, so seven days is seven check-ins, exactly as before. Smaller or solo challenges still run and still appear on your record; they simply pay nothing."
@@ -138,7 +138,7 @@
           },
           {
             "@type": "Question",
-            "name": "Why does the Arena count check-ins instead of days?",
+            "name": "Why does the Club count check-ins instead of days?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Because a challenge can ask for three days a week instead of every day, and once it can, elapsed time stops measuring what the challenge costs anyone. Twenty-one days at one session a week is three workouts; twenty-one days of daily training is twenty-one. Counting days would pay both the same. On a daily challenge the two are identical, so a seven-day daily challenge is seven check-ins and a twenty-one-day one is twenty-one, exactly as they always were."
@@ -146,7 +146,7 @@
           },
           {
             "@type": "Question",
-            "name": "How much is each place worth in the Arena?",
+            "name": "How much is each place worth in the Club?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "It depends on how many people joined. In a field of 2 to 4, the winner takes +1 and nobody else is paid. In a field of 5 or more, the podium takes +3, +2 and +1. Nobody below third place is ever paid, in any size of field."
@@ -162,7 +162,7 @@
           },
           {
             "@type": "Question",
-            "name": "What happens when players tie in the Arena?",
+            "name": "What happens when players tie in the Club?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "In a challenge of 2 to 4 people, everyone tied for first takes the full +1 each. In a challenge of 5 or more, a tied place splits the points it covers, rounded down: two tied for first share the 3 and the 2 and take 2 each, while an outright third still takes 1. A tie can therefore never pay out more in total than settling it would have."
@@ -170,7 +170,7 @@
           },
           {
             "@type": "Question",
-            "name": "How often can the same group earn Arena Score?",
+            "name": "How often can the same group earn Club Score?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "At most once every 7 days. The same group means the exact set of people who joined; a different line-up counts as a different group with its own week. The week only starts running from a challenge that actually paid somebody, so a board where nobody placed does not use up your week."
@@ -178,7 +178,7 @@
           },
           {
             "@type": "Question",
-            "name": "How is position on the Arena leaderboard decided?",
+            "name": "How is position on the Club leaderboard decided?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "By how many days you hit the daily target, and nothing else. Doing more than the target on a given day banks nothing, so there is no reward for overdoing it and a big day cannot make up for a missed one. Logging is self-reported and runs on an honor system."
@@ -186,7 +186,7 @@
           },
           {
             "@type": "Question",
-            "name": "Can someone join after an Arena challenge has started?",
+            "name": "Can someone join after a Club challenge has started?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "No. The roster closes the moment a challenge starts, even though an invite code or link shared beforehand keeps working. The one exception is a running challenge that drops below its own minimum player count, which reopens until it is back at strength. A player the host removed can never return by invite; only the host can readmit them."
@@ -194,10 +194,10 @@
           },
           {
             "@type": "Question",
-            "name": "Is there real money or betting in the Arena?",
+            "name": "Is there real money or betting in the Club?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. No challenge involves real money, prizes, or anything that converts into them, and nothing is staked, so losing a challenge costs nothing. Arena Score is never Tpoints: the Arena never awards, spends or wagers them, and the two records never pay into each other."
+              "text": "No. No challenge involves real money, prizes, or anything that converts into them, and nothing is staked, so losing a challenge costs nothing. Club Score is never Tpoints: the Club never awards, spends or wagers them, and the two records never pay into each other."
             }
           }
         ]
@@ -221,7 +221,7 @@
       <nav class="nav-menu" id="navMenu" aria-label="Main">
         <a href="/#app">The app</a>
         <a href="/rewards">What you earn</a>
-        <a href="/rules">Arena Rules</a>
+        <a href="/rules">Club Rules</a>
         <a href="/#pricing">Free &amp; Pro</a>
         <a href="/support">Support</a>
       </nav>
@@ -233,19 +233,19 @@
   </header>
 
   <main class="doc" id="main" tabindex="-1">
-    <h1>Arena Rules</h1>
+    <h1>Club Rules</h1>
     <div class="updated">Last updated: September 3, 2026</div>
 
-    <p>The Arena is where you run a private challenge with friends — invite-only, no strangers, no public boards. Finishing near the top of one can earn <strong>Arena Score</strong>, a reputation number that sits beside your solo stats.</p>
+    <p>The Club is where you run a private challenge with friends — invite-only, no strangers, no public boards. Finishing near the top of one can earn <strong>Club Score</strong>, a reputation number that sits beside your solo stats.</p>
     <p>This page is the whole rulebook. A scoring rule you can't check isn't worth much, so all of it is here, including the parts that pay nothing.</p>
 
-    <h2>How you earn Arena Score</h2>
+    <h2>How you earn Club Score</h2>
     <p>When a challenge ends, the app looks at the final leaderboard and pays out the top places. A challenge pays only if it:</p>
     <ul>
       <li>had <strong>at least 2 people who actually joined</strong> — invitations that were never accepted don't count, and</li>
       <li>asked for <strong>7 check-ins or more</strong> in total.</li>
     </ul>
-    <p>Challenges smaller than that, or ones nobody else joined, still run normally and still show up on your record. They just don't pay Arena Score.</p>
+    <p>Challenges smaller than that, or ones nobody else joined, still run normally and still show up on your record. They just don't pay Club Score.</p>
 
     <h2>Check-ins, not days</h2>
     <p>A challenge doesn't have to ask for something every day. The host can set a cadence — <strong>three days a week</strong>, say — and then only the weekly quota counts. Rest days your own plan builds in are not misses.</p>
@@ -285,7 +285,7 @@
          last columns simply cannot be brought into view without a mouse
          (WCAG 2.1.1). tabindex makes it a scroll stop; the group and its
          label say what has just been landed on. -->
-    <div class="table-wrap" tabindex="0" role="group" aria-label="Arena Score paid by placement and field size">
+    <div class="table-wrap" tabindex="0" role="group" aria-label="Club Score paid by placement and field size">
       <table>
         <thead>
           <tr>
@@ -325,7 +325,7 @@
     <p>In a small challenge, a tie for second or third pays nothing, the same as an outright second or third does.</p>
 
     <h2>The same group scores once a week</h2>
-    <p>A given group of people can earn Arena Score at most once every <strong>7 days</strong>.</p>
+    <p>A given group of people can earn Club Score at most once every <strong>7 days</strong>.</p>
     <p>"The same group" means the exact set of people who joined. If you and the same two friends finish a challenge on Monday and another one on Wednesday, only Monday's pays. A different line-up counts as a different group, with its own week.</p>
     <p>The week only starts running from a challenge that actually paid somebody. A board where everyone tied and nobody placed doesn't use up your week.</p>
     <p>This is here so a group that plays regularly keeps earning at a steady pace, without anyone being able to speed it up by stacking challenges back to back. Playing more often costs you nothing — the extra challenges simply don't add score.</p>
@@ -351,29 +351,29 @@
     <p>Proof is visible to everyone in the challenge, or to the host alone, depending on how it was set up. You'll see which before you join.</p>
     <p>Videos play for <strong>7 days</strong>. After that the clip is deleted and a still frame from it is kept in its place, labelled as an expired clip. Photos are kept for the life of the challenge.</p>
 
-    <h2>What Arena Score is not</h2>
+    <h2>What Club Score is not</h2>
     <ul>
       <li><strong>It isn't money.</strong> No challenge involves real money, prizes, or anything that converts into them.</li>
       <li><strong>Nothing is staked.</strong> You never put anything up to enter, and losing a challenge costs you nothing at all.</li>
-      <li><strong>Tpoints are never involved.</strong> The Arena never awards, spends, or wagers them. Your solo consistency record and your Arena record are two separate things, and neither pays into the other.</li>
-      <li><strong>It never goes down.</strong> Arena Score is only ever added to. There's nothing to spend it on, and nothing you or anyone else does can take it away.</li>
+      <li><strong>Tpoints are never involved.</strong> The Club never awards, spends, or wagers them. Your solo consistency record and your Club record are two separate things, and neither pays into the other.</li>
+      <li><strong>It never goes down.</strong> Club Score is only ever added to. There's nothing to spend it on, and nothing you or anyone else does can take it away.</li>
     </ul>
     <p>The app funds the payouts, not the players. That's the reason there's nothing to collude over, and the reason entering your first challenge risks nothing.</p>
 
     <h2>Ranks</h2>
-    <p>Arena Score puts you on a ladder of its own, separate from the consistency ranks you earn by showing up day after day. Below 1 you're simply Unranked.</p>
+    <p>Club Score puts you on a ladder of its own, separate from the consistency ranks you earn by showing up day after day. Below 1 you're simply Unranked.</p>
 
     <!-- The wrapper scrolls sideways on a narrow screen, and a scroll
          container that nothing can focus is unreachable by keyboard — the
          last columns simply cannot be brought into view without a mouse
          (WCAG 2.1.1). tabindex makes it a scroll stop; the group and its
          label say what has just been landed on. -->
-    <div class="table-wrap" tabindex="0" role="group" aria-label="Arena Score ranks and what they unlock">
+    <div class="table-wrap" tabindex="0" role="group" aria-label="Club Score ranks and what they unlock">
       <table>
         <thead>
           <tr>
             <th>Rank</th>
-            <th class="num">Arena Score</th>
+            <th class="num">Club Score</th>
             <th>Unlocks</th>
           </tr>
         </thead>
@@ -387,7 +387,7 @@
       </table>
     </div>
 
-    <p>One more cosmetic sits outside the ladder: the <strong>Champion Gold</strong> accent, for winning a single challenge outright. It counts even if that challenge was too short or too small to pay any Arena Score — a win with one friend over three days is a real win on your record, it just isn't worth a point. A tie for first isn't an outright win for this purpose.</p>
+    <p>One more cosmetic sits outside the ladder: the <strong>Champion Gold</strong> accent, for winning a single challenge outright. It counts even if that challenge was too short or too small to pay any Club Score — a win with one friend over three days is a real win on your record, it just isn't worth a point. A tie for first isn't an outright win for this purpose.</p>
     <p>None of these can be bought, and none of them are for sale.</p>
 
     <h2>How long the ladder takes</h2>
@@ -395,13 +395,13 @@
     <p>So Contender lands somewhere around the fifth week of regular play, and Ace is a good deal more than a year away. The ladder is meant to be slow — a rank you could reach in a fortnight wouldn't say anything about you.</p>
 
     <h2 id="plans">Free and Pro</h2>
-    <p>Tracking your own habits is free and always will be — missions, streaks, Tpoints, the year heatmap, all of it, with no account needed. The Arena needs an account because it needs to know who you are to other people.</p>
+    <p>Tracking your own habits is free and always will be — missions, streaks, Tpoints, the year heatmap, all of it, with no account needed. The Club needs an account because it needs to know who you are to other people.</p>
     <ul>
       <li>A <strong>free account</strong> can host <strong>one challenge at a time</strong> and keep <strong>five active missions</strong>. Finish or end a challenge and you can start another; archive a mission and the slot comes back. Nothing you have already done is ever deleted or hidden to make room.</li>
       <li><strong>Joining</strong> someone else's challenge is <strong>never limited</strong>, on any account. Being invited to something should never hit a paywall.</li>
       <li><strong>Pro</strong> removes both limits — as many challenges and missions as you like — for <strong>US$3.99 a month</strong>, or less per month on the yearly plan. The store shows you the price in your own currency before you agree to anything.</li>
     </ul>
-    <p>Pro raises two caps and does nothing else. It earns you no rank, badge, cosmetic, Tpoint, streak freeze or Arena Score, and it gives you no advantage whatsoever over a free player in the same challenge. There is still no way to turn money into progress here.</p>
+    <p>Pro raises two caps and does nothing else. It earns you no rank, badge, cosmetic, Tpoint, streak freeze or Club Score, and it gives you no advantage whatsoever over a free player in the same challenge. There is still no way to turn money into progress here.</p>
     <p><strong>Android works exactly the same way.</strong> Pro is sold there through Google Play, and the same two limits apply. The earlier trial period, when nothing could be bought on Android and no limit was enforced, has ended.</p>
 
     <h2>Questions</h2>
@@ -414,7 +414,7 @@
     </div>
     <nav class="footer-links" aria-label="Footer">
       <a href="/rewards">What you earn</a>
-      <a href="/rules">Arena Rules</a>
+      <a href="/rules">Club Rules</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
       <a href="/delete-account">Delete account</a>

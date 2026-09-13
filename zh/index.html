@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tadapop — 每日習慣清單 · 任務控制中心風格的習慣追蹤 App</title>
-  <meta name="description" content="iOS 與 Android 上的免費習慣追蹤 App：用打勾、計次或計時記錄任務，每有一天把任務全部做完就得 1 T點數，還能在私人邀請制的競技場和朋友較勁。" />
+  <title>Tadapop — 揪朋友一起的團體挑戰 App｜打卡俱樂部</title>
+  <meta name="description" content="揪朋友開一場團體挑戰：講好目標、每天打卡附上照片或影片，排行榜自動記分。iOS 與 Android 免費習慣追蹤 App，只能邀請加入，沒有陌生人也沒有動態牆。" />
   <meta name="theme-color" content="#0B0E17" />
 
   <!-- Open Graph -->
   <meta property="og:site_name" content="Tadapop" />
-  <meta property="og:title" content="Tadapop — 每日習慣清單" />
-  <meta property="og:description" content="一款遊戲化的每日習慣追蹤 App，骨子裡是一座任務控制中心。累積連續紀錄、賺進 T點數，再到競技場和朋友私下較勁。" />
+  <meta property="og:title" content="Tadapop — 揪朋友一起的團體挑戰 App" />
+  <meta property="og:description" content="揪朋友開一場團體挑戰，每天打卡附上證明，排行榜自己會說話。私人、邀請制，沒有陌生人也沒有動態牆。" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.tadapop.app/zh" />
   <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
@@ -21,8 +21,8 @@
   <meta property="og:locale:alternate" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Tadapop — 每日習慣清單" />
-  <meta name="twitter:description" content="一款遊戲化的每日習慣追蹤 App，骨子裡是一座任務控制中心。累積連續紀錄、賺進 T點數，再到競技場和朋友私下較勁。" />
+  <meta name="twitter:title" content="Tadapop — 揪朋友一起的團體挑戰 App" />
+  <meta name="twitter:description" content="揪朋友開一場團體挑戰，每天打卡附上證明，排行榜自己會說話。私人、邀請制，沒有陌生人也沒有動態牆。" />
   <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
   <meta name="twitter:image:alt" content="Tadapop 標誌：深夜藍底上的琥珀色勾選符號。" />
 
@@ -55,7 +55,7 @@
 
   <!--
     結構化資料 — the Chinese mirror of the graph on /. Terminology follows the
-    app itself (src/i18n/zh.ts): 競技場 / 任務 / T點數 / 競技分數. Locale-scoped
+    app itself (src/i18n/zh.ts): 俱樂部 / 任務 / T點數 / 俱樂部積分. Locale-scoped
     node ids, but the SAME #organization node as the English page, because QY LLC
     is one company and not two. No aggregateRating here either.
   -->
@@ -64,124 +64,192 @@
        lastmod for this URL. Move BOTH when the page copy actually changes; a
        date that stops tracking real edits is one Google learns to ignore. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://www.tadapop.app/zh#website",
-        "url": "https://www.tadapop.app/zh",
-        "name": "Tadapop",
-        "inLanguage": "zh-Hant-TW",
-        "publisher": { "@id": "https://www.tadapop.app/#organization" }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.tadapop.app/zh#website",
+      "url": "https://www.tadapop.app/zh",
+      "name": "Tadapop",
+      "inLanguage": "zh-Hant-TW",
+      "publisher": {
+        "@id": "https://www.tadapop.app/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.tadapop.app/zh#webpage",
+      "url": "https://www.tadapop.app/zh",
+      "name": "Tadapop — 每日習慣清單 · 任務控制中心風格的習慣追蹤 App",
+      "description": "iOS 與 Android 上的免費習慣追蹤 App：用打勾、計次或計時記錄任務，每有一天把任務全部做完就得 1 T點數，還能在私人邀請制的俱樂部和朋友較勁。",
+      "inLanguage": "zh-Hant-TW",
+      "dateModified": "2026-08-31",
+      "isPartOf": {
+        "@id": "https://www.tadapop.app/zh#website"
       },
-      {
-        "@type": "WebPage",
-        "@id": "https://www.tadapop.app/zh#webpage",
-        "url": "https://www.tadapop.app/zh",
-        "name": "Tadapop — 每日習慣清單 · 任務控制中心風格的習慣追蹤 App",
-        "description": "iOS 與 Android 上的免費習慣追蹤 App：用打勾、計次或計時記錄任務，每有一天把任務全部做完就得 1 T點數，還能在私人邀請制的競技場和朋友較勁。",
-        "inLanguage": "zh-Hant-TW",
-        "dateModified": "2026-08-31",
-        "isPartOf": { "@id": "https://www.tadapop.app/zh#website" },
-        "about": { "@id": "https://www.tadapop.app/zh#app" },
-        "primaryImageOfPage": { "@type": "ImageObject", "url": "https://www.tadapop.app/assets/og.png" }
+      "about": {
+        "@id": "https://www.tadapop.app/zh#app"
       },
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://www.tadapop.app/zh#app",
-        "name": "Tadapop",
-        "url": "https://www.tadapop.app/zh",
-        "inLanguage": "zh-Hant-TW",
-        "sameAs": "https://www.tadapop.app/",
-        "description": "Tadapop 是一款遊戲化的每日習慣追蹤 App，骨子裡是一座任務控制中心。任務可以用打勾、計次或倒數計時記錄，完全離線也能運作，個人使用不需要帳號。一天之內把當天所有任務都做完，就得到 1 T點數；T點數決定你的等級和可解鎖的外觀。競技場則是私人、邀請制的競賽功能，沒有公開排行榜，也不涉及真實金錢。",
-        "applicationCategory": "LifestyleApplication",
-        "applicationSubCategory": "Habit Tracker",
-        "operatingSystem": "iOS, Android",
-        "image": "https://www.tadapop.app/assets/og.png",
-        "publisher": { "@id": "https://www.tadapop.app/#organization" },
-        "author": { "@id": "https://www.tadapop.app/#organization" },
-        "isAccessibleForFree": true,
-        "softwareVersion": "1.4.5",
-        "offers": {
-          "@type": "AggregateOffer",
-          "priceCurrency": "USD",
-          "lowPrice": "0",
-          "highPrice": "3.99",
-          "offerCount": 2,
-          "availability": "https://schema.org/InStock",
-          "offers": [
-            {
-              "@type": "Offer",
-              "name": "\u514d\u8cbb",
-              "price": "0",
-              "priceCurrency": "USD",
-              "category": "Free",
-              "description": "\u4e0d\u7528\u5e33\u865f\u5c31\u80fd\u8ffd\u8e64\u81ea\u5df1\u7684\u7fd2\u6163\uff1a\u4efb\u52d9\u3001\u9023\u7e8c\u7d00\u9304\u3001T\u9ede\u6578\u548c\u6574\u5e74\u6d3b\u52d5\u7d00\u9304\u3002\u540c\u6642\u9032\u884c 5 \u9805\u4efb\u52d9\u30011 \u5834\u81ea\u5df1\u958b\u7684\u6311\u6230\u3002\u53c3\u52a0\u670b\u53cb\u7684\u6311\u6230\u6c38\u9060\u4e0d\u53d7\u9650\u5236\u3002"
-            },
-            {
-              "@type": "Offer",
-              "name": "Tadapop Pro",
-              "price": "3.99",
-              "priceCurrency": "USD",
-              "category": "Subscription",
-              "description": "\u4efb\u52d9\u4e0d\u9650\u6578\u91cf\uff0c\u81ea\u5df1\u958b\u6311\u6230\u4e5f\u4e0d\u9650\u5834\u6b21\uff0c\u6309\u6708\u8a08\u8cbb\u3002\u4e5f\u6709\u5e74\u7e73\u65b9\u6848\uff0c\u5e73\u5747\u6bcf\u6708\u66f4\u4f4e\uff1b\u5169\u7a2e\u50f9\u683c\u90fd\u7531\u5546\u5e97\u4f9d\u5730\u5340\u8a2d\u5b9a\u3002"
-            }
-          ]
-        },
-        "featureList": [
-          "三種記錄任務的方式：打勾、計次累積到目標，或倒數計時、時間到響鈴",
-          "完全離線也能記錄；個人的習慣追蹤不需要帳號",
-          "每有一天把當天所有任務做完，就得 1 T點數；少一項都不算",
-          "連續紀錄，並可自訂一天從幾點開始，熬夜完成仍算前一天",
-          "一整年的方格活動紀錄，以及每一項任務的完成率",
-          "等級、徽章和外觀全都靠累積達成，無法購買",
-          "競技場：和朋友之間私人、邀請制的挑戰，附即時排行榜"
-        ],
-        "softwareHelp": { "@type": "CreativeWork", "url": "https://www.tadapop.app/zh/support" },
-        "termsOfService": "https://www.tadapop.app/zh/terms",
-        "privacyPolicy": "https://www.tadapop.app/zh/privacy"
-      }      ,
-      {
-        "@type": "FAQPage",
-        "@id": "https://www.tadapop.app/zh#faq",
-        "inLanguage": "zh-Hant",
-        "isPartOf": { "@id": "https://www.tadapop.app/zh#webpage" },
-        "mainEntity": [
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.tadapop.app/assets/og.png"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.tadapop.app/zh#app",
+      "name": "Tadapop",
+      "url": "https://www.tadapop.app/zh",
+      "inLanguage": "zh-Hant-TW",
+      "sameAs": "https://www.tadapop.app/",
+      "description": "Tadapop 是一款遊戲化的每日習慣追蹤 App，骨子裡是一座任務控制中心。任務可以用打勾、計次或倒數計時記錄，完全離線也能運作，個人使用不需要帳號。一天之內把當天所有任務都做完，就得到 1 T點數；T點數決定你的等級和可解鎖的外觀。俱樂部則是私人、邀請制的競賽功能，沒有公開排行榜，也不涉及真實金錢。",
+      "applicationCategory": "LifestyleApplication",
+      "applicationSubCategory": "Habit Tracker",
+      "operatingSystem": "iOS, Android",
+      "image": "https://www.tadapop.app/assets/og.png",
+      "publisher": {
+        "@id": "https://www.tadapop.app/#organization"
+      },
+      "author": {
+        "@id": "https://www.tadapop.app/#organization"
+      },
+      "isAccessibleForFree": true,
+      "softwareVersion": "1.4.5",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "0",
+        "highPrice": "3.99",
+        "offerCount": 2,
+        "availability": "https://schema.org/InStock",
+        "offers": [
           {
-            "@type": "Question",
-            "name": "Tadapop \u662f\u514d\u8cbb\u7684\u55ce\uff1f",
-            "acceptedAnswer": { "@type": "Answer", "text": "\u662f\u3002\u8a18\u9304\u81ea\u5df1\u7684\u7fd2\u6163\u4e00\u76f4\u90fd\u662f\u514d\u8cbb\u7684\uff0c\u4e0d\u7528\u5e33\u865f\uff0c\u4ee5\u5f8c\u4e5f\u662f\u3002\u514d\u8cbb\u5e33\u865f\u53ef\u4ee5\u540c\u6642\u9032\u884c 5 \u9805\u4efb\u52d9\u3001\u81ea\u5df1\u958b 1 \u5834\u6311\u6230\u3002Pro \u89e3\u9664\u9019\u5169\u500b\u9650\u5236\uff0c\u6bcf\u6708 US$3.99\uff0c\u9078\u5e74\u7e73\u5e73\u5747\u6bcf\u6708\u66f4\u4f4e\u3002" }
+            "@type": "Offer",
+            "name": "免費",
+            "price": "0",
+            "priceCurrency": "USD",
+            "category": "Free",
+            "description": "不用帳號就能追蹤自己的習慣：任務、連續紀錄、T點數和整年活動紀錄。同時進行 5 項任務、1 場自己開的挑戰。參加朋友的挑戰永遠不受限制。"
           },
           {
-            "@type": "Question",
-            "name": "T\u9ede\u6578\u662f\u4ec0\u9ebc\uff1f",
-            "acceptedAnswer": { "@type": "Answer", "text": "\u628a\u7576\u5929\u8a72\u505a\u7684\u4efb\u52d9\u5168\u90e8\u5b8c\u6210\uff0c\u9019\u5929\u5c31\u7d66\u4f60 1 \u9ede T\u9ede\u6578\u3002\u53ea\u5b8c\u6210\u4e00\u90e8\u5206\u4e0d\u7b97\uff0c\u4e5f\u6c92\u8fa6\u6cd5\u591a\u505a\u4f86\u591a\u62ff\u3002\u6240\u4ee5\u7d2f\u8a08 128 \u9ede\uff0c\u5c31\u662f 128 \u5929\u5168\u90e8\u5b8c\u6210\u7684\u65e5\u5b50\u3002" }
-          },
-          {
-            "@type": "Question",
-            "name": "\u96e2\u7dda\u80fd\u7528\u55ce\uff1f",
-            "acceptedAnswer": { "@type": "Answer", "text": "\u5b8c\u5168\u53ef\u4ee5\u3002\u500b\u4eba\u7684\u8ffd\u8e64\u90fd\u5728\u4f60\u7684\u88dd\u7f6e\u4e0a\u8dd1\uff0c\u4e0d\u9700\u8981\u7db2\u8def\u3002\u53ea\u6709\u60f3\u7528\u7af6\u6280\u5834\uff0c\u6216\u60f3\u5728\u4e0d\u540c\u624b\u6a5f\u4e4b\u9593\u5099\u4efd\u6642\uff0c\u624d\u9700\u8981\u767b\u5165\u3002" }
-          },
-          {
-            "@type": "Question",
-            "name": "\u4e00\u5b9a\u8981\u8a3b\u518a\u5e33\u865f\u55ce\uff1f",
-            "acceptedAnswer": { "@type": "Answer", "text": "\u8ffd\u8e64\u4efb\u4f55\u6771\u897f\u90fd\u4e0d\u7528\u3002\u53ea\u6709\u7af6\u6280\u5834\u9700\u8981\u5e33\u865f\uff0c\u56e0\u70ba\u79c1\u4eba\u6311\u6230\u5fc5\u9808\u77e5\u9053\u4f60\u5728\u5225\u4eba\u773c\u4e2d\u662f\u8ab0\u3002" }
-          },
-          {
-            "@type": "Question",
-            "name": "Android \u73fe\u5728\u9084\u662f\u514d\u8cbb\u7684\u55ce\uff1f",
-            "acceptedAnswer": { "@type": "Answer", "text": "\u514d\u8cbb\u7684\u90e8\u5206\u548c iPhone \u5b8c\u5168\u4e00\u6a23\uff1a\u8a18\u9304\u81ea\u5df1\u7684\u7fd2\u6163\u514d\u8cbb\uff0c\u4e0d\u7528\u5e33\u865f\uff1b\u514d\u8cbb\u5e33\u865f\u53ef\u4ee5\u540c\u6642\u9032\u884c 5 \u9805\u4efb\u52d9\u3001\u81ea\u5df1\u958b 1 \u5834\u6311\u6230\u3002Android \u8a66\u71df\u904b\u3001\u4e0a\u9762\u5b8c\u5168\u6c92\u6709\u4ed8\u8cbb\u6a5f\u5236\u7684\u90a3\u6bb5\u6642\u9593\u5df2\u7d93\u7d50\u675f\u4e86 \u2014 \u73fe\u5728 Google Play \u4e0a\u4e5f\u8cb7\u5f97\u5230 Pro\uff0c\u4e00\u6a23\u662f\u6bcf\u6708 US$3.99\uff0c\u5169\u500b\u9650\u5236\u4e5f\u4e00\u6a23\u6703\u57f7\u884c\u3002" }
-          },
-          {
-            "@type": "Question",
-            "name": "App Store \u548c Google Play \u4e0a\u67b6\u4e86\u55ce\uff1f",
-            "acceptedAnswer": { "@type": "Answer", "text": "\u5169\u908a\u90fd\u4e0a\u67b6\u4e86\u30021.4.5 \u7248\u5df2\u7d93\u5728 App Store\uff08iPhone \u8207 iPad\uff09\uff0c\u540c\u4e00\u500b\u7248\u672c\u4e5f\u5728 Google Play\uff08Android\uff09\u3002TestFlight \u5df2\u7d93\u7d50\u675f\uff1a\u5982\u679c\u4f60\u4e4b\u524d\u662f\u8dd1\u6e2c\u8a66\u7248\uff0c\u76f4\u63a5\u88dd App Store \u7248\u84cb\u4e0a\u53bb\u5c31\u597d\uff0c\u8a18\u9304\u90fd\u9084\u5728\u3002" }
+            "@type": "Offer",
+            "name": "Tadapop Pro",
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "category": "Subscription",
+            "description": "任務不限數量，自己開挑戰也不限場次，按月計費。也有年繳方案，平均每月更低；兩種價格都由商店依地區設定。"
           }
         ]
-      }
-    ]
-  }
+      },
+      "featureList": [
+        "三種記錄任務的方式：打勾、計次累積到目標，或倒數計時、時間到響鈴",
+        "完全離線也能記錄；個人的習慣追蹤不需要帳號",
+        "每有一天把當天所有任務做完，就得 1 T點數；少一項都不算",
+        "連續紀錄，並可自訂一天從幾點開始，熬夜完成仍算前一天",
+        "一整年的方格活動紀錄，以及每一項任務的完成率",
+        "等級、徽章和外觀全都靠累積達成，無法購買",
+        "俱樂部：和朋友之間私人、邀請制的挑戰，附即時排行榜"
+      ],
+      "softwareHelp": {
+        "@type": "CreativeWork",
+        "url": "https://www.tadapop.app/zh/support"
+      },
+      "termsOfService": "https://www.tadapop.app/zh/terms",
+      "privacyPolicy": "https://www.tadapop.app/zh/privacy"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.tadapop.app/zh#faq",
+      "inLanguage": "zh-Hant",
+      "isPartOf": {
+        "@id": "https://www.tadapop.app/zh#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "怎麼揪朋友一起做習慣挑戰？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "打開打卡俱樂部，按「建立挑戰」，設定目標、做幾天、幾個人，以及打卡要不要附照片或影片。再用自己的話寫下玩法，大家加入前都會先看到，然後把邀請連結傳出去。人數夠了你按下開始，時間就從那一刻算起。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "打卡俱樂部是什麼？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tadapop 的團體那一半：私人、只能邀請加入的挑戰，每個人每天打一次卡，排行榜即時記錄誰達標了幾天。沒有公開動態牆、沒有推薦、沒有陌生人。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "朋友看得到我到底有沒有做嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "主辦人有開「一定要附證明」的話，看得到。打卡就必須附上一張照片或一段短片，同一場挑戰的人都看得到。主辦人也可以設成只有自己看得到。影片播七天，之後只留一張定格。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "除了運動，還能做什麼挑戰？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "任何每天要做的事都可以：每天運動 40 分鐘、幾點前上床睡覺、睡前讀幾頁書、不吃糖、每天走一萬步。只要拍得出照片或截圖就能當成挑戰。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tadapop 是免費的嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "是。記錄自己的習慣一直都是免費的，不用帳號，以後也是。免費帳號可以同時進行 5 項任務、自己開 1 場挑戰。Pro 解除這兩個限制，每月 US$3.99，選年繳平均每月更低。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "T點數是什麼？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "把當天該做的任務全部完成，這天就給你 1 點 T點數。只完成一部分不算，也沒辦法多做來多拿。所以累計 128 點，就是 128 天全部完成的日子。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "離線能用嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "完全可以。個人的追蹤都在你的裝置上跑，不需要網路。只有想用競技場，或想在不同手機之間備份時，才需要登入。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "一定要註冊帳號嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "追蹤任何東西都不用。只有競技場需要帳號，因為私人挑戰必須知道你在別人眼中是誰。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Android 現在還是免費的嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "免費的部分和 iPhone 完全一樣：記錄自己的習慣免費，不用帳號；免費帳號可以同時進行 5 項任務、自己開 1 場挑戰。Android 試營運、上面完全沒有付費機制的那段時間已經結束了 — 現在 Google Play 上也買得到 Pro，一樣是每月 US$3.99，兩個限制也一樣會執行。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "App Store 和 Google Play 上架了嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "兩邊都上架了。1.4.5 版已經在 App Store（iPhone 與 iPad），同一個版本也在 Google Play（Android）。TestFlight 已經結束：如果你之前是跑測試版，直接裝 App Store 版蓋上去就好，記錄都還在。"
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -200,7 +268,7 @@
       <nav class="nav-menu" id="navMenu" aria-label="主選單">
         <a href="#app">App 長什麼樣</a>
         <a href="/zh/rewards">你會得到什麼</a>
-        <a href="/zh/rules">競技場規則</a>
+        <a href="/zh/rules">俱樂部規則</a>
         <a href="#pricing">免費與 Pro</a>
         <a href="/zh/support">支援</a>
       </nav>
@@ -249,10 +317,10 @@
                .film-launch-time 由 film2.js 依場景長度填入，不要手寫。 -->
           <div class="poster-hits">
             <button class="hit" type="button" data-film-cut="arena" aria-haspopup="dialog"
-                    aria-label="看競技場版影片 — 跟朋友一起挑戰，有旁白和字幕">
+                    aria-label="看俱樂部版影片 — 跟朋友一起挑戰，有旁白和字幕">
               <span class="play-disc" aria-hidden="true">▶</span>
               <span class="hit-copy">
-                <span class="hit-text">競技場<span class="film-launch-time"></span></span>
+                <span class="hit-text">俱樂部<span class="film-launch-time"></span></span>
                 <span class="hit-meta">跟朋友一起 · 自動記分</span>
               </span>
             </button>
@@ -316,7 +384,7 @@
 
     <div class="facts">
       <div class="fact"><b>離線可用</b><span>記錄從來不需要連網</span></div>
-      <div class="fact"><b>不用帳號</b><span>除非你想用競技場</span></div>
+      <div class="fact"><b>不用帳號</b><span>除非你想用俱樂部</span></div>
       <div class="fact"><b>沒有追蹤</b><span>沒有廣告、沒有第三方分析</span></div>
       <div class="fact"><b>中文 · EN</b><span>App 和網站都完整翻譯</span></div>
     </div>
@@ -409,7 +477,7 @@
         <article class="home-card">
           <div class="home-card-ico" aria-hidden="true">⌁</div>
           <h3>離線，而且不用帳號</h3>
-          <p>個人的追蹤完全在你的裝置上跑。只有想用競技場、或想在不同手機之間備份時才需要登入 —
+          <p>個人的追蹤完全在你的裝置上跑。只有想用俱樂部、或想在不同手機之間備份時才需要登入 —
             其他都不需要網路，也不需要註冊。</p>
         </article>
         <article class="home-card">
@@ -419,7 +487,7 @@
         </article>
         <article class="home-card">
           <div class="home-card-ico" aria-hidden="true">⚔</div>
-          <h3>競技場只能靠邀請進來</h3>
+          <h3>俱樂部只能靠邀請進來</h3>
           <p>和你真正認識的人比。沒有公開探索、沒有配對、沒有陌生人，也不涉及任何真實金錢。</p>
         </article>
         <article class="home-card">
@@ -433,8 +501,8 @@
 
     <section class="hsec" aria-labelledby="h-arena">
       <div class="hsec-head">
-        <p class="hsec-k">競技場</p>
-        <h2 id="h-arena">和真的會盯著你的人比。</h2>
+        <p class="hsec-k">俱樂部</p>
+        <h2 id="h-arena">揪真的會盯著你的人，一起做團體挑戰。</h2>
       </div>
       <div class="arena-panel">
         <p>設定目標和天數，決定要不要附照片或影片才能打卡，再用自己的話寫下玩法 — 罰則、約定，你們談好的都算 —
@@ -443,7 +511,7 @@
           超過目標不會多算。</p>
         <p>沒有任何東西被押注，也不會換成錢。輸掉一場挑戰完全沒有代價，
           而參加別人的挑戰，在任何方案上都永遠免費。</p>
-        <a class="arena-more" href="/zh/rules">看完整的競技場規則 →</a>
+        <a class="arena-more" href="/zh/rules">看完整的俱樂部規則 →</a>
       </div>
     </section>
 
@@ -480,7 +548,7 @@
       </div>
       <div class="plans-note">
         <p><b>兩種方案都一樣。</b>被邀請參加一件事，永遠不會撞上付費牆。等級、徽章、外觀、T點數、
-          凍結卡和競技分數，一樣都不能買。同一場挑戰裡，Pro 玩家不會比免費玩家佔到任何便宜，
+          凍結卡和俱樂部積分，一樣都不能買。同一場挑戰裡，Pro 玩家不會比免費玩家佔到任何便宜，
           而且已經拿到的東西永遠不會被收回。</p>
         <p><b>五項任務是一套日常，不是試用版。</b>因為當天的 T點數是全有或全無，
           清單短一點反而比較容易拿到，不是比較難 — 而且這兩個限制都是「同時幾個」，
@@ -494,6 +562,29 @@
       </div>
       <div class="faq">
         <details class="faq-item">
+          <summary>怎麼揪朋友一起做習慣挑戰？</summary>
+          <p>打開打卡俱樂部，按「建立挑戰」，設定四件事：目標、做幾天、幾個人，
+            以及打卡要不要附照片或影片。再用自己的話寫下玩法——大家加入前都會先看到——
+            然後把邀請連結傳出去。人數夠了你按下開始，時間就從那一刻算起。</p>
+        </details>
+        <details class="faq-item">
+          <summary>打卡俱樂部是什麼？</summary>
+          <p>它是 Tadapop 的團體那一半：私人、只能邀請加入的挑戰，每個人每天打一次卡，
+            排行榜即時記錄誰達標了幾天。沒有公開動態牆、沒有推薦、沒有陌生人，
+            你只會看到你邀請的人，或邀請你的人。</p>
+        </details>
+        <details class="faq-item">
+          <summary>朋友看得到我到底有沒有做嗎？</summary>
+          <p>主辦人有開「一定要附證明」的話，看得到。打卡就必須附上一張照片或一段短片，
+            同一場挑戰的人都看得到——這正是重點，因為看到別人真的去了，你才會想出門。
+            主辦人也可以設成只有自己看得到。影片播七天，之後只留一張定格。</p>
+        </details>
+        <details class="faq-item">
+          <summary>除了運動，還能做什麼挑戰？</summary>
+          <p>任何每天要做的事都可以。常見的有每天運動 40 分鐘、幾點前上床睡覺、睡前讀幾頁書、
+            不吃糖、每天走一萬步。只要拍得出照片或截圖——睡眠圖表、運動紀錄——就能當成挑戰。</p>
+        </details>
+        <details class="faq-item">
           <summary>Tadapop 是免費的嗎？</summary>
           <p>是。記錄自己的習慣一直都是免費的，不用帳號，以後也是。免費帳號可以同時進行 5 項任務、
             自己開 1 場挑戰。Pro 解除這兩個限制，每月 US$3.99，選年繳平均每月更低。</p>
@@ -505,12 +596,12 @@
         </details>
         <details class="faq-item">
           <summary>離線能用嗎？</summary>
-          <p>完全可以。個人的追蹤都在你的裝置上跑，不需要網路。只有想用競技場，
+          <p>完全可以。個人的追蹤都在你的裝置上跑，不需要網路。只有想用俱樂部，
             或想在不同手機之間備份時，才需要登入。</p>
         </details>
         <details class="faq-item">
           <summary>一定要註冊帳號嗎？</summary>
-          <p>追蹤任何東西都不用。只有競技場需要帳號，因為私人挑戰必須知道你在別人眼中是誰。</p>
+          <p>追蹤任何東西都不用。只有俱樂部需要帳號，因為私人挑戰必須知道你在別人眼中是誰。</p>
         </details>
         <details class="faq-item">
           <summary>Android 現在還是免費的嗎？</summary>
@@ -571,7 +662,7 @@
     </div>
     <nav class="footer-links" aria-label="頁尾連結">
       <a href="/zh/rewards">你會得到什麼</a>
-      <a href="/zh/rules">競技場規則</a>
+      <a href="/zh/rules">俱樂部規則</a>
       <a href="/zh/privacy">隱私權政策</a>
       <a href="/zh/terms">使用條款</a>
       <a href="/zh/delete-account">刪除帳號</a>

@@ -59,7 +59,7 @@
    screen says 「老是明天再說？」. If you change a zh `capN`, change the matching
    `vo` line with it, and re-measure CAP_AT.
 
-   Chinese terminology follows the app (its src/i18n/zh.ts): 競技場 for Arena,
+   Chinese terminology follows the app (its src/i18n/zh.ts): 俱樂部 for Club,
    任務 for mission, T點數 for Tpoint, 連續紀錄 for streak, and the four example
    habits are the app's own template names so the film and the product name the
    same things. Traditional (Taiwan) forms and full-width punctuation only.
@@ -104,9 +104,9 @@ const COPY = {
 
     /* ---- n2 · pick the thing, pick the people ---- */
     'n2.cap1': 'So pick one thing. Then pick the people who will <span class="hi">notice</span>.',
-    'n2.cap2': 'The Arena is the third tab — and the one part that needs an account.',
+    'n2.cap2': 'The Club is the third tab — and the one part that needs an account.',
     'n2.cap3': 'Invite-only. <span class="go">No strangers, no feed.</span>',
-    'n2.vo': 'So pick one thing, then pick the people who will notice. The Arena is the third tab, and the one part that needs an account. Invite only — no strangers, no feed.',
+    'n2.vo': 'So pick one thing, then pick the people who will notice. The Club is the third tab, and the one part that needs an account. Invite only — no strangers, no feed.',
 
     /* ---- n3 · the deal, in the host's own words ---- */
     /* ---- a2 · it does not have to be the gym ---- */
@@ -226,7 +226,7 @@ const COPY = {
     'n9.vo': 'Joining someone’s challenge is free, forever. So ask three people, and get better at something together. Tadapop.',
 
     /* ---- scene 1 · cold open ---- */
-    's1.brandSub': 'DAILY MISSIONS · STREAKS · THE ARENA',
+    's1.brandSub': 'DAILY MISSIONS · STREAKS · THE CLUB',
     's1.brandSub.solo': 'DAILY MISSIONS · STREAKS · NO ACCOUNT',
     's1.cap1': 'Yeah, you — the one who keeps saying <span class="hi">tomorrow</span>.',
     /* Carries the setup as well, for the reason the Chinese one does: captions
@@ -276,18 +276,18 @@ const COPY = {
     's5.cap2': 'and numbers too honest to argue with. That\'s your receipts.',
     's5.vo': 'Now look back. A whole year going green, and numbers too honest to argue with. That\'s your receipts.',
 
-    /* ---- scene 6 · the Arena opens ---- */
+    /* ---- scene 6 · the Club opens ---- */
     's6.tabToday': 'TODAY',
     's6.tabStats': 'STATS',
-    's6.tabArena': 'ARENA',
+    's6.tabClub': 'CLUB',
     's6.tabProfile': 'PROFILE',
     's6.convene': '⚑ CREATE CHALLENGE',
     's6.challenge': '50-Day Movement',
     's6.challengeMeta': '40 MINUTES A DAY · 50 DAYS · 4 PLAYERS',
     's6.live': 'LIVE',
     's6.cap1': 'Doing it solo? <span class="hi">Cute.</span>',
-    's6.cap2': 'Drag your friends in — the <span class="hi">Arena</span>\'s open.',
-    's6.vo': 'Doing it solo? Cute. Drag your friends in — the Arena\'s open.',
+    's6.cap2': 'Drag your friends in — the <span class="hi">Club</span>\'s open.',
+    's6.vo': 'Doing it solo? Cute. Drag your friends in — the Club\'s open.',
 
     /* ---- scene 7 · the live leaderboard ---- */
     's7.liveDay': 'LIVE · DAY 12/50',
@@ -320,7 +320,7 @@ const COPY = {
 
     /* ---- the solo cut (b1..b6) ----
        Same art as the first film's scenes; a different argument over it.
-       The Arena cut sells being watched by people you like. This one is the
+       The Club cut sells being watched by people you like. This one is the
        opposite of that and has to say so in its first breath, or a viewer
        who wants to be left alone never finds out that they can be. ---- */
     'b1.cap1': 'Tadapop is a checklist for your day — <span class="hi">and nothing else</span>.',
@@ -344,8 +344,8 @@ const COPY = {
     'b5.vo': 'Then one day you look back at a year of this, and the grid has gone green. Nobody had to see it but you.',
 
     'b6.cap1': 'Free, offline, and <span class="go">nothing to sign up for</span>.',
-    'b6.cap2': 'And when you want company, <span class="hi">the Arena is one tab away</span>.',
-    'b6.vo': 'Free, offline, and nothing to sign up for. And when you want company, the Arena is one tab away. Tadapop.',
+    'b6.cap2': 'And when you want company, <span class="hi">the Club is one tab away</span>.',
+    'b6.vo': 'Free, offline, and nothing to sign up for. And when you want company, the Club is one tab away. Tadapop.',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': 'Track. Compete. <span style="color:{amber}">Become.</span>',
@@ -394,7 +394,7 @@ const COPY = {
        has its own keys. So this is a pronunciation script, not copy.
 
        It is Simplified because Traditional input made this voice misread the
-       terms that matter. 競技場 came back as "重擊場", 鎖定 as "耍定", and s9
+       terms that matter. 俱樂部 came back as "重擊場", 鎖定 as "耍定", and s9
        stuttered on 成為. The same lines in Simplified read correctly. The
        model's Mandarin prior is Mainland-weighted; giving it the character
        forms it expects fixes the pronunciation without changing one character
@@ -414,9 +414,9 @@ const COPY = {
 
     /* ---- n2 ---- */
     'n2.cap1': '那就挑一件事，再找幾個會<span class="hi">看見你</span>的人。',
-    'n2.cap2': '競技場是第三個分頁，也是唯一需要帳號的地方。',
+    'n2.cap2': '俱樂部是第三個分頁，也是唯一需要帳號的地方。',
     'n2.cap3': '只能邀請加入。<span class="go">沒有陌生人，也沒有動態牆。</span>',
-    'n2.vo': '挑一件事，找幾個會看見你的人。競技場是第三個分頁，唯一需要帳號的地方。只能邀請加入，沒有動態牆。',
+    'n2.vo': '挑一件事，找幾個會看見你的人。俱樂部是第三個分頁，唯一需要帳號的地方。只能邀請加入，沒有動態牆。',
 
     /* ---- n3 ---- */
     /* ---- a2 · 不一定是運動 ---- */
@@ -536,7 +536,7 @@ const COPY = {
     'n9.vo': '參加別人的挑戰，永遠免費。去找三個人，一起變好。Tadapop。',
 
     /* ---- scene 1 · cold open ---- */
-    's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
+    's1.brandSub': '每日任務 · 連續紀錄 · 俱樂部',
     's1.brandSub.solo': '每日任務 · 連續紀錄 · 不用帳號',
     's1.cap1': '喂！說你喔。嘴上老是<span class="hi">明天明天</span>。',
     /* The setup stays on screen under the punchline. Captions replace each
@@ -589,17 +589,17 @@ const COPY = {
     's5.cap2': '數字懶得跟你客氣。',
     's5.vo': '回头看，一整年绿得发亮。数字懒得跟你客气。',
 
-    /* ---- scene 6 · the Arena opens ---- */
+    /* ---- scene 6 · the Club opens ---- */
     's6.tabToday': '今天',
     's6.tabStats': '統計',
-    's6.tabArena': '競技場',
+    's6.tabClub': '俱樂部',
     's6.tabProfile': '個人',
     's6.convene': '⚑ 建立挑戰',
     's6.challenge': '50 天運動挑戰',
     's6.challengeMeta': '每天 40 分鐘 · 50 天 · 4 位成員',
     's6.live': '進行中',
     's6.cap1': '自己練？<span class="hi">真乖。</span>',
-    's6.cap2': '揪朋友進<span class="hi">競技場</span>。',
+    's6.cap2': '揪朋友進<span class="hi">俱樂部</span>。',
     's6.vo': '自己练？真乖。揪朋友进竞技场。',
 
     /* ---- scene 7 · the live leaderboard ---- */
@@ -654,8 +654,8 @@ const COPY = {
     'b5.vo': '然後某天回頭看這一年，整面格子都綠了。除了你，沒人需要看到。',
 
     'b6.cap1': '免費、離線可用，<span class="go">完全不用註冊</span>。',
-    'b6.cap2': '想找人一起的時候，<span class="hi">競技場就在隔壁分頁</span>。',
-    'b6.vo': '免費、離線可用，完全不用註冊。想找人一起，競技場就在隔壁分頁。Tadapop。',
+    'b6.cap2': '想找人一起的時候，<span class="hi">俱樂部就在隔壁分頁</span>。',
+    'b6.vo': '免費、離線可用，完全不用註冊。想找人一起，俱樂部就在隔壁分頁。Tadapop。',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': '記錄。較勁。<span style="color:{amber}">蛻變。</span>',
@@ -674,7 +674,7 @@ const LANG = /^zh/i.test(document.documentElement.lang || '') ? 'zh' : 'en';
  * The combined cut kept having to announce which half of the app you were
  * looking at — "and your own habits are a separate thing entirely" — and a
  * viewer who has to be told that has already been confused. A film about one
- * half never has to say it. So the Arena and the solo tracker each get their
+ * half never has to say it. So the Club and the solo tracker each get their
  * own, and the page picks by setting this before the script loads:
  *
  *   arena  n1..n7, n9   the challenge, end to end
@@ -2047,9 +2047,9 @@ function buildScenes(ctx, cut) {
       const c = appCol(node, 560);
       // tabs
       const tabs = el('div', 'fm-panel', { padding: '6px', marginBottom: '14px', display: 'flex', gap: '6px' });
-      // The Arena tab is the selected one — flagged rather than inferred from
+      // The Club tab is the selected one — flagged rather than inferred from
       // the label, which is no longer a fixed English word.
-      [['s6.tabToday', false], ['s6.tabStats', false], ['s6.tabArena', true], ['s6.tabProfile', false]].forEach(([key, on]) => {
+      [['s6.tabToday', false], ['s6.tabStats', false], ['s6.tabClub', true], ['s6.tabProfile', false]].forEach(([key, on]) => {
         const b = el('div', 'fm-mono', { flex: '1', textAlign: 'center', padding: '10px 4px', fontSize: '12px', letterSpacing: '.12em', color: on ? COL.ink : COL.faint, borderBottom: '2px solid ' + (on ? COL.amber : 'transparent') });
         b.textContent = t(key); tabs.appendChild(b);
       });
@@ -2534,7 +2534,7 @@ function buildScenes(ctx, cut) {
      The create screen, in two scenes.
 
      The first version of a1 was invented — a tidy four-row form I guessed
-     at. The real screen has nine sections and most of what makes the Arena
+     at. The real screen has nine sections and most of what makes the Club
      work is in them: that HOW TO PLAY is shown to people BEFORE they join,
      that a challenge will not start until enough have, that video proof
      expires into a still frame. None of that survives being summarised as

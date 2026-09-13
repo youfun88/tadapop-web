@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>競技場規則 — Tadapop 挑戰怎麼計分</title>
-  <meta name="description" content="完整的競技場規則：一場挑戰要有 2 人以上、而且至少要求 7 次打卡才會給競技分數 — 2 至 4 人時冠軍 +1，5 人以上則前三名分別 +3、+2、+1。" />
+  <title>俱樂部規則 — Tadapop 挑戰怎麼計分</title>
+  <meta name="description" content="完整的俱樂部規則：一場挑戰要有 2 人以上、而且至少要求 7 次打卡才會給俱樂部積分 — 2 至 4 人時冠軍 +1，5 人以上則前三名分別 +3、+2、+1。" />
 
   <!-- Open Graph -->
   <meta property="og:site_name" content="Tadapop" />
-  <meta property="og:title" content="競技場規則 — Tadapop 挑戰怎麼計分" />
-  <meta property="og:description" content="完整的競技場規則：計分資格、每個名次值多少、並列怎麼算、同一批成員每週計分一次、證明規定，以及競技等級階梯。" />
+  <meta property="og:title" content="俱樂部規則 — Tadapop 挑戰怎麼計分" />
+  <meta property="og:description" content="完整的俱樂部規則：計分資格、每個名次值多少、並列怎麼算、同一批成員每週計分一次、證明規定，以及俱樂部等級階梯。" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://www.tadapop.app/zh/rules" />
   <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
@@ -19,8 +19,8 @@
   <meta property="og:locale:alternate" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="競技場規則 — Tadapop 挑戰怎麼計分" />
-  <meta name="twitter:description" content="完整的競技場規則：計分資格、每個名次值多少、並列怎麼算、同一批成員每週計分一次、證明規定，以及競技等級階梯。" />
+  <meta name="twitter:title" content="俱樂部規則 — Tadapop 挑戰怎麼計分" />
+  <meta name="twitter:description" content="完整的俱樂部規則：計分資格、每個名次值多少、並列怎麼算、同一批成員每週計分一次、證明規定，以及俱樂部等級階梯。" />
   <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
 
   <link rel="canonical" href="https://www.tadapop.app/zh/rules" />
@@ -40,7 +40,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
   <link rel="stylesheet" href="/styles.css" />
 
-  <!-- 競技場規則的結構化資料 — the Chinese mirror of the graph on /rules. Same
+  <!-- 俱樂部規則的結構化資料 — the Chinese mirror of the graph on /rules. Same
        numbers, same source of truth (src/domain/progression.ts). -->
   <!-- The FAQPage node below carries the questions people actually put to an
        assistant about this page, answered from the page itself. Google retired
@@ -61,8 +61,8 @@
         "@type": "Article",
         "@id": "https://www.tadapop.app/zh/rules#article",
         "url": "https://www.tadapop.app/zh/rules",
-        "headline": "競技場規則",
-        "description": "Tadapop 競技場的完整計分規則：哪些挑戰會給競技分數、每個名次值多少、並列如何處理、同一批成員每週計分一次的規定、證明要求，以及競技等級階梯。",
+        "headline": "俱樂部規則",
+        "description": "Tadapop 俱樂部的完整計分規則：哪些挑戰會給俱樂部積分、每個名次值多少、並列如何處理、同一批成員每週計分一次的規定、證明要求，以及俱樂部等級階梯。",
         "inLanguage": "zh-Hant-TW",
         "dateModified": "2026-09-03",
         "author": { "@id": "https://www.tadapop.app/#organization" },
@@ -71,7 +71,7 @@
         "about": { "@id": "https://www.tadapop.app/zh#app" },
         "image": "https://www.tadapop.app/assets/og.png",
         "articleSection": [
-          "競技分數怎麼拿",
+          "俱樂部積分怎麼拿",
           "算的是打卡次數，不是天數",
           "一場挑戰給多少分",
           "並列",
@@ -79,24 +79,24 @@
           "排行榜本身怎麼算",
           "誰可以加入，什麼時候可以",
           "主辦人要求的證明",
-          "競技分數不是什麼",
+          "俱樂部積分不是什麼",
           "等級"
         ]
       },
       {
         "@type": "ItemList",
         "@id": "https://www.tadapop.app/zh/rules#arena-ranks",
-        "name": "Tadapop 競技等級",
-        "description": "由競技分數決定的競技等級階梯。競技分數不到 1 分時顯示為未定級。這些等級附帶的外觀都無法購買。",
+        "name": "Tadapop 俱樂部等級",
+        "description": "由俱樂部積分決定的俱樂部等級階梯。俱樂部積分不到 1 分時顯示為未定級。這些等級附帶的外觀都無法購買。",
         "inLanguage": "zh-Hant-TW",
         "itemListOrder": "https://schema.org/ItemListOrderAscending",
         "numberOfItems": 5,
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Recruit — 競技分數 1" },
-          { "@type": "ListItem", "position": 2, "name": "Contender — 競技分數 5，解鎖 Victory Splash 啟動畫面" },
-          { "@type": "ListItem", "position": 3, "name": "Challenger — 競技分數 15" },
-          { "@type": "ListItem", "position": 4, "name": "Rival — 競技分數 30，解鎖 Ace Mark App 圖示" },
-          { "@type": "ListItem", "position": 5, "name": "Ace — 競技分數 60" }
+          { "@type": "ListItem", "position": 1, "name": "Recruit — 俱樂部積分 1" },
+          { "@type": "ListItem", "position": 2, "name": "Contender — 俱樂部積分 5，解鎖 Victory Splash 啟動畫面" },
+          { "@type": "ListItem", "position": 3, "name": "Challenger — 俱樂部積分 15" },
+          { "@type": "ListItem", "position": 4, "name": "Rival — 俱樂部積分 30，解鎖 Ace Mark App 圖示" },
+          { "@type": "ListItem", "position": 5, "name": "Ace — 俱樂部積分 60" }
         ]
       },
       {
@@ -104,7 +104,7 @@
         "@id": "https://www.tadapop.app/zh/rules#breadcrumb",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Tadapop", "item": "https://www.tadapop.app/zh" },
-          { "@type": "ListItem", "position": 2, "name": "競技場規則", "item": "https://www.tadapop.app/zh/rules" }
+          { "@type": "ListItem", "position": 2, "name": "俱樂部規則", "item": "https://www.tadapop.app/zh/rules" }
         ]
       },
       {
@@ -117,15 +117,15 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "競技場的挑戰什麼時候才會給競技分數？",
+            "name": "俱樂部的挑戰什麼時候才會給俱樂部積分？",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "必須同時滿足兩個條件：至少有 2 位成員實際加入（對方沒有接受的邀請不算），而且整場至少要求 7 次打卡。算的是打卡次數而不是天數：挑戰可以設成一週三天而不是每天，所以兩週、一週三天只要求 6 次，不會計分。每天都要做的挑戰則兩者相同，7 天就是 7 次打卡，跟以前完全一樣。比這更小、或是沒有其他人加入的挑戰照樣可以正常進行，也仍然算是你完成過的一場挑戰，只是不會給競技分數。"
+              "text": "必須同時滿足兩個條件：至少有 2 位成員實際加入（對方沒有接受的邀請不算），而且整場至少要求 7 次打卡。算的是打卡次數而不是天數：挑戰可以設成一週三天而不是每天，所以兩週、一週三天只要求 6 次，不會計分。每天都要做的挑戰則兩者相同，7 天就是 7 次打卡，跟以前完全一樣。比這更小、或是沒有其他人加入的挑戰照樣可以正常進行，也仍然算是你完成過的一場挑戰，只是不會給俱樂部積分。"
             }
           },
           {
             "@type": "Question",
-            "name": "一個名次可以拿到多少競技分數？",
+            "name": "一個名次可以拿到多少俱樂部積分？",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "取決於這一場有多少人加入。2 至 4 人時，只有第一名拿 +1，其他名次都沒有分。5 人以上時，前三名分別拿 +3、+2、+1。不論人數多少，第三名之後都不會有分數。"
@@ -173,10 +173,10 @@
           },
           {
             "@type": "Question",
-            "name": "競技場會涉及真實金錢或賭注嗎？",
+            "name": "俱樂部會涉及真實金錢或賭注嗎？",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "不會。任何挑戰都不會牽涉真實金錢或獎品，也沒有任何可以換成這些的東西，更沒有任何賭注 — 輸掉一場挑戰完全不會有損失。競技分數也永遠不是 T點數：競技場不會發放、消耗或拿 T點數下注，兩邊的紀錄互不相通。"
+              "text": "不會。任何挑戰都不會牽涉真實金錢或獎品，也沒有任何可以換成這些的東西，更沒有任何賭注 — 輸掉一場挑戰完全不會有損失。俱樂部積分也永遠不是 T點數：俱樂部不會發放、消耗或拿 T點數下注，兩邊的紀錄互不相通。"
             }
           }
         ]
@@ -200,7 +200,7 @@
       <nav class="nav-menu" id="navMenu" aria-label="主選單">
         <a href="/zh#app">App 長什麼樣</a>
         <a href="/zh/rewards">你會得到什麼</a>
-        <a href="/zh/rules">競技場規則</a>
+        <a href="/zh/rules">俱樂部規則</a>
         <a href="/zh#pricing">免費與 Pro</a>
         <a href="/zh/support">支援</a>
       </nav>
@@ -212,19 +212,19 @@
   </header>
 
   <main class="doc" id="main" tabindex="-1">
-    <h1>競技場規則</h1>
+    <h1>俱樂部規則</h1>
     <div class="updated">最後更新：2026 年 9 月 3 日</div>
 
-    <p>競技場是你和朋友之間私下較勁的地方 — 邀請制，沒有陌生人，也沒有公開排行榜。在一場挑戰中名列前茅，可以獲得<strong>競技分數</strong>，一個和你的個人紀錄並存的聲望數字。</p>
+    <p>俱樂部是你和朋友之間私下較勁的地方 — 邀請制，沒有陌生人，也沒有公開排行榜。在一場挑戰中名列前茅，可以獲得<strong>俱樂部積分</strong>，一個和你的個人紀錄並存的聲望數字。</p>
     <p>這一頁就是完整的規則。查不到的計分規則沒什麼意義，所以全部都寫在這裡，包括那些不會給分的部分。</p>
 
-    <h2>競技分數怎麼拿</h2>
+    <h2>俱樂部積分怎麼拿</h2>
     <p>挑戰結束時，App 會看最終排行榜，把分數發給名次在前的人。一場挑戰要計分，必須同時滿足：</p>
     <ul>
       <li><strong>至少有 2 位成員實際加入</strong> — 對方沒有接受的邀請不算；</li>
       <li>整場<strong>至少要求 7 次打卡</strong>。</li>
     </ul>
-    <p>比這更小的挑戰，或是沒有其他人加入的挑戰，照樣可以正常進行，也仍然算是你完成過的一場挑戰，只是不會給競技分數。</p>
+    <p>比這更小的挑戰，或是沒有其他人加入的挑戰，照樣可以正常進行，也仍然算是你完成過的一場挑戰，只是不會給俱樂部積分。</p>
 
     <h2>算的是打卡次數，不是天數</h2>
     <p>挑戰不一定要每天做。主辦人可以設定頻率 — 例如<strong>一週三天</strong> — 這樣就只看每週的份額，你自己安排的休息日不算沒做到。</p>
@@ -264,7 +264,7 @@
          last columns simply cannot be brought into view without a mouse
          (WCAG 2.1.1). tabindex makes it a scroll stop; the group and its
          label say what has just been landed on. -->
-    <div class="table-wrap" tabindex="0" role="group" aria-label="依名次與人數計算的競技分數">
+    <div class="table-wrap" tabindex="0" role="group" aria-label="依名次與人數計算的俱樂部積分">
       <table>
         <thead>
           <tr>
@@ -330,29 +330,29 @@
     <p>證明是挑戰裡所有人都看得到，還是只有主辦人看得到，取決於這一場是怎麼設定的。加入前你就會知道是哪一種。</p>
     <p>影片可播放 <strong>7 天</strong>，之後影片會被刪除，原地留下一張靜態畫面，並標示為「影片已過期」。照片則會保留到挑戰結束。</p>
 
-    <h2>競技分數不是什麼</h2>
+    <h2>俱樂部積分不是什麼</h2>
     <ul>
       <li><strong>它不是錢。</strong>任何挑戰都不會牽涉真實金錢或獎品，也沒有任何可以換成這些的東西。</li>
       <li><strong>沒有任何賭注。</strong>參加不需要押上任何東西，輸掉一場挑戰也完全不會有損失。</li>
-      <li><strong>永遠不會動到 T點數。</strong>競技場不會發放、消耗或拿 T點數下注。你的個人持續力紀錄和你的競技場紀錄是兩回事，兩邊互不相通。</li>
-      <li><strong>它永遠不會減少。</strong>競技分數只會往上加。沒有地方可以花掉它，你或任何人做什麼都拿不走它。</li>
+      <li><strong>永遠不會動到 T點數。</strong>俱樂部不會發放、消耗或拿 T點數下注。你的個人持續力紀錄和你的俱樂部紀錄是兩回事，兩邊互不相通。</li>
+      <li><strong>它永遠不會減少。</strong>俱樂部積分只會往上加。沒有地方可以花掉它，你或任何人做什麼都拿不走它。</li>
     </ul>
     <p>分數由 App 發，不是玩家之間互相輸贏。正因為如此，沒有什麼好串通的，參加你的第一場挑戰也不會有任何風險。</p>
 
     <h2>等級</h2>
-    <p>競技分數有一條自己的階梯，和你靠全清日一天一天累積出來的持續力等級是分開的。不到 1 分就是「尚無等級」。</p>
+    <p>俱樂部積分有一條自己的階梯，和你靠全清日一天一天累積出來的持續力等級是分開的。不到 1 分就是「尚無等級」。</p>
 
     <!-- The wrapper scrolls sideways on a narrow screen, and a scroll
          container that nothing can focus is unreachable by keyboard — the
          last columns simply cannot be brought into view without a mouse
          (WCAG 2.1.1). tabindex makes it a scroll stop; the group and its
          label say what has just been landed on. -->
-    <div class="table-wrap" tabindex="0" role="group" aria-label="競技分數等級與解鎖項目">
+    <div class="table-wrap" tabindex="0" role="group" aria-label="俱樂部積分等級與解鎖項目">
       <table>
         <thead>
           <tr>
             <th>等級</th>
-            <th class="num">競技分數</th>
+            <th class="num">俱樂部積分</th>
             <th>解鎖</th>
           </tr>
         </thead>
@@ -366,7 +366,7 @@
       </table>
     </div>
 
-    <p>還有一項外觀不在這條階梯上：<strong>「王者金」主題色</strong>，只要單獨奪冠一場挑戰就能拿到。就算那一場太短或人太少、拿不到任何競技分數，它一樣算數 — 和一位朋友比三天贏了，在你的紀錄上就是一場真正的勝利，只是不值一分。並列第一在這裡不算單獨奪冠。</p>
+    <p>還有一項外觀不在這條階梯上：<strong>「王者金」主題色</strong>，只要單獨奪冠一場挑戰就能拿到。就算那一場太短或人太少、拿不到任何俱樂部積分，它一樣算數 — 和一位朋友比三天贏了，在你的紀錄上就是一場真正的勝利，只是不值一分。並列第一在這裡不算單獨奪冠。</p>
     <p>這些都無法購買，也不會出售。</p>
 
     <h2>這條階梯要爬多久</h2>
@@ -374,13 +374,13 @@
     <p>所以「選手」大約落在固定玩的第五週，「王牌」則遠在一年以上。這條階梯本來就設計得慢 — 兩個星期就能到手的等級，說明不了你這個人。</p>
 
     <h2 id="plans">免費與 Pro</h2>
-    <p>記錄自己的習慣一直都是免費的 — 任務、連續紀錄、T點數、一整年的活動紀錄，全部都是，而且不用註冊帳號。競技場需要帳號，因為它必須知道你在別人眼中是誰。</p>
+    <p>記錄自己的習慣一直都是免費的 — 任務、連續紀錄、T點數、一整年的活動紀錄，全部都是，而且不用註冊帳號。俱樂部需要帳號，因為它必須知道你在別人眼中是誰。</p>
     <ul>
       <li><strong>免費帳號</strong>可以同時主辦<strong>一場挑戰</strong>，並保有<strong>五項進行中的任務</strong>。把目前這場結束，就能再開一場；把任務封存，位置就空出來。已經完成的紀錄永遠不會為了空出位置而被刪除或隱藏。</li>
       <li><strong>加入</strong>別人的挑戰<strong>永遠不受限制</strong>，任何帳號都一樣。被邀請參加一件事，不該撞上付費牆。</li>
       <li><strong>Pro</strong> 解除這兩個限制 — 挑戰和任務都不限數量 — <strong>每月 US$3.99</strong>，選年繳的話平均每月更低。購買之前，商店會用你自己的幣別把價格顯示給你看。</li>
     </ul>
-    <p>Pro 只是把這兩道上限拉開，其他什麼都不會改變。它不會幫你賺到任何等級、徽章、外觀、T點數、凍結卡或競技分數，在同一場挑戰裡也不會讓你比免費玩家佔到任何便宜。在這裡，錢一樣換不到進度。</p>
+    <p>Pro 只是把這兩道上限拉開，其他什麼都不會改變。它不會幫你賺到任何等級、徽章、外觀、T點數、凍結卡或俱樂部積分，在同一場挑戰裡也不會讓你比免費玩家佔到任何便宜。在這裡，錢一樣換不到進度。</p>
     <p><strong>Android 也完全適用這一段。</strong>Pro 在 Google Play 上就買得到，執行的限制和 iPhone 完全相同。過去 Android 試營運、上面什麼都不能買的那段時間已經結束了。</p>
 
     <h2>有疑問</h2>
@@ -393,7 +393,7 @@
     </div>
     <nav class="footer-links" aria-label="頁尾連結">
       <a href="/zh/rewards">你會得到什麼</a>
-      <a href="/zh/rules">競技場規則</a>
+      <a href="/zh/rules">俱樂部規則</a>
       <a href="/zh/privacy">隱私權政策</a>
       <a href="/zh/terms">使用條款</a>
       <a href="/zh/delete-account">刪除帳號</a>

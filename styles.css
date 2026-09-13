@@ -658,7 +658,7 @@ a { color: inherit; text-decoration: none; }
 .footer-brand .brand-mark { font-size: 16px; }
 .footer-brand .brand-logo { width: 22px; height: 22px; border-radius: 6px; }
 /* align-items and an explicit line-height are both load-bearing once the links
-   are Chinese. JetBrains Mono carries no CJK glyphs, so 競技場規則 is drawn by
+   are Chinese. JetBrains Mono carries no CJK glyphs, so 俱樂部規則 is drawn by
    whatever system font the browser falls back to — one with taller metrics than
    the mono. Under the default `align-items: stretch` that made every Chinese
    link sit a couple of pixels off its Latin neighbours. Pinning the cross-axis
@@ -1453,8 +1453,8 @@ a.store-badge:hover { border-color: var(--amber); }
 .home-card h3 { font-family: var(--display); font-weight: 700; font-size: 18px; margin-bottom: 8px; }
 .home-card p { color: var(--dim); font-size: 14.5px; }
 
-/* ── 7 · the Arena ───────────────────────────────────────────────────
-   Text on a console panel. No Arena screenshot exists, and one is not
+/* ── 7 · the Club ───────────────────────────────────────────────────
+   Text on a console panel. No Club screenshot exists, and one is not
    being faked to fill the hole. */
 .arena-panel {
   margin-top: 30px; border: 1px solid var(--line); border-radius: 18px;
@@ -1535,7 +1535,7 @@ a.store-badge:hover { border-color: var(--amber); }
    ---------------------------------------------------------------------
    The hero used to be a single button covering the whole poster, playing
    one film that had to explain both halves of the app. It is now two:
-   the Arena and the solo tracker, side by side under the same title card.
+   the Club and the solo tracker, side by side under the same title card.
    The card stays shared on purpose — they are one product, and pressing
    either one still makes THAT picture bigger and start talking.
    Below 640px they stack; two 160px-wide buttons is neither.
