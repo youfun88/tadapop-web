@@ -109,13 +109,13 @@ const COPY = {
 
     /* ---- n3 · the deal, in the host's own words ---- */
     'n3.rulesLabel': 'HOW TO PLAY',
-    'n3.rules': 'Four sessions a week, forty minutes each.\nMiss a day and you owe the pot a hundred.\nWe spend it on dinner at the end.',
+    'n3.rules': 'Forty minutes a day, fifty days straight.\nMiss a day and you owe the pot a hundred.\nWe spend it on dinner at the end.',
     'n3.cap1': 'Whoever starts it writes the deal. <span class="hi">In their own words.</span>',
-    'n3.cap2': 'The forfeit, the dinner, whatever you actually agreed.',
-    'n3.vo': 'Whoever starts it writes the deal, in their own words. The forfeit, the dinner, whatever you actually agreed.',
+    'n3.cap2': 'A forfeit to keep everyone honest — and <span class="hi">it pays for the dinner</span>.',
+    'n3.vo': 'Whoever starts it writes the deal, in their own words. A forfeit to keep everyone honest, and it pays for the dinner at the end.',
 
     /* ---- n4 · checking in ---- */
-    'n4.lbLabel': 'LEADERBOARD',
+    'n4.lbLabel': 'LEADERBOARD \u00b7 DAYS DONE',
     'n4.missed': 'NOBODY YET',
     'n4.allDone': 'YOU\u2019RE UP',
     'n4.pending': '0/1 TODAY',
@@ -126,8 +126,8 @@ const COPY = {
     'n4.checkedIn': 'Checked in \u2713',
     'n4.undo': 'UNDO CHECK-IN',
     'n4.cap1': 'Every day, each of you answers the same question. <span class="hi">Did you do it?</span>',
-    'n4.cap2': 'One tap. <span class="go">That is the whole ritual.</span>',
-    'n4.vo': 'Every day, each of you answers the same question. Did you do it? One tap. That is the whole ritual.',
+    'n4.cap2': 'Do the work, then <span class="go">come back and log it</span>.',
+    'n4.vo': 'Every day, each of you answers the same question. Did you do it? Do the work, then come back and log it.',
 
     /* ---- n5 · proof, if the group asked for it ---- */
     'n5.proofLabel': 'PROOF · VISIBLE TO ALL PLAYERS',
@@ -141,9 +141,9 @@ const COPY = {
     'n6.vo': 'And then the board just sits there. Nobody has to be the one who chases. It already shows.',
 
     /* ---- n7 · the week ends ---- */
-    'n7.cap1': 'Six weeks later, somebody is buying dinner.',
+    'n7.cap1': 'Seven weeks later, somebody is buying dinner.',
     'n7.cap2': 'And all of you trained. <span class="go">Which was the point.</span>',
-    'n7.vo': 'Six weeks later, somebody is buying dinner. And all of you trained, which was the point.',
+    'n7.vo': 'Seven weeks later, somebody is buying dinner. And all of you trained, which was the point.',
 
     /* ---- n8 · your own half, quietly ---- */
     'n8.cap1': 'Your own habits are a <span class="hi">separate thing</span> — a list only you see.',
@@ -240,7 +240,7 @@ const COPY = {
     /* ---- scene 8 · results ---- */
     's8.challengeLine': '🏃 50-DAY MOVEMENT · 50 DAYS',
     's8.winner': 'You — that\'s you!',
-    's8.winnerMeta': '7 DAYS · MOST DAYS COMPLETED',
+    's8.winnerMeta': '46 DAYS · MOST DAYS COMPLETED',
     's8.standings': 'FINAL STANDINGS',
     's8.daysUnit': 'DAYS',
     's8.cap1': 'Win together. Lose together.',
@@ -314,18 +314,18 @@ const COPY = {
 
     /* ---- n2 ---- */
     'n2.cap1': '那就挑一件事，再找幾個會<span class="hi">看見你</span>的人。',
-    'n2.cap2': '只能邀請加入。<span class="go">沒有陌生人，也沒有追蹤牙牙。</span>',
-    'n2.vo': '那就挑一件事，再找幾個會看見你的人。只能邀請加入，沒有陌生人。',
+    'n2.cap2': '只能邀請加入。<span class="go">沒有陌生人，也沒有動態牆。</span>',
+    'n2.vo': '挑一件事，找幾個會看見你的人。只能邀請加入，沒有陌生人，沒有動態牆。',
 
     /* ---- n3 ---- */
     'n3.rulesLabel': '玩法',
-    'n3.rules': '一個禮拜運動四天，一次四十分鐘。\n一天沒做到，罰一百入碗。\n最後用這筆錢大家一起去吃飯。',
-    'n3.cap1': '開挑戰的人寫規則，<span class="hi">用自己的話</span>。',
-    'n3.cap2': '罰則、請客，你們談好的都算。',
-    'n3.vo': '開挑戰的人用自己的話寫規則。罰則、請客，你們談好的都算。',
+    'n3.rules': '每天運動四十分鐘，連續五十天。\n一天沒做到，罰一百入碗。\n最後用這筆錢大家一起去吃飯。',
+    'n3.cap1': '規則由<span class="hi">發起的人自己寫</span>。',
+    'n3.cap2': '訂好罰則督促大家，<span class="hi">罰款拿去付慶功宴。</span>',
+    'n3.vo': '規則由發起的人自己寫。訂好罰則督促大家，罰款拿去付慶功宴。',
 
     /* ---- n4 ---- */
-    'n4.lbLabel': '\u6392\u884c\u699c',
+    'n4.lbLabel': '\u6392\u884c\u699c \u00b7 \u5b8c\u6210\u5929\u6578',
     'n4.missed': '\u9084\u6c92\u4eba\u6253\u5361',
     'n4.allDone': '\u4f60\u5148\u4e0a\u4f86\u4e86',
     'n4.pending': '\u4eca\u5929 0/1',
@@ -336,8 +336,8 @@ const COPY = {
     'n4.checkedIn': '今天完成 ✓',
     'n4.undo': '取消打卡',
     'n4.cap1': '每天，每個人都回答同一個問題：<span class="hi">今天做了嗎？</span>',
-    'n4.cap2': '按一下。<span class="go">就這樣而已。</span>',
-    'n4.vo': '每天，每個人都回答同一個問題：今天做了嗎？按一下，就這樣而已。',
+    'n4.cap2': '照規則做完，<span class="go">回來打卡</span>。',
+    'n4.vo': '每天每個人都回答同一個問題：今天做了嗎？照規則做完，回來打卡。',
 
     /* ---- n5 ---- */
     'n5.proofLabel': '成果 · 所有人都看得到',
@@ -351,9 +351,9 @@ const COPY = {
     'n6.vo': '然後排行榜就放在那裡。沒人需要當那個一直催的人，它自己會說話。',
 
     /* ---- n7 ---- */
-    'n7.cap1': '六個禮拜後，有人要請客了。',
+    'n7.cap1': '七個禮拜後，有人要請客了。',
     'n7.cap2': '而你們都動了。<span class="go">這才是重點。</span>',
-    'n7.vo': '六個禮拜後，有人要請客了。而你們都動了，這才是重點。',
+    'n7.vo': '七個禮拜後，有人要請客了。而你們都動了，這才是重點。',
 
     /* ---- n8 ---- */
     'n8.cap1': '你自己的習慣是<span class="hi">另一回事</span> — 一份只有你看得到的清單。',
@@ -454,7 +454,7 @@ const COPY = {
     /* ---- scene 8 · results ---- */
     's8.challengeLine': '🏃 50 天運動挑戰 · 50 天',
     's8.winner': '冠軍 — 就是你！',
-    's8.winnerMeta': '7 天 · 完成天數最多',
+    's8.winnerMeta': '46 天 · 完成天數最多',
     's8.standings': '最終排名',
     's8.daysUnit': '天',
     's8.cap1': '一起贏，一起輸，',
@@ -499,7 +499,7 @@ function t(key, vars) {
  */
 const CAP_AT = {
   en: {
-    n1: [0.0, 2.6], n2: [0.0, 3.5], n3: [0.0, 3.9], n4: [0.0, 4.4], n5: [0.0, 3.6],
+    n1: [0.0, 2.6], n2: [0.0, 3.5], n3: [0.0, 3.9], n4: [0.0, 3.8], n5: [0.0, 3.6],
     n6: [0.0, 2.5], n7: [0.0, 3.1], n8: [0.0, 4.2], n9: [0.0, 3.6],
     s1: [0.0, 2.58],
     s2: [0.0, 4.04, 7.84],
@@ -512,7 +512,7 @@ const CAP_AT = {
     s9: [0.0, 3.98, 7.14],
   },
   zh: {
-    n1: [0, 3.2], n2: [0, 3.4], n3: [0, 3.6], n4: [0, 3.8], n5: [0, 3.4],
+    n1: [0, 3.2], n2: [0, 3.4], n3: [0, 3.6], n4: [0, 4.6], n5: [0, 3.4],
     n6: [0, 2.6], n7: [0, 2.8], n8: [0, 3.8], n9: [0, 3.2],
     s1: [0, 4.06],
     s2: [0, 6.12],
@@ -834,7 +834,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      from the takes rather than guessed:
        n2 7.28s · n5 7.44s · n7 5.84s · n8 9.68s
      Each gets its clip plus the 0.6s of headroom the generator insists on. */
-  const SCENE_DUR = { zh: { s1: 7600, n2: 8000, n4: 8400, n5: 8200, n7: 6600, n8: 11000 } };
+  const SCENE_DUR = { zh: { s1: 7600, n2: 8800, n4: 9600, n5: 8200, n7: 6600, n8: 11000 } };
   const durOverrides = SCENE_DUR[LANG];
   if (durOverrides) scenes.forEach((sc) => { if (durOverrides[sc.id]) sc.dur = durOverrides[sc.id]; });
   const TOTAL = scenes.reduce((s, x) => s + x.dur, 0);
@@ -861,7 +861,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 1;
+  const VOV = 2;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   const VO_DIR = LANG === 'zh' ? '/assets/vo2/zh/' : '/assets/vo2/';
@@ -1897,7 +1897,7 @@ function buildScenes(ctx) {
       // podium standings
       const board = el('div', 'fm-panel', { padding: '16px' });
       board.innerHTML = '<div class="fm-mono" style="font-size:11px;letter-spacing:.18em;color:' + COL.dim + ';margin-bottom:10px">' + t('s8.standings') + '</div>';
-      [['🥇', t('s7.you'), '7'], ['🥈', t('player.a'), '6'], ['🥉', t('player.b'), '5'], ['', t('player.c'), '4']].forEach(([m, n, s], i) => {
+      [['🥇', t('s7.you'), '46'], ['🥈', t('player.a'), '44'], ['🥉', t('player.b'), '41'], ['', t('player.c'), '38']].forEach(([m, n, s], i) => {
         const row = el('div', 'fm-lb-row' + (i === 0 ? ' me' : ''));
         row.innerHTML = '<span style="font-size:18px;width:28px;text-align:center">' + m + '</span>' +
           '<span class="fm-disp" style="flex:1;font-size:15px;font-weight:' + (i === 0 ? '700' : '500') + '">' + n + '</span>' +
@@ -2231,7 +2231,7 @@ function buildScenes(ctx) {
             '<span class="fm-lb-name" style="display:block">' + escText(p.name) + '</span>' +
             '<span class="fm-lb-sub js-sub" style="display:block">' + t('n4.pending') + '</span>' +
           '</span>' +
-          '<span class="fm-lb-score js-score" style="color:' + COL.red + '">-1</span>';
+          '<span class="fm-lb-score js-score">11 <span style="color:' + COL.faint + ';font-size:9px">' + t('s8.daysUnit') + '</span></span>';
         board.appendChild(r);
         return r;
       });
@@ -2322,7 +2322,7 @@ function buildScenes(ctx) {
         const score = me.querySelector('.js-score');
         sub.textContent = t('n4.logged');
         sub.classList.add('done');
-        score.textContent = '+1';
+        score.innerHTML = '12 <span style="color:' + COL.faint + ';font-size:9px">' + t('s8.daysUnit') + '</span>';
         score.style.color = COL.go;
         me.style.background = 'rgba(91,227,155,.10)';
         anim(score, [
