@@ -73,6 +73,15 @@
           "value": "no-cache"
         }
       ]
+    },
+    {
+      "source": "/(film-club|film-solo|film-club/index.html|film-solo/index.html)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
     }
   ],
   "rewrites": [
@@ -95,6 +104,16 @@
       "source": "/tadapop.apk",
       "destination": "https://github.com/youfun88/tadapop-web/releases/latest/download/tadapop.apk",
       "permanent": false
+    },
+    {
+      "source": "/film-arena",
+      "destination": "/film-club",
+      "permanent": true
+    },
+    {
+      "source": "/zh/film-arena",
+      "destination": "/zh/film-club",
+      "permanent": true
     }
   ]
 }

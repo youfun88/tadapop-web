@@ -151,4 +151,32 @@
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/delete-account"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/delete-account"/>
   </url>
+  <url>
+    <loc>https://www.tadapop.app/film-club</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/film-club"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/film-club"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/film-club"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/zh/film-club</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/film-club"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/film-club"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/film-club"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/film-solo</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/film-solo"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/film-solo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/film-solo"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/zh/film-solo</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/film-solo"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/film-solo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/film-solo"/>
+  </url>
 </urlset>
