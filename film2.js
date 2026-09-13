@@ -99,7 +99,7 @@ const COPY = {
     /* ---- n1 · cold open: the reason, not the mechanism ---- */
     'n1.brandSub': 'DO IT TOGETHER · KEEP SCORE · NO NAGGING',
     'n1.cap1': 'You already know what you should be doing.',
-    'n1.cap2': 'You already know what you should be doing.<br><span class="hi">Nobody sticks to it alone.</span>',
+    'n1.cap2': '<span class="hi">Nobody sticks to it alone.</span>',
     'n1.vo': 'You already know what you should be doing. Nobody sticks to it alone.',
 
     /* ---- n2 · pick the thing, pick the people ---- */
@@ -256,7 +256,7 @@ const COPY = {
     /* Carries the setup as well, for the reason the Chinese one does: captions
        replace each other, so a two-part joke lost its first half at the exact
        moment the second half needed it. */
-    's1.cap2': 'Yeah, you — the one who keeps saying tomorrow.<br><span class="go">Tomorrow just clocked in.</span>',
+    's1.cap2': '<span class="go">Tomorrow just clocked in.</span>',
     's1.vo': 'Yeah, you — the one who keeps saying tomorrow. Tomorrow just clocked in.',
 
     /* ---- scene 2 · the three mission types ---- */
@@ -442,7 +442,7 @@ const COPY = {
     /* ---- n1 ---- */
     'n1.brandSub': '一起做 · 自動記分 · 不用催',
     'n1.cap1': '該做什麼，你其實都知道。',
-    'n1.cap2': '該做什麼，你其實都知道。<br><span class="hi">一個人，很難撐下去。</span>',
+    'n1.cap2': '<span class="hi">一個人，很難撐下去。</span>',
     'n1.vo': '該做什麼，你其實都知道。一個人，很難撐下去。',
 
     /* ---- n2 ---- */
@@ -601,7 +601,7 @@ const COPY = {
        second half needed it — 「明天，早就來打卡了。」 alone is not a
        shorter joke, it is an unparseable sentence. The reveal still happens
        on the beat; it just does not take the setup away with it. */
-    's1.cap2': '喂！說你喔。嘴上老是明天明天。<br><span class="go">明天，這不就來了。</span>',
+    's1.cap2': '<span class="go">明天，這不就來了。</span>',
     's1.vo': '喂！说你喔。嘴上老是明天明天。明天，这不就来了。',
 
     /* ---- scene 2 · the three mission types ----
@@ -1170,7 +1170,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 8;
+  const VOV = 9;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
