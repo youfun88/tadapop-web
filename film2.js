@@ -121,29 +121,68 @@ const COPY = {
     'a2.cap2': 'Anything you keep meaning to do and <span class="hi">keep putting off</span>.',
     'a2.vo': 'And it does not have to be the gym. Anything you keep meaning to do and keep putting off — moving more, getting to bed earlier, reading before you sleep.',
 
-    /* ---- a1 · the create screen ---- */
-    'a1.title': 'NEW CHALLENGE',
-    'a1.fName': 'NAME',
-    'a1.fGoal': 'GOAL',
-    'a1.vGoal': '40 minutes a day',
-    'a1.fRuns': 'RUNS FOR',
-    'a1.vRuns': '50 days',
-    'a1.fPlayers': 'PLAYERS',
-    'a1.vPlayers': '4 minimum',
-    'a1.fProof': 'PROOF',
-    'a1.pOff': 'OFF',
-    'a1.pPhoto': 'PHOTO',
-    'a1.pVideo': 'VIDEO',
-    'a1.cta': 'CREATE \u00b7 GET AN INVITE LINK',
-    'a1.cap1': 'Start one and <span class="hi">you are the host</span>. You set all of it.',
-    'a1.cap2': 'The goal, the length, the size — and whether a check-in needs <span class="hi">a photo or a clip</span>.',
-    'a1.vo': 'Start one and you are the host. You set the goal, how long it runs, how many players, and whether a check-in needs a photo or a clip.',
+    /* ---- a1 / a3 · the CONVENE screen, built from photographs of it ---- */
+    'a1.screen': 'CONVENE',
+    'a1.cName': 'CHALLENGE',
+    'a1.cHow': 'HOW TO PLAY (OPTIONAL)',
+    'a1.howText': 'Work out at least 40 minutes a day.\nYour photo must show the timer.',
+    'a1.howNote': 'Everyone in this challenge sees this, including people you invite, before they join.',
+    'a1.cDuration': 'DURATION',
+    'a1.d7': '7 DAYS',
+    'a1.d30': '30 DAYS',
+    'a1.dCustom': 'CUSTOM',
+    'a1.durNote': 'Counted from the day the host presses start.',
+    'a1.cCadence': 'CADENCE',
+    'a1.cEvery': 'EVERY DAY',
+    'a1.cPerWeek': 'DAYS / WEEK',
+    'a1.cadNote': 'Every day, or any few days each week.',
+    'a1.cap1': 'Start one and <span class="hi">you are the host</span>.',
+    'a1.cap2': 'Name it, say how to play — <span class="go">everyone reads that before they join</span>.',
+    'a1.cap3': 'Then how long it runs, and how often.',
+    'a1.vo': 'Start one and you are the host. Name it, say how to play — everyone reads that before they join — then set how long it runs, and how often.',
+
+    'a3.cMin': 'MIN PLAYERS TO START',
+    'a3.minNote': 'Once this many have joined, you can start it.',
+    'a3.cMax': 'MAX PLAYERS',
+    'a3.cJoin': 'WHO CAN JOIN',
+    'a3.jAnyone': 'ANYONE',
+    'a3.jApprove': 'APPROVE FIRST',
+    'a3.joinNote': 'Anyone with the code joins instantly.',
+    'a3.cInvite': 'WHO CAN INVITE',
+    'a3.iAnyone': 'ANYONE',
+    'a3.iHost': 'HOST ONLY',
+    'a3.invNote': 'Any player can share the code.',
+    'a3.cProof': 'PROOF OF COMPLETION',
+    'a3.pOff': 'OFF',
+    'a3.pRequire': 'REQUIRE PROOF',
+    'a3.pType': 'TYPE',
+    'a3.pPhoto': 'PHOTO',
+    'a3.pVideo': 'VIDEO',
+    'a3.pSee': 'SEEN BY',
+    'a3.sAll': 'ALL PLAYERS',
+    'a3.sHost': 'HOST ONLY',
+    'a3.proofNote': 'Proof is required to check in — back out of the camera and the day stays unlogged.',
+    'a3.btnCreate': '\u2691 CONVENE',
+    'a3.btnCancel': 'CANCEL',
+    'a3.cap1': 'Then who is in it. <span class="hi">Once enough have joined, you start it.</span>',
+    'a3.cap2': 'Who can join, who can invite — and whether a check-in needs <span class="hi">a photo, a clip, or both</span>.',
+    'a3.cap3': 'Press it, and <span class="go">it exists</span>.',
+    'a3.vo': 'Then who is in it. Once enough have joined you start it yourself, and the clock starts then. Who can join, who can invite, and whether a check-in needs a photo, a clip, or both. Then press the button.',
+
+    'a4.badge': '0:38 \u00b7 VIDEO',
+    'a4.when': '18:42',
+    'a4.r1': 'Under two minutes',
+    'a4.r2': 'Plays for seven days',
+    'a4.r3': 'Then a still frame is kept',
+    'a4.cap1': 'Video proof is just a clip off your phone.',
+    'a4.cap2': 'It plays for a week, then <span class="hi">a still frame is kept</span>.',
+    'a4.vo': 'And video proof is just a clip off your phone, under two minutes. It plays for a week, then only a still frame is kept.',
 
     'n3.rulesLabel': 'HOW TO PLAY',
     'n3.rules': 'Forty minutes a day, fifty days straight.\nMiss a day and you owe the pot a hundred.\nWe spend it on dinner at the end.',
-    'n3.cap1': 'Then you write the rules — <span class="hi">in your own words</span>.',
-    'n3.cap2': 'Miss a day, put a little in the pot. <span class="go">It buys the dinner at the end.</span>',
-    'n3.vo': 'Then you write the rules, in your own words. Miss a day and you put a little in the pot — not as a punishment. It is the fund for the dinner you all have at the end.',
+    'n3.cap1': 'This is the deal — <span class="hi">everyone read it before they joined</span>.',
+    'n3.cap2': 'Miss a day, a little goes in the pot. <span class="go">It buys the night out at the end.</span>',
+    'n3.vo': 'And this is the deal, which everyone read before they joined. Miss a day and a little goes in the pot — not as a punishment. It is what buys the night out at the end.',
 
     /* ---- n4 · checking in ---- */
     'n4.lbLabel': 'LEADERBOARD \u00b7 DAYS DONE',
@@ -392,29 +431,68 @@ const COPY = {
     'a2.cap2': '任何你<span class="hi">一直想做卻一直沒做</span>的事。',
     'a2.vo': '而且不一定是運動。任何你一直想做卻一直沒做的事都可以：多動一點、早點睡、睡前讀幾頁書。',
 
-    /* ---- a1 · 建立挑戰 ---- */
-    'a1.title': '新挑戰',
-    'a1.fName': '名稱',
-    'a1.fGoal': '目標',
-    'a1.vGoal': '每天 40 分鐘',
-    'a1.fRuns': '天數',
-    'a1.vRuns': '50 天',
-    'a1.fPlayers': '人數',
-    'a1.vPlayers': '至少 4 人',
-    'a1.fProof': '成果',
-    'a1.pOff': '不用',
-    'a1.pPhoto': '照片',
-    'a1.pVideo': '影片',
-    'a1.cta': '建立 \u00b7 產生邀請連結',
+    /* ---- a1 / a3 · 發起挑戰的設定畫面 ---- */
+    'a1.screen': '發起挑戰',
+    'a1.cName': '挑戰名稱',
+    'a1.cHow': '玩法（選填）',
+    'a1.howText': '每天至少運動 40 分鐘。\n照片要拍到計時器。',
+    'a1.howNote': '這段所有人都看得到，包括你邀請、還沒加入的人。',
+    'a1.cDuration': '天數',
+    'a1.d7': '7 天',
+    'a1.d30': '30 天',
+    'a1.dCustom': '自訂',
+    'a1.durNote': '從主辦人按下開始那天算起。',
+    'a1.cCadence': '頻率',
+    'a1.cEvery': '每天',
+    'a1.cPerWeek': '每週幾天',
+    'a1.cadNote': '每天，或每週任選幾天。',
     'a1.cap1': '開一個，<span class="hi">你就是主辦人</span>。',
-    'a1.cap2': '目標、天數、人數，還有打卡要不要<span class="hi">附照片或影片</span>。',
-    'a1.vo': '開一個，你就是主辦人。目標、做幾天、幾個人，還有打卡要不要附照片或影片，都由你決定。',
+    'a1.cap2': '取名字、寫玩法——<span class="go">大家加入前都會先看到</span>。',
+    'a1.cap3': '再決定做幾天、多常做。',
+    'a1.vo': '開一個，你就是主辦人。取名字、寫玩法，大家加入前都會先看到。再決定做幾天、多常做。',
+
+    'a3.cMin': '最少幾人才能開始',
+    'a3.minNote': '人數到了，主辦人就能按下開始。',
+    'a3.cMax': '人數上限',
+    'a3.cJoin': '誰可以加入',
+    'a3.jAnyone': '任何人',
+    'a3.jApprove': '要先同意',
+    'a3.joinNote': '有邀請碼就能直接進來。',
+    'a3.cInvite': '誰可以邀請',
+    'a3.iAnyone': '任何人',
+    'a3.iHost': '只有主辦人',
+    'a3.invNote': '每個成員都能分享邀請碼。',
+    'a3.cProof': '完成證明',
+    'a3.pOff': '不用',
+    'a3.pRequire': '一定要附',
+    'a3.pType': '類型',
+    'a3.pPhoto': '照片',
+    'a3.pVideo': '影片',
+    'a3.pSee': '誰看得到',
+    'a3.sAll': '所有成員',
+    'a3.sHost': '只有主辦人',
+    'a3.proofNote': '沒附證明就不算打卡——退出相機，那天就會留空。',
+    'a3.btnCreate': '\u2691 發起挑戰',
+    'a3.btnCancel': '取消',
+    'a3.cap1': '再決定誰能進來。<span class="hi">人數夠了，你按下開始。</span>',
+    'a3.cap2': '誰能加入、誰能邀請，打卡要附<span class="hi">照片還是影片</span>。',
+    'a3.cap3': '按下去，<span class="go">挑戰就成立了</span>。',
+    'a3.vo': '再決定誰能進來。人數夠了你就能按下開始，時間從那刻算起。誰能加入、誰能邀請，打卡要附照片還是影片。',
+
+    'a4.badge': '0:38 \u00b7 影片',
+    'a4.when': '18:42',
+    'a4.r1': '兩分鐘以內',
+    'a4.r2': '播放七天',
+    'a4.r3': '之後只留一張定格',
+    'a4.cap1': '影片證明就是手機隨手拍的一段。',
+    'a4.cap2': '播七天，之後<span class="hi">只留一張定格</span>。',
+    'a4.vo': '影片證明就是手機隨手拍的一段，兩分鐘以內。播七天，之後只留一張定格。',
 
     'n3.rulesLabel': '玩法',
     'n3.rules': '每天運動四十分鐘，連續五十天。\n一天沒做到，罰一百入碗。\n最後用這筆錢大家一起去吃飯。',
-    'n3.cap1': '再用<span class="hi">自己的話</span>寫下玩法。',
-    'n3.cap2': '誰沒做到就丟一點錢進來。<span class="go">最後拿這筆錢一起慶功。</span>',
-    'n3.vo': '再用自己的話寫下玩法。誰沒做到就丟一點錢進來，不是處罰，是最後大家一起慶功的基金。',
+    'n3.cap1': '這就是<span class="hi">大家加入前都看過</span>的規則。',
+    'n3.cap2': '沒做到就丟一點錢進來。<span class="go">最後拿這筆錢一起慶功。</span>',
+    'n3.vo': '這就是大家加入前都看過的規則。沒做到就丟一點錢進來，不是處罰，是最後大家一起慶功的基金。',
 
     /* ---- n4 ---- */
     'n4.lbLabel': '\u6392\u884c\u699c \u00b7 \u5b8c\u6210\u5929\u6578',
@@ -642,7 +720,7 @@ const CAP_AT = {
     n1: [0.0, 2.6], n2: [0.0, 3.4, 7.2], n3: [0.0, 3.9], n4: [0.0, 3.8], n5: [0.0, 3.6],
     n6: [0.0, 2.5], n7: [0.0, 3.1], n8: [0.0, 4.2], n9: [0.0, 3.6],
     b1: [0.0, 3.4], b2: [0.0, 2.8], b3: [0.0, 3.3], b4: [0.0, 2.7], b5: [0.0, 2.9], b6: [0.0, 3.2],
-    a1: [0.0, 4.6], a2: [0.0, 2.4],
+    a1: [0.0, 2.6, 7.0], a2: [0.0, 2.4], a3: [0.0, 4.2, 10.9], a4: [0.0, 4.2],
     s1: [0.0, 2.58],
     s2: [0.0, 4.04, 7.84],
     s3: [0.0, 4.14],
@@ -657,7 +735,7 @@ const CAP_AT = {
     n1: [0, 3.2], n2: [0, 3.2, 7.0], n3: [0, 3.6], n4: [0, 4.6], n5: [0, 3.4],
     n6: [0, 2.6], n7: [0, 2.8], n8: [0, 3.8], n9: [0, 3.2],
     b1: [0, 3.6], b2: [0, 2.6], b3: [0, 2.8], b4: [0, 2.6], b5: [0, 2.6], b6: [0, 3.0],
-    a1: [0, 4.2], a2: [0, 2.6],
+    a1: [0, 3.0, 8.0], a2: [0, 2.6], a3: [0, 3.4, 10.4], a4: [0, 4.0],
     s1: [0, 4.06],
     s2: [0, 6.12],
     s3: [0, 2.08],
@@ -988,7 +1066,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      scenes need more room. Keyed by SCENE ID — an entry whose id no longer
      exists is silently dead, which is how `s1: 7600` sat here doing nothing
      after that scene was recut as n1. */
-  const SCENE_DUR = { zh: { n1: 7600, n2: 13600, a1: 11400, a2: 11400, n3: 11500,
+  const SCENE_DUR = { zh: { n1: 7600, n2: 13600, a1: 11000, a2: 11400, a3: 15200, a4: 9800, n3: 11500, 
                             n4: 9600, n5: 10600, n7: 10000, n8: 11000,
                             b1: 8000, b2: 11000, b3: 9200, b4: 9200, b5: 8800, b6: 10000 } };
   function withOverrides(list) {
@@ -1025,7 +1103,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 3;
+  const VOV = 4;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
@@ -2452,131 +2530,325 @@ function buildScenes(ctx, cut) {
     },
   };
 
-  /* a1 · the create screen — what the host actually decides.
-     ------------------------------------------------------------------
-     The cut went from "here is the Arena tab" straight to "here are the
-     rules somebody wrote", which skipped the part that makes the Arena a
-     product rather than a group chat: one person sets the goal, the length,
-     the size, and whether a check-in has to come with evidence. The proof
-     switch especially — it is the reason the next two scenes exist, and it
-     was arriving unexplained. */
+  /* ---------------------------------------------------------------------
+     The CONVENE screen, in two scenes.
+
+     The first version of a1 was invented — a tidy four-row form I guessed
+     at. The real screen has nine sections and most of what makes the Arena
+     work is in them: that HOW TO PLAY is shown to people BEFORE they join,
+     that a challenge will not start until enough have, that video proof
+     expires into a still frame. None of that survives being summarised as
+     "the host sets it up", so it is built from the screenshots instead.
+
+     Split in two because it is genuinely two decisions: what the challenge
+     IS, and who is in it.
+     --------------------------------------------------------------------- */
+
+  /** One settings block: a label, a control, and the line under it. */
+  function setCard(label, build, note) {
+    const card = el('div', 'fm-panel', { padding: '10px 12px 11px', opacity: '0' });
+    const l = el('div', 'fm-mono', {
+      fontSize: '9px', letterSpacing: '.18em', color: COL.dim, marginBottom: '9px',
+    });
+    l.textContent = label;
+    card.appendChild(l);
+    card.appendChild(build());
+    if (note) {
+      const n = el('div', 'fm-mono', {
+        fontSize: '9px', lineHeight: '1.6', color: COL.faint, marginTop: '9px',
+      });
+      n.textContent = note;
+      card.appendChild(n);
+    }
+    return card;
+  }
+  /** The amber segmented control the whole app is built out of. */
+  function pills(labels, on) {
+    const row = el('div', null, { display: 'flex', gap: '7px', flexWrap: 'wrap' });
+    labels.forEach((t2, i) => {
+      const sel = Array.isArray(on) ? on.indexOf(i) >= 0 : on === i;
+      const p = el('div', 'fm-mono', {
+        fontSize: '11px', letterSpacing: '.08em', padding: '7px 13px', borderRadius: '9px',
+        color: sel ? '#1A1206' : COL.dim,
+        background: sel ? COL.amber : 'transparent',
+        border: '1px solid ' + (sel ? COL.amber : COL.line),
+      });
+      p.textContent = t2;
+      row.appendChild(p);
+    });
+    return row;
+  }
+  /** The −  n  + stepper. */
+  function stepper(value) {
+    const row = el('div', null, { display: 'flex', alignItems: 'center', gap: '12px' });
+    const mk = (ch) => {
+      const b = el('div', 'fm-mono', {
+        width: '30px', height: '30px', borderRadius: '8px', display: 'grid', placeItems: 'center',
+        border: '1px solid ' + COL.line, color: COL.dim, fontSize: '14px',
+      });
+      b.textContent = ch;
+      return b;
+    };
+    const v = el('div', 'fm-disp', { fontSize: '22px', fontWeight: '800', color: COL.ink, minWidth: '26px', textAlign: 'center' });
+    v.textContent = value;
+    row.append(mk('−'), v, mk('+'));
+    return row;
+  }
+
+  /* a1 · what the challenge is */
   const a1 = {
-    id: 'a1', dur: 9600,
+    id: 'a1', dur: 10000,
     vo: t('a1.vo'),
     caps: capsFor('a1'),
     render(node) {
-      ambient(node, 'rgba(255,180,84,.10)', 900);
+      ambient(node, 'rgba(255,180,84,.09)', 900);
       const c = appCol(node, 560);
-      drift(c, 9600, 1.02);
+      drift(c, 10000, 1.02);
 
-      const panel = el('div', 'fm-panel', { padding: '18px 20px 20px' });
-      const head = el('div', 'fm-mono', {
-        fontSize: '10px', letterSpacing: '.2em', color: COL.dim, marginBottom: '16px',
+      const head = el('div', 'fm-disp', {
+        fontSize: '22px', fontWeight: '900', letterSpacing: '.16em',
+        color: COL.ink, marginBottom: '12px', paddingLeft: '2px', opacity: '0',
       });
-      head.textContent = t('a1.title');
-      panel.appendChild(head);
+      head.textContent = t('a1.screen');
+      c.appendChild(head);
+      anim(head, [
+        { opacity: 0, transform: 'translateY(10px)' },
+        { opacity: 1, transform: 'translateY(0px)' },
+      ], { duration: 640, easing: EASE, fill: 'both' });
 
-      /* One row per decision, in the order the host meets them. */
-      const fields = [
-        { k: t('a1.fName'), v: t('s6.challenge') },
-        { k: t('a1.fGoal'), v: t('a1.vGoal') },
-        { k: t('a1.fRuns'), v: t('a1.vRuns') },
-        { k: t('a1.fPlayers'), v: t('a1.vPlayers') },
-      ];
-      const rows = fields.map((f) => {
-        const r = el('div', null, {
-          display: 'flex', alignItems: 'baseline', gap: '16px',
-          padding: '10px 0', borderTop: '1px solid ' + COL.lineSoft, opacity: '0',
+      const nameCard = setCard(t('a1.cName'), () => {
+        const row = el('div', null, { display: 'flex', gap: '8px', alignItems: 'stretch' });
+        const emo = el('div', null, {
+          width: '46px', borderRadius: '9px', border: '1px solid ' + COL.line,
+          display: 'grid', placeItems: 'center', fontSize: '20px',
         });
-        const k = el('div', 'fm-mono', {
-          fontSize: '10px', letterSpacing: '.16em', color: COL.faint,
-          width: '92px', flex: '0 0 auto',
+        emo.textContent = '🏃';
+        const box = el('div', 'fm-disp', {
+          flex: '1', borderRadius: '9px', border: '1px solid ' + COL.line,
+          padding: '10px 12px', fontSize: '16px', fontWeight: '600', color: COL.ink,
         });
-        k.textContent = f.k;
-        const v = el('div', 'fm-disp', { fontSize: '16px', fontWeight: '600', color: COL.ink });
-        v.textContent = f.v;
-        r.append(k, v);
-        panel.appendChild(r);
-        return r;
+        box.textContent = t('s6.challenge');
+        row.append(emo, box);
+        return row;
       });
 
-      /* The proof switch gets a row of its own shape, because it is a choice
-         between three states rather than a value somebody typed. */
-      const proofRow = el('div', null, {
-        display: 'flex', alignItems: 'center', gap: '16px',
-        padding: '12px 0 2px', borderTop: '1px solid ' + COL.lineSoft, opacity: '0',
-      });
-      const pk = el('div', 'fm-mono', {
-        fontSize: '10px', letterSpacing: '.16em', color: COL.faint, width: '92px', flex: '0 0 auto',
-      });
-      pk.textContent = t('a1.fProof');
-      const seg = el('div', null, {
-        display: 'flex', gap: '6px', padding: '4px', borderRadius: '12px',
-        background: 'rgba(255,255,255,.03)', border: '1px solid ' + COL.line,
-      });
-      const opts = [t('a1.pOff'), t('a1.pPhoto'), t('a1.pVideo')].map((label, i) => {
-        const b = el('div', 'fm-mono', {
-          fontSize: '11px', letterSpacing: '.1em', padding: '8px 14px', borderRadius: '9px',
-          color: i === 0 ? COL.ink : COL.faint,
-          background: i === 0 ? 'rgba(255,255,255,.07)' : 'transparent',
-          transition: 'color .25s',
+      /* The note is the point of this card, not decoration: it is the only
+         place the app promises that an invitee reads the deal before saying
+         yes, which is what stops a challenge being a bait-and-switch. */
+      const howCard = setCard(t('a1.cHow'), () => {
+        const box = el('div', null, {
+          borderRadius: '9px', border: '1px solid ' + COL.line, padding: '11px 12px',
+          fontSize: '14px', lineHeight: '1.6', color: COL.ink, whiteSpace: 'pre-line',
         });
-        b.textContent = label;
-        seg.appendChild(b);
-        return b;
-      });
-      proofRow.append(pk, seg);
-      panel.appendChild(proofRow);
+        box.textContent = t('a1.howText');
+        return box;
+      }, t('a1.howNote'));
 
-      const cta = el('div', 'fm-mono', {
-        marginTop: '18px', borderRadius: '999px', padding: '15px 0', textAlign: 'center',
-        background: 'rgba(255,180,84,.10)', border: '1px solid rgba(255,180,84,.32)',
-        color: COL.amber, fontWeight: '700', fontSize: '13px', letterSpacing: '.12em', opacity: '0',
-      });
-      cta.textContent = t('a1.cta');
-      panel.appendChild(cta);
-      c.appendChild(panel);
-      reveal(panel, { duration: 900 });
+      const durCard = setCard(t('a1.cDuration'),
+        () => pills([t('a1.d7'), t('a1.d30'), t('a1.dCustom')], 1), t('a1.durNote'));
+      const cadCard = setCard(t('a1.cCadence'),
+        () => pills([t('a1.cEvery'), t('a1.cPerWeek')], 0), t('a1.cadNote'));
 
-      rows.forEach((r, i) => {
-        after(700 + i * 380, () => {
-          anim(r, [
-            { opacity: 0, transform: 'translateY(10px)' },
-            { opacity: 1, transform: 'translateY(0px)' },
-          ], { duration: 520, easing: EASE, fill: 'both' });
+      [nameCard, howCard, durCard, cadCard].forEach((card, i) => {
+        card.style.marginBottom = '9px';
+        c.appendChild(card);
+        after(620 + i * 900, () => {
+          anim(card, [
+            { opacity: 0, transform: 'translateY(16px) scale(.985)', filter: 'blur(8px)' },
+            { opacity: 1, transform: 'translateY(0px) scale(1)', filter: 'blur(0px)' },
+          ], { duration: 720, easing: EASE, fill: 'both' });
+          sfx.tick();
+        });
+      });
+    },
+  };
+
+  /* a3 · who is in it, and what counts */
+  const a3 = {
+    id: 'a3', dur: 14000,
+    vo: t('a3.vo'),
+    caps: capsFor('a3'),
+    render(node) {
+      ambient(node, 'rgba(255,180,84,.09)', 900);
+      const c = appCol(node, 580);
+      drift(c, 14000, 1.02);
+
+      const grid = el('div', null, {
+        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '7px', marginBottom: '7px',
+      });
+      const minCard = setCard(t('a3.cMin'), () => stepper('2'), t('a3.minNote'));
+      const maxCard = setCard(t('a3.cMax'), () => pills(['4', '8', '20', '40'], 1));
+      const joinCard = setCard(t('a3.cJoin'), () => pills([t('a3.jAnyone'), t('a3.jApprove')], 0), t('a3.joinNote'));
+      const invCard = setCard(t('a3.cInvite'), () => pills([t('a3.iAnyone'), t('a3.iHost')], 0), t('a3.invNote'));
+      grid.append(minCard, maxCard, joinCard, invCard);
+      c.appendChild(grid);
+
+      /* Full width, because it is the setting the next two scenes are about. */
+      const proofCard = setCard(t('a3.cProof'), () => {
+        const wrap = el('div', null, { display: 'flex', flexDirection: 'column', gap: '10px' });
+        wrap.appendChild(pills([t('a3.pOff'), t('a3.pRequire')], 1));
+        const typeRow = el('div', null, { display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' });
+        const lab = (txt) => {
+          const x = el('div', 'fm-mono', { fontSize: '9px', letterSpacing: '.16em', color: COL.dim });
+          x.textContent = txt;
+          return x;
+        };
+        typeRow.append(lab(t('a3.pType')), pills([t('a3.pPhoto'), t('a3.pVideo')], [0, 1]),
+                       lab(t('a3.pSee')), pills([t('a3.sAll'), t('a3.sHost')], 0));
+        wrap.appendChild(typeRow);
+        return wrap;
+      }, t('a3.proofNote'));
+      c.appendChild(proofCard);
+
+      /* The button that actually makes it exist. Shown because "then you
+         press the button" is a sentence a viewer has to be able to match to
+         something, and because the challenge does NOT begin here — the host
+         starts it later, from the lobby, and the clock starts then. */
+      const actions = el('div', null, {
+        display: 'flex', gap: '10px', marginTop: '9px', opacity: '0',
+      });
+      const go = el('div', 'fm-mono', {
+        flex: '1', textAlign: 'center', padding: '12px 0', borderRadius: '12px',
+        background: 'linear-gradient(180deg,#FFC46E,' + COL.amber + ')', color: '#1A1206',
+        fontWeight: '800', fontSize: '13px', letterSpacing: '.1em',
+        boxShadow: '0 14px 32px -12px rgba(255,180,84,.6)',
+      });
+      go.textContent = t('a3.btnCreate');
+      const cancel = el('div', 'fm-mono', {
+        width: '120px', textAlign: 'center', padding: '12px 0', borderRadius: '12px',
+        border: '1px solid ' + COL.line, color: COL.dim, fontSize: '13px', letterSpacing: '.1em',
+      });
+      cancel.textContent = t('a3.btnCancel');
+      actions.append(go, cancel);
+      c.appendChild(actions);
+
+      [minCard, maxCard, joinCard, invCard, proofCard].forEach((card, i) => {
+        after(500 + i * 620, () => {
+          anim(card, [
+            { opacity: 0, transform: 'translateY(14px) scale(.985)', filter: 'blur(8px)' },
+            { opacity: 1, transform: 'translateY(0px) scale(1)', filter: 'blur(0px)' },
+          ], { duration: 680, easing: EASE, fill: 'both' });
+          sfx.tick();
+        });
+      });
+      after(3700, () => {
+        anim(actions, [
+          { opacity: 0, transform: 'translateY(12px)' },
+          { opacity: 1, transform: 'translateY(0px)' },
+        ], { duration: 620, easing: EASE, fill: 'both' });
+      });
+      /* pressed, on the line that says so */
+      after(11200, () => {
+        const ring = el('div', null, {
+          position: 'absolute', left: '50%', top: '50%', width: '110px', height: '110px',
+          marginLeft: '-55px', marginTop: '-55px', borderRadius: '50%',
+          border: '2px solid rgba(255,180,84,.85)', pointerEvents: 'none',
+        });
+        go.style.position = 'relative';
+        go.appendChild(ring);
+        anim(ring, [
+          { opacity: 0, transform: 'scale(1.6)' },
+          { opacity: 1, transform: 'scale(.44)' },
+          { opacity: 0, transform: 'scale(.36)' },
+        ], { duration: 420, easing: 'ease-out', fill: 'both' });
+        anim(go, [
+          { transform: 'scale(1)' }, { transform: 'scale(.96)' }, { transform: 'scale(1)' },
+        ], { duration: 400, delay: 240, easing: POP });
+        after(260, () => { sfx.chime(); boboTada(); });
+      });
+    },
+  };
+
+  /* a4 · video proof — the owner's own clip, from his own gym.
+     The footage is handheld and a bit soft, and that is the argument: this
+     is what a real check-in looks like, nobody is producing anything. */
+  const a4 = {
+    id: 'a4', dur: 9800,
+    vo: t('a4.vo'),
+    caps: capsFor('a4'),
+    render(node) {
+      ambient(node, 'rgba(127,169,255,.09)', 940);
+      const c = appCol(node, 640);
+      drift(c, 9800, 1.03);
+
+      const row = el('div', null, { display: 'flex', alignItems: 'center', gap: '30px' });
+      c.appendChild(row);
+
+      /* the clip, in a phone-shaped frame */
+      const phone = el('div', null, {
+        position: 'relative', width: '198px', height: '352px', flex: '0 0 auto',
+        borderRadius: '26px', overflow: 'hidden', background: '#000',
+        border: '1px solid rgba(255,255,255,.14)',
+        boxShadow: '0 46px 92px -34px rgba(0,0,0,.95)', opacity: '0',
+      });
+      const vid = el('video');
+      vid.src = '/assets/proof/gym.mp4';
+      vid.poster = '/assets/proof/gym.jpg';
+      vid.muted = true;
+      vid.loop = true;
+      vid.autoplay = true;
+      vid.playsInline = true;
+      vid.setAttribute('muted', '');
+      vid.setAttribute('playsinline', '');
+      Object.assign(vid.style, {
+        position: 'absolute', inset: '0', width: '100%', height: '100%',
+        objectFit: 'cover', display: 'block',
+      });
+      /* Autoplay can still be refused; the poster is then what shows, which
+         is a frame of the same clip, so the scene never reads as broken. */
+      try { const pr = vid.play(); if (pr && pr.catch) pr.catch(() => {}); } catch (e) {}
+
+      const scrim = el('div', null, {
+        position: 'absolute', left: '0', right: '0', bottom: '0', height: '38%',
+        background: 'linear-gradient(to top, rgba(8,11,18,.92), transparent)',
+      });
+      const badge = el('div', 'fm-mono', {
+        position: 'absolute', right: '10px', top: '10px', fontSize: '10px', color: COL.ink,
+        background: 'rgba(11,14,23,.7)', padding: '3px 8px', borderRadius: '7px',
+      });
+      badge.textContent = t('a4.badge');
+      const who = el('div', 'fm-disp', {
+        position: 'absolute', left: '13px', bottom: '13px', fontSize: '15px', fontWeight: '700', color: '#fff',
+      });
+      who.textContent = t('s7.you');
+      const when = el('div', 'fm-mono', {
+        position: 'absolute', right: '13px', bottom: '15px', fontSize: '10px', color: 'rgba(255,255,255,.62)',
+      });
+      when.textContent = t('a4.when');
+      phone.append(vid, scrim, badge, who, when);
+      row.appendChild(phone);
+
+      /* what happens to it afterwards — the part nobody reads in settings */
+      const list = el('div', null, { flex: '1', minWidth: '0' });
+      row.appendChild(list);
+      [t('a4.r1'), t('a4.r2'), t('a4.r3')].forEach((line, i) => {
+        const item = el('div', null, {
+          display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '18px', opacity: '0',
+        });
+        const dot = el('div', null, {
+          width: '7px', height: '7px', borderRadius: '50%', marginTop: '8px', flex: '0 0 auto',
+          background: i === 2 ? COL.blue : COL.go,
+          boxShadow: '0 0 12px -1px ' + (i === 2 ? COL.blue : COL.go),
+        });
+        const tx = el('div', 'fm-disp', { fontSize: '18px', lineHeight: '1.45', color: COL.ink });
+        tx.textContent = line;
+        item.append(dot, tx);
+        list.appendChild(item);
+        after(1500 + i * 900, () => {
+          anim(item, [
+            { opacity: 0, transform: 'translateX(14px)' },
+            { opacity: 1, transform: 'translateX(0px)' },
+          ], { duration: 620, easing: EASE, fill: 'both' });
           sfx.tick();
         });
       });
 
-      after(700 + rows.length * 380, () => {
-        anim(proofRow, [
-          { opacity: 0, transform: 'translateY(10px)' },
-          { opacity: 1, transform: 'translateY(0px)' },
-        ], { duration: 520, easing: EASE, fill: 'both' });
-        sfx.tick();
-      });
-
-      /* Off → photo → video. Moving the selection rather than recolouring
-         three pills, because what the host is doing is picking one of three,
-         and a slider says that where three independent highlights do not. */
-      function select(i) {
-        opts.forEach((b, j) => {
-          b.style.color = j === i ? (i === 0 ? COL.ink : '#1A1206') : COL.faint;
-          b.style.background = j === i ? (i === 0 ? 'rgba(255,255,255,.07)' : COL.amber) : 'transparent';
-        });
-        anim(opts[i], [{ transform: 'scale(.94)' }, { transform: 'scale(1)' }], { duration: 320, easing: POP });
+      after(360, () => {
+        anim(phone, [
+          { opacity: 0, transform: 'translateY(34px) scale(1.08)', filter: 'blur(14px)' },
+          { opacity: 1, transform: 'translateY(0px) scale(1)', filter: 'blur(0px)' },
+        ], { duration: 1000, easing: EASE, fill: 'both' });
         sfx.pop();
-      }
-      after(4300, () => select(1));
-      after(5500, () => select(2));
-
-      after(6600, () => {
-        anim(cta, [
-          { opacity: 0, transform: 'translateY(10px)' },
-          { opacity: 1, transform: 'translateY(0px)' },
-        ], { duration: 620, easing: EASE, fill: 'both' });
-        sfx.chime();
-        boboTada();
       });
     },
   };
@@ -2782,7 +3054,7 @@ function buildScenes(ctx, cut) {
   const b5 = recut(s5, 'b5', 7600);
   const b6 = recut(s9, 'b6', 8200);
 
-  if (CUT === 'arena') return [n1, n2, a2, a1, n3, n4, n5, n6, n7, n9];
+  if (CUT === 'arena') return [n1, n2, a2, a1, a3, n3, n4, n5, a4, n6, n7, n9];
   if (CUT === 'solo') return [b1, b2, b3, b4, b5, b6];
   return [n1, n2, n3, n4, n5, n6, n7, n8, n9];
 
