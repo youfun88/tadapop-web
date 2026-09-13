@@ -351,9 +351,23 @@ const COPY = {
     'b1.cap2': '<span class="go">No account. Nothing public. Works on a plane.</span>',
     'b1.vo': 'Tadapop starts as a checklist for your day. No account, nothing public, and it works on a plane.',
 
+    /* Taken off the real Today screen, not invented. */
+    'b2.greeting': 'Good morning',
+    'b2.sub': 'You\u2019re worth showing up for.',
+    'b2.date': 'SUNDAY \u00b7 13 SEP 2026',
+    'b2.doneOf': '{n} of 5 done',
+    'b2.more': '{n} more for today\u2019s Tpoint',
+    'b2.m1': 'Lights out by 11pm',
+    'b2.m1meta': '\ud83d\udd25 4d',
+    'b2.m2': 'Drink 2000 ml of water',
+    'b2.m2meta': '{v}/2000 ml',
+    'b2.step': '+250',
+    'b2.m3': 'Meditate 10 minutes',
+    'b2.m3meta': '10 MIN \u00b7 \ud83d\udd25 2d',
+    'b2.m3running': 'RUNNING \u00b7 6:12 LEFT',
     'b2.cap1': 'Put the things you actually meant to do on it.',
-    'b2.cap2': 'Tap one done, count the water or the pages, or <span class="go">start a timer and disappear</span>.',
-    'b2.vo': 'Put the things you actually meant to do on it. Tap one done, count the water or the pages, or start a timer and disappear.',
+    'b2.cap2': 'Tap one done, count the water or the pages, or <span class="go">start a timer and work until it rings</span>.',
+    'b2.vo': 'Put the things you actually meant to do on it. Tap one done, count the water or the pages, or start a timer and work until it rings.',
 
     'b3.cap1': 'Clear the whole day and it pays out: <span class="go">one Tpoint</span>.',
     'b3.cap2': 'Miss one and it pays nothing — <span class="hi">the day is what counts</span>, not the task.',
@@ -1170,7 +1184,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 11;
+  const VOV = 12;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
@@ -2509,6 +2523,196 @@ function buildScenes(ctx, cut) {
   };
 
 
+  /* b2 · the Today list, doing the three things the line names.
+     ------------------------------------------------------------------
+     This reused s2, which drew a "MISSION CONTROL" console header with a
+     STREAK and TPOINTS readout and put each row's control on the LEFT. No
+     screen in the app has ever looked like that. The real Today screen is a
+     greeting, a ring counting the day down to its Tpoint, and rows with the
+     icon on the left and the control on the right — a circle to tick, a
+     stepper to count, a play button to time.
+
+     The voiceover says "tap one done, count the water or the pages, or start
+     a timer", so the scene does all three, in that order, and the ring moves
+     each time one lands. That ring is the thing worth showing: it is how the
+     app answers "how much of today is left". */
+  const b2 = {
+    id: 'b2', dur: 11500,
+    vo: t('b2.vo'),
+    caps: capsFor('b2'),
+    render(node) {
+      ambient(node, 'rgba(255,180,84,.08)', 900);
+      const c = appCol(node, 560);
+      drift(c, 11500, 1.02);
+
+      /* ---- greeting ---- */
+      const hi = el('div', 'fm-disp', {
+        fontSize: '22px', fontWeight: '800', color: COL.amber, opacity: '0',
+      });
+      hi.textContent = t('b2.greeting');
+      const sub = el('div', null, { fontSize: '15px', color: COL.dim, marginTop: '3px', opacity: '0' });
+      sub.textContent = t('b2.sub');
+      const date = el('div', 'fm-mono', {
+        fontSize: '10px', letterSpacing: '.16em', color: COL.faint, marginTop: '7px', marginBottom: '14px', opacity: '0',
+      });
+      date.textContent = t('b2.date');
+      c.append(hi, sub, date);
+
+      /* ---- the day's ring ---- */
+      const TOTAL = 5;
+      let done = 0;
+      const R = 22, CIRC = 2 * Math.PI * R;
+      const ringCard = el('div', 'fm-panel', {
+        display: 'flex', alignItems: 'center', gap: '16px',
+        padding: '14px 16px', marginBottom: '16px', opacity: '0',
+      });
+      const ring = el('div', null, { width: '54px', height: '54px', flex: '0 0 auto' });
+      ring.innerHTML =
+        '<svg viewBox="0 0 54 54" style="width:54px;height:54px;transform:rotate(-90deg)">' +
+        '<circle cx="27" cy="27" r="' + R + '" fill="none" stroke="' + COL.line + '" stroke-width="4"/>' +
+        '<circle class="js-arc" cx="27" cy="27" r="' + R + '" fill="none" stroke="' + COL.go + '" ' +
+        'stroke-width="4" stroke-linecap="round" stroke-dasharray="' + CIRC + '" stroke-dashoffset="' + CIRC + '"/></svg>';
+      const arc = ring.querySelector('.js-arc');
+      const ringMid = el('div', null, { flex: '1', minWidth: '0' });
+      const doneLine = el('div', 'fm-disp', { fontSize: '19px', fontWeight: '800', color: COL.ink });
+      doneLine.textContent = t('b2.doneOf', { n: 0 });
+      const moreLine = el('div', 'fm-mono', { fontSize: '11px', color: COL.dim, marginTop: '4px' });
+      moreLine.textContent = t('b2.more', { n: TOTAL });
+      ringMid.append(doneLine, moreLine);
+      ringCard.append(ring, ringMid);
+      c.appendChild(ringCard);
+
+      function advance() {
+        done += 1;
+        anim(arc, [
+          { strokeDashoffset: CIRC * (1 - (done - 1) / TOTAL) },
+          { strokeDashoffset: CIRC * (1 - done / TOTAL) },
+        ], { duration: 620, easing: EASE, fill: 'both' });
+        doneLine.textContent = t('b2.doneOf', { n: done });
+        moreLine.textContent = t('b2.more', { n: TOTAL - done });
+        anim(doneLine, [
+          { opacity: 0, transform: 'translateY(6px)' },
+          { opacity: 1, transform: 'translateY(0px)' },
+        ], { duration: 340, easing: EASE });
+      }
+
+      const listLabel = el('div', 'fm-mono', {
+        fontSize: '10px', letterSpacing: '.2em', color: COL.dim, marginBottom: '9px', paddingLeft: '4px', opacity: '0',
+      });
+      listLabel.textContent = t('app.missionsToday');
+      c.appendChild(listLabel);
+
+      /* ---- one row, the way the app draws it ---- */
+      function row(emoji, title, meta, control) {
+        const r = el('div', 'fm-panel', {
+          display: 'flex', alignItems: 'center', gap: '13px',
+          padding: '13px 15px', marginBottom: '9px', opacity: '0',
+        });
+        const tile = el('div', null, {
+          width: '38px', height: '38px', borderRadius: '10px', flex: '0 0 auto',
+          background: 'rgba(255,255,255,.05)', display: 'grid', placeItems: 'center', fontSize: '19px',
+        });
+        tile.textContent = emoji;
+        const mid = el('div', null, { flex: '1', minWidth: '0' });
+        const nm = el('div', 'fm-disp js-title', { fontSize: '16px', fontWeight: '600', color: COL.ink });
+        nm.textContent = title;
+        const mt = el('div', 'fm-mono js-meta', { fontSize: '10px', color: COL.amber, marginTop: '4px' });
+        mt.textContent = meta;
+        mid.append(nm, mt);
+        r.append(tile, mid, control);
+        r._title = nm; r._meta = mt; r._control = control;
+        c.appendChild(r);
+        return r;
+      }
+      /** The empty circle a binary mission is ticked with. */
+      function circle(colour) {
+        return el('div', null, {
+          width: '26px', height: '26px', borderRadius: '50%', flex: '0 0 auto',
+          border: '1.5px solid ' + (colour || COL.faint), display: 'grid', placeItems: 'center',
+        });
+      }
+
+      const r1 = row('🛏️', t('b2.m1'), t('b2.m1meta'), circle());
+      const stepper = el('div', 'fm-mono', {
+        padding: '7px 12px', borderRadius: '9px', flex: '0 0 auto',
+        border: '1px solid ' + COL.amber, color: COL.amber, fontSize: '12px', fontWeight: '700',
+      });
+      stepper.textContent = t('b2.step');
+      const r2 = row('💧', t('b2.m2'), t('b2.m2meta', { v: '1250' }), stepper);
+      const play = circle(COL.blue);
+      play.innerHTML = '<div style="width:0;height:0;margin-left:2px;border-top:5px solid transparent;' +
+        'border-bottom:5px solid transparent;border-left:8px solid ' + COL.blue + '"></div>';
+      const r3 = row('🧘', t('b2.m3'), t('b2.m3meta'), play);
+
+      [hi, sub, date, ringCard, listLabel, r1, r2, r3].forEach((n, i) => {
+        after(280 + i * 130, () => {
+          anim(n, [
+            { opacity: 0, transform: 'translateY(12px)' },
+            { opacity: 1, transform: 'translateY(0px)' },
+          ], { duration: 600, easing: EASE, fill: 'both' });
+        });
+      });
+
+      /** A row lands: the circle fills, the title is struck, the ring moves. */
+      function tick(r) {
+        const ctl = r._control;
+        ctl.style.borderColor = COL.go;
+        ctl.style.background = 'rgba(91,227,155,.16)';
+        ctl.innerHTML = '<svg viewBox="0 0 24 24" style="width:15px;height:15px">' +
+          '<path d="M5 12.5 L10 17.5 L19 6.5" fill="none" stroke="' + COL.go + '" stroke-width="3" ' +
+          'stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        anim(ctl, [{ transform: 'scale(.82)' }, { transform: 'scale(1.14)' }, { transform: 'scale(1)' }],
+          { duration: 400, easing: POP });
+        r._title.style.color = COL.dim;
+        r._title.style.textDecoration = 'line-through';
+        r._title.style.textDecorationColor = 'rgba(124,138,165,.55)';
+        advance();
+        sfx.tick();
+      }
+
+      /* 1 · tap one done */
+      after(2200, () => { tick(r1); });
+
+      /* 2 · count the water — the stepper presses until the target is met,
+             and meeting it completes the row on its own. */
+      let ml = 1250;
+      const STEP = 250;
+      function pour() {
+        ml += STEP;
+        r2._meta.textContent = t('b2.m2meta', { v: String(ml) });
+        anim(stepper, [{ transform: 'scale(1)' }, { transform: 'scale(.92)' }, { transform: 'scale(1)' }],
+          { duration: 240, easing: POP });
+        sfx.pop();
+        if (ml >= 2000) { after(260, () => { r2._meta.style.color = COL.go; tick(r2); }); return; }
+        after(420, pour);
+      }
+      after(4300, pour);
+
+      /* 3 · start a timer — it runs rather than completing, because that is
+             what pressing play does: the day is not done, you are. */
+      after(7400, () => {
+        play.style.borderColor = COL.blue;
+        play.innerHTML = '<div style="display:flex;gap:2px">' +
+          '<i style="width:3px;height:10px;background:' + COL.blue + ';display:block"></i>' +
+          '<i style="width:3px;height:10px;background:' + COL.blue + ';display:block"></i></div>';
+        anim(play, [{ transform: 'scale(.86)' }, { transform: 'scale(1.12)' }, { transform: 'scale(1)' }],
+          { duration: 400, easing: POP });
+        const bar = el('div', null, {
+          height: '4px', borderRadius: '3px', marginTop: '8px',
+          background: 'rgba(127,169,255,.22)', overflow: 'hidden',
+        });
+        const fill = el('div', null, { height: '100%', width: '0%', background: COL.blue });
+        bar.appendChild(fill);
+        r3.querySelector('.js-meta').after(bar);
+        anim(fill, [{ width: '0%' }, { width: '38%' }], { duration: 3200, easing: 'linear', fill: 'both' });
+        r3._meta.textContent = t('b2.m3running');
+        r3._meta.style.color = COL.blue;
+        sfx.chime();
+        boboTada();
+      });
+    },
+  };
+
   /* b4 · the day closes, the streak moves.
      ------------------------------------------------------------------
      This used to reuse s4, which drew five segments filling and a banner
@@ -3501,7 +3705,8 @@ function buildScenes(ctx, cut) {
   /* The solo cut. Same art as the first film — the Today screen, the payout,
      the streak, the heatmap — re-narrated around being left alone. */
   const b1 = recut(s1, 'b1', 7400);
-  const b2 = recut(s2, 'b2', 11500);
+  /* b2 has its own render now — s2 drew a MISSION CONTROL console
+     header that no screen in this app has ever had. */
   const b3 = recut(s3, 'b3', 7800);
   /* b4 has its own render now — s4's banner said ALL OBJECTIVES CLEARED,
      which no screen in this app has ever said. */
