@@ -121,7 +121,7 @@ const MATCH_MIN = 0.82;
 const LANG = optVal('--lang', 'en');
 const TAKES = Math.max(1, Number(optVal('--takes', '3')) || 3);
 /* `s1` for the first cut, `n1` for the second — see --film. */
-const sceneIds = args.filter((a) => /^[snb]\d+$/.test(a));
+const sceneIds = args.filter((a) => /^[a-z]\d+$/.test(a));
 const dryRun = flags.has('--dry-run');
 
 function die(msg) { console.error(`\n✗ ${msg}\n`); process.exit(1); }
@@ -140,14 +140,14 @@ async function readFilm(lang) {
   // against the English length would be rejected for overrunning a scene that
   // is no longer that long. Read the override too.
   const durations = {};
-  for (const m of src.matchAll(/id:\s*'([snb]\d+)',\s*dur:\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
+  for (const m of src.matchAll(/id:\s*'([a-z]\d+)',\s*dur:\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
   /* The second cut re-narrates scenes it reuses, so its length is set where it
      is recut rather than on the scene object: recut(s6, 'n2', 7000). */
-  for (const m of src.matchAll(/recut\([^,]+,\s*'([snb]\d+)',\s*(\d+)\)/g)) durations[m[1]] = Number(m[2]) / 1000;
+  for (const m of src.matchAll(/recut\([^,]+,\s*'([a-z]\d+)',\s*(\d+)\)/g)) durations[m[1]] = Number(m[2]) / 1000;
   const over = new RegExp(`\\b${lang}:\\s*\\{([^}]*)\\}`).exec(
     (/const SCENE_DUR = \{([\s\S]*?)\};/.exec(src) || [, ''])[1],
   );
-  if (over) for (const m of over[1].matchAll(/([snb]\d+):\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
+  if (over) for (const m of over[1].matchAll(/([a-z]\d+):\s*(\d+)/g)) durations[m[1]] = Number(m[2]) / 1000;
 
   // Narrow to the requested language's block inside COPY so `en:` lines can't
   // be picked up while generating `zh:` (both define the same keys).
@@ -156,7 +156,7 @@ async function readFilm(lang) {
   const block = src.slice(open, src.indexOf('\n  },', open));
 
   const out = [];
-  for (const m of block.matchAll(/'([snb]\d+)\.vo':\s*'((?:\\.|[^'\\])*)'/g)) {
+  for (const m of block.matchAll(/'([a-z]\d+)\.vo':\s*'((?:\\.|[^'\\])*)'/g)) {
     out.push({ id: m[1], vo: m[2].replace(/\\(['"\\])/g, '$1'), dur: durations[m[1]] });
   }
   return out;

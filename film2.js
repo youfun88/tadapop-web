@@ -104,15 +104,46 @@ const COPY = {
 
     /* ---- n2 · pick the thing, pick the people ---- */
     'n2.cap1': 'So pick one thing. Then pick the people who will <span class="hi">notice</span>.',
-    'n2.cap2': 'Private, invite-only. <span class="go">No strangers, no feed.</span>',
-    'n2.vo': 'So pick one thing. Then pick the people who will notice. Invite only — no strangers, no feed.',
+    'n2.cap2': 'The Arena is the third tab — and the one part that needs an account.',
+    'n2.cap3': 'Invite-only. <span class="go">No strangers, no feed.</span>',
+    'n2.vo': 'So pick one thing, then pick the people who will notice. The Arena is the third tab, and the one part that needs an account. Invite only — no strangers, no feed.',
 
     /* ---- n3 · the deal, in the host's own words ---- */
+    /* ---- a2 · it does not have to be the gym ---- */
+    'a2.label': 'CHALLENGES YOU COULD START',
+    'a2.mMove': '40 MIN A DAY \u00b7 50 DAYS \u00b7 4 PLAYERS',
+    'a2.nSleep': 'In bed by 1:00',
+    'a2.mSleep': '30 DAYS \u00b7 4 PLAYERS \u00b7 SCREENSHOT',
+    'a2.nRead': '20 pages before sleep',
+    'a2.mRead': '30 DAYS \u00b7 3 PLAYERS',
+    'a2.proofTag': 'PROOF',
+    'a2.cap1': 'It does not have to be the gym.',
+    'a2.cap2': 'Anything you keep meaning to do and <span class="hi">keep putting off</span>.',
+    'a2.vo': 'And it does not have to be the gym. Anything you keep meaning to do and keep putting off — moving more, getting to bed earlier, reading before you sleep.',
+
+    /* ---- a1 · the create screen ---- */
+    'a1.title': 'NEW CHALLENGE',
+    'a1.fName': 'NAME',
+    'a1.fGoal': 'GOAL',
+    'a1.vGoal': '40 minutes a day',
+    'a1.fRuns': 'RUNS FOR',
+    'a1.vRuns': '50 days',
+    'a1.fPlayers': 'PLAYERS',
+    'a1.vPlayers': '4 minimum',
+    'a1.fProof': 'PROOF',
+    'a1.pOff': 'OFF',
+    'a1.pPhoto': 'PHOTO',
+    'a1.pVideo': 'VIDEO',
+    'a1.cta': 'CREATE \u00b7 GET AN INVITE LINK',
+    'a1.cap1': 'Start one and <span class="hi">you are the host</span>. You set all of it.',
+    'a1.cap2': 'The goal, the length, the size — and whether a check-in needs <span class="hi">a photo or a clip</span>.',
+    'a1.vo': 'Start one and you are the host. You set the goal, how long it runs, how many players, and whether a check-in needs a photo or a clip.',
+
     'n3.rulesLabel': 'HOW TO PLAY',
     'n3.rules': 'Forty minutes a day, fifty days straight.\nMiss a day and you owe the pot a hundred.\nWe spend it on dinner at the end.',
-    'n3.cap1': 'Whoever starts it writes the deal. <span class="hi">In their own words.</span>',
-    'n3.cap2': 'A forfeit to keep everyone honest — and <span class="hi">it pays for the dinner</span>.',
-    'n3.vo': 'Whoever starts it writes the deal, in their own words. A forfeit to keep everyone honest, and it pays for the dinner at the end.',
+    'n3.cap1': 'Then you write the rules — <span class="hi">in your own words</span>.',
+    'n3.cap2': 'Miss a day, put a little in the pot. <span class="go">It buys the dinner at the end.</span>',
+    'n3.vo': 'Then you write the rules, in your own words. Miss a day and you put a little in the pot — not as a punishment. It is the fund for the dinner you all have at the end.',
 
     /* ---- n4 · checking in ---- */
     'n4.lbLabel': 'LEADERBOARD \u00b7 DAYS DONE',
@@ -131,9 +162,9 @@ const COPY = {
 
     /* ---- n5 · proof, if the group asked for it ---- */
     'n5.proofLabel': 'PROOF · VISIBLE TO ALL PLAYERS',
-    'n5.cap1': 'If your group asked for proof, bring a photo or a clip.',
-    'n5.cap2': 'Nobody has to take anyone’s word for it.',
-    'n5.vo': 'If your group asked for proof, bring a photo or a clip. Nobody has to take anyone’s word for it.',
+    'n5.cap1': 'If the group asked for proof, bring a photo or a clip.',
+    'n5.cap2': 'Not to catch anyone out. <span class="go">Seeing somebody else go is what gets you out the door.</span>',
+    'n5.vo': 'If the group asked for proof, bring a photo or a clip. Not to catch anyone out — seeing somebody else go is what gets you out the door.',
 
     /* ---- n6 · the board does the nagging ---- */
     'n6.cap1': 'And then the board just — <span class="hi">sits there</span>.',
@@ -141,9 +172,9 @@ const COPY = {
     'n6.vo': 'And then the board just sits there. Nobody has to be the one who chases. It already shows.',
 
     /* ---- n7 · the week ends ---- */
-    'n7.cap1': 'Seven weeks later, somebody is buying dinner.',
-    'n7.cap2': 'And all of you trained. <span class="go">Which was the point.</span>',
-    'n7.vo': 'Seven weeks later, somebody is buying dinner. And all of you trained, which was the point.',
+    'n7.cap1': 'Seven weeks later, <span class="hi">the pot buys dinner</span>.',
+    'n7.cap2': 'And every one of you did more than you would have <span class="go">alone</span>.',
+    'n7.vo': 'Seven weeks later, the pot buys dinner. And every one of you did more than you would have alone. That was the whole point.',
 
     /* ---- n8 · your own half, quietly ---- */
     'n8.cap1': 'Your own habits are a <span class="hi">separate thing</span> — a list only you see.',
@@ -152,8 +183,8 @@ const COPY = {
 
     /* ---- n9 · sign-off ---- */
     'n9.cap1': 'Joining someone’s challenge is <span class="go">free, forever</span>.',
-    'n9.cap2': 'So go and ask three people. <span class="hi">Tadapop.</span>',
-    'n9.vo': 'Joining someone’s challenge is free, forever. So go and ask three people. Tadapop.',
+    'n9.cap2': 'So ask three people, and <span class="hi">get better at something together</span>.',
+    'n9.vo': 'Joining someone’s challenge is free, forever. So ask three people, and get better at something together. Tadapop.',
 
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': 'DAILY MISSIONS · STREAKS · THE ARENA',
@@ -262,8 +293,8 @@ const COPY = {
     'b2.vo': 'Put the things you actually meant to do on it. Tap one done, count the water or the pages, or start a timer and disappear.',
 
     'b3.cap1': 'Clear the whole day and it pays out: <span class="go">one Tpoint</span>.',
-    'b3.cap2': 'Miss one and it does not. <span class="hi">All or nothing</span> — no part marks.',
-    'b3.vo': 'Clear the whole day and it pays out one Tpoint. Miss one and it does not. All or nothing, no part marks.',
+    'b3.cap2': 'Miss one and it does not — <span class="hi">the day is the unit</span>, not the task.',
+    'b3.vo': 'Clear the whole day and it pays out one Tpoint. Miss one and it does not — the day is the unit here, not the task.',
 
     'b4.cap1': '<span class="go">Day locked.</span> The streak goes up one.',
     'b4.cap2': 'Break it and nothing scolds you. <span class="hi">It simply starts again.</span>',
@@ -274,8 +305,8 @@ const COPY = {
     'b5.vo': 'Then one day you look back at a year of this, and the grid has gone green. Nobody had to see it but you.',
 
     'b6.cap1': 'Free, offline, and <span class="go">nothing to sign up for</span>.',
-    'b6.cap2': 'Start tonight. <span class="hi">Tadapop.</span>',
-    'b6.vo': 'Free, offline, and nothing to sign up for. Start tonight. Tadapop.',
+    'b6.cap2': 'And when you want company, <span class="hi">the Arena is one tab away</span>.',
+    'b6.vo': 'Free, offline, and nothing to sign up for. And when you want company, the Arena is one tab away. Tadapop.',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': 'Track. Compete. <span style="color:{amber}">Become.</span>',
@@ -344,15 +375,46 @@ const COPY = {
 
     /* ---- n2 ---- */
     'n2.cap1': '那就挑一件事，再找幾個會<span class="hi">看見你</span>的人。',
-    'n2.cap2': '只能邀請加入。<span class="go">沒有陌生人，也沒有動態牆。</span>',
-    'n2.vo': '挑一件事，找幾個會看見你的人。只能邀請加入，沒有陌生人，沒有動態牆。',
+    'n2.cap2': '競技場是第三個分頁，也是唯一需要帳號的地方。',
+    'n2.cap3': '只能邀請加入。<span class="go">沒有陌生人，也沒有動態牆。</span>',
+    'n2.vo': '挑一件事，找幾個會看見你的人。競技場是第三個分頁，唯一需要帳號的地方。只能邀請加入，沒有動態牆。',
 
     /* ---- n3 ---- */
+    /* ---- a2 · 不一定是運動 ---- */
+    'a2.label': '可以開的挑戰',
+    'a2.mMove': '每天 40 分鐘 \u00b7 50 天 \u00b7 4 位成員',
+    'a2.nSleep': '晚上 1 點前睡',
+    'a2.mSleep': '30 天 \u00b7 4 位成員 \u00b7 附截圖',
+    'a2.nRead': '睡前讀 20 頁',
+    'a2.mRead': '30 天 \u00b7 3 位成員',
+    'a2.proofTag': '成果',
+    'a2.cap1': '不一定是運動。',
+    'a2.cap2': '任何你<span class="hi">一直想做卻一直沒做</span>的事。',
+    'a2.vo': '而且不一定是運動。任何你一直想做卻一直沒做的事都可以：多動一點、早點睡、睡前讀幾頁書。',
+
+    /* ---- a1 · 建立挑戰 ---- */
+    'a1.title': '新挑戰',
+    'a1.fName': '名稱',
+    'a1.fGoal': '目標',
+    'a1.vGoal': '每天 40 分鐘',
+    'a1.fRuns': '天數',
+    'a1.vRuns': '50 天',
+    'a1.fPlayers': '人數',
+    'a1.vPlayers': '至少 4 人',
+    'a1.fProof': '成果',
+    'a1.pOff': '不用',
+    'a1.pPhoto': '照片',
+    'a1.pVideo': '影片',
+    'a1.cta': '建立 \u00b7 產生邀請連結',
+    'a1.cap1': '開一個，<span class="hi">你就是主辦人</span>。',
+    'a1.cap2': '目標、天數、人數，還有打卡要不要<span class="hi">附照片或影片</span>。',
+    'a1.vo': '開一個，你就是主辦人。目標、做幾天、幾個人，還有打卡要不要附照片或影片，都由你決定。',
+
     'n3.rulesLabel': '玩法',
     'n3.rules': '每天運動四十分鐘，連續五十天。\n一天沒做到，罰一百入碗。\n最後用這筆錢大家一起去吃飯。',
-    'n3.cap1': '規則由<span class="hi">發起的人自己寫</span>。',
-    'n3.cap2': '訂好罰則督促大家，<span class="hi">罰款拿去付慶功宴。</span>',
-    'n3.vo': '規則由發起的人自己寫。訂好罰則督促大家，罰款拿去付慶功宴。',
+    'n3.cap1': '再用<span class="hi">自己的話</span>寫下玩法。',
+    'n3.cap2': '誰沒做到就丟一點錢進來。<span class="go">最後拿這筆錢一起慶功。</span>',
+    'n3.vo': '再用自己的話寫下玩法。誰沒做到就丟一點錢進來，不是處罰，是最後大家一起慶功的基金。',
 
     /* ---- n4 ---- */
     'n4.lbLabel': '\u6392\u884c\u699c \u00b7 \u5b8c\u6210\u5929\u6578',
@@ -372,8 +434,8 @@ const COPY = {
     /* ---- n5 ---- */
     'n5.proofLabel': '成果 · 所有人都看得到',
     'n5.cap1': '如果你們說好要附證據，拍張照或一段影片。',
-    'n5.cap2': '誰都不用只靠嘴巴說。',
-    'n5.vo': '如果你們說好要附證據，拍張照或一段影片。誰都不用只靠嘴巴說。',
+    'n5.cap2': '不是為了抓誰。<span class="go">看到別人真的去了，你才會想出門。</span>',
+    'n5.vo': '如果說好要附證據，就拍張照或一段影片。不是為了抓誰，是看到別人真的去了，你才會想出門。',
 
     /* ---- n6 ---- */
     'n6.cap1': '然後排行榜就<span class="hi">放在那裡</span>。',
@@ -381,9 +443,9 @@ const COPY = {
     'n6.vo': '然後排行榜就放在那裡。沒人需要當那個一直催的人，它自己會說話。',
 
     /* ---- n7 ---- */
-    'n7.cap1': '七個禮拜後，有人要請客了。',
-    'n7.cap2': '而你們都動了。<span class="go">這才是重點。</span>',
-    'n7.vo': '七個禮拜後，有人要請客了。而你們都動了，這才是重點。',
+    'n7.cap1': '七個禮拜後，<span class="hi">那筆錢請大家吃飯</span>。',
+    'n7.cap2': '而你們每個人都比<span class="go">自己一個人</span>時做得更多。',
+    'n7.vo': '七個禮拜後，那筆錢請大家吃飯。而你們每個人都比自己一個人時做得更多，這才是重點。',
 
     /* ---- n8 ---- */
     'n8.cap1': '你自己的習慣是<span class="hi">另一回事</span> — 一份只有你看得到的清單。',
@@ -392,8 +454,8 @@ const COPY = {
 
     /* ---- n9 ---- */
     'n9.cap1': '參加別人的挑戰，<span class="go">永遠免費</span>。',
-    'n9.cap2': '去問三個人吧。<span class="hi">Tadapop。</span>',
-    'n9.vo': '參加別人的挑戰，永遠免費。去問三個人吧。Tadapop。',
+    'n9.cap2': '去找三個人，<span class="hi">一起變好</span>。',
+    'n9.vo': '參加別人的挑戰，永遠免費。去找三個人，一起變好。Tadapop。',
 
     /* ---- scene 1 · cold open ---- */
     's1.brandSub': '每日任務 · 連續紀錄 · 競技場',
@@ -502,8 +564,8 @@ const COPY = {
     'b2.vo': '把你真正想做的事放上去。打個勾、計次，或按下計時器關機專心做。',
 
     'b3.cap1': '整天清空，才拿得到<span class="go">一點 T 點數</span>。',
-    'b3.cap2': '漏一項就沒有。<span class="hi">全有或全無</span>，沒有半分。',
-    'b3.vo': '整天清空才拿得到一點 T 點數。漏一項就沒有，全有或全無。',
+    'b3.cap2': '漏一項就沒有——這裡算的是<span class="hi">一整天</span>，不是單項。',
+    'b3.vo': '整天清空才拿得到一點 T 點數。漏一項就沒有，這裡算的是一整天，不是單項。',
 
     'b4.cap1': '<span class="go">今天封存。</span>連續紀錄加一天。',
     'b4.cap2': '斷了也不會有人數落你。<span class="hi">重新開始就好。</span>',
@@ -514,8 +576,8 @@ const COPY = {
     'b5.vo': '然後某天回頭看這一年，整面格子都綠了。除了你，沒人需要看到。',
 
     'b6.cap1': '免費、離線可用，<span class="go">完全不用註冊</span>。',
-    'b6.cap2': '今晚就開始。<span class="hi">Tadapop。</span>',
-    'b6.vo': '免費、離線可用，完全不用註冊。今晚就開始。Tadapop。',
+    'b6.cap2': '想找人一起的時候，<span class="hi">競技場就在隔壁分頁</span>。',
+    'b6.vo': '免費、離線可用，完全不用註冊。想找人一起，競技場就在隔壁分頁。Tadapop。',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': '記錄。較勁。<span style="color:{amber}">蛻變。</span>',
@@ -577,9 +639,10 @@ function t(key, vars) {
  */
 const CAP_AT = {
   en: {
-    n1: [0.0, 2.6], n2: [0.0, 3.5], n3: [0.0, 3.9], n4: [0.0, 3.8], n5: [0.0, 3.6],
+    n1: [0.0, 2.6], n2: [0.0, 3.4, 7.2], n3: [0.0, 3.9], n4: [0.0, 3.8], n5: [0.0, 3.6],
     n6: [0.0, 2.5], n7: [0.0, 3.1], n8: [0.0, 4.2], n9: [0.0, 3.6],
     b1: [0.0, 3.4], b2: [0.0, 2.8], b3: [0.0, 3.3], b4: [0.0, 2.7], b5: [0.0, 2.9], b6: [0.0, 3.2],
+    a1: [0.0, 4.6], a2: [0.0, 2.4],
     s1: [0.0, 2.58],
     s2: [0.0, 4.04, 7.84],
     s3: [0.0, 4.14],
@@ -591,9 +654,10 @@ const CAP_AT = {
     s9: [0.0, 3.98, 7.14],
   },
   zh: {
-    n1: [0, 3.2], n2: [0, 3.4], n3: [0, 3.6], n4: [0, 4.6], n5: [0, 3.4],
+    n1: [0, 3.2], n2: [0, 3.2, 7.0], n3: [0, 3.6], n4: [0, 4.6], n5: [0, 3.4],
     n6: [0, 2.6], n7: [0, 2.8], n8: [0, 3.8], n9: [0, 3.2],
     b1: [0, 3.6], b2: [0, 2.6], b3: [0, 2.8], b4: [0, 2.6], b5: [0, 2.6], b6: [0, 3.0],
+    a1: [0, 4.2], a2: [0, 2.6],
     s1: [0, 4.06],
     s2: [0, 6.12],
     s3: [0, 2.08],
@@ -924,8 +988,9 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      scenes need more room. Keyed by SCENE ID — an entry whose id no longer
      exists is silently dead, which is how `s1: 7600` sat here doing nothing
      after that scene was recut as n1. */
-  const SCENE_DUR = { zh: { n1: 7600, n2: 8800, n4: 9600, n5: 8200, n7: 6600, n8: 11000,
-                            b1: 8000, b2: 11000, b3: 8000, b4: 9200, b5: 8800 } };
+  const SCENE_DUR = { zh: { n1: 7600, n2: 13600, a1: 11400, a2: 11400, n3: 11500,
+                            n4: 9600, n5: 10600, n7: 10000, n8: 11000,
+                            b1: 8000, b2: 11000, b3: 9200, b4: 9200, b5: 8800, b6: 10000 } };
   function withOverrides(list) {
     const ov = SCENE_DUR[LANG];
     if (ov) list.forEach((sc) => { if (ov[sc.id]) sc.dur = ov[sc.id]; });
@@ -960,7 +1025,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 2;
+  const VOV = 3;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
@@ -2078,7 +2143,7 @@ function buildScenes(ctx, cut) {
 
   /* n3 · the deal — the host's own rules, which is the thing people quote */
   const n3 = {
-    id: 'n3', dur: 8600,
+    id: 'n3', dur: 11000,
     vo: t('n3.vo'),
     caps: capsFor('n3'),
     render(node) {
@@ -2167,7 +2232,7 @@ function buildScenes(ctx, cut) {
      check-ins — a run, a swim, a ride — which is also the only honest source
      for a screen whose entire subject is evidence. */
   const n5 = {
-    id: 'n5', dur: 7200,
+    id: 'n5', dur: 8200,
     vo: t('n5.vo'),
     caps: capsFor('n5'),
     render(node) {
@@ -2298,6 +2363,223 @@ function buildScenes(ctx, cut) {
     },
   };
 
+
+  /* a2 · what a challenge can be.
+     ------------------------------------------------------------------
+     The cut only ever showed one kind of challenge — exercise — and a
+     viewer whose problem is that they go to bed at three came away thinking
+     this app was not for them. It is the same mechanism whatever the thing
+     is: somebody sets it, everybody answers the same question once a day.
+     The sleep card carries a real Health screenshot because "how would I
+     even prove that?" is the first objection to a sleep challenge, and one
+     thumbnail answers it faster than a sentence. */
+  const a2 = {
+    id: 'a2', dur: 9000,
+    vo: t('a2.vo'),
+    caps: capsFor('a2'),
+    render(node) {
+      ambient(node, 'rgba(127,169,255,.08)', 940);
+      const c = appCol(node, 580);
+      drift(c, 9000, 1.02);
+
+      const label = el('div', 'fm-mono', {
+        fontSize: '10px', letterSpacing: '.2em', color: COL.dim,
+        marginBottom: '14px', paddingLeft: '4px', opacity: '0',
+      });
+      label.textContent = t('a2.label');
+      c.appendChild(label);
+      anim(label, [
+        { opacity: 0, transform: 'translateY(8px)' },
+        { opacity: 1, transform: 'translateY(0px)' },
+      ], { duration: 620, easing: EASE, fill: 'both' });
+
+      const items = [
+        { icon: '🏃', name: t('s6.challenge'), meta: t('a2.mMove') },
+        { icon: '😴', name: t('a2.nSleep'), meta: t('a2.mSleep'), shot: '/assets/proof/sleep.jpg' },
+        { icon: '📖', name: t('a2.nRead'), meta: t('a2.mRead') },
+      ];
+
+      items.forEach((it, i) => {
+        const card = el('div', 'fm-panel', {
+          display: 'flex', alignItems: 'center', gap: '14px',
+          padding: '14px 16px', marginBottom: '10px', opacity: '0',
+        });
+        const icon = el('div', null, { fontSize: '24px', flex: '0 0 auto', lineHeight: '1' });
+        icon.textContent = it.icon;
+        const mid = el('div', null, { flex: '1', minWidth: '0' });
+        const nm = el('div', 'fm-disp', { fontSize: '17px', fontWeight: '700', color: COL.ink });
+        nm.textContent = it.name;
+        const mt = el('div', 'fm-mono', {
+          fontSize: '10px', letterSpacing: '.1em', color: COL.dim, marginTop: '4px',
+        });
+        mt.textContent = it.meta;
+        mid.append(nm, mt);
+        card.append(icon, mid);
+
+        /* The one card that answers "how would I even prove that?". */
+        if (it.shot) {
+          const thumb = el('div', null, {
+            width: '44px', height: '55px', borderRadius: '8px', overflow: 'hidden',
+            flex: '0 0 auto', border: '1px solid ' + COL.line, position: 'relative',
+          });
+          const im = el('img');
+          im.src = it.shot;
+          im.alt = '';
+          Object.assign(im.style, { width: '100%', height: '100%', objectFit: 'cover', display: 'block' });
+          const tag = el('div', 'fm-mono', {
+            position: 'absolute', left: '0', right: '0', bottom: '0',
+            fontSize: '7px', letterSpacing: '.1em', textAlign: 'center',
+            color: COL.go, background: 'rgba(8,11,18,.82)', padding: '2px 0',
+          });
+          tag.textContent = t('a2.proofTag');
+          thumb.append(im, tag);
+          card.appendChild(thumb);
+        } else {
+          const live = el('span', 'fm-tag', { color: COL.go, borderColor: COL.go, flex: '0 0 auto' });
+          live.textContent = t('s6.live');
+          card.appendChild(live);
+        }
+
+        c.appendChild(card);
+        after(620 + i * 620, () => {
+          anim(card, [
+            { opacity: 0, transform: 'translateY(18px) scale(.985)', filter: 'blur(8px)' },
+            { opacity: 1, transform: 'translateY(0px) scale(1)', filter: 'blur(0px)' },
+          ], { duration: 760, easing: EASE, fill: 'both' });
+          sfx.pop();
+        });
+      });
+    },
+  };
+
+  /* a1 · the create screen — what the host actually decides.
+     ------------------------------------------------------------------
+     The cut went from "here is the Arena tab" straight to "here are the
+     rules somebody wrote", which skipped the part that makes the Arena a
+     product rather than a group chat: one person sets the goal, the length,
+     the size, and whether a check-in has to come with evidence. The proof
+     switch especially — it is the reason the next two scenes exist, and it
+     was arriving unexplained. */
+  const a1 = {
+    id: 'a1', dur: 9600,
+    vo: t('a1.vo'),
+    caps: capsFor('a1'),
+    render(node) {
+      ambient(node, 'rgba(255,180,84,.10)', 900);
+      const c = appCol(node, 560);
+      drift(c, 9600, 1.02);
+
+      const panel = el('div', 'fm-panel', { padding: '18px 20px 20px' });
+      const head = el('div', 'fm-mono', {
+        fontSize: '10px', letterSpacing: '.2em', color: COL.dim, marginBottom: '16px',
+      });
+      head.textContent = t('a1.title');
+      panel.appendChild(head);
+
+      /* One row per decision, in the order the host meets them. */
+      const fields = [
+        { k: t('a1.fName'), v: t('s6.challenge') },
+        { k: t('a1.fGoal'), v: t('a1.vGoal') },
+        { k: t('a1.fRuns'), v: t('a1.vRuns') },
+        { k: t('a1.fPlayers'), v: t('a1.vPlayers') },
+      ];
+      const rows = fields.map((f) => {
+        const r = el('div', null, {
+          display: 'flex', alignItems: 'baseline', gap: '16px',
+          padding: '10px 0', borderTop: '1px solid ' + COL.lineSoft, opacity: '0',
+        });
+        const k = el('div', 'fm-mono', {
+          fontSize: '10px', letterSpacing: '.16em', color: COL.faint,
+          width: '92px', flex: '0 0 auto',
+        });
+        k.textContent = f.k;
+        const v = el('div', 'fm-disp', { fontSize: '16px', fontWeight: '600', color: COL.ink });
+        v.textContent = f.v;
+        r.append(k, v);
+        panel.appendChild(r);
+        return r;
+      });
+
+      /* The proof switch gets a row of its own shape, because it is a choice
+         between three states rather than a value somebody typed. */
+      const proofRow = el('div', null, {
+        display: 'flex', alignItems: 'center', gap: '16px',
+        padding: '12px 0 2px', borderTop: '1px solid ' + COL.lineSoft, opacity: '0',
+      });
+      const pk = el('div', 'fm-mono', {
+        fontSize: '10px', letterSpacing: '.16em', color: COL.faint, width: '92px', flex: '0 0 auto',
+      });
+      pk.textContent = t('a1.fProof');
+      const seg = el('div', null, {
+        display: 'flex', gap: '6px', padding: '4px', borderRadius: '12px',
+        background: 'rgba(255,255,255,.03)', border: '1px solid ' + COL.line,
+      });
+      const opts = [t('a1.pOff'), t('a1.pPhoto'), t('a1.pVideo')].map((label, i) => {
+        const b = el('div', 'fm-mono', {
+          fontSize: '11px', letterSpacing: '.1em', padding: '8px 14px', borderRadius: '9px',
+          color: i === 0 ? COL.ink : COL.faint,
+          background: i === 0 ? 'rgba(255,255,255,.07)' : 'transparent',
+          transition: 'color .25s',
+        });
+        b.textContent = label;
+        seg.appendChild(b);
+        return b;
+      });
+      proofRow.append(pk, seg);
+      panel.appendChild(proofRow);
+
+      const cta = el('div', 'fm-mono', {
+        marginTop: '18px', borderRadius: '999px', padding: '15px 0', textAlign: 'center',
+        background: 'rgba(255,180,84,.10)', border: '1px solid rgba(255,180,84,.32)',
+        color: COL.amber, fontWeight: '700', fontSize: '13px', letterSpacing: '.12em', opacity: '0',
+      });
+      cta.textContent = t('a1.cta');
+      panel.appendChild(cta);
+      c.appendChild(panel);
+      reveal(panel, { duration: 900 });
+
+      rows.forEach((r, i) => {
+        after(700 + i * 380, () => {
+          anim(r, [
+            { opacity: 0, transform: 'translateY(10px)' },
+            { opacity: 1, transform: 'translateY(0px)' },
+          ], { duration: 520, easing: EASE, fill: 'both' });
+          sfx.tick();
+        });
+      });
+
+      after(700 + rows.length * 380, () => {
+        anim(proofRow, [
+          { opacity: 0, transform: 'translateY(10px)' },
+          { opacity: 1, transform: 'translateY(0px)' },
+        ], { duration: 520, easing: EASE, fill: 'both' });
+        sfx.tick();
+      });
+
+      /* Off → photo → video. Moving the selection rather than recolouring
+         three pills, because what the host is doing is picking one of three,
+         and a slider says that where three independent highlights do not. */
+      function select(i) {
+        opts.forEach((b, j) => {
+          b.style.color = j === i ? (i === 0 ? COL.ink : '#1A1206') : COL.faint;
+          b.style.background = j === i ? (i === 0 ? 'rgba(255,255,255,.07)' : COL.amber) : 'transparent';
+        });
+        anim(opts[i], [{ transform: 'scale(.94)' }, { transform: 'scale(1)' }], { duration: 320, easing: POP });
+        sfx.pop();
+      }
+      after(4300, () => select(1));
+      after(5500, () => select(2));
+
+      after(6600, () => {
+        anim(cta, [
+          { opacity: 0, transform: 'translateY(10px)' },
+          { opacity: 1, transform: 'translateY(0px)' },
+        ], { duration: 620, easing: EASE, fill: 'both' });
+        sfx.chime();
+        boboTada();
+      });
+    },
+  };
 
   /* n4 · the daily check-in — the thing the first cut never showed.
      ------------------------------------------------------------------
@@ -2481,15 +2763,15 @@ function buildScenes(ctx, cut) {
     return { id: id, dur: dur || scene.dur, vo: t(id + '.vo'), caps: capsFor(id), render: scene.render };
   }
   const n1 = recut(s1, 'n1', 6200);
-  const n2 = recut(s6, 'n2', 7800);
+  const n2 = recut(s6, 'n2', 11000);
   const n6 = recut(s7, 'n6', 9000);
-  const n7 = recut(s8, 'n7', 6400);
+  const n7 = recut(s8, 'n7', 7000);
   /* The mission list appears ONCE, here, after the challenge has finished —
      and the line over it says outright that this is the other half. It is in
      the combined cut only; the two focused cuts do not need the disclaimer,
      which is the whole reason they were split. */
   const n8 = recut(s2, 'n8', 10500);
-  const n9 = recut(s9, 'n9', 8200);
+  const n9 = recut(s9, 'n9', 9000);
 
   /* The solo cut. Same art as the first film — the Today screen, the payout,
      the streak, the heatmap — re-narrated around being left alone. */
@@ -2500,7 +2782,7 @@ function buildScenes(ctx, cut) {
   const b5 = recut(s5, 'b5', 7600);
   const b6 = recut(s9, 'b6', 8200);
 
-  if (CUT === 'arena') return [n1, n2, n3, n4, n5, n6, n7, n9];
+  if (CUT === 'arena') return [n1, n2, a2, a1, n3, n4, n5, n6, n7, n9];
   if (CUT === 'solo') return [b1, b2, b3, b4, b5, b6];
   return [n1, n2, n3, n4, n5, n6, n7, n8, n9];
 
