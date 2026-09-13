@@ -103,6 +103,13 @@ const COPY = {
     'n1.vo': 'You already know what you should be doing. Nobody sticks to it alone.',
 
     /* ---- n2 · pick the thing, pick the people ---- */
+    /* The Club tab, off a photograph of it. */
+    'n2.screen': 'CHECK-IN CLUB',
+    'n2.rankLabel': 'CLUB RANK',
+    'n2.rankName': 'CONTENDER',
+    'n2.score': 'CLUB SCORE',
+    'n2.create': '\u2691 CREATE CHALLENGE',
+    'n2.joinCode': 'I HAVE A JOIN CODE',
     'n2.cap1': 'So pick one thing. Then pick the people who will <span class="hi">notice</span>.',
     'n2.cap2': 'The Check-in Club is the third tab — the only part that needs an account.',
     'n2.cap3': 'Invite-only. <span class="go">Nobody outside it sees a thing.</span>',
@@ -369,6 +376,11 @@ const COPY = {
     'b2.cap2': 'Tap one done, count the water or the pages, or <span class="go">start a timer and work until it rings</span>.',
     'b2.vo': 'Put the things you actually meant to do on it. Tap one done, count the water or the pages, or start a timer and work until it rings.',
 
+    'b3.label': 'TODAY\u2019S TPOINT',
+    'b3.full': '5 of 5 done',
+    'b3.paid': '+1 TPOINT',
+    'b3.short': '4 of 5 done',
+    'b3.nothing': 'NO TPOINT',
     'b3.cap1': 'Clear the whole day and it pays out: <span class="go">one Tpoint</span>.',
     'b3.cap2': 'Miss one and it pays nothing — <span class="hi">the day is what counts</span>, not the task.',
     'b3.vo': 'Clear the whole day and it pays out one Tpoint. Miss one and it pays nothing — the day is what counts, not the task.',
@@ -460,6 +472,12 @@ const COPY = {
     'n1.vo': '該做什麼，你其實都知道。一個人，很難撐下去。',
 
     /* ---- n2 ---- */
+    'n2.screen': '打卡俱樂部',
+    'n2.rankLabel': '俱樂部等級',
+    'n2.rankName': '挑戰者',
+    'n2.score': '俱樂部積分',
+    'n2.create': '\u2691 發起挑戰',
+    'n2.joinCode': '我有邀請碼',
     'n2.cap1': '挑一件事，再找幾個<span class="hi">會在意你有沒有做</span>的人。',
     'n2.cap2': '打卡俱樂部是第三個分頁，也是唯一需要帳號的地方。',
     'n2.cap3': '只能邀請加入。<span class="go">外面的人什麼都看不到。</span>',
@@ -712,6 +730,11 @@ const COPY = {
     'b2.cap2': '打個勾、計次，或<span class="go">按下計時器，專心做到鈴響</span>。',
     'b2.vo': '把你真正想做的事放上去。打個勾、計次，或按下計時器，專心做到鈴響。',
 
+    'b3.label': '今天的 T點數',
+    'b3.full': '5 項全部完成',
+    'b3.paid': '+1 T點數',
+    'b3.short': '5 項完成 4 項',
+    'b3.nothing': '沒有 T點數',
     'b3.cap1': '整天清空，才拿得到<span class="go">一點 T 點數</span>。',
     'b3.cap2': '漏一項就沒有——這裡算的是<span class="hi">一整天</span>，不是單項。',
     'b3.vo': '整天清空才拿得到一點 T 點數。漏一項就沒有，這裡算的是一整天，不是單項。',
@@ -1184,7 +1207,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 12;
+  const VOV = 13;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
@@ -2713,6 +2736,117 @@ function buildScenes(ctx, cut) {
     },
   };
 
+  /* b3 · all or nothing, shown as two days.
+     ------------------------------------------------------------------
+     This reused s3, another MISSION CONTROL console that no screen in the
+     app has. It also showed one day completing — which is what b4 does two
+     scenes later, so the film made the same picture twice and the RULE, the
+     thing this scene is for, was never actually shown.
+
+     The rule needs two days to be visible at all: a cleared one pays a
+     Tpoint, and one short by a single mission pays nothing. Side by side is
+     the only way to say "the day is what counts, not the task" without
+     asking the viewer to hold a counterfactual in their head. */
+  const b3 = {
+    id: 'b3', dur: 7800,
+    vo: t('b3.vo'),
+    caps: capsFor('b3'),
+    render(node) {
+      ambient(node, 'rgba(91,227,155,.08)', 900);
+      const c = appCol(node, 640);
+      drift(c, 7800, 1.025);
+
+      const label = el('div', 'fm-mono', {
+        fontSize: '10px', letterSpacing: '.2em', color: COL.dim,
+        textAlign: 'center', marginBottom: '16px', opacity: '0',
+      });
+      label.textContent = t('b3.label');
+      c.appendChild(label);
+      anim(label, [
+        { opacity: 0, transform: 'translateY(8px)' },
+        { opacity: 1, transform: 'translateY(0px)' },
+      ], { duration: 600, easing: EASE, fill: 'both' });
+
+      const row = el('div', null, { display: 'flex', gap: '20px', justifyContent: 'center' });
+      c.appendChild(row);
+
+      const R = 30, CIRC = 2 * Math.PI * R;
+      /** One day, as the ring card on Today draws it. */
+      function day(fraction, doneText, payText, paid) {
+        const card = el('div', 'fm-panel', {
+          width: '250px', flex: '0 0 auto', padding: '22px 20px 20px',
+          textAlign: 'center', opacity: '0',
+          border: '1px solid ' + (paid ? 'rgba(91,227,155,.45)' : COL.line),
+        });
+        const ring = el('div', null, { width: '74px', height: '74px', margin: '0 auto 14px' });
+        ring.innerHTML =
+          '<svg viewBox="0 0 74 74" style="width:74px;height:74px;transform:rotate(-90deg)">' +
+          '<circle cx="37" cy="37" r="' + R + '" fill="none" stroke="' + COL.line + '" stroke-width="5"/>' +
+          '<circle class="js-arc" cx="37" cy="37" r="' + R + '" fill="none" ' +
+          'stroke="' + (paid ? COL.go : COL.amber) + '" stroke-width="5" stroke-linecap="round" ' +
+          'stroke-dasharray="' + CIRC + '" stroke-dashoffset="' + CIRC + '"/></svg>';
+        const doneEl = el('div', 'fm-disp', {
+          fontSize: '18px', fontWeight: '800', color: paid ? COL.ink : COL.dim,
+        });
+        doneEl.textContent = doneText;
+        const payEl = el('div', 'fm-mono js-pay', {
+          fontSize: '13px', marginTop: '9px', letterSpacing: '.06em',
+          color: paid ? COL.go : COL.faint, opacity: '0',
+        });
+        payEl.textContent = payText;
+        card.append(ring, doneEl, payEl);
+        row.appendChild(card);
+        card._arc = ring.querySelector('.js-arc');
+        card._pay = payEl;
+        card._fraction = fraction;
+        return card;
+      }
+
+      const cleared = day(1, t('b3.full'), t('b3.paid'), true);
+      const short = day(0.8, t('b3.short'), t('b3.nothing'), false);
+
+      /* The cleared day lands first and pays. */
+      after(500, () => {
+        anim(cleared, [
+          { opacity: 0, transform: 'translateY(18px) scale(.97)', filter: 'blur(8px)' },
+          { opacity: 1, transform: 'translateY(0px) scale(1)', filter: 'blur(0px)' },
+        ], { duration: 760, easing: EASE, fill: 'both' });
+        anim(cleared._arc, [{ strokeDashoffset: CIRC }, { strokeDashoffset: 0 }],
+          { duration: 900, delay: 260, easing: EASE, fill: 'both' });
+      });
+      after(1700, () => {
+        anim(cleared._pay, [
+          { opacity: 0, transform: 'scale(.7)' },
+          { opacity: 1, transform: 'scale(1.15)' },
+          { opacity: 1, transform: 'scale(1)' },
+        ], { duration: 520, easing: POP, fill: 'both' });
+        anim(cleared, [
+          { boxShadow: '0 0 0 0 rgba(91,227,155,0)' },
+          { boxShadow: '0 0 30px -6px rgba(91,227,155,.5)' },
+          { boxShadow: '0 0 0 0 rgba(91,227,155,0)' },
+        ], { duration: 1100 });
+        sfx.chime();
+        boboTada();
+      });
+
+      /* …and the day that was one mission short arrives beside it, and does
+         not. The ring stops just short on purpose: four fifths of a circle
+         reads as "so close" faster than the number does. */
+      after(3300, () => {
+        anim(short, [
+          { opacity: 0, transform: 'translateY(18px) scale(.97)', filter: 'blur(8px)' },
+          { opacity: 1, transform: 'translateY(0px) scale(1)', filter: 'blur(0px)' },
+        ], { duration: 760, easing: EASE, fill: 'both' });
+        anim(short._arc, [{ strokeDashoffset: CIRC }, { strokeDashoffset: CIRC * (1 - 0.8) }],
+          { duration: 900, delay: 260, easing: EASE, fill: 'both' });
+      });
+      after(4600, () => {
+        anim(short._pay, [{ opacity: 0 }, { opacity: 1 }], { duration: 520, easing: EASE, fill: 'both' });
+        sfx.tick();
+      });
+    },
+  };
+
   /* b4 · the day closes, the streak moves.
      ------------------------------------------------------------------
      This used to reuse s4, which drew five segments filling and a banner
@@ -3093,6 +3227,138 @@ function buildScenes(ctx, cut) {
           sfx.chime();
           boboTada();
         });
+      });
+    },
+  };
+
+  /* n2 · the Check-in Club tab, as the phone actually draws it.
+     ------------------------------------------------------------------
+     This reused s6, which put the tab strip along the TOP of the card. The
+     tab bar is at the BOTTOM of this app, which matters here more than
+     anywhere else in the film: the line says "the third tab", and a viewer
+     can only check that against a bar in the place their thumb expects it.
+     The rank card, the two stacked buttons and the challenge row are the
+     real screen too — it is the first thing anybody sees of this half. */
+  const n2 = {
+    id: 'n2', dur: 12200,
+    vo: t('n2.vo'),
+    caps: capsFor('n2'),
+    render(node) {
+      ambient(node, 'rgba(255,180,84,.09)', 900);
+      const c = appCol(node, 560);
+      drift(c, 12200, 1.02);
+
+      const head = el('div', 'fm-disp', {
+        fontSize: '26px', fontWeight: '900', letterSpacing: '.04em',
+        color: COL.ink, marginBottom: '14px', opacity: '0',
+      });
+      head.textContent = t('n2.screen');
+      c.appendChild(head);
+
+      /* ---- rank card ---- */
+      const rank = el('div', 'fm-panel', { padding: '15px 17px', marginBottom: '12px', opacity: '0' });
+      const rTop = el('div', null, { display: 'flex', justifyContent: 'space-between', alignItems: 'center' });
+      const rLab = el('div', 'fm-mono', { fontSize: '11px', letterSpacing: '.18em', color: COL.dim });
+      rLab.textContent = t('n2.rankLabel');
+      const rName = el('div', 'fm-mono', { fontSize: '13px', letterSpacing: '.1em', color: COL.amber, fontWeight: '700' });
+      rName.textContent = t('n2.rankName');
+      rTop.append(rLab, rName);
+      const rMid = el('div', null, { display: 'flex', alignItems: 'baseline', gap: '10px', marginTop: '8px' });
+      const rNum = el('div', 'fm-disp js-score', { fontSize: '28px', fontWeight: '800', color: COL.ink });
+      rNum.textContent = '10';
+      const rScore = el('div', 'fm-mono', { fontSize: '12px', letterSpacing: '.16em', color: COL.dim });
+      rScore.textContent = t('n2.score');
+      rMid.append(rNum, rScore);
+      const track = el('div', null, {
+        height: '7px', borderRadius: '4px', background: 'rgba(79,91,118,.28)',
+        marginTop: '11px', overflow: 'hidden',
+      });
+      const fill = el('div', null, {
+        height: '100%', width: '0%',
+        background: 'linear-gradient(90deg,' + COL.amberDeep + ',' + COL.amber + ')',
+      });
+      track.appendChild(fill);
+      rank.append(rTop, rMid, track);
+      c.appendChild(rank);
+
+      /* ---- the two ways in, stacked, as the screen stacks them ---- */
+      const create = el('div', 'fm-mono', {
+        borderRadius: '12px', padding: '15px 0', textAlign: 'center', marginBottom: '9px',
+        background: 'linear-gradient(180deg,#FFC46E,' + COL.amber + ')', color: '#1A1206',
+        fontWeight: '800', fontSize: '14px', letterSpacing: '.1em',
+        boxShadow: '0 14px 32px -12px rgba(255,180,84,.6)', opacity: '0',
+      });
+      create.textContent = t('n2.create');
+      const join = el('div', 'fm-mono', {
+        borderRadius: '12px', padding: '14px 0', textAlign: 'center', marginBottom: '12px',
+        border: '1px solid ' + COL.line, color: COL.dim, fontSize: '13px', letterSpacing: '.1em', opacity: '0',
+      });
+      join.textContent = t('n2.joinCode');
+      c.append(create, join);
+
+      const chal = el('div', 'fm-panel', {
+        display: 'flex', alignItems: 'center', gap: '13px',
+        padding: '13px 15px', marginBottom: '16px', opacity: '0',
+      });
+      const emo = el('div', null, { fontSize: '22px', flex: '0 0 auto' });
+      emo.textContent = '🏃';
+      const cm = el('div', null, { flex: '1', minWidth: '0' });
+      const cn = el('div', 'fm-disp', { fontSize: '16px', fontWeight: '700', color: COL.ink });
+      cn.textContent = t('s6.challenge');
+      const cmeta = el('div', 'fm-mono', { fontSize: '10px', color: COL.dim, marginTop: '4px' });
+      cmeta.textContent = t('s6.challengeMeta');
+      cm.append(cn, cmeta);
+      const live = el('span', 'fm-tag', { color: COL.go, borderColor: COL.go, flex: '0 0 auto' });
+      live.textContent = t('s6.live');
+      chal.append(emo, cm, live);
+      c.appendChild(chal);
+
+      /* ---- the tab bar, along the bottom, where the thumb is ---- */
+      const bar = el('div', null, {
+        display: 'flex', borderTop: '1px solid ' + COL.line, paddingTop: '11px', opacity: '0',
+      });
+      const TABS = [t('s6.tabToday'), t('s6.tabStats'), t('s6.tabClub'), t('s6.tabProfile')];
+      const tabEls = TABS.map((label, i) => {
+        const on = i === 2;
+        const tab = el('div', null, { flex: '1', textAlign: 'center' });
+        const glyph = el('div', null, { fontSize: '15px', color: on ? COL.amber : COL.faint, marginBottom: '5px' });
+        glyph.textContent = ['☑', '▥', '👥', '☺'][i];
+        const tx = el('div', 'fm-mono', {
+          fontSize: '9px', letterSpacing: '.12em', color: on ? COL.amber : COL.faint,
+        });
+        tx.textContent = label;
+        tab.append(glyph, tx);
+        bar.appendChild(tab);
+        return tab;
+      });
+      c.appendChild(bar);
+
+      [head, rank, create, join, chal, bar].forEach((n, i) => {
+        after(320 + i * 150, () => {
+          anim(n, [
+            { opacity: 0, transform: 'translateY(13px)' },
+            { opacity: 1, transform: 'translateY(0px)' },
+          ], { duration: 640, easing: EASE, fill: 'both' });
+        });
+      });
+      after(1500, () => {
+        anim(fill, [{ width: '0%' }, { width: '42%' }], { duration: 900, easing: EASE, fill: 'both' });
+        countUp(rNum, 0, 10, 900);
+      });
+
+      /* The line says "the third tab", so the third tab says so back. */
+      after(4200, () => {
+        anim(tabEls[2], [
+          { transform: 'scale(1)' }, { transform: 'scale(1.16)' }, { transform: 'scale(1)' },
+        ], { duration: 620, easing: POP });
+        const underline = el('div', null, {
+          height: '2px', borderRadius: '2px', background: COL.amber,
+          margin: '7px auto 0', width: '60%', transformOrigin: 'center',
+        });
+        tabEls[2].appendChild(underline);
+        anim(underline, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }],
+          { duration: 480, easing: EASE, fill: 'both' });
+        sfx.pop();
       });
     },
   };
@@ -3692,7 +3958,8 @@ function buildScenes(ctx, cut) {
     return { id: id, dur: dur || scene.dur, vo: t(id + '.vo'), caps: capsFor(id), render: scene.render };
   }
   const n1 = recut(s1, 'n1', 6200);
-  const n2 = recut(s6, 'n2', 12200);
+  /* n2 has its own render now — s6 put the tab strip along the TOP, and
+     this scene is the one that says "the third tab". */
   const n6 = recut(s7, 'n6', 9000);
   const n7 = recut(s8, 'n7', 7000);
   /* The mission list appears ONCE, here, after the challenge has finished —
@@ -3707,7 +3974,8 @@ function buildScenes(ctx, cut) {
   const b1 = recut(s1, 'b1', 7400);
   /* b2 has its own render now — s2 drew a MISSION CONTROL console
      header that no screen in this app has ever had. */
-  const b3 = recut(s3, 'b3', 7800);
+  /* b3 has its own render now — s3 was another MISSION CONTROL console,
+     and it showed a day completing, which is what b4 does two scenes later. */
   /* b4 has its own render now — s4's banner said ALL OBJECTIVES CLEARED,
      which no screen in this app has ever said. */
   const b5 = recut(s5, 'b5', 7600);
