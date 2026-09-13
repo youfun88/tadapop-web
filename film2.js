@@ -155,7 +155,7 @@ const COPY = {
     'a1.d7': '7 DAYS',
     'a1.d30': '30 DAYS',
     'a1.dCustom': 'CUSTOM',
-    'a1.durNote': 'Counted from the day the host presses start.',
+    'a1.durNote': '50 days, counted from the day you press start.',
     'a1.cCadence': 'CADENCE',
     'a1.cEvery': 'EVERY DAY',
     'a1.cPerWeek': 'DAYS / WEEK',
@@ -448,7 +448,7 @@ const COPY = {
     /* ---- n2 ---- */
     'n2.cap1': '那就挑一件事，再找幾個會<span class="hi">看見你</span>的人。',
     'n2.cap2': '俱樂部是第三個分頁，也是唯一需要帳號的地方。',
-    'n2.cap3': '只能邀請加入。<span class="go">沒有陌生人，也沒有動態牆。</span>',
+    'n2.cap3': '只能邀請加入，<span class="go">也沒有動態牆。</span>',
     'n2.vo': '挑一件事，找幾個會看見你的人。俱樂部是第三個分頁，唯一需要帳號的地方。只能邀請加入，沒有動態牆。',
 
     /* ---- n3 ---- */
@@ -498,7 +498,7 @@ const COPY = {
     'a1.d7': '7 天',
     'a1.d30': '30 天',
     'a1.dCustom': '自訂',
-    'a1.durNote': '從主辦人按下開始那天算起。',
+    'a1.durNote': '50 天，從你按下開始那天算起。',
     'a1.cCadence': '頻率',
     'a1.cEvery': '每天',
     'a1.cPerWeek': '每週幾天',
@@ -532,9 +532,9 @@ const COPY = {
     'a3.btnCreate': '建立',
     'a3.btnCancel': '取消',
     'a3.cap1': '再決定誰能進來。<span class="hi">人數夠了，你按下開始。</span>',
-    'a3.cap2': '誰能加入、誰能邀請，打卡要附<span class="hi">照片還是影片</span>。',
+    'a3.cap2': '打卡要附<span class="hi">照片、影片，還是兩個都要</span>。',
     'a3.cap3': '按下去，<span class="go">挑戰就成立了</span>。',
-    'a3.vo': '再決定誰能進來。人數夠了你就能按下開始，時間從那刻算起。誰能加入、誰能邀請，打卡要附照片還是影片。',
+    'a3.vo': '再決定誰能進來，人數夠了你就能按下開始。打卡要附照片、影片，還是兩個都要。最後按下按鈕，挑戰就成立了。',
 
     'a4.badge': '0:38 \u00b7 影片',
     'a4.when': '18:42',
@@ -584,7 +584,7 @@ const COPY = {
 
     /* ---- n8 ---- */
     'n8.cap1': '你自己的習慣是<span class="hi">另一回事</span> — 一份只有你看得到的清單。',
-    'n8.cap2': '打勾、計次或計時。不公開、離線可用、<span class="go">完全不用帳號</span>。',
+    'n8.cap2': '打勾、計次或計時，<span class="go">不用帳號</span>。',
     'n8.vo': '你自己的習慣是另一回事：一份只有你看得到的清單。打勾、計次或計時，不用帳號。',
 
     /* ---- n9 ---- */
@@ -1133,7 +1133,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      scenes need more room. Keyed by SCENE ID — an entry whose id no longer
      exists is silently dead, which is how `s1: 7600` sat here doing nothing
      after that scene was recut as n1. */
-  const SCENE_DUR = { zh: { n1: 7600, n2: 13600, a1: 11000, a2: 11400, a3: 15200, a4: 9800, n3: 11500, 
+  const SCENE_DUR = { zh: { n1: 7600, n2: 13600, a1: 11000, a2: 11400, a3: 15600, a4: 9800, n3: 11500, 
                             n4: 9600, n5: 10600, n7: 10000, n8: 11000,
                             b1: 8400, b2: 11000, b3: 9200, b4: 9200, b5: 8800, b6: 10000 } };
   function withOverrides(list) {
@@ -1170,7 +1170,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 6;
+  const VOV = 7;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
@@ -3095,8 +3095,10 @@ function buildScenes(ctx, cut) {
         return box;
       }, t('a1.howNote'));
 
+      /* CUSTOM, not 30 DAYS: the challenge this film follows runs fifty, and
+         the real screen only offers 7 or 30 as presets. */
       const durCard = setCard(t('a1.cDuration'),
-        () => pills([t('a1.d7'), t('a1.d30'), t('a1.dCustom')], 1), t('a1.durNote'));
+        () => pills([t('a1.d7'), t('a1.d30'), t('a1.dCustom')], 2), t('a1.durNote'));
       const cadCard = setCard(t('a1.cCadence'),
         () => pills([t('a1.cEvery'), t('a1.cPerWeek')], 0), t('a1.cadNote'));
 
