@@ -142,7 +142,7 @@ const COPY = {
     'a2.mRead': '30 DAYS \u00b7 3 PLAYERS',
     'a2.proofTag': 'PROOF',
     'a2.cap1': 'It does not have to be the gym.',
-    'a2.cap2': 'Anything you keep meaning to do and <span class="hi">keep putting off</span>.',
+    'a2.cap2': 'Anything you keep meaning to do and <span class="hi">keep putting off</span> — moving more, getting to bed earlier, reading before you sleep.',
     'a2.vo': 'It does not have to be the gym. Anything you keep meaning to do and keep putting off — moving more, getting to bed earlier, reading before you sleep.',
 
     /* ---- a1 / a3 · the create screen, built from photographs of it ---- */
@@ -188,7 +188,7 @@ const COPY = {
     'a3.proofNote': 'Proof is required to check in — back out of the camera and the day stays unlogged.',
     'a3.btnCreate': 'CREATE',
     'a3.btnCancel': 'CANCEL',
-    'a3.cap1': 'Then who is in it. <span class="hi">It starts when you say so.</span>',
+    'a3.cap1': 'Then who is in it. <span class="hi">It starts when you say so, once enough people have joined.</span>',
     'a3.cap2': 'Who can join, who can invite — and whether a check-in needs <span class="hi">a photo, a clip, or both</span>.',
     'a3.cap3': 'Then press <span class="go">Create</span>.',
     'a3.vo': 'Then who is in it. It starts when you say so, once enough people have joined. You choose who can join, who can invite, and whether a check-in needs a photo, a clip, or both. Then press create.',
@@ -198,14 +198,14 @@ const COPY = {
     'a4.r1': 'Under two minutes',
     'a4.r2': 'Plays for seven days',
     'a4.r3': 'Then a still frame is kept',
-    'a4.cap1': 'Video proof is just a clip off your phone.',
-    'a4.cap2': 'It plays for a week, then <span class="hi">a still frame is kept</span>.',
+    'a4.cap1': 'Video proof is just a clip off your phone, <span class="hi">under two minutes</span>.',
+    'a4.cap2': 'It plays for a week, then <span class="hi">only a still frame is kept</span>.',
     'a4.vo': 'Video proof is just a clip off your phone, under two minutes. It plays for a week, then only a still frame is kept.',
 
     'n3.rulesLabel': 'HOW TO PLAY',
     'n3.rules': 'Forty minutes a day, fifty days straight.\nMiss a day and you owe the pot a hundred.\nWe spend it on dinner at the end.',
     'n3.cap1': 'Everyone read this <span class="hi">before they joined</span>.',
-    'n3.cap2': 'Miss a day, a little goes in the pot. <span class="go">It pays for the night out at the end.</span>',
+    'n3.cap2': 'Miss a day, a little goes in the pot — <span class="hi">not as a punishment</span>. <span class="go">It is what pays for the night out at the end.</span>',
     'n3.vo': 'Everyone read this before they joined. Miss a day and a little goes in the pot — not as a punishment. It is what pays for the night out at the end.',
 
     /* ---- n4 · checking in ---- */
@@ -236,7 +236,7 @@ const COPY = {
 
     /* ---- n7 · the week ends ---- */
     'n7.cap1': 'Seven weeks later, <span class="hi">the pot buys dinner</span>.',
-    'n7.cap2': 'And every one of you did more than you would have <span class="go">alone</span>.',
+    'n7.cap2': 'And every one of you did more than you would have <span class="go">alone</span>. That was the whole point.',
     'n7.vo': 'Seven weeks later, the pot buys dinner. And every one of you did more than you would have alone. That was the whole point.',
 
     /* ---- n8 · your own half, quietly ---- */
@@ -485,7 +485,7 @@ const COPY = {
     'a2.mRead': '30 天 \u00b7 3 位成員',
     'a2.proofTag': '成果',
     'a2.cap1': '不一定是運動。',
-    'a2.cap2': '任何你<span class="hi">一直想做卻一直沒做</span>的事。',
+    'a2.cap2': '任何你<span class="hi">一直想做卻一直沒做</span>的事：多動一點、早點睡、睡前讀幾頁書。',
     'a2.vo': '而且不一定是運動。任何你一直想做卻一直沒做的事都可以：多動一點、早點睡、睡前讀幾頁書。',
 
     /* ---- a1 / a3 · 發起挑戰的設定畫面 ---- */
@@ -589,7 +589,7 @@ const COPY = {
 
     /* ---- n9 ---- */
     'n9.cap1': '參加別人的挑戰，<span class="go">永遠免費</span>。',
-    'n9.cap2': '去找三個人，<span class="hi">一起變好</span>。',
+    'n9.cap2': '去找三個人，<span class="hi">一起變好</span>。Tadapop。',
     'n9.vo': '參加別人的挑戰，永遠免費。去找三個人，一起變好。Tadapop。',
 
     /* ---- scene 1 · cold open ---- */
@@ -1170,7 +1170,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 10;
+  const VOV = 11;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same

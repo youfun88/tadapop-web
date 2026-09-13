@@ -156,10 +156,23 @@ for (const lang of LANGS) {
     const caps = captionText(id, lang);
     if (!caps) { fail(`${lang} ${id}: has captions`); continue; }
     const a = norm(caps), b = norm(vo);
-    const ratio = lcs(a, b) / Math.max(a.length, 1);
-    if (ratio < 0.8) {
-      fail(`${lang} ${id}: captions are ${(ratio * 100).toFixed(0)}% inside the voiceover`, [
+    const common = lcs(a, b);
+    // Captions must not say MORE than the line does…
+    const inside = common / Math.max(a.length, 1);
+    if (inside < 0.8) {
+      fail(`${lang} ${id}: captions are ${(inside * 100).toFixed(0)}% inside the voiceover`, [
         `caption: ${caps}`, `spoken : ${strip(vo)}`,
+      ]);
+    }
+    // …and must not say LESS. This direction was missing, and a whole clause
+    // went unsubtitled because of it: the voice said "not as a punishment"
+    // over a caption that never mentioned it. A subtitle that drops a clause
+    // is not a shorter subtitle, it is a wrong one — and the people who need
+    // it most are the ones who cannot hear the bit that was dropped.
+    const covered = common / Math.max(b.length, 1);
+    if (covered < 0.8) {
+      fail(`${lang} ${id}: captions carry only ${(covered * 100).toFixed(0)}% of what is said`, [
+        `spoken : ${strip(vo)}`, `caption: ${caps}`,
       ]);
     }
   }
