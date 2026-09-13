@@ -245,16 +245,26 @@
             <div class="poster-barspace" aria-hidden="true"></div>
           </div>
 
-          <button class="poster-hit" type="button" id="filmLaunch" aria-haspopup="dialog"
-                  aria-label="看 BOBO 怎麼說 — 介紹影片，有旁白和字幕，中文或英文">
-            <span class="hit-bar">
-              <span class="hit-rail" aria-hidden="true"><i></i></span>
+          <!-- 兩支影片共用同一張海報。data-film-cut 決定播哪一支；
+               .film-launch-time 由 film2.js 依場景長度填入，不要手寫。 -->
+          <div class="poster-hits">
+            <button class="hit" type="button" data-film-cut="arena" aria-haspopup="dialog"
+                    aria-label="看競技場版影片 — 跟朋友一起挑戰，有旁白和字幕">
               <span class="play-disc" aria-hidden="true">▶</span>
-              <span class="hit-text">看 BOBO 怎麼說<span class="film-launch-time"></span></span>
-              <span class="hit-meta" aria-hidden="true">旁白＋字幕</span>
-              <span class="hit-time" aria-hidden="true">0:00</span>
-            </span>
-          </button>
+              <span class="hit-copy">
+                <span class="hit-text">競技場<span class="film-launch-time"></span></span>
+                <span class="hit-meta">跟朋友一起 · 自動記分</span>
+              </span>
+            </button>
+            <button class="hit is-solo" type="button" data-film-cut="solo" aria-haspopup="dialog"
+                    aria-label="看單人版影片 — 自己的每日清單，有旁白和字幕">
+              <span class="play-disc" aria-hidden="true">▶</span>
+              <span class="hit-copy">
+                <span class="hit-text">每日任務<span class="film-launch-time"></span></span>
+                <span class="hit-meta">自己來 · 不用帳號</span>
+              </span>
+            </button>
+          </div>
 
           <!-- The film plays HERE on a desktop. film.css positions this
                fixed; the rule in styles.css re-points it to fill this frame
@@ -578,8 +588,8 @@
        they probably will, which is enough notice to fetch 3.1MB before
        the click rather than during it. Once, and never on a cold load. */
     (function () {
-      var launch = document.getElementById('filmLaunch');
-      if (!launch) return;
+      var hits = document.querySelectorAll('[data-film-cut], #filmLaunch');
+      if (!hits.length) return;
       var warmed = false;
       function warm() {
         if (warmed) return;
@@ -588,11 +598,11 @@
           new Image().src = '/assets/host/' + n + '.png';
         });
       }
-      launch.addEventListener('pointerenter', warm, { once: true });
-      launch.addEventListener('focus', warm, { once: true });
-      // A touch visitor gets no hover, so the first contact of the press
-      // starts the fetch a beat before the click completes.
-      launch.addEventListener('touchstart', warm, { once: true, passive: true });
+      hits.forEach(function (b) {
+        b.addEventListener('pointerenter', warm, { once: true });
+        b.addEventListener('focus', warm, { once: true });
+        b.addEventListener('touchstart', warm, { once: true, passive: true });
+      });
     })();
   </script>
 
@@ -978,7 +988,7 @@
   </script>
 
   <script src="/nav.js" defer></script>
-  <script src="/film.js" defer></script>
+  <script src="/film2.js" defer></script>
   <script src="/lang.js" defer></script>
 </body>
 </html>

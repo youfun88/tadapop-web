@@ -1530,6 +1530,50 @@ a.store-badge:hover { border-color: var(--amber); }
 /* ── widths ──────────────────────────────────────────────────────────
    Checked at 360 (Android), 375 and 390 (iPhone), 768, 1024 and 1440.
    Nothing here relies on body{overflow-x:hidden} to look clean. */
+/* =====================================================================
+   Two films, one poster.
+   ---------------------------------------------------------------------
+   The hero used to be a single button covering the whole poster, playing
+   one film that had to explain both halves of the app. It is now two:
+   the Arena and the solo tracker, side by side under the same title card.
+   The card stays shared on purpose — they are one product, and pressing
+   either one still makes THAT picture bigger and start talking.
+   Below 640px they stack; two 160px-wide buttons is neither.
+   ===================================================================== */
+.poster-hits {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  padding: 14px 16px 16px;
+  background: linear-gradient(0deg, rgba(5, 7, 12, .94), rgba(5, 7, 12, .62) 62%, transparent);
+}
+.poster-hits .hit {
+  display: flex; align-items: center; gap: 12px; min-width: 0;
+  padding: 10px 12px; border-radius: 14px; text-align: left;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .12);
+  color: inherit; font: inherit; cursor: pointer;
+  transition: background .18s, border-color .18s, transform .18s;
+}
+.poster-hits .hit:hover, .poster-hits .hit:focus-visible {
+  background: rgba(255, 255, 255, .08); border-color: rgba(255, 180, 84, .5);
+}
+.poster-hits .hit:active { transform: scale(.985); }
+.poster-hits .hit-copy { display: flex; flex-direction: column; min-width: 0; }
+.poster-hits .hit-text {
+  font-family: var(--f-disp, inherit); font-weight: 700;
+  font-size: clamp(13px, 1.45vw, 16px); line-height: 1.25;
+}
+.poster-hits .hit-meta {
+  font-family: ui-monospace, "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  opacity: .58; margin-top: 4px;
+}
+/* The solo film is the quieter half and its button says so. */
+.poster-hits .hit.is-solo .play-disc {
+  background: rgba(255, 255, 255, .1); color: var(--ink, #E8ECF5);
+  box-shadow: none; border: 1px solid rgba(255, 255, 255, .22);
+}
+
 @media (max-width: 1080px) {
   .rules-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -1583,6 +1627,16 @@ a.store-badge:hover { border-color: var(--amber); }
      art: 62px that cannot be mistaken for decoration and cannot be covered
      by BOBO. Still the same <button>. */
   .poster-hit { position: static; display: block; }
+  .poster-hits {
+    position: static; background: var(--panel2);
+    border-top: 1px solid var(--line); padding: 10px 10px 12px; gap: 8px;
+  }
+  .poster-hits .hit { padding: 9px 10px; gap: 10px; }
+  .poster-hits .hit-text { font-size: 14px; }
+  .poster-hits .hit-meta { display: none; }
+  /* The runtime takes its own line rather than wrapping the word "sec"
+     onto one by itself, which is what it did at 430px. */
+  .poster-hits .film-launch-time { display: block; opacity: .6; }
   .player-frame { display: flex; flex-direction: column; }
   .hit-bar { padding: 12px 14px 13px; background: var(--panel2); border-top: 1px solid var(--line); gap: 11px; min-height: 62px; }
   .hit-rail, .hit-meta, .hit-time, .poster-barspace { display: none; }
@@ -1682,7 +1736,8 @@ a.store-badge:hover { border-color: var(--amber); }
   .player-frame .film-time { font-size: clamp(8px, 1.05cqw, 11px); min-width: 7.6cqw; }
   .player-frame .film-unmute { top: 6cqw; font-size: clamp(10px, 1.25cqw, 13px); padding: 1cqw 2cqw; }
   /* The poster underneath is inert once the film is up. */
-  .player-frame:has(.film-overlay:not([hidden])) .poster-hit { pointer-events: none; }
+  .player-frame:has(.film-overlay:not([hidden])) .poster-hit,
+  .player-frame:has(.film-overlay:not([hidden])) .poster-hits { pointer-events: none; }
 }
 
 /* ── end home v2 ──────────────────────────────────────────────────── */

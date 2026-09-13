@@ -291,20 +291,28 @@
             <div class="poster-barspace" aria-hidden="true"></div>
           </div>
 
-          <!-- This button is #filmLaunch. film.js has always bound to that id,
-               so making the whole poster the button costs nothing in the
-               engine. .film-launch-time is where film.js stamps the real
-               runtime — the number must not be written anywhere else. -->
-          <button class="poster-hit" type="button" id="filmLaunch" aria-haspopup="dialog"
-                  aria-label="See what BOBO has to say — the explainer film, with voiceover and captions, in English or Traditional Chinese">
-            <span class="hit-bar">
-              <span class="hit-rail" aria-hidden="true"><i></i></span>
+          <!-- Two films, one poster. data-film-cut is what film2.js reads to
+               pick the assembly; .film-launch-time is where it stamps that
+               cut's real runtime — the number must not be written anywhere
+               else, because a hand-typed one drifts. -->
+          <div class="poster-hits">
+            <button class="hit" type="button" data-film-cut="arena" aria-haspopup="dialog"
+                    aria-label="Watch the Arena film — doing a challenge with friends, with voiceover and captions">
               <span class="play-disc" aria-hidden="true">▶</span>
-              <span class="hit-text">See what BOBO has to say<span class="film-launch-time"></span></span>
-              <span class="hit-meta" aria-hidden="true">Voiceover + captions</span>
-              <span class="hit-time" aria-hidden="true">0:00</span>
-            </span>
-          </button>
+              <span class="hit-copy">
+                <span class="hit-text">The Arena<span class="film-launch-time"></span></span>
+                <span class="hit-meta">With friends · keep score</span>
+              </span>
+            </button>
+            <button class="hit is-solo" type="button" data-film-cut="solo" aria-haspopup="dialog"
+                    aria-label="Watch the solo film — the private daily checklist, with voiceover and captions">
+              <span class="play-disc" aria-hidden="true">▶</span>
+              <span class="hit-copy">
+                <span class="hit-text">Daily missions<span class="film-launch-time"></span></span>
+                <span class="hit-meta">On your own · no account</span>
+              </span>
+            </button>
+          </div>
 
           <!-- The film plays HERE on a desktop. film.css positions this
                fixed; the rule in styles.css re-points it to fill this frame
@@ -659,8 +667,8 @@
        they probably will, which is enough notice to fetch 3.1MB before
        the click rather than during it. Once, and never on a cold load. */
     (function () {
-      var launch = document.getElementById('filmLaunch');
-      if (!launch) return;
+      var hits = document.querySelectorAll('[data-film-cut], #filmLaunch');
+      if (!hits.length) return;
       var warmed = false;
       function warm() {
         if (warmed) return;
@@ -669,11 +677,11 @@
           new Image().src = '/assets/host/' + n + '.png';
         });
       }
-      launch.addEventListener('pointerenter', warm, { once: true });
-      launch.addEventListener('focus', warm, { once: true });
-      // A touch visitor gets no hover, so the first contact of the press
-      // starts the fetch a beat before the click completes.
-      launch.addEventListener('touchstart', warm, { once: true, passive: true });
+      hits.forEach(function (b) {
+        b.addEventListener('pointerenter', warm, { once: true });
+        b.addEventListener('focus', warm, { once: true });
+        b.addEventListener('touchstart', warm, { once: true, passive: true });
+      });
     })();
   </script>
 
@@ -1062,7 +1070,7 @@
   </script>
 
   <script src="/nav.js" defer></script>
-  <script src="/film.js" defer></script>
+  <script src="/film2.js" defer></script>
   <script src="/lang.js" defer></script>
 </body>
 </html>

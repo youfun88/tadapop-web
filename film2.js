@@ -544,7 +544,11 @@ const LANG = /^zh/i.test(document.documentElement.lang || '') ? 'zh' : 'en';
  * Anything unrecognised falls back to `full`, so an old page that never set
  * the flag keeps playing exactly what it used to.
  */
-const CUT = ({ arena: 'arena', solo: 'solo', full: 'full' })[window.TADAPOP_FILM_CUT] || 'full';
+function normaliseCut(v) { return ({ arena: 'arena', solo: 'solo', full: 'full' })[v] || 'full'; }
+/* The page default. A launch button may override it with data-film-cut, which
+   is what lets the homepage offer both films from one script. Mutable because
+   the cut is not known until somebody presses a button. */
+let CUT = normaliseCut(window.TADAPOP_FILM_CUT);
 
 /**
  * One line of copy in the page's language, with `{slot}` substitution.
@@ -617,8 +621,13 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
 (function () {
   'use strict';
   const overlay = document.getElementById('filmOverlay');
-  const launch = document.getElementById('filmLaunch');
-  if (!overlay || !launch) return;
+  /* Every launcher on the page shares this one overlay and one engine. A page
+     with a single film still just uses #filmLaunch and never sets a cut. */
+  const launchers = Array.prototype.slice.call(document.querySelectorAll('#filmLaunch, [data-film-cut]'))
+    .filter((el, i, all) => all.indexOf(el) === i);
+  if (!overlay || !launchers.length) return;
+  /* Whichever was pressed last — focus returns here when the film closes. */
+  let launch = launchers[0];
 
   const COL = {
     void: '#0B0E17', panel: '#141A29', panel2: '#1A2233', line: '#26304a', lineSoft: '#1c2540',
@@ -892,7 +901,8 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   const ctx = { COL, el, anim, after, sfx, countUp, boboTada };
 
   /* ------------------------------ scenes -------------------------------- */
-  const scenes = buildScenes(ctx);
+  let scenes = [];
+  let TOTAL = 0;
 
   /* A scene's length is the English performance's length, and Chinese does not
      always fit in it. Where the gap is only rhythm, the Chinese is cut to fit —
@@ -916,16 +926,24 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      after that scene was recut as n1. */
   const SCENE_DUR = { zh: { n1: 7600, n2: 8800, n4: 9600, n5: 8200, n7: 6600, n8: 11000,
                             b1: 8000, b2: 11000, b3: 8000, b4: 9200, b5: 8800 } };
-  const durOverrides = SCENE_DUR[LANG];
-  if (durOverrides) scenes.forEach((sc) => { if (durOverrides[sc.id]) sc.dur = durOverrides[sc.id]; });
-  const TOTAL = scenes.reduce((s, x) => s + x.dur, 0);
-  time.textContent = '0:00 / ' + fmtClock(TOTAL);
-
-  // The launch button used to carry a hand-written running time and it drifted:
-  // it promised 90 seconds for a film whose own clock read 1:15. Only the
-  // scenes know how long the film is, so the button asks them.
-  const lengthEl = launch.querySelector('.film-launch-time');
-  if (lengthEl) lengthEl.textContent = t('ui.filmLength', { n: Math.round(TOTAL / 1000) });
+  function withOverrides(list) {
+    const ov = SCENE_DUR[LANG];
+    if (ov) list.forEach((sc) => { if (ov[sc.id]) sc.dur = ov[sc.id]; });
+    return list;
+  }
+  /** Build a cut and make it the one the player is holding. */
+  function applyCut(cut) {
+    if (scenes.length && cut === CUT) return;
+    CUT = cut;
+    scenes = withOverrides(buildScenes(ctx, cut));
+    TOTAL = scenes.reduce((a, x) => a + x.dur, 0);
+    time.textContent = '0:00 / ' + fmtClock(TOTAL);
+    voWarmed = false;   // a different cut is a different set of clips
+  }
+  /** How long a cut runs, without making it the current one. */
+  function totalFor(cut) {
+    return withOverrides(buildScenes(ctx, cut)).reduce((a, x) => a + x.dur, 0);
+  }
 
   /* ---- pre-recorded voiceover (ElevenLabs) ----
      One MP3 per scene per language: /assets/vo/<id>.mp3 in English (voice:
@@ -948,9 +966,11 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
      scenes in the same order with one dropped, so re-rendering them would buy
      nothing but a chance to make them worse. The solo cut is all new lines. */
-  const VO_BASE = CUT === 'solo' ? '/assets/vo-solo/' : '/assets/vo2/';
-  const VO_DIR = LANG === 'zh' ? VO_BASE + 'zh/' : VO_BASE;
-  function voSrc(id) { return VO_DIR + id + '.mp3?v=' + VOV; }
+  function voDir() {
+    const base = CUT === 'solo' ? '/assets/vo-solo/' : '/assets/vo2/';
+    return LANG === 'zh' ? base + 'zh/' : base;
+  }
+  function voSrc(id) { return voDir() + id + '.mp3?v=' + VOV; }
 
   /* ONE element for all nine lines, re-pointed per scene.
      There used to be nine, one per clip, and on iOS the voice died partway
@@ -1020,11 +1040,11 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     musicWarmed = true;
     try { fetch(MUSIC_SRC, { cache: 'force-cache' }).catch(() => {}); } catch (e) {}
   }
-  if (launch) {
-    launch.addEventListener('pointerenter', warmMusic, { once: true });
-    launch.addEventListener('focus', warmMusic, { once: true });
-    launch.addEventListener('touchstart', warmMusic, { once: true, passive: true });
-  }
+  launchers.forEach((b) => {
+    b.addEventListener('pointerenter', warmMusic, { once: true });
+    b.addEventListener('focus', warmMusic, { once: true });
+    b.addEventListener('touchstart', warmMusic, { once: true, passive: true });
+  });
   music.loop = true; // the end card outlasts the track
   music.volume = 0;
   let musicRamp = null, musicOff = null;
@@ -1424,7 +1444,16 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
     startMusic(!playing);
     if (playing && idx >= 0 && scenes[idx]) playVO(scenes[idx]);
   }
-  launch.addEventListener('click', () => play(false));
+  launchers.forEach((b) => {
+    const cut = normaliseCut(b.getAttribute('data-film-cut') || window.TADAPOP_FILM_CUT);
+    /* Each button carries its own running time, and it is the SCENES that
+       know it — a hand-written one drifted to promising 90 seconds for a film
+       whose own clock read 1:15. */
+    const lengthEl = b.querySelector('.film-launch-time');
+    if (lengthEl) lengthEl.textContent = t('ui.filmLength', { n: Math.round(totalFor(cut) / 1000) });
+    b.addEventListener('click', () => { launch = b; applyCut(cut); play(false); });
+  });
+  applyCut(normaliseCut(window.TADAPOP_FILM_CUT));
   closeBtn.addEventListener('click', closeFilm);
   replayBtn.addEventListener('click', () => play(false));
   unmute.addEventListener('click', enableSound);
@@ -1608,7 +1637,8 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
 /* ========================================================================
    Scene definitions. Each: { dur, vo, caps:[{at,html}], render(node, ctx) }
    ======================================================================== */
-function buildScenes(ctx) {
+function buildScenes(ctx, cut) {
+  const CUT = cut;
   const { COL, el, anim, after, sfx, countUp, boboTada } = ctx;
   const POP = 'cubic-bezier(.2,1.4,.4,1)';
 
