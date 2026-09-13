@@ -104,9 +104,9 @@ const COPY = {
 
     /* ---- n2 · pick the thing, pick the people ---- */
     'n2.cap1': 'So pick one thing. Then pick the people who will <span class="hi">notice</span>.',
-    'n2.cap2': 'The Club is the third tab — and the one part that needs an account.',
-    'n2.cap3': 'Invite-only. <span class="go">No strangers, no feed.</span>',
-    'n2.vo': 'So pick one thing, then pick the people who will notice. The Club is the third tab, and the one part that needs an account. Invite only — no strangers, no feed.',
+    'n2.cap2': 'The Check-in Club is the third tab — the only part that needs an account.',
+    'n2.cap3': 'Invite-only. <span class="go">Nobody outside it sees a thing.</span>',
+    'n2.vo': 'So pick one thing, then pick the people who will notice. The Check-in Club is the third tab, and the only part that needs an account. It is invite-only — nobody outside it sees a thing.',
 
     /* ---- n3 · the deal, in the host's own words ---- */
     /* ---- c1 / c2 · categories and templates ---- */
@@ -117,9 +117,9 @@ const COPY = {
     'c1.cWork': 'WORK',
     'c1.newPlaceholder': 'Category name',
     'c1.newName': 'MONEY',
-    'c1.cap1': 'Make the categories <span class="hi">you actually think in</span>.',
+    'c1.cap1': 'Make the categories <span class="hi">you think in</span>.',
     'c1.cap2': 'Drag them into the order you want — <span class="go">everything else follows it</span>.',
-    'c1.vo': 'Make the categories you actually think in, and drag them into the order you want. Everything else follows that order.',
+    'c1.vo': 'Make the categories you think in, and drag them into the order you want. Everything else follows that order.',
 
     'c2.tplLabel': 'TEMPLATES',
     'c2.newTemplate': '+ NEW TEMPLATE',
@@ -143,7 +143,7 @@ const COPY = {
     'a2.proofTag': 'PROOF',
     'a2.cap1': 'It does not have to be the gym.',
     'a2.cap2': 'Anything you keep meaning to do and <span class="hi">keep putting off</span>.',
-    'a2.vo': 'And it does not have to be the gym. Anything you keep meaning to do and keep putting off — moving more, getting to bed earlier, reading before you sleep.',
+    'a2.vo': 'It does not have to be the gym. Anything you keep meaning to do and keep putting off — moving more, getting to bed earlier, reading before you sleep.',
 
     /* ---- a1 / a3 · the create screen, built from photographs of it ---- */
     'a1.screen': 'NEW CHALLENGE',
@@ -161,9 +161,9 @@ const COPY = {
     'a1.cPerWeek': 'DAYS / WEEK',
     'a1.cadNote': 'Every day, or any few days each week.',
     'a1.cap1': 'Start one and <span class="hi">you are the host</span>.',
-    'a1.cap2': 'Name it, say how to play — <span class="go">everyone reads that before they join</span>.',
+    'a1.cap2': 'Write how to play in your own words — <span class="go">everyone reads it before they join</span>.',
     'a1.cap3': 'Then how long it runs, and how often.',
-    'a1.vo': 'Start one and you are the host. Name it, say how to play — everyone reads that before they join — then set how long it runs, and how often.',
+    'a1.vo': 'Start one and you are the host. Name it, and write how to play in your own words — everyone reads it before they join. Then set how long it runs, and how often.',
 
     'a3.cMin': 'MIN PLAYERS TO START',
     'a3.minNote': 'Once this many have joined, you can start it.',
@@ -188,10 +188,10 @@ const COPY = {
     'a3.proofNote': 'Proof is required to check in — back out of the camera and the day stays unlogged.',
     'a3.btnCreate': 'CREATE',
     'a3.btnCancel': 'CANCEL',
-    'a3.cap1': 'Then who is in it. <span class="hi">Once enough have joined, you start it.</span>',
+    'a3.cap1': 'Then who is in it. <span class="hi">It starts when you say so.</span>',
     'a3.cap2': 'Who can join, who can invite — and whether a check-in needs <span class="hi">a photo, a clip, or both</span>.',
-    'a3.cap3': 'Press it, and <span class="go">it exists</span>.',
-    'a3.vo': 'Then who is in it. Once enough have joined you start it yourself, and the clock starts then. Who can join, who can invite, and whether a check-in needs a photo, a clip, or both. Then press the button.',
+    'a3.cap3': 'Then press <span class="go">Create</span>.',
+    'a3.vo': 'Then who is in it. It starts when you say so, once enough people have joined. You choose who can join, who can invite, and whether a check-in needs a photo, a clip, or both. Then press create.',
 
     'a4.badge': '0:38 \u00b7 VIDEO',
     'a4.when': '18:42',
@@ -200,13 +200,13 @@ const COPY = {
     'a4.r3': 'Then a still frame is kept',
     'a4.cap1': 'Video proof is just a clip off your phone.',
     'a4.cap2': 'It plays for a week, then <span class="hi">a still frame is kept</span>.',
-    'a4.vo': 'And video proof is just a clip off your phone, under two minutes. It plays for a week, then only a still frame is kept.',
+    'a4.vo': 'Video proof is just a clip off your phone, under two minutes. It plays for a week, then only a still frame is kept.',
 
     'n3.rulesLabel': 'HOW TO PLAY',
     'n3.rules': 'Forty minutes a day, fifty days straight.\nMiss a day and you owe the pot a hundred.\nWe spend it on dinner at the end.',
-    'n3.cap1': 'This is the deal — <span class="hi">everyone read it before they joined</span>.',
-    'n3.cap2': 'Miss a day, a little goes in the pot. <span class="go">It buys the night out at the end.</span>',
-    'n3.vo': 'And this is the deal, which everyone read before they joined. Miss a day and a little goes in the pot — not as a punishment. It is what buys the night out at the end.',
+    'n3.cap1': 'Everyone read this <span class="hi">before they joined</span>.',
+    'n3.cap2': 'Miss a day, a little goes in the pot. <span class="go">It pays for the night out at the end.</span>',
+    'n3.vo': 'Everyone read this before they joined. Miss a day and a little goes in the pot — not as a punishment. It is what pays for the night out at the end.',
 
     /* ---- n4 · checking in ---- */
     'n4.lbLabel': 'LEADERBOARD \u00b7 DAYS DONE',
@@ -230,9 +230,9 @@ const COPY = {
     'n5.vo': 'If the group asked for proof, bring a photo or a clip. Not to catch anyone out — seeing somebody else go is what gets you out the door.',
 
     /* ---- n6 · the board does the nagging ---- */
-    'n6.cap1': 'And then the board just — <span class="hi">sits there</span>.',
-    'n6.cap2': 'Nobody has to be the one who chases. <span class="go">It already shows.</span>',
-    'n6.vo': 'And then the board just sits there. Nobody has to be the one who chases. It already shows.',
+    'n6.cap1': 'Then the board just <span class="hi">sits there</span>, where everyone can see it.',
+    'n6.cap2': '<span class="go">Everyone can see it</span> — so nobody has to be the one who chases.',
+    'n6.vo': 'Then the board just sits there, where everyone can see it. Nobody has to be the one who chases.',
 
     /* ---- n7 · the week ends ---- */
     'n7.cap1': 'Seven weeks later, <span class="hi">the pot buys dinner</span>.',
@@ -347,17 +347,17 @@ const COPY = {
        The Club cut sells being watched by people you like. This one is the
        opposite of that and has to say so in its first breath, or a viewer
        who wants to be left alone never finds out that they can be. ---- */
-    'b1.cap1': 'Tadapop is a checklist for your day — <span class="hi">and nothing else</span>.',
-    'b1.cap2': '<span class="go">No account. No feed. Works on a plane.</span>',
-    'b1.vo': 'Tadapop is a checklist for your day, and nothing else. No account, no feed, and it works on a plane.',
+    'b1.cap1': 'Tadapop starts as a <span class="hi">checklist for your day</span>.',
+    'b1.cap2': '<span class="go">No account. Nothing public. Works on a plane.</span>',
+    'b1.vo': 'Tadapop starts as a checklist for your day. No account, nothing public, and it works on a plane.',
 
     'b2.cap1': 'Put the things you actually meant to do on it.',
     'b2.cap2': 'Tap one done, count the water or the pages, or <span class="go">start a timer and disappear</span>.',
     'b2.vo': 'Put the things you actually meant to do on it. Tap one done, count the water or the pages, or start a timer and disappear.',
 
     'b3.cap1': 'Clear the whole day and it pays out: <span class="go">one Tpoint</span>.',
-    'b3.cap2': 'Miss one and it does not — <span class="hi">the day is the unit</span>, not the task.',
-    'b3.vo': 'Clear the whole day and it pays out one Tpoint. Miss one and it does not — the day is the unit here, not the task.',
+    'b3.cap2': 'Miss one and it pays nothing — <span class="hi">the day is what counts</span>, not the task.',
+    'b3.vo': 'Clear the whole day and it pays out one Tpoint. Miss one and it pays nothing — the day is what counts, not the task.',
 
     /* Taken off the real Today ring and the Stats SNAPSHOT card. */
     'b4.ringPart': '4 of 5 done',
@@ -377,8 +377,8 @@ const COPY = {
     'b5.vo': 'Then one day you look back at a year of this, and the grid has gone green. Nobody had to see it but you.',
 
     'b6.cap1': 'Free, offline, and <span class="go">nothing to sign up for</span>.',
-    'b6.cap2': 'And when you want company, <span class="hi">the Club is one tab away</span>.',
-    'b6.vo': 'Free, offline, and nothing to sign up for. And when you want company, the Club is one tab away. Tadapop.',
+    'b6.cap2': 'When you want company, <span class="hi">the Check-in Club is one tab away</span>.',
+    'b6.vo': 'Free, offline, and nothing to sign up for. When you want company, the Check-in Club is one tab away. Tadapop.',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': 'Track. Compete. <span style="color:{amber}">Become.</span>',
@@ -446,10 +446,10 @@ const COPY = {
     'n1.vo': '該做什麼，你其實都知道。一個人，很難撐下去。',
 
     /* ---- n2 ---- */
-    'n2.cap1': '那就挑一件事，再找幾個會<span class="hi">看見你</span>的人。',
-    'n2.cap2': '俱樂部是第三個分頁，也是唯一需要帳號的地方。',
-    'n2.cap3': '只能邀請加入，<span class="go">也沒有動態牆。</span>',
-    'n2.vo': '挑一件事，找幾個會看見你的人。俱樂部是第三個分頁，唯一需要帳號的地方。只能邀請加入，沒有動態牆。',
+    'n2.cap1': '挑一件事，再找幾個<span class="hi">會在意你有沒有做</span>的人。',
+    'n2.cap2': '打卡俱樂部是第三個分頁，也是唯一需要帳號的地方。',
+    'n2.cap3': '只能邀請加入。<span class="go">外面的人什麼都看不到。</span>',
+    'n2.vo': '挑一件事，再找幾個會在意你有沒有做的人。打卡俱樂部是第三個分頁，也是唯一需要帳號的地方。只能邀請加入，外面的人什麼都看不到。',
 
     /* ---- n3 ---- */
     /* ---- c1 / c2 · 分類與範本 ---- */
@@ -533,8 +533,8 @@ const COPY = {
     'a3.btnCancel': '取消',
     'a3.cap1': '再決定誰能進來。<span class="hi">人數夠了，你按下開始。</span>',
     'a3.cap2': '打卡要附<span class="hi">照片、影片，還是兩個都要</span>。',
-    'a3.cap3': '按下去，<span class="go">挑戰就成立了</span>。',
-    'a3.vo': '再決定誰能進來，人數夠了你就能按下開始。打卡要附照片、影片，還是兩個都要。最後按下按鈕，挑戰就成立了。',
+    'a3.cap3': '最後按下<span class="go">建立</span>。',
+    'a3.vo': '再決定誰能進來。人數夠了，你說開始才開始。打卡要附照片、影片，還是兩個都要。最後按下建立。',
 
     'a4.badge': '0:38 \u00b7 影片',
     'a4.when': '18:42',
@@ -542,14 +542,14 @@ const COPY = {
     'a4.r2': '播放七天',
     'a4.r3': '之後只留一張定格',
     'a4.cap1': '影片證明就是手機隨手拍的一段。',
-    'a4.cap2': '播七天，之後<span class="hi">只留一張定格</span>。',
-    'a4.vo': '影片證明就是手機隨手拍的一段，兩分鐘以內。播七天，之後只留一張定格。',
+    'a4.cap2': '播七天，之後<span class="hi">只留下一張畫面</span>。',
+    'a4.vo': '影片證明就是手機隨手拍的一段，兩分鐘以內。播七天，之後只留下一張畫面。',
 
     'n3.rulesLabel': '玩法',
     'n3.rules': '每天運動四十分鐘，連續五十天。\n一天沒做到，罰一百入碗。\n最後用這筆錢大家一起去吃飯。',
-    'n3.cap1': '這就是<span class="hi">大家加入前都看過</span>的規則。',
+    'n3.cap1': '這些規則，<span class="hi">大家加入前都看過</span>。',
     'n3.cap2': '沒做到就丟一點錢進來。<span class="go">最後拿這筆錢一起慶功。</span>',
-    'n3.vo': '這就是大家加入前都看過的規則。沒做到就丟一點錢進來，不是處罰，是最後大家一起慶功的基金。',
+    'n3.vo': '這些規則，大家加入前都看過。沒做到就丟一點錢進來，不是處罰，最後拿這筆錢一起慶功。',
 
     /* ---- n4 ---- */
     'n4.lbLabel': '\u6392\u884c\u699c \u00b7 \u5b8c\u6210\u5929\u6578',
@@ -579,8 +579,8 @@ const COPY = {
 
     /* ---- n7 ---- */
     'n7.cap1': '七個禮拜後，<span class="hi">那筆錢請大家吃飯</span>。',
-    'n7.cap2': '而你們每個人都比<span class="go">自己一個人</span>時做得更多。',
-    'n7.vo': '七個禮拜後，那筆錢請大家吃飯。而你們每個人都比自己一個人時做得更多，這才是重點。',
+    'n7.cap2': '而你們每個人，都比<span class="go">一個人的時候</span>做得更多。',
+    'n7.vo': '七個禮拜後，那筆錢請大家吃飯。而你們每個人，都比一個人的時候做得更多。這才是重點。',
 
     /* ---- n8 ---- */
     'n8.cap1': '你自己的習慣是<span class="hi">另一回事</span> — 一份只有你看得到的清單。',
@@ -690,13 +690,13 @@ const COPY = {
     's8.vo': '一起赢，一起输，最后一起强到爆。',
 
     /* ---- 單人版剪輯 (b1..b6) ---- */
-    'b1.cap1': 'Tadapop 就是一份每天的清單，<span class="hi">沒有別的</span>。',
-    'b1.cap2': '<span class="go">不用帳號、沒有動態牆，飛機上也能用。</span>',
-    'b1.vo': 'Tadapop 就是一份每天的清單。不用帳號、沒有動態牆，飛機上也能用。',
+    'b1.cap1': 'Tadapop 一開始就是<span class="hi">一份每天的清單</span>。',
+    'b1.cap2': '<span class="go">不用帳號、不會公開給任何人看，飛機上也能用。</span>',
+    'b1.vo': 'Tadapop 一開始就是一份每天的清單。不用帳號、不會公開給任何人看，飛機上也能用。',
 
     'b2.cap1': '把你真正想做的事放上去。',
-    'b2.cap2': '打個勾、計次，或<span class="go">按下計時器關機專心做</span>。',
-    'b2.vo': '把你真正想做的事放上去。打個勾、計次，或按下計時器關機專心做。',
+    'b2.cap2': '打個勾、計次，或<span class="go">按下計時器，專心做到鈴響</span>。',
+    'b2.vo': '把你真正想做的事放上去。打個勾、計次，或按下計時器，專心做到鈴響。',
 
     'b3.cap1': '整天清空，才拿得到<span class="go">一點 T 點數</span>。',
     'b3.cap2': '漏一項就沒有——這裡算的是<span class="hi">一整天</span>，不是單項。',
@@ -719,8 +719,8 @@ const COPY = {
     'b5.vo': '然後某天回頭看這一年，整面格子都綠了。除了你，沒人需要看到。',
 
     'b6.cap1': '免費、離線可用，<span class="go">完全不用註冊</span>。',
-    'b6.cap2': '想找人一起的時候，<span class="hi">俱樂部就在隔壁分頁</span>。',
-    'b6.vo': '免費、離線可用，完全不用註冊。想找人一起，俱樂部就在隔壁分頁。Tadapop。',
+    'b6.cap2': '想找人一起的時候，<span class="hi">打卡俱樂部就在隔壁分頁</span>。',
+    'b6.vo': '免費、離線可用，完全不用註冊。想找人一起，打卡俱樂部就在隔壁分頁。Tadapop。',
 
     /* ---- scene 9 · sign-off ---- */
     's9.title': '記錄。較勁。<span style="color:{amber}">蛻變。</span>',
@@ -1133,9 +1133,9 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      scenes need more room. Keyed by SCENE ID — an entry whose id no longer
      exists is silently dead, which is how `s1: 7600` sat here doing nothing
      after that scene was recut as n1. */
-  const SCENE_DUR = { zh: { n1: 7600, n2: 13600, a1: 12200, a2: 11400, a3: 15600, a4: 9800, n3: 11500, 
+  const SCENE_DUR = { zh: { n1: 7600, n2: 15200, a1: 12200, a2: 11400, a3: 15600, a4: 9800, n3: 11500, 
                             n4: 9600, n5: 10600, n7: 10000, n8: 11000,
-                            b1: 8400, b2: 11000, b3: 9200, b4: 9200, b5: 8800, b6: 10000 } };
+                            b1: 8800, b2: 11000, b3: 9200, b4: 9200, b5: 8800, b6: 10600 } };
   function withOverrides(list) {
     const ov = SCENE_DUR[LANG];
     if (ov) list.forEach((sc) => { if (ov[sc.id]) sc.dur = ov[sc.id]; });
@@ -1170,7 +1170,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 9;
+  const VOV = 10;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
@@ -3048,13 +3048,13 @@ function buildScenes(ctx, cut) {
 
   /* a1 · what the challenge is */
   const a1 = {
-    id: 'a1', dur: 10000,
+    id: 'a1', dur: 11200,
     vo: t('a1.vo'),
     caps: capsFor('a1'),
     render(node) {
       ambient(node, 'rgba(255,180,84,.09)', 900);
       const c = appCol(node, 560);
-      drift(c, 10000, 1.02);
+      drift(c, 11200, 1.02);
 
       const head = el('div', 'fm-disp', {
         fontSize: '22px', fontWeight: '900', letterSpacing: '.16em',
@@ -3488,7 +3488,7 @@ function buildScenes(ctx, cut) {
     return { id: id, dur: dur || scene.dur, vo: t(id + '.vo'), caps: capsFor(id), render: scene.render };
   }
   const n1 = recut(s1, 'n1', 6200);
-  const n2 = recut(s6, 'n2', 11000);
+  const n2 = recut(s6, 'n2', 12200);
   const n6 = recut(s7, 'n6', 9000);
   const n7 = recut(s8, 'n7', 7000);
   /* The mission list appears ONCE, here, after the challenge has finished —
