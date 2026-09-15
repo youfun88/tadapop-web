@@ -86,15 +86,16 @@ for (const m of SRC.matchAll(/if \(CUT === '(\w+)'\) return \[([^\]]+)\]/g)) {
 CUTS.full = (/\n {2}return \[([^\]]+)\];\n/.exec(SRC) || [, ''])[1]
   .split(',').map((s) => s.trim()).filter(Boolean);
 
-/* Where the engine itself says each cut's clips live. film3.js reads its own
-   zh folders; checking film2's would pass on audio the page never requests. */
-const ZH_DIRS = /if \(LANG === 'zh'\) return CUT === 'solo' \? '\/assets\/([\w-]+)\/zh\/' : '\/assets\/([\w-]+)\/zh\/'/.exec(SRC);
-const VO_DIR = (cut, lang) => (lang === 'zh' && ZH_DIRS
-  ? join(ROOT, 'assets', cut === 'solo' ? ZH_DIRS[1] : ZH_DIRS[2], 'zh')
-  : join(ROOT, 'assets', cut === 'solo' ? 'vo-solo' : 'vo2', lang === 'zh' ? 'zh' : ''));
+/* Where the engine itself says each cut's clips live, read from its voDir():
+   a film file with folders of its own (film3.js) has to be checked against the
+   audio it actually requests, or a missing clip passes on film2's copy. */
+const BASE = /const base = CUT === 'solo' \? '\/assets\/([\w-]+)\/' : '\/assets\/([\w-]+)\/'/.exec(SRC);
+const VO_DIR = (cut, lang) =>
+  join(ROOT, 'assets', cut === 'solo' ? (BASE ? BASE[1] : 'vo-solo') : (BASE ? BASE[2] : 'vo2'), lang === 'zh' ? 'zh' : '');
 const HEADROOM = 0.6;
 
-const durFor = (id, lang) => (lang === 'zh' && SCENE_DUR.zh?.[id]) || DUR[id];
+/* A language may lengthen a scene it cannot fit in (film3 does it for both). */
+const durFor = (id, lang) => SCENE_DUR[lang]?.[id] || DUR[id];
 
 /* ------------------------------------------------------------------ text */
 const strip = (s) => String(s).replace(/<[^>]*>/g, '');
@@ -273,9 +274,9 @@ section('The challenge adds up');
       const re = new RegExp(`${word}\\s*(weeks?|個?禮拜|週)`, 'i');
       if (re.test(spoken)) found.add(n);
     }
-    /* film3's Chinese n7 opens on 「等挑戰結束」 — the owner's script names no
-       length. Excused by name, so film2 (and film3 English) still must. */
-    const namesNoLength = FILM === 'film3.js' && lang === 'zh';
+    /* film3's n7 opens on 「等挑戰結束」 / "When the challenge ends" — the
+       owner's script names no length. Excused by file name, so film2 still must. */
+    const namesNoLength = FILM === 'film3.js';
     if (!found.size && !namesNoLength) fail(`${lang}: n7 says how long the challenge ran`, spoken);
     else for (const n of found) {
       if (n !== weeks) fail(`${lang}: n7 names the right number of weeks`, `says ${n}, ${LEN} days is ${weeks}`);
