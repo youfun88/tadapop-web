@@ -1,13 +1,17 @@
 /* =====================================================================
-   film3.js — REVIEW COPY of film2.js with the owner's 2026-09-15 Chinese
-   narration (影片旁白 - 中文 - 個人 / 團體). Played only by /zh/review.
+   film3.js — film2.js with the owner's 2026-09-15 Chinese narration
+   (影片旁白 - 中文 - 個人 / 團體), every line checked for misreads.
+   APPROVED 2026-09-16: played by the Chinese homepage /zh/ and by /zh/review
+   (kept on the owner's request). The English homepage and the standalone
+   film pages (/film-club, /film-solo, /zh/film-club, …) still play film2.js.
 
    Differs from film2.js in exactly four places: the zh caption + vo lines of
    the arena and solo scenes, SCENE_DUR.zh, CAP_AT.zh, and voDir() (zh clips in
    /assets/vo3/ and /assets/vo-solo3/). English is untouched.
 
-   If approved, these four move into film2.js and this file is deleted — do
-   not let it live on as a second copy of the engine.
+   Two copies of the engine now serve live pages. Before changing the engine,
+   change BOTH — or finish the job: move these four parts into film2.js, point
+   every page back at it, and delete this file.
    ===================================================================== */
 
 /* =====================================================================
