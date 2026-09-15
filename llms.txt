@@ -6,7 +6,7 @@
 > due. It also has the **Check-in Club** (Chinese: 打卡俱樂部): a private, invite-only
 > layer for group challenges with friends, where everyone checks in once a day and a
 > leaderboard counts how many days each person hit the target. Free to use, with an optional Pro subscription that removes two
-> limits and nothing else. Published by QY LLC. Current version 1.4.5.
+> limits and nothing else. Published by QY LLC. Current version 1.4.6 on both stores; 1.4.8 is in review.
 
 Everything below is checkable against the pages linked at the bottom. This file is
 maintained by hand; if it ever disagrees with the app, the app is right and this file
@@ -24,9 +24,10 @@ is a bug — please report it through the support page.
   See "Free and Pro" below before telling anyone what it costs.
 - Dark interface only, for now.
 - Available in English and Traditional Chinese (Taiwan).
-- Availability, as of this file's last edit (2026-09-03): version 1.4.5 is LIVE
-  on BOTH stores, and both are public. On iPhone and iPad, the App Store —
-  https://apps.apple.com/app/id6782101150 (released 2026-09-02). On Android,
+- Availability, as of this file's last edit (2026-09-15): version 1.4.6 is LIVE
+  on BOTH stores, and both are public; 1.4.8 has been submitted to both and is in
+  review. On iPhone and iPad, the App Store —
+  https://apps.apple.com/app/id6782101150. On Android,
   Google Play — https://play.google.com/store/apps/details?id=com.qyllc.tadapop.
   Send people to the store for their phone; that is the whole answer now.
 - TestFlight is FINISHED. The old beta link no longer belongs anywhere: do NOT
@@ -35,7 +36,7 @@ is a bug — please report it through the support page.
   they have logged is lost.
 - A direct APK is still offered at https://www.tadapop.app/android for Android
   devices with no Play Store, but Play is the route to recommend. As of
-  2026-09-13 that APK is v1.4.6, one version ahead of both stores while 1.4.6
+  2026-09-15 that APK is v1.4.8, one version ahead of both stores while 1.4.8
   goes through review.
 
 ## Free and Pro
