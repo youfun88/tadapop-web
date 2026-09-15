@@ -603,7 +603,7 @@ const COPY = {
     'n3.cap4': '最後大家一起拿去<span class="go">吃飯、慶功</span>。',
     'n3.cap5': '不想玩錢也沒關係，也可以自己想一些<span class="hi">有趣的懲罰</span>——',
     'n3.cap6': '輸的人請喝咖啡、請吃飯，或做一件<span class="go">大家都會很期待看到的事</span>。',
-    'n3.vo': '所有規則，大家加入前都看得到。所以要不要玩真的一點？沒做到，就丟一點錢進共同基金，最後大家一起拿去吃飯、慶功。不想玩錢也沒關係，也可以自己想一些有趣的懲罰——輸的人請喝咖啡、請吃飯，或做一件大家都會很期待看到的事。',
+    'n3.vo': '所有規則，大家加入前都看得到。所以要不要玩真的一點？沒做到，就丟一點錢進共同基金，最後大家一起拿去吃飯、慶功。不想玩錢也沒關係，也可以自己想一些有趣的成罰——輸的人請喝咖啡、請吃飯，或做一件大家都會很期待看到的事。',
 
     /* ---- n4 ---- */
     'n4.lbLabel': '\u6392\u884c\u699c \u00b7 \u5b8c\u6210\u5929\u6578',
@@ -760,7 +760,7 @@ const COPY = {
 
     'b2.cap1': '把你想養成的習慣、<span class="hi">固定需要確認的任務</span>放上去。',
     'b2.cap2': '打個勾、計次，或<span class="go">按下計時器，專心做到鈴響</span>。',
-    'b2.vo': '把你想養成的習慣、固定需要確認的任務放上去。打個勾、計次，或按下計時器，專心做到鈴響。',
+    'b2.vo': '把你想養成的習慣、固定需要確認的任務放上去。打個勾、計次，或按下計時器，專心做到玲響。',
 
     'b3.label': '今天的 T點數',
     'b3.full': '5 項全部完成',
@@ -867,7 +867,7 @@ const CAP_AT = {
     s9: [0.0, 3.98, 7.14],
   },
   zh: {
-    n1: [0, 2.9, 6.1, 8.2], n2: [0, 2.7, 6.4, 10.2, 14.9, 17.2], n3: [0, 3.3, 5.9, 9.1, 12.5, 17.8], n4: [0, 3.5, 6.2], n5: [0, 2.6, 5.8, 7.4, 10.3],
+    n1: [0, 2.9, 6.1, 8.2], n2: [0, 2.7, 6.4, 10.2, 14.9, 17.2], n3: [0, 3.2, 5.8, 9.1, 12.6, 17.9], n4: [0, 3.5, 6.2], n5: [0, 2.6, 5.8, 7.4, 10.3],
     n6: [0, 2.8, 6.5, 9.6, 12.5], n7: [0, 6.0, 8.7, 11.0], n8: [0, 3.8], n9: [0, 3.9, 6.8, 8.8],
     b1: [0], b2: [0, 4.8], b3: [0, 2.8], b4: [0, 4.0], b5: [0, 4.7], b6: [0, 4.1],
     a1: [0, 5.2], a2: [0, 4.3], a3: [0, 4.5, 8.5], a4: [0, 2.1, 5.3, 9.2],
@@ -1202,7 +1202,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      scenes need more room. Keyed by SCENE ID — an entry whose id no longer
      exists is silently dead, which is how `s1: 7600` sat here doing nothing
      after that scene was recut as n1. */
-  const SCENE_DUR = { zh: { n1: 13300, n2: 22100, a2: 12100, a1: 11200, a3: 14000, n3: 24900, n4: 8800, n5: 13100, a4: 12900, n6: 17200, n7: 15700, n8: 11000, n9: 14700,
+  const SCENE_DUR = { zh: { n1: 13300, n2: 22100, a2: 12100, a1: 11200, a3: 14000, n3: 24600, n4: 8800, n5: 13100, a4: 12900, n6: 17200, n7: 15700, n8: 11000, n9: 14500,
                             b1: 7400, b2: 11500, c1: 9600, c2: 11000, b3: 9200, b4: 8400, b5: 8700, b6: 10500 } };
   function withOverrides(list) {
     const ov = SCENE_DUR[LANG];
@@ -1238,7 +1238,7 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
      Every clip is cut to finish inside its scene's `dur` — see tools/
      generate-vo.mjs, which measures each render and rejects one that would be
      truncated by the scene change. */
-  const VOV = 13;
+  const VOV = 14;
   /* Real check-ins, used in n5. Listed here so warmVO can decode them. */
   const PROOF_SHOTS = ['/assets/proof/run.jpg', '/assets/proof/swim.jpg', '/assets/proof/cycle.jpg'];
   /* The arena cut reuses the combined cut's clips unchanged — it is the same
