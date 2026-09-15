@@ -3,8 +3,9 @@
    (影片旁白 - 中文 - 個人 / 團體), every line checked for misreads.
    APPROVED 2026-09-16: played by EVERY Chinese film page — /zh/, /zh/review
    (kept on the owner's request), /zh/film-club, /zh/film-solo, /zh/film-new.
-   Every English page (/, /film-club, /film-solo, /film-new) still plays
-   film2.js; film3's English is film2's byte for byte.
+   And, since 2026-09-16, the English homepage / — its English was
+   re-translated from the new Chinese (film3en.py) and approved. The English
+   film pages (/film-club, /film-solo, /film-new) still play film2.js.
 
    Differs from film2.js in exactly four places: the zh caption + vo lines of
    the arena and solo scenes, SCENE_DUR.zh, CAP_AT.zh, and voDir() (zh clips in
