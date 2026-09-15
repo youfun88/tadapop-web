@@ -1563,11 +1563,24 @@ a.store-badge:hover { border-color: var(--amber); }
   font-family: var(--f-disp, inherit); font-weight: 700;
   font-size: clamp(13px, 1.45vw, 16px); line-height: 1.25;
 }
+/* The second line says what pressing it DOES — "watch to learn" — because a
+   bare "Check-in Club · 180 sec" read as a label, not as a way to find out
+   what the Club is (owner, 2026-09-16). It carries the runtime, and it shows
+   on phones too: that is where it was missing most. */
 .poster-hits .hit-meta {
   font-family: ui-monospace, "JetBrains Mono", monospace;
-  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
-  opacity: .58; margin-top: 4px;
+  font-size: 11px; letter-spacing: .06em;
+  color: var(--amber, #FFB454); margin-top: 4px;
+  /* Two items — the phrase and the runtime — so a narrow button wraps
+     BETWEEN them. As inline spans with no space between, there was no break
+     point at all and "Watch to learn · 115 sec" ran out of the button. */
+  display: flex; flex-wrap: wrap; column-gap: .35em;
 }
+.poster-hits .hit.is-solo .hit-meta { color: var(--dim, #7C8AA5); }
+.poster-hits .hit-meta .film-launch-time { opacity: .8; white-space: nowrap; }  /* never "115" / "sec" */
+/* …and never "Watch to" / "learn": the phrase and the runtime each stay whole,
+   so a narrow button breaks only between them. */
+.poster-hits .hit-say { white-space: nowrap; }
 /* The solo film is the quieter half and its button says so. */
 .poster-hits .hit.is-solo .play-disc {
   background: rgba(255, 255, 255, .1); color: var(--ink, #E8ECF5);
@@ -1633,10 +1646,9 @@ a.store-badge:hover { border-color: var(--amber); }
   }
   .poster-hits .hit { padding: 9px 10px; gap: 10px; }
   .poster-hits .hit-text { font-size: 14px; }
-  .poster-hits .hit-meta { display: none; }
-  /* The runtime takes its own line rather than wrapping the word "sec"
-     onto one by itself, which is what it did at 430px. */
-  .poster-hits .film-launch-time { display: block; opacity: .6; }
+  /* Shown on phones now — it is what says the button plays a film. This
+     rule also outranks the blanket `.hit-meta { display: none }` below. */
+  .poster-hits .hit-meta { display: flex; font-size: 10.5px; }
   .player-frame { display: flex; flex-direction: column; }
   .hit-bar { padding: 12px 14px 13px; background: var(--panel2); border-top: 1px solid var(--line); gap: 11px; min-height: 62px; }
   .hit-rail, .hit-meta, .hit-time, .poster-barspace { display: none; }
