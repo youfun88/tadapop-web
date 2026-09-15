@@ -29,7 +29,10 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const SRC = readFileSync(join(ROOT, 'film2.js'), 'utf8');
+/* --film checks another engine file (film3.js, a review copy) the same way. */
+const argAfter = (flag) => { const i = process.argv.indexOf(flag); return i > 0 ? process.argv[i + 1] : null; };
+const FILM = argAfter('--film') || 'film2.js';
+const SRC = readFileSync(join(ROOT, FILM), 'utf8');
 const QUIET = process.argv.includes('--quiet');
 
 let failures = 0;
@@ -83,8 +86,12 @@ for (const m of SRC.matchAll(/if \(CUT === '(\w+)'\) return \[([^\]]+)\]/g)) {
 CUTS.full = (/\n {2}return \[([^\]]+)\];\n/.exec(SRC) || [, ''])[1]
   .split(',').map((s) => s.trim()).filter(Boolean);
 
-const VO_DIR = (cut, lang) =>
-  join(ROOT, 'assets', cut === 'solo' ? 'vo-solo' : 'vo2', lang === 'zh' ? 'zh' : '');
+/* Where the engine itself says each cut's clips live. film3.js reads its own
+   zh folders; checking film2's would pass on audio the page never requests. */
+const ZH_DIRS = /if \(LANG === 'zh'\) return CUT === 'solo' \? '\/assets\/([\w-]+)\/zh\/' : '\/assets\/([\w-]+)\/zh\/'/.exec(SRC);
+const VO_DIR = (cut, lang) => (lang === 'zh' && ZH_DIRS
+  ? join(ROOT, 'assets', cut === 'solo' ? ZH_DIRS[1] : ZH_DIRS[2], 'zh')
+  : join(ROOT, 'assets', cut === 'solo' ? 'vo-solo' : 'vo2', lang === 'zh' ? 'zh' : ''));
 const HEADROOM = 0.6;
 
 const durFor = (id, lang) => (lang === 'zh' && SCENE_DUR.zh?.[id]) || DUR[id];
@@ -266,7 +273,10 @@ section('The challenge adds up');
       const re = new RegExp(`${word}\\s*(weeks?|個?禮拜|週)`, 'i');
       if (re.test(spoken)) found.add(n);
     }
-    if (!found.size) fail(`${lang}: n7 says how long the challenge ran`, spoken);
+    /* film3's Chinese n7 opens on 「等挑戰結束」 — the owner's script names no
+       length. Excused by name, so film2 (and film3 English) still must. */
+    const namesNoLength = FILM === 'film3.js' && lang === 'zh';
+    if (!found.size && !namesNoLength) fail(`${lang}: n7 says how long the challenge ran`, spoken);
     else for (const n of found) {
       if (n !== weeks) fail(`${lang}: n7 names the right number of weeks`, `says ${n}, ${LEN} days is ${weeks}`);
     }
