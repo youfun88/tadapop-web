@@ -1649,6 +1649,12 @@ a.store-badge:hover { border-color: var(--amber); }
   /* Shown on phones now — it is what says the button plays a film. This
      rule also outranks the blanket `.hit-meta { display: none }` below. */
   .poster-hits .hit-meta { display: flex; font-size: 10.5px; }
+}
+/* At phone width two buttons side by side are ~170px each: the questions broke
+   mid-word (打卡俱樂部是 / 什麼？) and "Watch to learn" ran out of the button
+   on a 390px iPhone. One per row gives each question the full width. */
+@media (max-width: 560px) {
+  .poster-hits { grid-template-columns: 1fr; }
   .player-frame { display: flex; flex-direction: column; }
   .hit-bar { padding: 12px 14px 13px; background: var(--panel2); border-top: 1px solid var(--line); gap: 11px; min-height: 62px; }
   .hit-rail, .hit-meta, .hit-time, .poster-barspace { display: none; }
