@@ -1,5 +1,5 @@
 /* =====================================================================
-   film3.js — film2.js with the owner's 2026-09-15 Chinese narration
+   film3.js — THE film. The owner's 2026-09-15 Chinese narration
    (影片旁白 - 中文 - 個人 / 團體), every line checked for misreads.
    APPROVED 2026-09-16: played by EVERY Chinese film page — /zh/, /zh/review
    (kept on the owner's request), /zh/film-club, /zh/film-solo, /zh/film-new.
@@ -7,30 +7,24 @@
    /film-solo, /film-new. Its English was re-translated from the new Chinese
    (film3en.py) and approved. No page loads film2.js any more.
 
-   Differs from film2.js in exactly four places: the zh caption + vo lines of
-   the arena and solo scenes, SCENE_DUR.zh, CAP_AT.zh, and voDir() (zh clips in
-   /assets/vo3/ and /assets/vo-solo3/). English is untouched.
+   Its clips: /assets/vo3/ (Club + combined cut) and /assets/vo-solo3/ (solo),
+   each with a zh/ subfolder. film.js and film2.js — the first and second cuts —
+   and their /assets/vo, /assets/vo2, /assets/vo-solo clips were deleted on
+   2026-09-16, once every page played this one.
 
-   Two copies of the engine now serve live pages. Before changing the engine,
-   change BOTH — or finish the job: move these four parts into film2.js, point
-   every page back at it, and delete this file.
+   One engine, one set of clips, ten pages. tools/check-film.mjs and
+   tools/generate-vo.mjs default to this file.
    ===================================================================== */
 
 /* =====================================================================
    Tadapop explainer film — SECOND CUT, 2026-09-13.
 
-   Same engine as film.js, a different argument. The first cut opens on the
-   mechanics — missions, a console, one Tpoint a clean day — which persuades
-   somebody who already likes habit trackers. This one opens on the reason
-   anybody sticks to anything, which is other people, and lets the mechanics
-   arrive once you care.
+   It opens on the reason anybody sticks to anything, which is other people,
+   and lets the mechanics arrive once you care. The first cut opened on the
+   mechanics instead — missions, a console, one Tpoint a clean day — and was
+   deleted once this one had replaced it everywhere.
 
-   film.js is untouched and still the one on the homepage. Both exist so they
-   can be compared; whichever loses should then be deleted rather than left to
-   rot as a second copy of an engine.
-
-   Its voice lives in /assets/vo2/ so the two can never overwrite each other's
-   takes — the scene ids are n1..n9 for the same reason.
+   Scene ids are n1..n9 (Club), a1..a4, b1..b6 and c1..c2 (solo).
 
    Scene engine + 9 animated scenes.
    Pure DOM + Web Animations API. Female AI voiceover (speechSynthesis)
@@ -1252,9 +1246,9 @@ function escText(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt
   }
 
   /* ---- pre-recorded voiceover (ElevenLabs) ----
-     One MP3 per scene per language: /assets/vo/<id>.mp3 in English (voice:
-     Liam) and /assets/vo/zh/<id>.mp3 in Traditional Chinese (voice: Akun, a
-     native Taiwan-Mandarin speaker). Bump VOV to bust the CDN cache when
+     One MP3 per scene per language: /assets/vo3/<id>.mp3 in English (voice:
+     Liam) and /assets/vo3/zh/<id>.mp3 in Traditional Chinese (voice: Kevin Tu,
+     a native Taiwan-Mandarin speaker) — /assets/vo-solo3/ for the solo cut. Bump VOV to bust the CDN cache when
      regenerating. Falls back to the browser voice if a clip won't load/play.
 
      /zh shipped for a while with no clips at all and fell through to

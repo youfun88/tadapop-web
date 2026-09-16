@@ -4,17 +4,17 @@
  *
  * The film is narrated in two languages, one MP3 per scene:
  *
- *   English             assets/vo/<id>.mp3       voice: Liam
- *   Traditional Chinese assets/vo/zh/<id>.mp3    voice: Akun (native Taiwan)
+ *   English             assets/vo3/<id>.mp3       voice: Liam
+ *   Traditional Chinese assets/vo3/zh/<id>.mp3    voice: Akun (native Taiwan)
  *
- * The spoken text is NOT stored here. film.js owns it, in the COPY i18n object
+ * The spoken text is NOT stored here. film3.js owns it, in the COPY i18n object
  * as `'<id>.vo'` under `en:` / `zh:`, and this script reads those lines so the
  * audio can never drift from the captions and visuals.
  *
  * ──────────────────────────────────────────────────────────────────────────
  * WHY THIS SCRIPT MEASURES WHAT IT RENDERS
  *
- * Each scene runs for a fixed `dur` in film.js and the next scene stops the
+ * Each scene runs for a fixed `dur` in film3.js and the next scene stops the
  * audio dead. A clip longer than its scene is not "slightly long" — it is cut
  * off mid-word, which is exactly how the Chinese film used to fail.
  *
@@ -27,7 +27,7 @@
  * the scene ends — longest, because a rushed read is worse than a full one,
  * and there is no reason to prefer a take that leaves dead air. If no take
  * fits it keeps the shortest, prints OVER, and tells you to shorten the line
- * in film.js. Shorten the text; do not lengthen the scene.
+ * in film3.js. Shorten the text; do not lengthen the scene.
  *
  * Without ffprobe on PATH it still renders, but it cannot check fit and says so.
  * ──────────────────────────────────────────────────────────────────────────
@@ -72,14 +72,14 @@ const optVal = (name, dflt) => {
 /* --film / --out let this drive a second cut (film2.js → assets/vo2) without
    a forked copy of the script. Defaults are the original film, so every
    existing invocation in the header above still means what it says. */
-const FILM_JS = join(ROOT, optVal('--film', 'film.js'));
+const FILM_JS = join(ROOT, optVal('--film', 'film3.js'));
 /* A SUBDIRECTORY of assets/, not a path. `--out assets/vo2` silently wrote
    every clip to assets/assets/vo2 — a real URL that the film never requests,
    so a whole regeneration appeared to succeed while the site kept serving the
    old audio under the new captions. Accept either spelling. */
-const VO_SUBDIR = optVal('--out', 'vo').replace(/^\.?\/*/, '').replace(/^assets\//, '').replace(/\/+$/, '');
+const VO_SUBDIR = optVal('--out', 'vo3').replace(/^\.?\/*/, '').replace(/^assets\//, '').replace(/\/+$/, '');
 if (!VO_SUBDIR || VO_SUBDIR.includes('..')) {
-  console.error(`--out must name a folder under assets/ (got ${JSON.stringify(optVal('--out', 'vo'))})`);
+  console.error(`--out must name a folder under assets/ (got ${JSON.stringify(optVal('--out', 'vo3'))})`);
   process.exit(1);
 }
 
@@ -127,7 +127,7 @@ const dryRun = flags.has('--dry-run');
 function die(msg) { console.error(`\n✗ ${msg}\n`); process.exit(1); }
 
 /**
- * Pull the narration and the scene clock out of film.js.
+ * Pull the narration and the scene clock out of film3.js.
  *
  * Two independent reads, because the two live in different places: the text is
  * in the COPY i18n object, the length is on the scene object that renders it.
@@ -135,7 +135,7 @@ function die(msg) { console.error(`\n✗ ${msg}\n`); process.exit(1); }
 async function readFilm(lang) {
   const src = await readFile(FILM_JS, 'utf8');
 
-  // `dur` is the authority on how long a clip may be — but film.js lets a
+  // `dur` is the authority on how long a clip may be — but film3.js lets a
   // language lengthen a scene it cannot fit in (SCENE_DUR), and a clip measured
   // against the English length would be rejected for overrunning a scene that
   // is no longer that long. Read the override too.
@@ -271,7 +271,7 @@ async function synth(sc, cfg, check) {
          : timed.reduce((a, b) => (b.secs < a.secs ? b : a));
     note = fits.length
       ? `${pick.secs.toFixed(2)}s / ${sc.dur.toFixed(1)}s scene  (${(limit - pick.secs).toFixed(2)}s spare)`
-      : `${pick.secs.toFixed(2)}s OVERRUNS a ${sc.dur.toFixed(1)}s scene — SHORTEN '${sc.id}.vo' in film.js`;
+      : `${pick.secs.toFixed(2)}s OVERRUNS a ${sc.dur.toFixed(1)}s scene — SHORTEN '${sc.id}.vo' in film3.js`;
   }
 
   await writeFile(dest, await readFile(pick.file));
@@ -288,13 +288,13 @@ async function synth(sc, cfg, check) {
   return fitOk && saidOk;
 }
 
-/** Increment `const VOV = N` in film.js so the new clips bust the CDN cache. */
+/** Increment `const VOV = N` in film3.js so the new clips bust the CDN cache. */
 async function bumpVov() {
   const src = await readFile(FILM_JS, 'utf8');
   const next = src.replace(/(const VOV = )(\d+)(;)/, (_, a, n, c) => `${a}${Number(n) + 1}${c}`);
   if (next === src) { console.warn('  ! could not find `const VOV = N` to bump — do it by hand.'); return; }
   await writeFile(FILM_JS, next);
-  console.log(`  ✓ bumped VOV → ${next.match(/const VOV = (\d+)/)[1]} in film.js`);
+  console.log(`  ✓ bumped VOV → ${next.match(/const VOV = (\d+)/)[1]} in film3.js`);
 }
 
 async function main() {
@@ -336,7 +336,7 @@ async function main() {
     console.log(`  vo line is never displayed, so spell it however it reads correctly.\n`);
     process.exit(1);
   }
-  console.log(`\nDone.${flags.has('--bump') ? '' : '  Remember to bump `const VOV` in film.js (or re-run with --bump).'}\n`);
+  console.log(`\nDone.${flags.has('--bump') ? '' : '  Remember to bump `const VOV` in film3.js (or re-run with --bump).'}\n`);
 }
 
 main().catch((e) => die(e.stack || String(e)));

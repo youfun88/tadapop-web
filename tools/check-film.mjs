@@ -29,9 +29,9 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-/* --film checks another engine file (film3.js, a review copy) the same way. */
+/* --film checks another engine file the same way; film3.js is the live one. */
 const argAfter = (flag) => { const i = process.argv.indexOf(flag); return i > 0 ? process.argv[i + 1] : null; };
-const FILM = argAfter('--film') || 'film2.js';
+const FILM = argAfter('--film') || 'film3.js';
 const SRC = readFileSync(join(ROOT, FILM), 'utf8');
 const QUIET = process.argv.includes('--quiet');
 
@@ -45,7 +45,7 @@ const pass = (what) => { if (!QUIET) console.log(`  ✓ ${what}`); };
 const section = (name) => console.log(`\n${name}`);
 
 /* ------------------------------------------------------------------ parse
-   film2.js is a browser IIFE, so it cannot be imported. The three things
+   film3.js is a browser IIFE, so it cannot be imported. The three things
    worth checking are plain object literals, and they are lifted out and
    evaluated rather than pattern-matched — a regex over copy would miss the
    nested markup that is the whole point of a caption. */

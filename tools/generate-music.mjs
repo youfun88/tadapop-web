@@ -16,7 +16,7 @@
  *
  * Judge a bed UNDER the narration, never on its own. Any track sounds fine in
  * isolation; the question is whether BOBO is still intelligible over it, which
- * is why film.js ducks the music to MUSIC_DUCK while he speaks.
+ * is why film3.js ducks the music to MUSIC_DUCK while he speaks.
  * ──────────────────────────────────────────────────────────────────────────
  * USAGE
  *   source ~/.config/tadapop/eleven.env
@@ -48,14 +48,33 @@ const API_KEY = process.env.ELEVENLABS_API_KEY || process.env.XI_API_KEY || '';
 
 /**
  * Length: the film is the sum of the scene durations, and the track has to
- * outlast it — film.js loops the bed under the end card, and a loop point that
+ * outlast it — film3.js loops the bed under the end card, and a loop point that
  * lands mid-film is audible. Read the real number rather than hard-coding it.
  */
 async function filmLengthMs() {
-  const src = await readFile(join(ROOT, 'film.js'), 'utf8');
-  let total = 0;
-  for (const m of src.matchAll(/id:\s*'s\d+',\s*dur:\s*(\d+)/g)) total += Number(m[1]);
-  return total || 75000;
+  const src = await readFile(join(ROOT, 'film3.js'), 'utf8');
+  const dur = {};
+  for (const m of src.matchAll(/id:\s*'([a-z]\d+)',\s*dur:\s*(\d+)/g)) dur[m[1]] = Number(m[2]);
+  for (const m of src.matchAll(/recut\([^,]+,\s*'([a-z]\d+)',\s*(\d+)\)/g)) dur[m[1]] = Number(m[2]);
+  // A language may lengthen scenes it cannot fit in — zh runs the longest.
+  const over = {};
+  const sd = (/const SCENE_DUR = \{([\s\S]*?)\} \};/.exec(src) || [, ''])[1];
+  for (const m of sd.matchAll(/(\w+): \{([^}]*)\}/g)) {
+    over[m[1]] = {};
+    for (const e of m[2].matchAll(/([a-z]\d+):\s*(\d+)/g)) over[m[1]][e[1]] = Number(e[2]);
+  }
+  const cuts = [...src.matchAll(/if \(CUT === '\w+'\) return \[([^\]]+)\]/g)].map((m) => m[1]);
+  const full = /\n {2}return \[([^\]]+)\];\n/.exec(src);
+  if (full) cuts.push(full[1]);
+  let longest = 0;
+  for (const list of cuts) {
+    const ids = list.split(',').map((x) => x.trim()).filter(Boolean);
+    for (const lang of ['en', 'zh']) {
+      const t = ids.reduce((a, id) => a + ((over[lang] && over[lang][id]) || dur[id] || 0), 0);
+      if (t > longest) longest = t;
+    }
+  }
+  return longest || 75000;
 }
 
 /** The briefs that produced the current bed. T4 is the one that shipped. */
@@ -109,7 +128,7 @@ async function main() {
     await mkdir(OUT, { recursive: true });
     await copyFile(from, DEST);
     console.log(`\n  ✓ installed ${key} → ${DEST.replace(ROOT + '/', '')}  (${s.toFixed(1)}s)`);
-    return console.log(`  Bump \`const VOV\` in film.js so the CDN serves it.\n`);
+    return console.log(`  Bump \`const VOV\` in film3.js so the CDN serves it.\n`);
   }
 
   if (!API_KEY) die('Set ELEVENLABS_API_KEY (source ~/.config/tadapop/eleven.env) and re-run.');
