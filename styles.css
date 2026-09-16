@@ -1561,7 +1561,9 @@ a.store-badge:hover { border-color: var(--amber); }
 .poster-hits .hit-copy { display: flex; flex-direction: column; min-width: 0; }
 .poster-hits .hit-text {
   font-family: var(--f-disp, inherit); font-weight: 700;
-  font-size: clamp(13px, 1.45vw, 16px); line-height: 1.25;
+  /* Bigger than it was: this line is the invitation, and at 16px it read as a
+     caption on the poster rather than as the thing to press (owner, 2026-09-16). */
+  font-size: clamp(15px, 1.7vw, 19px); line-height: 1.25;
 }
 /* The second line says what pressing it DOES — "watch to learn" — because a
    bare "Check-in Club · 180 sec" read as a label, not as a way to find out
@@ -1569,8 +1571,8 @@ a.store-badge:hover { border-color: var(--amber); }
    on phones too: that is where it was missing most. */
 .poster-hits .hit-meta {
   font-family: ui-monospace, "JetBrains Mono", monospace;
-  font-size: 11px; letter-spacing: .06em;
-  color: var(--amber, #FFB454); margin-top: 4px;
+  font-size: 12.5px; letter-spacing: .05em;
+  color: var(--amber, #FFB454); margin-top: 5px;
   /* Two items — the phrase and the runtime — so a narrow button wraps
      BETWEEN them. As inline spans with no space between, there was no break
      point at all and "Watch to learn · 115 sec" ran out of the button. */
@@ -1645,10 +1647,10 @@ a.store-badge:hover { border-color: var(--amber); }
     border-top: 1px solid var(--line); padding: 10px 10px 12px; gap: 8px;
   }
   .poster-hits .hit { padding: 9px 10px; gap: 10px; }
-  .poster-hits .hit-text { font-size: 14px; }
+  .poster-hits .hit-text { font-size: 16px; }
   /* Shown on phones now — it is what says the button plays a film. This
      rule also outranks the blanket `.hit-meta { display: none }` below. */
-  .poster-hits .hit-meta { display: flex; font-size: 10.5px; }
+  .poster-hits .hit-meta { display: flex; font-size: 12px; }
 }
 /* At phone width two buttons side by side are ~170px each: the questions broke
    mid-word (打卡俱樂部是 / 什麼？) and "Watch to learn" ran out of the button

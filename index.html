@@ -363,16 +363,16 @@
           </div>
 
           <!-- Two films, one poster. data-film-cut is what film3.js reads to
-               pick the assembly; .film-launch-time is where it stamps that
-               cut's real runtime — the number must not be written anywhere
-               else, because a hand-typed one drifts. -->
+               pick the assembly. No runtime here (removed 2026-09-16): the film
+               pages' play buttons still show one, and it is stamped by film3.js
+               from the scenes — never write that number by hand. -->
           <div class="poster-hits">
             <button class="hit" type="button" data-film-cut="arena" aria-haspopup="dialog"
                     aria-label="What's the Check-in Club? Watch a short film about doing a challenge with friends, with voiceover and captions">
               <span class="play-disc" aria-hidden="true">▶</span>
               <span class="hit-copy">
                 <span class="hit-text">What's the Check-in Club?</span>
-                <span class="hit-meta"><span class="hit-say">Watch to learn</span><span class="film-launch-time"></span></span>
+                <span class="hit-meta"><span class="hit-say">Watch to learn</span></span>
               </span>
             </button>
             <button class="hit is-solo" type="button" data-film-cut="solo" aria-haspopup="dialog"
@@ -380,7 +380,7 @@
               <span class="play-disc" aria-hidden="true">▶</span>
               <span class="hit-copy">
                 <span class="hit-text">How do daily missions work?</span>
-                <span class="hit-meta"><span class="hit-say">Watch to learn</span><span class="film-launch-time"></span></span>
+                <span class="hit-meta"><span class="hit-say">Watch to learn</span></span>
               </span>
             </button>
           </div>
