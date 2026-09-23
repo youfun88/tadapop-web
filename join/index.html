@@ -82,6 +82,10 @@
   .ch-name { display: flex; align-items: baseline; gap: .5rem; font-size: 1.2rem; font-weight: 700;
              line-height: 1.3; margin: 0 0 .4rem; opacity: 1; }
   .ch-emoji { font-size: 1.35rem; line-height: 1; flex: none; }
+  /* A built-in mark, drawn where the emoji would have gone. Height is set
+     per mark in the script below, because the two are different shapes:
+     artwork takes the emoji's whole box, lettering only its cap height. */
+  .ch-emoji img { display: block; width: auto; }
   .ch-meta { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .78rem;
              letter-spacing: .04em; text-transform: uppercase; opacity: .62; margin: 0; }
   .ch-rules { margin: .85rem 0 0; padding: 0 0 0 .85rem; border-left: 2px solid rgba(255,180,84,.55);
@@ -370,6 +374,44 @@
     var KEY = 'sb_publishable_FFgmUW1BTmbJWPQvMA22Bg_f9uAMuBh';
     function plural(n, one, many) { return n === 1 ? one : many; }
 
+    /* The challenge's icon, the way the app draws it.
+       `challenges.emoji` holds either an ordinary emoji or `icon:<id>` naming
+       one of the marks that ship with the app — so an invite whose challenge
+       used a mark showed the literal text "icon:crazy-six" beside the name.
+       Mirrors features/challengeIcon in the app repo; if a mark is added
+       there, add its artwork here too. An unrecognised token falls back to the
+       app's default emoji rather than the raw token, because "icon:something"
+       is never the right thing to put in front of somebody.
+       The app's third kind — the convener's own uploaded artwork — is not
+       drawn here: it lives in a private bucket this page cannot sign a URL
+       for, so such a challenge shows its emoji instead. */
+    var MARKS = {
+      /* Heights are ems of the emoji beside them, matching how the app sizes
+         each: the crazy-six is a picture and takes the whole box; the 100 is
+         lettering, sized to cap height so it doesn't tower over the name. */
+      'crazy-six': { src: '/assets/marks/crazy-six.png', em: 1 },
+      '100-days': { src: '/assets/marks/100-days.svg', em: 0.75 }
+    };
+    var DEFAULT_EMOJI = '\uD83C\uDFC1';
+
+    function setIcon(el, emoji) {
+      var mark = null;
+      if (emoji && emoji.indexOf('icon:') === 0) mark = MARKS[emoji.slice(5)] || false;
+      if (mark) {
+        var img = new Image();
+        img.src = mark.src;
+        img.alt = '';
+        img.style.height = mark.em + 'em';
+        /* Artwork that fails to load leaves a hole where the icon was; the
+           default emoji is a better answer than a broken-image glyph. */
+        img.onerror = function () { el.textContent = DEFAULT_EMOJI; };
+        el.textContent = '';
+        el.appendChild(img);
+        return;
+      }
+      el.textContent = mark === false || !emoji ? DEFAULT_EMOJI : emoji;
+    }
+
     fetch(API, {
       method: 'POST',
       headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json' },
@@ -387,7 +429,7 @@
           return;
         }
         document.getElementById('ch-title').textContent = c.name || 'A challenge';
-        if (c.emoji) document.getElementById('ch-emoji').textContent = c.emoji;
+        setIcon(document.getElementById('ch-emoji'), c.emoji);
 
         var bits = [];
         if (c.days_per_week) bits.push(c.days_per_week + ' ' + plural(c.days_per_week, 'day', 'days') + ' a week');
