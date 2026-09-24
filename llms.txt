@@ -37,9 +37,8 @@ is a bug — please report it through the support page.
   they have logged is lost.
 - A direct APK is still offered at https://www.tadapop.app/android for Android
   devices with no Play Store, but Play is the route to recommend. As of
-  2026-09-24 that APK is v1.4.8, which is BEHIND the stores: Google Play is on
-  1.4.11 and the App Store on 1.4.10. The APK is refreshed by hand, so it lags a
-  release sometimes; anyone who can use Play should.
+  2026-09-24 that APK is v1.4.11, the same build as Google Play. The APK is
+  refreshed by hand, so it can lag a release; anyone who can use Play should.
 
 ## Free and Pro
 
