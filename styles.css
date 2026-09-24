@@ -1436,6 +1436,44 @@ a.store-badge:hover { border-color: var(--amber); }
 .device-frame::after { right: -1px; top: 26%; height: 13%; }
 .app-copy p { color: var(--dim); font-size: 15.5px; margin-top: 12px; }
 
+/* ── 5b · what's new ──────────────────────────────────────────────
+   The app section's layout mirrored: copy first, phone on the right, so two
+   phone-and-text sections in a row do not read as the same block twice. On a
+   narrow screen the phone leads again, as it does everywhere else. */
+.news-show { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
+.news-show .app-art { order: 2; }
+.news-device { width: min(300px, 82%); }
+.news .app-copy p:first-child { margin-top: 0; }
+.news-lead { color: var(--ink) !important; font-size: 17px !important; line-height: 1.6; }
+/* The three calendar colours, drawn as the tiles they are in the app. */
+.news-key { white-space: nowrap; font-weight: 600; }
+.news-key::before {
+  content: ""; display: inline-block; width: .72em; height: .72em; border-radius: 3px;
+  margin-right: .35em; vertical-align: .02em;
+}
+.news-key-go { color: var(--go); }
+.news-key-go::before { background: var(--go); }
+.news-key-blue { color: #9DB0EA; }
+.news-key-blue::before { background: #4A5A93; }
+.news-key-dim { color: var(--ink); }
+.news-key-dim::before { background: #2A3247; box-shadow: 0 0 0 1px var(--line-lit) inset; }
+.news-sub {
+  font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--amber); margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line);
+}
+.news-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
+.news-list li { position: relative; padding-left: 20px; color: var(--dim); font-size: 15px; line-height: 1.6; }
+/* Drawn, not a glyph: a tiny "▸" dropped out of some lines on a phone. */
+.news-list li::before { content: ""; position: absolute; left: 2px; top: .8em; width: 8px; height: 2px; border-radius: 1px; background: var(--amber); }
+.news-list b { color: var(--ink); font-weight: 600; }
+:lang(zh-Hant) .news-sub { letter-spacing: .08em; }
+:lang(zh-Hant) .news-list li,
+:lang(zh-Hant) .news-lead { line-height: 1.8; }
+@media (max-width: 900px) {
+  .news-show { grid-template-columns: 1fr; }
+  .news-show .app-art { order: -1; }
+}
+
 /* ── 5 · screen by screen ────────────────────────────────────────── */
 .shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); margin-top: 30px; }
 .shot { display: flex; flex-direction: column; gap: 12px; align-items: center; }
@@ -1592,10 +1630,12 @@ a.store-badge:hover { border-color: var(--amber); }
 @media (max-width: 1080px) {
   .rules-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 900px) {
-  /* The nav collapses here, not at a phone width: five mono labels plus a
+@media (max-width: 999px) {
+  /* The nav collapses here, not at a phone width: six mono labels plus a
      language switch plus a CTA run out of room long before 400px, and the
-     Chinese labels run out sooner still. */
+     Chinese labels run out sooner still. It was 900 until "What's new" made
+     it six: between 900 and ~990 every English label then wrapped onto two
+     lines. 1000 is where the full row still fits in both languages. */
   .nav-menu, .nav-tail { display: none; }
   .nav-toggle { display: flex; }
   .site-nav.open .nav-menu,
@@ -1606,6 +1646,8 @@ a.store-badge:hover { border-color: var(--amber); }
   .site-nav.open .nav-tail { order: 4; gap: 8px; }
   .site-nav.open .nav-tail .lang-switch,
   .site-nav.open .nav-tail .site-cta { min-height: 48px; justify-content: center; }
+}
+@media (max-width: 900px) {
   /* 16:10 buys back the height the wordmark and caption need under ~800px. */
   .poster-art { aspect-ratio: 16 / 10; }
   .player { width: min(980px, calc((100dvh - 300px) * 16 / 10)); }
