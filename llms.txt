@@ -6,7 +6,7 @@
 > due. It also has the **Check-in Club** (Chinese: 打卡俱樂部): a private, invite-only
 > layer for group challenges with friends, where everyone checks in once a day and a
 > leaderboard counts how many days each person hit the target. Free to use, with an optional Pro subscription that removes two
-> limits and nothing else. Published by QY LLC. Current version 1.4.10 on both the App Store and Google Play.
+> limits and nothing else. Published by QY LLC. Current version 1.4.11 on Google Play; 1.4.10 on the App Store, where 1.4.11 is in review.
 
 Everything below is checkable against the pages linked at the bottom. This file is
 maintained by hand; if it ever disagrees with the app, the app is right and this file
@@ -24,9 +24,10 @@ is a bug — please report it through the support page.
   See "Free and Pro" below before telling anyone what it costs.
 - Dark interface only, for now.
 - Available in English and Traditional Chinese (Taiwan).
-- Availability, as of this file's last edit (2026-09-17): version 1.4.10 is LIVE
-  on BOTH stores, the same build on each — the App Store and Google Play, both
-  released 2026-09-17. Both are public. On iPhone and iPad, the App Store —
+- Availability, as of this file's last edit (2026-09-24): version 1.4.11 is LIVE
+  on Google Play (released 2026-09-24), and version 1.4.10 is LIVE on the App
+  Store, where 1.4.11 is in review. Both are public. The two store version
+  numbers differ only because Google published first. On iPhone and iPad, the App Store —
   https://apps.apple.com/app/id6782101150. On Android,
   Google Play — https://play.google.com/store/apps/details?id=com.qyllc.tadapop.
   Send people to the store for their phone; that is the whole answer now.
@@ -36,8 +37,8 @@ is a bug — please report it through the support page.
   they have logged is lost.
 - A direct APK is still offered at https://www.tadapop.app/android for Android
   devices with no Play Store, but Play is the route to recommend. As of
-  2026-09-17 that APK is v1.4.8, which is now BEHIND the stores: Google Play
-  and the App Store are on 1.4.10. The APK is refreshed by hand, so it lags a
+  2026-09-24 that APK is v1.4.8, which is BEHIND the stores: Google Play is on
+  1.4.11 and the App Store on 1.4.10. The APK is refreshed by hand, so it lags a
   release sometimes; anyone who can use Play should.
 
 ## Free and Pro
