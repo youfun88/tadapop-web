@@ -1198,7 +1198,10 @@ section[id] { scroll-margin-top: calc(var(--bar) + 12px); }
    fold on a short laptop. 330px is the bar, the chip, two lines of h1 and the
    gaps. dvh, not vh, because a phone's browser chrome collapses as you scroll
    and vh would size the player against a viewport that isn't there yet. */
-.player { width: min(980px, calc((100dvh - 330px) * 16 / 9)); min-width: 0; margin: 22px auto 0; position: relative; }
+/* Sized from the window's HEIGHT, so it also needs a cap from its width:
+   without max-width a tall window under ~1000px wide pushed it 40px past
+   the right edge, where body's overflow-x quietly cropped it. */
+.player { width: min(980px, calc((100dvh - 330px) * 16 / 9)); max-width: 100%; min-width: 0; margin: 22px auto 0; position: relative; }
 .player-frame {
   position: relative;
   border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
