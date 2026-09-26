@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Promo stage — Tadapop</title>
+<!--
+  The source of the social promo, not a page anyone is meant to land on.
+  tools/promo/render.mjs opens this at 360x640 CSS px with a device scale of 3,
+  seeks it frame by frame through window.__promo.seek(t) and stitches the
+  screenshots into assets/promo/*.mp4. Open it in a browser to preview it live;
+  ?lang=zh for Chinese.
+
+  Every scene is a pure function of time — no setTimeout, no Web Animations —
+  so frame 412 always looks like frame 412, however slowly it is captured.
+-->
+<link rel="stylesheet" href="/styles.css" />
+<style>
+  html, body { margin: 0; background: #05070c; }
+  body { display: grid; place-items: center; min-height: 100vh; }
+  #stage {
+    position: relative; width: 360px; height: 640px; overflow: hidden;
+    background: radial-gradient(120% 80% at 50% 38%, #141b2e 0%, #0B0E17 62%, #070910 100%);
+    color: #E8ECF5; font-family: 'Inter', 'PingFang TC', system-ui, sans-serif;
+  }
+  #stage * { box-sizing: border-box; }
+  .grid {
+    position: absolute; inset: 0; opacity: .5; pointer-events: none;
+    background-image: linear-gradient(#1c2540 1px, transparent 1px), linear-gradient(90deg, #1c2540 1px, transparent 1px);
+    background-size: 36px 36px;
+    -webkit-mask-image: radial-gradient(90% 70% at 50% 45%, #000 20%, transparent 80%);
+            mask-image: radial-gradient(90% 70% at 50% 45%, #000 20%, transparent 80%);
+  }
+  .scene { position: absolute; inset: 0; }
+  .disp { font-family: 'Chivo', 'PingFang TC', system-ui, sans-serif; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  /* Captions sit in the top third: TikTok and Reels cover the bottom fifth and
+     the right edge with their own buttons. */
+  .cap {
+    position: absolute; left: 24px; right: 24px; top: 78px; text-align: center;
+    font-family: 'Chivo', 'PingFang TC', system-ui, sans-serif; font-weight: 900;
+    font-size: 29px; line-height: 1.18; letter-spacing: -.2px;
+  }
+  :lang(zh) .cap { font-weight: 800; letter-spacing: 1px; font-size: 28px; line-height: 1.3; }
+  .cap b { color: #FFB454; font-weight: inherit; }
+  .panel { background: #141A29; border: 1px solid #26304a; border-radius: 18px; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: .14em;
+    padding: 4px 8px; border-radius: 6px; border: 1px solid #26304a; color: #7C8AA5;
+  }
+  :lang(zh) .tag { letter-spacing: .06em; }
+  .bubble {
+    max-width: 78%; padding: 9px 13px; border-radius: 16px; font-size: 14.5px; line-height: 1.35;
+    background: #1A2233; border: 1px solid #26304a;
+  }
+  .bubble .who { display: block; font-size: 10.5px; font-weight: 600; margin-bottom: 2px; }
+  .bubble.me { align-self: flex-end; background: #FFB454; color: #1a1205; border-color: #FFB454; }
+  .ava {
+    width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+    font-family: 'Chivo', 'PingFang TC', sans-serif; font-weight: 700; font-size: 16px; color: #0B0E17;
+  }
+  .row {
+    display: flex; align-items: center; gap: 11px; padding: 10px 12px; border-radius: 12px;
+    position: absolute; left: 12px; right: 12px; height: 54px;
+  }
+  .row.me { background: rgba(255,180,84,.09); box-shadow: inset 0 0 0 1px rgba(255,180,84,.35); }
+  .rank { font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 17px; width: 18px; text-align: center; color: #4F5B76; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px; height: 50px; border-radius: 14px;
+    font-family: 'Chivo', 'PingFang TC', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: .5px;
+  }
+  .conf { position: absolute; width: 8px; height: 8px; }
+</style>
+</head>
+<body>
+  <div id="stage"><div class="grid"></div><div id="root"></div></div>
+  <script src="promo.js"></script>
+</body>
+</html>

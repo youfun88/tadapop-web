@@ -75,7 +75,7 @@
       ]
     },
     {
-      "source": "/(film-club|film-solo|film-club/index.html|film-solo/index.html)",
+      "source": "/(film-club|film-solo|promo|film-club/index.html|film-solo/index.html|promo/index.html)",
       "headers": [
         {
           "key": "Cache-Control",
