@@ -25,9 +25,9 @@
       k3: '03 · PLAN THE HARD DAY', ifc: 'IF', ift: 'I’m tired', thenc: 'THEN', thent: 'I do just 1 minute',
       k4: '04 · FEEL IT, BECOME IT', done: 'Done', proof: 'proof of who you’re becoming',
       k5: 'MISSED ONE?', days: ['M', 'T', 'W', 'T', 'F', 'S', 'S'], rule: 'Never miss twice.',
-      k6: 'GIVE IT TIME', daysLabel: 'days, on average',
+      k6: 'GIVE IT TIME', daysLabel: 'days, on average, in one study',
       k7: 'HOW TADAPOP HELPS', pick: 'Pick', plan: 'Plan', check: 'Check in', w: 'W',
-      steps: ['3 slow breaths', '2 minutes', '5 minutes', '10 minutes'], howGo: 'How did this week feel?', easy: 'Easy', right: 'Right', hard: 'Hard',
+      steps: ['3 slow breaths', '2 minutes', '5 minutes', '10 minutes'], howGo: 'Last week: 5 of 7 days', easy: 'Grow it', right: 'Keep it', hard: 'Smaller',
       tag: 'Habit programs', cta: 'Start today', free: 'Free',
     },
     zh: {
@@ -40,9 +40,9 @@
       k3: '03 · 先想好難熬的那天', ifc: '如果', ift: '我很累', thenc: '就', thent: '只做 1 分鐘',
       k4: '04 · 感受它，成為那個人', done: '完成', proof: '證明你正在成為那個人',
       k5: '漏掉一天？', days: ['一', '二', '三', '四', '五', '六', '日'], rule: '別連續漏兩天。',
-      k6: '給它時間', daysLabel: '天，平均來說',
+      k6: '給它時間', daysLabel: '天，一項研究的平均',
       k7: 'TADAPOP 怎麼幫你', pick: '選擇', plan: '計畫', check: '每週回顧', w: '第',
-      steps: ['深呼吸 3 次', '2 分鐘', '5 分鐘', '10 分鐘'], howGo: '這週感覺如何？', easy: '輕鬆', right: '剛好', hard: '太難',
+      steps: ['深呼吸 3 次', '2 分鐘', '5 分鐘', '10 分鐘'], howGo: '上週做到 5/7 天', easy: '長大一點', right: '維持', hard: '小一點',
       tag: '習慣養成計畫', cta: '就從今天開始', free: '免費',
     },
   }[LANG];
@@ -370,7 +370,7 @@
       c2.appendChild(plan);
       const q = el('div', 'panel', { padding: '8px 6px', borderRadius: '12px', fontSize: '12px', lineHeight: '1.3' }, COPY.howGo);
       const chips = el('div', null, { display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '6px' });
-      const cs = [['😌', COPY.easy], ['👍', COPY.right], ['😓', COPY.hard]].map(([e, t], i) => {
+      const cs = [['🌱', COPY.easy], ['👍', COPY.right], ['🪶', COPY.hard]].map(([e, t], i) => {
         const c = el('div', 'chip', { justifyContent: 'center', fontSize: '12.5px', padding: '7px 8px' }, e + ' ' + t);
         chips.appendChild(c);
         return c;
@@ -387,8 +387,8 @@
         cs.forEach((c, i) => show(c, lt, C('check') + 0.3 + i * 0.3, { dy: 6, s: 0.8 }));
         // "adjust when life gets hard": the check-in answer lights up.
         const pick = lt > C('adjust');
-        cs[1].style.borderColor = pick ? COL.go : COL.line;
-        cs[1].style.background = pick ? 'rgba(91,227,155,.14)' : COL.panel2;
+        cs[0].style.borderColor = pick ? COL.go : COL.line;
+        cs[0].style.background = pick ? 'rgba(91,227,155,.14)' : COL.panel2;
       };
     },
 

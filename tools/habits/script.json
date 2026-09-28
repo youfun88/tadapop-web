@@ -1,5 +1,5 @@
 {
-  "_about": "The habit-programs intro film: the narration, one entry per scene. Read by vo.mjs (the voice) and habits.js (the captions and the scene clock). What the best habit books agree on, in our own words: start tiny (Fogg, Clear), tie it to something you already do (Fogg's anchors, Clear's stacking), plan the hard day (Gollwitzer's if-then plans, Oettingen), let each time count as proof of who you are becoming and feel good about it (Clear, Fogg), be kind after a miss (Lally 2009: one miss barely matters; self-compassion research), and give it time (Lally: 66 days on average). The four-in-ten figure is Wood, Quinn & Kashy 2002 (43%).",
+  "_about": "The habit-programs intro film: the narration, one entry per scene. Read by vo.mjs (the voice) and habits.js (the captions and the scene clock). What the best habit books agree on, in our own words: start tiny (Fogg, Clear), tie it to something you already do (Fogg's anchors, Clear's stacking), plan the hard day (Gollwitzer's if-then plans, Oettingen), let each time count as proof of who you are becoming and feel good about it (Clear, Fogg), be kind after a miss (Lally 2009: one miss barely matters; self-compassion research), and give it time (Lally 2009: a median of about 66 days, 18 to 254 across people; said as one study's finding, not a rule). The four-in-ten figure is Wood, Quinn & Kashy 2002 (43%).",
   "scenes": [
     {
       "id": "h1",
@@ -28,13 +28,13 @@
     },
     {
       "id": "h6",
-      "en": "Three. Plan for the hard day before it comes. If I'm tired, I'll do just one minute. People who decide their backup ahead of time are far more likely to follow through.",
+      "en": "Three. Plan for the hard day before it comes. If I'm tired, I'll do just one minute. People who decide their backup ahead of time are more likely to follow through.",
       "zh": "第三，在難熬的那天來臨之前，先想好對策。如果我很累，就只做一分鐘。事先想好備案的人，更容易堅持下去。"
     },
     {
       "id": "h7",
-      "en": "Four. Every time you do it, it's a little proof of who you're becoming. So stop for a second, and feel good about it. That feeling is what makes a habit stick.",
-      "zh": "第四，每做一次，都是一個小小的證明，證明你正在成為那個人。停一秒，為自己開心一下。這份感覺，會讓習慣留下來。"
+      "en": "Four. Every time you do it, it's a little proof of who you're becoming. So stop for a second, and feel good about it. That feeling helps a habit stick.",
+      "zh": "第四，每做一次，都是一個小小的證明，證明你正在成為那個人。停一秒，為自己開心一下。這份感覺，會幫習慣留下來。"
     },
     {
       "id": "h8",
@@ -43,8 +43,8 @@
     },
     {
       "id": "h9",
-      "en": "On average, a new habit takes about sixty-six days to feel automatic. It's not a sprint. It's a few minutes a day, growing a little at a time.",
-      "zh": "平均來說，一個新習慣大約要六十六天，才會變得自然。這不是衝刺，而是每天幾分鐘，一點一點長大。"
+      "en": "One study found a new habit took about sixty-six days, on average, to feel automatic. For some people much less, for others much more. It's not a sprint. It's a few minutes a day, growing a little at a time.",
+      "zh": "一項研究發現，新習慣平均大約要六十六天才會變得自然，有人快很多，有人慢很多。這不是衝刺，而是每天幾分鐘，一點一點長大。"
     },
     {
       "id": "h10",

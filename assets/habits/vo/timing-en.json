@@ -97,7 +97,7 @@
     ]
   },
   "h6": {
-    "len": 11.006,
+    "len": 9.613,
     "sentences": [
       {
         "text": "Three.",
@@ -105,20 +105,20 @@
       },
       {
         "text": "Plan for the hard day before it comes.",
-        "at": 1.289
+        "at": 0.813
       },
       {
         "text": "If I'm tired, I'll do just one minute.",
-        "at": 3.971
+        "at": 3.355
       },
       {
-        "text": "People who decide their backup ahead of time are far more likely to follow through.",
-        "at": 6.815
+        "text": "People who decide their backup ahead of time are more likely to follow through.",
+        "at": 5.828
       }
     ]
   },
   "h7": {
-    "len": 10.217,
+    "len": 8.313,
     "sentences": [
       {
         "text": "Four.",
@@ -126,15 +126,15 @@
       },
       {
         "text": "Every time you do it, it's a little proof of who you're becoming.",
-        "at": 1.184
+        "at": 0.917
       },
       {
         "text": "So stop for a second, and feel good about it.",
-        "at": 4.702
+        "at": 4.098
       },
       {
-        "text": "That feeling is what makes a habit stick.",
-        "at": 7.953
+        "text": "That feeling helps a habit stick.",
+        "at": 6.455
       }
     ]
   },
@@ -156,19 +156,23 @@
     ]
   },
   "h9": {
-    "len": 7.755,
+    "len": 13.886,
     "sentences": [
       {
-        "text": "On average, a new habit takes about sixty-six days to feel automatic.",
+        "text": "One study found a new habit took about sixty-six days, on average, to feel automatic.",
         "at": 0
       },
       {
+        "text": "For some people much less, for others much more.",
+        "at": 6.107
+      },
+      {
         "text": "It's not a sprint.",
-        "at": 4.122
+        "at": 9.648
       },
       {
         "text": "It's a few minutes a day, growing a little at a time.",
-        "at": 5.213
+        "at": 10.925
       }
     ]
   },

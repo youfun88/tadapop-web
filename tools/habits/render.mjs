@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url';
 import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 
-const VERSION = 1;
+const VERSION = 2;
 const VO_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'assets/habits/vo');
 const FPS = 30;
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
