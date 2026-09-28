@@ -1,0 +1,60 @@
+{
+  "_about": "The habit-programs intro film: the narration, one entry per scene. Read by vo.mjs (the voice) and habits.js (the captions and the scene clock). What the best habit books agree on, in our own words: start tiny (Fogg, Clear), tie it to something you already do (Fogg's anchors, Clear's stacking), plan the hard day (Gollwitzer's if-then plans, Oettingen), let each time count as proof of who you are becoming and feel good about it (Clear, Fogg), be kind after a miss (Lally 2009: one miss barely matters; self-compassion research), and give it time (Lally: 66 days on average). The four-in-ten figure is Wood, Quinn & Kashy 2002 (43%).",
+  "scenes": [
+    {
+      "id": "h1",
+      "en": "You've tried to change before. You started strong. And by week two, life got in the way.",
+      "zh": "你一定試過想改變。一開始很有衝勁，到了第二週，生活一忙，就放棄了。"
+    },
+    {
+      "id": "h2",
+      "en": "That's not a willpower problem. Researchers found that about four in ten things we do each day, we do out of habit, often while thinking about something else.",
+      "zh": "這不是意志力的問題。研究發現，我們每天做的事，大約四成是出於習慣，常常一邊想著別的事，就做完了。"
+    },
+    {
+      "id": "h3",
+      "en": "So the secret isn't trying harder. It's making the good thing automatic. And the best habit books agree on how.",
+      "zh": "所以秘訣不是更努力，而是讓好事變成自動的。最好的幾本習慣書，對方法都有一樣的答案。"
+    },
+    {
+      "id": "h4",
+      "en": "One. Start so small you can't say no. Two minutes. One page. One slow breath. Small enough that even a bad day can't stop you.",
+      "zh": "第一，從小到你沒辦法拒絕開始。兩分鐘、一頁書、一次深呼吸。小到連最糟的一天，都擋不住你。"
+    },
+    {
+      "id": "h5",
+      "en": "Two. Tie it to something you already do. After I brush my teeth, I floss one tooth. The old habit becomes the reminder.",
+      "zh": "第二，把它接在你本來就會做的事後面。刷完牙，就用牙線清一顆牙。舊習慣，就是新習慣的提醒。"
+    },
+    {
+      "id": "h6",
+      "en": "Three. Plan for the hard day before it comes. If I'm tired, I'll do just one minute. People who decide their backup ahead of time are far more likely to follow through.",
+      "zh": "第三，在難熬的那天來臨之前，先想好對策。如果我很累，就只做一分鐘。事先想好備案的人，更容易堅持下去。"
+    },
+    {
+      "id": "h7",
+      "en": "Four. Every time you do it, it's a little proof of who you're becoming. So stop for a second, and feel good about it. That feeling is what makes a habit stick.",
+      "zh": "第四，每做一次，都是一個小小的證明，證明你正在成為那個人。停一秒，為自己開心一下。這份感覺，會讓習慣留下來。"
+    },
+    {
+      "id": "h8",
+      "en": "And when you miss a day, and you will, be kind to yourself. One missed day changes almost nothing. Just don't miss two.",
+      "zh": "漏掉一天的時候，一定會有那麼一天，對自己溫柔一點。漏掉一天幾乎沒有影響，只要別連續漏兩天。"
+    },
+    {
+      "id": "h9",
+      "en": "On average, a new habit takes about sixty-six days to feel automatic. It's not a sprint. It's a few minutes a day, growing a little at a time.",
+      "zh": "平均來說，一個新習慣大約要六十六天，才會變得自然。這不是衝刺，而是每天幾分鐘，一點一點長大。"
+    },
+    {
+      "id": "h10",
+      "en": "That's how Tadapop helps. You pick what matters to you. We build a tiny plan around your day, grow it a little each week, ask how it's going, and adjust when life gets hard.",
+      "zh": "這就是 Tadapop 幫你的方式。你選一件重要的事，我們依照你的生活，排出小小的計畫，每週長大一點，問問你過得如何，遇到困難時，就一起調整。"
+    },
+    {
+      "id": "h11",
+      "en": "Pick one thing. Start small. Start today.",
+      "zh": "選一件事。從小開始。就從今天開始。"
+    }
+  ]
+}

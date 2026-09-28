@@ -1,0 +1,209 @@
+{
+  "h1": {
+    "len": 5.619,
+    "sentences": [
+      {
+        "text": "You've tried to change before.",
+        "at": 0
+      },
+      {
+        "text": "You started strong.",
+        "at": 1.834
+      },
+      {
+        "text": "And by week two, life got in the way.",
+        "at": 3.065
+      }
+    ]
+  },
+  "h2": {
+    "len": 9.056,
+    "sentences": [
+      {
+        "text": "That's not a willpower problem.",
+        "at": 0
+      },
+      {
+        "text": "Researchers found that about four in ten things we do each day, we do out of habit, often while thinking about something else.",
+        "at": 2.02
+      }
+    ]
+  },
+  "h3": {
+    "len": 6.223,
+    "sentences": [
+      {
+        "text": "So the secret isn't trying harder.",
+        "at": 0
+      },
+      {
+        "text": "It's making the good thing automatic.",
+        "at": 1.776
+      },
+      {
+        "text": "And the best habit books agree on how.",
+        "at": 3.982
+      }
+    ]
+  },
+  "h4": {
+    "len": 10.124,
+    "sentences": [
+      {
+        "text": "One.",
+        "at": 0
+      },
+      {
+        "text": "Start so small you can't say no.",
+        "at": 0.697
+      },
+      {
+        "text": "Two minutes.",
+        "at": 3.135
+      },
+      {
+        "text": "One page.",
+        "at": 4.307
+      },
+      {
+        "text": "One slow breath.",
+        "at": 5.654
+      },
+      {
+        "text": "Small enough that even a bad day can't stop you.",
+        "at": 7.442
+      }
+    ]
+  },
+  "h5": {
+    "len": 8.591,
+    "sentences": [
+      {
+        "text": "Two.",
+        "at": 0
+      },
+      {
+        "text": "Tie it to something you already do.",
+        "at": 0.952
+      },
+      {
+        "text": "After I brush my teeth, I floss one tooth.",
+        "at": 3.75
+      },
+      {
+        "text": "The old habit becomes the reminder.",
+        "at": 6.734
+      }
+    ]
+  },
+  "h6": {
+    "len": 11.006,
+    "sentences": [
+      {
+        "text": "Three.",
+        "at": 0
+      },
+      {
+        "text": "Plan for the hard day before it comes.",
+        "at": 1.289
+      },
+      {
+        "text": "If I'm tired, I'll do just one minute.",
+        "at": 3.971
+      },
+      {
+        "text": "People who decide their backup ahead of time are far more likely to follow through.",
+        "at": 6.815
+      }
+    ]
+  },
+  "h7": {
+    "len": 10.217,
+    "sentences": [
+      {
+        "text": "Four.",
+        "at": 0
+      },
+      {
+        "text": "Every time you do it, it's a little proof of who you're becoming.",
+        "at": 1.184
+      },
+      {
+        "text": "So stop for a second, and feel good about it.",
+        "at": 4.702
+      },
+      {
+        "text": "That feeling is what makes a habit stick.",
+        "at": 7.953
+      }
+    ]
+  },
+  "h8": {
+    "len": 8.499,
+    "sentences": [
+      {
+        "text": "And when you miss a day, and you will, be kind to yourself.",
+        "at": 0
+      },
+      {
+        "text": "One missed day changes almost nothing.",
+        "at": 4.272
+      },
+      {
+        "text": "Just don't miss two.",
+        "at": 7.245
+      }
+    ]
+  },
+  "h9": {
+    "len": 7.755,
+    "sentences": [
+      {
+        "text": "On average, a new habit takes about sixty-six days to feel automatic.",
+        "at": 0
+      },
+      {
+        "text": "It's not a sprint.",
+        "at": 4.122
+      },
+      {
+        "text": "It's a few minutes a day, growing a little at a time.",
+        "at": 5.213
+      }
+    ]
+  },
+  "h10": {
+    "len": 10.217,
+    "sentences": [
+      {
+        "text": "That's how Tadapop helps.",
+        "at": 0
+      },
+      {
+        "text": "You pick what matters to you.",
+        "at": 2.067
+      },
+      {
+        "text": "We build a tiny plan around your day, grow it a little each week, ask how it's going, and adjust when life gets hard.",
+        "at": 4.156
+      }
+    ]
+  },
+  "h11": {
+    "len": 3.297,
+    "sentences": [
+      {
+        "text": "Pick one thing.",
+        "at": 0
+      },
+      {
+        "text": "Start small.",
+        "at": 1.207
+      },
+      {
+        "text": "Start today.",
+        "at": 2.322
+      }
+    ]
+  }
+}
