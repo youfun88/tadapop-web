@@ -36,7 +36,8 @@ is a bug — please report it through the support page.
   they have logged is lost.
 - A direct APK is still offered at https://www.tadapop.app/android for Android
   devices with no Play Store, but Play is the route to recommend. As of
-  2026-09-24 that APK is v1.4.11, the same build as Google Play. The APK is
+  2026-09-29 that APK is v1.4.12 (versionCode 19), the same build that is in review
+  on Google Play and the App Store; both stores still serve 1.4.11 until approval. The APK is
   refreshed by hand, so it can lag a release; anyone who can use Play should.
 
 ## Habit programs (習慣養成計畫)
