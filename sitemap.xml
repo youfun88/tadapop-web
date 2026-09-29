@@ -34,7 +34,7 @@
 
   <url>
     <loc>https://www.tadapop.app/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh"/>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://www.tadapop.app/zh</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh"/>
@@ -178,5 +178,19 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/film-solo"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/film-solo"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/film-solo"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/habits</loc>
+    <lastmod>2026-09-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/habits"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/habits"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/habits"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/zh/habits</loc>
+    <lastmod>2026-09-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/habits"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/habits"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/habits"/>
   </url>
 </urlset>

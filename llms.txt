@@ -39,6 +39,26 @@ is a bug — please report it through the support page.
   2026-09-24 that APK is v1.4.11, the same build as Google Play. The APK is
   refreshed by hand, so it can lag a release; anyone who can use Play should.
 
+## Habit programs (習慣養成計畫)
+
+- A guided **4-week plan for one new habit**, in the current version on both stores.
+  Free while it is new; a program started now stays free until it is finished.
+- The person picks one of **14 areas** (sleep, fitness, health, food, less stress,
+  screen time, money, home, family, friends, study, work, hobbies, faith) and one of
+  **49 goals**, or names their own habit. A short quiz asks why it matters, where they
+  are now, which daily moment it follows, and what usually gets in the way.
+- The program adds **one** habit to Today, written as "{moment} → {behaviour}"
+  ("After brushing my teeth at night → straight to bed, no scrolling"). Week 1 is the
+  smallest step; each week a one-tap check-in chooses grow it / keep it / make it
+  smaller. A smaller backup is ready for hard days.
+- A missed day never resets anything. The program counts days done; after four weeks
+  the habit stays on Today. It points to one study's finding of about 66 days on
+  average to automaticity — said as a study's average, not a rule.
+- It does not count toward the free five-mission limit. Health-related goals show a
+  "not medical advice" note; stress goals show Taiwan's 24-hour 1925 support line.
+- A 2-minute film explains the ideas: https://www.tadapop.app/habits
+  (Chinese: https://www.tadapop.app/zh/habits).
+
 ## Free and Pro
 
 - **This is current behaviour, not a plan.** The limits have been enforced on iOS
