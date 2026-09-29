@@ -1806,3 +1806,13 @@ a.store-badge:hover { border-color: var(--amber); }
 }
 
 /* ── end home v2 ──────────────────────────────────────────────────── */
+
+/* What's new: a habit program, four screens across (two on narrow screens —
+   four phones stacked one under another is a long scroll for one idea). */
+.news-gallery-head { margin-top: 44px; }
+.shots.shots-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 18px; }
+@media (max-width: 999px) { .shots.shots-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* The phone fills its column here: the site-wide 62-70vw width is sized for
+   one phone per row and overflows two. */
+.shots.shots-4 .shot .device { width: min(240px, 100%); }
+@media (max-width: 560px) { .shots.shots-4 { gap: 14px; } .shots.shots-4 .shot-cap { font-size: 13px; } }
