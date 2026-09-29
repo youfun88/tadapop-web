@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url';
 import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 
-const VERSION = 2;
+const VERSION = 3;
 const VO_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'assets/habits/vo');
 const FPS = 30;
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -136,9 +136,11 @@ try {
     const clips = voice.map((v, i) => `[${i + 2}:a]aresample=44100,adelay=${Math.round(v.at * 1000)}|${Math.round(v.at * 1000)}[v${i}]`);
     const filter = clips.join(';') + ';' +
       voice.map((_, i) => `[v${i}]`).join('') + `amix=inputs=${voice.length}:normalize=0,apad[vo];` +
-      // The bed is mixed quiet for a voice already (-36 dB mean raw); lift it
-      // a little, and keep it well under the narration.
-      `[1:a]atrim=0:${dur.toFixed(3)},volume=1.6,afade=t=in:d=0.4[bed];` +
+      // The bed sits about 13 LU under the narration (the voice reads -24
+      // LUFS, the bed -29 raw, so x0.4 lands it near -37). v1/v2 lifted it
+      // x1.6, to within a dB of the voice: "the background music is too loud"
+      // (owner, 2026-09-29). Measure with ffmpeg -af ebur128 before changing.
+      `[1:a]atrim=0:${dur.toFixed(3)},volume=0.4,afade=t=in:d=0.4[bed];` +
       `[vo][bed]amix=inputs=2:normalize=0:duration=first,atrim=0:${dur.toFixed(3)},loudnorm=I=-16:TP=-1.5:LRA=11,afade=t=out:st=${fadeAt}:d=2.2[a]`;
     await run('ffmpeg', [...inputs,
       '-filter_complex', filter,

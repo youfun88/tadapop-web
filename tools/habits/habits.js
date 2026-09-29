@@ -26,8 +26,8 @@
       k4: '04 · FEEL IT, BECOME IT', done: 'Done', proof: 'proof of who you’re becoming',
       k5: 'MISSED ONE?', days: ['M', 'T', 'W', 'T', 'F', 'S', 'S'], rule: 'Never miss twice.',
       k6: 'GIVE IT TIME', daysLabel: 'days, on average, in one study',
-      k7: 'HOW TADAPOP HELPS', pick: 'Pick', plan: 'Plan', check: 'Check in', w: 'W',
-      steps: ['3 slow breaths', '2 minutes', '5 minutes', '10 minutes'], howGo: 'Last week: 5 of 7 days', easy: 'Grow it', right: 'Keep it', hard: 'Smaller',
+      k7: 'HOW TADAPOP HELPS', pick: 'Pick', plan: 'Plan', check: 'Check in',
+      inApp: 'IN TADAPOP',
       tag: 'Habit programs', cta: 'Start today', free: 'Free',
     },
     zh: {
@@ -41,8 +41,8 @@
       k4: '04 · 感受它，成為那個人', done: '完成', proof: '證明你正在成為那個人',
       k5: '漏掉一天？', days: ['一', '二', '三', '四', '五', '六', '日'], rule: '別連續漏兩天。',
       k6: '給它時間', daysLabel: '天，一項研究的平均',
-      k7: 'TADAPOP 怎麼幫你', pick: '選擇', plan: '計畫', check: '每週回顧', w: '第',
-      steps: ['深呼吸 3 次', '2 分鐘', '5 分鐘', '10 分鐘'], howGo: '上週做到 5/7 天', easy: '長大一點', right: '維持', hard: '小一點',
+      k7: 'TADAPOP 怎麼幫你', pick: '選擇', plan: '計畫', check: '每週回顧',
+      inApp: '在 TADAPOP 裡',
       tag: '習慣養成計畫', cta: '就從今天開始', free: '免費',
     },
   }[LANG];
@@ -97,6 +97,27 @@
       });
     };
   }
+  /* The real app, as the person will see it (owner, 2026-09-29: "add a bit
+     more of my current app element"): cards cropped from the app's own
+     screens, captured on the simulator in each language, under a small label.
+     assets/habits/app-v3 — new crops need a new folder, /assets is immutable. */
+  const APP = '/assets/habits/app-v3/';
+  const APP_IMAGES = ['row', 'backup', 'done', 'missed', 'finish', 'area', 'plan', 'checkin', 'grown'];
+  function appCard(node, name, top, w, fadeBottom) {
+    const box = el('div', null, abs({ left: ((360 - w) / 2) + 'px', top: top + 'px', width: w + 'px' }));
+    const lab = el('div', 'mono', { fontSize: '10px', letterSpacing: '.18em', color: COL.dim, marginBottom: '6px' }, COPY.inApp);
+    const img = el('img', null, { width: w + 'px', display: 'block', borderRadius: '14px', boxShadow: '0 10px 30px rgba(0,0,0,.45)' });
+    // A card cut off mid-way (its buttons are not the point) fades out
+    // rather than ending on a hard edge.
+    if (fadeBottom) { img.style.webkitMaskImage = img.style.maskImage = 'linear-gradient(#000 72%, transparent)'; }
+    img.src = APP + name + '-' + LANG + '.jpg';
+    box.append(lab, img);
+    node.appendChild(box);
+    return box;
+  }
+  // show() owns a node's opacity; this dims it on top, for a beat that hands over.
+  const dim = (n, k) => { n.style.opacity = String(Number(n.style.opacity || 1) * k); };
+
   /* Where the voice is, in scene time: the clip starts after LEAD. `T(i)` is
      when the i-th sentence begins — scenes time their beats to the words. */
   const LEAD = 0.45, TAIL = 0.7;
@@ -112,7 +133,7 @@
     h4: { shrink: ['Start so small', '從小到'], chips: ['Two minutes', '兩分鐘'] },
     h5: { anchor: ['Tie it', '把它接在'], link: ['I floss', '就用牙線'], done: ['The old habit', '舊習慣'] },
     h6: { ifc: ["If I'm tired", '如果我很累'], thenc: ["I'll do just", '就只做'], bars: ['People who', '事先想好備案'] },
-    h7: { done: ['Every time', '每做一次'], proof: ['proof', '證明'] },
+    h7: { done: ['Every time', '每做一次'], proof: ['proof', '證明'], stick: ['That feeling', '這份感覺'] },
     h8: { heart: ['be kind', '對自己溫柔'], rule: ["Just don't miss two", '只要別連續'] },
     h9: { bars: ['not a sprint', '不是衝刺'] },
     h10: { pick: ['You pick', '你選'], plan: ['We build', '我們依照'], check: ['ask how', '問問你'], adjust: ['adjust', '一起調整'] },
@@ -227,6 +248,7 @@
         '<span style="font-size:26px">🦷</span><span class="disp" style="font-weight:800;font-size:18px">' + COPY.then + '</span><span class="js-c" style="margin-left:auto;width:26px;height:26px;border-radius:50%;border:2px solid ' + COL.faint + '"></span>');
       const circ = b.querySelector('.js-c');
       node.append(a, link, b);
+      const app = appCard(node, 'row', 358, 300);
       return (lt) => {
         show(k, lt, 0.05, { dy: 6, s: 1 });
         show(a, lt, C('anchor'));
@@ -235,6 +257,7 @@
         const done = lt > C('done');
         circ.style.background = done ? COL.go : 'transparent';
         circ.style.borderColor = done ? COL.go : COL.faint;
+        show(app, lt, C('link') + 1.2, { dy: 14, s: 0.97 });
       };
     },
 
@@ -246,7 +269,8 @@
         '<span style="font-size:24px">' + emoji + '</span><span class="disp" style="font-weight:800;font-size:18px">' + text + '</span>');
       const a = row(140, COPY.ifc, COL.red, COPY.ift, '😴');
       const b = row(226, COPY.thenc, COL.go, COPY.thent, '⏱');
-      const bars = el('div', null, abs({ left: '60px', right: '60px', top: '346px' }));
+      const app = appCard(node, 'backup', 316, 300);
+      const bars = el('div', null, abs({ left: '60px', right: '60px', top: '440px' }));
       bars.innerHTML =
         '<div style="height:12px;border-radius:6px;background:' + COL.panel2 + ';overflow:hidden"><div class="js-b1" style="height:100%;width:0;background:' + COL.faint + '"></div></div>' +
         '<div style="height:12px;border-radius:6px;background:' + COL.panel2 + ';overflow:hidden;margin-top:10px"><div class="js-b2" style="height:100%;width:0;background:' + COL.go + '"></div></div>';
@@ -256,6 +280,7 @@
         show(k, lt, 0.05, { dy: 6, s: 1 });
         show(a, lt, C('ifc'), { x: -24, dy: 0, s: 1 });
         show(b, lt, C('thenc'), { x: 24, dy: 0, s: 1 });
+        show(app, lt, C('thenc') + 1.1, { dy: 14, s: 0.97 });
         show(bars, lt, C('bars'), { dy: 8, s: 1 });
         // No numbers: a plan made ahead helps a lot, and the bars say only that.
         b1.style.width = (45 * prog(lt, C('bars') + 0.3, 1.2)) + '%';
@@ -271,6 +296,7 @@
       const proof = el('div', 'mono', abs({ left: '20px', right: '20px', top: '346px', textAlign: 'center', fontSize: '13px', letterSpacing: '.08em', color: COL.amber }), '+1 · ' + COPY.proof);
       const boom = confetti(node, 180, 215, 26);
       node.append(ring, lab, proof);
+      const app = appCard(node, 'done', 150, 312);
       const at = C('done');
       return (lt) => {
         show(k, lt, 0.05, { dy: 6, s: 1 });
@@ -283,13 +309,17 @@
         boom(lt, at);
         show(lab, lt, at + 0.15, { s: 0.7 });
         show(proof, lt, C('proof'), { dy: 8, s: 1 });
+        // "That feeling helps a habit stick": the same moment, in the app.
+        const hand = 1 - prog(lt, C('stick') - 0.2, 0.35);
+        [ring, lab, proof].forEach((n) => dim(n, hand));
+        show(app, lt, C('stick'), { dy: 16, s: 0.96 });
       };
     },
 
     /* miss one, never two: a week with a gap, and it goes on */
     h8(node, C) {
       const k = kicker(node, COPY.k5);
-      const grid = el('div', null, abs({ left: '24px', right: '24px', top: '150px', display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '7px' }));
+      const grid = el('div', null, abs({ left: '24px', right: '24px', top: '104px', display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '7px' }));
       const pattern = [1, 1, 1, 0, 1, 1, 1];
       const cells = COPY.days.map((d, i) => {
         const c = el('div', null, { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' },
@@ -298,9 +328,10 @@
         grid.appendChild(c);
         return c.querySelector('.js-d');
       });
-      const rule = el('div', 'disp', abs({ left: '0', right: '0', top: '270px', textAlign: 'center', fontWeight: '900', fontSize: '28px' }), '<span style="color:' + COL.amber + '">' + COPY.rule + '</span>');
-      const heart = el('div', null, abs({ left: '0', right: '0', top: '330px', textAlign: 'center', fontSize: '40px' }), '🤍');
-      node.append(grid, rule, heart);
+      const rule = el('div', 'disp', abs({ left: '0', right: '0', top: '392px', textAlign: 'center', fontWeight: '900', fontSize: '28px' }), '<span style="color:' + COL.amber + '">' + COPY.rule + '</span>');
+      node.append(grid, rule);
+      // What the app says the morning after a miss: kind, and forward.
+      const app = appCard(node, 'missed', 196, 312, true);
       return (lt) => {
         show(k, lt, 0.05, { dy: 6, s: 1 });
         show(grid, lt, 0.2, { s: 1 });
@@ -315,7 +346,7 @@
           c.style.color = COL.void;
           c.textContent = hit ? '✓' : '';
         });
-        show(heart, lt, C('heart'), { s: 0.5 });
+        show(app, lt, C('heart'), { dy: 16, s: 0.96 });
         show(rule, lt, C('rule'));
       };
     },
@@ -323,72 +354,47 @@
     /* about 66 days */
     h9(node, C) {
       const k = kicker(node, COPY.k6);
-      const n = el('div', 'mono', abs({ left: '0', right: '0', top: '120px', textAlign: 'center', fontSize: '112px', fontWeight: '600', lineHeight: '1', color: COL.amber, textShadow: '0 0 40px rgba(255,180,84,.35)' }), '0');
-      const lab = el('div', null, abs({ left: '0', right: '0', top: '250px', textAlign: 'center', fontSize: '16px', color: COL.dim }), COPY.daysLabel);
-      const bars = el('div', null, abs({ left: '40px', right: '40px', top: '300px', height: '130px', display: 'flex', alignItems: 'flex-end', gap: '5px' }));
-      const bs = [];
-      for (let i = 0; i < 22; i++) {
-        const b = el('div', null, { flex: '1', borderRadius: '3px 3px 0 0', background: i > 18 ? COL.go : COL.amberDeep, height: '0' });
-        bars.appendChild(b); bs.push(b);
-      }
-      node.append(n, lab, bars);
+      const n = el('div', 'mono', abs({ left: '0', right: '0', top: '96px', textAlign: 'center', fontSize: '86px', fontWeight: '600', lineHeight: '1', color: COL.amber, textShadow: '0 0 40px rgba(255,180,84,.35)' }), '0');
+      const lab = el('div', null, abs({ left: '0', right: '0', top: '194px', textAlign: 'center', fontSize: '15px', color: COL.dim }), COPY.daysLabel);
+      // The app's own finish card, which says the same thing to the person.
+      const app = appCard(node, 'finish', 232, 282);
+      node.append(n, lab);
       return (lt) => {
         show(k, lt, 0.05, { dy: 6, s: 1 });
         const p = prog(lt, 0.3, 2.4, E.inOut);
         n.textContent = String(Math.round(66 * p));
         show(lab, lt, 0.6, { dy: 6, s: 1 });
-        bs.forEach((b, i) => {
-          const g = prog(lt, C('bars') + i * 0.12, 0.5);
-          b.style.height = (g * (14 + i * 5.2)) + 'px';
-        });
+        show(app, lt, C('bars') - 0.3, { dy: 18, s: 0.96 });
       };
     },
 
-    /* how Tadapop helps: pick → a tiny plan that grows → a weekly check-in */
+    /* how Tadapop helps: the real screens, in a phone — pick, plan, check in, grow */
     h10(node, C) {
       const k = kicker(node, COPY.k7);
-      const col = (left, label) => {
-        const c = el('div', null, abs({ left: left + 'px', top: '104px', width: '108px', textAlign: 'center' }),
-          '<div class="mono" style="font-size:11px;letter-spacing:.14em;color:' + COL.dim + ';margin-bottom:8px">' + label + '</div>');
-        node.appendChild(c);
-        return c;
-      };
-      const c1 = col(10, COPY.pick), c2 = col(126, COPY.plan), c3 = col(242, COPY.check);
-      const tiles = el('div', null, { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px', justifyItems: 'center' });
-      [['💪', ''], ['😴', ''], ['🧠', ''], ['🍎', '']].forEach(([e], i) => {
-        const t = el('div', 'tile', { width: '50px', height: '50px', borderColor: i === 2 ? COL.amber : COL.line }, '<span style="font-size:22px">' + e + '</span>');
-        tiles.appendChild(t);
+      const W = 196, H = Math.round(W * 962 / 540);
+      const phone = el('div', null, abs({ left: ((360 - W) / 2 - 7) + 'px', top: '88px', width: (W + 14) + 'px', height: (H + 14) + 'px', borderRadius: '30px', background: '#05070c', border: '1px solid ' + COL.line, padding: '7px', boxShadow: '0 18px 50px rgba(0,0,0,.55), 0 0 60px rgba(255,180,84,.08)' }));
+      const screen = el('div', null, { position: 'relative', width: W + 'px', height: H + 'px', borderRadius: '23px', overflow: 'hidden', background: COL.void });
+      phone.appendChild(screen);
+      const shots = ['area', 'plan', 'checkin', 'grown'].map((name) => {
+        const i = el('img', null, abs({ left: '0', top: '0', width: W + 'px', height: H + 'px', opacity: '0' }));
+        i.src = APP + name + '-' + LANG + '.jpg';
+        screen.appendChild(i);
+        return i;
       });
-      c1.appendChild(tiles);
-      const plan = el('div', null, { display: 'flex', flexDirection: 'column', gap: '6px' });
-      const lines = COPY.steps.map((s, i) => {
-        const l = el('div', null, { borderRadius: '9px', border: '1px solid ' + (i === 0 ? COL.amber : COL.line), padding: '7px 6px', fontSize: '12px', textAlign: 'left', background: COL.panel },
-          '<span class="mono" style="color:' + (i === 0 ? COL.amber : COL.faint) + ';margin-right:5px">' + (LANG === 'zh' ? COPY.w + (i + 1) + '週' : COPY.w + (i + 1)) + '</span>' + s);
-        plan.appendChild(l);
-        return l;
-      });
-      c2.appendChild(plan);
-      const q = el('div', 'panel', { padding: '8px 6px', borderRadius: '12px', fontSize: '12px', lineHeight: '1.3' }, COPY.howGo);
-      const chips = el('div', null, { display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '6px' });
-      const cs = [['🌱', COPY.easy], ['👍', COPY.right], ['🪶', COPY.hard]].map(([e, t], i) => {
-        const c = el('div', 'chip', { justifyContent: 'center', fontSize: '12.5px', padding: '7px 8px' }, e + ' ' + t);
-        chips.appendChild(c);
-        return c;
-      });
-      c3.append(q, chips);
-      const heart = el('div', 'disp', abs({ left: '20px', right: '20px', top: '400px', textAlign: 'center', fontWeight: '800', fontSize: '18px', color: COL.go }), '');
-      node.appendChild(heart);
+      const steps = el('div', 'mono', abs({ left: '0', right: '0', top: (88 + H + 26) + 'px', display: 'flex', justifyContent: 'center', gap: '18px', fontSize: '11px', letterSpacing: '.12em' }));
+      const labels = [COPY.pick, COPY.plan, COPY.check].map((t) => { const e = el('span', null, { color: COL.faint }, t); steps.appendChild(e); return e; });
+      node.append(phone, steps);
       return (lt) => {
         show(k, lt, 0.05, { dy: 6, s: 1 });
-        show(c1, lt, C('pick'));
-        show(c2, lt, C('plan'));
-        lines.forEach((l, i) => show(l, lt, C('plan') + 0.2 + i * 0.35, { dy: 8, s: 1 }));
-        show(c3, lt, C('check'));
-        cs.forEach((c, i) => show(c, lt, C('check') + 0.3 + i * 0.3, { dy: 6, s: 0.8 }));
-        // "adjust when life gets hard": the check-in answer lights up.
-        const pick = lt > C('adjust');
-        cs[0].style.borderColor = pick ? COL.go : COL.line;
-        cs[0].style.background = pick ? 'rgba(91,227,155,.14)' : COL.panel2;
+        show(phone, lt, 0.15, { s: 0.94 });
+        show(steps, lt, 0.3, { dy: 6, s: 1 });
+        // area → plan → the weekly check-in → "adjust": the answer grows it
+        const at = [0, C('plan'), C('check'), C('adjust')];
+        let cur = 0;
+        at.forEach((a, i) => { if (lt >= a) cur = i; });
+        const x = cur === 0 ? 1 : clamp((lt - at[cur]) / 0.35);
+        shots.forEach((img, i) => { img.style.opacity = String(i === cur ? x : i === cur - 1 ? 1 : 0); });
+        labels.forEach((l, i) => { l.style.color = Math.min(cur, 2) === i ? COL.amber : COL.faint; });
       };
     },
 
@@ -495,8 +501,9 @@
     // Where each clip starts in the film, for the audio mix in render.mjs.
     window.__habits.voice = SCENES.map((s) => ({ id: s.id, at: Number((s.start + LEAD).toFixed(3)) }));
     const logo = new Promise((res) => { const i = new Image(); i.onload = i.onerror = res; i.src = '/assets/logo.png'; });
+    const shots = APP_IMAGES.map((n) => new Promise((res) => { const i = new Image(); i.onload = i.onerror = res; i.src = APP + n + '-' + LANG + '.jpg'; }));
     const faces = ['900 20px Chivo', '800 20px Chivo', '700 20px Chivo', '400 20px Inter', '500 20px Inter', '600 20px Inter', '600 20px "JetBrains Mono"'];
-    await Promise.all([logo].concat(document.fonts ? faces.map((f) => document.fonts.load(f).catch(() => null)) : []));
+    await Promise.all([logo].concat(shots).concat(document.fonts ? faces.map((f) => document.fonts.load(f).catch(() => null)) : []));
     seek(0);
     return true;
   })();
