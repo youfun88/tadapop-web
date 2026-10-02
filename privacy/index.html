@@ -52,7 +52,7 @@
         "name": "Privacy Policy — Tadapop",
         "description": "Tadapop's privacy policy. Missions, logs, notes, photos, streaks and stats are stored locally when used without an account. An account is required only for the Club, and account data is held with Supabase under per-user access rules. QY LLC does not sell personal data and runs no advertising or analytics trackers in the app.",
         "inLanguage": "en",
-        "dateModified": "2026-06-23",
+        "dateModified": "2026-10-03",
         "isPartOf": { "@id": "https://www.tadapop.app/#website" },
         "about": { "@id": "https://www.tadapop.app/#app" },
         "publisher": { "@id": "https://www.tadapop.app/#organization" }
@@ -97,7 +97,7 @@
 
   <main class="doc" id="main" tabindex="-1">
     <h1>Privacy Policy</h1>
-    <div class="updated">Last updated: June 23, 2026</div>
+    <div class="updated">Last updated: October 3, 2026</div>
 
     <p>Tadapop ("we", "us") is a daily habit tracker published by QY LLC. This policy explains what we collect and why. The short version: your solo tracking lives on your device, we don't sell your data, and we run no ads or third-party trackers.</p>
 
@@ -117,6 +117,7 @@
     <ul>
       <li><strong>Supabase</strong> — database, authentication, and storage for accounts and the Club.</li>
       <li><strong>Resend</strong> — sends sign-in code emails on our behalf.</li>
+      <li><strong>Anthropic</strong> — translates Club messages, only in a group where translation is on and only for a reader who asked for it in Profile → Translate messages. The message text is sent to Anthropic's Claude API to be translated; the translation is stored with Supabase so the same message is not sent twice, and it is deleted when the message is unsent or removed.</li>
       <li><strong>Apple &amp; Google</strong> — if you choose Sign in with Apple or Google.</li>
       <li><strong>Formsubmit</strong> — relays messages sent through the support form on this site to our inbox.</li>
     </ul>
