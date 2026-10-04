@@ -36,8 +36,8 @@ is a bug — please report it through the support page.
   they have logged is lost.
 - A direct APK is still offered at https://www.tadapop.app/android for Android
   devices with no Play Store, but Play is the route to recommend. As of
-  2026-10-04 that APK is v1.4.12 (versionCode 19), one version behind Google Play
-  (1.4.13). It does not receive Club chat notifications on Android; Play does. The APK is
+  2026-10-04 that APK is v1.4.13 (versionCode 20), the same build as Google Play
+  (the App Store still serves 1.4.12 until Apple approves 1.4.13). The APK is
   refreshed by hand, so it can lag a release; anyone who can use Play should.
 
 ## Habit programs (習慣養成計畫)
