@@ -24,21 +24,43 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
   <link rel="stylesheet" href="/styles.css" />
   <style>
-    .rate-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 1.6rem 0 .6rem; }
-    .rate-row .store-badge { flex: 1 1 240px; }
+    /* A note from the person who made the app, not a document: one centred
+       column, the icon on top, the two store buttons as the only loud thing. */
+    .rate { max-width: 600px; padding-top: 56px; text-align: center; }
+    .rate-icon {
+      width: 76px; height: 76px; border-radius: 18px; display: block; margin: 0 auto 22px;
+      box-shadow: 0 0 0 1px var(--line), 0 10px 40px rgba(255, 180, 84, .16);
+    }
+    .doc.rate h1 { font-size: clamp(28px, 6vw, 38px); line-height: 1.2; margin: 0 auto 16px; max-width: 18ch; text-wrap: balance; }
+    /* 18ch is a Latin measure; on CJK it split 謝謝你在 / 用. */
+    :lang(zh-Hant) .doc.rate h1 { max-width: none; }
+    .doc.rate p.rate-lead { color: var(--ink); font-size: 17px; line-height: 1.7; margin: 0 auto; max-width: 52ch; }
+    .rate-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 32px 0 0; text-align: left; }
+    .rate-row .store-badge { flex: 1 1 240px; min-height: 88px; padding: 16px 22px 16px 18px; gap: 16px; }
     /* The phone in your hand goes first, and is the one lit up. */
     .rate-row .store-badge.is-yours { order: -1; border-color: var(--amber); }
     /* .doc's link style (blue, underlined) must not reach the badges. */
     .doc .rate-row a.store-badge, .doc .rate-row a.store-badge span { text-decoration: none; color: inherit; }
-    .doc .rate-row .sb-name { color: var(--ink, #E8ECF5); }
-    /* Bigger and brighter than the homepage badge (owner, 2026-10-09: "hard
-       to read"). The whole page is this row, so it can afford the size. */
-    .rate-row .store-badge { min-height: 88px; padding: 16px 22px 16px 18px; gap: 16px; }
     .rate-row .sb-glyph { flex: 0 0 30px; display: flex; justify-content: center; font-size: 26px; }
     .rate-row .sb-glyph svg { width: 28px; height: 28px; fill: currentColor; }
     .doc .rate-row a.store-badge .sb-kicker { font-size: 12.5px; letter-spacing: .1em; color: var(--go); }
-    .doc .rate-row a.store-badge .sb-name { font-size: 22px; margin-top: 2px; }
+    .doc .rate-row a.store-badge .sb-name { font-size: 22px; margin-top: 2px; color: var(--ink); }
     .doc .rate-row a.store-badge .sb-state { font-family: var(--body); font-size: 15px; color: var(--ink); margin-top: 4px; }
+    .rate-fix {
+      margin: 36px 0 0; padding: 20px 22px; text-align: left;
+      border: 1px dashed var(--line-lit); border-radius: 12px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px;
+    }
+    .doc.rate .rate-fix p { flex: 1 1 260px; margin: 0; color: var(--ink); font-size: 15px; line-height: 1.65; }
+    .doc.rate a.rate-fix-btn {
+      flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px;
+      border: 1px solid var(--line-lit); border-radius: 10px; text-decoration: none;
+      color: var(--ink); font-weight: 600; font-size: 14px; transition: border-color .15s ease, color .15s ease;
+    }
+    .doc.rate a.rate-fix-btn:hover { border-color: var(--amber); color: var(--amber); }
+    .rate-sign { margin-top: 40px; }
+    .doc.rate .rate-sign p { margin: 0 auto; color: var(--ink); font-size: 17px; }
+    .doc.rate .rate-sign .rate-name { font-family: var(--display); font-weight: 700; font-size: 22px; color: var(--amber); margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -67,10 +89,10 @@
     </div>
   </header>
 
-  <main class="doc" id="main" tabindex="-1">
+  <main class="doc rate" id="main" tabindex="-1">
+    <img class="rate-icon" src="/assets/logo.png" alt="" width="76" height="76" />
     <h1>Hi! Thank you so much for trying Tadapop 🙏</h1>
-
-    <p>If it's been useful to you, would you leave a quick review on the App Store or Google Play? Just write what you honestly think. Even one sentence about how you use it helps a small indie app get found.</p>
+    <p class="rate-lead">If it's been useful to you, would you leave a quick review on the App Store or Google Play? Just write what you honestly think. Even one sentence about how you use it helps a small indie app get found.</p>
 
     <div class="rate-row">
       <a class="store-badge" id="rateIos" href="https://apps.apple.com/app/id6782101150?action=write-review" target="_blank" rel="noopener">
@@ -91,9 +113,15 @@
       </a>
     </div>
 
-    <p>And if something annoys you, please tell me directly too. I'd love to fix it. <a href="/support">Send a note on the Support page</a>.</p>
+    <div class="rate-fix">
+      <p>And if something annoys you, please tell me directly too. I'd love to fix it.</p>
+      <a class="rate-fix-btn" href="/support">Tell me →</a>
+    </div>
 
-    <p><strong>Thank you!</strong><br />Yufan</p>
+    <div class="rate-sign">
+      <p>Thank you!</p>
+      <p class="rate-name">Yufan</p>
+    </div>
   </main>
 
   <footer class="footer">
