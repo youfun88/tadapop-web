@@ -31,6 +31,14 @@
     /* .doc's link style (blue, underlined) must not reach the badges. */
     .doc .rate-row a.store-badge, .doc .rate-row a.store-badge span { text-decoration: none; color: inherit; }
     .doc .rate-row .sb-name { color: var(--ink, #E8ECF5); }
+    /* Bigger and brighter than the homepage badge (owner, 2026-10-09: "hard
+       to read"). The whole page is this row, so it can afford the size. */
+    .rate-row .store-badge { min-height: 88px; padding: 16px 22px 16px 18px; gap: 16px; }
+    .rate-row .sb-glyph { flex: 0 0 30px; display: flex; justify-content: center; font-size: 26px; }
+    .rate-row .sb-glyph svg { width: 28px; height: 28px; fill: currentColor; }
+    .doc .rate-row a.store-badge .sb-kicker { font-size: 12.5px; letter-spacing: .1em; color: var(--go); }
+    .doc .rate-row a.store-badge .sb-name { font-size: 22px; margin-top: 2px; }
+    .doc .rate-row a.store-badge .sb-state { font-family: var(--body); font-size: 15px; color: var(--ink); margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -66,7 +74,7 @@
 
     <div class="rate-row">
       <a class="store-badge" id="rateIos" href="https://apps.apple.com/app/id6782101150?action=write-review" target="_blank" rel="noopener">
-        <span class="sb-glyph" aria-hidden="true"></span>
+        <span class="sb-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg></span>
         <span>
           <span class="sb-kicker is-live">iPhone · iPad</span>
           <span class="sb-name">App Store</span>
