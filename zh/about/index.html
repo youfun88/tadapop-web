@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tadapop 是什麼 — Tadapop</title>
+  <meta name="description" content="Tadapop 做兩件事：「今天」的任務，追蹤你自己的習慣，還有免費的 4 週習慣養成計畫；以及打卡俱樂部，和朋友一起的私人挑戰。" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Tadapop" />
+  <meta property="og:title" content="Tadapop 是什麼 — Tadapop" />
+  <meta property="og:description" content="Tadapop 做兩件事：「今天」的任務，追蹤你自己的習慣，還有免費的 4 週習慣養成計畫；以及打卡俱樂部，和朋友一起的私人挑戰。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.tadapop.app/zh/about" />
+  <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:locale" content="zh_Hant_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tadapop 是什麼 — Tadapop" />
+  <meta name="twitter:description" content="Tadapop 做兩件事：「今天」的任務，追蹤你自己的習慣，還有免費的 4 週習慣養成計畫；以及打卡俱樂部，和朋友一起的私人挑戰。" />
+  <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
+
+  <link rel="canonical" href="https://www.tadapop.app/zh/about" />
+  <link rel="alternate" hreflang="en" href="https://www.tadapop.app/about" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/about" />
+  <link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/about" />
+
+  <link rel="icon" href="/assets/favicon.png" />
+  <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
+       so the first paint no longer waits on a fonts.googleapis.com round trip and
+       then a second one to fonts.gstatic.com. The two faces below are the ones the
+       first screen actually paints with — the headline (Chivo 900) and body copy
+       (Inter 400) — so they are preloaded rather than being discovered only once
+       styles.css has finished parsing. crossorigin is required on a font preload
+       even for a same-origin file; without it the browser fetches it twice. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/chivo-900-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="/styles.css" />
+
+  <!--
+    FAQPage — 常見問題. Every Q and A below is the SAME text rendered in the
+    「常見問題」 section of this page. Keep the two in step if either is edited.
+  -->
+  <!-- dateModified: unlike /privacy, /terms and /rules, this page carries no
+       visible "Last updated" line to mirror, so the value tracks the sitemap
+       lastmod for this URL. Move BOTH when the page copy actually changes; a
+       date that stops tracking real edits is one Google learns to ignore. -->
+    <style>
+    /* /about — the same two-part story the App Store description tells. */
+    .about-lead { font-size: 1.12rem; line-height: 1.6; color: var(--ink); margin: 0 0 2rem; }
+    .about-part { border: 1px solid var(--line); background: var(--panel); border-radius: 14px;
+                  padding: 1.4rem 1.3rem 1.2rem; margin: 0 0 1.5rem; }
+    .about-part > .tag { font-family: 'JetBrains Mono', monospace; font-size: .75rem; letter-spacing: .14em;
+                         color: var(--amber); margin: 0 0 .35rem; }
+    :lang(zh-Hant) .about-part > .tag { letter-spacing: .04em; }
+    .doc .about-part h2 { margin-top: 0; }
+    .about-part ul { margin: .4rem 0 1rem; padding-left: 1.2rem; }
+    .about-part li { margin: .35rem 0; line-height: 1.55; }
+    .about-sub { border-left: 2px solid var(--amber); padding: .2rem 0 .2rem 1rem; margin: 1.4rem 0 .4rem; }
+    .about-sub h3 { margin-top: 0; }
+    .about-quote { font-style: italic; color: var(--ink); }
+    .about-cta { display: flex; gap: .7rem; flex-wrap: wrap; margin: 2rem 0 0; }
+    .about-cta a { border: 1px solid var(--line); border-radius: 999px; padding: .6rem 1.1rem;
+                   text-decoration: none; color: var(--ink); }
+    .about-cta a:hover { border-color: var(--amber); color: var(--amber); }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JTYW60NJLH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JTYW60NJLH');
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav-in">
+      <a class="site-brand" href="/zh">
+        <img src="/assets/logo-96.png" alt="" width="30" height="30" />
+        <span class="site-brand-name">TADAPOP</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
+        <span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu" aria-label="主選單">
+        <a href="/zh#app">App 長什麼樣</a>
+        <a href="/zh/rewards">你會得到什麼</a>
+        <a href="/zh/rules">俱樂部規則</a>
+        <a href="/zh#pricing">免費與 Pro</a>
+        <a href="/zh/support">支援</a>
+      </nav>
+      <div class="nav-tail">
+        <div data-lang-switch></div>
+        <a class="site-cta" href="/zh#get">取得 App</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="doc" id="main" tabindex="-1">
+    <h1>Tadapop 是什麼</h1>
+    <p class="about-lead">Tadapop 把你每天的習慣放在一個安靜的畫面上，也讓你和朋友一起為同一個目標打卡。兩個部分，一個 App。</p>
+
+    <section class="about-part" aria-labelledby="part-today">
+      <p class="tag">第一部分 · 今天</p>
+      <h2 id="part-today">今天的任務：你自己的習慣</h2>
+      <p>「今天」只顯示今天該做的事。點一下完成，繼續過你的一天。</p>
+      <ul>
+        <li><strong>打勾</strong>：做了沒做，點一下就好。</li>
+        <li><strong>計次</strong>：往目標累積，例如 8 杯水、8000 步。</li>
+        <li><strong>計時</strong>：倒數計時，歸零時會響。</li>
+      </ul>
+      <p>每一項都可以設成每天、指定星期幾、一週幾次，或只做一次。</p>
+
+      <div class="about-sub">
+        <h3>習慣養成計畫：輕鬆開始一個新習慣</h3>
+        <p>想養成新習慣，卻不知道從哪裡開始？選一個方向（睡眠、運動、飲食、壓力、手機時間、理財、學習、信仰等等），回答幾個簡短問題，Tadapop 就會排好 4 週計畫，把一個很小的習慣放進「今天」，接在你本來就會做的事後面：</p>
+        <p class="about-quote">「刷完牙 → 直接上床，不滑手機。」</p>
+        <ul>
+          <li>第 1 週是最小、但仍然算數的一步。</li>
+          <li>狀況不好的日子，有更小的備案。</li>
+          <li>每週點一下回顧：加一點、維持，或改小一點。</li>
+          <li>漏掉一天，什麼都不會歸零。</li>
+        </ul>
+        <p>習慣養成計畫在推出期間免費。<a href="/zh/habits">看 2 分鐘介紹影片 →</a></p>
+      </div>
+    </section>
+
+    <section class="about-part" aria-labelledby="part-club">
+      <p class="tag">第二部分 · 俱樂部</p>
+      <h2 id="part-club">打卡俱樂部：和朋友一起挑戰</h2>
+      <p>和你真正認識的人定一個目標，例如 30 天每天散步、一週讀書四個晚上，然後每天打卡。</p>
+      <ul>
+        <li><strong>只限邀請。</strong>沒有陌生人、沒有公開列表，不涉及真實金錢。</li>
+        <li><strong>證明與筆記。</strong>主辦人要求證明時，打卡可以附最多三張照片或影片，朋友可以直接回覆你的打卡。主辦人寫的玩法說明，大家加入前都看得到。</li>
+        <li><strong>即時排行榜</strong>，加上群組聊天，邊做邊聊。</li>
+        <li><strong>任何習慣都能變成挑戰</strong>：按「找朋友一起挑戰」。你自己的習慣不受影響。</li>
+      </ul>
+      <p>挑戰怎麼計分：<a href="/zh/rules">俱樂部規則 →</a></p>
+    </section>
+
+    <h2>免費、安靜</h2>
+    <ul>
+      <li>追蹤自己的習慣免費、可以離線使用，不需要帳號。</li>
+      <li>只有使用打卡俱樂部、或想在不同手機之間備份時才需要登入。</li>
+      <li>提醒是本機通知。唯一的推播是挑戰裡的訊息，可以靜音某一場，或全部關掉。</li>
+      <li>沒有廣告，漏掉一天也不會有人數落你。</li>
+    </ul>
+    <p>免費方案可以同時進行 5 項任務、自己開 1 場挑戰。Pro 取消這兩個限制。<a href="/zh/#pricing">免費與 Pro →</a></p>
+
+    <div class="about-cta">
+      <a href="https://apps.apple.com/app/id6782101150" target="_blank" rel="noopener">App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">Google Play</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <img class="brand-logo" src="/assets/logo-96.png" alt="" width="24" height="24" /> TADAPOP
+    </div>
+    <nav class="footer-links" aria-label="頁尾連結">
+      <a href="/zh/about">Tadapop 是什麼</a>
+      <a href="/zh/rewards">你會得到什麼</a>
+      <a href="/zh/rules">俱樂部規則</a>
+      <a href="/zh/privacy">隱私權政策</a>
+      <a href="/zh/terms">使用條款</a>
+      <a href="/zh/delete-account">刪除帳號</a>
+      <a href="/zh/support">支援</a>
+    </nav>
+    <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
+  </footer>
+
+  <script src="/nav.js" defer></script>
+<script src="/lang.js" defer></script>
+</body>
+</html>
