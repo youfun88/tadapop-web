@@ -43,6 +43,6 @@
 
   // Crossing the breakpoint must not strand the panel in the open state.
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 900) set(false);
+    if (window.innerWidth > 1179) set(false); // = the collapse point in styles.css
   });
 })();

@@ -1129,7 +1129,7 @@ section[id] { scroll-margin-top: calc(var(--bar) + 12px); }
 .nav-menu { display: flex; align-items: center; gap: 2px; margin-left: auto; }
 .nav-menu a {
   display: inline-flex; align-items: center; min-height: 44px;
-  padding: 0 11px; border-radius: 8px;
+  padding: 0 9px; border-radius: 8px; white-space: nowrap;
   font-family: var(--mono); font-size: 13px; line-height: 1.6; color: var(--dim);
   transition: color .2s, background .2s;
 }
@@ -1633,12 +1633,13 @@ a.store-badge:hover { border-color: var(--amber); }
 @media (max-width: 1080px) {
   .rules-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 999px) {
-  /* The nav collapses here, not at a phone width: six mono labels plus a
-     language switch plus a CTA run out of room long before 400px, and the
-     Chinese labels run out sooner still. It was 900 until "What's new" made
-     it six: between 900 and ~990 every English label then wrapped onto two
-     lines. 1000 is where the full row still fits in both languages. */
+@media (max-width: 1179px) {
+  /* The nav collapses here, not at a phone width. Labels never wrap
+     (white-space: nowrap above) — a two-line "What you / earn" read as
+     broken — so the full row shows only where it fits on one line. With
+     eight links ("About" made it eight, 2026-10-13) the English row needs
+     ~1166px of window, measured; Chinese ~1020px. Add a link and re-measure:
+     sum the visible .site-nav-in children + gaps + 40px padding. */
   .nav-menu, .nav-tail { display: none; }
   .nav-toggle { display: flex; }
   .site-nav.open .nav-menu,
