@@ -17,10 +17,14 @@
 -->
 <link rel="stylesheet" href="/styles.css" />
 <style>
-  html, body { margin: 0; background: #05070c; }
+  /* The page around the stage follows the light site. The stage itself is the
+     video frame and stays dark: render.mjs clips to it, so this never reaches
+     the MP4. */
+  html, body { margin: 0; background: #FAF7F2; }
   body { display: grid; place-items: center; min-height: 100vh; }
   #stage {
     position: relative; width: 360px; height: 640px; overflow: hidden;
+    box-shadow: 0 30px 70px -32px rgba(80, 55, 20, .35);
     background: radial-gradient(120% 80% at 50% 38%, #141b2e 0%, #0B0E17 62%, #070910 100%);
     color: #E8ECF5; font-family: 'Inter', 'PingFang TC', system-ui, sans-serif;
   }

@@ -13,18 +13,20 @@
      here and it is noindex. */
   .cut { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
   .cut h1 { font-size: 1.6rem; margin: 0 0 .4rem; }
-  .cut .sub { opacity: .7; line-height: 1.6; margin: 0 0 2rem; }
-  .cut .card { border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 1.5rem; margin: 0 0 1.25rem;
-               background: rgba(255,255,255,.03); }
-  .cut .k { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .72rem; letter-spacing: .12em;
-            text-transform: uppercase; opacity: .55; margin: 0 0 .6rem; }
+  .cut .sub { color: var(--dim); line-height: 1.6; margin: 0 0 2rem; }
+  .cut .card { border: 1px solid var(--line); border-radius: 16px; padding: 1.5rem; margin: 0 0 1.25rem;
+               background: var(--panel); box-shadow: 0 1px 2px rgba(60, 40, 10, .04); }
+  .cut .k { font-family: var(--mono); font-size: .72rem; font-weight: 600; letter-spacing: .12em;
+            text-transform: uppercase; color: var(--amber-ink); margin: 0 0 .6rem; }
   .cut h2 { font-size: 1.15rem; margin: 0 0 .5rem; }
-  .cut p { line-height: 1.65; opacity: .85; margin: 0 0 1rem; }
-  .cut .go { display: inline-block; background: #FFB454; color: #0B0E17; font-weight: 700;
+  .cut p { line-height: 1.65; color: var(--ink); margin: 0 0 1rem; }
+  .cut .go { display: inline-block; background: var(--amber); color: #1a1205; font-weight: 700;
              padding: .8rem 1.5rem; border-radius: 999px; text-decoration: none; border: 0; font: inherit;
              font-weight: 700; cursor: pointer; }
-  .cut .alt { display: inline-block; margin-left: 1rem; color: inherit; opacity: .75; }
-  .cut ol { line-height: 1.7; opacity: .85; padding-left: 1.3rem; }
+  .cut .alt { display: inline-block; margin-left: 1rem; color: var(--amber-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .cut ol { line-height: 1.7; color: var(--ink); padding-left: 1.3rem; }
+  .cut p a { text-decoration: underline; text-underline-offset: 2px; }
+  .cut .go:hover { background: var(--amber-deep); }
 </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JTYW60NJLH"></script>
@@ -62,7 +64,7 @@
         <li><strong>排行榜負責催</strong>，就沒人需要當那個角色。</li>
         <li><strong>自己的習慣放第二</strong>，對還在考慮的人來說，那才是它該在的位置。</li>
       </ol>
-      <p style="opacity:.65;margin:0">
+      <p style="color:var(--dim);margin:0">
 有七個場景沿用第一版的畫面 — 那部分本來就好。新的只有順序和旁白。<a href="/zh/">第一版仍在首頁</a>，完全沒動。
       </p>
     </div>
@@ -70,8 +72,8 @@
       <p class="k">已拆分</p>
       <p>這一版已經拆成兩支了，因為它一直得停下來說明你現在看的是哪一半。網址保留，連結還是能用。</p>
       <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-        <a href="/zh/film-club/" style="color:inherit;opacity:.75;border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:.5rem 1rem;text-decoration:none">俱樂部版 →</a>
-        <a href="/zh/film-solo/" style="color:inherit;opacity:.75;border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:.5rem 1rem;text-decoration:none">單人版 →</a>
+        <a href="/zh/film-club/" style="color:var(--ink);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem;text-decoration:none">俱樂部版 →</a>
+        <a href="/zh/film-solo/" style="color:var(--ink);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem;text-decoration:none">單人版 →</a>
       </div>
     </div>
   </main>

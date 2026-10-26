@@ -24,6 +24,10 @@
   --f-disp: 'Chivo', system-ui, sans-serif;
   --f-mono: 'JetBrains Mono', ui-monospace, monospace;
   --f-body: 'Inter', system-ui, sans-serif;
+  /* Player chrome (close, controls, timecode) sits on the light site and
+     follows its type: no typewriter face. --f-mono stays for the app mocks
+     INSIDE the film, which recreate the real app and its real mono labels. */
+  --f-ui: var(--f-body);
 }
 
 /* ---- hero launch button ---- */
@@ -32,21 +36,21 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--f-mono);
+  font-family: var(--f-ui);
   font-size: 14px;
   letter-spacing: 0.04em;
-  color: var(--f-ink);
-  background: rgba(20, 26, 41, 0.7);
-  border: 1px solid var(--f-line);
+  color: var(--ink, #1F2330);
+  background: var(--panel, #fff);
+  border: 1px solid var(--line, #E7E0D4);
   border-radius: 999px;
   padding: 11px 20px 11px 14px;
   cursor: pointer;
   transition: border-color .2s, transform .08s, box-shadow .25s, background .2s;
 }
 .film-launch:hover {
-  border-color: rgba(255, 180, 84, 0.55);
-  box-shadow: 0 0 0 4px rgba(255, 180, 84, 0.08), 0 14px 40px -16px rgba(255, 180, 84, 0.5);
-  background: rgba(26, 34, 51, 0.85);
+  border-color: rgba(232, 134, 26, 0.6);
+  box-shadow: 0 0 0 4px rgba(232, 134, 26, 0.10), 0 14px 32px -18px rgba(197, 106, 12, 0.45);
+  background: var(--panel, #fff);
 }
 .film-launch:active { transform: translateY(1px); }
 .film-launch-ico {
@@ -59,11 +63,11 @@
   color: #1a1206;
   font-size: 12px;
   padding-left: 2px;
-  box-shadow: 0 0 18px -2px rgba(255, 180, 84, 0.7);
+  box-shadow: 0 4px 12px -4px rgba(197, 106, 12, 0.55);
   animation: film-pulse 2.4s ease-out infinite;
 }
-.film-launch b { color: var(--f-amber); font-weight: 700; }
-.film-launch .film-launch-time { color: var(--f-faint); }
+.film-launch b { color: var(--amber-ink, #9A5205); font-weight: 700; }
+.film-launch .film-launch-time { color: var(--faint, #646B7C); }
 
 /* ---- overlay ---- */
 .film-overlay {
@@ -96,7 +100,7 @@
 .film-top .film-brand img { width: 24px; height: 24px; border-radius: 6px; }
 .film-close {
   pointer-events: auto;
-  font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em;
+  font-family: var(--f-ui); font-size: 12px; font-weight: 500; letter-spacing: .1em;
   color: var(--f-dim); background: rgba(20,26,41,.6); border: 1px solid var(--f-line);
   border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: color .2s, border-color .2s;
 }
@@ -166,19 +170,19 @@
 .film-progress > span { border-radius: 3px; }
 .film-progress.scrubbing > span { box-shadow: 0 0 14px rgba(255, 180, 84, 0.9); }
 .film-progress > span {
-  position: absolute; left: 0; top: 0; bottom: 0;
+  position: absolute; left: 0; top: 12px; bottom: 12px;
   width: 0%;
   background: linear-gradient(90deg, var(--f-amber-deep), var(--f-amber));
   box-shadow: 0 0 10px rgba(255, 180, 84, 0.6);
 }
 .film-btn {
-  font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em;
+  font-family: var(--f-ui); font-size: 12px; font-weight: 500; letter-spacing: .08em;
   color: var(--f-dim); background: rgba(20,26,41,.6); border: 1px solid var(--f-line);
   border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: color .2s, border-color .2s;
   white-space: nowrap;
 }
 .film-btn:hover { color: var(--f-ink); border-color: var(--f-faint); }
-.film-time { font-family: var(--f-mono); font-size: 11px; color: var(--f-faint); min-width: 78px; text-align: right; }
+.film-time { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-size: 11px; color: var(--f-faint); min-width: 78px; text-align: right; }
 
 /* "tap for sound" prompt shown during muted autoplay */
 .film-unmute {
@@ -187,7 +191,7 @@
   transform: translateX(-50%);
   z-index: 8;
   display: none;
-  font-family: var(--f-mono); font-size: 13px; letter-spacing: .06em;
+  font-family: var(--f-ui); font-size: 13px; font-weight: 600; letter-spacing: .06em;
   color: #1a1206;
   background: linear-gradient(180deg, var(--f-amber), var(--f-amber-deep));
   border: none; border-radius: 999px; padding: 11px 22px; cursor: pointer;
@@ -234,7 +238,7 @@
 .film-host #alienMouth { transform-origin: 43.06% 39.71%; transform: scaleY(.18); }
 .film-host .film-host-name {
   margin-top: 8px;
-  font-family: var(--f-mono); font-size: 10px; letter-spacing: .14em; color: var(--f-dim);
+  font-family: var(--f-ui); font-size: 10px; letter-spacing: .14em; color: var(--f-dim);
 }
 .film-host .film-host-name b { color: var(--f-amber); font-weight: 700; }
 
@@ -443,3 +447,11 @@
    Latin negative tracking closes CJK glyphs into each other, and a leading
    tuned for Latin lets two Chinese lines touch. */
 :lang(zh-Hant) .film-cap { letter-spacing: normal; line-height: 1.35; }
+
+/* Phone: the three control buttons and the timecode share 375px. In the body
+   face they ran ~20px past the right edge, cutting "Replay" in half. */
+@media (max-width: 480px) {
+  .film-controls { gap: 8px; padding: 12px 12px 14px; }
+  .film-btn { padding: 8px 10px; letter-spacing: .02em; }
+  .film-time { min-width: 0; }
+}
