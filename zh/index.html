@@ -298,6 +298,27 @@
     </div>
   </header>
 
+  <aside class="racebar" id="racebar" data-join="RYKLS6" data-today="🎉 <b>今天就是臺北馬拉松！</b>加油！" aria-label="臺北馬拉松倒數">
+    <div class="racebar-in">
+      <p class="racebar-txt">🏃 <b>臺北馬拉松</b>倒數 <span class="racebar-days">55</span> 天 <span class="racebar-sub"><span class="racebar-dot">· </span>加入「北馬倒數：一起動起來」，每週動 4 天</span></p>
+      <a class="racebar-btn is-soon" href="#" data-base="/zh/join/" data-go="加入挑戰 →">邀請連結即將公布</a>
+    </div>
+  </aside>
+<script>
+(function () {
+  var bar = document.getElementById('racebar'); if (!bar) return;
+  // Race day 2026-12-20, counted in Taipei time (UTC+8).
+  var now = new Date(Date.now() + 8 * 3600e3);
+  var today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  var days = Math.round((Date.UTC(2026, 11, 20) - today) / 864e5);
+  if (days < 0) { bar.hidden = true; return; }
+  if (days === 0) { bar.querySelector('.racebar-txt').innerHTML = bar.getAttribute('data-today'); }
+  else bar.querySelector('.racebar-days').textContent = days;
+  var code = bar.getAttribute('data-join'), btn = bar.querySelector('.racebar-btn');
+  if (code) { btn.href = btn.getAttribute('data-base') + code; btn.classList.remove('is-soon'); btn.textContent = btn.getAttribute('data-go'); }
+})();
+</script>
+
   <main id="main" tabindex="-1">
 
     <section class="home-hero">
@@ -433,7 +454,7 @@
         <div class="app-copy">
           <p>「今天」只會顯示今天真的該做的事，其他都不出現。每一項就是點一下、加一次，或開一個計時，
             最上面那條進度告訴你，離今天的 T點數還差多少。</p>
-          <p>整個介面深色、安靜，是為了「打開五秒就關掉」設計的。沒有動態消息，斷了連續紀錄也不會有人數落你，
+          <p>整個 App 很安靜，是為了「打開五秒就關掉」設計的。沒有動態消息，斷了連續紀錄也不會有人數落你，
             更不會一直推播 — 提醒是你自己設定的本機通知。</p>
           <p>你的一天從幾點開始由你決定，預設是凌晨 4 點。所以半夜一點才做完的事，還是算在你認定的那一天。</p>
         </div>

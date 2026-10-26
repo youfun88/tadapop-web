@@ -337,8 +337,9 @@ a { color: inherit; text-decoration: none; }
   place-items: center;
   font-size: 26px;
   line-height: 1;
-  background: radial-gradient(circle at 38% 30%, #1d2842, #111a2b);
+  background: radial-gradient(circle at 38% 30%, #FFFFFF, #F3EEE6);
   border: 2px solid var(--c);
+  box-shadow: 0 6px 16px -8px rgba(60, 40, 10, .25);
 }
 .ma-check {
   position: absolute;
@@ -1833,3 +1834,27 @@ a.store-badge:hover { border-color: var(--amber); }
    one phone per row and overflows two. */
 .shots.shots-4 .shot .device { width: min(240px, 100%); }
 @media (max-width: 560px) { .shots.shots-4 { gap: 14px; } .shots.shots-4 .shot-cap { font-size: 13px; } }
+
+/* Taipei Marathon countdown banner (homepage only). Hidden by script after race day. */
+.racebar { background: linear-gradient(90deg, #FFF1DE, #FDE7C8); border-bottom: 1px solid #F1D3A6; }
+.racebar[hidden] { display: none; }
+.racebar-in { max-width: 1080px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; text-align: center; }
+.racebar-txt { color: var(--ink); font-size: 15px; line-height: 1.4; }
+.racebar-txt b { color: var(--amber-ink); }
+.racebar-days { font-family: var(--display); font-weight: 900; font-size: 22px; color: var(--amber-deep); margin: 0 2px; }
+.racebar-sub { color: var(--dim); }
+.racebar-btn { display: inline-block; padding: 7px 16px; border-radius: 999px; background: var(--amber); color: #1a1205; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; }
+.racebar-btn:hover { background: var(--amber-deep); }
+.racebar-btn.is-soon { background: #fff; color: var(--dim); border: 1px solid var(--line-lit); pointer-events: none; }
+@media (max-width: 560px) { .racebar-in { gap: 8px; padding: 9px 16px; } .racebar-txt { font-size: 14px; } .racebar-sub { display: block; } }
+@media (max-width: 560px) { .racebar-dot { display: none; } }
+
+/* No lonely last item: centre a single leftover card, and give the four app shots a 4-up row. */
+@media (min-width: 1000px) {
+  .shots:not(.shots-4):has(> .shot:nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (min-width: 700px) and (max-width: 999px) {
+  .shots:not(.shots-4):has(> .shot:nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1081px) { .rules-grid > :last-child:nth-child(3n+1) { grid-column: 2; } }
+@media (min-width: 561px) and (max-width: 1080px) { .rules-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 8px); } }

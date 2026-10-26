@@ -337,6 +337,27 @@
     </div>
   </header>
 
+  <aside class="racebar" id="racebar" data-join="RYKLS6" data-today="🎉 <b>Taipei Marathon is today.</b> Go get it!" aria-label="Taipei Marathon countdown">
+    <div class="racebar-in">
+      <p class="racebar-txt">🏃 <b>Taipei Marathon</b> in <span class="racebar-days">55</span> days <span class="racebar-sub"><span class="racebar-dot">· </span>Join "Road to Taipei Marathon": move 4 days a week</span></p>
+      <a class="racebar-btn is-soon" href="#" data-base="/join/" data-go="Join the challenge →">Invite link coming soon</a>
+    </div>
+  </aside>
+<script>
+(function () {
+  var bar = document.getElementById('racebar'); if (!bar) return;
+  // Race day 2026-12-20, counted in Taipei time (UTC+8).
+  var now = new Date(Date.now() + 8 * 3600e3);
+  var today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  var days = Math.round((Date.UTC(2026, 11, 20) - today) / 864e5);
+  if (days < 0) { bar.hidden = true; return; }
+  if (days === 0) { bar.querySelector('.racebar-txt').innerHTML = bar.getAttribute('data-today'); }
+  else bar.querySelector('.racebar-days').textContent = days;
+  var code = bar.getAttribute('data-join'), btn = bar.querySelector('.racebar-btn');
+  if (code) { btn.href = btn.getAttribute('data-base') + code; btn.classList.remove('is-soon'); btn.textContent = btn.getAttribute('data-go'); }
+})();
+</script>
+
   <main id="main" tabindex="-1">
 
     <!-- ============ 2 · hero ============
@@ -490,7 +511,7 @@
         <div class="app-copy">
           <p>Today shows only what is actually due — nothing else. Each mission is one tap, one count, or one
             timer, and the bar at the top tells you how far off the day's Tpoint you are.</p>
-          <p>The whole interface is dark, quiet and built for a five-second visit. There is no feed, no
+          <p>The app is quiet and built for a five-second visit. There is no feed, no
             streak-shaming, and nothing is pushed at you: reminders are local notifications you asked for.</p>
           <p>Your day starts when you say it does. The default is 4am, so finishing something at one in the
             morning still counts toward the day you think it belongs to.</p>
