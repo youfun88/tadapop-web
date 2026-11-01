@@ -90,7 +90,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </script>
 <h1>Developer review · SEO / AEO / GEO</h1>
 <p>Search and AI-visibility changes for Yufan to approve: titles, descriptions, schema, internal links, llms.txt, sitemap, keywords. Content changes go to the owner at <a href="/pending/">/pending</a>. Not linked from the site and not indexed. The GX10 job applies approved changes at its next run (every 8 hours).</p>
-<p class="updated">Updated 2026-11-01.</p>
+<p class="updated">Updated 2026-11-02.</p>
 
 <!-- Item markup (copy for each draft; data-item must equal the board title exactly):
 <div class="item" data-item="TITLE">
@@ -100,18 +100,19 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<div class="item" data-item="[Yufan] Homepage: title to 60 characters and question-style H2s (EN + 繁中)">
-<h3>1. Homepage: title to 60 characters and question-style H2s (EN + 繁中)</h3>
-<p><strong>Finding:</strong> the page checklist (score 87, run 2026-11-01) flags the homepage title at 61 characters, and "No question-style H2" on both / and /zh. Google shows the homepage at position 5.6 with 29 impressions and 3 clicks (2026-09-26 to 2026-10-23). The meaning of each line stays the same and the layout does not change.</p>
+<div class="item" data-item="[Yufan] Rules, rewards and support: question-style H2s (EN + 繁中)">
+<h3>1. Rules, rewards and support: question-style H2s (EN + 繁中)</h3>
+<p><strong>Finding:</strong> the page checklist (score 87, run 2026-11-01) flags "No question-style H2" on all six pages. In Google (2026-10-02 to 2026-10-29), /rules has 7 impressions at position 3.1 and /rewards has 6 at position 3.0, both with 0 clicks. One heading per page changes; the meaning stays the same and the layout does not change. No scoring text changes on /rules: only its first heading, plus the same heading in that page's articleSection schema.</p>
 <ul>
-<li><code>&lt;title&gt;</code> (/): <code>Tadapop — Group Habit Challenges with Friends | Check-in Club</code> → <code>Tadapop: Group Habit Challenges with Friends | Check-in Club</code></li>
-<li>H2 (/): <code>Why this one, and not another habit app.</code> → <code>Why choose Tadapop over another habit app?</code></li>
-<li>H2 (/): <code>Questions people actually ask.</code> → <code>What do people ask about Tadapop?</code></li>
-<li>H2 (/zh): <code>為什麼是這一款，不是另一款。</code> → <code>為什麼選這一款，不選另一款？</code></li>
-<li>H2 (/zh): <code>大家最常問的問題。</code> → <code>大家最常問什麼？</code></li>
+<li>H2 (/rules): <code>How you earn Club Score</code> → <code>How do you earn Club Score?</code></li>
+<li>H2 (/zh/rules): <code>俱樂部積分怎麼拿</code> → <code>俱樂部積分怎麼拿？</code></li>
+<li>H2 (/rewards): <code>Streak freezes</code> → <code>What is a streak freeze?</code></li>
+<li>H2 (/zh/rewards): <code>連續紀錄保護</code> → <code>什麼是連續紀錄保護？</code></li>
+<li>H2 (/support): <code>Frequently asked</code> → <code>What do people ask most about Tadapop?</code></li>
+<li>H2 (/zh/support): <code>常見問題</code> → <code>大家最常問 Tadapop 什麼？</code></li>
 </ul>
-<p>Branch: <code>seo/homepage-title-question-h2</code>. The other 20 pages with the same flag can follow if you like this.</p>
-<div class="links"><a href="/">Live /</a><a href="/zh">Live /zh</a></div>
+<p>Branch: <code>seo/question-h2-rules-rewards-support</code>.</p>
+<div class="links"><a href="/rules">Live /rules</a><a href="/rewards">Live /rewards</a><a href="/support">Live /support</a></div>
 </div>
 
 <script>
