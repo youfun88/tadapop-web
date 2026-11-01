@@ -51,68 +51,6 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 <p class="empty">Nothing yet.</p>
 
 <script>
-document.querySelector('.tab-close').addEventListener('click',function(){
-  window.close();
-  // Browsers only let a page close a tab that was opened by a link or script; otherwise say so.
-  setTimeout(function(){document.querySelector('.tab-close-hint').hidden=false;},300);
-});
-</script>
-<h1>待審閱草稿 · Drafts for review</h1>
-<p>以下是網站更新的草稿（2026-10-30），中英文各一版。網站上沒有連結，搜尋引擎也不會收錄。確認後才會上線。每份草稿下方可以直接按「同意上線」或「需要修改」並留下意見。</p>
-<p>Website updates for attorney review, each in 中文 and English. Not linked from the site and not indexed. Nothing goes live until confirmed. Use the buttons under each draft to approve or request changes.</p>
-
-<h2>新文章 · New articles</h2>
-
-<div class="item" data-item="人在美國，父母在台灣過世，怎麼領取台灣的銀行存款？">
-<h3>1. 人在美國，父母在台灣過世，怎麼領取台灣的銀行存款？</h3>
-<p>My parent died in Taiwan and I live in the US: how do I claim their Taiwan bank accounts?</p>
-<div class="links"><a href="/pending/insights/claim-taiwan-bank-accounts-from-the-us">中文</a><a href="/pending/en/insights/claim-taiwan-bank-accounts-from-the-us">English</a></div>
-</div>
-
-<div class="item" data-item="兄弟姊妹分住台灣和美國，遺產分不攏怎麼辦？">
-<h3>2. 兄弟姊妹分住台灣和美國，遺產分不攏怎麼辦？</h3>
-<p>Siblings live in Taiwan and the US and can't agree on the estate: what now?</p>
-<div class="links"><a href="/pending/insights/sibling-estate-dispute-taiwan-us">中文</a><a href="/pending/en/insights/sibling-estate-dispute-taiwan-us">English</a></div>
-</div>
-
-<h2>改版的頁面 · Updated page</h2>
-
-<div class="item" data-item="台灣企業赴美設立公司（新增：對外投資申報、與美國客戶的合約）">
-<h3>3. 台灣企業赴美設立公司：新增「對外投資申報」與「與美國客戶簽約」兩段</h3>
-<p>Taiwanese company expanding to the US: new sections on Taiwan outbound investment filing and contracts with US clients. 新增段落以黃色標示。New sections are highlighted in yellow.</p>
-<div class="links"><a href="/pending/insights/taiwanese-company-expanding-to-the-us">中文</a><a href="/pending/en/insights/taiwanese-company-expanding-to-the-us">English</a><a href="/insights/taiwanese-company-expanding-to-the-us">目前上線版本 / live</a></div>
-</div>
-
-<h2>請律師確認 · Questions for the attorney</h2>
-<ol class="q">
-<li>現有文章沒有「律師廣告」標示（只有首頁與跨國繼承服務頁有）。草稿已在文末加上「律師廣告。過往成果不保證類似結果。」，是否同意，以後所有文章也加上？</li>
-<li>兩篇新文章暫用「美國人繼承台灣房地產」的封面圖。是否需要各自的新封面？</li>
-<li>新文章網址：claim-taiwan-bank-accounts-from-the-us、sibling-estate-dispute-taiwan-us，可以嗎？</li>
-<li>【存款】各家銀行的實務（是否要求全體繼承人親自到場、是否接受 TECO 驗證的授權書、金額門檻）只找到中華郵政臺中郵局的公告可以引用。一般商業銀行的做法是否類似？文中有沒有需要修正的地方？</li>
-<li>【存款】財政部單一窗口查詢金融遺產，要點只寫「被繼承人：有身分證統一編號之中華民國國民」。父母已遷出國外或已除籍時，實務上還能查詢嗎？文章目前假設父母住在台灣。</li>
-<li>【存款】稅額試算服務限有身分證統一編號的配偶或子女申請。美國籍、沒有國民身分證的子女，實務上是否只能由其他繼承人申請？要不要在文中直接寫明？</li>
-<li>【存款、手足】TECO 驗證授權書：領務局規定可以「在領務人員面前親自簽署」，或「先經當地公證人公證」。TECO 對繼承用授權書實際採哪一種？各辦事處是否不同？</li>
-<li>【存款】文末「在美國收到遺產要不要申報 Form 3520」屬美國稅務（IRS 官網：一年超過 10 萬美元須申報）。要保留這段，還是只寫「請洽美國會計師」？</li>
-<li>【手足】「照顧父母多年的付出能不能多分」這個常見爭點，沒有找到可以驗證的依據，所以沒有寫入。是否要補充（例如民法第 1149 條酌給遺產，或一般只能靠協議）？</li>
-<li>【手足】民法第 1223 條修正（刪除兄弟姊妹特留分）依施行法第 12 條「自公布六個月後施行」，公布日為 2026-08-17。文中沒有寫具體施行日，是否要寫「2027 年 2 月中旬」（與上線的房地產文章一致）？</li>
-<li>【手足】家事事件法第 23 條但書：當事人應於外國送達者，不受強制調解限制。手足住在美國時，實務上通常怎麼走（直接起訴，或仍先調解）？</li>
-<li>【手足】土地法第 34 條之 1 用在繼承的公同共有不動產時，實務上是否要先辦公同共有繼承登記？文中只寫了門檻、書面通知與優先承購。</li>
-<li>【手足、服務說明】文案寫「協調台灣的調解或訴訟程序」。吳律師以外國法事務律師身分，能否在台灣家事法院代理？若需台灣執業律師出庭，文案是否改為「與台灣執業律師合作」？</li>
-<li>【公司】產業創新條例第 22 條（2025-05-07 修正，改為特定國家／特定產業或技術／一定金額事前核准）與第 67 條之 3 罰則，施行日期由行政院定之。全國法規資料庫的沿革沒有施行日期，《公司國外投資處理辦法》仍是 2010 年版本（逾 15 億元事前核准）。請確認目前是否已施行、新子法是否已發布。若已施行，這段要改寫。</li>
-<li>【公司】受理機關目前只寫「經濟部」。實務上是否由經濟部投資審議司受理、有沒有線上申報系統？經濟部網站拒絕連線，無法在官方網站確認。</li>
-<li>【公司】個人以自己名義在美國設立公司，是否有外匯（例如中央銀行結匯申報）或其他申報義務？未能驗證，文中只寫「請另外確認」。</li>
-<li>【公司】合約清單是否要加「台灣不是紐約公約締約方，仲裁判斷或判決在美國執行」的說明？未能驗證，未寫入。</li>
-<li>上線時會改用正式網址，加回 canonical、hreflang 與 GA，並加入 sitemap 與文章列表。草稿頁目前不載入 GA。</li>
-</ol>
-
-<div class="item" data-item="Questions">
-<h3>對上面問題的回覆 · Answers to the questions</h3>
-<p>可以用題號回覆，例如「1. 同意」。You can answer by number.</p>
-</div>
-
-<p>草稿頁面內的連結會連到目前上線的網站，或其他草稿。Links inside the drafts go to the live site or to the other drafts.</p>
-
-<script>
 (function(){
   var API='https://admin.shiptolive.com/api/contact';
   document.querySelectorAll('.item').forEach(function(box,i){
