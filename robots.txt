@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 # /android and /join carry <meta name="robots" content="noindex"> in the page
 # itself, and are deliberately NOT Disallow-ed here: a blocked URL can't be
@@ -34,34 +36,48 @@ User-agent: GPTBot
 User-agent: OAI-SearchBot
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 # Anthropic
 User-agent: ClaudeBot
 User-agent: Claude-SearchBot
 User-agent: Claude-User
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 # Perplexity
 User-agent: PerplexityBot
 User-agent: Perplexity-User
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 # Google AI surfaces (AI Overviews, Gemini grounding). Opt-out-only token:
 # this group is a deliberate "yes", not a no-op.
 User-agent: Google-Extended
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 # Apple Intelligence / Siri. Also opt-out-only.
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 # Common Crawl — not an answer engine itself, but the corpus a lot of them read
 User-agent: CCBot
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 # Meta AI
 User-agent: meta-externalagent
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 Sitemap: https://www.tadapop.app/sitemap.xml
 

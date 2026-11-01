@@ -82,6 +82,15 @@
           "value": "no-cache"
         }
       ]
+    },
+    {
+      "source": "/(pending|pending/.*|log|log.html)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
     }
   ],
   "rewrites": [
