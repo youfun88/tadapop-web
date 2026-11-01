@@ -48,7 +48,24 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<p class="empty">Nothing yet.</p>
+<div class="item" data-item="About page: add a short FAQ (EN + 繁中)">
+<h3>1. About page: add a short FAQ (EN + 繁中)</h3>
+<p>Adds five questions and answers near the end of /about, with matching FAQPage schema. The page checklist flags /about and /zh/about for having no FAQ schema and no question-style heading. Two of the questions are the customer questions set for this site's AI check: friends' habit challenge with a leaderboard, and "whoever skips buys dinner". Every fact comes from the live homepage, /about, /rules and llms.txt. The dinner answer says plainly that the app involves no money or stakes, as /rules does.</p>
+<p>The new section is yellow in the previews. Nothing else on the pages changes.</p>
+<div class="links"><a href="/pending/about">Preview (EN)</a><a href="/pending/zh-about">預覽（繁中）</a><a href="/about">Live version</a></div>
+</div>
+
+<h2>Questions</h2>
+<p>A kids' routine page would answer one of this site's AI-check questions: "Best app for a kids daily routine checklist that they tick off themselves?" Nothing on the site covers kids today, and the privacy policy says "Tadapop is not directed to children under 13", so I have not drafted it. I need these answers first:</p>
+<ol class="q">
+<li>Should the site promote Tadapop for children's routines at all, given that privacy policy line and the terms' 13+ age for an account? Changing either is your call; I won't touch them.</li>
+<li>If yes, how does it work in practice: the child's own device with no account, or a parent's phone?</li>
+<li>Is there a way for parents to see a child's progress in the app today? The site doesn't describe one, so I won't claim it unless you confirm.</li>
+</ol>
+<div class="item" data-item="Questions">
+<h3>Answers to the questions</h3>
+<p>You can answer by number, for example "1. Yes".</p>
+</div>
 
 <script>
 (function(){
@@ -78,7 +95,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
           if(j&&j.ok){st.className='status ok';st.textContent='已送出，謝謝！Sent, thank you.';}
           else throw new Error('not ok');
         })
-        .catch(function(){st.className='status err';st.textContent='送出失敗，文字已保留，請稍後再試，或寄到 contact@wulawintl.com。Could not send; your text is kept. Please try again.';})
+        .catch(function(){st.className='status err';st.textContent='送出失敗，文字已保留，請稍後再試。Could not send; your text is kept. Please try again.';})
         .finally(function(){btns.forEach(function(x){x.disabled=false;});});
       });
     });

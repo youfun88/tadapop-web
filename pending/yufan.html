@@ -37,7 +37,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 });
 </script>
 <h1>Developer review · SEO / AEO / GEO</h1>
-<p>Search and AI-visibility changes for Yufan to approve: titles, descriptions, schema, internal links, llms.txt, sitemap, keywords. Content changes go to the owner at <a href="/pending/">/pending</a>. Not linked from the site and not indexed. The GX10 job applies approved changes at its next run (every 4 hours).</p>
+<p>Search and AI-visibility changes for Yufan to approve: titles, descriptions, schema, internal links, llms.txt, sitemap, keywords. Content changes go to the owner at <a href="/pending/">/pending</a>. Not linked from the site and not indexed. The GX10 job applies approved changes at its next run (every 8 hours).</p>
 <p class="updated">Updated 2026-11-01.</p>
 
 <!-- Item markup (copy for each draft; data-item must equal the board title exactly):
@@ -48,7 +48,19 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<p class="empty">Nothing yet.</p>
+<div class="item" data-item="[Yufan] Homepage: title to 60 characters and question-style H2s (EN + 繁中)">
+<h3>1. Homepage: title to 60 characters and question-style H2s (EN + 繁中)</h3>
+<p><strong>Finding:</strong> the page checklist (score 87, run 2026-11-01) flags the homepage title at 61 characters, and "No question-style H2" on both / and /zh. Google shows the homepage at position 5.6 with 29 impressions and 3 clicks (2026-09-26 to 2026-10-23). The meaning of each line stays the same and the layout does not change.</p>
+<ul>
+<li><code>&lt;title&gt;</code> (/): <code>Tadapop — Group Habit Challenges with Friends | Check-in Club</code> → <code>Tadapop: Group Habit Challenges with Friends | Check-in Club</code></li>
+<li>H2 (/): <code>Why this one, and not another habit app.</code> → <code>Why choose Tadapop over another habit app?</code></li>
+<li>H2 (/): <code>Questions people actually ask.</code> → <code>What do people ask about Tadapop?</code></li>
+<li>H2 (/zh): <code>為什麼是這一款，不是另一款。</code> → <code>為什麼選這一款，不選另一款？</code></li>
+<li>H2 (/zh): <code>大家最常問的問題。</code> → <code>大家最常問什麼？</code></li>
+</ul>
+<p>Branch: <code>seo/homepage-title-question-h2</code>. The other 20 pages with the same flag can follow if you like this.</p>
+<div class="links"><a href="/">Live /</a><a href="/zh">Live /zh</a></div>
+</div>
 
 <script>
 (function(){
@@ -78,7 +90,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
           if(j&&j.ok){st.className='status ok';st.textContent='已送出，謝謝！Sent, thank you.';}
           else throw new Error('not ok');
         })
-        .catch(function(){st.className='status err';st.textContent='送出失敗，文字已保留，請稍後再試，或寄到 contact@wulawintl.com。Could not send; your text is kept. Please try again.';})
+        .catch(function(){st.className='status err';st.textContent='送出失敗，文字已保留，請稍後再試。Could not send; your text is kept. Please try again.';})
         .finally(function(){btns.forEach(function(x){x.disabled=false;});});
       });
     });
