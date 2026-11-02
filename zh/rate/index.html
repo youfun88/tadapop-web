@@ -63,12 +63,27 @@
     .doc.rate .rate-sign .rate-name { font-family: var(--display); font-weight: 700; font-size: 22px; color: var(--amber-deep); margin-top: 4px; }
   </style>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JTYW60NJLH"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-JTYW60NJLH');
+    /* The library loads on the first interaction, or when the page goes idle after load. Calls wait in dataLayer until then. */
+    (function (w, d) {
+      var done = 0, ev = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+      function load() {
+        if (done) return; done = 1;
+        ev.forEach(function (e) { w.removeEventListener(e, load, true); });
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-JTYW60NJLH';
+        d.head.appendChild(s);
+      }
+      ev.forEach(function (e) { w.addEventListener(e, load, { capture: true, passive: true }); });
+      w.addEventListener('load', function () {
+        setTimeout(function () { w.requestIdleCallback ? w.requestIdleCallback(load, { timeout: 3000 }) : load(); }, 4000);
+      });
+    })(window, document);
   </script>
 </head>
 <body>
