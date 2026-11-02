@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <title>Tadapop: Group Habit Challenges with Friends | Check-in Club</title>
+  <!-- Front-loads what someone is actually searching for (free / habit tracker /
+       iOS + Android) and states the one rule that defines the app, in ~166 chars
+       so it survives truncation in the SERP. -->
+  <meta name="description" content="Run a group challenge with friends: agree a goal, check in daily with a photo or video, and a live leaderboard keeps score. Free on iOS and Android." />
+  <meta name="theme-color" content="#FAF7F2" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Tadapop" />
+  <meta property="og:title" content="Tadapop — Group Habit Challenges with Friends" />
+  <meta property="og:description" content="Start a group challenge with friends, check in every day with proof, and let the leaderboard do the nagging. Private and invite-only — no feed, no strangers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
+  <!-- og.png is 1024x1024. Declared so scrapers can lay out the card without
+       fetching the file first; keep in step if the asset is ever replaced. -->
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:image:alt" content="The Tadapop mark: an amber check mark on a midnight-navy field." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_Hant_TW" />
+
+  <!-- Twitter/X reads og:* as a fallback but not og:image:alt, so the card is
+       stated explicitly. The mark sits dead centre of the square, so the 1.91:1
+       crop this card type applies keeps all of it. -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tadapop — Group Habit Challenges with Friends" />
+  <meta name="twitter:description" content="Start a group challenge with friends, check in every day with proof, and let the leaderboard do the nagging. Private and invite-only — no feed, no strangers." />
+  <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
+  <meta name="twitter:image:alt" content="The Tadapop mark: an amber check mark on a midnight-navy field." />
+
+  <link rel="icon" href="/assets/favicon.png" />
+  <!-- Fonts are self-hosted (the @font-face block at the top of styles.css), so
+       the first paint no longer waits on a fonts.googleapis.com round trip and
+       then a second one to fonts.gstatic.com. They are deliberately NOT
+       preloaded any more — see the note below. -->
+  <!-- Lighthouse names img.poster-bobo as the LCP element, and its phase
+       breakdown put ~0.7s into Load Delay before the request even started: a
+       plain <img> this deep in the document is found late and queued at low
+       priority behind everything else on the connection. Naming it here is what
+       the "LCP request discovery" audit asks for. The fonts used to be
+       preloaded on this line instead, which was worse than useless once the LCP
+       turned out to be an image: they won the bandwidth this file needed, while
+       font-display:swap already paints the text without them. -->
+  <link rel="preload" as="image" href="/assets/bobo-poster.webp" fetchpriority="high" />
+  <link rel="stylesheet" href="/styles.css" />
+  <!-- film.css styles nothing that exists at first paint: the player is built by
+       film.js, which is deferred. Loading it as media="print" and flipping to
+       "all" on load keeps 19 KiB off the critical path while still having it in
+       place long before anyone can press play. -->
+  <link rel="stylesheet" href="/film.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/film.css" /></noscript>
+
+  <!--
+    Structured data. Every claim below is checkable against the app's own source
+    of truth (src/domain/progression.ts, src/domain/tpoint.ts) or against the
+    visible copy on this page. There is deliberately NO aggregateRating and no
+    review count: the app has no ratings to report, and inventing them is both
+    dishonest and a manual-action risk.
+
+    Node ids are locale-scoped (#app here, /zh#app on the Chinese home page) so
+    the two documents can each carry the right inLanguage without contradicting
+    each other. The Organization is genuinely one legal entity, so both locales
+    point at the SAME #organization node.
+  -->
+  <!-- dateModified: unlike /privacy, /terms and /rules, this page carries no
+       visible "Last updated" line to mirror, so the value tracks the sitemap
+       lastmod for this URL. Move BOTH when the page copy actually changes; a
+       date that stops tracking real edits is one Google learns to ignore. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.tadapop.app/#organization",
+      "name": "QY LLC",
+      "url": "https://www.tadapop.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.tadapop.app/assets/logo.png",
+        "width": 256,
+        "height": 256
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://www.tadapop.app/support",
+        "availableLanguage": [
+          "en",
+          "zh-Hant"
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.tadapop.app/#website",
+      "url": "https://www.tadapop.app/",
+      "name": "Tadapop",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://www.tadapop.app/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.tadapop.app/#webpage",
+      "url": "https://www.tadapop.app/",
+      "name": "Tadapop — Daily Habit Checklist with a mission-control soul",
+      "description": "Free habit tracker for iOS and Android: log missions by tap, count or timer, earn 1 Tpoint for every day you clear them all, and challenge friends in the private Club.",
+      "inLanguage": "en",
+      "dateModified": "2026-08-31",
+      "isPartOf": {
+        "@id": "https://www.tadapop.app/#website"
+      },
+      "about": {
+        "@id": "https://www.tadapop.app/#app"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.tadapop.app/assets/og.png"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.tadapop.app/#app",
+      "name": "Tadapop",
+      "alternateName": "Tadapop: Daily Habit Checklist",
+      "url": "https://www.tadapop.app/",
+      "inLanguage": "en",
+      "description": "Tadapop is a gamified daily habit tracker with a mission-control console aesthetic. Missions are logged with a tap, a counter or a countdown timer, and logging works fully offline with no account. Clearing every mission due on a day earns exactly 1 Tpoint, which drives consistency ranks and cosmetic unlocks. The Club is a private, invite-only competition layer with no public discovery and no real money.",
+      "applicationCategory": "LifestyleApplication",
+      "applicationSubCategory": "Habit Tracker",
+      "operatingSystem": "iOS, Android",
+      "image": "https://www.tadapop.app/assets/og.png",
+      "publisher": {
+        "@id": "https://www.tadapop.app/#organization"
+      },
+      "author": {
+        "@id": "https://www.tadapop.app/#organization"
+      },
+      "isAccessibleForFree": true,
+      "softwareVersion": "1.4.14",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "0",
+        "highPrice": "3.99",
+        "offerCount": 2,
+        "availability": "https://schema.org/InStock",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Free",
+            "price": "0",
+            "priceCurrency": "USD",
+            "category": "Free",
+            "description": "Solo tracking with no account: missions, streaks, Tpoints and the year heatmap. Five active missions and one hosted challenge. Joining a friend’s challenge is never limited."
+          },
+          {
+            "@type": "Offer",
+            "name": "Tadapop Pro",
+            "price": "3.99",
+            "priceCurrency": "USD",
+            "category": "Subscription",
+            "description": "Unlimited active missions, unlimited challenges to host, and Club messages translated between English and Traditional Chinese in a group where every player is on Pro, billed monthly. A yearly plan is offered at a lower monthly rate; both prices are set per territory by the store."
+          }
+        ]
+      },
+      "featureList": [
+        "Three ways to log a mission: binary check, count-to-target, or a countdown timer with a chime",
+        "Logging works fully offline; solo tracking needs no account",
+        "1 Tpoint per day, earned only by clearing every mission due that day",
+        "Streaks, with a configurable day-start hour so a late night still counts as yesterday",
+        "A full-year heatmap and per-mission completion rates",
+        "Ranks, badges and cosmetics that are reached by showing up, never purchased",
+        "The Club: private, invite-only challenges with friends and a live leaderboard"
+      ],
+      "softwareHelp": {
+        "@type": "CreativeWork",
+        "url": "https://www.tadapop.app/support"
+      },
+      "termsOfService": "https://www.tadapop.app/terms",
+      "privacyPolicy": "https://www.tadapop.app/privacy"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.tadapop.app/#faq",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.tadapop.app/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I run a habit challenge with friends?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Open the Check-in Club, press Create Challenge, and set the goal, how long it runs, how many people, and whether a check-in needs a photo or a video. Write how to play in your own words — everyone reads that before they join — then send the invite link. Once enough people have joined you start it, and the clock starts then."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Check-in Club?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The group half of Tadapop: private, invite-only challenges where everyone checks in once a day and a live leaderboard counts how many days each person hit the target. No public feed, no discovery and no strangers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can my friends see whether I actually did it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If the host switches proof on, yes. A check-in then has to come with a photo or a short video and everyone in the challenge sees it. The host can also keep proof visible to themselves only. Videos play for seven days and then only a still frame is kept."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work for things other than exercise?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Any daily thing. Common ones are moving for forty minutes, getting to bed before a set time, reading before sleep, no sugar, and a step count. If it can be shown in a photo or a screenshot, it works as a challenge."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a habit program?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A guided 4-week plan for one new habit. Pick an area and a goal, answer a few short questions, and the program adds one tiny habit to Today, tied to a moment you already have. It grows each week after a one-tap check-in, keeps a smaller backup ready for hard days, and never resets after a miss. Programs are free while they're new, and one you start now stays free until you finish it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Tadapop free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Tracking your own habits is free, needs no account, and stays that way. A free account can keep five active missions and host one challenge at a time. Tadapop Pro removes both limits for US$3.99 a month, or less per month on the yearly plan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a Tpoint?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clear every mission due on a given day and that day pays exactly one Tpoint. Clearing some of them pays nothing, and there is no way to earn more by doing extra. A lifetime Tpoint total is therefore simply a count of days you cleared completely."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Completely. Solo tracking runs on your device and needs no connection. Sign in only if you want the Club, or a backup across phones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need an account?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not to track anything. An account is required only for the Club, because a private challenge needs to know who you are to the other players."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Android still free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free is free on Android, exactly as it is on iPhone: track anything with no account, and a free account keeps five active missions and hosts one challenge at a time. The trial period when Android had no billing at all has ended — Pro is on sale in Google Play at the same US$3.99 a month, and the same two limits apply."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it on the App Store and Google Play?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both. Version 1.4.14 is on the App Store for iPhone and iPad and on Google Play for Android. TestFlight is finished: if you installed the beta that way, install the App Store version over it and everything you have logged stays where it is."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>.home-what{max-width:40rem;margin:.75rem auto 1.25rem;line-height:1.55}</style>
+</head>
+<body>
+<button type="button" class="tab-close" aria-label="關閉分頁 Close tab" title="關閉分頁 Close tab">&times;</button>
+<p class="tab-close-hint" role="status" hidden>請直接關閉這個分頁。You can close this tab now.</p>
+<style>
+.tab-close{position:fixed;top:12px;right:12px;z-index:10;width:44px;height:44px;border-radius:50%;border:1px solid #c9c2b5;background:#fff;color:#333;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.tab-close:hover{background:#f1ede6}.tab-close:focus-visible{outline:2px solid #1d4f91;outline-offset:2px}
+h1{padding-right:52px}
+.tab-close-hint{position:fixed;top:62px;right:12px;z-index:10;margin:0;padding:8px 12px;background:#222;color:#fff;border-radius:8px;font-size:14px}
+</style>
+<script>
+document.querySelector('.tab-close').addEventListener('click',function(){
+  window.close();
+  // Browsers only let a page close a tab that was opened by a link or script; otherwise say so.
+  setTimeout(function(){document.querySelector('.tab-close-hint').hidden=false;},300);
+});
+</script>
+<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">Draft. Yellow marks the new sentence under the heading. Everything else is the live page.</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <!-- ============ 1 · top navigation ============
+       The menu lived only in the footer until now, which meant the site
+       looked like a single page until you reached the bottom of it. One
+       <nav> in the markup, two layouts in CSS. -->
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav-in">
+      <a class="site-brand" href="/">
+        <img src="/assets/logo-96.png" alt="" width="30" height="30" />
+        <span class="site-brand-name">TADAPOP</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Menu">
+        <span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu" aria-label="Main">
+        <a href="/about">About</a>
+        <a href="#app">The app</a>
+        <a href="#new">What's new</a>
+        <a href="/rewards">What you earn</a>
+        <a href="/rules">Club Rules</a>
+        <a href="#pricing">Free &amp; Pro</a>
+        <a href="/rate">Leave a review</a>
+        <a href="/support">Support</a>
+      </nav>
+      <div class="nav-tail">
+        <div data-lang-switch></div>
+        <a class="site-cta" href="#get">Get the app</a>
+      </div>
+    </div>
+  </header>
+
+  <aside class="racebar" id="racebar" data-join="RYKLS6" data-today="🎉 <b>Taipei Marathon is today.</b> Go get it!" aria-label="Taipei Marathon countdown">
+    <div class="racebar-in">
+      <p class="racebar-txt">🏃 <b>Taipei Marathon</b> in <span class="racebar-days">55</span> days <span class="racebar-sub"><span class="racebar-dot">· </span>Join "Road to Taipei Marathon": move 4 days a week</span></p>
+      <a class="racebar-btn is-soon" href="#" data-base="/join/" data-go="Join the challenge →">Invite link coming soon</a>
+    </div>
+  </aside>
+<script>
+(function () {
+  var bar = document.getElementById('racebar'); if (!bar) return;
+  // Race day 2026-12-20, counted in Taipei time (UTC+8).
+  var now = new Date(Date.now() + 8 * 3600e3);
+  var today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  var days = Math.round((Date.UTC(2026, 11, 20) - today) / 864e5);
+  if (days < 0) { bar.hidden = true; return; }
+  if (days === 0) { bar.querySelector('.racebar-txt').innerHTML = bar.getAttribute('data-today'); }
+  else bar.querySelector('.racebar-days').textContent = days;
+  var code = bar.getAttribute('data-join'), btn = bar.querySelector('.racebar-btn');
+  if (code) { btn.href = btn.getAttribute('data-base') + code; btn.classList.remove('is-soon'); btn.textContent = btn.getAttribute('data-go'); }
+})();
+</script>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ============ 2 · hero ============
+         The film is the hero. It is not a video file — film.js renders nine
+         scenes in the DOM — so the poster below is that film's own opening
+         scene, rebuilt: pressing play does not cut to something else, the
+         same picture gets bigger and starts talking. -->
+    <section class="home-hero">
+      <p class="status-chip"><i aria-hidden="true"></i>v1.4.14 · LIVE ON APP STORE + GOOGLE PLAY</p>
+
+      <h1>Do it on your own. Or <span class="amber">don’t do it alone.</span></h1>
+
+      <p class="home-what"><mark style="background:#fff3a0;color:#222;padding:0 2px">Tadapop is a free-to-start habit app for iPhone, iPad and Android: track your own daily missions, or invite friends to a private group challenge with a leaderboard.</mark></p>
+
+      <div class="player">
+        <div class="player-frame">
+          <div class="poster-art">
+            <div class="poster-grid" aria-hidden="true"></div>
+            <span class="poster-corner tl" aria-hidden="true"></span>
+            <span class="poster-corner tr" aria-hidden="true"></span>
+            <span class="poster-corner bl" aria-hidden="true"></span>
+            <span class="poster-corner br" aria-hidden="true"></span>
+
+            <div class="poster-top">
+              <span class="pt-brand"><img src="/assets/logo-96.png" alt="" width="22" height="22" /> TADAPOP</span>
+              <span class="pt-cc">CC · EN / 繁中</span>
+            </div>
+
+            <div class="poster-stage">
+              <!-- The orbiting-missions animation, moved here from the top of
+                   the page. It ends on the real mark with the dust cleared,
+                   which is exactly the film's first frame — so it reads as a
+                   title card rather than as decoration, and it no longer
+                   delays the headline by a whole screen. -->
+              <div class="mission-anim" id="missionAnim" aria-hidden="true"></div>
+              <div class="poster-word">TADAPOP</div>
+              <div class="poster-sub">DO IT TOGETHER · KEEP SCORE · NO NAGGING</div>
+            </div>
+
+            <p class="poster-cap">Pick something. Pick your friends. Agree what happens if you <span class="hi">skip</span>.</p>
+
+            <img class="poster-bobo" src="/assets/bobo-poster.webp" alt="" width="363" height="420" fetchpriority="high" decoding="async" />
+
+            <div class="poster-barspace" aria-hidden="true"></div>
+          </div>
+
+          <!-- Two films, one poster. data-film-cut is what film3.js reads to
+               pick the assembly. No runtime here (removed 2026-09-16): the film
+               pages' play buttons still show one, and it is stamped by film3.js
+               from the scenes — never write that number by hand. -->
+          <div class="poster-hits">
+            <button class="hit" type="button" data-film-cut="arena" aria-haspopup="dialog"
+                    aria-label="What's the Check-in Club? Watch a short film about doing a challenge with friends, with voiceover and captions">
+              <span class="play-disc" aria-hidden="true">▶</span>
+              <span class="hit-copy">
+                <span class="hit-text">What's the Check-in Club?</span>
+                <span class="hit-meta"><span class="hit-say">Watch to learn</span></span>
+              </span>
+            </button>
+            <button class="hit is-solo" type="button" data-film-cut="solo" aria-haspopup="dialog"
+                    aria-label="How do daily missions work? Watch a short film about your private daily checklist, with voiceover and captions">
+              <span class="play-disc" aria-hidden="true">▶</span>
+              <span class="hit-copy">
+                <span class="hit-text">How do daily missions work?</span>
+                <span class="hit-meta"><span class="hit-say">Watch to learn</span></span>
+              </span>
+            </button>
+          </div>
+
+          <!-- The film plays HERE on a desktop. film.css positions this
+               fixed; the rule in styles.css re-points it to fill this frame
+               above 900px. film.js needs no change for that — its fit()
+               already scales the 1000x563 stage from the overlay's own box.
+               Below 900px it stays fixed and takes the screen, because a
+               16:9 stage at 360px wide is 202px tall and the captions are
+               what carry the script. A fixed descendant is not clipped by
+               an ancestor's overflow, so nesting it here is safe. -->
+          <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop explainer film" hidden></div>
+        </div>
+
+        <p class="player-note">
+          Tap either film and BOBO walks you through it: the <b>Check-in Club</b> is a challenge with friends; <b>daily missions</b> are your own private checklist. Sound starts when you press play; captions are always on.
+        </p>
+        <p class="player-note nojs-line">
+          The film needs JavaScript. In one line: agree a goal and a forfeit with your friends, check in each
+          day with a tap, a count or a timer, and Tadapop keeps score so nobody has to be the nag.
+        </p>
+      </div>
+
+      <p class="home-lede">
+        Agree the deal — four runs a week, and whoever skips buys dinner. Everyone checks in with a tap, a
+        count or a timer, and a live leaderboard settles it. Your own habits track privately too, offline
+        and with no account. Free to join someone else’s challenge, forever.
+      </p>
+
+      <!-- Both listings went public (App Store 2 September 2026, Play 29 August),
+           so both of these are real links now. The official badge art lives once,
+           in #get, where somebody who has decided to install it is looking. -->
+      <div class="store-row">
+        <a class="store-badge" href="https://apps.apple.com/app/id6782101150" target="_blank" rel="noopener">
+          <span class="sb-glyph" aria-hidden="true"></span>
+          <span>
+            <span class="sb-kicker is-live">AVAILABLE ON</span>
+            <span class="sb-name">App Store</span>
+            <span class="sb-state is-live">Live now · iPhone &amp; iPad</span>
+          </span>
+        </a>
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
+          <span class="sb-glyph" aria-hidden="true">▶</span>
+          <span>
+            <span class="sb-kicker is-live">AVAILABLE ON</span>
+            <span class="sb-name">Google Play</span>
+            <span class="sb-state is-live">Live now · Android</span>
+          </span>
+        </a>
+      </div>
+      <p class="store-aside">
+        Both stores are live, on the same build. <a href="#get">Install it</a> from the App Store on
+        iPhone, or Google Play on Android.
+      </p>
+    </section>
+
+    <!-- ============ 3 · facts strip ============ -->
+    <div class="facts">
+      <div class="fact"><b>Offline</b><span>Logging never needs a connection</span></div>
+      <div class="fact"><b>No account</b><span>Until you want the Club</span></div>
+      <div class="fact"><b>No trackers</b><span>No ads, no third-party analytics</span></div>
+      <div class="fact"><b>EN · 繁中</b><span>Fully translated, app and site</span></div>
+    </div>
+
+    <!-- ============ 4 · the app, at size ============ -->
+    <section class="hsec" id="app" aria-labelledby="h-app">
+      <div class="hsec-head">
+        <p class="hsec-k">THE ACTUAL APP</p>
+        <h2 id="h-app">Not a mockup. This is the build on Google Play.</h2>
+      </div>
+      <div class="appshow">
+        <div class="app-art">
+          <div class="device-stack">
+            <div class="device device-back" aria-hidden="true">
+              <div class="device-frame"><span class="device-screen">
+                <img src="/assets/shots/02-stats.webp" alt="" width="660" height="1434" loading="lazy" decoding="async" />
+              </span></div>
+            </div>
+            <div class="device device-front">
+              <div class="device-frame"><span class="device-screen">
+                <img src="/assets/shots/01-today.webp" width="660" height="1434" loading="lazy" decoding="async"
+                     alt="The Today screen: a greeting, one of three missions complete with two to go for today’s Tpoint, Lights out by 11pm on a four-day streak, and a ten-minute Meditate timer running at 33 seconds." />
+              </span></div>
+            </div>
+          </div>
+        </div>
+        <div class="app-copy">
+          <p>Today shows only what is actually due — nothing else. Each mission is one tap, one count, or one
+            timer, and the bar at the top tells you how far off the day's Tpoint you are.</p>
+          <p>The app is quiet and built for a five-second visit. There is no feed, no
+            streak-shaming, and nothing is pushed at you: reminders are local notifications you asked for.</p>
+          <p>Your day starts when you say it does. The default is 4am, so finishing something at one in the
+            morning still counts toward the day you think it belongs to.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5 · screen by screen ============ -->
+    <section class="hsec" aria-labelledby="h-shots">
+      <div class="hsec-head">
+        <h2 id="h-shots">Four more screens.</h2>
+        <p class="hsec-p">From Tadapop 1.4.5 on a real phone, exactly as they ship.</p>
+      </div>
+      <div class="shots">
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/02-stats.webp" width="660" height="1434" loading="lazy" decoding="async"
+                 alt="The Stats screen: a four-day streak against a best of 380, 49 percent of this week completed, and a full-year heatmap showing 40 Tpoints this year and 405 all time." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>STATS</b>A full year of days on one screen, and the completion rate of every mission over 30 or 90 days.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/03-editor.webp" width="660" height="1434" loading="lazy" decoding="async"
+                 alt="The mission editor for Lights out by 11pm: the last week as seven day pills with four of them green, the mission name, an icon picker, categories, and a daily or pick-your-days schedule." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>EDITOR</b>Check off, count to a target, or run a countdown — daily, or the days you pick. The last week sits at the top.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/05-categories.webp" width="660" height="1434" loading="lazy" decoding="async"
+                 alt="The Categories screen: Mind, Health and Work with colour swatches and drag handles, then My Templates and Starter Packs, and a field for a new category." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>CATEGORIES</b>Make the ones you actually think in, and drag them into the order you want. Everything else follows it.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/06-templates.webp" width="660" height="1434" loading="lazy" decoding="async"
+                 alt="The Templates screen: a button to write a new template, then Meditate 10 minutes, Read 20 pages, Journal one page and Gratitude, each with an Add button." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>TEMPLATES</b>Take one from the starter packs or write your own, press Add, and it is on your Today list.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ 5b · what's new ============
+         The newest things, said as what you can now do. No version number:
+         every item here reached phones by update, so "in the current version
+         on both stores" stays true without being edited on each release. -->
+    <section class="hsec news" id="new" aria-labelledby="h-new">
+      <div class="hsec-head">
+        <p class="hsec-k">WHAT'S NEW</p>
+        <h2 id="h-new">Pick one habit. Get a 4-week plan built around your day.</h2>
+        <p class="hsec-p">In the current version on both stores, and free while they're new.</p>
+      </div>
+      <div class="appshow news-show">
+        <div class="app-art">
+          <div class="device news-device">
+            <div class="device-frame"><span class="device-screen">
+              <img src="/assets/shots/08-program.webp" width="660" height="1429" loading="lazy" decoding="async"
+                   alt="A 4-week plan for Sleep earlier: Becoming someone who protects their sleep, for my health. Week 1 is After brushing my teeth at night, straight to bed, no scrolling; then 15 minutes earlier, 30 minutes earlier, and 30 minutes earlier on weekends too. Below it, a backup for a hard day and a choice of which days." />
+            </span></div>
+          </div>
+        </div>
+        <div class="app-copy">
+          <p class="news-lead">Habit programs turn what the best habit books agree on into a plan you can follow:
+            start tiny, tie it to something you already do, and let it grow a little each week.</p>
+          <p>Choose from 14 areas &mdash; sleep, fitness, food, less stress, screen time, money, study, faith and
+            more &mdash; then one of 49 goals, or name your own. A few quick questions build the plan: why it
+            matters to you, where you are now, which moment of your day it follows, and what usually gets in
+            the way.</p>
+          <ul class="news-list">
+            <li><b>Tiny first.</b> Week 1 is the smallest step that still counts, and it lands on Today tied to
+              your moment: &ldquo;After brushing my teeth at night &rarr; straight to bed, no scrolling.&rdquo;</li>
+            <li><b>A backup for the hard day.</b> Say what gets in the way and a smaller version is ready for
+              that day &mdash; &ldquo;If I'm too tired: just straight to bed. That still counts.&rdquo;</li>
+            <li><b>A weekly check-in.</b> See last week's days, then choose: grow it, keep it, or make it
+              smaller.</li>
+            <li><b>Kind after a miss.</b> Nothing resets. The morning after a missed day it says so without
+              blame and offers the backup.</li>
+            <li><b>Give it time.</b> One study found habits took about 66 days on average to feel automatic.
+              After four weeks the habit stays on Today &mdash; or take it to the Club with a friend.</li>
+          </ul>
+          <a class="arena-more" href="/habits">Watch the 2-minute film &rarr;</a>
+          <h3 class="news-sub">Also new in the Club</h3>
+          <ul class="news-list">
+            <li><b>Turn a habit into a challenge.</b> Challenge Friends on any habit starts a Club challenge
+              from it. Your habit stays as it is.</li>
+            <li><b>Done or missed, the host's call.</b> A leaderboard can count check-ins done, in green,
+              instead of days missed &mdash; switchable even mid-game.</li>
+            <li><b>Your Club record.</b> Stats lists the challenges you've finished: days, place and best run.</li>
+            <li><b>Unread count on the app icon</b>, for the messages that would notify you, and the chat
+              lounge shows who wrote the last one and when.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- The program from the first question to the finish, the real
+           screens (simulator captures, 2026-09-29). -->
+      <h3 class="news-sub news-gallery-head">A program, screen by screen</h3>
+      <div class="shots shots-4">
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/09-program-area.webp" width="660" height="1429" loading="lazy" decoding="async"
+                 alt="The first question of a habit program: What would you like to improve? Fourteen tiles from Fitness, Sleep, Health and Food to Hobbies, Faith and Something else." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>AREAS</b>Fourteen areas, from sleep to faith. Pick one, then a goal &mdash; or name your own.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/10-program-checkin.webp" width="660" height="1429" loading="lazy" decoding="async"
+                 alt="Today on day 8 of Sleep earlier: Last week 6 of 7 days, what next? Grow it is suggested, beside Keep it." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>WEEKLY CHECK-IN</b>Day 8: last week was 6 of 7, so it suggests growing it. You choose.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/11-program-missed.webp" width="660" height="1429" loading="lazy" decoding="async"
+                 alt="Day 6 after a missed day: Yesterday didn't happen, and that's fine. Today is the one that counts. Below it the backup: if I'm too tired, just straight to bed, no scrolling." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>THE MORNING AFTER</b>A missed day is said kindly, and the backup you planned opens by itself.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="device"><div class="device-frame"><span class="device-screen">
+            <img src="/assets/shots/12-program-finish.webp" width="660" height="1429" loading="lazy" decoding="async"
+                 alt="The finish card: 4 weeks are up, 22 of 28 days done, You're someone who protects their sleep, with Keep going and Do it with a friend." />
+          </span></div></div>
+          <figcaption class="shot-cap"><b>THE FINISH</b>Day 29 counts the days you did, and the habit stays on Today.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ 6 · the rules ============
+         Statements rather than adjectives. Each one is a thing that is not
+         true of most habit trackers, which is the only claim worth the room. -->
+    <section class="hsec" aria-labelledby="h-rules">
+      <div class="hsec-head">
+        <p class="hsec-k">SEVEN RULES</p>
+        <h2 id="h-rules">Why choose Tadapop over another habit app?</h2>
+      </div>
+      <div class="rules-grid">
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">▲</div>
+          <h3>One Tpoint a day, or none</h3>
+          <p>Clear every mission due and the day pays exactly 1 Tpoint. Clearing some pays nothing, and doing
+            extra earns nothing. A lifetime total is simply a count of clean days.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">❄</div>
+          <h3>Streak freezes are earned, never bought</h3>
+          <p>One arrives every 14 active days, you can hold three, and one is spent automatically on a day you
+            miss. A bad day does not cost you a run you spent months building.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">◷</div>
+          <h3>Your day starts at 4am</h3>
+          <p>Or whenever you say it does. Finishing something at 1am counts toward the day it belongs to, not
+            the one the calendar insists on.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">⌁</div>
+          <h3>Offline, with no account</h3>
+          <p>Solo tracking runs entirely on your device. Sign in only if you want the Club or a backup across
+            phones — everything else works with no connection and no sign-up.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">⊘</div>
+          <h3>No ads, no trackers</h3>
+          <p>No advertising, and no third-party advertising or analytics SDKs in the app. Proof photos and
+            notes stay on your device.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">⚔</div>
+          <h3>The Club is invite-only</h3>
+          <p>Private challenges with people you actually know. No public discovery, no matchmaking, no
+            strangers, and no real money anywhere near it.</p>
+        </article>
+        <article class="home-card">
+          <div class="home-card-ico" aria-hidden="true">◧</div>
+          <h3>Templates you can throw away</h3>
+          <p>Starter Packs get you running in a tap, and anything you build can be saved as your own template
+            and reused. Don't like the packs? Remove every built-in at once — they stay gone.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 7 · the Club ============
+         Text on a console panel. No Club screenshot exists and one is not
+         being faked to fill the space. -->
+    <section class="hsec" aria-labelledby="h-arena">
+      <div class="hsec-head">
+        <p class="hsec-k">THE CLUB</p>
+        <h2 id="h-arena">Group challenges with the people who keep you honest.</h2>
+      </div>
+      <div class="arena-panel">
+        <p>The Check-in Club is where you run a habit challenge with friends. Set a goal and a length,
+          decide whether a photo or video is required to check in, write the rules in
+          your own words — the forfeit, the deal, whatever you agreed — and invite the people you want.
+          Everyone reads the same rules, and changing them mid-challenge announces itself in the thread. There is a group thread for the running commentary, and a live leaderboard that
+          counts one thing: how many days you hit the target. Exceeding it banks nothing.</p>
+        <p>Nothing is staked and nothing converts to money. Losing a challenge costs you nothing at all, and
+          joining someone else's challenge is free on every plan, forever.</p>
+        <a class="arena-more" href="/rules">Read the Club Rules →</a>
+      </div>
+    </section>
+
+    <!-- ============ 8 · free and Pro ============ -->
+    <section class="hsec" id="pricing" aria-labelledby="h-plans">
+      <div class="hsec-head">
+        <p class="hsec-k">FREE AND PRO</p>
+        <h2 id="h-plans">Pro removes limits, not effort.</h2>
+        <p class="hsec-p">There are exactly two limits on a free account, and Pro lifts both. Pro also
+          brings one thing a whole group shares: Club messages in your own language.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>Free</h3>
+          <p class="plan-price">NO ACCOUNT NEEDED</p>
+          <ul>
+            <li>5 active missions</li>
+            <li>1 challenge you host at a time</li>
+            <li>Joining a friend's challenge — always</li>
+            <li>Full stats, streaks, heatmap and ranks</li>
+          </ul>
+          <p class="plan-foot">Archiving a mission frees a slot; finishing a challenge frees the other. Nothing
+            you have already recorded is ever deleted or hidden to make room.</p>
+        </div>
+        <div class="plan lit">
+          <h3>Tadapop Pro</h3>
+          <p class="plan-price">US$3.99 A MONTH, OR LESS PER MONTH ON THE YEARLY PLAN</p>
+          <ul>
+            <li>Unlimited active missions</li>
+            <li>Unlimited challenges to host</li>
+            <li>Club messages translated between English and 繁體中文, in a group where every player is on Pro</li>
+            <li>Everything in Free, without the ceiling</li>
+          </ul>
+          <p class="plan-foot">The store shows the price in your own currency before you agree to anything.
+            The plans and the limits are the same on iPhone and Android — Pro is bought in the
+            App Store or in Google Play.</p>
+        </div>
+      </div>
+      <div class="plans-note">
+        <p><b>The same on both plans.</b> Being invited to something never hits a paywall. No rank, badge,
+          cosmetic, Tpoint, streak freeze or Club Score can be bought. A Pro player has no advantage over a
+          free player in the same challenge, and nothing you have earned is ever taken back.</p>
+        <p><b>Translated messages, for a group on Pro.</b> A Club thread is often written in English and Chinese
+          at once. Pick the language you read in Profile → Translate messages, and a message you could not read
+          is shown in yours, with the original one tap away. It turns on by itself in a group where every player
+          is on Pro; until then you can see the setting, but its choices are switched off. Translation is done by
+          Claude, an AI from Anthropic, and a translation can be wrong.</p>
+        <p><b>We can switch it off for a group.</b> Translation is paid for by us, message by message. If it is
+          being misused in a group, we can switch it off there, even when every player is on Pro. If you think
+          we got that wrong, or you would like it switched on for your group, write to us through the
+          <a href="/support">support page</a> — by email or the form — and we will look at it.</p>
+        <p><b>Five missions is a routine, not a demo.</b> Because a Tpoint is all or nothing, a shorter list
+          makes the day's point easier to earn, not harder — and both limits are a question of how many at
+          once, never how many ever.</p>
+      </div>
+    </section>
+
+    <!-- ============ 9 · FAQ ============ -->
+    <section class="hsec" aria-labelledby="h-faq">
+      <div class="hsec-head">
+        <h2 id="h-faq">What do people ask about Tadapop?</h2>
+      </div>
+      <div class="faq">
+        <details class="faq-item">
+          <summary>How do I run a habit challenge with friends?</summary>
+          <p>Open the Check-in Club, press Create Challenge, and set four things: the goal, how long it runs,
+            how many people, and whether a check-in needs a photo or a video. Write how to play in your own
+            words — everyone reads that before they join — then send the invite link. Once enough people have
+            joined, you start it, and the clock starts then.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is the Check-in Club?</summary>
+          <p>It is the group half of Tadapop: private, invite-only challenges where everyone checks in once a
+            day and a live leaderboard counts how many days each person hit the target. There is no public
+            feed, no discovery and no strangers — you only ever see people you invited or were invited by.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can my friends see whether I actually did it?</summary>
+          <p>If the host switches proof on, yes. A check-in then has to come with a photo or a short video,
+            and everyone in the challenge sees it — that is the point, because seeing somebody else turn up is
+            what gets you out the door. The host can also keep proof visible to themselves only. Videos play
+            for seven days and then only a still frame is kept.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does it work for things other than exercise?</summary>
+          <p>Any daily thing. Common ones are moving for forty minutes, getting to bed before a set time,
+            reading before sleep, no sugar, and a step count. If it can be shown in a photo or a screenshot —
+            a sleep chart, a workout summary — it works as a challenge.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is a habit program?</summary>
+          <p>A guided 4-week plan for one new habit. Pick an area and a goal, answer a few short questions, and the program adds one tiny habit to Today, tied to a moment you already have. It grows each week after a one-tap check-in, keeps a smaller backup ready for hard days, and never resets after a miss. Programs are free while they're new, and one you start now stays free until you finish it.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is Tadapop free?</summary>
+          <p>Yes. Tracking your own habits is free, needs no account, and stays that way. A free account keeps
+            five active missions and hosts one challenge at a time. Pro removes both limits for US$3.99 a
+            month, or less per month on the yearly plan.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is a Tpoint?</summary>
+          <p>Clear every mission due on a given day and that day pays exactly one Tpoint. Clearing some of them
+            pays nothing, and there is no way to earn more by doing extra. So a lifetime total of 128 Tpoints
+            means 128 days you cleared completely.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does it work offline?</summary>
+          <p>Completely. Solo tracking runs on your device and needs no connection. Sign in only if you want
+            the Club, or a backup across phones.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need an account?</summary>
+          <p>Not to track anything. An account is required only for the Club, because a private challenge has
+            to know who you are to the other players.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is Android still free?</summary>
+          <p>Free is free on Android, exactly as it is on iPhone: track anything with no account, and a free
+            account keeps five active missions and hosts one challenge at a time. The trial period when
+            Android had no billing at all has ended — Pro is on sale in Google Play at the same
+            US$3.99 a month, and the same two limits apply.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is it on the App Store and Google Play?</summary>
+          <p>Both of them. Version 1.4.14 is on the App Store for iPhone and iPad and on Google Play for
+            Android — so it installs like any other app on
+            either phone. TestFlight is
+            finished: if you were on the beta, install the App Store version over it and everything you have
+            logged stays where it is.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ 10 · get it ============ -->
+    <section class="get" id="get">
+      <div class="get-wrap">
+        <h2>Get it from your store.</h2>
+        <p>Version 1.4.14 is on the App Store for iPhone and iPad and on Google Play for Android. TestFlight is finished; installing the App Store version over the beta keeps
+          everything you have already logged.</p>
+
+        <div class="store-cta">
+          <a class="appstore-badge" href="https://apps.apple.com/app/id6782101150" target="_blank" rel="noopener">
+            <img src="/assets/appstore-badge-en.svg" alt="Download on the App Store" width="120" height="40" />
+          </a>
+          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
+            <img src="/assets/play-badge-en.png" alt="Get it on Google Play" width="646" height="250" />
+          </a>
+        </div>
+
+        <div class="rightnow">
+          <span class="hsec-k">NO PLAY STORE ON YOUR PHONE?</span>
+          <div class="rightnow-row">
+            <a class="ghost" href="/android">Android · Install without Play →</a>
+          </div>
+          <!-- The QR cards are the same ones that used to be the main call to
+               action. They are still useful on a desktop, and hidden at phone
+               widths where nobody can scan them with the device in their hand. -->
+          <div class="beta-grid">
+            <a class="beta-card" href="https://apps.apple.com/app/id6782101150" target="_blank" rel="noopener">
+              <div class="beta-plat">iOS · APP STORE</div>
+              <img src="/assets/qr-appstore.png" alt="QR code: scan to open Tadapop on the App Store — https://apps.apple.com/app/id6782101150" width="200" height="200" loading="lazy" />
+              <span class="beta-action">Tap to open the App Store →</span>
+            </a>
+            <a class="beta-card" href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
+              <div class="beta-plat">ANDROID · GOOGLE PLAY</div>
+              <img src="/assets/qr-play.png" alt="QR code: scan to open Tadapop on Google Play — https://play.google.com/store/apps/details?id=com.qyllc.tadapop" width="200" height="200" loading="lazy" />
+              <span class="beta-action">Tap to open Google Play →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <img class="brand-logo" src="/assets/logo-96.png" alt="" width="24" height="24" /> TADAPOP
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about">What Tadapop does</a>
+      <a href="/rewards">What you earn</a>
+      <a href="/rules">Club Rules</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/delete-account">Delete account</a>
+      <a href="/rate">Leave a review</a>
+      <a href="/support">Support</a>
+    </nav>
+    <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
+  </footer>
+
+  <script>
+    /* ---- warm the film's artwork on intent ----------------------------
+       film.js builds its overlay eagerly but its three BOBO layers are
+       loading="lazy", so they cost a visitor who never presses play
+       nothing. Someone who hovers or tabs to the play button has told us
+       they probably will, which is enough notice to fetch 3.1MB before
+       the click rather than during it. Once, and never on a cold load. */
+    (function () {
+      var hits = document.querySelectorAll('[data-film-cut], #filmLaunch');
+      if (!hits.length) return;
+      var warmed = false;
+      function warm() {
+        if (warmed) return;
+        warmed = true;
+        ['bobo-base', 'bobo-eye', 'bobo-mouth'].forEach(function (n) {
+          new Image().src = '/assets/host/' + n + '.png';
+        });
+      }
+      hits.forEach(function (b) {
+        b.addEventListener('pointerenter', warm, { once: true });
+        b.addEventListener('focus', warm, { once: true });
+        b.addEventListener('touchstart', warm, { once: true, passive: true });
+      });
+    })();
+  </script>
+
+  <script>
+    // ---- Hero mission animation ----------------------------------------
+    // The balloon-check logo is the "goal". Small daily-mission tokens orbit
+    // it and get checked off one by one, then everything bursts into confetti
+    // and disintegrates into dust — which clears to reveal the real Tadapop
+    // logo. Plays ONCE (click to replay). Web Animations API, no deps.
+    (function () {
+      const root = document.getElementById('missionAnim');
+      if (!root) return;
+
+      const C = { amber: '#FFB454', blue: '#7FA9FF', green: '#5BE39B', coral: '#FF9A7C' };
+      const MISSIONS = [
+        { icon: '🏃', color: C.amber },
+        { icon: '🚴', color: C.green },
+        { icon: '🏊', color: C.blue },
+        { icon: '📚', color: C.coral },
+        { icon: '🧘', color: C.amber },
+        { icon: '💧', color: C.blue },
+      ];
+      const N = MISSIONS.length;
+      const T = 9500; // single play, start to logo reveal
+
+      const div = (cls) => { const e = document.createElement('div'); if (cls) e.className = cls; return e; };
+      const rgba = (hex, a) => {
+        const n = parseInt(hex.slice(1), 16);
+        return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+      };
+
+      const coreSVG = `
+        <svg viewBox="120 96 264 268" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="maAmb" cx="50%" cy="32%" r="78%">
+              <stop offset="0%" stop-color="#FFDDA6"/><stop offset="55%" stop-color="#FFB454"/><stop offset="100%" stop-color="#E8922E"/>
+            </radialGradient>
+            <filter id="maGlow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="9" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#maGlow)"><ellipse cx="252" cy="230" rx="108" ry="120" fill="url(#maAmb)"/></g>
+          <ellipse cx="214" cy="184" rx="32" ry="22" fill="#ffffff" opacity="0.26"/>
+          <g class="ma-coreck">
+            <path d="M196 234 L240 280 L322 184" fill="none" stroke="#0B0E17"
+                  stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>`;
+      const checkSVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 13 l4 4 L19 6" fill="none" stroke="#0B0E17" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+      // ---- build DOM ----
+      root.textContent = '';
+      const flash = div('ma-flash');
+      const tada = div('ma-tada');
+      const orbit = div('ma-orbit');
+      const ring = div('ma-ring');
+      orbit.appendChild(ring);
+      const core = div('ma-core');
+      core.innerHTML = coreSVG;
+      const burst = div('ma-burst');  // confetti layer
+      const dust = div('ma-burst');   // dust-mote layer
+      const logo = document.createElement('img'); // the real logo, revealed at the end
+      logo.className = 'ma-logo';
+      logo.src = '/assets/logo.png';
+      logo.alt = '';
+      root.append(flash, tada, orbit, core, burst, dust, logo);
+
+      const chips = MISSIONS.map((m, i) => {
+        const place = div('ma-place');
+        const spin = div('ma-spin');
+        const pop = div('ma-pop');
+        const disc = div('ma-disc');
+        disc.style.setProperty('--c', m.color);
+        disc.textContent = m.icon;
+        const check = div('ma-check');
+        check.style.setProperty('--c', m.color);
+        check.innerHTML = checkSVG;
+        pop.append(disc, check);
+        spin.appendChild(pop);
+        place.appendChild(spin);
+        orbit.appendChild(place);
+        return { place, spin, pop, disc, check, color: m.color, angle: (360 / N) * i };
+      });
+
+      const COUNT = 30;
+      const palette = [C.amber, C.blue, C.green, C.coral];
+      const conf = [];
+      for (let i = 0; i < COUNT; i++) {
+        const p = div('ma-conf');
+        p.style.background = palette[i % 4];
+        p.style.borderRadius = i % 3 === 0 ? '2px' : '50%';
+        burst.appendChild(p);
+        conf.push(p);
+      }
+
+      // fine dust motes that the scene crumbles into before the logo appears
+      const DUST = 44;
+      const dustCols = [C.amber, '#FFE6BD', C.blue, '#D7DEEC', C.green, C.coral];
+      const motes = [];
+      for (let i = 0; i < DUST; i++) {
+        const d = div('ma-dust');
+        d.style.background = dustCols[i % dustCols.length];
+        const s = 2 + (i % 4);
+        d.style.width = s + 'px';
+        d.style.height = s + 'px';
+        d.style.margin = `${-s / 2}px 0 0 ${-s / 2}px`;
+        dust.appendChild(d);
+        motes.push(d);
+      }
+
+      const coreck = core.querySelector('.ma-coreck');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ---- timeline (plays once) ----
+      let anims = [];
+      const A = (el, frames, opts) => {
+        const a = el.animate(frames, Object.assign({ duration: T, iterations: 1, fill: 'forwards', easing: 'linear' }, opts || {}));
+        anims.push(a);
+        return a;
+      };
+
+      function build() {
+        anims.forEach((a) => a.cancel());
+        anims = [];
+        logo.style.opacity = '';
+        const size = root.clientWidth || 340;
+        const r = size * 0.37;          // orbit radius
+        const far = size * 0.5;         // how far chips/confetti fly on burst
+
+        // BURST ~0.55 · DISSOLVE-TO-DUST ~0.55–0.72 · LOGO REVEAL ~0.7–1.0
+        A(orbit, [
+          { offset: 0, transform: 'rotate(0deg)', opacity: 1 },
+          { offset: 0.55, transform: 'rotate(150deg)', opacity: 1 },
+          { offset: 0.70, transform: 'rotate(165deg)', opacity: 0 },
+          { offset: 1, transform: 'rotate(165deg)', opacity: 0 },
+        ]);
+
+        chips.forEach((c, i) => {
+          const a = c.angle;
+          const ea = 0.04 + i * 0.03;     // staggered entrance
+          const ca = 0.24 + i * 0.046;    // staggered check-off
+          const col = c.color;
+
+          // counter-rotate the token so the emoji stays upright while orbiting
+          A(c.spin, [{ transform: `rotate(${-a}deg)` }, { offset: 0.55, transform: `rotate(${-(a + 150)}deg)` }, { transform: `rotate(${-(a + 150)}deg)` }]);
+
+          // emerge from center → orbit → bob → fly outward on the burst
+          A(c.place, [
+            { offset: 0, transform: `rotate(${a}deg) translateY(0px)` },
+            { offset: ea, transform: `rotate(${a}deg) translateY(0px)` },
+            { offset: ea + 0.05, transform: `rotate(${a}deg) translateY(${-r * 1.06}px)`, easing: 'cubic-bezier(.2,1.3,.4,1)' },
+            { offset: ea + 0.08, transform: `rotate(${a}deg) translateY(${-r}px)` },
+            { offset: 0.40, transform: `rotate(${a}deg) translateY(${-r - 5}px)`, easing: 'ease-in-out' },
+            { offset: 0.52, transform: `rotate(${a}deg) translateY(${-r}px)` },
+            { offset: 0.55, transform: `rotate(${a}deg) translateY(${-r}px)` },
+            { offset: 0.67, transform: `rotate(${a}deg) translateY(${-(r + far)}px)`, easing: 'cubic-bezier(.3,0,.6,1)' },
+            { offset: 1, transform: `rotate(${a}deg) translateY(${-(r + far)}px)` },
+          ]);
+
+          // pop in, idle, pre-burst swell, then crumble away
+          A(c.pop, [
+            { offset: 0, transform: 'scale(0)', opacity: 0 },
+            { offset: ea, transform: 'scale(0)', opacity: 0 },
+            { offset: ea + 0.04, transform: 'scale(1.18)', opacity: 1, easing: 'cubic-bezier(.2,1.4,.4,1)' },
+            { offset: ea + 0.07, transform: 'scale(1)', opacity: 1 },
+            { offset: 0.52, transform: 'scale(1)', opacity: 1 },
+            { offset: 0.55, transform: 'scale(1.28)', opacity: 1, easing: 'ease-out' },
+            { offset: 0.67, transform: 'scale(0.15)', opacity: 0, easing: 'ease-in' },
+            { offset: 1, transform: 'scale(0.15)', opacity: 0 },
+          ]);
+
+          // the check badge pops on when the mission is completed
+          A(c.check, [
+            { offset: 0, transform: 'scale(0)', opacity: 0 },
+            { offset: ca, transform: 'scale(0)', opacity: 0 },
+            { offset: ca + 0.025, transform: 'scale(1.4)', opacity: 1, easing: 'cubic-bezier(.2,1.5,.4,1)' },
+            { offset: ca + 0.05, transform: 'scale(1)', opacity: 1 },
+            { offset: 0.55, transform: 'scale(1)', opacity: 1 },
+            { offset: 0.58, transform: 'scale(1.5)', opacity: 1 },
+            { offset: 0.67, transform: 'scale(1)', opacity: 0 },
+            { offset: 1, transform: 'scale(1)', opacity: 0 },
+          ]);
+
+          // token lights up the moment it's checked
+          A(c.disc, [
+            { offset: 0, boxShadow: `0 0 0 0 ${rgba(col, 0)}` },
+            { offset: ca, boxShadow: `0 0 0 0 ${rgba(col, 0)}` },
+            { offset: ca + 0.04, boxShadow: `0 0 16px 2px ${rgba(col, 0.55)}`, easing: 'ease-out' },
+            { offset: 0.55, boxShadow: `0 0 16px 2px ${rgba(col, 0.55)}` },
+            { offset: 0.58, boxShadow: `0 0 28px 5px ${rgba(col, 0.85)}` },
+            { offset: 0.67, boxShadow: `0 0 0 0 ${rgba(col, 0)}` },
+            { offset: 1, boxShadow: `0 0 0 0 ${rgba(col, 0)}` },
+          ]);
+        });
+
+        // central goal: breathe, triumphant pop, then disintegrate into dust
+        A(core, [
+          { offset: 0, opacity: 0, transform: 'scale(.85)' },
+          { offset: 0.05, opacity: 1, transform: 'scale(1)', easing: 'cubic-bezier(.2,1.2,.4,1)' },
+          { offset: 0.30, transform: 'scale(1.03)' },
+          { offset: 0.50, transform: 'scale(1)' },
+          { offset: 0.55, opacity: 1, transform: 'scale(1.22)', easing: 'cubic-bezier(.2,1.5,.35,1)' },
+          { offset: 0.62, opacity: 1, transform: 'scale(1.1)' },
+          { offset: 0.72, opacity: 0, transform: 'scale(1.5)', easing: 'ease-in' },
+          { offset: 1, opacity: 0, transform: 'scale(1.5)' },
+        ]);
+
+        // the carved checkmark brightens from "pending" to "achieved"
+        A(coreck, [
+          { offset: 0, opacity: 0.3 },
+          { offset: 0.50, opacity: 0.3 },
+          { offset: 0.55, opacity: 1, easing: 'ease-out' },
+          { offset: 0.62, opacity: 1 },
+          { offset: 0.70, opacity: 0 },
+          { offset: 1, opacity: 0 },
+        ]);
+
+        // shockwave ring + warm flash on the burst
+        A(tada, [
+          { offset: 0, transform: 'scale(0.5)', opacity: 0 },
+          { offset: 0.52, transform: 'scale(0.5)', opacity: 0 },
+          { offset: 0.55, transform: 'scale(0.6)', opacity: 0.7 },
+          { offset: 0.70, transform: 'scale(2)', opacity: 0, easing: 'cubic-bezier(.2,.7,.3,1)' },
+          { offset: 1, transform: 'scale(2)', opacity: 0 },
+        ]);
+        A(flash, [
+          { offset: 0, opacity: 0 },
+          { offset: 0.52, opacity: 0 },
+          { offset: 0.56, opacity: 0.55 },
+          { offset: 0.68, opacity: 0 },
+          { offset: 1, opacity: 0 },
+        ]);
+
+        // confetti explosion outward from the goal
+        conf.forEach((p, i) => {
+          const ang = ((i / COUNT) * 360 + (i * 53) % 47) * Math.PI / 180;
+          const dist = far * (0.7 + (i % 5) * 0.16);
+          const dx = Math.cos(ang) * dist;
+          const dy = Math.sin(ang) * dist;
+          const rot = (i * 47) % 360;
+          A(p, [
+            { offset: 0, transform: 'translate(0,0) scale(0)', opacity: 0 },
+            { offset: 0.53, transform: 'translate(0,0) scale(0)', opacity: 0 },
+            { offset: 0.56, transform: 'translate(0,0) scale(1)', opacity: 1 },
+            { offset: 0.72, transform: `translate(${dx}px,${dy}px) rotate(${rot}deg) scale(0.4)`, opacity: 0, easing: 'cubic-bezier(.15,.6,.3,1)' },
+            { offset: 1, transform: `translate(${dx}px,${dy}px) rotate(${rot}deg) scale(0.4)`, opacity: 0 },
+          ]);
+        });
+
+        // dust motes: drift out and down (gravity) and fade to nothing
+        motes.forEach((d, i) => {
+          const ang = ((i / DUST) * 360 + (i * 71) % 53) * Math.PI / 180;
+          const dist = far * (0.35 + (i % 6) * 0.13);
+          const dx = Math.cos(ang) * dist;
+          const dy = Math.sin(ang) * dist + far * 0.45; // gravity drift
+          A(d, [
+            { offset: 0, transform: 'translate(0,0) scale(0)', opacity: 0 },
+            { offset: 0.55, transform: 'translate(0,0) scale(0)', opacity: 0 },
+            { offset: 0.59, transform: `translate(${dx * 0.25}px,${dy * 0.2}px) scale(1)`, opacity: 0.9, easing: 'ease-out' },
+            { offset: 0.86, transform: `translate(${dx}px,${dy}px) scale(0.3)`, opacity: 0, easing: 'cubic-bezier(.25,.5,.4,1)' },
+            { offset: 1, transform: `translate(${dx}px,${dy}px) scale(0.3)`, opacity: 0 },
+          ]);
+        });
+
+        // the real logo settles in once the dust clears
+        A(logo, [
+          { offset: 0, opacity: 0, transform: 'translate(-50%,-50%) scale(.55)' },
+          { offset: 0.66, opacity: 0, transform: 'translate(-50%,-50%) scale(.55)' },
+          { offset: 0.78, opacity: 1, transform: 'translate(-50%,-50%) scale(1.06)', easing: 'cubic-bezier(.2,1.3,.4,1)' },
+          { offset: 0.84, transform: 'translate(-50%,-50%) scale(1)' },
+          { offset: 1, opacity: 1, transform: 'translate(-50%,-50%) scale(1)' },
+        ]);
+      }
+
+      // Calm variant for prefers-reduced-motion: soft fades + sequential
+      // check-ins, then a quiet crossfade to the logo — no spinning, flying,
+      // confetti, or dust. Plays once, like the full version.
+      function buildGentle() {
+        anims.forEach((a) => a.cancel());
+        anims = [];
+        logo.style.opacity = '';
+        const size = root.clientWidth || 340;
+        const r = size * 0.37;
+        tada.style.opacity = '0';
+
+        // fade the orbit ring out before the logo settles in
+        A(orbit, [
+          { offset: 0, opacity: 1 },
+          { offset: 0.62, opacity: 1 },
+          { offset: 0.74, opacity: 0 },
+          { offset: 1, opacity: 0 },
+        ]);
+
+        chips.forEach((c, i) => {
+          // tokens rest still on the orbit — no rotation, no flying out
+          c.place.style.transform = `rotate(${c.angle}deg) translateY(${-r}px)`;
+          c.spin.style.transform = 'none';
+          const in0 = 0.05 + i * 0.04;   // staggered soft fade-in
+          const ck = 0.34 + i * 0.045;    // staggered soft check-in
+
+          A(c.pop, [
+            { offset: 0, opacity: 0, transform: 'scale(.92)' },
+            { offset: in0, opacity: 0, transform: 'scale(.92)' },
+            { offset: in0 + 0.05, opacity: 1, transform: 'scale(1)', easing: 'ease-out' },
+            { offset: 0.62, opacity: 1, transform: 'scale(1)' },
+            { offset: 0.72, opacity: 0, transform: 'scale(.95)' },
+            { offset: 1, opacity: 0, transform: 'scale(.95)' },
+          ]);
+          A(c.check, [
+            { offset: 0, opacity: 0, transform: 'scale(.9)' },
+            { offset: ck, opacity: 0, transform: 'scale(.9)' },
+            { offset: ck + 0.04, opacity: 1, transform: 'scale(1)', easing: 'ease-out' },
+            { offset: 0.62, opacity: 1, transform: 'scale(1)' },
+            { offset: 0.72, opacity: 0, transform: 'scale(.95)' },
+            { offset: 1, opacity: 0, transform: 'scale(.95)' },
+          ]);
+          A(c.disc, [
+            { offset: 0, boxShadow: `0 0 0 0 ${rgba(c.color, 0)}` },
+            { offset: ck, boxShadow: `0 0 0 0 ${rgba(c.color, 0)}` },
+            { offset: ck + 0.05, boxShadow: `0 0 14px 1px ${rgba(c.color, 0.45)}`, easing: 'ease-out' },
+            { offset: 0.62, boxShadow: `0 0 14px 1px ${rgba(c.color, 0.45)}` },
+            { offset: 0.72, boxShadow: `0 0 0 0 ${rgba(c.color, 0)}` },
+            { offset: 1, boxShadow: `0 0 0 0 ${rgba(c.color, 0)}` },
+          ]);
+        });
+
+        // central goal: quiet fade with a barely-there breath; check brightens
+        A(core, [
+          { offset: 0, opacity: 0, transform: 'scale(.98)' },
+          { offset: 0.06, opacity: 1, transform: 'scale(1)', easing: 'ease-out' },
+          { offset: 0.5, transform: 'scale(1.015)' },
+          { offset: 0.62, opacity: 1, transform: 'scale(1)' },
+          { offset: 0.72, opacity: 0, transform: 'scale(1)' },
+          { offset: 1, opacity: 0, transform: 'scale(1)' },
+        ]);
+        A(coreck, [
+          { offset: 0, opacity: 0.3 },
+          { offset: 0.50, opacity: 0.3 },
+          { offset: 0.58, opacity: 1, easing: 'ease-out' },
+          { offset: 1, opacity: 1 },
+        ]);
+
+        // crossfade to the real logo
+        A(logo, [
+          { offset: 0, opacity: 0, transform: 'translate(-50%,-50%) scale(1)' },
+          { offset: 0.66, opacity: 0, transform: 'translate(-50%,-50%) scale(1)' },
+          { offset: 0.82, opacity: 1, transform: 'translate(-50%,-50%) scale(1)', easing: 'ease-out' },
+          { offset: 1, opacity: 1, transform: 'translate(-50%,-50%) scale(1)' },
+        ]);
+      }
+
+      const builder = reduce ? buildGentle : build;
+
+      // The animation is a one-shot, and it now lives inside the film poster
+      // rather than at the top of the page. Playing it on load would mean it
+      // had finished before most people scrolled to it, so it waits until it
+      // is actually on screen. Once is enough — it ends on the mark, which is
+      // the poster's resting state.
+      let played = false;
+      function playOnce() {
+        if (played) return;
+        played = true;
+        builder();
+      }
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting) { playOnce(); io.disconnect(); }
+          });
+        }, { threshold: 0.35 });
+        io.observe(root);
+      } else {
+        playOnce();
+      }
+
+      // No click-to-replay any more: the click on this element belongs to the
+      // play button sitting over it, and a second handler here would race it.
+      let rt;
+      window.addEventListener('resize', () => {
+        if (!played) return;
+        clearTimeout(rt);
+        rt = setTimeout(builder, 200);
+      });
+    })();
+  </script>
+
+  <script src="/nav.js" defer></script>
+  <script>
+    /* film3.js builds the player, and nothing at first paint needs it, so on the home page it loads on the
+       first interaction or when the page goes idle. A press on a play button before then is held and replayed. */
+    (function (w, d) {
+      var started = 0, ready = 0, held = null, ev = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+      function load() {
+        if (started) return; started = 1;
+        ev.forEach(function (e) { w.removeEventListener(e, load, true); });
+        var s = d.createElement('script');
+        s.src = '/film3.js';
+        s.onload = function () {
+          ready = 1;
+          if (held) { var b = held; held = null; b.click(); }
+        };
+        d.body.appendChild(s);
+      }
+      d.addEventListener('click', function (e) {
+        if (ready || !e.target.closest) return;
+        var b = e.target.closest('[data-film-cut], #filmLaunch');
+        if (!b) return;
+        e.preventDefault();
+        e.stopPropagation();
+        held = b;
+        load();
+      }, true);
+      if (/(^|[#&?])film(=1)?($|[#&?])/.test(location.hash + location.search)) return load();
+      ev.forEach(function (e) { w.addEventListener(e, load, { capture: true, passive: true }); });
+      w.addEventListener('load', function () {
+        setTimeout(function () { w.requestIdleCallback ? w.requestIdleCallback(load, { timeout: 3000 }) : load(); }, 4000);
+      });
+    })(window, document);
+  </script>
+  <script src="/lang.js" defer></script>
+</body>
+</html>

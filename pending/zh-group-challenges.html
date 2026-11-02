@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <title>跟朋友一起做習慣團體挑戰 — Tadapop</title>
+  <meta name="description" content="跟朋友、健身夥伴或讀書會開一場私人的習慣團體挑戰：每天打卡、即時排行榜，要不要附證明由主辦人決定。不牽涉任何賭注。" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Tadapop" />
+  <meta property="og:title" content="跟朋友一起做習慣團體挑戰 — Tadapop" />
+  <meta property="og:description" content="跟朋友、健身夥伴或讀書會開一場私人的習慣團體挑戰：每天打卡、即時排行榜，要不要附證明由主辦人決定。不牽涉任何賭注。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:locale" content="zh_Hant_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="跟朋友一起做習慣團體挑戰 — Tadapop" />
+  <meta name="twitter:description" content="跟朋友、健身夥伴或讀書會開一場私人的習慣團體挑戰：每天打卡、即時排行榜，要不要附證明由主辦人決定。不牽涉任何賭注。" />
+  <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
+
+  <link rel="icon" href="/assets/favicon.png" />
+  <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
+       so the first paint no longer waits on a fonts.googleapis.com round trip and
+       then a second one to fonts.gstatic.com. The two faces below are the ones the
+       first screen actually paints with — the headline (Chivo 900) and body copy
+       (Inter 400) — so they are preloaded rather than being discovered only once
+       styles.css has finished parsing. crossorigin is required on a font preload
+       even for a same-origin file; without it the browser fetches it twice. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/chivo-900-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="/styles.css" />
+
+  <!--
+    FAQPage — 常見問題. Every Q and A below is the SAME text rendered in the
+    「常見問題」 section of this page. Keep the two in step if either is edited.
+  -->
+  <!-- dateModified: unlike /privacy, /terms and /rules, this page carries no
+       visible "Last updated" line to mirror, so the value tracks the sitemap
+       lastmod for this URL. Move BOTH when the page copy actually changes; a
+       date that stops tracking real edits is one Google learns to ignore. -->
+    <style>
+    /* /about — the same two-part story the App Store description tells. */
+    .about-faq { margin: 0 0 2rem; }
+    .about-lead { font-size: 1.12rem; line-height: 1.6; color: var(--ink); margin: 0 0 2rem; }
+    .about-part { border: 1px solid var(--line); background: var(--panel); border-radius: 14px;
+                  padding: 1.4rem 1.3rem 1.2rem; margin: 0 0 1.5rem; }
+    .about-part > .tag { font-family: var(--mono); font-size: .75rem; letter-spacing: .14em;
+                         color: var(--amber-ink); margin: 0 0 .35rem; }
+    :lang(zh-Hant) .about-part > .tag { letter-spacing: .04em; }
+    .doc .about-part h2 { margin-top: 0; }
+    .about-part ul { margin: .4rem 0 1rem; padding-left: 1.2rem; }
+    .about-part li { margin: .35rem 0; line-height: 1.55; }
+    .about-sub { border-left: 2px solid var(--amber); padding: .2rem 0 .2rem 1rem; margin: 1.4rem 0 .4rem; }
+    .about-sub h3 { margin-top: 0; }
+    .about-quote { font-style: italic; color: var(--ink); }
+    .about-cta { display: flex; gap: .7rem; flex-wrap: wrap; margin: 2rem 0 0; }
+    .about-cta a { border: 1px solid var(--line); border-radius: 999px; padding: .6rem 1.1rem;
+                   text-decoration: none; color: var(--ink); }
+    .about-cta a:hover { border-color: var(--amber); color: var(--amber-ink); }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "有推薦可以跟朋友一起打卡、養成習慣的 App 嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tadapop 的打卡俱樂部就是為這個設計的。主辦人建立一場私人挑戰、邀請朋友加入，每個人每天打一次卡，即時排行榜記錄每個人達標了幾天。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "排行榜怎麼決定誰領先？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "只看你達標了幾天，沒有其他標準。某一天超過目標也不會累積，所以一天做很多，補不回沒做的那一天。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "有沒有 App 可以約好「誰沒運動誰請吃飯」？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以用 Tadapop 來玩。先跟朋友講好規則，例如一週跑四天、誰沒做到誰請客，再建立一場挑戰，排行榜就看得出誰有做到。請客是你們朋友之間的約定，不會經過 App。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "挑戰會牽涉真實金錢嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不會。沒有真實金錢，沒有可以換成金錢的獎品，也不牽涉任何賭注。在 App 裡輸了挑戰，沒有任何損失。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "陌生人可以加入我的挑戰嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不行。只有拿到邀請連結或邀請碼的人才能加入，主辦人也可以設定每個人都要先經過同意。沒有公開搜尋，也沒有自動配對。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "朋友加入要付費嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不用。不管哪種方案，參加別人的挑戰都不受限制。不過每個人都需要帳號。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<button type="button" class="tab-close" aria-label="關閉分頁 Close tab" title="關閉分頁 Close tab">&times;</button>
+<p class="tab-close-hint" role="status" hidden>請直接關閉這個分頁。You can close this tab now.</p>
+<style>
+.tab-close{position:fixed;top:12px;right:12px;z-index:10;width:44px;height:44px;border-radius:50%;border:1px solid #c9c2b5;background:#fff;color:#333;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.tab-close:hover{background:#f1ede6}.tab-close:focus-visible{outline:2px solid #1d4f91;outline-offset:2px}
+h1{padding-right:52px}
+.tab-close-hint{position:fixed;top:62px;right:12px;z-index:10;margin:0;padding:8px 12px;background:#222;color:#fff;border-radius:8px;font-size:14px}
+</style>
+<script>
+document.querySelector('.tab-close').addEventListener('click',function(){
+  window.close();
+  // Browsers only let a page close a tab that was opened by a link or script; otherwise say so.
+  setTimeout(function(){document.querySelector('.tab-close-hint').hidden=false;},300);
+});
+</script>
+<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">新頁面草稿，預計放在 /zh/group-challenges。整頁都是新內容，資料來自網站與 llms.txt。Draft of a new page.</p>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav-in">
+      <a class="site-brand" href="/zh">
+        <img src="/assets/logo-96.png" alt="" width="30" height="30" />
+        <span class="site-brand-name">TADAPOP</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="選單">
+        <span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu" aria-label="主選單">
+        <a href="/zh/about">關於</a>
+        <a href="/zh#app">App 長什麼樣</a>
+        <a href="/zh/rewards">你會得到什麼</a>
+        <a href="/zh/rules">俱樂部規則</a>
+        <a href="/zh#pricing">免費與 Pro</a>
+        <a href="/zh/support">支援</a>
+      </nav>
+      <div class="nav-tail">
+        <div data-lang-switch></div>
+        <a class="site-cta" href="/zh#get">取得 App</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="doc" id="main" tabindex="-1">
+    <h1>跟朋友一起做習慣團體挑戰</h1>
+    <p class="about-lead">選一個目標、邀你想邀的人，每天打卡。即時排行榜看得出誰有做到。</p>
+    <p><strong>Tadapop 的打卡俱樂部是私人、邀請制的。沒有陌生人，不牽涉任何賭注，輸了挑戰也沒有任何損失。</strong></p>
+
+    <section class="about-part" aria-labelledby="gc-who">
+      <p class="tag">01 · 適合誰</p>
+      <h2 id="gc-who">團體挑戰適合誰？</h2>
+      <ul>
+        <li><strong>朋友</strong>：一直說要一起做的那件事，例如睡前讀 20 頁，或是不吃糖。</li>
+        <li><strong>健身夥伴</strong>：每天動 40 分鐘或每日步數，想要的話可以附照片或影片當證明。</li>
+        <li><strong>讀書會</strong>：每天的閱讀或念書目標，再用群組聊天互相打氣。</li>
+        <li><strong>家人</strong>：大人和青少年一起挑戰一個目標。參加挑戰的每個人都需要帳號，帳號限 13 歲以上。</li>
+      </ul>
+    </section>
+
+    <section class="about-part" aria-labelledby="gc-how">
+      <p class="tag">02 · 怎麼進行</p>
+      <h2 id="gc-how">一場挑戰怎麼進行？</h2>
+      <ol>
+        <li>打開「俱樂部」分頁，按「建立挑戰」。這部分需要帳號。</li>
+        <li>幫挑戰取名，用自己的話寫下玩法。受邀的人在加入前就看得到。</li>
+        <li>選擇挑戰多久（7 天、30 天或自訂），以及多久打卡一次（每天，或每週固定幾天）。</li>
+        <li>選擇人數（上限 4、8、20 或 40 人）、誰能加入、誰能邀請。</li>
+        <li>決定打卡要不要附照片或影片，以及誰看得到。</li>
+        <li>分享邀請連結或邀請碼。人數到了，由主辦人開始挑戰。</li>
+        <li>每個人每天打一次卡，排行榜計算每個人達標了幾天。</li>
+      </ol>
+      <p><a href="/zh/film-club">看俱樂部影片 →</a> · <a href="/zh/rules">俱樂部規則 →</a></p>
+    </section>
+
+    <section class="about-part" aria-labelledby="gc-plans">
+      <p class="tag">03 · 免費與 PRO</p>
+      <h2 id="gc-plans">哪些免費？Pro 多了什麼？</h2>
+      <p><strong>免費</strong></p>
+      <ul>
+        <li>參加朋友的挑戰，永遠不限場次。</li>
+        <li>同時自己開 1 場挑戰，跑完就能再開一場。</li>
+        <li>同時進行 5 項個人任務。</li>
+      </ul>
+      <p><strong>Tadapop Pro</strong>：每月 US$3.99，年繳平均每月更低。商店會用你自己的幣別顯示價格。</p>
+      <ul>
+        <li>自己開挑戰不限場次。</li>
+        <li>任務不限數量。</li>
+        <li>群組裡每位成員都是 Pro 時，俱樂部訊息在英文和繁體中文之間互相翻譯。</li>
+      </ul>
+      <p>同一場挑戰裡，Pro 玩家不會比免費玩家佔到任何便宜。等級、徽章和俱樂部積分都不能買。<a href="/zh#pricing">免費與 Pro →</a></p>
+    </section>
+
+    <section class="about-faq" aria-labelledby="gc-faq">
+      <h2 id="gc-faq">團體挑戰，大家最常問什麼？</h2>
+      <h3>有推薦可以跟朋友一起打卡、養成習慣的 App 嗎？</h3>
+      <p>Tadapop 的打卡俱樂部就是為這個設計的。主辦人建立一場私人挑戰、邀請朋友加入，每個人每天打一次卡，即時排行榜記錄每個人達標了幾天。</p>
+      <h3>排行榜怎麼決定誰領先？</h3>
+      <p>只看你達標了幾天，沒有其他標準。某一天超過目標也不會累積，所以一天做很多，補不回沒做的那一天。</p>
+      <h3>有沒有 App 可以約好「誰沒運動誰請吃飯」？</h3>
+      <p>可以用 Tadapop 來玩。先跟朋友講好規則，例如一週跑四天、誰沒做到誰請客，再建立一場挑戰，排行榜就看得出誰有做到。請客是你們朋友之間的約定，不會經過 App。</p>
+      <h3>挑戰會牽涉真實金錢嗎？</h3>
+      <p>不會。沒有真實金錢，沒有可以換成金錢的獎品，也不牽涉任何賭注。在 App 裡輸了挑戰，沒有任何損失。</p>
+      <h3>陌生人可以加入我的挑戰嗎？</h3>
+      <p>不行。只有拿到邀請連結或邀請碼的人才能加入，主辦人也可以設定每個人都要先經過同意。沒有公開搜尋，也沒有自動配對。</p>
+      <h3>朋友加入要付費嗎？</h3>
+      <p>不用。不管哪種方案，參加別人的挑戰都不受限制。不過每個人都需要帳號。</p>
+    </section>
+    <p class="about-lead"><strong>選一個目標，邀一個朋友。</strong></p>
+
+    <div class="about-cta">
+      <a href="https://apps.apple.com/app/id6782101150" target="_blank" rel="noopener">App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">Google Play</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <img class="brand-logo" src="/assets/logo-96.png" alt="" width="24" height="24" /> TADAPOP
+    </div>
+    <nav class="footer-links" aria-label="頁尾連結">
+      <a href="/zh/about">Tadapop 是什麼</a>
+      <a href="/zh/rewards">你會得到什麼</a>
+      <a href="/zh/rules">俱樂部規則</a>
+      <a href="/zh/privacy">隱私權政策</a>
+      <a href="/zh/terms">使用條款</a>
+      <a href="/zh/delete-account">刪除帳號</a>
+      <a href="/zh/support">支援</a>
+    </nav>
+    <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
+  </footer>
+
+  <script src="/nav.js" defer></script>
+<script src="/lang.js" defer></script>
+</body>
+</html>
