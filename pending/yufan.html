@@ -103,7 +103,20 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<p>Nothing yet.</p>
+<div class="item" data-item="[Yufan] llms.txt: list the about, habits and film pages (EN + 繁中)">
+<h3>1. llms.txt: list the about, habits and film pages (EN + 繁中)</h3>
+<p><strong>Finding:</strong> the "Canonical pages" list in llms.txt omits /about, /habits, /film-club and /film-solo and their 繁中 versions, though all eight are in the sitemap. llms.txt says everything in it can be checked against the pages linked at the bottom. /about now answers two of the customer questions set for the AI check (friends' leaderboard, whoever skips buys dinner) and has 7 impressions at position 2.6 in Google (2026-10-03 to 2026-10-30). The AI check itself has never run, so citation status is unknown.</p>
+<p>Before → after: English list gains 4 lines after Home, and the 繁中 list gains 4 lines after 首頁. Nothing is removed. Link text is each page's own title.</p>
+<ul>
+<li><code>[What Tadapop does](/about)</code>: the app in plain words, with a short FAQ on challenges with friends, solo use, price and where to get it.</li>
+<li><code>[Build a habit that sticks](/habits)</code>: a 2-minute film and a FAQ on forming a habit and on habit programs.</li>
+<li><code>[How to run a group challenge with friends](/film-club)</code>: the Club film, with a FAQ on hosting, who can join, proof and group pots.</li>
+<li><code>[How the daily habit checklist works](/film-solo)</code>: the solo film.</li>
+<li>繁中: <code>[Tadapop 是什麼](/zh/about)</code>, <code>[兩分鐘，讓習慣留下來](/zh/habits)</code>, <code>[怎麼揪朋友一起做團體挑戰](/zh/film-club)</code>, <code>[每日任務清單怎麼用](/zh/film-solo)</code></li>
+</ul>
+<p>Branch: <code>seo/llms-canonical-pages</code>. The links in the file are full https://www.tadapop.app URLs.</p>
+<div class="links"><a href="/llms.txt">Live llms.txt</a></div>
+</div>
 
 <script>
 (function(){

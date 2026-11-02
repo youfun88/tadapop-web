@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Install Tadapop on Android</title>
+  <meta name="description" content="Install Tadapop on Android from Google Play, or sideload the APK directly." />
+
+
+  <link rel="icon" href="/assets/favicon.png" />
+  <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
+       so the first paint no longer waits on a fonts.googleapis.com round trip and
+       then a second one to fonts.gstatic.com. The two faces below are the ones the
+       first screen actually paints with — the headline (Chivo 900) and body copy
+       (Inter 400) — so they are preloaded rather than being discovered only once
+       styles.css has finished parsing. crossorigin is required on a font preload
+       even for a same-origin file; without it the browser fetches it twice. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/chivo-900-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .install-cta { text-align: center; margin: 28px 0 8px; }
+    .play-cta { text-align: center; margin: 24px 0 6px; }
+    .play-cta img { height: 76px; width: auto; }  /* PNG has ~33% built-in clear space */
+    .fallback-rule { border: 0; border-top: 1px solid var(--line); margin: 40px 0 0; }
+    .install-cta .button { font-size: 17px; padding: 16px 34px; }
+    .qr-card {
+      margin: 28px auto;
+      max-width: 320px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+    }
+    .qr-card img { width: 220px; height: 220px; border-radius: 10px; background: #fff; padding: 10px; }
+    .qr-card .qr-label { color: var(--dim); font-family: var(--mono, monospace); font-size: 13px; letter-spacing: 1px; margin-top: 14px; text-transform: uppercase; }
+    .steps { counter-reset: step; list-style: none; padding: 0; }
+    .steps li { position: relative; padding-left: 38px; margin: 14px 0; }
+    .steps li::before {
+      counter-increment: step; content: counter(step);
+      position: absolute; left: 0; top: -2px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(232,134,26,0.14); color: var(--amber-ink);
+      font-family: var(--mono, monospace); font-weight: 600;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .note { color: var(--faint); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; margin-top: 28px; }
+    .doc h3 {
+      font-family: var(--display, inherit); color: var(--ink); font-size: 15px;
+      letter-spacing: 0.5px; text-transform: uppercase; margin: 22px 0 8px;
+    }
+    .doc h3:first-of-type { margin-top: 12px; }
+  </style>
+</head>
+<body>
+<button type="button" class="tab-close" aria-label="關閉分頁 Close tab" title="關閉分頁 Close tab">&times;</button>
+<p class="tab-close-hint" role="status" hidden>請直接關閉這個分頁。You can close this tab now.</p>
+<style>
+.tab-close{position:fixed;top:12px;right:12px;z-index:10;width:44px;height:44px;border-radius:50%;border:1px solid #c9c2b5;background:#fff;color:#333;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.tab-close:hover{background:#f1ede6}.tab-close:focus-visible{outline:2px solid #1d4f91;outline-offset:2px}
+h1{padding-right:52px}
+.tab-close-hint{position:fixed;top:62px;right:12px;z-index:10;margin:0;padding:8px 12px;background:#222;color:#fff;border-radius:8px;font-size:14px}
+</style>
+<script>
+document.querySelector('.tab-close').addEventListener('click',function(){
+  window.close();
+  // Browsers only let a page close a tab that was opened by a link or script; otherwise say so.
+  setTimeout(function(){document.querySelector('.tab-close-hint').hidden=false;},300);
+});
+</script>
+<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">Draft. Yellow marks the changed wording; schema carries the same change. Everything else is the live page.</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav-in">
+      <a class="site-brand" href="/">
+        <img src="/assets/logo-96.png" alt="" width="30" height="30" />
+        <span class="site-brand-name">TADAPOP</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Menu">
+        <span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu" aria-label="Main">
+        <a href="/about">About</a>
+        <a href="/#app">The app</a>
+        <a href="/rewards">What you earn</a>
+        <a href="/rules">Club Rules</a>
+        <a href="/#pricing">Free &amp; Pro</a>
+        <a href="/support">Support</a>
+      </nav>
+      <div class="nav-tail">
+        <div data-lang-switch></div>
+        <a class="site-cta" href="/#get">Get the app</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="doc" id="main" tabindex="-1">
+    <h1>Install Tadapop on Android</h1>
+    <div class="updated">Direct APK v1.4.13 · <mark style="background:#fff3a0;color:#222;padding:0 2px">Google Play has v1.4.14</mark></div>
+
+    <p>Tadapop is on Google Play. That is the way in for almost everyone: it installs like any
+      other app, updates itself, and skips the unknown-source warning entirely.</p>
+
+    <div class="play-cta">
+      <a href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">
+        <img src="/assets/play-badge-en.png" alt="Get it on Google Play" width="646" height="250" />
+      </a>
+    </div>
+
+    <div class="qr-card">
+      <img src="/assets/qr-play.png" alt="QR code: scan to open Tadapop on Google Play — https://play.google.com/store/apps/details?id=com.qyllc.tadapop" width="600" height="600" loading="lazy" decoding="async">
+      <div class="qr-label">On a computer? Scan with your Android phone</div>
+    </div>
+
+    <hr class="fallback-rule" />
+
+    <h2>If you can't use Google Play</h2>
+    <p>Some devices ship without the Play Store. For those there is a direct <code>.apk</code> —
+      currently <strong>v1.4.13</strong>, with habit programs and Club chat notifications. <mark style="background:#fff3a0;color:#222;padding:0 2px">Google Play has v1.4.14.</mark>
+      Everything works the same — but nothing updates itself, so you have to come back here for
+      each new version. If Play is an option, use Play.</p>
+
+    <div class="install-cta">
+      <a class="button" href="/tadapop.apk" download>Download the APK instead</a>
+    </div>
+
+    <h2>What's new in this build</h2>
+    <p>The Arena has a name that says what it is, and the templates are yours to write.</p>
+
+    <h3>The Arena is now the Check-in Club</h3>
+    <ul>
+      <li><strong>The third tab reads CLUB.</strong> Same feature, same challenges, same people — "arena" was telling nobody anything.</li>
+      <li><strong>CREATE CHALLENGE</strong> starts one; <strong>I HAVE A JOIN CODE</strong> gets you into somebody else's.</li>
+    </ul>
+
+    <h3>Templates are yours</h3>
+    <ul>
+      <li><strong>Write your own</strong>, edit them, and swipe left to delete.</li>
+      <li><strong>Clear out every built-in in one tap</strong> if none of them fit the way you live.</li>
+      <li><strong>ADD</strong> puts a template on Today, where you can still change it before it counts.</li>
+    </ul>
+
+    <h3>Fixed</h3>
+    <ul>
+      <li><strong>A failed load no longer says you have no challenges.</strong> Lose the network while the club list is loading and the screen used to claim the list was empty — which reads exactly like losing everything. It keeps what it had now.</li>
+      <li><strong>Sharing and export actually leave the phone.</strong> A data export now goes out through Android's own share sheet.</li>
+      <li><strong>Only Google sign-in is offered.</strong> The Apple button was being drawn on a platform that cannot use it.</li>
+    </ul>
+
+    <h2>How to install the APK</h2>
+    <ol class="steps">
+      <li>Tap <strong>Download the APK instead</strong> above and open the downloaded <code>.apk</code> file.</li>
+      <li>If Android warns about an unknown source, tap <strong>Settings</strong> → enable <strong>Allow from this source</strong>, then go back.</li>
+      <li>Tap <strong>Install</strong>, then open <strong>Tadapop</strong> from your app drawer.</li>
+    </ol>
+    <p>Already have an older sideloaded build? This installs straight over it — no need to uninstall first, and your missions stay put.</p>
+
+    <h2>Good to know</h2>
+    <ul>
+      <li><strong>Android only.</strong> This is an <code>.apk</code> — it can't be installed on an iPhone.</li>
+      <li><strong>Solo tracking needs no account.</strong> An account (a quick email code) is only needed for the Club.</li>
+      <li><strong>Opening an invite link?</strong> On Android it lands on a web page first — tap <strong>Open in Tadapop</strong> there to jump into the app.</li>
+      <li><strong>Installed the APK before?</strong> Play won't recognise it as the same app — uninstall
+        the sideloaded copy first if you want Play to handle updates from now on. Signed-in Club data
+        comes back when you sign in; solo data on that device does not.</li>
+    </ul>
+
+    <p class="note">Questions or bugs? <a href="/support">Contact support</a>. By installing you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <img class="brand-logo" src="/assets/logo-96.png" alt="" width="24" height="24" /> TADAPOP
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/rewards">What you earn</a>
+      <a href="/rules">Club Rules</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/delete-account">Delete account</a>
+      <a href="/support">Support</a>
+    </nav>
+    <div class="footer-copy">© 2026 QY LLC · Made for people who like to ship.</div>
+  </footer>
+
+
+  <script src="/nav.js" defer></script>
+</body>
+</html>
