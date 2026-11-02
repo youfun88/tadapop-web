@@ -40,6 +40,7 @@
   .cut .other a { color: var(--ink); background: var(--panel2); border: 1px solid var(--line);
                   border-radius: 999px; padding: .5rem 1rem; text-decoration: none; font-size: .9rem; }
   .cut .go:hover { background: var(--amber-deep); }
+  .cut .card h3 { font-size: 1rem; margin: 1.1rem 0 .3rem; }
 </style>
   <!-- Google tag (gtag.js) -->
   <script>
@@ -64,6 +65,54 @@
       });
     })(window, document);
   </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you run a group challenge with friends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open the Check-in Club and press Create Challenge. Name it, write how to play in your own words, then set how long it runs, how often people check in, and whether a check-in needs a photo or a video. Send the invite link or code. Once enough people have joined, the host starts it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who can see or join a challenge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only people with the invite link or code can join, and the host can choose to approve each person first. There is no public discovery, no matchmaking and no strangers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a check-in need a photo or a video?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only if the host switches proof on. The host also chooses whether all players or only the host can see it. Videos play for 7 days, and then only a still frame is kept."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the group pot or forfeit go through the app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A pot or a forfeit is a deal between you and your friends, and you can write it into how to play. No challenge in the app involves real money, prizes or stakes, and losing a challenge costs nothing in the app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you need an account, and is it free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Check-in Club needs an account. The free plan lets you host one challenge at a time, and joining a friend’s challenge is never limited. Tadapop Pro removes the limit on hosting."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
   <main class="cut">
@@ -97,6 +146,19 @@
         <a href="/film-new/">The old combined cut</a>
       </div>
     </div>
+    <section class="card" aria-labelledby="film-club-faq">
+      <h2 id="film-club-faq">What do people ask about running a group challenge?</h2>
+      <h3>How do you run a group challenge with friends?</h3>
+      <p>Open the Check-in Club and press Create Challenge. Name it, write how to play in your own words, then set how long it runs, how often people check in, and whether a check-in needs a photo or a video. Send the invite link or code. Once enough people have joined, the host starts it.</p>
+      <h3>Who can see or join a challenge?</h3>
+      <p>Only people with the invite link or code can join, and the host can choose to approve each person first. There is no public discovery, no matchmaking and no strangers.</p>
+      <h3>Does a check-in need a photo or a video?</h3>
+      <p>Only if the host switches proof on. The host also chooses whether all players or only the host can see it. Videos play for 7 days, and then only a still frame is kept.</p>
+      <h3>Does the group pot or forfeit go through the app?</h3>
+      <p>No. A pot or a forfeit is a deal between you and your friends, and you can write it into how to play. No challenge in the app involves real money, prizes or stakes, and losing a challenge costs nothing in the app.</p>
+      <h3>Do you need an account, and is it free?</h3>
+      <p>The Check-in Club needs an account. The free plan lets you host one challenge at a time, and joining a friend’s challenge is never limited. Tadapop Pro removes the limit on hosting.</p>
+    </section>
   </main>
 
   <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop Club film" hidden></div>

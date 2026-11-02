@@ -40,6 +40,7 @@
   .cut .other a { color: var(--ink); background: var(--panel2); border: 1px solid var(--line);
                   border-radius: 999px; padding: .5rem 1rem; text-decoration: none; font-size: .9rem; }
   .cut .go:hover { background: var(--amber-deep); }
+  .cut .card h3 { font-size: 1rem; margin: 1.1rem 0 .3rem; }
 </style>
   <!-- Google tag (gtag.js) -->
   <script>
@@ -64,6 +65,54 @@
       });
     })(window, document);
   </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "怎麼揪朋友一起做團體挑戰？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "打開打卡俱樂部，按「建立挑戰」。取好名字，用自己的話寫下玩法，再設定挑戰多久、多久打卡一次，以及打卡要不要附照片或影片。接著把邀請連結或邀請碼傳給朋友。人數到了之後，由主辦人開始挑戰。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "誰看得到、誰能加入挑戰？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "只有拿到邀請連結或邀請碼的人能加入，主辦人也可以設定每個人都要先經過同意。沒有公開探索、沒有配對，也沒有陌生人。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "打卡一定要附照片或影片嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "只有主辦人開啟證明時才需要。主辦人也可以決定所有玩家都看得到，或只有主辦人看得到。影片可以播放 7 天，之後只保留一張靜態畫面。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "共同基金或懲罰會經過 App 嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不會。共同基金或懲罰是你和朋友之間的約定，可以寫進玩法裡。App 裡的挑戰不牽涉真實金錢、獎品或賭注，輸了挑戰在 App 裡也不會有任何損失。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "需要帳號嗎？要付費嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "打卡俱樂部需要帳號。免費方案一次可以主辦 1 場挑戰，加入朋友的挑戰則沒有限制。Tadapop Pro 解除主辦挑戰數量的限制。"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
   <main class="cut">
@@ -97,6 +146,19 @@
         <a href="/zh/film-new/">舊的合併版</a>
       </div>
     </div>
+    <section class="card" aria-labelledby="film-club-faq">
+      <h2 id="film-club-faq">揪朋友做團體挑戰，大家最常問什麼？</h2>
+      <h3>怎麼揪朋友一起做團體挑戰？</h3>
+      <p>打開打卡俱樂部，按「建立挑戰」。取好名字，用自己的話寫下玩法，再設定挑戰多久、多久打卡一次，以及打卡要不要附照片或影片。接著把邀請連結或邀請碼傳給朋友。人數到了之後，由主辦人開始挑戰。</p>
+      <h3>誰看得到、誰能加入挑戰？</h3>
+      <p>只有拿到邀請連結或邀請碼的人能加入，主辦人也可以設定每個人都要先經過同意。沒有公開探索、沒有配對，也沒有陌生人。</p>
+      <h3>打卡一定要附照片或影片嗎？</h3>
+      <p>只有主辦人開啟證明時才需要。主辦人也可以決定所有玩家都看得到，或只有主辦人看得到。影片可以播放 7 天，之後只保留一張靜態畫面。</p>
+      <h3>共同基金或懲罰會經過 App 嗎？</h3>
+      <p>不會。共同基金或懲罰是你和朋友之間的約定，可以寫進玩法裡。App 裡的挑戰不牽涉真實金錢、獎品或賭注，輸了挑戰在 App 裡也不會有任何損失。</p>
+      <h3>需要帳號嗎？要付費嗎？</h3>
+      <p>打卡俱樂部需要帳號。免費方案一次可以主辦 1 場挑戰，加入朋友的挑戰則沒有限制。Tadapop Pro 解除主辦挑戰數量的限制。</p>
+    </section>
   </main>
 
   <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop 俱樂部影片" hidden></div>

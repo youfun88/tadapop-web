@@ -50,6 +50,7 @@
        date that stops tracking real edits is one Google learns to ignore. -->
     <style>
     /* /about — the same two-part story the App Store description tells. */
+    .about-faq { margin: 0 0 2rem; }
     .about-lead { font-size: 1.12rem; line-height: 1.6; color: var(--ink); margin: 0 0 2rem; }
     .about-part { border: 1px solid var(--line); background: var(--panel); border-radius: 14px;
                   padding: 1.4rem 1.3rem 1.2rem; margin: 0 0 1.5rem; }
@@ -89,6 +90,54 @@
         setTimeout(function () { w.requestIdleCallback ? w.requestIdleCallback(load, { timeout: 3000 }) : load(); }, 4000);
       });
     })(window, document);
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "哪個 App 可以跟朋友一起做習慣挑戰，還有排行榜？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tadapop 的打卡俱樂部可以。主辦人建立一場私人挑戰、邀請朋友加入，每個人每天打一次卡，排行榜即時記錄每個人達標了幾天。沒有公開動態牆，也沒有陌生人。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "有沒有 App 可以約好「誰沒運動誰請吃飯」？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以用 Tadapop 來玩。先跟朋友講好規則，例如一週跑四天、誰沒做到誰請客，再建立一場挑戰，排行榜就看得出誰有做到。請客是你們朋友之間的約定：App 裡的挑戰不牽涉真實金錢、獎品或賭注。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "可以自己用、不註冊帳號嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。個人任務可以離線使用，不需註冊帳號。只有打卡俱樂部需要帳號。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tadapop 免費嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以免費開始，而且沒有廣告。免費方案最多同時進行 5 個個人任務、主辦 1 場挑戰，加入朋友的挑戰則沒有限制。Tadapop Pro 解除任務數量和主辦挑戰數量的限制。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "哪裡可以下載 Tadapop？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iPhone 和 iPad 請到 App Store，Android 請到 Google Play。"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -183,6 +232,19 @@
     <p>免費版可以同時進行最多 5 項個人任務，並主辦 1 場打卡挑戰。</p>
     <p>升級 Tadapop Pro，即可解除個人任務數量及主辦挑戰場次的限制。<a href="/zh/#pricing">免費與 Pro →</a></p>
 
+    <section class="about-faq" aria-labelledby="part-faq">
+      <h2 id="part-faq">大家最常問什麼？</h2>
+      <h3>哪個 App 可以跟朋友一起做習慣挑戰，還有排行榜？</h3>
+      <p>Tadapop 的打卡俱樂部可以。主辦人建立一場私人挑戰、邀請朋友加入，每個人每天打一次卡，排行榜即時記錄每個人達標了幾天。沒有公開動態牆，也沒有陌生人。</p>
+      <h3>有沒有 App 可以約好「誰沒運動誰請吃飯」？</h3>
+      <p>可以用 Tadapop 來玩。先跟朋友講好規則，例如一週跑四天、誰沒做到誰請客，再建立一場挑戰，排行榜就看得出誰有做到。請客是你們朋友之間的約定：App 裡的挑戰不牽涉真實金錢、獎品或賭注。</p>
+      <h3>可以自己用、不註冊帳號嗎？</h3>
+      <p>可以。個人任務可以離線使用，不需註冊帳號。只有打卡俱樂部需要帳號。</p>
+      <h3>Tadapop 免費嗎？</h3>
+      <p>可以免費開始，而且沒有廣告。免費方案最多同時進行 5 個個人任務、主辦 1 場挑戰，加入朋友的挑戰則沒有限制。Tadapop Pro 解除任務數量和主辦挑戰數量的限制。</p>
+      <h3>哪裡可以下載 Tadapop？</h3>
+      <p>iPhone 和 iPad 請到 App Store，Android 請到 Google Play。</p>
+    </section>
     <p class="about-lead"><strong>從今天開始，選一個想完成的目標。自己做，或找朋友一起做！</strong><br />Tadapop — 讓想做的事，真的做到。</p>
 
     <div class="about-cta">

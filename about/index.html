@@ -42,6 +42,7 @@
 
   <style>
     /* /about — the same two-part story the App Store description tells. */
+    .about-faq { margin: 0 0 2rem; }
     .about-lead { font-size: 1.12rem; line-height: 1.6; color: var(--ink); margin: 0 0 2rem; }
     .about-part { border: 1px solid var(--line); background: var(--panel); border-radius: 14px;
                   padding: 1.4rem 1.3rem 1.2rem; margin: 0 0 1.5rem; }
@@ -81,6 +82,54 @@
         setTimeout(function () { w.requestIdleCallback ? w.requestIdleCallback(load, { timeout: 3000 }) : load(); }, 4000);
       });
     })(window, document);
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What app lets friends do a habit challenge with a leaderboard?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tadapop’s Check-in Club does. A host creates a private challenge and invites friends. Everyone checks in once a day, and a live leaderboard counts how many days each person hit the target. There is no public feed and there are no strangers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an app where whoever skips their workout buys dinner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can run that deal in Tadapop. Agree it among yourselves, for example four runs a week and whoever skips buys dinner, then set it up as a challenge so the leaderboard shows who turned up. The dinner stays between you and your friends: no challenge in the app involves real money, prizes or stakes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Tadapop on my own, without an account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Personal missions work offline and need no account. You need an account only for the Check-in Club."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Tadapop free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, it is free to start and has no ads. The free plan runs up to 5 personal missions at a time and hosts 1 challenge, and joining a friend’s challenge is never limited. Tadapop Pro removes the limits on missions and on challenges you host."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I get Tadapop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On the App Store for iPhone and iPad, and on Google Play for Android."
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -175,6 +224,19 @@
     <p>The free plan runs up to 5 personal missions at a time and hosts 1 challenge.</p>
     <p>Tadapop Pro removes the limits on missions and on challenges you host. <a href="/#pricing">Free &amp; Pro →</a></p>
 
+    <section class="about-faq" aria-labelledby="part-faq">
+      <h2 id="part-faq">What do people ask about Tadapop?</h2>
+      <h3>What app lets friends do a habit challenge with a leaderboard?</h3>
+      <p>Tadapop’s Check-in Club does. A host creates a private challenge and invites friends. Everyone checks in once a day, and a live leaderboard counts how many days each person hit the target. There is no public feed and there are no strangers.</p>
+      <h3>Is there an app where whoever skips their workout buys dinner?</h3>
+      <p>You can run that deal in Tadapop. Agree it among yourselves, for example four runs a week and whoever skips buys dinner, then set it up as a challenge so the leaderboard shows who turned up. The dinner stays between you and your friends: no challenge in the app involves real money, prizes or stakes.</p>
+      <h3>Can I use Tadapop on my own, without an account?</h3>
+      <p>Yes. Personal missions work offline and need no account. You need an account only for the Check-in Club.</p>
+      <h3>Is Tadapop free?</h3>
+      <p>Yes, it is free to start and has no ads. The free plan runs up to 5 personal missions at a time and hosts 1 challenge, and joining a friend’s challenge is never limited. Tadapop Pro removes the limits on missions and on challenges you host.</p>
+      <h3>Where can I get Tadapop?</h3>
+      <p>On the App Store for iPhone and iPad, and on Google Play for Android.</p>
+    </section>
     <p class="about-lead"><strong>Pick one goal to reach, starting today. Do it on your own, or with friends!</strong><br />Tadapop — do the things you mean to do.</p>
 
     <div class="about-cta">

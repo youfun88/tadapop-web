@@ -39,6 +39,10 @@
   .promo .dl a:hover { border-color: var(--amber); color: var(--amber-ink); }
   .promo .note { font-size: .85rem; color: var(--faint); margin: 0 0 1.8rem; }
   .promo .back { display: inline-block; margin-top: 2rem; color: var(--dim); font-size: .9rem; }
+  .promo .faq { text-align: left; margin: 2rem 0 0; }
+  .promo .faq h2 { font-size: 1.15rem; line-height: 1.35; margin: 0 0 .5rem; }
+  .promo .faq h3 { font-size: 1rem; line-height: 1.4; margin: 1.2rem 0 .3rem; }
+  .promo .faq p { line-height: 1.65; color: var(--ink); margin: 0; }
 </style>
   <!-- Google tag (gtag.js) -->
   <script>
@@ -63,6 +67,54 @@
       });
     })(window, document);
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you build a habit that sticks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start so small you can’t say no. Tie the new habit to something you already do. Plan a backup for the hard day before it comes. Then give it time. The best habit books agree on these points, and the film above covers them in about two minutes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to form a habit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It varies a lot. One study (Lally and colleagues, 2009) found a median of about 66 days for a new habit to feel automatic, ranging from 18 to 254 days across people. That is one study’s finding, not a rule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I miss a day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One missed day changes almost nothing, so be kind to yourself and pick it up again. In a Tadapop habit program, a missed day never resets anything: the program counts the days you’ve done."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Tadapop habit program?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A guided 4-week plan for one new habit. Pick an area and a goal, or name your own habit, then answer a few short questions. The program adds one tiny habit to Today, tied to a moment you already have. It grows each week after a one-tap check-in and keeps a smaller backup ready for hard days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Tadapop’s habit programs free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, for now. Programs are free while they’re new, and one you start now stays free until you finish it. A program doesn’t count toward the free plan’s limit of five missions."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <main class="promo">
@@ -84,6 +136,19 @@
         <img src="/assets/play-badge-en.png" alt="Get it on Google Play" width="646" height="250" />
       </a>
     </div>
+    <section class="faq" aria-labelledby="habits-faq">
+      <h2 id="habits-faq">What do people ask about building a habit?</h2>
+      <h3>How do you build a habit that sticks?</h3>
+      <p>Start so small you can’t say no. Tie the new habit to something you already do. Plan a backup for the hard day before it comes. Then give it time. The best habit books agree on these points, and the film above covers them in about two minutes.</p>
+      <h3>How long does it take to form a habit?</h3>
+      <p>It varies a lot. One study (Lally and colleagues, 2009) found a median of about 66 days for a new habit to feel automatic, ranging from 18 to 254 days across people. That is one study’s finding, not a rule.</p>
+      <h3>What happens if I miss a day?</h3>
+      <p>One missed day changes almost nothing, so be kind to yourself and pick it up again. In a Tadapop habit program, a missed day never resets anything: the program counts the days you’ve done.</p>
+      <h3>What is a Tadapop habit program?</h3>
+      <p>A guided 4-week plan for one new habit. Pick an area and a goal, or name your own habit, then answer a few short questions. The program adds one tiny habit to Today, tied to a moment you already have. It grows each week after a one-tap check-in and keeps a smaller backup ready for hard days.</p>
+      <h3>Are Tadapop’s habit programs free?</h3>
+      <p>Yes, for now. Programs are free while they’re new, and one you start now stays free until you finish it. A program doesn’t count toward the free plan’s limit of five missions.</p>
+    </section>
     <a class="back" href="/">← tadapop.app</a>
   </main>
 </body>
