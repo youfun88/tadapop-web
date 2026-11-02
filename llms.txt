@@ -246,6 +246,13 @@ There is no way to convert money into progress in Tadapop.
 English:
 
 - [Home](https://www.tadapop.app/): what the app is, and how to get it.
+- [What Tadapop does](https://www.tadapop.app/about): the app in plain words, with a short FAQ
+  on challenges with friends, solo use, price and where to get it.
+- [Build a habit that sticks](https://www.tadapop.app/habits): a 2-minute film and a FAQ on
+  forming a habit and on habit programs.
+- [How to run a group challenge with friends](https://www.tadapop.app/film-club): the Club film,
+  with a FAQ on hosting, who can join, proof and group pots.
+- [How the daily habit checklist works](https://www.tadapop.app/film-solo): the solo film.
 - [What you earn](https://www.tadapop.app/rewards): the full progression system — ranks,
   badges, cosmetics, and the day each one arrives.
 - [Club Rules](https://www.tadapop.app/rules): the complete competition rulebook,
@@ -260,6 +267,10 @@ English:
 Traditional Chinese (Taiwan) — the same pages, fully translated:
 
 - [首頁](https://www.tadapop.app/zh)
+- [Tadapop 是什麼](https://www.tadapop.app/zh/about)
+- [兩分鐘，讓習慣留下來](https://www.tadapop.app/zh/habits)
+- [怎麼揪朋友一起做團體挑戰](https://www.tadapop.app/zh/film-club)
+- [每日任務清單怎麼用](https://www.tadapop.app/zh/film-solo)
 - [你會得到什麼](https://www.tadapop.app/zh/rewards)
 - [俱樂部規則](https://www.tadapop.app/zh/rules)
 - [支援與常見問題](https://www.tadapop.app/zh/support)
