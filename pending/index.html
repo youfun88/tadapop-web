@@ -18,6 +18,11 @@ a{color:#1d4f91}h1{font-size:24px}h2{font-size:18px;margin-top:32px}p,li{color:#
 .status{min-height:1.5em;margin-top:8px;font-size:14px}
 .status.ok{color:#166534}.status.err{color:#b91c1c}
 ol.q li{margin:0 0 12px}
+.ba{display:block;margin:6px 0;padding:8px 10px;border-left:3px solid;border-radius:4px}
+.ba b{display:block;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.ba.was{color:#b91c1c;background:#fef2f2;border-color:#b91c1c}
+.ba.now{color:#166534;background:#f0fdf4;border-color:#166534}
+.ba code{color:inherit;background:none}
 </style>
 </head>
 <body>
@@ -114,9 +119,9 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 <p>The site says 1.4.13. The App Store and Google Play both show 1.4.14, updated 2026-10-15 (checked today). AI answers read these lines, and llms.txt tells them this is the current version. This changes the version text on the homepage (hero chip and two store answers), the store answer on /support, the softwareVersion and FAQ schema, and llms.txt. Nothing else changes, and the new wording is yellow in the previews.</p>
 <p>llms.txt changes, not shown in the previews:</p>
 <ul>
-<li><code>Current version 1.4.13 on both</code> → <code>Current version 1.4.14 on both</code></li>
-<li><code>as of this file's last edit (2026-10-05): both stores serve version 1.4.13 (Google Play and the App Store, both released 2026-10-04)</code> → <code>as of this file's last edit (publish date): both stores serve version 1.4.14 (Google Play and the App Store, both updated 2026-10-15)</code></li>
-<li><code>that APK is v1.4.13 (versionCode 20), the same build as Google Play</code> → <code>that APK is v1.4.13 (versionCode 20); Google Play has v1.4.14</code></li>
+<li><span class="ba was"><b>Before</b><code>Current version 1.4.13 on both</code></span><span class="ba now"><b>After</b><code>Current version 1.4.14 on both</code></span></li>
+<li><span class="ba was"><b>Before</b><code>as of this file's last edit (2026-10-05): both stores serve version 1.4.13 (Google Play and the App Store, both released 2026-10-04)</code></span><span class="ba now"><b>After</b><code>as of this file's last edit (publish date): both stores serve version 1.4.14 (Google Play and the App Store, both updated 2026-10-15)</code></span></li>
+<li><span class="ba was"><b>Before</b><code>that APK is v1.4.13 (versionCode 20), the same build as Google Play</code></span><span class="ba now"><b>After</b><code>that APK is v1.4.13 (versionCode 20); Google Play has v1.4.14</code></span></li>
 </ul>
 <p>One thing to check: the latest APK release on GitHub is still v1.4.13 (2026-10-04), so "the same build as Google Play" on /android is no longer true. The draft says Google Play has v1.4.14. The install steps and APK link do not change. If you upload a 1.4.14 APK first, request changes and say so: /android and llms.txt can then keep "the same build".</p>
 <div class="links"><a href="/pending/home">Home (EN)</a><a href="/pending/zh-home">首頁（繁中）</a><a href="/pending/support">Support (EN)</a><a href="/pending/zh-support">支援（繁中）</a><a href="/pending/android">Android (EN)</a><a href="/pending/zh-android">Android（繁中）</a></div>
