@@ -1197,9 +1197,13 @@ section[id] { scroll-margin-top: calc(var(--bar) + 12px); }
 .home-hero h1 {
   font-family: var(--display); font-weight: 900;
   font-size: clamp(26px, 3.5vw, 42px); line-height: 1.08; letter-spacing: -1px;
-  max-width: 30ch; margin: 0 auto;
+  /* em, not ch: ch follows the font, so a fallback font narrowed this box, wrapped
+     the heading and pushed the film down 45px until the web font arrived. */
+  max-width: 18.5em; margin: 0 auto;
   text-wrap: balance;
 }
+/* It fits on one line from here up, in any font, so a wider fallback can't wrap it either. */
+@media (min-width: 700px) { .home-hero h1 { white-space: nowrap; } }
 .home-hero h1 .amber { color: var(--amber-deep); }
 .home-lede { color: var(--dim); font-size: clamp(15px, 2vw, 18px); max-width: 62ch; margin: 20px auto 0; }
 
