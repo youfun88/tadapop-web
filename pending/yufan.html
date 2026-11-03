@@ -98,7 +98,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </script>
 <h1>Developer review · SEO / AEO / GEO</h1>
 <p>Search and AI-visibility changes for Yufan to approve: titles, descriptions, schema, internal links, llms.txt, sitemap, keywords. Content changes go to the owner at <a href="/pending/">/pending</a>. Not linked from the site and not indexed. The GX10 job applies approved changes at its next run (every 8 hours).</p>
-<p class="updated">Updated 2026-11-03.</p>
+<p class="updated">Updated 2026-11-04.</p>
 
 <!-- Item markup (copy for each draft; data-item must equal the board title exactly):
 <div class="item" data-item="TITLE">
@@ -108,18 +108,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<div class="item" data-item="[Yufan] About and habits pages: page and breadcrumb schema (EN + 繁中)">
-<h3>1. About and habits pages: page and breadcrumb schema (EN + 繁中)</h3>
-<p><strong>Finding:</strong> the AI check named Tadapop in none of its 4 questions (2026-11-02), so answer engines don't yet connect the site's pages to the app. /about has 7 impressions at position 2.6 in Google and 0 clicks, and /habits has 1 at position 8 (2026-10-03 to 2026-10-30). /about, /habits and their 繁中 versions carry only an FAQPage block. They don't say what page they are, which app they're about, or where they sit on the site. /rules and /rewards already do this. Nothing visible changes: no wording, no layout.</p>
-<ul>
-<li><strong>/about and /zh/about, JSON-LD:</strong><span class="ba was"><b>Before</b>FAQPage only</span><span class="ba now"><b>After</b>AboutPage (name = the page title, description = the meta description, about = the app #app, isPartOf = #website, publisher = #organization) + BreadcrumbList (Tadapop › What Tadapop does / Tadapop 是什麼); FAQPage gets an @id and isPartOf the page</span></li>
-<li><strong>/habits and /zh/habits, JSON-LD:</strong><span class="ba was"><b>Before</b>FAQPage only</span><span class="ba now"><b>After</b>WebPage with the same links + BreadcrumbList (Tadapop › Build a habit that sticks / 讓習慣留下來); FAQPage gets an @id and isPartOf the page</span></li>
-<li><strong>sitemap.xml, lastmod on /habits and /zh/habits:</strong><span class="ba was"><b>Before</b>2026-11-02</span><span class="ba now"><b>After</b>2026-11-03</span></li>
-</ul>
-<p>The 繁中 pages point at the /zh app and website entities, as /zh/rewards does. FAQ text is unchanged; all JSON-LD parses.</p>
-<p>Branch: <code>seo/about-habits-page-schema</code>.</p>
-<div class="links"><a href="/about">Live /about</a><a href="/habits">Live /habits</a></div>
-</div>
+<p>Nothing yet.</p>
 
 <script>
 (function(){
