@@ -86,7 +86,55 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "https://www.tadapop.app/about#webpage",
+      "url": "https://www.tadapop.app/about",
+      "name": "What is Tadapop? Habit tracker and group challenges",
+      "description": "Tadapop brings daily missions, 4-week habit programs and private check-in challenges with friends together in one app. Free to start, works offline, no ads.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.tadapop.app#website"
+      },
+      "about": {
+        "@id": "https://www.tadapop.app#app"
+      },
+      "publisher": {
+        "@id": "https://www.tadapop.app/#organization"
+      },
+      "image": "https://www.tadapop.app/assets/og.png",
+      "breadcrumb": {
+        "@id": "https://www.tadapop.app/about#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.tadapop.app/about#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Tadapop",
+          "item": "https://www.tadapop.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "What Tadapop does",
+          "item": "https://www.tadapop.app/about"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": "https://www.tadapop.app/about#faq",
+  "isPartOf": { "@id": "https://www.tadapop.app/about#webpage" },
   "mainEntity": [
     {
       "@type": "Question",

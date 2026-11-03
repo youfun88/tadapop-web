@@ -70,7 +70,55 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.tadapop.app/habits#webpage",
+      "url": "https://www.tadapop.app/habits",
+      "name": "Build a habit that sticks, in two minutes — Tadapop",
+      "description": "What the best habit books agree on, in about two minutes: start tiny, tie it to something you already do, plan the hard day, and give it time. Then how Tadapop builds that into a 4-week plan.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.tadapop.app#website"
+      },
+      "about": {
+        "@id": "https://www.tadapop.app#app"
+      },
+      "publisher": {
+        "@id": "https://www.tadapop.app/#organization"
+      },
+      "image": "https://www.tadapop.app/assets/og.png",
+      "breadcrumb": {
+        "@id": "https://www.tadapop.app/habits#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.tadapop.app/habits#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Tadapop",
+          "item": "https://www.tadapop.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Build a habit that sticks",
+          "item": "https://www.tadapop.app/habits"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": "https://www.tadapop.app/habits#faq",
+  "isPartOf": { "@id": "https://www.tadapop.app/habits#webpage" },
   "mainEntity": [
     {
       "@type": "Question",
