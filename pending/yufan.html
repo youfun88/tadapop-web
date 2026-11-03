@@ -108,26 +108,17 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<div class="item" data-item="[Yufan] /zh homepage: description uses the phrase people ask with">
-<h3>1. /zh homepage: description uses the phrase people ask with</h3>
-<p><strong>Finding:</strong> plan item "Make the Chinese homepage match the Chinese question". No AI named Tadapop for 推薦可以跟朋友一起打卡、養成習慣的 App (Q4, Q8, Q12), even though /zh exists. /zh has 12 impressions at position 2.4 in Google, 1 click (2026-10-03 to 2026-10-30). The visible sentence on the page goes through the owner's review as "Homepage: one plain sentence under the heading"; this item only changes the tags. The title stays as it is.</p>
+<div class="item" data-item="[Yufan] About and habits pages: page and breadcrumb schema (EN + 繁中)">
+<h3>1. About and habits pages: page and breadcrumb schema (EN + 繁中)</h3>
+<p><strong>Finding:</strong> the AI check named Tadapop in none of its 4 questions (2026-11-02), so answer engines don't yet connect the site's pages to the app. /about has 7 impressions at position 2.6 in Google and 0 clicks, and /habits has 1 at position 8 (2026-10-03 to 2026-10-30). /about, /habits and their 繁中 versions carry only an FAQPage block. They don't say what page they are, which app they're about, or where they sit on the site. /rules and /rewards already do this. Nothing visible changes: no wording, no layout.</p>
 <ul>
-<li><strong>meta description:</strong><span class="ba was"><b>Before</b>揪朋友開一場團體挑戰：講好目標、每天打卡附上照片或影片，排行榜自動記分。iOS 與 Android 免費習慣追蹤 App，只能邀請加入，沒有陌生人也沒有動態牆。</span><span class="ba now"><b>After</b>跟朋友一起打卡、養成習慣：開一場團體挑戰，講好目標、每天打卡附上照片或影片，排行榜自動記分。iOS 與 Android 免費 App，只能邀請加入，沒有陌生人。</span></li>
-<li><strong>og:description and twitter:description:</strong><span class="ba was"><b>Before</b>揪朋友開一場團體挑戰，每天打卡附上證明，排行榜自己會說話。私人、邀請制，沒有陌生人也沒有動態牆。</span><span class="ba now"><b>After</b>跟朋友一起打卡、養成習慣：開一場團體挑戰，每天打卡附上證明，排行榜自己會說話。私人、邀請制，沒有陌生人也沒有動態牆。</span></li>
+<li><strong>/about and /zh/about, JSON-LD:</strong><span class="ba was"><b>Before</b>FAQPage only</span><span class="ba now"><b>After</b>AboutPage (name = the page title, description = the meta description, about = the app #app, isPartOf = #website, publisher = #organization) + BreadcrumbList (Tadapop › What Tadapop does / Tadapop 是什麼); FAQPage gets an @id and isPartOf the page</span></li>
+<li><strong>/habits and /zh/habits, JSON-LD:</strong><span class="ba was"><b>Before</b>FAQPage only</span><span class="ba now"><b>After</b>WebPage with the same links + BreadcrumbList (Tadapop › Build a habit that sticks / 讓習慣留下來); FAQPage gets an @id and isPartOf the page</span></li>
+<li><strong>sitemap.xml, lastmod on /habits and /zh/habits:</strong><span class="ba was"><b>Before</b>2026-11-02</span><span class="ba now"><b>After</b>2026-11-03</span></li>
 </ul>
-<p>Branch: <code>seo/zh-home-description-friends-checkin</code>.</p>
-<div class="links"><a href="/zh">Live /zh</a></div>
-</div>
-<div class="item" data-item="[Yufan] About pages: title says what Tadapop is (EN + 繁中)">
-<h3>2. About pages: title says what Tadapop is (EN + 繁中)</h3>
-<p><strong>Finding:</strong> /about has 7 impressions at position 2.6 in Google and 0 clicks (2026-10-03 to 2026-10-30). That sample is small, and the report shows no queries for this page. The current English title doesn't name a category, so someone seeing it in results can't tell what the app is. The 繁中 title also repeats the brand. The new titles add the words from the AI-check questions: habit, group challenge, 打卡. The H1, description and page text stay as they are.</p>
-<ul>
-<li><strong>/about, title, og:title, twitter:title:</strong><span class="ba was"><b>Before</b>What Tadapop does — Tadapop</span><span class="ba now"><b>After</b>What is Tadapop? Habit tracker and group challenges</span></li>
-<li><strong>/zh/about, title, og:title, twitter:title:</strong><span class="ba was"><b>Before</b>Tadapop 是什麼 — Tadapop</span><span class="ba now"><b>After</b>Tadapop 是什麼？每日習慣追蹤與朋友打卡挑戰 App</span></li>
-<li><strong>sitemap.xml, lastmod on both pages:</strong><span class="ba was"><b>Before</b>2026-11-02</span><span class="ba now"><b>After</b>2026-11-03</span></li>
-</ul>
-<p>Branch: <code>seo/about-title-what-is-tadapop</code>.</p>
-<div class="links"><a href="/about">Live /about</a><a href="/zh/about">Live /zh/about</a></div>
+<p>The 繁中 pages point at the /zh app and website entities, as /zh/rewards does. FAQ text is unchanged; all JSON-LD parses.</p>
+<p>Branch: <code>seo/about-habits-page-schema</code>.</p>
+<div class="links"><a href="/about">Live /about</a><a href="/habits">Live /habits</a></div>
 </div>
 
 <script>
