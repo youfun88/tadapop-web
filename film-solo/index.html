@@ -40,6 +40,7 @@
   .cut .other a { color: var(--ink); background: var(--panel2); border: 1px solid var(--line);
                   border-radius: 999px; padding: .5rem 1rem; text-decoration: none; font-size: .9rem; }
   .cut .go:hover { background: var(--amber-deep); }
+  .cut .card h3 { font-size: 1rem; margin: 1.1rem 0 .3rem; }
 </style>
   <!-- Google tag (gtag.js) -->
   <script>
@@ -63,6 +64,54 @@
         setTimeout(function () { w.requestIdleCallback ? w.requestIdleCallback(load, { timeout: 3000 }) : load(); }, 4000);
       });
     })(window, document);
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need an account to use the daily checklist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Your own missions work fully offline and need no account. You need an account only for the Check-in Club."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I log a mission?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three ways: tap to check it off, count toward a target, or run a countdown timer that chimes at zero."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I earn a Tpoint?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clear every mission due that day and you earn 1 Tpoint. Clear only some of them and you earn 0."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to my streak if I miss a day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A streak freeze protects one missed day automatically. You earn one every 14 active days and can hold up to 3. Freezes cannot be bought."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many missions can I keep for free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "5 active missions at a time. Archiving one frees its slot, and Tadapop Pro removes the limit."
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -97,6 +146,19 @@
         <a href="/film-new/">The old combined cut</a>
       </div>
     </div>
+    <section class="card" aria-labelledby="solo-faq">
+      <h2 id="solo-faq">What do people ask about daily missions?</h2>
+      <h3>Do I need an account to use the daily checklist?</h3>
+      <p>No. Your own missions work fully offline and need no account. You need an account only for the Check-in Club.</p>
+      <h3>How can I log a mission?</h3>
+      <p>Three ways: tap to check it off, count toward a target, or run a countdown timer that chimes at zero.</p>
+      <h3>How do I earn a Tpoint?</h3>
+      <p>Clear every mission due that day and you earn 1 Tpoint. Clear only some of them and you earn 0.</p>
+      <h3>What happens to my streak if I miss a day?</h3>
+      <p>A streak freeze protects one missed day automatically. You earn one every 14 active days and can hold up to 3. Freezes cannot be bought.</p>
+      <h3>How many missions can I keep for free?</h3>
+      <p>5 active missions at a time. Archiving one frees its slot, and Tadapop Pro removes the limit.</p>
+    </section>
   </main>
 
   <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop solo film" hidden></div>

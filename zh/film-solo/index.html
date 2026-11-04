@@ -7,8 +7,8 @@
   <meta name="description" content="一支影片看完單人版怎麼用：自訂分類和範本、一鍵把任務加進今天、累積連續紀錄。不用帳號、沒有動態牆，離線也能用。" />
   <meta name="theme-color" content="#FAF7F2" />
   <link rel="canonical" href="https://www.tadapop.app/zh/film-solo" />
-  <link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/film-solo" />
-  <link rel="alternate" hreflang="en" href="https://www.tadapop.app/zh/film-solo" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/film-solo" />
+  <link rel="alternate" hreflang="en" href="https://www.tadapop.app/film-solo" />
   <link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/film-solo" />
   <link rel="icon" href="/assets/favicon.png" />
   <meta property="og:site_name" content="Tadapop" />
@@ -40,6 +40,7 @@
   .cut .other a { color: var(--ink); background: var(--panel2); border: 1px solid var(--line);
                   border-radius: 999px; padding: .5rem 1rem; text-decoration: none; font-size: .9rem; }
   .cut .go:hover { background: var(--amber-deep); }
+  .cut .card h3 { font-size: 1rem; margin: 1.1rem 0 .3rem; }
 </style>
   <!-- Google tag (gtag.js) -->
   <script>
@@ -63,6 +64,54 @@
         setTimeout(function () { w.requestIdleCallback ? w.requestIdleCallback(load, { timeout: 3000 }) : load(); }, 4000);
       });
     })(window, document);
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "每日清單需要帳號嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不需要。個人任務可以完全離線使用，不需要帳號。只有打卡俱樂部需要帳號。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "任務可以怎麼記錄？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "三種方式：點一下打勾、累積計次到目標，或是用倒數計時，時間到會響。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "怎麼拿到 T點數？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "當天該做的任務全部做完，就得到 1 T點數。只做完一部分是 0 點。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "漏掉一天，連續紀錄會怎樣？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "凍結卡會自動保護漏掉的那一天。每 14 個活躍日得到一張，最多同時持有 3 張。凍結卡不能買。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "免費可以有幾項任務？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "同時進行 5 項任務。把任務封存，位置就空出來；Tadapop Pro 則沒有數量限制。"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -97,6 +146,19 @@
         <a href="/zh/film-new/">舊的合併版</a>
       </div>
     </div>
+    <section class="card" aria-labelledby="solo-faq">
+      <h2 id="solo-faq">每日任務，大家最常問什麼？</h2>
+      <h3>每日清單需要帳號嗎？</h3>
+      <p>不需要。個人任務可以完全離線使用，不需要帳號。只有打卡俱樂部需要帳號。</p>
+      <h3>任務可以怎麼記錄？</h3>
+      <p>三種方式：點一下打勾、累積計次到目標，或是用倒數計時，時間到會響。</p>
+      <h3>怎麼拿到 T點數？</h3>
+      <p>當天該做的任務全部做完，就得到 1 T點數。只做完一部分是 0 點。</p>
+      <h3>漏掉一天，連續紀錄會怎樣？</h3>
+      <p>凍結卡會自動保護漏掉的那一天。每 14 個活躍日得到一張，最多同時持有 3 張。凍結卡不能買。</p>
+      <h3>免費可以有幾項任務？</h3>
+      <p>同時進行 5 項任務。把任務封存，位置就空出來；Tadapop Pro 則沒有數量限制。</p>
+    </section>
   </main>
 
   <div class="film-overlay" id="filmOverlay" role="dialog" aria-modal="true" aria-label="Tadapop 單人版影片" hidden></div>

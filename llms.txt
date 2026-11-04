@@ -252,7 +252,9 @@ English:
   forming a habit and on habit programs.
 - [How to run a group challenge with friends](https://www.tadapop.app/film-club): the Club film,
   with a FAQ on hosting, who can join, proof and group pots.
-- [How the daily habit checklist works](https://www.tadapop.app/film-solo): the solo film.
+- [How the daily habit checklist works](https://www.tadapop.app/film-solo): the solo film., with a short FAQ on accounts, logging, Tpoints, streaks and the free limit.
+- [Group habit challenges with friends](https://www.tadapop.app/group-challenges): who the
+  Check-in Club is for, how a challenge works, what is free and what Pro adds, with a FAQ.
 - [What you earn](https://www.tadapop.app/rewards): the full progression system — ranks,
   badges, cosmetics, and the day each one arrives.
 - [Club Rules](https://www.tadapop.app/rules): the complete competition rulebook,
@@ -271,6 +273,7 @@ Traditional Chinese (Taiwan) — the same pages, fully translated:
 - [兩分鐘，讓習慣留下來](https://www.tadapop.app/zh/habits)
 - [怎麼揪朋友一起做團體挑戰](https://www.tadapop.app/zh/film-club)
 - [每日任務清單怎麼用](https://www.tadapop.app/zh/film-solo)
+- [跟朋友一起做習慣團體挑戰](https://www.tadapop.app/zh/group-challenges)
 - [你會得到什麼](https://www.tadapop.app/zh/rewards)
 - [俱樂部規則](https://www.tadapop.app/zh/rules)
 - [支援與常見問題](https://www.tadapop.app/zh/support)

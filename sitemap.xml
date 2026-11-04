@@ -34,7 +34,7 @@
 
   <url>
     <loc>https://www.tadapop.app/</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh"/>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://www.tadapop.app/zh</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh"/>
@@ -85,14 +85,14 @@
 
   <url>
     <loc>https://www.tadapop.app/about</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/about"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/about"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/about"/>
   </url>
   <url>
     <loc>https://www.tadapop.app/zh/about</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/about"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/about"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/about"/>
@@ -167,28 +167,28 @@
   </url>
   <url>
     <loc>https://www.tadapop.app/film-club</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/film-club"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/film-club"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/film-club"/>
   </url>
   <url>
     <loc>https://www.tadapop.app/zh/film-club</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/film-club"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/film-club"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/film-club"/>
   </url>
   <url>
     <loc>https://www.tadapop.app/film-solo</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/film-solo"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/film-solo"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/film-solo"/>
   </url>
   <url>
     <loc>https://www.tadapop.app/zh/film-solo</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/film-solo"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/film-solo"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/film-solo"/>
@@ -206,5 +206,19 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/habits"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/habits"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/habits"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/group-challenges</loc>
+    <lastmod>2026-11-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/group-challenges"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/group-challenges"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/group-challenges"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/zh/group-challenges</loc>
+    <lastmod>2026-11-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/group-challenges"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/group-challenges"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/group-challenges"/>
   </url>
 </urlset>

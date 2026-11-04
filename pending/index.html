@@ -98,7 +98,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </script>
 <h1>Drafts for review</h1>
 <p>Website updates for the Tadapop owner to review. Not linked from the site and not indexed. Nothing goes live until approved. Use the buttons under each draft to approve or request changes.</p>
-<p class="updated">Updated 2026-11-03.</p>
+<p class="updated">Updated 2026-11-04.</p>
 
 <!-- Item markup (copy for each draft; data-item must equal the board title exactly):
 <div class="item" data-item="TITLE">
@@ -114,54 +114,35 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 <summary>想修改網站嗎？ · Suggest a change</summary>
 <p>隨時都可以在這裡告訴我們想改什麼，例如文字、價格或新的內容。系統每 8 小時會處理一次：簡單的修改會直接更新，較大的內容會先放到這頁讓您確認。Tell us anything you'd like changed. It's handled every 8 hours: simple edits go live, and bigger content comes back here for your OK first.</p>
 </details>
-<div class="item" data-item="Group challenges page (EN + 繁中)">
-<h3>1. Group challenges page (EN + 繁中)</h3>
-<p>The new page you asked for through Claude on the Mac. Your request says Habitica is named most in the AI check (4 of 12 answers; Tadapop 2 of 12). This page answers the AI-check questions on friends, leaderboards and a forfeit: who it is for, how a challenge works, what is free and what Pro adds, and a short FAQ. It uses only facts already on the site and in llms.txt, with no user numbers, ratings or press claims. Nothing staked, nothing converts to money.</p>
-<p>Three things to check:</p>
-<ul>
-<li><strong>Family:</strong> the family line says adults and teens, and that accounts are for ages 13 and up, because the terms say so and the children's question is still open.</li>
-<li><strong>Pro:</strong> the page lists Club message translation under Pro, as the homepage does. llms.txt still says Pro "removes limits and nothing else", so the two disagree. I have not changed llms.txt.</li>
-<li><strong>Prices:</strong> US$3.99 a month is the price already on the homepage. If it changes, this page must change too.</li>
-</ul>
-<p>Once approved it goes live at /group-challenges and /zh/group-challenges, with a footer link on the pages that list About, and an entry in the sitemap and llms.txt.</p>
-<div class="links"><a href="/pending/group-challenges">Preview (EN)</a><a href="/pending/zh-group-challenges">預覽（繁中）</a></div>
-</div>
-<div class="item" data-item="Homepage: one plain sentence under the heading (EN + 繁中)">
-<h3>2. Homepage: one plain sentence under the heading (EN + 繁中)</h3>
-<p>The second thing you asked for. The heading doesn't say what Tadapop is, and the first plain description comes after the film. No other text changes. The 繁中 sentence also uses the words from the AI-check question 推薦可以跟朋友一起打卡、養成習慣的 App, where no AI named Tadapop. The sentence pushes the film down a little on phones.</p>
-<ul>
-<li><strong>English, under the heading:</strong><span class="ba was"><b>Before</b>(no sentence; the film follows the heading)</span><span class="ba now"><b>After</b>Tadapop is a free-to-start habit app for iPhone, iPad and Android: track your own daily missions, or invite friends to a private group challenge with a leaderboard.</span></li>
-<li><strong>繁中，標題下方：</strong><span class="ba was"><b>Before</b>（沒有這句話，標題下面直接是影片）</span><span class="ba now"><b>After</b>Tadapop 是可以免費開始的習慣 App，支援 iPhone、iPad 和 Android：自己追蹤每日任務，或跟朋友一起打卡、養成習慣，開一場有排行榜的私人團體挑戰。</span></li>
-</ul>
-<div class="links"><a href="/pending/home">Home (EN)</a><a href="/pending/zh-home">首頁（繁中）</a><a href="/">Live version</a></div>
-</div>
-<div class="item" data-item="Solo film page: add a short FAQ (EN + 繁中)">
-<h3>3. Solo film page: add a short FAQ (EN + 繁中)</h3>
-<p>The page checklist flags /film-solo and /zh/film-solo as the last public pages with no FAQ schema, apart from the privacy, terms and account-deletion pages. Five short answers on accounts, logging, Tpoints, streak freezes and the free limit, taken from llms.txt. The new text is yellow in the previews.</p>
-<div class="links"><a href="/pending/film-solo">Preview (EN)</a><a href="/pending/zh-film-solo">預覽（繁中）</a><a href="/film-solo">Live version</a></div>
-</div>
 
 <div class="item" data-item="Workout dinner deal page (EN + 繁中)">
-<h3>4. Workout dinner deal page (EN + 繁中)</h3>
-<p>A how-to page for the AI-check question "Is there an app where whoever skips their workout buys dinner?". Tadapop was not named or cited in the latest answer, which said it found no app that literally does this and sent people to betting apps or a scoreboard app. This page gives that exact setup in Tadapop, step by step, and says plainly that the dinner stays between friends. Facts come from llms.txt and /rules. It names no other apps.</p>
-<p>Three things to check:</p>
+<h3>1. Workout dinner deal page (EN + 繁中)</h3>
+<p>Revised 2026-11-04 after your comments ("this should be light weight", "ok sure", "you can make more topic, for example Bible study or eating healthy challenge or sleep early challenge"). Yellow in the previews marks what changed.</p>
 <ul>
-<li><strong>The terms:</strong> they say the Club "involves no real-money prizes or wagering". The page treats dinner as a private deal outside the app, as the live /about and /film-club FAQs already do, but a whole page gives that idea more weight. Are you happy with that?</li>
-<li><strong>Overlap:</strong> the group challenges page (item 1) has one FAQ answer on this. This page is the full version. If you approve both, I will link them to each other.</li>
-<li><strong>The example:</strong> "four workouts a week for 30 days, lowest on the board buys dinner" is my example, not a feature. Exercise is the only topic, and the page makes no health or fitness claims.</li>
+<li><strong>Lighter on the dinner:</strong><span class="ba was"><b>Before</b>a bold warning line, plus a whole section on what the app does and what you settle yourselves (who pays, no pot, no stakes)</span><span class="ba now"><b>After</b>one plain line: "The dinner is just a friendly deal between you. The app only keeps the score: nothing is staked in it, and losing costs nothing there." The money section is gone; the FAQ "Can the app take the money or split the bill?" stays, because the terms rule out wagering.</span></li>
+<li><strong>More topics:</strong><span class="ba was"><b>Before</b>exercise only</span><span class="ba now"><b>After</b>a new section "What other challenges can friends run this way?": a Bible study group (a chapter a day), eating healthy (a vegetable with every dinner, or no sugary drinks on weekdays), sleeping early (in bed by 11 pm on weeknights), reading, an instrument or exam study. It ends "The dinner is optional." The FAQ "Does it have to be the gym?" lists the same examples.</span></li>
+<li><strong>Age line:</strong><span class="ba was"><b>Before</b>Each person needs an account, and accounts are for ages 13 and up.</span><span class="ba now"><b>After</b>Each person needs an account.</span></li>
 </ul>
-<p>Once approved it goes live at /workout-challenge and /zh/workout-challenge, with an entry in the sitemap and llms.txt.</p>
+<p>The page makes no health claims about any of these goals. If you'd rather have separate pages for Bible study, healthy eating or sleeping early, say so here and I'll draft them one at a time. Once approved it goes live at /workout-challenge and /zh/workout-challenge, linked with the live <a href="/group-challenges">group challenges page</a>, and added to the sitemap and llms.txt.</p>
 <div class="links"><a href="/pending/workout-challenge">Preview (EN)</a><a href="/pending/zh-workout-challenge">預覽（繁中）</a></div>
 </div>
 
-<h2>Questions</h2>
-<p>Thank you for your answers on a kids' routine page: yes, on the child's own iPad, ideally with an account, and parents look at that iPad to see yearly, monthly and daily progress. I have not drafted the page, because those answers conflict with two live pages, and the later request from the Mac says not to promote Tadapop for children or under-13s while this is open:</p>
+<div class="item" data-item="Privacy: children can use solo tracking (EN + 繁中)">
+<h3>2. Privacy: children can use solo tracking (EN + 繁中)</h3>
+<p>Your answer on 2026-11-04: "there is no age limit, so 6 years old can use it… Update privacy to remove the restriction." This draft removes "Tadapop is not directed to children under 13" and says children of any age can use solo tracking. That part needs no account, and the privacy page already says its data stays on the device and is not sent to you, so nothing else about data handling changes.</p>
 <ul>
-<li>The terms say you must be at least 13 to create an account.</li>
-<li>The privacy policy says "Tadapop is not directed to children under 13".</li>
+<li><strong>/privacy, Children:</strong><span class="ba was"><b>Before</b>Tadapop is not directed to children under 13, and we do not knowingly collect their personal data.</span><span class="ba now"><b>After</b>Children of any age can use Tadapop's solo tracking, which needs no account. Without an account, nothing is sent to us: missions, logs, notes and photos stay on the device, as described above. We suggest a parent or guardian sets up the app for a young child. / The Club needs an account, and accounts are for ages 13 and up (see our Terms). We do not knowingly collect personal data from children under 13. An account can be deleted at any time, in the app or on the delete account page.</span></li>
+<li><strong>/zh/privacy, 兒童:</strong><span class="ba was"><b>Before</b>Tadapop 並非以未滿 13 歲的兒童為對象，我們也不會在知情的情況下蒐集他們的個人資料。</span><span class="ba now"><b>After</b>任何年齡的兒童都可以使用 Tadapop 的個人紀錄，不需要帳號。……俱樂部需要帳號，帳號限年滿 13 歲（見使用條款）。……</span></li>
+<li><strong>Last updated:</strong><span class="ba was"><b>Before</b>October 3, 2026</span><span class="ba now"><b>After</b>the day it goes live</span></li>
 </ul>
+<p><strong>Why accounts stay 13+ in this draft:</strong> an account sends an email address, name, photos and Club messages to Supabase (and, with translation on, to Anthropic). In the US, collecting that from a child under 13 needs verified parental consent first (COPPA), and the app has no such step that I know of. The terms also say 13+. See the question below. The terms are not changed.</p>
+<div class="links"><a href="/pending/privacy">Preview (EN)</a><a href="/pending/zh-privacy">預覽（繁中）</a><a href="/privacy">Live version</a></div>
+</div>
+
+<h2>Questions</h2>
+<p>Thank you: you said there is no age limit and your 6-year-old uses Tadapop every day. Item 2 above opens solo tracking to all ages in the privacy policy. One question is left, about accounts:</p>
 <ol class="q">
-<li>Which should the page be: (a) for ages 13 and up only, with no change to the terms or privacy policy, or (b) also for under-13s? Option (b) means changing both pages first. Children's privacy law may apply to that, so it is worth getting advice. I won't touch either page without your approval.</li>
+<li>Should children under 13 be able to create an account (for the Club)? If yes, that needs more than a text change: in the US a parent must give verified consent before the app collects a child's email, name or photos (COPPA), and the terms (13+) and the App Store age rating would change too. That is app work and worth legal advice, so I won't draft it. If no, approve item 2 as it is and nothing else is needed.</li>
 </ol>
 <div class="item" data-item="Questions">
 <h3>Answers to the questions</h3>

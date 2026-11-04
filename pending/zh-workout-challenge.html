@@ -105,7 +105,7 @@
       "name": "一定要去健身房嗎？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "不用。目標由你們自己寫。常見的有每天動 40 分鐘，或每日步數。"
+        "text": "不用。目標由你們自己寫：每天動 40 分鐘、每日步數、每天讀一章聖經、每天晚餐都有蔬菜，或晚上 11 點前睡覺都可以。"
       }
     },
     {
@@ -113,7 +113,7 @@
       "name": "開一場要多少錢？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "同時開一場挑戰是免費的，不管哪種方案，參加別人的挑戰都不受限制。每個人都需要帳號，帳號限 13 歲以上。"
+        "text": "同時開一場挑戰是免費的，不管哪種方案，參加別人的挑戰都不受限制。每個人都需要帳號。"
       }
     }
   ]
@@ -136,7 +136,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
   setTimeout(function(){document.querySelector('.tab-close-hint').hidden=false;},300);
 });
 </script>
-<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">新頁面草稿，預計放在 /zh/workout-challenge。整頁都是新內容，資料來自網站與 llms.txt。Draft of a new page.</p>
+<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">新頁面草稿，預計放在 /zh/workout-challenge。2026-11-04 依您的意見修改：黃色是改過的地方。原本第 02 段（App 做什麼、哪些要自己來）已刪除。</p>
   <a class="skip-link" href="#main">跳到主要內容</a>
   <div class="grid-bg" aria-hidden="true"></div>
   <header class="site-nav" id="siteNav">
@@ -166,7 +166,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
   <main class="doc" id="main" tabindex="-1">
     <h1>誰沒運動，誰請吃飯</h1>
     <p class="about-lead">Tadapop 負責記分，請客留給你們自己。大家先講好規則，開一場私人挑戰，排行榜就看得出誰有做到。</p>
-    <p><strong>請客是朋友之間的約定，不會經過 App。App 裡的挑戰不牽涉任何賭注，輸了也沒有任何損失。</strong></p>
+    <p><mark style="background:#fff3a0;color:#222;padding:0 2px">請客只是朋友之間好玩的約定。App 只負責記分：裡面沒有任何賭注，輸了也沒有任何損失。</mark></p>
 
     <section class="about-part" aria-labelledby="wc-how">
       <p class="tag">01 · 怎麼開始</p>
@@ -183,22 +183,17 @@ document.querySelector('.tab-close').addEventListener('click',function(){
       <p><a href="/zh/film-club">看俱樂部影片 →</a> · <a href="/zh/rules">俱樂部規則 →</a></p>
     </section>
 
-    <section class="about-part" aria-labelledby="wc-app">
-      <p class="tag">02 · App 做什麼</p>
-      <h2 id="wc-app">App 做什麼？哪些要你們自己來？</h2>
-      <p><strong>App 會做的事</strong></p>
+    <section class="about-part" aria-labelledby="wc-more">
+      <p class="tag"><mark style="background:#fff3a0;color:#222;padding:0 2px">02 · 其他挑戰</mark></p>
+      <h2 id="wc-more"><mark style="background:#fff3a0;color:#222;padding:0 2px">還可以跟朋友挑戰什麼？</mark></h2>
+      <p><mark style="background:#fff3a0;color:#222;padding:0 2px">同樣的設定適用於任何每日目標，目標由你們自己寫。例如：</mark></p>
       <ul>
-        <li>讓每個人在加入前就看到規則。</li>
-        <li>主辦人打開後，打卡要附照片或影片。</li>
-        <li>用即時排行榜計算每個人達標了幾天。</li>
-        <li>保持私人：只有拿到邀請連結或邀請碼的人才能加入。</li>
+        <li><mark style="background:#fff3a0;color:#222;padding:0 2px">讀經小組：每天讀一章聖經，讀完就打卡。</mark></li>
+        <li><mark style="background:#fff3a0;color:#222;padding:0 2px">健康飲食：每天晚餐都有蔬菜，或平日不喝含糖飲料。</mark></li>
+        <li><mark style="background:#fff3a0;color:#222;padding:0 2px">早睡：平日晚上 11 點前上床。</mark></li>
+        <li><mark style="background:#fff3a0;color:#222;padding:0 2px">閱讀、練樂器，或準備考試。</mark></li>
       </ul>
-      <p><strong>你和朋友要自己來的事</strong></p>
-      <ul>
-        <li>決定誰請客、請什麼。</li>
-        <li>自己結清。App 不經手這筆錢，沒有共同基金，也沒有賭注。</li>
-        <li>互相信任。打卡是自行回報，靠誠信制運作。</li>
-      </ul>
+      <p><mark style="background:#fff3a0;color:#222;padding:0 2px">請客可有可無。沒有請客，排行榜一樣照算。</mark></p>
     </section>
 
     <section class="about-faq" aria-labelledby="wc-faq">
@@ -212,9 +207,9 @@ document.querySelector('.tab-close').addEventListener('click',function(){
       <h3>一次練很久可以補回沒做的那天嗎？</h3>
       <p>不行。排行榜算的是你達標了幾天。某一天超過目標也不會累積。</p>
       <h3>一定要去健身房嗎？</h3>
-      <p>不用。目標由你們自己寫。常見的有每天動 40 分鐘，或每日步數。</p>
+      <p><mark style="background:#fff3a0;color:#222;padding:0 2px">不用。目標由你們自己寫：每天動 40 分鐘、每日步數、每天讀一章聖經、每天晚餐都有蔬菜，或晚上 11 點前睡覺都可以。</mark></p>
       <h3>開一場要多少錢？</h3>
-      <p>同時開一場挑戰是免費的，不管哪種方案，參加別人的挑戰都不受限制。每個人都需要帳號，帳號限 13 歲以上。</p>
+      <p><mark style="background:#fff3a0;color:#222;padding:0 2px">同時開一場挑戰是免費的，不管哪種方案，參加別人的挑戰都不受限制。每個人都需要帳號。</mark></p>
     </section>
     <p class="about-lead"><strong>選一個運動目標，邀一個朋友。</strong></p>
 
