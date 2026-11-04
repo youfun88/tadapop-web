@@ -108,16 +108,17 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<div class="item" data-item="[Yufan] Delete-account pages: title says how to delete a Tadapop account (EN + 繁中)">
-<h3>1. Delete-account pages: title says how to delete a Tadapop account (EN + 繁中)</h3>
-<p><strong>Finding:</strong> in Google Search Console (2026-10-04 to 2026-10-31), /delete-account had 10 impressions at an average position of 12.2 and 0 clicks. That is the most impressions of any page except the two homepages, and the only one sitting on page 2. People search this as a question ("how do I delete my … account"), and the current title starts with a generic phrase and puts the app name last. The new title is the question with the app name in it. Only the title tags and the schema name change. The page text, steps and headings stay the same.</p>
+<div class="item" data-item="[Yufan] Rules pages: title says group habit challenges (EN + 繁中)">
+<h3>1. Rules pages: title says group habit challenges (EN + 繁中)</h3>
+<p><strong>Finding:</strong> in Google Search Console (2026-10-04 to 2026-10-31), /rules had 7 impressions at an average position of 3.1 and 0 clicks. It shows near the top but nobody clicks, and the title doesn't say what kind of challenge it is. The AI check's question "What app lets friends do a habit challenge together with a leaderboard?" does not name Tadapop (2026-11-02). The new title starts with the app name and uses "group habit challenges", the same words as the homepage title. The 繁中 title uses 團體挑戰, as /zh does. Only the title tags change. The description, the rules and the scoring text stay the same.</p>
 <ul>
-<li><strong>/delete-account, &lt;title&gt;, og:title, twitter:title, WebPage name:</strong><span class="ba was"><b>Before</b>Delete your account &amp; data — Tadapop</span><span class="ba now"><b>After</b>How to delete your Tadapop account and data</span></li>
-<li><strong>/zh/delete-account, the same four places:</strong><span class="ba was"><b>Before</b>刪除帳號與資料 — Tadapop</span><span class="ba now"><b>After</b>如何刪除 Tadapop 帳號與資料</span></li>
+<li><strong>/rules, &lt;title&gt;, og:title, twitter:title:</strong><span class="ba was"><b>Before</b>Club Rules — how Tadapop challenges are scored</span><span class="ba now"><b>After</b>Tadapop Club rules: how group habit challenges are scored</span></li>
+<li><strong>/zh/rules, the same three places:</strong><span class="ba was"><b>Before</b>俱樂部規則 — Tadapop 挑戰怎麼計分</span><span class="ba now"><b>After</b>Tadapop 俱樂部規則：團體挑戰怎麼計分</span></li>
+<li><strong>sitemap.xml, lastmod on /rules and /zh/rules:</strong><span class="ba was"><b>Before</b>2026-09-03</span><span class="ba now"><b>After</b>2026-11-04</span></li>
 </ul>
-<p>The account-deletion page needs approval for any change, so this waits here. The only query GSC lists for the page is "delete taptap account" (1 impression, position 44), which is a different app, so the title doesn't target it. JSON-LD still parses.</p>
-<p>Branch: <code>seo/delete-account-title-how-to</code>.</p>
-<div class="links"><a href="/delete-account">Live /delete-account</a><a href="/zh/delete-account">Live /zh/delete-account</a></div>
+<p>GSC lists no queries for the page, so the change is based on the page's position and the AI-check wording, not on a search term. JSON-LD still parses.</p>
+<p>Branch: <code>seo/rules-title-group-habit-challenges</code>.</p>
+<div class="links"><a href="/rules">Live /rules</a><a href="/zh/rules">Live /zh/rules</a></div>
 </div>
 
 <script>
