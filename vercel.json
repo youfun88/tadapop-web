@@ -75,7 +75,7 @@
       ]
     },
     {
-      "source": "/(film-club|film-solo|promo|habits|group-challenges|film-club/index.html|film-solo/index.html|promo/index.html|habits/index.html|group-challenges/index.html)",
+      "source": "/(film-club|film-solo|promo|habits|group-challenges|workout-challenge|film-club/index.html|film-solo/index.html|promo/index.html|habits/index.html|group-challenges/index.html|workout-challenge/index.html)",
       "headers": [
         {
           "key": "Cache-Control",

@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex,nofollow,noarchive" />
   <title>Whoever skips the workout buys dinner — Tadapop</title>
   <meta name="description" content="Run a workout challenge with friends where whoever skips buys dinner: agree the deal, ask for photo or video proof, and let the leaderboard show who turned up." />
 
@@ -11,6 +10,7 @@
   <meta property="og:site_name" content="Tadapop" />
   <meta property="og:title" content="Whoever skips the workout buys dinner — Tadapop" />
   <meta property="og:description" content="Run a workout challenge with friends where whoever skips buys dinner: agree the deal, ask for photo or video proof, and let the leaderboard show who turned up." />
+  <meta property="og:url" content="https://www.tadapop.app/workout-challenge" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
   <meta property="og:image:width" content="1024" />
@@ -22,6 +22,11 @@
   <meta name="twitter:title" content="Whoever skips the workout buys dinner — Tadapop" />
   <meta name="twitter:description" content="Run a workout challenge with friends where whoever skips buys dinner: agree the deal, ask for photo or video proof, and let the leaderboard show who turned up." />
   <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
+
+  <link rel="canonical" href="https://www.tadapop.app/workout-challenge" />
+  <link rel="alternate" hreflang="en" href="https://www.tadapop.app/workout-challenge" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/workout-challenge" />
+  <link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/workout-challenge" />
 
   <link rel="icon" href="/assets/favicon.png" />
   <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
@@ -111,24 +116,31 @@
   ]
 }
   </script>
+  <!-- Google tag (gtag.js) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JTYW60NJLH');
+    /* The library loads on the first interaction, or when the page goes idle after load. Calls wait in dataLayer until then. */
+    (function (w, d) {
+      var done = 0, ev = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+      function load() {
+        if (done) return; done = 1;
+        ev.forEach(function (e) { w.removeEventListener(e, load, true); });
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-JTYW60NJLH';
+        d.head.appendChild(s);
+      }
+      ev.forEach(function (e) { w.addEventListener(e, load, { capture: true, passive: true }); });
+      w.addEventListener('load', function () {
+        setTimeout(function () { w.requestIdleCallback ? w.requestIdleCallback(load, { timeout: 3000 }) : load(); }, 4000);
+      });
+    })(window, document);
+  </script>
 </head>
 <body>
-<button type="button" class="tab-close" aria-label="關閉分頁 Close tab" title="關閉分頁 Close tab">&times;</button>
-<p class="tab-close-hint" role="status" hidden>請直接關閉這個分頁。You can close this tab now.</p>
-<style>
-.tab-close{position:fixed;top:12px;right:12px;z-index:10;width:44px;height:44px;border-radius:50%;border:1px solid #c9c2b5;background:#fff;color:#333;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.tab-close:hover{background:#f1ede6}.tab-close:focus-visible{outline:2px solid #1d4f91;outline-offset:2px}
-h1{padding-right:52px}
-.tab-close-hint{position:fixed;top:62px;right:12px;z-index:10;margin:0;padding:8px 12px;background:#222;color:#fff;border-radius:8px;font-size:14px}
-</style>
-<script>
-document.querySelector('.tab-close').addEventListener('click',function(){
-  window.close();
-  // Browsers only let a page close a tab that was opened by a link or script; otherwise say so.
-  setTimeout(function(){document.querySelector('.tab-close-hint').hidden=false;},300);
-});
-</script>
-<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">Draft of a new page, for /workout-challenge. Revised 2026-11-04 after your comments: yellow marks what changed. The old section 02 (what the app does and what it leaves to you) is gone.</p>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="grid-bg" aria-hidden="true"></div>
   <header class="site-nav" id="siteNav">
@@ -158,7 +170,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
   <main class="doc" id="main" tabindex="-1">
     <h1>Whoever skips the workout buys dinner</h1>
     <p class="about-lead">Tadapop keeps the score and leaves the dinner to you. Your group agrees the deal, runs it as a private challenge, and the leaderboard shows who turned up.</p>
-    <p><mark style="background:#fff3a0;color:#222;padding:0 2px">The dinner is just a friendly deal between you. The app only keeps the score: nothing is staked in it, and losing costs nothing there.</mark></p>
+    <p>The dinner is just a friendly deal between you. The app only keeps the score: nothing is staked in it, and losing costs nothing there.</p>
 
     <section class="about-part" aria-labelledby="wc-how">
       <p class="tag">01 · SET IT UP</p>
@@ -176,16 +188,16 @@ document.querySelector('.tab-close').addEventListener('click',function(){
     </section>
 
     <section class="about-part" aria-labelledby="wc-more">
-      <p class="tag"><mark style="background:#fff3a0;color:#222;padding:0 2px">02 · OTHER CHALLENGES</mark></p>
-      <h2 id="wc-more"><mark style="background:#fff3a0;color:#222;padding:0 2px">What other challenges can friends run this way?</mark></h2>
-      <p><mark style="background:#fff3a0;color:#222;padding:0 2px">The same setup works for any daily goal you write in your own words. For example:</mark></p>
+      <p class="tag">02 · OTHER CHALLENGES</p>
+      <h2 id="wc-more">What other challenges can friends run this way?</h2>
+      <p>The same setup works for any daily goal you write in your own words. For example:</p>
       <ul>
-        <li><mark style="background:#fff3a0;color:#222;padding:0 2px">A Bible study group: read one chapter a day, then check in.</mark></li>
-        <li><mark style="background:#fff3a0;color:#222;padding:0 2px">Eating healthy: a vegetable with every dinner, or no sugary drinks on weekdays.</mark></li>
-        <li><mark style="background:#fff3a0;color:#222;padding:0 2px">Sleeping early: in bed by 11 pm on weeknights.</mark></li>
-        <li><mark style="background:#fff3a0;color:#222;padding:0 2px">Reading, practising an instrument, or studying for an exam.</mark></li>
+        <li>A Bible study group: read one chapter a day, then check in.</li>
+        <li>Eating healthy: a vegetable with every dinner, or no sugary drinks on weekdays.</li>
+        <li>Sleeping early: in bed by 11 pm on weeknights.</li>
+        <li>Reading, practising an instrument, or studying for an exam.</li>
       </ul>
-      <p><mark style="background:#fff3a0;color:#222;padding:0 2px">The dinner is optional. The leaderboard works the same without it.</mark></p>
+      <p>The dinner is optional. The leaderboard works the same without it. <a href="/group-challenges">More on group challenges →</a></p>
     </section>
 
     <section class="about-faq" aria-labelledby="wc-faq">
@@ -199,9 +211,9 @@ document.querySelector('.tab-close').addEventListener('click',function(){
       <h3>Does one big workout make up for a missed day?</h3>
       <p>No. The board counts how many days you hit the target. Going over the target on a day banks nothing.</p>
       <h3>Does it have to be the gym?</h3>
-      <p><mark style="background:#fff3a0;color:#222;padding:0 2px">No. You write the goal in your own words: 40 minutes of movement a day, a daily step count, a chapter of the Bible, a vegetable with every dinner, or lights out by 11 pm.</mark></p>
+      <p>No. You write the goal in your own words: 40 minutes of movement a day, a daily step count, a chapter of the Bible, a vegetable with every dinner, or lights out by 11 pm.</p>
       <h3>What does it cost to run one?</h3>
-      <p><mark style="background:#fff3a0;color:#222;padding:0 2px">Hosting one challenge at a time is free, and joining someone’s challenge is never limited on any plan. Each person needs an account.</mark></p>
+      <p>Hosting one challenge at a time is free, and joining someone’s challenge is never limited on any plan. Each person needs an account.</p>
     </section>
     <p class="about-lead"><strong>Pick a workout goal and invite a friend.</strong></p>
 
@@ -218,6 +230,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
     </div>
     <nav class="footer-links" aria-label="Footer">
       <a href="/about">What Tadapop does</a>
+      <a href="/group-challenges">Group challenges</a>
       <a href="/rewards">What you earn</a>
       <a href="/rules">Club Rules</a>
       <a href="/privacy">Privacy</a>

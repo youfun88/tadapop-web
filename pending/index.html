@@ -98,7 +98,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </script>
 <h1>Drafts for review</h1>
 <p>Website updates for the Tadapop owner to review. Not linked from the site and not indexed. Nothing goes live until approved. Use the buttons under each draft to approve or request changes.</p>
-<p class="updated">Updated 2026-11-04.</p>
+<p class="updated">Updated 2026-11-05.</p>
 
 <!-- Item markup (copy for each draft; data-item must equal the board title exactly):
 <div class="item" data-item="TITLE">
@@ -115,20 +115,9 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 <p>隨時都可以在這裡告訴我們想改什麼，例如文字、價格或新的內容。系統每 8 小時會處理一次：簡單的修改會直接更新，較大的內容會先放到這頁讓您確認。Tell us anything you'd like changed. It's handled every 8 hours: simple edits go live, and bigger content comes back here for your OK first.</p>
 </details>
 
-<div class="item" data-item="Workout dinner deal page (EN + 繁中)">
-<h3>1. Workout dinner deal page (EN + 繁中)</h3>
-<p>Revised 2026-11-04 after your comments ("this should be light weight", "ok sure", "you can make more topic, for example Bible study or eating healthy challenge or sleep early challenge"). Yellow in the previews marks what changed.</p>
-<ul>
-<li><strong>Lighter on the dinner:</strong><span class="ba was"><b>Before</b>a bold warning line, plus a whole section on what the app does and what you settle yourselves (who pays, no pot, no stakes)</span><span class="ba now"><b>After</b>one plain line: "The dinner is just a friendly deal between you. The app only keeps the score: nothing is staked in it, and losing costs nothing there." The money section is gone; the FAQ "Can the app take the money or split the bill?" stays, because the terms rule out wagering.</span></li>
-<li><strong>More topics:</strong><span class="ba was"><b>Before</b>exercise only</span><span class="ba now"><b>After</b>a new section "What other challenges can friends run this way?": a Bible study group (a chapter a day), eating healthy (a vegetable with every dinner, or no sugary drinks on weekdays), sleeping early (in bed by 11 pm on weeknights), reading, an instrument or exam study. It ends "The dinner is optional." The FAQ "Does it have to be the gym?" lists the same examples.</span></li>
-<li><strong>Age line:</strong><span class="ba was"><b>Before</b>Each person needs an account, and accounts are for ages 13 and up.</span><span class="ba now"><b>After</b>Each person needs an account.</span></li>
-</ul>
-<p>The page makes no health claims about any of these goals. If you'd rather have separate pages for Bible study, healthy eating or sleeping early, say so here and I'll draft them one at a time. Once approved it goes live at /workout-challenge and /zh/workout-challenge, linked with the live <a href="/group-challenges">group challenges page</a>, and added to the sitemap and llms.txt.</p>
-<div class="links"><a href="/pending/workout-challenge">Preview (EN)</a><a href="/pending/zh-workout-challenge">預覽（繁中）</a></div>
-</div>
-
 <div class="item" data-item="Privacy: children can use solo tracking (EN + 繁中)">
-<h3>2. Privacy: children can use solo tracking (EN + 繁中)</h3>
+<h3>1. Privacy: children can use solo tracking (EN + 繁中)</h3>
+<p><mark>Not changed yet, 2026-11-05.</mark> Your comment: "any age can get the account… Not sure if this is an issue for 'in the US a parent must give verified consent before the app collects a child's email,' how much work to comply with that? If it is easy, we can do that." It is not easy; the answer is under Questions below. The draft stays as it is (solo tracking for any age, accounts 13+) until you choose.</p>
 <p>Your answer on 2026-11-04: "there is no age limit, so 6 years old can use it… Update privacy to remove the restriction." This draft removes "Tadapop is not directed to children under 13" and says children of any age can use solo tracking. That part needs no account, and the privacy page already says its data stays on the device and is not sent to you, so nothing else about data handling changes.</p>
 <ul>
 <li><strong>/privacy, Children:</strong><span class="ba was"><b>Before</b>Tadapop is not directed to children under 13, and we do not knowingly collect their personal data.</span><span class="ba now"><b>After</b>Children of any age can use Tadapop's solo tracking, which needs no account. Without an account, nothing is sent to us: missions, logs, notes and photos stay on the device, as described above. We suggest a parent or guardian sets up the app for a young child. / The Club needs an account, and accounts are for ages 13 and up (see our Terms). We do not knowingly collect personal data from children under 13. An account can be deleted at any time, in the app or on the delete account page.</span></li>
@@ -139,10 +128,29 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 <div class="links"><a href="/pending/privacy">Preview (EN)</a><a href="/pending/zh-privacy">預覽（繁中）</a><a href="/privacy">Live version</a></div>
 </div>
 
+<div class="item" data-item="Delete account page: add a short FAQ (EN + 繁中)">
+<h3>2. Delete account page: add a short FAQ (EN + 繁中)</h3>
+<p>Why: this is the only page on Google's page 2 (12 searches showed it in the last 28 days, average position 10.75, 1 click), and the site check flags it, with /zh/delete-account, as the last pages with no FAQ. A short FAQ lets Google and AI answers quote the steps directly. Each answer repeats what the page already says. Nothing about deleting changes.</p>
+<ul>
+<li><strong>New, near the end of /delete-account:</strong><span class="ba was"><b>Before</b>(none)</span><span class="ba now"><b>After</b>"What do people ask about deleting a Tadapop account?" with 5 questions: How do I delete my Tadapop account? · Can I delete my account after uninstalling the app? · Does deleting my account cancel Tadapop Pro? · Can a deleted account be restored? · I never made an account. Is there anything to delete?</span></li>
+<li><strong>/zh/delete-account:</strong><span class="ba was"><b>Before</b>(none)</span><span class="ba now"><b>After</b>「刪除帳號，大家最常問什麼？」with the same 5 questions in Chinese</span></li>
+</ul>
+<div class="links"><a href="/pending/delete-account">Preview (EN)</a><a href="/pending/zh-delete-account">預覽（繁中）</a><a href="/delete-account">Live version</a></div>
+</div>
+
 <h2>Questions</h2>
-<p>Thank you: you said there is no age limit and your 6-year-old uses Tadapop every day. Item 2 above opens solo tracking to all ages in the privacy policy. One question is left, about accounts:</p>
+<p>You asked how much work it is to let children under 13 create an account (2026-11-04: "the answer is Yes, how much more work is that? If too much work, then I will just say no."). In short: it is app work of a few weeks plus a lawyer's review, not a website change. What US law (COPPA) asks for before an app collects a child's email, name, photos or messages:</p>
+<ul>
+<li><strong>An age question at sign-up.</strong> If the child is under 13, the app asks for a parent's email and stops until the parent agrees.</li>
+<li><strong>Verified consent from the parent.</strong> A click in an email is not enough here, because Club photos and messages are seen by other players. Accepted ways include a small card payment, a signed form, an ID check or a video call. Companies sell this as a paid service.</li>
+<li><strong>Parent controls.</strong> A parent must be able to see the child's data, delete it, and withdraw consent at any time.</li>
+<li><strong>Less sharing.</strong> Sharing a child's data with outside services (for example, sending Club messages to Anthropic for translation) needs its own separate consent, and the 2025 rule update also asks for a written policy on how long data is kept.</li>
+<li><strong>Paperwork.</strong> A rewritten children's section in the privacy policy with a direct notice to parents, new terms (now 13+), and new answers to the App Store and Google Play age-rating and Families questions.</li>
+</ul>
+<p>My suggestion is <strong>No for now</strong>: children of any age use solo tracking, where nothing is sent to us, and the Club stays 13+. That is what item 1 already says. You can add child accounts later as an app project.</p>
 <ol class="q">
-<li>Should children under 13 be able to create an account (for the Club)? If yes, that needs more than a text change: in the US a parent must give verified consent before the app collects a child's email, name or photos (COPPA), and the terms (13+) and the App Store age rating would change too. That is app work and worth legal advice, so I won't draft it. If no, approve item 2 as it is and nothing else is needed.</li>
+<li>Child accounts (under 13): "No" (then approve item 1 as it is), or "Build it" (I'll list it for the app work and keep item 1 waiting)?</li>
+<li>You said a child who needs more than 5 missions needs an account with Pro. With "No", is it fine that a parent signs in with their own account on the child's iPad for that? If yes, I'd add one line to item 1 saying so.</li>
 </ol>
 <div class="item" data-item="Questions">
 <h3>Answers to the questions</h3>

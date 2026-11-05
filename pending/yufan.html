@@ -108,17 +108,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<div class="item" data-item="[Yufan] Group challenges pages: page and breadcrumb schema (EN + 繁中)">
-<h3>1. Group challenges pages: page and breadcrumb schema (EN + 繁中)</h3>
-<p><strong>Finding:</strong> the AI check (2026-11-02) names Tadapop in 0 of 4 questions, including "What app lets friends do a habit challenge together with a leaderboard?" and "推薦可以跟朋友一起打卡、養成習慣的 App". /group-challenges and /zh/group-challenges went live today to answer those, with FAQPage schema only. /about and /habits already tie their FAQ to the app and site entities; this does the same here, so an engine can tell the page is about the Tadapop app. No visible text changes.</p>
-<ul>
-<li><strong>/group-challenges, JSON-LD:</strong><span class="ba was"><b>Before</b>FAQPage only, with no @id</span><span class="ba now"><b>After</b>WebPage (#webpage: name and description from the title and meta description, isPartOf #website, about #app, publisher #organization) + BreadcrumbList (Tadapop › Group habit challenges with friends); FAQPage gets @id #faq and isPartOf #webpage</span></li>
-<li><strong>/zh/group-challenges, JSON-LD:</strong><span class="ba was"><b>Before</b>FAQPage only, with no @id</span><span class="ba now"><b>After</b>the same, with /zh#website and /zh#app as /zh/habits uses, breadcrumb Tadapop › 跟朋友一起做習慣團體挑戰, inLanguage zh-Hant</span></li>
-</ul>
-<p>Both JSON-LD blocks parse. FAQ text unchanged.</p>
-<p>Branch: <code>seo/group-challenges-page-schema</code>.</p>
-<div class="links"><a href="/group-challenges">Live /group-challenges</a><a href="/zh/group-challenges">Live /zh/group-challenges</a></div>
-</div>
+<p>Nothing yet.</p>
 
 <script>
 (function(){
