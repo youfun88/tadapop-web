@@ -98,7 +98,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </script>
 <h1>Developer review · SEO / AEO / GEO</h1>
 <p>Search and AI-visibility changes for Yufan to approve: titles, descriptions, schema, internal links, llms.txt, sitemap, keywords. Content changes go to the owner at <a href="/pending/">/pending</a>. Not linked from the site and not indexed. The GX10 job applies approved changes at its next run (every 8 hours).</p>
-<p class="updated">Updated 2026-11-04.</p>
+<p class="updated">Updated 2026-11-05.</p>
 
 <!-- Item markup (copy for each draft; data-item must equal the board title exactly):
 <div class="item" data-item="TITLE">
@@ -108,7 +108,17 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<p>Nothing yet.</p>
+<div class="item" data-item="[Yufan] Workout challenge pages: page and breadcrumb schema (EN + 繁中)">
+<h3>1. Workout challenge pages: page and breadcrumb schema (EN + 繁中)</h3>
+<p><strong>Finding:</strong> the AI check (2026-11-02) does not name Tadapop for "Is there an app where whoever skips their workout buys dinner?". /workout-challenge and /zh/workout-challenge went live today to answer it, with FAQPage schema only. /about, /habits and /group-challenges tie their FAQ to the app and site entities; this does the same here. No visible text changes.</p>
+<ul>
+<li><strong>/workout-challenge, JSON-LD:</strong><span class="ba was"><b>Before</b>FAQPage only, with no @id</span><span class="ba now"><b>After</b>WebPage (#webpage: name and description from the title and meta description, isPartOf #website, about #app, publisher #organization) + BreadcrumbList (Tadapop › Whoever skips the workout buys dinner); FAQPage gets @id #faq and isPartOf #webpage</span></li>
+<li><strong>/zh/workout-challenge, JSON-LD:</strong><span class="ba was"><b>Before</b>FAQPage only, with no @id</span><span class="ba now"><b>After</b>the same, with /zh#website and /zh#app as /zh/group-challenges uses, breadcrumb Tadapop › 誰沒運動，誰請吃飯, inLanguage zh-Hant</span></li>
+</ul>
+<p>Both JSON-LD blocks parse. FAQ text unchanged.</p>
+<p>Branch: <code>seo/workout-challenge-page-schema</code>.</p>
+<div class="links"><a href="/workout-challenge">Live /workout-challenge</a><a href="/zh/workout-challenge">Live /zh/workout-challenge</a></div>
+</div>
 
 <script>
 (function(){
