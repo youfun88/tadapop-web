@@ -108,15 +108,14 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<div class="item" data-item="[Yufan] Workout challenge pages: page and breadcrumb schema (EN + 繁中)">
-<h3>1. Workout challenge pages: page and breadcrumb schema (EN + 繁中)</h3>
-<p><strong>Finding:</strong> the AI check (2026-11-02) does not name Tadapop for "Is there an app where whoever skips their workout buys dinner?". /workout-challenge and /zh/workout-challenge went live today to answer it, with FAQPage schema only. /about, /habits and /group-challenges tie their FAQ to the app and site entities; this does the same here. No visible text changes.</p>
+<div class="item" data-item="[Yufan] Footer link to the workout challenge page on home and about (EN + 繁中)">
+<h3>1. Footer link to the workout challenge page on home and about (EN + 繁中)</h3>
+<p><strong>Finding:</strong> the AI check (2026-11-02) does not name Tadapop for "Is there an app where whoever skips their workout buys dinner?" (cited instead: apps.apple.com, finestreak.com, habithuddle.com and others). /workout-challenge, which answers it, went live on 2026-11-05 and only /group-challenges links to it, so crawlers reach it from one page. /group-challenges already has a footer link on home and about; this adds the workout page next to it. Link text names the page. No other text changes.</p>
 <ul>
-<li><strong>/workout-challenge, JSON-LD:</strong><span class="ba was"><b>Before</b>FAQPage only, with no @id</span><span class="ba now"><b>After</b>WebPage (#webpage: name and description from the title and meta description, isPartOf #website, about #app, publisher #organization) + BreadcrumbList (Tadapop › Whoever skips the workout buys dinner); FAQPage gets @id #faq and isPartOf #webpage</span></li>
-<li><strong>/zh/workout-challenge, JSON-LD:</strong><span class="ba was"><b>Before</b>FAQPage only, with no @id</span><span class="ba now"><b>After</b>the same, with /zh#website and /zh#app as /zh/group-challenges uses, breadcrumb Tadapop › 誰沒運動，誰請吃飯, inLanguage zh-Hant</span></li>
+<li><strong>/ and /about, footer:</strong><span class="ba was"><b>Before</b>What Tadapop does · Group challenges · What you earn · …</span><span class="ba now"><b>After</b>What Tadapop does · Group challenges · Workout challenge · What you earn · …</span></li>
+<li><strong>/zh and /zh/about, footer:</strong><span class="ba was"><b>Before</b>Tadapop 是什麼 · 團體挑戰 · 你會得到什麼 · …</span><span class="ba now"><b>After</b>Tadapop 是什麼 · 團體挑戰 · 運動挑戰 · 你會得到什麼 · …</span></li>
 </ul>
-<p>Both JSON-LD blocks parse. FAQ text unchanged.</p>
-<p>Branch: <code>seo/workout-challenge-page-schema</code>.</p>
+<p>Branch: <code>seo/workout-challenge-footer-link</code>.</p>
 <div class="links"><a href="/workout-challenge">Live /workout-challenge</a><a href="/zh/workout-challenge">Live /zh/workout-challenge</a></div>
 </div>
 
