@@ -18,6 +18,9 @@ is a bug — please report it through the support page.
   countdown timer that chimes at zero.
 - Local-first. Solo tracking works fully offline and requires no account at all.
 - An account is required only for the Club.
+- Age: children of any age can use solo tracking, which needs no account and sends
+  nothing to QY LLC (data stays on the device). Accounts, and so the Club, are for
+  ages 13 and up. See https://www.tadapop.app/privacy (Children).
 - No ads, and no third-party advertising or analytics trackers in the app.
 - Free to use, and free covers the whole of solo tracking. There is one optional
   subscription, Tadapop Pro, which lifts two limits and affects nothing else.
