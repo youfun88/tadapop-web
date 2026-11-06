@@ -108,25 +108,14 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<div class="item" data-item="[Yufan] Footer link to the workout challenge page on home and about (EN + 繁中)">
-<h3>1. Footer link to the workout challenge page on home and about (EN + 繁中)</h3>
-<p><strong>Finding:</strong> the AI check (2026-11-02) does not name Tadapop for "Is there an app where whoever skips their workout buys dinner?" (cited instead: apps.apple.com, finestreak.com, habithuddle.com and others). /workout-challenge, which answers it, went live on 2026-11-05 and only /group-challenges links to it, so crawlers reach it from one page. /group-challenges already has a footer link on home and about; this adds the workout page next to it. Link text names the page. No other text changes.</p>
+<div class="item" data-item="[Yufan] Group challenges page: title says habit challenges with friends and a leaderboard">
+<h3>1. Group challenges page: title says habit challenges with friends and a leaderboard</h3>
+<p><strong>Finding:</strong> the AI check (2026-11-02) does not name Tadapop for "What app lets friends do a habit challenge together with a leaderboard?" (cited instead: habitify.me, apps.apple.com, play.google.com, daily-pact.com, habitchallenge.site, alpacto.com). /group-challenges answers that question and its description already says "a live leaderboard", but its title does not. This puts the question's words (friends, habit challenge, leaderboard) in the title. 57 characters. Title, og:title, twitter:title and the WebPage schema name only. H1, breadcrumb and page text stay the same. Sitemap lastmod updated. /zh/group-challenges already says 排行榜 in its description, so it is not changed.</p>
 <ul>
-<li><strong>/ and /about, footer:</strong><span class="ba was"><b>Before</b>What Tadapop does · Group challenges · What you earn · …</span><span class="ba now"><b>After</b>What Tadapop does · Group challenges · Workout challenge · What you earn · …</span></li>
-<li><strong>/zh and /zh/about, footer:</strong><span class="ba was"><b>Before</b>Tadapop 是什麼 · 團體挑戰 · 你會得到什麼 · …</span><span class="ba now"><b>After</b>Tadapop 是什麼 · 團體挑戰 · 運動挑戰 · 你會得到什麼 · …</span></li>
+<li><strong>/group-challenges, &lt;title&gt; (also og:title, twitter:title, WebPage name):</strong><span class="ba was"><b>Before</b>Group habit challenges with friends — Tadapop</span><span class="ba now"><b>After</b>Habit challenges with friends and a leaderboard — Tadapop</span></li>
 </ul>
-<p>Branch: <code>seo/workout-challenge-footer-link</code>.</p>
-<div class="links"><a href="/workout-challenge">Live /workout-challenge</a><a href="/zh/workout-challenge">Live /zh/workout-challenge</a></div>
-</div>
-
-<div class="item" data-item="[Yufan] /zh group challenges page: title uses 跟朋友一起打卡、養成習慣">
-<h3>2. /zh group challenges page: title uses 跟朋友一起打卡、養成習慣</h3>
-<p><strong>Finding:</strong> the AI check (2026-11-02) does not name Tadapop for "推薦可以跟朋友一起打卡、養成習慣的 App" (cited instead: appinn.com, waki.cmoney.tw, blog.pinkoi.com, ptt.cc and others). The plan asks for that exact phrase on the zh pages. /zh already has it in the description; /zh/group-challenges, the page that answers the question, does not. GSC (2026-10-06 to 2026-11-02) also shows the query "習慣養成app" at position 6. Title, og:title, twitter:title and the WebPage schema name only; H1, breadcrumb and page text unchanged. Sitemap lastmod updated.</p>
-<ul>
-<li><strong>/zh/group-challenges, &lt;title&gt; (also og:title, twitter:title, WebPage name):</strong><span class="ba was"><b>Before</b>跟朋友一起做習慣團體挑戰 — Tadapop</span><span class="ba now"><b>After</b>跟朋友一起打卡、養成習慣的團體挑戰 App — Tadapop</span></li>
-</ul>
-<p>Branch: <code>seo/zh-group-challenges-title-checkin</code>.</p>
-<div class="links"><a href="/zh/group-challenges">Live /zh/group-challenges</a></div>
+<p>Branch: <code>seo/group-challenges-leaderboard-title</code>.</p>
+<div class="links"><a href="/group-challenges">Live /group-challenges</a></div>
 </div>
 
 <script>
