@@ -108,17 +108,15 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<div class="item" data-item="[Yufan] Group challenges page: title says habit challenges with friends and a leaderboard">
-<h3>1. Group challenges page: title says habit challenges with friends and a leaderboard</h3>
-<p><strong>Finding:</strong> the AI check (2026-11-02) does not name Tadapop for "What app lets friends do a habit challenge together with a leaderboard?" (cited instead: habitify.me, apps.apple.com, play.google.com, daily-pact.com, habitchallenge.site, alpacto.com). /group-challenges answers that question and its description already says "a live leaderboard", but its title does not. This puts the question's words (friends, habit challenge, leaderboard) in the title. 57 characters. Title, og:title, twitter:title and the WebPage schema name only. H1, breadcrumb and page text stay the same. Sitemap lastmod updated. /zh/group-challenges already says 排行榜 in its description, so it is not changed.</p>
+<div class="item" data-item="[Yufan] llms.txt: say children of any age can use solo tracking">
+<h3>1. llms.txt: say children of any age can use solo tracking</h3>
+<p><strong>Finding:</strong> the AI check (2026-11-02) does not name Tadapop for "Best app for a kids daily routine checklist that they tick off themselves?" (cited instead: apps.apple.com, 1-gadget.com, everblog.com, timetrack.management, busykid.com, mychoreboard.com). /privacy went live today saying children of any age can use solo tracking, but llms.txt, which AI tools read for facts, says nothing about age. This adds one bullet under "What it is", in the words of /privacy. No other line changes.</p>
 <ul>
-<li><strong>/group-challenges, &lt;title&gt; (also og:title, twitter:title, WebPage name):</strong><span class="ba was"><b>Before</b>Group habit challenges with friends — Tadapop</span><span class="ba now"><b>After</b>Habit challenges with friends and a leaderboard — Tadapop</span></li>
+<li><strong>llms.txt, "What it is", after "An account is required only for the Club.":</strong><span class="ba was"><b>Before</b>(no line about age)</span><span class="ba now"><b>After</b>- Age: children of any age can use solo tracking, which needs no account and sends nothing to QY LLC (data stays on the device). Accounts, and so the Club, are for ages 13 and up. See https://www.tadapop.app/privacy (Children).</span></li>
 </ul>
-<p>Branch: <code>seo/group-challenges-leaderboard-title</code>.</p>
-<div class="links"><a href="/group-challenges">Live /group-challenges</a></div>
+<p>Branch: <code>seo/llms-txt-age</code>.</p>
+<div class="links"><a href="/llms.txt">Live llms.txt</a><a href="/privacy">Live /privacy</a></div>
 </div>
-
-<script>
 (function(){
   var API='https://admin.shiptolive.com/api/contact';
   document.querySelectorAll('.item').forEach(function(box,i){

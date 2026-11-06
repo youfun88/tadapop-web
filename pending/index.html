@@ -115,21 +115,8 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 <p>隨時都可以在這裡告訴我們想改什麼，例如文字、價格或新的內容。系統每 8 小時會處理一次：簡單的修改會直接更新，較大的內容會先放到這頁讓您確認。Tell us anything you'd like changed. It's handled every 8 hours: simple edits go live, and bigger content comes back here for your OK first.</p>
 </details>
 
-<div class="item" data-item="Privacy: children can use solo tracking (EN + 繁中)">
-<h3>1. Privacy: children can use solo tracking (EN + 繁中)</h3>
-<p><mark>Not changed yet, 2026-11-05.</mark> Your comment: "any age can get the account… Not sure if this is an issue for 'in the US a parent must give verified consent before the app collects a child's email,' how much work to comply with that? If it is easy, we can do that." It is not easy; the answer is under Questions below. The draft stays as it is (solo tracking for any age, accounts 13+) until you choose.</p>
-<p>Your answer on 2026-11-04: "there is no age limit, so 6 years old can use it… Update privacy to remove the restriction." This draft removes "Tadapop is not directed to children under 13" and says children of any age can use solo tracking. That part needs no account, and the privacy page already says its data stays on the device and is not sent to you, so nothing else about data handling changes.</p>
-<ul>
-<li><strong>/privacy, Children:</strong><span class="ba was"><b>Before</b>Tadapop is not directed to children under 13, and we do not knowingly collect their personal data.</span><span class="ba now"><b>After</b>Children of any age can use Tadapop's solo tracking, which needs no account. Without an account, nothing is sent to us: missions, logs, notes and photos stay on the device, as described above. We suggest a parent or guardian sets up the app for a young child. / The Club needs an account, and accounts are for ages 13 and up (see our Terms). We do not knowingly collect personal data from children under 13. An account can be deleted at any time, in the app or on the delete account page.</span></li>
-<li><strong>/zh/privacy, 兒童:</strong><span class="ba was"><b>Before</b>Tadapop 並非以未滿 13 歲的兒童為對象，我們也不會在知情的情況下蒐集他們的個人資料。</span><span class="ba now"><b>After</b>任何年齡的兒童都可以使用 Tadapop 的個人紀錄，不需要帳號。……俱樂部需要帳號，帳號限年滿 13 歲（見使用條款）。……</span></li>
-<li><strong>Last updated:</strong><span class="ba was"><b>Before</b>October 3, 2026</span><span class="ba now"><b>After</b>the day it goes live</span></li>
-</ul>
-<p><strong>Why accounts stay 13+ in this draft:</strong> an account sends an email address, name, photos and Club messages to Supabase (and, with translation on, to Anthropic). In the US, collecting that from a child under 13 needs verified parental consent first (COPPA), and the app has no such step that I know of. The terms also say 13+. See the question below. The terms are not changed.</p>
-<div class="links"><a href="/pending/privacy">Preview (EN)</a><a href="/pending/zh-privacy">預覽（繁中）</a><a href="/privacy">Live version</a></div>
-</div>
-
 <div class="item" data-item="Delete account page: add a short FAQ (EN + 繁中)">
-<h3>2. Delete account page: add a short FAQ (EN + 繁中)</h3>
+<h3>1. Delete account page: add a short FAQ (EN + 繁中)</h3>
 <p>Why: this is the only page on Google's page 2 (12 searches showed it in the last 28 days, average position 10.75, 1 click), and the site check flags it, with /zh/delete-account, as the last pages with no FAQ. A short FAQ lets Google and AI answers quote the steps directly. Each answer repeats what the page already says. Nothing about deleting changes.</p>
 <ul>
 <li><strong>New, near the end of /delete-account:</strong><span class="ba was"><b>Before</b>(none)</span><span class="ba now"><b>After</b>"What do people ask about deleting a Tadapop account?" with 5 questions: How do I delete my Tadapop account? · Can I delete my account after uninstalling the app? · Does deleting my account cancel Tadapop Pro? · Can a deleted account be restored? · I never made an account. Is there anything to delete?</span></li>
@@ -139,30 +126,32 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 
 <div class="item" data-item="Bible reading challenge page (EN + 繁中)">
-<h3>3. Bible reading challenge page (EN + 繁中)</h3>
+<h3>2. Bible reading challenge page (EN + 繁中)</h3>
 <p>Why: on the workout page you suggested more topics, "for example Bible study or eating healthy challenge or sleep early challenge". This drafts the first one. Today the site mentions Bible study only in one list line on /workout-challenge. A page of its own gives Google and AI answers something to cite when people ask for a Bible reading app to use with friends or a small group. The AI check (2026-11-02) still names Tadapop in none of its 4 questions.</p>
 <ul>
 <li><strong>New page /bible-reading-challenge (and /zh/bible-reading-challenge):</strong><span class="ba was"><b>Before</b>(none)</span><span class="ba now"><b>After</b>"Bible reading challenge with friends": how to set one up in the Check-in Club (7 steps), four reading plans (Proverbs in 31 days, Mark in 16 days, a psalm a day, the New Testament in about nine months), and a 6-question FAQ</span></li>
 <li><strong>Browser-tab title (EN), shortened 2026-11-06 to fit search results:</strong><span class="ba was"><b>Before</b>Bible reading challenge with friends or your small group — Tadapop</span><span class="ba now"><b>After</b>Bible reading challenge with your small group — Tadapop</span></li>
 <li><strong>When it goes live:</strong> linked from /group-challenges ("Study groups") and from the "other challenges" list on /workout-challenge, plus the sitemap and llms.txt.</li>
 </ul>
-<p>Every app fact comes from what /group-challenges, /workout-challenge and /rules already say. It says your group reads in its own Bible or Bible app, so it does not claim the app has Bible text or reading plans. It does not mention children or families, because the under-13 question below is still open. Please check: is it fine to mention the group chat for sharing what you read?</p>
+<p>Every app fact comes from what /group-challenges, /workout-challenge and /rules already say. It says your group reads in its own Bible or Bible app, so it does not claim the app has Bible text or reading plans. It does not mention children or families, because the Club (group challenges) needs an account and accounts are 13+. Please check: is it fine to mention the group chat for sharing what you read?</p>
 <div class="links"><a href="/pending/bible-reading-challenge">Preview (EN)</a><a href="/pending/zh-bible-reading-challenge">預覽（繁中）</a><a href="/group-challenges">Related live page</a></div>
 </div>
 
-<h2>Questions</h2>
-<p>You asked how much work it is to let children under 13 create an account (2026-11-04: "the answer is Yes, how much more work is that? If too much work, then I will just say no."). In short: it is app work of a few weeks plus a lawyer's review, not a website change. What US law (COPPA) asks for before an app collects a child's email, name, photos or messages:</p>
+<div class="item" data-item="Kids' daily routine checklist page (EN + 繁中)">
+<h3>3. Kids' daily routine checklist page (EN + 繁中)</h3>
+<p>Why: the AI check (2026-11-02) asks "Best app for a kids daily routine checklist that they tick off themselves?" and does not name Tadapop; it cited App Store pages, 1-gadget.com, everblog.com, busykid.com and mychoreboard.com instead. The site has no page about kids' routines. Now that /privacy says children of any age can use solo tracking, this page answers that question.</p>
 <ul>
-<li><strong>An age question at sign-up.</strong> If the child is under 13, the app asks for a parent's email and stops until the parent agrees.</li>
-<li><strong>Verified consent from the parent.</strong> A click in an email is not enough here, because Club photos and messages are seen by other players. Accepted ways include a small card payment, a signed form, an ID check or a video call. Companies sell this as a paid service.</li>
-<li><strong>Parent controls.</strong> A parent must be able to see the child's data, delete it, and withdraw consent at any time.</li>
-<li><strong>Less sharing.</strong> Sharing a child's data with outside services (for example, sending Club messages to Anthropic for translation) needs its own separate consent, and the 2025 rule update also asks for a written policy on how long data is kept.</li>
-<li><strong>Paperwork.</strong> A rewritten children's section in the privacy policy with a direct notice to parents, new terms (now 13+), and new answers to the App Store and Google Play age-rating and Families questions.</li>
+<li><strong>New page /kids-routine-checklist (and /zh/kids-routine-checklist):</strong><span class="ba was"><b>Before</b>(none)</span><span class="ba now"><b>After</b>"A daily routine checklist kids tick off themselves": how to set it up on the child's own tablet (6 steps), example morning, after-school and bedtime lists, how a parent sees progress on the child's Stats screen, and a 6-question FAQ</span></li>
+<li><strong>When it goes live:</strong> linked from the home page and /about footers, plus the sitemap and llms.txt.</li>
 </ul>
-<p>My suggestion is <strong>No for now</strong>: children of any age use solo tracking, where nothing is sent to us, and the Club stays 13+. That is what item 1 already says. You can add child accounts later as an app project.</p>
+<p>App facts come from the home page, /about and llms.txt, and from your answers here (the child's own iPad; parents look at the child's device for year, month and day progress). Privacy lines repeat /privacy word for word. No claims about child development. It says the free plan keeps five missions and Pro removes the limit, but not how a child gets Pro: that is the question below. Please check: is "no remote parent view" right (a parent cannot see the child's progress from their own phone)?</p>
+<div class="links"><a href="/pending/kids-routine-checklist">Preview (EN)</a><a href="/pending/zh-kids-routine-checklist">預覽（繁中）</a></div>
+</div>
+
+<h2>Questions</h2>
+<p>You approved the privacy change on 2026-11-06, so I took the answer to "child accounts" as <strong>No for now</strong>: children of any age use solo tracking, and accounts (and the Club) stay 13+. It is live on <a href="/privacy">/privacy</a> and <a href="/zh/privacy">/zh/privacy</a>. One question is left:</p>
 <ol class="q">
-<li>Child accounts (under 13): "No" (then approve item 1 as it is), or "Build it" (I'll list it for the app work and keep item 1 waiting)?</li>
-<li>You said a child who needs more than 5 missions needs an account with Pro. With "No", is it fine that a parent signs in with their own account on the child's iPad for that? If yes, I'd add one line to item 1 saying so.</li>
+<li>You said a child who needs more than 5 missions needs an account with Pro. Is it fine that a parent signs in with their own account on the child's iPad for that? If yes, I'd draft one line for /privacy saying so, for your OK here.</li>
 </ol>
 <div class="item" data-item="Questions">
 <h3>Answers to the questions</h3>
