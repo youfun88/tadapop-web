@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex,nofollow,noarchive" />
-  <!-- Canonical, hreflang and og:url are restored when this goes live. -->
+  <!-- Canonical, hreflang, og:url and analytics are restored when this goes live. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>孩子自己打勾的每日任務清單 — Tadapop</title>
   <meta name="description" content="把孩子早上、放學和睡前要做的事放進他自己的平板，一項一項打勾完成；不需要帳號，數據頁看得到這一天、這一週和這一年。" />
@@ -23,6 +23,7 @@
   <meta name="twitter:title" content="孩子自己打勾的每日任務清單 — Tadapop" />
   <meta name="twitter:description" content="把孩子早上、放學和睡前要做的事放進他自己的平板，一項一項打勾完成；不需要帳號，數據頁看得到這一天、這一週和這一年。" />
   <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
+
 
   <link rel="icon" href="/assets/favicon.png" />
   <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
@@ -45,7 +46,6 @@
        lastmod for this URL. Move BOTH when the page copy actually changes; a
        date that stops tracking real edits is one Google learns to ignore. -->
     <style>
-    mark { background: #fff3a0; color: inherit; }
     /* /about — the same two-part story the App Store description tells. */
     .about-faq { margin: 0 0 2rem; }
     .about-lead { font-size: 1.12rem; line-height: 1.6; color: var(--ink); margin: 0 0 2rem; }
@@ -157,7 +157,7 @@
       "name": "要付費嗎？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "個人使用免費。免費方案最多同時進行 5 個任務；Tadapop Pro 可以取消這個限制。把任務封存就能空出名額。"
+        "text": "個人使用免費。免費方案最多同時進行 5 個任務；Tadapop Pro 可以取消這個限制。把任務封存就能空出名額。孩子需要 Pro 的話，請你用自己的帳號在他的平板上登入；帳號限年滿 13 歲。"
       }
     },
     {
@@ -188,7 +188,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
   setTimeout(function(){document.querySelector('.tab-close-hint').hidden=false;},300);
 });
 </script>
-<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">這是新頁面 /zh/kids-routine-checklist 的草稿。整頁都是新的（黃色）。App 功能取自網站和您在 /pending 的回答；隱私說明與 /zh/privacy 相同。</p>
+<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">/zh/kids-routine-checklist 的修改草稿。黃色是常見問題「要花錢嗎」回答裡新增的一句，其他都沒變。</p>
   <a class="skip-link" href="#main">跳到主要內容</a>
   <div class="grid-bg" aria-hidden="true"></div>
   <header class="site-nav" id="siteNav">
@@ -216,62 +216,62 @@ document.querySelector('.tab-close').addEventListener('click',function(){
   </header>
 
   <main class="doc" id="main" tabindex="-1">
-    <h1><mark>孩子自己打勾的每日任務清單</mark></h1>
-    <p class="about-lead"><mark>把孩子早上、放學後和睡前的例行事項，變成他自己平板上的任務。他做完一項就打勾一項；你看他的數據頁，就知道這一天、這一週和這一年做得怎麼樣。</mark></p>
-    <p><mark>Tadapop 是給每個人用的習慣追蹤 App，個人使用不需要帳號，所以任何年齡的孩子都能用。沒有帳號時，資料不會傳給我們：任務、紀錄、筆記和照片都留在裝置上。</mark></p>
+    <h1>孩子自己打勾的每日任務清單</h1>
+    <p class="about-lead">把孩子早上、放學後和睡前的例行事項，變成他自己平板上的任務。他做完一項就打勾一項；你看他的數據頁，就知道這一天、這一週和這一年做得怎麼樣。</p>
+    <p>Tadapop 是給每個人用的習慣追蹤 App，個人使用不需要帳號，所以任何年齡的孩子都能用。沒有帳號時，資料不會傳給我們：任務、紀錄、筆記和照片都留在裝置上。</p>
 
     <section class="about-part" aria-labelledby="kr-setup">
       <p class="tag">01 · 開始設定</p>
-      <h2 id="kr-setup"><mark>怎麼幫孩子設定每日任務清單？</mark></h2>
+      <h2 id="kr-setup">怎麼幫孩子設定每日任務清單？</h2>
       <ol>
-        <li><mark>在孩子自己的 iPad、iPhone 或 Android 平板上安裝 Tadapop。不需要登入：個人使用不需要帳號。</mark></li>
-        <li><mark>把例行事項的每一步加成一個任務，例如「刷牙」或「整理書包」，再幫它挑一個圖示。</mark></li>
-        <li><mark>選擇每個任務的記錄方式：打勾、計次累積到目標（「喝 2 杯水」），或倒數計時、時間到響鈴（「閱讀 20 分鐘」）。</mark></li>
-        <li><mark>選擇每個任務哪天要做：每天、挑星期幾（例如只有上學日）、一週幾次，或只做一次。</mark></li>
-        <li><mark>想要的話可以設定提醒。提醒是裝置上的本機通知。</mark></li>
-        <li><mark>每天的「今天」畫面只顯示當天該做的事，孩子做完就點一下。</mark></li>
+        <li>在孩子自己的 iPad、iPhone 或 Android 平板上安裝 Tadapop。不需要登入：個人使用不需要帳號。</li>
+        <li>把例行事項的每一步加成一個任務，例如「刷牙」或「整理書包」，再幫它挑一個圖示。</li>
+        <li>選擇每個任務的記錄方式：打勾、計次累積到目標（「喝 2 杯水」），或倒數計時、時間到響鈴（「閱讀 20 分鐘」）。</li>
+        <li>選擇每個任務哪天要做：每天、挑星期幾（例如只有上學日）、一週幾次，或只做一次。</li>
+        <li>想要的話可以設定提醒。提醒是裝置上的本機通知。</li>
+        <li>每天的「今天」畫面只顯示當天該做的事，孩子做完就點一下。</li>
       </ol>
     </section>
 
     <section class="about-part" aria-labelledby="kr-lists">
       <p class="tag">02 · 清單範例</p>
-      <h2 id="kr-lists"><mark>早上和睡前的清單可以放什麼？</mark></h2>
+      <h2 id="kr-lists">早上和睡前的清單可以放什麼？</h2>
       <ul>
-        <li><mark>上學日早上：換衣服、刷牙、吃早餐、整理書包。</mark></li>
-        <li><mark>放學後：寫功課、練樂器（15 分鐘計時）、收玩具。</mark></li>
-        <li><mark>睡前：洗澡、刷牙、閱讀 20 分鐘（計時）、關燈睡覺。</mark></li>
-        <li><mark>免費方案最多同時進行 5 個任務，先從最重要的 5 個開始。Tadapop Pro 可以取消這個限制。</mark></li>
+        <li>上學日早上：換衣服、刷牙、吃早餐、整理書包。</li>
+        <li>放學後：寫功課、練樂器（15 分鐘計時）、收玩具。</li>
+        <li>睡前：洗澡、刷牙、閱讀 20 分鐘（計時）、關燈睡覺。</li>
+        <li>免費方案最多同時進行 5 個任務，先從最重要的 5 個開始。Tadapop Pro 可以取消這個限制。</li>
       </ul>
     </section>
 
     <section class="about-part" aria-labelledby="kr-progress">
       <p class="tag">03 · 看看進度</p>
-      <h2 id="kr-progress"><mark>怎麼知道孩子做得怎麼樣？</mark></h2>
+      <h2 id="kr-progress">怎麼知道孩子做得怎麼樣？</h2>
       <ul>
-        <li><mark>打開孩子裝置上的數據頁：目前的連續紀錄、本週完成了多少、每個任務的完成率，以及一整年的方格活動紀錄。</mark></li>
-        <li><mark>把當天該做的任務全部做完，那一天就得到 1 T點數。</mark></li>
-        <li><mark>進度留在孩子的裝置上。沒有帳號時資料不會傳給我們，所以沒有遠端的家長畫面：就在他的平板上一起看。</mark></li>
+        <li>打開孩子裝置上的數據頁：目前的連續紀錄、本週完成了多少、每個任務的完成率，以及一整年的方格活動紀錄。</li>
+        <li>把當天該做的任務全部做完，那一天就得到 1 T點數。</li>
+        <li>進度留在孩子的裝置上。沒有帳號時資料不會傳給我們，所以沒有遠端的家長畫面：就在他的平板上一起看。</li>
       </ul>
       <p><a href="/zh#pricing">免費與 Pro →</a> · <a href="/zh/privacy">隱私權政策 →</a></p>
     </section>
 
     <section class="about-faq" aria-labelledby="kr-faq">
-      <h2 id="kr-faq"><mark>家長最常問的每日任務清單問題</mark></h2>
-      <h3><mark>有沒有讓孩子自己打勾的每日任務清單 App？</mark></h3>
-      <p><mark>Tadapop 就可以。把例行事項的每一步加成孩子平板上的任務，他做完就點一下。「今天」畫面只顯示當天該做的事，數據頁看得到連續紀錄、這一週和這一年。</mark></p>
-      <h3><mark>孩子需要帳號嗎？</mark></h3>
-      <p><mark>不需要。個人使用不需要帳號，沒有帳號時資料不會傳給我們：任務、紀錄、筆記和照片都留在裝置上。只有打卡俱樂部需要帳號，帳號限年滿 13 歲。</mark></p>
-      <h3><mark>可以用我自己的手機看孩子的進度嗎？</mark></h3>
-      <p><mark>不行。沒有帳號時資料留在孩子的裝置上，所以要在他的平板上看數據頁。</mark></p>
-      <h3><mark>可以設定只有上學日才要做的任務嗎？</mark></h3>
-      <p><mark>可以。每個任務可以設成每天、挑星期幾、一週幾次，或只做一次。</mark></p>
-      <h3><mark>要付費嗎？</mark></h3>
-      <p><mark>個人使用免費。免費方案最多同時進行 5 個任務；Tadapop Pro 可以取消這個限制。把任務封存就能空出名額。</mark></p>
-      <h3><mark>有廣告嗎？</mark></h3>
-      <p><mark>沒有。App 沒有廣告，也沒有第三方廣告或分析追蹤器。</mark></p>
+      <h2 id="kr-faq">家長最常問的每日任務清單問題</h2>
+      <h3>有沒有讓孩子自己打勾的每日任務清單 App？</h3>
+      <p>Tadapop 就可以。把例行事項的每一步加成孩子平板上的任務，他做完就點一下。「今天」畫面只顯示當天該做的事，數據頁看得到連續紀錄、這一週和這一年。</p>
+      <h3>孩子需要帳號嗎？</h3>
+      <p>不需要。個人使用不需要帳號，沒有帳號時資料不會傳給我們：任務、紀錄、筆記和照片都留在裝置上。只有打卡俱樂部需要帳號，帳號限年滿 13 歲。</p>
+      <h3>可以用我自己的手機看孩子的進度嗎？</h3>
+      <p>不行。沒有帳號時資料留在孩子的裝置上，所以要在他的平板上看數據頁。</p>
+      <h3>可以設定只有上學日才要做的任務嗎？</h3>
+      <p>可以。每個任務可以設成每天、挑星期幾、一週幾次，或只做一次。</p>
+      <h3>要付費嗎？</h3>
+      <p>個人使用免費。免費方案最多同時進行 5 個任務；Tadapop Pro 可以取消這個限制。把任務封存就能空出名額。<mark style="background:#fff3a0;color:#222;padding:0 2px">孩子需要 Pro 的話，請你用自己的帳號在他的平板上登入；帳號限年滿 13 歲。</mark></p>
+      <h3>有廣告嗎？</h3>
+      <p>沒有。App 沒有廣告，也沒有第三方廣告或分析追蹤器。</p>
     </section>
 
-    <p class="about-lead"><strong><mark>挑 5 個任務，明天早上就開始。</mark></strong></p>
+    <p class="about-lead"><strong>挑 5 個任務，明天早上就開始。</strong></p>
     <div class="about-cta">
       <a href="https://apps.apple.com/app/id6782101150" target="_blank" rel="noopener">App Store</a>
       <a href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">Google Play</a>

@@ -2,8 +2,6 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="robots" content="noindex,nofollow,noarchive" />
-  <!-- Canonical, hreflang and og:url are restored when this goes live. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>跟小組一起讀經打卡：讀經挑戰 — Tadapop</title>
   <meta name="description" content="跟小組或教會朋友一起每天讀經：講好讀哪裡，每天讀完就打卡，排行榜看得出誰有跟上。可以要求照片證明，也有群組聊天。" />
@@ -12,6 +10,7 @@
   <meta property="og:site_name" content="Tadapop" />
   <meta property="og:title" content="跟小組一起讀經打卡：讀經挑戰 — Tadapop" />
   <meta property="og:description" content="跟小組或教會朋友一起每天讀經：講好讀哪裡，每天讀完就打卡，排行榜看得出誰有跟上。可以要求照片證明，也有群組聊天。" />
+  <meta property="og:url" content="https://www.tadapop.app/zh/bible-reading-challenge" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
   <meta property="og:image:width" content="1024" />
@@ -23,6 +22,11 @@
   <meta name="twitter:title" content="跟小組一起讀經打卡：讀經挑戰 — Tadapop" />
   <meta name="twitter:description" content="跟小組或教會朋友一起每天讀經：講好讀哪裡，每天讀完就打卡，排行榜看得出誰有跟上。可以要求照片證明，也有群組聊天。" />
   <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
+
+  <link rel="canonical" href="https://www.tadapop.app/zh/bible-reading-challenge" />
+  <link rel="alternate" hreflang="en" href="https://www.tadapop.app/bible-reading-challenge" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/bible-reading-challenge" />
+  <link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/bible-reading-challenge" />
 
   <link rel="icon" href="/assets/favicon.png" />
   <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
@@ -45,7 +49,6 @@
        lastmod for this URL. Move BOTH when the page copy actually changes; a
        date that stops tracking real edits is one Google learns to ignore. -->
     <style>
-    mark { background: #fff3a0; color: inherit; }
     /* /about — the same two-part story the App Store description tells. */
     .about-faq { margin: 0 0 2rem; }
     .about-lead { font-size: 1.12rem; line-height: 1.6; color: var(--ink); margin: 0 0 2rem; }
@@ -171,24 +174,31 @@
   ]
 }
 </script>
+  <!-- Google tag (gtag.js) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JTYW60NJLH');
+    /* The library loads on the first interaction, or when the page goes idle after load. Calls wait in dataLayer until then. */
+    (function (w, d) {
+      var done = 0, ev = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+      function load() {
+        if (done) return; done = 1;
+        ev.forEach(function (e) { w.removeEventListener(e, load, true); });
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-JTYW60NJLH';
+        d.head.appendChild(s);
+      }
+      ev.forEach(function (e) { w.addEventListener(e, load, { capture: true, passive: true }); });
+      w.addEventListener('load', function () {
+        setTimeout(function () { w.requestIdleCallback ? w.requestIdleCallback(load, { timeout: 3000 }) : load(); }, 4000);
+      });
+    })(window, document);
+  </script>
 </head>
 <body>
-<button type="button" class="tab-close" aria-label="關閉分頁 Close tab" title="關閉分頁 Close tab">&times;</button>
-<p class="tab-close-hint" role="status" hidden>請直接關閉這個分頁。You can close this tab now.</p>
-<style>
-.tab-close{position:fixed;top:12px;right:12px;z-index:10;width:44px;height:44px;border-radius:50%;border:1px solid #c9c2b5;background:#fff;color:#333;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.tab-close:hover{background:#f1ede6}.tab-close:focus-visible{outline:2px solid #1d4f91;outline-offset:2px}
-h1{padding-right:52px}
-.tab-close-hint{position:fixed;top:62px;right:12px;z-index:10;margin:0;padding:8px 12px;background:#222;color:#fff;border-radius:8px;font-size:14px}
-</style>
-<script>
-document.querySelector('.tab-close').addEventListener('click',function(){
-  window.close();
-  // Browsers only let a page close a tab that was opened by a link or script; otherwise say so.
-  setTimeout(function(){document.querySelector('.tab-close-hint').hidden=false;},300);
-});
-</script>
-<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">這是新頁面 /zh/bible-reading-challenge 的草稿。整頁都是新的（黃色）。內容只用網站上已有的俱樂部功能。</p>
   <a class="skip-link" href="#main">跳到主要內容</a>
   <div class="grid-bg" aria-hidden="true"></div>
   <header class="site-nav" id="siteNav">
@@ -216,51 +226,51 @@ document.querySelector('.tab-close').addEventListener('click',function(){
   </header>
 
   <main class="doc" id="main" tabindex="-1">
-    <h1><mark>跟小組一起讀經打卡</mark></h1>
-    <p class="about-lead"><mark>跟小組或教會朋友一起每天讀經。大家先講好讀哪裡，每個人讀完就打卡，排行榜看得出誰有跟上。</mark></p>
-    <p><mark>讀哪裡由你們自己決定，用平常的聖經或聖經 App 來讀。Tadapop 只負責記錄誰已經打卡，裡面沒有任何賭注。</mark></p>
+    <h1>跟小組一起讀經打卡</h1>
+    <p class="about-lead">跟小組或教會朋友一起每天讀經。大家先講好讀哪裡，每個人讀完就打卡，排行榜看得出誰有跟上。</p>
+    <p>讀哪裡由你們自己決定，用平常的聖經或聖經 App 來讀。Tadapop 只負責記錄誰已經打卡，裡面沒有任何賭注。</p>
 
     <section class="about-part" aria-labelledby="br-how">
       <p class="tag">01 · 怎麼開始</p>
-      <h2 id="br-how"><mark>讀經挑戰要怎麼設定？</mark></h2>
+      <h2 id="br-how">讀經挑戰要怎麼設定？</h2>
       <ol>
-        <li><mark>先跟小組講好要讀哪裡，例如每天一章箴言，31 天讀完。</mark></li>
-        <li><mark>打開「俱樂部」分頁，按「建立挑戰」。這部分需要帳號。</mark></li>
-        <li><mark>幫挑戰取名，把讀經計畫寫進玩法。受邀的人在加入前就看得到。</mark></li>
-        <li><mark>選天數（7 天、30 天或自訂）和頻率：每天，或一週固定幾天。計畫裡的休息日不算沒做到。</mark></li>
-        <li><mark>想要證明的話就打開：照片、影片或兩者都可以，例如拍下讀到的那一頁。也能選所有人都看得到或只有主辦人看得到。</mark></li>
-        <li><mark>分享邀請連結或邀請碼。人數到了，由主辦人開始挑戰。</mark></li>
-        <li><mark>每天讀完就打卡。群組聊天可以分享讀到的心得，互相提醒。</mark></li>
+        <li>先跟小組講好要讀哪裡，例如每天一章箴言，31 天讀完。</li>
+        <li>打開「俱樂部」分頁，按「建立挑戰」。這部分需要帳號。</li>
+        <li>幫挑戰取名，把讀經計畫寫進玩法。受邀的人在加入前就看得到。</li>
+        <li>選天數（7 天、30 天或自訂）和頻率：每天，或一週固定幾天。計畫裡的休息日不算沒做到。</li>
+        <li>想要證明的話就打開：照片、影片或兩者都可以，例如拍下讀到的那一頁。也能選所有人都看得到或只有主辦人看得到。</li>
+        <li>分享邀請連結或邀請碼。人數到了，由主辦人開始挑戰。</li>
+        <li>每天讀完就打卡。群組聊天可以分享讀到的心得，互相提醒。</li>
       </ol>
       <p><a href="/zh/film-club">看俱樂部影片 →</a> · <a href="/zh/rules">俱樂部規則 →</a></p>
     </section>
 
     <section class="about-part" aria-labelledby="br-plans">
       <p class="tag">02 · 讀經計畫</p>
-      <h2 id="br-plans"><mark>小組可以從哪些讀經計畫開始？</mark></h2>
+      <h2 id="br-plans">小組可以從哪些讀經計畫開始？</h2>
       <ul>
-        <li><mark>箴言：31 章，一天一章，大約一個月讀完。</mark></li>
-        <li><mark>馬可福音：16 章，一天一章，16 天讀完。</mark></li>
-        <li><mark>詩篇：一天一篇，想讀多久就設多久。</mark></li>
-        <li><mark>新約：260 章，一天一章，大約九個月。</mark></li>
+        <li>箴言：31 章，一天一章，大約一個月讀完。</li>
+        <li>馬可福音：16 章，一天一章，16 天讀完。</li>
+        <li>詩篇：一天一篇，想讀多久就設多久。</li>
+        <li>新約：260 章，一天一章，大約九個月。</li>
       </ul>
-      <p><mark>同樣的設定也適用其他每日目標。</mark><a href="/zh/group-challenges">更多團體挑戰 →</a></p>
+      <p>同樣的設定也適用其他每日目標。<a href="/zh/group-challenges">更多團體挑戰 →</a></p>
     </section>
 
     <section class="about-faq" aria-labelledby="br-faq">
-      <h2 id="br-faq"><mark>關於讀經挑戰，大家最常問什麼？</mark></h2>
-      <h3><mark>有沒有 App 可以跟朋友一起讀經打卡？</mark></h3>
-      <p><mark>可以用 Tadapop 的俱樂部。主辦人建立一場私人挑戰，把讀經計畫寫進玩法，再邀請小組成員。每個人讀完就打卡，排行榜算出每個人達標了幾天。</mark></p>
-      <h3><mark>Tadapop 會告訴我們要讀哪裡嗎？</mark></h3>
-      <p><mark>由你們小組自己決定要讀哪裡，用你們平常的聖經或聖經 App 來讀。Tadapop 負責記錄誰已經打卡。</mark></p>
-      <h3><mark>讀經不想天天讀，可以嗎？</mark></h3>
-      <p><mark>可以。主辦人可以設定一週固定幾天，例如週一到週五，計畫裡的休息日不算沒做到。</mark></p>
-      <h3><mark>怎麼知道大家真的有讀？</mark></h3>
-      <p><mark>主辦人可以要求每次打卡都附照片或影片，例如拍下讀到的那一頁。除此之外，打卡是自行回報，靠誠信制運作。</mark></p>
-      <h3><mark>陌生人可以加入我們的讀經挑戰嗎？</mark></h3>
-      <p><mark>不行。只有拿到邀請連結或邀請碼的人可以加入，主辦人也可以選擇先審核每一個人。沒有公開搜尋，也沒有配對。</mark></p>
-      <h3><mark>開一場要多少錢？</mark></h3>
-      <p><mark>同時開一場挑戰是免費的，不管哪種方案，參加別人的挑戰都不受限制。每個人都需要帳號。</mark></p>
+      <h2 id="br-faq">關於讀經挑戰，大家最常問什麼？</h2>
+      <h3>有沒有 App 可以跟朋友一起讀經打卡？</h3>
+      <p>可以用 Tadapop 的俱樂部。主辦人建立一場私人挑戰，把讀經計畫寫進玩法，再邀請小組成員。每個人讀完就打卡，排行榜算出每個人達標了幾天。</p>
+      <h3>Tadapop 會告訴我們要讀哪裡嗎？</h3>
+      <p>由你們小組自己決定要讀哪裡，用你們平常的聖經或聖經 App 來讀。Tadapop 負責記錄誰已經打卡。</p>
+      <h3>讀經不想天天讀，可以嗎？</h3>
+      <p>可以。主辦人可以設定一週固定幾天，例如週一到週五，計畫裡的休息日不算沒做到。</p>
+      <h3>怎麼知道大家真的有讀？</h3>
+      <p>主辦人可以要求每次打卡都附照片或影片，例如拍下讀到的那一頁。除此之外，打卡是自行回報，靠誠信制運作。</p>
+      <h3>陌生人可以加入我們的讀經挑戰嗎？</h3>
+      <p>不行。只有拿到邀請連結或邀請碼的人可以加入，主辦人也可以選擇先審核每一個人。沒有公開搜尋，也沒有配對。</p>
+      <h3>開一場要多少錢？</h3>
+      <p>同時開一場挑戰是免費的，不管哪種方案，參加別人的挑戰都不受限制。每個人都需要帳號。</p>
     </section>
     <p class="about-lead"><strong>選一卷書，邀你的小組一起讀。</strong></p>
 

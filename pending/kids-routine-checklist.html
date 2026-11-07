@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex,nofollow,noarchive" />
-  <!-- Canonical, hreflang and og:url are restored when this goes live. -->
+  <!-- Canonical, hreflang, og:url and analytics are restored when this goes live. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kids' daily routine checklist they tick off — Tadapop</title>
   <meta name="description" content="A daily routine checklist your child ticks off on their own tablet: morning, after-school and bedtime missions, no account needed, and the stats show how the week went." />
@@ -24,6 +24,7 @@
   <meta name="twitter:description" content="A daily routine checklist your child ticks off on their own tablet: morning, after-school and bedtime missions, no account needed, and the stats show how the week went." />
   <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
 
+
   <link rel="icon" href="/assets/favicon.png" />
   <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
        so the first paint no longer waits on a fonts.googleapis.com round trip and
@@ -37,7 +38,6 @@
   <link rel="stylesheet" href="/styles.css" />
 
   <style>
-    mark { background: #fff3a0; color: inherit; }
     /* /about — the same two-part story the App Store description tells. */
     .about-faq { margin: 0 0 2rem; }
     .about-lead { font-size: 1.12rem; line-height: 1.6; color: var(--ink); margin: 0 0 2rem; }
@@ -149,7 +149,7 @@
       "name": "Is it free?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Solo tracking is free. The free plan keeps five active missions at a time; Tadapop Pro removes that limit. Archiving a mission frees its slot."
+        "text": "Solo tracking is free. The free plan keeps five active missions at a time; Tadapop Pro removes that limit. Archiving a mission frees its slot. If your child needs Pro, sign in with your own account on their tablet; accounts are for ages 13 and up."
       }
     },
     {
@@ -180,7 +180,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
   setTimeout(function(){document.querySelector('.tab-close-hint').hidden=false;},300);
 });
 </script>
-<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">Draft of a new page, /kids-routine-checklist. The whole page is new (yellow). App facts come from the site and your answers on /pending; privacy text matches /privacy.</p>
+<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">Draft of a change to /kids-routine-checklist. Yellow marks the one new sentence in the FAQ answer on cost. Nothing else changes.</p>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="grid-bg" aria-hidden="true"></div>
   <header class="site-nav" id="siteNav">
@@ -208,62 +208,62 @@ document.querySelector('.tab-close').addEventListener('click',function(){
   </header>
 
   <main class="doc" id="main" tabindex="-1">
-    <h1><mark>A daily routine checklist kids tick off themselves</mark></h1>
-    <p class="about-lead"><mark>Put your child’s morning, after-school and bedtime routine on their own tablet as missions. They tick each one off; you look at their Stats screen to see how the day, the week and the year went.</mark></p>
-    <p><mark>Tadapop is a habit tracker for anyone, and solo tracking needs no account, so children of any age can use it. Without an account, nothing is sent to us: missions, logs, notes and photos stay on the device.</mark></p>
+    <h1>A daily routine checklist kids tick off themselves</h1>
+    <p class="about-lead">Put your child’s morning, after-school and bedtime routine on their own tablet as missions. They tick each one off; you look at their Stats screen to see how the day, the week and the year went.</p>
+    <p>Tadapop is a habit tracker for anyone, and solo tracking needs no account, so children of any age can use it. Without an account, nothing is sent to us: missions, logs, notes and photos stay on the device.</p>
 
     <section class="about-part" aria-labelledby="kr-setup">
       <p class="tag">01 · SET IT UP</p>
-      <h2 id="kr-setup"><mark>How do you set up a routine checklist for your child?</mark></h2>
+      <h2 id="kr-setup">How do you set up a routine checklist for your child?</h2>
       <ol>
-        <li><mark>Install Tadapop on your child’s own iPad, iPhone or Android tablet. No sign-in is needed: solo tracking needs no account.</mark></li>
-        <li><mark>Add a mission for each step of the routine, for example “Brush teeth” or “Pack school bag”, and pick an icon for it.</mark></li>
-        <li><mark>Choose how each one is logged: a tick, a count up to a target (“2 glasses of water”), or a countdown timer that chimes at zero (“Read for 20 minutes”).</mark></li>
-        <li><mark>Choose when each mission is due: every day, chosen weekdays (school days only, for example), a few times a week, or once.</mark></li>
-        <li><mark>Set a reminder if you want one. Reminders are local notifications on the device.</mark></li>
-        <li><mark>Each day, Today shows only what is due. Your child taps each mission when it is done.</mark></li>
+        <li>Install Tadapop on your child’s own iPad, iPhone or Android tablet. No sign-in is needed: solo tracking needs no account.</li>
+        <li>Add a mission for each step of the routine, for example “Brush teeth” or “Pack school bag”, and pick an icon for it.</li>
+        <li>Choose how each one is logged: a tick, a count up to a target (“2 glasses of water”), or a countdown timer that chimes at zero (“Read for 20 minutes”).</li>
+        <li>Choose when each mission is due: every day, chosen weekdays (school days only, for example), a few times a week, or once.</li>
+        <li>Set a reminder if you want one. Reminders are local notifications on the device.</li>
+        <li>Each day, Today shows only what is due. Your child taps each mission when it is done.</li>
       </ol>
     </section>
 
     <section class="about-part" aria-labelledby="kr-lists">
       <p class="tag">02 · EXAMPLE LISTS</p>
-      <h2 id="kr-lists"><mark>What goes on a morning and bedtime checklist?</mark></h2>
+      <h2 id="kr-lists">What goes on a morning and bedtime checklist?</h2>
       <ul>
-        <li><mark>Morning, school days: get dressed, brush teeth, eat breakfast, pack school bag.</mark></li>
-        <li><mark>After school: homework, practice an instrument with a 15-minute timer, tidy toys.</mark></li>
-        <li><mark>Bedtime: bath or shower, brush teeth, read for 20 minutes with a timer, lights out.</mark></li>
-        <li><mark>The free plan keeps five active missions at a time, so start with the five that matter most. Tadapop Pro removes that limit.</mark></li>
+        <li>Morning, school days: get dressed, brush teeth, eat breakfast, pack school bag.</li>
+        <li>After school: homework, practice an instrument with a 15-minute timer, tidy toys.</li>
+        <li>Bedtime: bath or shower, brush teeth, read for 20 minutes with a timer, lights out.</li>
+        <li>The free plan keeps five active missions at a time, so start with the five that matter most. Tadapop Pro removes that limit.</li>
       </ul>
     </section>
 
     <section class="about-part" aria-labelledby="kr-progress">
       <p class="tag">03 · SEEING PROGRESS</p>
-      <h2 id="kr-progress"><mark>How do you see how your child is doing?</mark></h2>
+      <h2 id="kr-progress">How do you see how your child is doing?</h2>
       <ul>
-        <li><mark>Open the Stats screen on your child’s device: the current streak, how much of this week was completed, per-mission completion rates and a full-year heatmap.</mark></li>
-        <li><mark>A day where every mission due is done earns exactly one Tpoint.</mark></li>
-        <li><mark>Progress stays on your child’s device. Without an account nothing is sent to us, so there is no remote parent view: you look on their tablet together.</mark></li>
+        <li>Open the Stats screen on your child’s device: the current streak, how much of this week was completed, per-mission completion rates and a full-year heatmap.</li>
+        <li>A day where every mission due is done earns exactly one Tpoint.</li>
+        <li>Progress stays on your child’s device. Without an account nothing is sent to us, so there is no remote parent view: you look on their tablet together.</li>
       </ul>
       <p><a href="/#pricing">Free &amp; Pro →</a> · <a href="/privacy">Privacy →</a></p>
     </section>
 
     <section class="about-faq" aria-labelledby="kr-faq">
-      <h2 id="kr-faq"><mark>What do parents ask about kids’ routine checklists?</mark></h2>
-      <h3><mark>Is there an app for a kids’ daily routine checklist they tick off themselves?</mark></h3>
-      <p><mark>Tadapop works as one. Add each step of the routine as a mission on your child’s own tablet, and they tap it off when it is done. Today shows only what is due that day, and the Stats screen shows the streak, the week and the year.</mark></p>
-      <h3><mark>Does my child need an account?</mark></h3>
-      <p><mark>No. Solo tracking needs no account, and without one nothing is sent to us: missions, logs, notes and photos stay on the device. An account is needed only for the Check-in Club, and accounts are for ages 13 and up.</mark></p>
-      <h3><mark>Can I check my child’s progress from my own phone?</mark></h3>
-      <p><mark>No. Without an account the data stays on your child’s device, so you look at the Stats screen on their tablet.</mark></p>
-      <h3><mark>Can some tasks be for school days only?</mark></h3>
-      <p><mark>Yes. Each mission can be due every day, on chosen weekdays, a few times a week, or once.</mark></p>
-      <h3><mark>Is it free?</mark></h3>
-      <p><mark>Solo tracking is free. The free plan keeps five active missions at a time; Tadapop Pro removes that limit. Archiving a mission frees its slot.</mark></p>
-      <h3><mark>Are there ads?</mark></h3>
-      <p><mark>No. The app has no ads and no third-party advertising or analytics trackers.</mark></p>
+      <h2 id="kr-faq">What do parents ask about kids’ routine checklists?</h2>
+      <h3>Is there an app for a kids’ daily routine checklist they tick off themselves?</h3>
+      <p>Tadapop works as one. Add each step of the routine as a mission on your child’s own tablet, and they tap it off when it is done. Today shows only what is due that day, and the Stats screen shows the streak, the week and the year.</p>
+      <h3>Does my child need an account?</h3>
+      <p>No. Solo tracking needs no account, and without one nothing is sent to us: missions, logs, notes and photos stay on the device. An account is needed only for the Check-in Club, and accounts are for ages 13 and up.</p>
+      <h3>Can I check my child’s progress from my own phone?</h3>
+      <p>No. Without an account the data stays on your child’s device, so you look at the Stats screen on their tablet.</p>
+      <h3>Can some tasks be for school days only?</h3>
+      <p>Yes. Each mission can be due every day, on chosen weekdays, a few times a week, or once.</p>
+      <h3>Is it free?</h3>
+      <p>Solo tracking is free. The free plan keeps five active missions at a time; Tadapop Pro removes that limit. Archiving a mission frees its slot. <mark style="background:#fff3a0;color:#222;padding:0 2px">If your child needs Pro, sign in with your own account on their tablet; accounts are for ages 13 and up.</mark></p>
+      <h3>Are there ads?</h3>
+      <p>No. The app has no ads and no third-party advertising or analytics trackers.</p>
     </section>
 
-    <p class="about-lead"><strong><mark>Pick five missions and start tomorrow morning.</mark></strong></p>
+    <p class="about-lead"><strong>Pick five missions and start tomorrow morning.</strong></p>
     <div class="about-cta">
       <a href="https://apps.apple.com/app/id6782101150" target="_blank" rel="noopener">App Store</a>
       <a href="https://play.google.com/store/apps/details?id=com.qyllc.tadapop" target="_blank" rel="noopener">Google Play</a>

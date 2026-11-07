@@ -260,6 +260,12 @@ English:
   Check-in Club is for, how a challenge works, what is free and what Pro adds, with a FAQ.
 - [Whoever skips the workout buys dinner](https://www.tadapop.app/workout-challenge): how
   friends set up that deal as a challenge, other daily goals run the same way, and a FAQ.
+- [Bible reading challenge with friends](https://www.tadapop.app/bible-reading-challenge): how a
+  small group sets up a daily Bible reading challenge in the Club, four example reading plans,
+  and a FAQ. The group reads in its own Bible or Bible app.
+- [A daily routine checklist kids tick off themselves](https://www.tadapop.app/kids-routine-checklist):
+  setting up morning, after-school and bedtime missions on a child's own tablet with no account,
+  and how a parent sees progress on that device's Stats screen, with a FAQ.
 - [What you earn](https://www.tadapop.app/rewards): the full progression system — ranks,
   badges, cosmetics, and the day each one arrives.
 - [Club Rules](https://www.tadapop.app/rules): the complete competition rulebook,
@@ -280,6 +286,8 @@ Traditional Chinese (Taiwan) — the same pages, fully translated:
 - [每日任務清單怎麼用](https://www.tadapop.app/zh/film-solo)
 - [跟朋友一起做習慣團體挑戰](https://www.tadapop.app/zh/group-challenges)
 - [誰沒運動，誰請吃飯](https://www.tadapop.app/zh/workout-challenge)
+- [跟小組一起讀經打卡](https://www.tadapop.app/zh/bible-reading-challenge)
+- [孩子自己打勾的每日任務清單](https://www.tadapop.app/zh/kids-routine-checklist)
 - [你會得到什麼](https://www.tadapop.app/zh/rewards)
 - [俱樂部規則](https://www.tadapop.app/zh/rules)
 - [支援與常見問題](https://www.tadapop.app/zh/support)

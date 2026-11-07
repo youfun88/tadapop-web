@@ -75,7 +75,7 @@
       ]
     },
     {
-      "source": "/(film-club|film-solo|promo|habits|group-challenges|workout-challenge|film-club/index.html|film-solo/index.html|promo/index.html|habits/index.html|group-challenges/index.html|workout-challenge/index.html)",
+      "source": "/(film-club|film-solo|promo|habits|group-challenges|workout-challenge|bible-reading-challenge|kids-routine-checklist|film-club/index.html|film-solo/index.html|promo/index.html|habits/index.html|group-challenges/index.html|workout-challenge/index.html|bible-reading-challenge/index.html|kids-routine-checklist/index.html)",
       "headers": [
         {
           "key": "Cache-Control",

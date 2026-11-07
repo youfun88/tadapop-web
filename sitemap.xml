@@ -151,7 +151,7 @@
 
   <url>
     <loc>https://www.tadapop.app/delete-account</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <priority>0.4</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/delete-account"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/delete-account"/>
@@ -159,7 +159,7 @@
   </url>
   <url>
     <loc>https://www.tadapop.app/zh/delete-account</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <priority>0.4</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/delete-account"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/delete-account"/>
@@ -209,30 +209,58 @@
   </url>
   <url>
     <loc>https://www.tadapop.app/group-challenges</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/group-challenges"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/group-challenges"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/group-challenges"/>
   </url>
   <url>
     <loc>https://www.tadapop.app/zh/group-challenges</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/group-challenges"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/group-challenges"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/group-challenges"/>
   </url>
   <url>
     <loc>https://www.tadapop.app/workout-challenge</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/workout-challenge"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/workout-challenge"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/workout-challenge"/>
   </url>
   <url>
     <loc>https://www.tadapop.app/zh/workout-challenge</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/workout-challenge"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/workout-challenge"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/workout-challenge"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/bible-reading-challenge</loc>
+    <lastmod>2026-11-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/bible-reading-challenge"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/bible-reading-challenge"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/bible-reading-challenge"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/zh/bible-reading-challenge</loc>
+    <lastmod>2026-11-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/bible-reading-challenge"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/bible-reading-challenge"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/bible-reading-challenge"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/kids-routine-checklist</loc>
+    <lastmod>2026-11-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/kids-routine-checklist"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/kids-routine-checklist"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/kids-routine-checklist"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/zh/kids-routine-checklist</loc>
+    <lastmod>2026-11-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/kids-routine-checklist"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/kids-routine-checklist"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/kids-routine-checklist"/>
   </url>
 </urlset>
