@@ -108,15 +108,15 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<div class="item" data-item="[Yufan] Film club pages: link to the group challenges and workout challenge pages (EN + 繁中)">
-<h3>1. Film club pages: link to the group challenges and workout challenge pages (EN + 繁中)</h3>
-<p><strong>Finding:</strong> the AI check (2026-11-02) does not name Tadapop for "What app lets friends do a habit challenge together with a leaderboard?" (cited instead: habitify.me, daily-pact.com, alpacto.com and others) or for "Is there an app where whoever skips their workout buys dinner?" (cited instead: buddy.rukdias.com, finestreak.com, habithuddle.com and others). /film-club is the page about running a group challenge, but it has no link to /group-challenges or /workout-challenge, the two pages written for those questions. Only home and /about link to them now. This adds two links to the row of links under the film list, where "The solo cut" already sits. No other text changes.</p>
+<div class="item" data-item="[Yufan] /zh homepage: title uses 跟朋友一起打卡、養成習慣">
+<h3>1. /zh homepage: title uses 跟朋友一起打卡、養成習慣</h3>
+<p><strong>Finding:</strong> the AI check (2026-11-02) does not name Tadapop for 「推薦可以跟朋友一起打卡、養成習慣的 App」 (cited instead: appinn.com, waki.cmoney.tw, blog.pinkoi.com, ptt.cc, cosmopolitan.com.hk). Search Console (2026-10-08 to 2026-11-04) shows 習慣養成app at position 6, and /zh at position 3.2 with 15 impressions and 1 click. The /zh title has no 習慣 in it; the description and first paragraph already use the phrase. This puts the phrase people ask with into the title, og:title and twitter:title. 30 characters. No page text changes; sitemap lastmod for /zh set to 2026-11-07.</p>
 <ul>
-<li><strong>/film-club, links under "What does the film cover?":</strong><span class="ba was"><b>Before</b>中文版 · The solo cut → · The old combined cut</span><span class="ba now"><b>After</b>中文版 · The solo cut → · The old combined cut · Group habit challenges with friends (/group-challenges) · Whoever skips the workout buys dinner (/workout-challenge)</span></li>
-<li><strong>/zh/film-club, same row:</strong><span class="ba was"><b>Before</b>English · 單人版 → · 舊的合併版</span><span class="ba now"><b>After</b>English · 單人版 → · 舊的合併版 · 跟朋友一起做習慣團體挑戰 (/zh/group-challenges) · 誰沒運動，誰請吃飯 (/zh/workout-challenge)</span></li>
+<li><strong>/zh &lt;title&gt;:</strong><span class="ba was"><b>Before</b>Tadapop — 揪朋友一起的團體挑戰 App｜打卡俱樂部</span><span class="ba now"><b>After</b>Tadapop — 跟朋友一起打卡、養成習慣的 App｜打卡俱樂部</span></li>
+<li><strong>/zh og:title and twitter:title:</strong><span class="ba was"><b>Before</b>Tadapop — 揪朋友一起的團體挑戰 App</span><span class="ba now"><b>After</b>Tadapop — 跟朋友一起打卡、養成習慣的 App</span></li>
 </ul>
-<p>Link text is the same as the page names in llms.txt. Branch: <code>seo/film-club-challenge-links</code>.</p>
-<div class="links"><a href="/film-club">Live /film-club</a><a href="/zh/film-club">Live /zh/film-club</a><a href="/group-challenges">/group-challenges</a><a href="/workout-challenge">/workout-challenge</a></div>
+<p>Branch: <code>seo/zh-home-title-checkin</code>. Auto-approved (standing approval); goes live at the next run unless you undo it.</p>
+<div class="links"><a href="/zh">Live /zh</a></div>
 </div>
 <script>
 (function(){
