@@ -263,6 +263,12 @@ English:
 - [Bible reading challenge with friends](https://www.tadapop.app/bible-reading-challenge): how a
   small group sets up a daily Bible reading challenge in the Club, four example reading plans,
   and a FAQ. The group reads in its own Bible or Bible app.
+- [Sleep early challenge with friends](https://www.tadapop.app/sleep-early-challenge): how
+  friends agree a bedtime and check in each night in the Club, four example bedtime rules,
+  and a FAQ. Tadapop does not track sleep; check-ins are self-reported.
+- [Healthy eating challenge with friends](https://www.tadapop.app/healthy-eating-challenge): how
+  friends agree one food rule and check in each day in the Club, four example rules, and a FAQ.
+  Tadapop does not count calories or log meals.
 - [A daily routine checklist kids tick off themselves](https://www.tadapop.app/kids-routine-checklist):
   setting up morning, after-school and bedtime missions on a child's own tablet with no account,
   and how a parent sees progress on that device's Stats screen, with a FAQ.
@@ -287,6 +293,8 @@ Traditional Chinese (Taiwan) — the same pages, fully translated:
 - [跟朋友一起做習慣團體挑戰](https://www.tadapop.app/zh/group-challenges)
 - [誰沒運動，誰請吃飯](https://www.tadapop.app/zh/workout-challenge)
 - [跟小組一起讀經打卡](https://www.tadapop.app/zh/bible-reading-challenge)
+- [跟朋友一起早睡打卡](https://www.tadapop.app/zh/sleep-early-challenge)
+- [跟朋友一起健康飲食打卡](https://www.tadapop.app/zh/healthy-eating-challenge)
 - [孩子自己打勾的每日任務清單](https://www.tadapop.app/zh/kids-routine-checklist)
 - [你會得到什麼](https://www.tadapop.app/zh/rewards)
 - [俱樂部規則](https://www.tadapop.app/zh/rules)

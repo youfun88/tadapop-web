@@ -116,7 +116,7 @@
 
   <url>
     <loc>https://www.tadapop.app/privacy</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/privacy"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/privacy"/>
@@ -124,7 +124,7 @@
   </url>
   <url>
     <loc>https://www.tadapop.app/zh/privacy</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/privacy"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/privacy"/>
@@ -251,16 +251,44 @@
   </url>
   <url>
     <loc>https://www.tadapop.app/kids-routine-checklist</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/kids-routine-checklist"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/kids-routine-checklist"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/kids-routine-checklist"/>
   </url>
   <url>
     <loc>https://www.tadapop.app/zh/kids-routine-checklist</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/kids-routine-checklist"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/kids-routine-checklist"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/kids-routine-checklist"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/sleep-early-challenge</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/sleep-early-challenge"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/sleep-early-challenge"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/sleep-early-challenge"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/zh/sleep-early-challenge</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/sleep-early-challenge"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/sleep-early-challenge"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/sleep-early-challenge"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/healthy-eating-challenge</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/healthy-eating-challenge"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/healthy-eating-challenge"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/healthy-eating-challenge"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/zh/healthy-eating-challenge</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/healthy-eating-challenge"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/healthy-eating-challenge"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/healthy-eating-challenge"/>
   </url>
 </urlset>
