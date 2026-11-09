@@ -112,9 +112,14 @@ document.querySelector('.tab-close').addEventListener('click',function(){
     when at changes, data-requested="YYYY-MM-DD" (the date changes were asked). Items at changes collapse into
     「需要修改，處理中」 and approved items into 「已同意，等待上線」, below the waiting ones, by themselves.
     After revising, set data-status back to "review" (and drop data-requested): the card returns to the top.
+  - Each item also carries data-type, shown as a badge above its title: new (新文章, a page that doesn't exist yet),
+    update (更新現有頁面, edits to a live page), section (新增段落, added to a live page), setting (網站設定: titles,
+    descriptions, schema, technical; every [Yufan] item), question (問題, the Questions box). For update and section, name
+    the page: data-page="English page name" data-page-zh="中文頁名". Example:
+    <div class="item" data-item="..." data-type="section" data-page="About" data-page-zh="關於我們" data-status="review">
 -->
 <!-- Item markup (copy for each draft; data-item must equal the board title exactly):
-<div class="item" data-item="TITLE">
+<div class="item" data-item="TITLE" data-type="new">
 <h3>1. TITLE</h3>
 <p>What changed and why.</p>
 <div class="links"><a href="/pending/..." target="_blank" rel="noopener">Preview</a><a href="/..." target="_blank" rel="noopener">Live version</a></div>
@@ -128,7 +133,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 <p>隨時都可以在這裡告訴我們想改什麼，例如文字、價格或新的內容。系統每 8 小時會處理一次：簡單的修改會直接更新，較大的內容會先放到這頁讓您確認。Tell us anything you'd like changed. It's handled every 8 hours: simple edits go live, and bigger content comes back here for your OK first.</p>
 </details>
 
-<div class="item" data-item="Pro for a child goes through a parent's account: privacy and kids routine page (EN + 繁中)" data-status="review">
+<div class="item" data-item="Pro for a child goes through a parent's account: privacy and kids routine page (EN + 繁中)" data-type="update" data-page="Privacy and Kids routine checklist" data-page-zh="隱私權政策、孩子作息清單" data-status="review">
 <h3>1. Pro for a child goes through a parent's account: privacy and kids routine page (EN + 繁中)</h3>
 <p>Why: on 2026-11-07 you answered "1 yes": a parent signs in with their own account on the child's iPad when the child needs Pro (more than five missions). I said I would draft one line for /privacy saying so. The new kids routine page also leaves this open in its FAQ on cost, so it gets one matching sentence. Nothing else changes on either page.</p>
 <ul>
@@ -141,7 +146,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 <div class="links"><a href="/pending/privacy" target="_blank" rel="noopener">Preview (EN)</a><a href="/pending/zh-privacy" target="_blank" rel="noopener">預覽（繁中）</a><a href="/pending/kids-routine-checklist" target="_blank" rel="noopener">Preview kids page (EN)</a><a href="/pending/zh-kids-routine-checklist" target="_blank" rel="noopener">預覽孩子頁面（繁中）</a><a href="/privacy" target="_blank" rel="noopener">Live version</a></div>
 </div>
 
-<div class="item" data-item="Sleep early challenge page (EN + 繁中)" data-status="review">
+<div class="item" data-item="Sleep early challenge page (EN + 繁中)" data-type="new" data-status="review">
 <h3>2. Sleep early challenge page (EN + 繁中)</h3>
 <p>Why: on 2026-11-04 you suggested more challenge topics (Bible study, healthy eating, sleep early). The Bible page is live; this is the next one. The AI check (2026-11-02) did not name Tadapop for "What app lets friends do a habit challenge together with a leaderboard?" or "推薦可以跟朋友一起打卡、養成習慣的 App" (cited instead: habitify.me, alpacto.com, appinn.com, ptt.cc and others), and 早睡打卡 is a common way people say this in Taiwan. It follows the Bible page: how to set it up in the Check-in Club, four bedtime rules to start with, and a short FAQ. No health or sleep claims; it says plainly that Tadapop does not track sleep and that check-ins are self-reported.</p>
 <ul>
@@ -152,7 +157,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 <div class="links"><a href="/pending/sleep-early-challenge" target="_blank" rel="noopener">Preview (EN)</a><a href="/pending/zh-sleep-early-challenge" target="_blank" rel="noopener">預覽（繁中）</a></div>
 </div>
 
-<div class="item" data-item="Healthy eating challenge page (EN + 繁中)" data-status="review">
+<div class="item" data-item="Healthy eating challenge page (EN + 繁中)" data-type="new" data-status="review">
 <h3>3. Healthy eating challenge page (EN + 繁中)</h3>
 <p>Why: this is the last of the three challenge topics you suggested on 2026-11-04 (Bible study, healthy eating, sleep early). The AI check (2026-11-02) still names Tadapop in none of its 4 questions, including "What app lets friends do a habit challenge together with a leaderboard?" and "推薦可以跟朋友一起打卡、養成習慣的 App" (cited instead: habitify.me, alpacto.com, appinn.com, ptt.cc and others). It has the same shape as the sleep early page: how to set it up in the Check-in Club, four simple food rules to start with, and a short FAQ. No diet, weight or health claims.</p>
 <ul>

@@ -112,16 +112,21 @@ document.querySelector('.tab-close').addEventListener('click',function(){
     when at changes, data-requested="YYYY-MM-DD" (the date changes were asked). Items at changes collapse into
     「需要修改，處理中」 and approved items into 「已同意，等待上線」, below the waiting ones, by themselves.
     After revising, set data-status back to "review" (and drop data-requested): the card returns to the top.
+  - Each item also carries data-type, shown as a badge above its title: new (新文章, a page that doesn't exist yet),
+    update (更新現有頁面, edits to a live page), section (新增段落, added to a live page), setting (網站設定: titles,
+    descriptions, schema, technical; every [Yufan] item), question (問題, the Questions box). For update and section, name
+    the page: data-page="English page name" data-page-zh="中文頁名". Example:
+    <div class="item" data-item="..." data-type="section" data-page="About" data-page-zh="關於我們" data-status="review">
 -->
 <!-- Item markup (copy for each draft; data-item must equal the board title exactly):
-<div class="item" data-item="TITLE">
+<div class="item" data-item="TITLE" data-type="setting">
 <h3>1. TITLE</h3>
 <p>What changed and why.</p>
 <div class="links"><a href="/pending/..." target="_blank" rel="noopener">Preview</a><a href="/..." target="_blank" rel="noopener">Live version</a></div>
 </div>
 -->
 <h2>Waiting for approval</h2>
-<div class="item" data-item="[Yufan] Workout challenge pages: footer link to the habits page (EN + 繁中)" data-status="approved" data-approved="2026-11-09">
+<div class="item" data-item="[Yufan] Workout challenge pages: footer link to the habits page (EN + 繁中)" data-type="setting" data-status="approved" data-approved="2026-11-09">
 <h3>1. Workout challenge pages: footer link to the habits page (EN + 繁中)</h3>
 <p><strong>Finding:</strong> the AI check (2026-11-02) names Tadapop in none of its 4 questions (Q1/Q4 habit challenges with friends: chatbots cited habitify.me, alpacto.com, appinn.com, ptt.cc). /habits, the page about building a habit that sticks, now has the fewest public inbound links of any guide page: 2 per language (home and about), and both use the anchor "Watch the 2-minute film", which does not say what the page is about. /workout-challenge links to it nowhere. This adds one footer link with the page's own H1 as anchor text. Link only; no text, title or sitemap change.</p>
 <ul>
