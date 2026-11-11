@@ -251,14 +251,14 @@
   </url>
   <url>
     <loc>https://www.tadapop.app/kids-routine-checklist</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/kids-routine-checklist"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/kids-routine-checklist"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/kids-routine-checklist"/>
   </url>
   <url>
     <loc>https://www.tadapop.app/zh/kids-routine-checklist</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/kids-routine-checklist"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/kids-routine-checklist"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/kids-routine-checklist"/>
@@ -290,5 +290,19 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/healthy-eating-challenge"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/healthy-eating-challenge"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/healthy-eating-challenge"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/chore-chart-app-or-routine-checklist</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/chore-chart-app-or-routine-checklist"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/chore-chart-app-or-routine-checklist"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/chore-chart-app-or-routine-checklist"/>
+  </url>
+  <url>
+    <loc>https://www.tadapop.app/zh/chore-chart-app-or-routine-checklist</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tadapop.app/chore-chart-app-or-routine-checklist"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/chore-chart-app-or-routine-checklist"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/chore-chart-app-or-routine-checklist"/>
   </url>
 </urlset>

@@ -75,7 +75,7 @@
       ]
     },
     {
-      "source": "/(film-club|film-solo|promo|habits|group-challenges|workout-challenge|bible-reading-challenge|kids-routine-checklist|sleep-early-challenge|healthy-eating-challenge|film-club/index.html|film-solo/index.html|promo/index.html|habits/index.html|group-challenges/index.html|workout-challenge/index.html|bible-reading-challenge/index.html|kids-routine-checklist/index.html|sleep-early-challenge/index.html|healthy-eating-challenge/index.html)",
+      "source": "/(film-club|film-solo|promo|habits|group-challenges|workout-challenge|bible-reading-challenge|kids-routine-checklist|sleep-early-challenge|healthy-eating-challenge|chore-chart-app-or-routine-checklist|film-club/index.html|film-solo/index.html|promo/index.html|habits/index.html|group-challenges/index.html|workout-challenge/index.html|bible-reading-challenge/index.html|kids-routine-checklist/index.html|sleep-early-challenge/index.html|healthy-eating-challenge/index.html|chore-chart-app-or-routine-checklist/index.html)",
       "headers": [
         {
           "key": "Cache-Control",

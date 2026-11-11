@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="robots" content="noindex,nofollow,noarchive" />
-  <!-- Canonical, hreflang, og:url and analytics are restored when this goes live. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chore chart app or a routine checklist for kids? — Tadapop</title>
   <meta name="description" content="Chore chart apps often run from a parent's phone or pay allowance. Tadapop is a checklist your child ticks off on their own tablet, with no money." />
@@ -12,6 +10,7 @@
   <meta property="og:site_name" content="Tadapop" />
   <meta property="og:title" content="Chore chart app or a routine checklist for kids? — Tadapop" />
   <meta property="og:description" content="Chore chart apps often run from a parent's phone or pay allowance. Tadapop is a checklist your child ticks off on their own tablet, with no money." />
+  <meta property="og:url" content="https://www.tadapop.app/chore-chart-app-or-routine-checklist" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://www.tadapop.app/assets/og.png" />
   <meta property="og:image:width" content="1024" />
@@ -25,6 +24,10 @@
   <meta name="twitter:image" content="https://www.tadapop.app/assets/og.png" />
 
 
+  <link rel="canonical" href="https://www.tadapop.app/chore-chart-app-or-routine-checklist" />
+  <link rel="alternate" hreflang="en" href="https://www.tadapop.app/chore-chart-app-or-routine-checklist" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.tadapop.app/zh/chore-chart-app-or-routine-checklist" />
+  <link rel="alternate" hreflang="x-default" href="https://www.tadapop.app/chore-chart-app-or-routine-checklist" />
   <link rel="icon" href="/assets/favicon.png" />
   <!-- Fonts are self-hosted now (the @font-face block at the top of styles.css),
        so the first paint no longer waits on a fonts.googleapis.com round trip and
@@ -155,24 +158,31 @@
   ]
 }
 </script>
+  <!-- Google tag (gtag.js) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JTYW60NJLH');
+    /* The library loads on the first interaction, or when the page goes idle after load. Calls wait in dataLayer until then. */
+    (function (w, d) {
+      var done = 0, ev = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+      function load() {
+        if (done) return; done = 1;
+        ev.forEach(function (e) { w.removeEventListener(e, load, true); });
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-JTYW60NJLH';
+        d.head.appendChild(s);
+      }
+      ev.forEach(function (e) { w.addEventListener(e, load, { capture: true, passive: true }); });
+      w.addEventListener('load', function () {
+        setTimeout(function () { w.requestIdleCallback ? w.requestIdleCallback(load, { timeout: 3000 }) : load(); }, 4000);
+      });
+    })(window, document);
+  </script>
 </head>
 <body>
-<button type="button" class="tab-close" aria-label="關閉分頁 Close tab" title="關閉分頁 Close tab">&times;</button>
-<p class="tab-close-hint" role="status" hidden>請直接關閉這個分頁。You can close this tab now.</p>
-<style>
-.tab-close{position:fixed;top:12px;right:12px;z-index:10;width:44px;height:44px;border-radius:50%;border:1px solid #c9c2b5;background:#fff;color:#333;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.tab-close:hover{background:#f1ede6}.tab-close:focus-visible{outline:2px solid #1d4f91;outline-offset:2px}
-h1{padding-right:52px}
-.tab-close-hint{position:fixed;top:62px;right:12px;z-index:10;margin:0;padding:8px 12px;background:#222;color:#fff;border-radius:8px;font-size:14px}
-</style>
-<script>
-document.querySelector('.tab-close').addEventListener('click',function(){
-  window.close();
-  // Browsers only let a page close a tab that was opened by a link or script; otherwise say so.
-  setTimeout(function(){document.querySelector('.tab-close-hint').hidden=false;},300);
-});
-</script>
-<p style="background:#fff3a0;color:#222;margin:0;padding:10px 64px 10px 16px;font-size:14px;position:relative;z-index:5">Draft of a new page, /chore-chart-app-or-routine-checklist (繁中 version: <a href="/pending/zh-chore-chart-app-or-routine-checklist">/pending/zh-chore-chart-app-or-routine-checklist</a>). The whole page is new, so nothing is highlighted. On approval it also gets a link from /kids-routine-checklist, the sitemap and llms.txt.</p>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="grid-bg" aria-hidden="true"></div>
   <header class="site-nav" id="siteNav">
@@ -193,6 +203,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
         <a href="/support">Support</a>
       </nav>
       <div class="nav-tail">
+        <div data-lang-switch></div>
         <a class="site-cta" href="/#get">Get the app</a>
       </div>
     </div>
