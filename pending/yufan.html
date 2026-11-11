@@ -130,6 +130,17 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
+<div class="item" data-item="[Yufan] Chinese rules page: join section heading names the member invite rules (繁中)" data-type="setting" data-status="approved" data-approved="2026-11-11">
+<h3>1. Chinese rules page: join section heading names the member invite rules (繁中)</h3>
+<p lang="zh-Hant"><strong>發現：</strong>Google Search Console（28 天）：搜尋「俱乐部成员邀请规则」曝光 2 次、平均排名 5、點擊 0。/zh/rules 的「誰可以加入，什麼時候可以」這一段講的就是邀請碼、邀請連結和加入時間，但標題沒有「邀請」這個詞。這次只在標題（和 Article schema 的 articleSection）後面加上「成員邀請規則」，意思不變；不改內文和計分文字。英文頁沒有對應的搜尋，所以不動。</p>
+<p lang="en"><strong>Finding:</strong> Google Search Console (28 days): the search 俱乐部成员邀请规则 ("club member invite rules") had 2 impressions at average position 5, 0 clicks. The /zh/rules section 誰可以加入，什麼時候可以 ("Who can join, and when") is exactly about invite codes, invite links and when you can join, but its heading doesn't say "invite". This appends 成員邀請規則 ("member invite rules") to that H2 and to the matching Article schema articleSection entry. Same meaning; no body or scoring text changes. The English page has no matching query, so it is left alone.</p>
+<ul>
+<li><strong lang="zh-Hant">/zh/rules 標題（H2 與 articleSection）：</strong><strong lang="en">/zh/rules heading (H2 and articleSection):</strong><span class="ba was"><b>Before</b>誰可以加入，什麼時候可以</span><span class="ba now"><b>After</b>誰可以加入，什麼時候可以：成員邀請規則</span></li>
+</ul>
+<p lang="zh-Hant">分支：<code>seo/zh-rules-invite-heading</code>。依長期同意自動核准，下次執行時上線，在那之前都可以撤回。</p>
+<p lang="en">Branch: <code>seo/zh-rules-invite-heading</code>. Auto-approved (standing approval); goes live at the next run unless you undo it.</p>
+<div class="links"><a href="/zh/rules" target="_blank" rel="noopener">Live /zh/rules</a></div>
+</div>
 <script>
 (function(){
   var API='https://admin.shiptolive.com/api/contact';
